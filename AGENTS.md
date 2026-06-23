@@ -57,7 +57,7 @@ Ambos deben mantener la misma estructura, contenido y calidad. Las traducciones 
 ```
 src/content/docs/            → Markdown (castellano, raíz)
 src/content/docs/va/         → Markdown (valenciano)
-src/content/docs/index.md    → Portada con hero + cards unidades + barra descargas + boletin-cards + licencia
+src/content/docs/index.md    → Portada (imagen principal) + cards unidades + barra descargas + boletin-cards + licencia
 src/styles/custom.css        → CSS premium (paleta, botón idioma, hero, cards, download-bar)
 public/portada.png           → Imagen de portada para PDF/EPUB (también en web)
 public/                      → PDFs y EPUBs exportados
@@ -118,6 +118,7 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - `ca/` renombrado a `va/` para usar el código ISO correcto del valenciano
 - Las unidades en el sidebar llevan emojis temáticos (🚀, 🔤, 🔀, 🧩, ⚡, 🏗️, 🔒, 🧬, 📚, 🗺️, 📁, 🗄️, 🌐)
 - El layout de la web usa las 3 columnas por defecto de Starlight (sidebar, contenido, TOC derecho)
-- `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web
+- `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web como hero de la landing
+- Las rutas de la portada en `index.md` y `pdf-cover.html` usan URL absoluta (`https://sergarb1.github.io/ApuntesProgramacion/portada.png`) para que funcionen tanto en web como en PDF generado
 - Sección de boletines redundante eliminada de landing page (cada unit-card ya tiene sus enlaces)
 - PDF generado con `--preceding-html scripts/pdf-cover.html` (portada), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
