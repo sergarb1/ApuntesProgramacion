@@ -1,0 +1,29 @@
+{
+  "name": "prog-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "pdf": "npm run pdf:es && npm run pdf:va",
+    "pdf:es": "astro build && npx starlight-to-pdf https://sergarb1.github.io/ApuntesProgramacion -p public/pdf -f ApuntesProgramacion-es --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg --exclude /va/",
+    "pdf:va": "astro build && npx starlight-to-pdf https://sergarb1.github.io/ApuntesProgramacion/va/ -p public/pdf -f ApuntesProgramacion-va --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg",
+    "pdf:local": "npm run pdf:local:es",
+    "pdf:local:es": "astro build && npx starlight-to-pdf http://localhost:4321/ApuntesProgramacion -p public/pdf -f ApuntesProgramacion-es --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg --exclude /va/",
+    "pdf:local:va": "astro build && npx starlight-to-pdf http://localhost:4321/ApuntesProgramacion/va/ -p public/pdf -f ApuntesProgramacion-va --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg",
+    "epub": "pwsh -NoProfile -File scripts/generate-epub.ps1",
+    "epub:all": "pwsh -NoProfile -File scripts/generate-epub.ps1 -Lang es && pwsh -NoProfile -File scripts/generate-epub.ps1 -Lang va",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.41.0",
+    "@fontsource/geist-sans": "^5.2.5",
+    "astro": "^7.0.2",
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "starlight-to-pdf": "^1.4.0"
+  }
+}
