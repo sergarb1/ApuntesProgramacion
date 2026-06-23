@@ -85,6 +85,10 @@ astro.config.mjs             → Config principal (sidebar, i18n, plugins, emoji
 - **EPUB:** `npm run epub:all` (genera EPUB castellano + valenciano con portada y sintaxis coloreada)
 - Los enlaces de descarga están disponibles en la página de inicio (`index.md`)
 
+## CI/CD
+- `.nojekyll` en raíz del repo para evitar build Jekyll de GitHub Pages
+- `actions/checkout@v5` + `actions/setup-node@v5` con Node 24
+
 ## Google Docs
 Cada .md se importa directamente a Google Docs:
 1. Abrir docs.google.com → Archivo → Importar
