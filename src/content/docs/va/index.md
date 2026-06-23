@@ -1,19 +1,16 @@
 ---
 title: Inici
 description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 — Sergi Garcia Barea
-hero:
-  title: "☕ Programació Java — DAM/DAW"
-  tagline: Curs complet d'iniciació a la programació en Java. Bilingüe (valencià / castellà), amb cercador, mode fosc i disseny premium.
-  actions:
-    - text: Començar per la Unitat 1
-      link: /va/01-introduccion
-      icon: right-arrow
-      variant: primary
-    - text: Veure al GitHub
-      link: https://github.com/sergarb1/ApuntesProgramacion
-      icon: github
-      variant: secondary
 ---
+
+<div align="center">
+  <img src="/ApuntesProgramacion/portada.png" alt="☕ Programació Java — DAM/DAW. Curs complet d'iniciació a la programació en Java. Bilingüe (valencià / castellà), amb cercador, mode fosc i disseny premium." style="max-width:100%;height:auto;border-radius:12px;margin:0 0 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
+</div>
+
+<div align="center" style="margin-bottom:2rem;">
+  <a href="/ApuntesProgramacion/va/01-introduccion" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,#2d8a4e,#1e6b38);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🚀 Començar per la Unitat 1</a>
+  <a href="https://github.com/sergarb1/ApuntesProgramacion" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🐙 Veure al GitHub</a>
+</div>
 
 <div align="center">
   <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ca" target="_blank">
@@ -32,10 +29,6 @@ hero:
     <a href="/ApuntesProgramacion/epub/ApuntesProgramacion-cast.epub" class="dl-btn">📱 EPUB (Castellà)</a>
     <a href="/ApuntesProgramacion/epub/ApuntesProgramacion-val.epub" class="dl-btn">📱 EPUB (Valencià)</a>
   </div>
-</div>
-
-<div align="center">
-  <img src="/ApuntesProgramacion/portada.png" alt="Portada del curs de Programació Java" style="max-width:100%;height:auto;border-radius:12px;margin:2rem 0;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
 </div>
 
 ## 📚 Unitats
