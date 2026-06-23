@@ -4,7 +4,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 ---
 
 <div align="center">
-  <img src="/ApuntesProgramacion/portada.png" alt="☕ Programación Java — DAM/DAW. Curso completo de iniciación a la programación en Java. Bilingüe (castellano / valencià), con buscador, modo oscuro y diseño premium." style="max-width:100%;height:auto;border-radius:12px;margin:0 0 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
+  <img src="https://sergarb1.github.io/ApuntesProgramacion/portada.png" alt="☕ Programación Java — DAM/DAW. Curso completo de iniciación a la programación en Java. Bilingüe (castellano / valencià), con buscador, modo oscuro y diseño premium." style="max-width:100%;height:auto;border-radius:12px;margin:0 0 1.5rem;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
 </div>
 
 <div align="center" style="margin-bottom:2rem;">
