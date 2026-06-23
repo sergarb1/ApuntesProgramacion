@@ -34,6 +34,10 @@ hero:
   </div>
 </div>
 
+<div align="center">
+  <img src="/ApuntesProgramacion/portada.png" alt="Portada del curs de Programació Java" style="max-width:100%;height:auto;border-radius:12px;margin:2rem 0;box-shadow:0 8px 40px rgba(0,0,0,0.15);">
+</div>
+
 ## 📚 Unitats
 
 <div class="unit-grid">

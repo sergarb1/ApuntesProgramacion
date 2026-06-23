@@ -25,6 +25,7 @@ export default defineConfig({
       ],
       head: [
         { tag: 'meta', attrs: { name: 'theme-color', content: '#2d8a4e' } },
+        { tag: 'link', attrs: { rel: 'icon', type: 'image/png', href: '/ApuntesProgramacion/favicon.png' } },
       ],
       sidebar: [
         {
