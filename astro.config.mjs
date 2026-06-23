@@ -56,7 +56,7 @@ export default defineConfig({
         {
           label: '📝 Boletines',
           translations: { va: '📝 Butlletins' },
-          items: [
+          items:
             ['🚀','🔤','🔀','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','📁','🗄️','🌐'].flatMap((emoji, i) => {
               const n = i + 1, nn = String(n).padStart(2,'0');
               return [{
@@ -71,7 +71,6 @@ export default defineConfig({
                 ],
               }];
             }),
-          ],
         },
       ],
     }),
