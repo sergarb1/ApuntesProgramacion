@@ -42,7 +42,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/01-introduccion" class="title-link">Introducció a Java</a>
   <p class="desc">Primer contacte amb Java: instal·la el JDK, escriu el teu primer programa, coneix el mètode <code>main</code>, els comentaris i els arguments de línia de comandos.</p>
-  <a href="/ApuntesProgramacion/va/01-introduccion" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/01-introduccion" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 01</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-01-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-01-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -59,7 +60,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/02-variables-tipos-operadors" class="title-link">Variables, Tipus i Operadors</a>
   <p class="desc">Declara variables, usa tipus primitius, operadors aritmètics i lògics, conversions de tipus i llig dades per teclat amb <code>Scanner</code>.</p>
-  <a href="/ApuntesProgramacion/va/02-variables-tipos-operadors" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/02-variables-tipos-operadors" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 02</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-02-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-02-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -76,7 +78,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/03-estructures-control-excepcions" class="title-link">Estructures de Control i Excepcions</a>
   <p class="desc">Domina <code>if</code>/<code>else</code>, <code>switch</code>, bucles <code>while</code> i <code>for</code>, i gestiona excepcions amb <code>try</code>/<code>catch</code> perquè el teu programa no es trenque.</p>
-  <a href="/ApuntesProgramacion/va/03-estructures-control-excepcions" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/03-estructures-control-excepcions" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 03</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-03-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-03-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -93,7 +96,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/04-algoritmica-fonaments" class="title-link">Algorítmica I: Fonaments</a>
   <p class="desc">Aprén a pensar com un programador: dividix problemes en parts, usa pseudocodi, diagrames de flux i crea funcions reutilitzables.</p>
-  <a href="/ApuntesProgramacion/va/04-algoritmica-fonaments" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/04-algoritmica-fonaments" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 04</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-04-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-04-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -110,7 +114,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/05-algoritmica-tecniques" class="title-link">Algorítmica II: Tècniques Avançades</a>
   <p class="desc">Algoritmes d'ordenació, cerca binària, recursivitat i tècniques dividix i venceràs per a resoldre problemes més complexos.</p>
-  <a href="/ApuntesProgramacion/va/05-algoritmica-tecniques" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/05-algoritmica-tecniques" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 05</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-05-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-05-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -127,7 +132,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/06-poo-classes-objectes" class="title-link">POO: Classes i Objectes</a>
   <p class="desc">Programació Orientada a Objectes: crea classes, instància objectes, definix atributs i mètodes, i entén la màgia dels constructors.</p>
-  <a href="/ApuntesProgramacion/va/06-poo-classes-objectes" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/06-poo-classes-objectes" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 06</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-06-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-06-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -144,7 +150,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/07-visibilitat-encapsulacio-static" class="title-link">Visibilitat, Encapsulació i Static</a>
   <p class="desc">Controla qui veu què: modificadors d'accés (<code>public</code>, <code>private</code>, <code>protected</code>), encapsulació amb getters/setters, membres <code>static</code> i constants.</p>
-  <a href="/ApuntesProgramacion/va/07-visibilitat-encapsulacio-static" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/07-visibilitat-encapsulacio-static" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 07</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-07-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-07-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -161,7 +168,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/08-herencia-polimorfisme-interficies" class="title-link">Herència, Polimorfisme i Interfícies</a>
   <p class="desc">Herència, polimorfisme, classes abstractes i interfícies: la base del disseny flexible i reutilitzable en Java. Aprén a sobreescriure mètodes i a usar <code>super</code>.</p>
-  <a href="/ApuntesProgramacion/va/08-herencia-polimorfisme-interficies" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/08-herencia-polimorfisme-interficies" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 08</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-08-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-08-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -178,7 +186,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/09-arrays-colleccions" class="title-link">Arrays i Col·leccions</a>
   <p class="desc">Arrays unidimensionals i multidimensionals, la classe <code>Arrays</code>, <code>ArrayList</code>, <code>LinkedList</code> i com triar la col·lecció adequada per a cada problema.</p>
-  <a href="/ApuntesProgramacion/va/09-arrays-colleccions" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/09-arrays-colleccions" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 09</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-09-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-09-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -195,7 +204,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/10-generics-mapes" class="title-link">Genèrics i Mapes</a>
   <p class="desc">Genèrics per a classes i mètodes segurs de tipus, la interfície <code>Map</code> i les seues implementacions <code>HashMap</code>, <code>TreeMap</code>, i com iterar sobre elles.</p>
-  <a href="/ApuntesProgramacion/va/10-generics-mapes" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/10-generics-mapes" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 10</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-10-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-10-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -212,7 +222,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/11-consola-fitxers-regex" class="title-link">Consola, Fitxers i Expressions Regulars</a>
   <p class="desc">Entrada/eixida per consola, lectura i escriptura de fitxers de text i binaris, serialització d'objectes i expressions regulars per a buscar patrons.</p>
-  <a href="/ApuntesProgramacion/va/11-consola-fitxers-regex" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/11-consola-fitxers-regex" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 11</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-11-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-11-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -229,7 +240,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/12-connexio-bases-dades" class="title-link">Connexió a Bases de Dades amb JDBC</a>
   <p class="desc">Connecta Java amb bases de dades relacionals usant JDBC: <code>Connection</code>, <code>Statement</code>, consultes, insercions, actualitzacions i transaccions segures.</p>
-  <a href="/ApuntesProgramacion/va/12-connexio-bases-dades" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/12-connexio-bases-dades" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 12</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-12-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-12-inicial-resuelto" class="blink">✅ Inicial res.</a>
@@ -246,7 +258,8 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <a href="/ApuntesProgramacion/va/13-apis-web" class="title-link">Servir i Consumir APIs amb Web</a>
   <p class="desc">Crea un servidor HTTP amb Java <code>HttpServer</code>, servix pàgines HTML/JS, gestiona peticions JSON, implementa una API REST completa des de zero.</p>
-  <a href="/ApuntesProgramacion/va/13-apis-web" class="unit-link">👉 Veure unitat</a>
+  <a href="/ApuntesProgramacion/va/13-apis-web" class="unit-link">👉 Veure unitat 👈</a>
+  <p class="boletin-section-label">📝 Butlletins unitat 13</p>
   <div class="boletin-links">
     <a href="/ApuntesProgramacion/va/boletin-13-inicial" class="blink">🟢 Inicial</a>
     <a href="/ApuntesProgramacion/va/boletin-13-inicial-resuelto" class="blink">✅ Inicial res.</a>
