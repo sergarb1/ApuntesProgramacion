@@ -88,6 +88,7 @@ astro.config.mjs             → Config principal (sidebar, i18n, plugins, emoji
 ## CI/CD
 - `.nojekyll` en raíz del repo para evitar build Jekyll de GitHub Pages
 - `actions/checkout@v5` + `actions/setup-node@v5` con Node 24
+- `actions/upload-pages-artifact@v5` + `actions/deploy-pages@v5` (Node 24, sin warnings)
 
 ## Google Docs
 Cada .md se importa directamente a Google Docs:
@@ -120,5 +121,6 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - El layout de la web usa las 3 columnas por defecto de Starlight (sidebar, contenido, TOC derecho)
 - `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web como hero de la landing
 - Las rutas de la portada en `index.md` y `pdf-cover.html` usan URL absoluta (`https://sergarb1.github.io/ApuntesProgramacion/portada.png`) para que funcionen tanto en web como en PDF generado
-- Sección de boletines redundante eliminada de landing page (cada unit-card ya tiene sus enlaces)
+- Sección de boletines dedicada al final de la landing (`📝 Boletines`); las cards de unidades no incluyen boletines
+- `Ver unidad` en las cards es un botón verde degradado (`.unit-link` en `custom.css`)
 - PDF generado con `--preceding-html scripts/pdf-cover.html` (portada), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
