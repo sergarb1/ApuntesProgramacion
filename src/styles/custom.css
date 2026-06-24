@@ -318,7 +318,9 @@
 
 /* === UNIT-LINK BUTTON === */
 .unit-card .unit-link {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  margin: 0.3rem auto 0;
   font-size: 0.7rem;
   font-weight: 600;
   padding: 0.35rem 0.85rem;
@@ -328,7 +330,6 @@
   text-decoration: none !important;
   transition: all 0.25s ease;
   box-shadow: 0 2px 10px rgba(45, 138, 78, 0.2);
-  margin-top: 0.3rem;
 }
 .unit-card .unit-link:hover {
   transform: translateY(-2px);
