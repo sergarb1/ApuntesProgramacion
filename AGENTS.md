@@ -127,4 +127,4 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - Las rutas de la portada en `index.md` y `pdf-cover.html` usan URL absoluta (`https://sergarb1.github.io/ApuntesProgramacion/portada.png`) para que funcionen tanto en web como en PDF generado
 - Sección de boletines dedicada al final de la landing (`📝 Boletines`); las cards de unidades no incluyen boletines
 - `Ver unidad` en las cards es un botón verde degradado (`.unit-link` en `custom.css`)
-- PDF generado con `--preceding-html scripts/pdf-cover.html` (portada), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
+- PDF generado con `--preceding-html scripts/pdf-cover.html` (portada castellano) o `scripts/pdf-cover-va.html` (portada valenciano), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
