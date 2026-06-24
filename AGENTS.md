@@ -59,13 +59,16 @@ src/content/docs/            → Markdown (castellano, raíz)
 src/content/docs/va/         → Markdown (valenciano)
 src/content/docs/index.md    → Portada (imagen principal) + cards unidades + barra descargas + boletin-cards + licencia
 src/styles/custom.css        → CSS premium (paleta, botón idioma, hero, cards, download-bar)
-public/portada.png           → Imagen de portada para PDF/EPUB (también en web)
+public/portada.png           → Imagen de portada para PDF/EPUB (castellano, también en web)
+public/portada_val.png       → Imagen de portada en valenciano para PDF/EPUB y web
 public/                      → PDFs y EPUBs exportados
 public/epub/                 → EPUBs generados (ApuntesProgramacion-cast.epub, -val.epub)
 public/pdf/                  → PDFs generados (ApuntesProgramacion-es.pdf, -va.pdf)
-portada.png                  → Portada común para PDF/EPUB (original en raíz)
+portada.png                  → Portada común para PDF/EPUB (original en raíz, castellano)
+portada_val.png              → Portada en valenciano para PDF/EPUB (raíz)
 scripts/
-  pdf-cover.html             → Portada del PDF con imagen + título superpuesto
+  pdf-cover.html             → Portada del PDF con imagen + título superpuesto (castellano)
+  pdf-cover-va.html          → Portada del PDF en valenciano
   pdf-header.html            → Header vacío (elimina la hora de impresión por defecto)
   pdf-footer.html            → Pie con número de página y línea decorativa
   generate-epub.ps1          → Genera EPUB con Pandoc
@@ -119,7 +122,8 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - `ca/` renombrado a `va/` para usar el código ISO correcto del valenciano
 - Las unidades en el sidebar llevan emojis temáticos (🚀, 🔤, 🔀, 🧩, ⚡, 🏗️, 🔒, 🧬, 📚, 🗺️, 📁, 🗄️, 🌐)
 - El layout de la web usa las 3 columnas por defecto de Starlight (sidebar, contenido, TOC derecho)
-- `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web como hero de la landing
+- `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web como hero de la landing (castellano)
+- `portada_val.png` es la portada en valenciano para web, PDF y EPUB
 - Las rutas de la portada en `index.md` y `pdf-cover.html` usan URL absoluta (`https://sergarb1.github.io/ApuntesProgramacion/portada.png`) para que funcionen tanto en web como en PDF generado
 - Sección de boletines dedicada al final de la landing (`📝 Boletines`); las cards de unidades no incluyen boletines
 - `Ver unidad` en las cards es un botón verde degradado (`.unit-link` en `custom.css`)

@@ -20,7 +20,7 @@ if ($Lang -eq "va") {
 
 $srcDir = "src/content/docs/$prefix"
 $outPath = "$OutDir/$outFile"
-$coverPath = Join-Path (Get-Location) "portada.png"
+$coverPath = Join-Path (Get-Location) (if ($Lang -eq "va") { "portada_val.png" } else { "portada.png" })
 
 New-Item -ItemType Directory -Path $OutDir -Force | Out-Null
 

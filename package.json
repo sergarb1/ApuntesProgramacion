@@ -9,10 +9,10 @@
     "preview": "astro preview",
     "pdf": "npm run pdf:es && npm run pdf:va",
     "pdf:es": "astro build && npx starlight-to-pdf https://sergarb1.github.io/ApuntesProgramacion -p public/pdf -f ApuntesProgramacion-es --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg --exclude /va/",
-    "pdf:va": "astro build && npx starlight-to-pdf https://sergarb1.github.io/ApuntesProgramacion/va/ -p public/pdf -f ApuntesProgramacion-va --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg",
+    "pdf:va": "astro build && npx starlight-to-pdf https://sergarb1.github.io/ApuntesProgramacion/va/ -p public/pdf -f ApuntesProgramacion-va --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover-va.html --print-bg",
     "pdf:local": "npm run pdf:local:es",
     "pdf:local:es": "astro build && npx starlight-to-pdf http://localhost:4321/ApuntesProgramacion -p public/pdf -f ApuntesProgramacion-es --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg --exclude /va/",
-    "pdf:local:va": "astro build && npx starlight-to-pdf http://localhost:4321/ApuntesProgramacion/va/ -p public/pdf -f ApuntesProgramacion-va --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover.html --print-bg",
+    "pdf:local:va": "astro build && npx starlight-to-pdf http://localhost:4321/ApuntesProgramacion/va/ -p public/pdf -f ApuntesProgramacion-va --footer scripts/pdf-footer.html --header scripts/pdf-header.html --preceding-html scripts/pdf-cover-va.html --print-bg",
     "epub": "pwsh -NoProfile -File scripts/generate-epub.ps1",
     "epub:all": "pwsh -NoProfile -File scripts/generate-epub.ps1 -Lang es && pwsh -NoProfile -File scripts/generate-epub.ps1 -Lang va",
     "astro": "astro"
