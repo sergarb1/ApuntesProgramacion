@@ -467,5 +467,6 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <img src="/ApuntesProgramacion/cc-by-sa.png" alt="CC BY-SA 4.0" width="88" height="31">
   </a><br>
   <span style="font-size:0.85rem;color:var(--sl-color-gray-3);"><strong>CC BY-SA 4.0</strong> — <em>Sergi Garcia Barea</em></span><br>
-  <span style="font-size:0.75rem;color:var(--sl-color-gray-3);"><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a></span>
+  <span style="font-size:0.75rem;color:var(--sl-color-gray-3);"><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank">Licencia Creative Commons Atribución-CompartirIgual 4.0 Internacional</a></span><br>
+  <span style="font-size:0.7rem;color:var(--sl-color-gray-4);">Puedes compartir y adaptar el material para cualquier propósito, incluso comercial, siempre que reconozcas la autoría y compartas las modificaciones bajo la misma licencia.</span>
 </div>
