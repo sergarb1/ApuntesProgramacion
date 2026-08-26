@@ -191,11 +191,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-01-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-01-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-01-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-01-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-01-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u01-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u01-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u01-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u01-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u01-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 
@@ -205,11 +205,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-02-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-02-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-02-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-02-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-02-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u02-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 
@@ -219,11 +219,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-03-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-03-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-03-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-03-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-03-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u03-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 
@@ -233,11 +233,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-04-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-04-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-04-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-04-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-04-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u04-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u04-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u04-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u04-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u04-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 
@@ -247,11 +247,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-05-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-05-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-05-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-05-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-05-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u05-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 
@@ -261,11 +261,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-06-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-06-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-06-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-06-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-06-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u06-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u06-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u06-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u06-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u06-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 
@@ -275,11 +275,11 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletin-07-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-07-inicial" class="blink">🟢 Inicial</a>
-    <a href="/ApuntesProgramacion/va/boletin-07-intermedio-resuelto" class="blink">💪 Intermedi resolt</a>
-    <a href="/ApuntesProgramacion/va/boletin-07-intermedio" class="blink">📝 Intermedi</a>
-    <a href="/ApuntesProgramacion/va/boletin-07-extras" class="blink">⭐ Extres</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial-resuelto" class="blink">✅ Inicial resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial" class="blink">🟢 Inicial</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado" class="blink">⭐ Avançat</a>
+    <a href="/ApuntesProgramacion/va/boletines/boletin-u07-extras" class="blink">🔥 Extres</a>
   </div>
 </div>
 

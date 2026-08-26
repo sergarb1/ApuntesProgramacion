@@ -1,472 +1,102 @@
+﻿---
+title: U02 â€” Variables, Tipus i Operadors
+description: Les caixes del magatzem de la memÃ²ria i les mÃ quines del gimnÃ s de dades ðŸ”¤
 ---
-title: "Unidad 2: Variables, Tipos de Datos y Operadores"
-nav_order: 2
----
-🎯 **Objectius d'aprenentatge**
-- Declarar i usar variables de tipus primitius
-- Comprendre la diferència entre tipus primitius i String
-- Utilitzar operadors aritmètics, relacionals i lògics
-- Aplicar casting i conversions entre tipus
-- Generar nombres aleatoris amb Math.random()
 
-## Variables: Les Caixes On Viuen Les Teues Dades
+<p><small>Les caixes del magatzem de la memÃ²ria i les mÃ quines del gimnÃ s de dades ðŸ”¤</small></p>
 
-Imagina't que la memòria del teu ordinador és un magatzem gegant ple de prestatgeries. Cada prestatgeria té caixes. Les **variables** són eixes caixes, i cada caixa té una etiqueta per a que sàpies què hi ha dins.
-
-### Les Caixes (Declaració de Variables)
-
-Per a crear una caixa li dius a Java:
-
-```java
-tipo nombreDeLaCaja = valorQueMetoDentro;
-```
-
-Exemples reals:
-
-```java
-int edad = 25;              // Caja etiquetada "edad" con un 25 dentro
-double precio = 19.99;      // Caja con decimales
-String nombre = "María";    // Caja mágica que guarda texto
-boolean hambre = true;      // Caja de verdadero/falso (ahora mismo: true)
-```
-
-> **💡 Consell:**
->
-> Les variables es diuen així perquè... ¡varien! Pots canviar el seu contingut. `int edad = 25;` i després `edad = 26;` el dia del teu cumple. L'etiqueta és la mateixa, el contingut canvia.
-
-### Les Regles de Nomenclatura (o com no ficar-la)
-
-- Poden tindre lletres, números, `_` i `$`. *No* espais ni ñ'ş ni coses rares.
-- No poden començar amb número. `1numero` és il·legal. `numero1` és legal. Així de tiquismiquis és Java.
-- Les majúscules importen: `edad`, `Edad` i `EDAD` són tres caixes distintes. Com si etiquetares "Zapatos", "zapatos" i "ZAPATOS".
-- No uses paraules reservades: `int`, `class`, `if`, `while`... són de Java, no teues.
-- Usa **camelCase**: `miVariableEjemplo`. Com un camell, amb gepa enmig.
-
-### Els 8 Primitius: Caixes de Mides Distintes
-
-Java té 8 tipus primitius. Pensa en ells com caixes de distintes mides al teu magatzem:
-
-| Tipus | Mida | El que cap | Analogia |
-|-------|------|------------|----------|
-| `byte` | 8 bits | -128 a 127 | Caixa de llumins |
-| `short` | 16 bits | -32.768 a 32.767 | Caixa de sabates |
-| `int` | 32 bits | -2.147M a 2.147M | Caixa de mudança (la que més usaràs) |
-| `long` | 64 bits | -9 quatrilions a +9 quatrilions | Contenidor de vaixell |
-| `float` | 32 bits | Decimals de precisió simple | Got d'aigua |
-| `double` | 64 bits | Decimals de precisió doble | Cubell d'aigua |
-| `char` | 16 bits | Un sol caràcter Unicode | Una lletra en una caixa de sabates |
-| `boolean` | 1 bit | `true` o `false` | Interruptor de llum |
-
-```java
-byte nivel = 100;
-short poblacion = 30000;
-int habitantes = 1500000;           // El más usado
-long distancia = 384400000L;        // La L al final es obligatoria
-float precio = 12.99f;              // La f al final es obligatoria
-double pi = 3.14159265359;
-char letra = 'A';                   // Comillas SIMPLES para char
-boolean esJavaDivertido = true;     // Esto es opinable
-```
-
-> **📝 Nota:**
->
-> Usa `int` per a quasi tot el numèric enter. Només usa `long` si vas a contar estrelles. Usa `double` per a decimals a menys que estalviar memòria siga el teu fetitxe.
-
-### String: La Caixa Màgica (No és primitiu, però ho pareix)
-
-`String` no és primitiu, és una **classe**. Però es comporta tan natural que pareix primitiu. Es com un amic que encaixa tan bé en el teu grup que jurares que és família.
-
-```java
-String saludo = "Hola, DAM";
-String nombre = new String("Ana");   // También se puede crear así
-```
-
-> **⚠️ Advertència:**
->
-> Els `String` són **inmutables**. Una volta creats, no es poden canviar. Quan fas `texto = texto + " más"`, en realitat estàs tirant el vell i creant-ne un de nou. Es com si cada volta que volgueres posar un cartell nou cremares l'anterior.
-
-### Constants: Caixes amb Superglue
-
-Les constants es declaren amb `final`. Una volta que fiques alguna cosa ahí, no ixes ni amb palanca.
-
-```java
-final double IVA = 0.21;
-final int MAXIMO_INTENTOS = 3;
-final String NOMBRE_APP = "Gestión DAM";
-
-IVA = 0.10;  // ERROR: ¡Has roto Java! (de compilación, no te preocupes)
-```
-
-Per convenció, les constants s'escriuen EN MAJÚSCULES_AMB_GUIONS_BAIXOS. Com si estigueren cridant "¡SOC IMMUTABLE!".
-
-### Casting: Prem que Cap
-
-Hi ha dos tipus de conversions:
-
-- **Implícita (Widening)**: De caixa menuda a gran. Java ho fa sol. `int → long → double`. Com canviar d'un pis a una mansió. No preguntes, simplement et mudes.
-- **Explícita (Narrowing)**: De gran a menuda. Java t'obliga a posar `(tipus)` davant. Com ficar una maleta XXL al maleter d'un Smart: has d'empènyer `(tipus)` i resar.
-
-```java
-// Implícita: ensanchando
-int num = 100;
-long numLong = num;           // Cabe, no problema
-double numDouble = num;       // También
-
-// Explícita: estrechando
-double precio = 19.99;
-int entero = (int) precio;    // Pierdes los .99 → sale 19
-System.out.println(entero);   // 19 — los céntimos desaparecen en el olvido
-```
-
-### Math.random(): El Casino de Java
-
-`Math.random()` retorna un nombre aleatori entre 0.0 i 1.0 (l'1.0 no està inclòs, com quan et toca la loteria però no).
-
-```java
-double aleatorio = Math.random();                    // Entre 0.0 y 0.999999...
-int dado = (int) (Math.random() * 10);              // Entre 0 y 9
-int dadoReal = (int) (Math.random() * 6) + 1;       // Entre 1 y 6 (como un dado)
-```
-
-> **💡 Consell:**
->
-> Per a un nombre entre `min` i `max`: `(int)(Math.random() * (max - min + 1)) + min`. Exemple del 5 al 10: `(int)(Math.random() * 6) + 5`.
-
-> **⭐ BE THE CODE, MY FRIEND**
->
-> > 🕶️ **Don Tip:** El *casting* explícit amb `(tipus)` pot truncar valors. Comprova sempre si el valor cap abans de forçar-lo.
->
-> **Exercici 1: El Guarda de Magatzem**
->
-> Eres el guarda d'un magatzem de dades. Et donen estes instruccions:
->
-> ```java
-> int a = 10;
-> double b = a;
-> int c = (int) b;
-> byte d = (byte) c;
-> System.out.println(d);
-> ```
->
-> **Segueix el procés pas a pas:**
-> 1. `int a = 10;` — Fiques un 10 en una caixa int.
-> 2. `double b = a;` — Agafes el 10 i el fiques en una caixa double. Conversió implícita.
-> 3. `int c = (int) b;` — Agafes el 10.0 del double. Necessites `(int)` perquè passar de double a int requereix apretar.
-> 4. `byte d = (byte) c;` — Agafes el 10 del int i el fiques en un byte. Cap, però forces amb `(byte)`.
-> 5. Imprimeix: **10**.
->
-> **Ara prova este:**
-> ```java
-> int grande = 300;
-> byte pequeno = (byte) grande;
-> System.out.println(pequeno);
-> ```
->
-> Què ix? (Pista: en un byte només caben -128 a 127. Sobren 172. En binari, es truncaren els bits sobrants). Resultat: **44**. Es com intentar ficar un elefant en un Mini Cooper i que isca un gos salchicha.
-
-> **⭐ BE THE CODE, MY FRIEND**
->
-> > 🕶️ **Don Tip:** `==` compara referències (són el mateix objecte?), `.equals()` compara contingut (tenen el mateix text?).
->
-> **Exercici 2: Què Imprimeix Este Embolic de Strings?**
->
-> Sense executar, digues QUÈ imprimeix exactament este codi:
->
-> ```java
-> String a = "Hello";
-> String b = "Hello";
-> String c = new String("Hello");
-> System.out.println(a == b);
-> System.out.println(a == c);
-> ```
->
-> **Resposta:** `true` i `false`. `a` i `b` apunten al mateix objecte en el "pool de Strings" (Java reutilitza literals iguals). Però `c` es va crear amb `new String(...)`, així que és un objecte nou. `==` compara referències, no contingut. Per a comparar contingut usa `.equals()`: `a.equals(c)` retornaria `true`. ¡Trampa típica d'examen!
-
-> **⭐ BE THE CODE, MY FRIEND**
->
-> > 🕶️ **Don Tip:** Els operadors `++` pre i post tenen prioritats diferents. Pre: primer canvia, després usa. Post: primer usa, després canvia.
->
-> **Exercici 3: Increment Misteriós**
->
-> Què imprimeix este codi?
->
-> ```java
-> int a = 5;
-> int b = a * 2 + ++a;
-> System.out.println("a = " + a);
-> System.out.println("b = " + b);
-> ```
->
-> **Resposta:** `a = 6`, `b = 16`. `++a` s'avalua primer (unari), `a` passa a 6. Després `a * 2 + 6` → `5 * 2 + 6` → `16`.
->
-> Si haguera sigut `a * 2 + a++`, seria distint: `5 * 2 + 5 = 15` (primer usa a=5, després incrementa a 6).
-
-### Mètodes Útils de String (perquè els necessitaràs)
-
-```java
-String texto = "  Programación DAM  ";
-texto.length();              // 18
-texto.trim();                // "Programación DAM" (sin espacios)
-texto.toUpperCase();         // "  PROGRAMACIÓN DAM  "
-texto.toLowerCase();         // "  programación dam  "
-texto.contains("DAM");       // true
-texto.startsWith("  ");      // true
-texto.endsWith("AM  ");      // true
-texto.indexOf("DAM");        // 14 ¿dónde empieza "DAM"?
-texto.substring(2, 13);      // "Programación"
-texto.replace("DAM", "DAW"); // "  Programación DAW  "
-```
-
-## Operadors: El Gimnàs de les Dades
-
-Les variables estan molt bé, però no serveixen de res si no fas coses amb elles. Els **operadors** són les màquines de pesos del teu gimnàs de dades: sumen, resten, comparen i transformen.
-
-### Operadors Aritmètics: El Dia al Gym
-
-| Operador | Exercici | Exemple |
-|----------|----------|---------|
-| `+` | Press de banca | `5 + 3 = 8` |
-| `-` | Curl de bíceps | `5 - 3 = 2` |
-| `*` | Sentadilla | `5 * 3 = 15` |
-| `/` | Pes mort | `10 / 3 = 3` (enters) o `10.0 / 3 = 3.333...` |
-| `%` | L'odiat abdominal | `10 % 3 = 1` (el reste de 10/3) |
-
-```java
-int a = 10;
-int b = 3;
-double c = 10.0;
-
-System.out.println(a / b);            // 3 (división entera)
-System.out.println(a % b);            // 1 (el resto)
-System.out.println(c / b);            // 3.333... (división real)
-System.out.println((double) a / b);   // 3.333... (obligas decimal)
-```
-
-**La divisió entera mata.** Si tens `int alumnos = 17; int grupos = 5;` i fas `alumnos / grupos`, Java diu que cada grup té **3** alumnes. Per a Java, 17 dividit entre 5 són 3. Punt.
-
-### Precedència: Qui Va Primer?
-
-```java
-int resultado = 2 + 3 * 4;        // 14 — la multiplicación se cuela
-int conParentesis = (2 + 3) * 4;  // 20 — los paréntesis tienen pase VIP
-```
-
-**La llei del menjador:**
-1. **Parèntesis `()`** — Passe VIP, van els primers.
-2. **Multiplicació, divisió i mòdul `* / %`** — Els populars.
-3. **Suma i resta `+ -`** — Els normals, els últims.
-
-### Operadors d'Assignació Composta: La Drecera Peresosa
-
-```java
-int x = 10;
-x += 5;   // x = 15  (x = x + 5, pero más cool)
-x -= 3;   // x = 12
-x *= 2;   // x = 24
-x /= 4;   // x = 6
-x %= 3;   // x = 0
-```
-
-Es com si en lloc d'anar a la cuina a per un got d'aigua, tingueres una aixeta al sofà.
-
-### `++` i `--`: Flexions per a Variables
-
-```java
-int a = 5;
-int b = a++;  // b = 5, a = 6 (POST: "usa y luego sube")
-int c = ++a;  // a = 7, c = 7 (PRE: "sube y luego usa")
-```
-
-> **💡 Consell:**
->
-> **Regla d'or:** Si uses `++` o `--` *dins* d'una expressió complicada, estaràs escrivint codi que ni tu entendràs en una setmana. Usa'ls sols, en la seua pròpia línia.
-
-> **⭐ BE THE CODE, MY FRIEND**
->
-> > 🕶️ **Don Tip:** Desglossa l'expressió pas a pas. Quin valor té `x` en cada moment?
->
-> **Exercici 4: L'Acròbata de les Variables**
->
-> Sense executar, calcula quant val tot ací:
->
-> ```java
-> int x = 3;
-> int y = x++ + ++x;
-> System.out.println("x = " + x + ", y = " + y);
-> ```
->
-> **Pas a pas:**
-> 1. `x = 3`
-> 2. `x++` — POST: usa x (3), després incrementa x a 4. El valor de `x++` és **3**.
-> 3. `++x` — PRE: x val 4 ara. Incrementa x a **5**, després val **5**.
-> 4. `y = 3 + 5 = 8`
-> 5. Resultat: `x = 5, y = 8`.
->
-> Als programadors professionals també els costa. Per això quasi ningú escriu codi així en producció. Però en els exàmens... ¡ai, apareix!
-
-### Operadors Relacionals: El Jutge de la Discussió
-
-```java
-int edad = 18;
-boolean puedeVotar = edad >= 18;                    // true
-boolean tieneDescuento = edad < 12 || edad > 65;    // false
-boolean noEsEl = edad != 18;                        // false
-```
-
-### Operadors Lògics: El Club Nocturn
-
-- **`&&` (AND)**: Tens més de 18 I tens entrada? Les dos s'han de complir.
-- **`||` (OR)**: Tens més de 18 O eres el amo? Basta una.
-- **`!` (NOT)**: NO tens menys de 18?
-
-```java
-boolean mayorEdad = true;
-boolean tieneEntrada = false;
-
-boolean entra = mayorEdad && tieneEntrada;   // false
-boolean entraVip = mayorEdad || tieneEntrada; // true
-
-int x = 5;
-boolean resultado = (x > 10) && (++x > 0);  // false, y x sigue siendo 5
-```
-
-**¡Curtcircuit!** Amb `&&`, si el primer és `false`, Java ni es molesta en mirar el segon. Amb `||`, si el primer és `true`, igual.
-
-### L'Operador Ternari: El Bouncer del Club
-
-```java
-String mensaje = (edad >= 18) ? "Pasa, joven" : "Vuelve cuando crezcas";
-
-int nota = 7;
-String resultado = nota >= 5 ? "Aprobado" : "Suspenso";
-```
-
-L'estructura és: `condició ? valorSiTrue : valorSiFalse`.
-
-### 🧩 EL LÍO
-
-El corrector automàtic de l'institut ha escopit este codi ple d'errors. Identifica i corregeix els 5 errors que té:
-
-```java
-public class LioVariables {
-    public static void main(String[] args) {
-        int a = 10.5;
-        double b = "Hola";
-        String c = true;
-        int d = a + c;
-        System.out.println("Resultado: " + d)
-    }
-}
-```
-
-Pista: cada variable ha de tindre el tipus correcte per al seu valor.
-
-> 🕶️ **Don Tip:** Repassa els tipus primitius: `int` només admet enters, `double` admet decimals, `String` va amb cometes dobles.
-
-## No Hi Ha Preguntes Tontes!
-
-> **❓ No Hi Ha Preguntes Tontes!**
->
-> **Q:** Per què `long` porta L i `float` porta f al final?
->
-> **A:** Perquè si poses `long x = 3000000000;` sense la L, Java pensa que és un `int` i es queixa. El float necessita f perquè per defecte els decimals són double.
->
-> **Q:** Què passa si dividisc un `int` entre un altre `int` i esper decimals?
->
-> **A:** Java et donarà un enter. `5 / 2 = 2`, no 2.5. Per a decimals, almenys un ha de ser double: `5 / 2.0 = 2.5` o `(double)5 / 2 = 2.5`.
->
-> **Q:** Quina és la diferència entre `=` i `==`? Sempre m'embolique.
->
-> **A:** `=` és *assignar*: "agafa este valor i fica'l en esta caixa". `==` és *comparar*: "són iguals?". Confondre'ls és l'error més clàssic. Es com confondre "posa la taula" amb "està posada la taula?".
->
-> **Q:** I el `%` per a què servix en la vida real?
->
-> **A:** Per a saber si un nombre és parell (`numero % 2 == 0`), per a cicles, per a jocs. Sense ell no tindries hores en un rellotge ni res cíclic.
->
-> **Q:** Precedència, associativitat... he de memoritzar-ho tot?
->
-> **A:** No. La regla d'or: *quan tingues dubtes, posa parèntesis*. `resultado = (a + b) * (c - d)` és molt més llegible. Els parèntesis no dolen.
-
-## Més Exemples de Codi
-
-```java
-public class CalculadoraBasica {
-    public static void main(String[] args) {
-        int a = 15;
-        int b = 4;
-
-        System.out.println("a + b = " + (a + b));
-        System.out.println("a - b = " + (a - b));
-        System.out.println("a * b = " + (a * b));
-        System.out.println("a / b = " + (a / b) + " (división entera)");
-        System.out.println("a / b real = " + ((double) a / b));
-        System.out.println("a % b = " + (a % b) + " (resto)");
-    }
-}
-```
-
-```java
-public class JuegoDeDados {
-    public static void main(String[] args) {
-        int dado1 = (int) (Math.random() * 6) + 1;
-        int dado2 = (int) (Math.random() * 6) + 1;
-        int suma = dado1 + dado2;
-
-        System.out.println("Dado 1: " + dado1);
-        System.out.println("Dado 2: " + dado2);
-        System.out.println("Suma: " + suma);
-
-        boolean esPar = suma % 2 == 0;
-        String mensaje = esPar ? "Suma par — ganas" : "Suma impar — pierdes";
-        System.out.println(mensaje);
-    }
-}
-```
-
-## Resum (el que importa de veritat)
-
-- Les variables són caixes etiquetades en la memòria.
-- 8 tipus primitius: byte < short < int < long < float < double < char < boolean.
-- `final` és superglue: constant que no canvia.
-- Casting implícit = ficar caixa menuda en gran. Explícit = a la inversa amb pèrdues.
-- `String` no és primitiu, és una classe. Però es comporta.
-- `Math.random()` per a jugar a la loteria.
-- `+ - * / %` són els bàsics. El % et dona el reste.
-- `++` i `--` són flexions. Pre (primer puja) vs Post (primer usa).
-- `&&` i `||` tenen curtcircuit: si la primera ja decidix, no miren la segona.
-- El ternari `? :` és un if-else en una línia.
-- La precedència se soluciona amb parèntesis. Sempre.
-
-## Exercicis Proposats
-
-1. **Caixes variades** Declara una variable de cada tipus primitiu, assigna-li un valor coherent i imprimeix el resultat.
-2. **El casting assassí** Declara un `double` amb valor 9.99. Converteix-lo a `int` explícitament. Quin valor es perd?
-3. **Nom al revés** Demana a l'usuari el seu nom i mostra: longitud, majúscules, primera i última lletra.
-4. **Dau trucat** Genera 10 nombres aleatoris entre 1 i 6. Compta quants 6 han eixit.
-5. **Constant del mal** Declara `final double PRECIO_BASE = 100;` i `final double IVA = 0.21`. Calcula el preu final i intenta modificar IVA després.
-6. **Quant mesura?** Calcula l'àrea d'un cercle amb `Math.PI`. Radi = 7.5.
-7. **Endevina el número** La màquina tria un número a l'atzar de l'1 al 100. L'usuari introduïx un número i el programa diu si és major, menor o igual.
-8. **L'intercanvi** Declara `int a = 5; int b = 10;`. Intercanvia els seus valors usant una tercera variable temporal.
-9. **Àrea i perímetre** Calcula l'àrea i el perímetre d'un rectangle amb base 7.5 i altura 3.2.
-10. **Parell o senar?** Demana un número i determina si és parell o senar usant `%`.
-11. **Any de traspàs** Demana un any. Determina si és de traspàs: divisible entre 4 I (no entre 100 O sí entre 400).
-12. **Ternari en acció** Pregunta l'edat a l'usuari. Usa el ternari per a mostrar "Major d'edat" o "Menor d'edat".
-13. **L'enigma del ++** Sense executar, determina el resultat de: `int a = 2; int b = a++ * 3 + --a;`
-14. **Curtcircuit** Declara `int x = 0;`. Fes `boolean test = (5 < 3) && (++x == 1);`. Imprimeix x. S'incrementà?
-15. **Conversió Celsius ↔ Fahrenheit** Demana graus Celsius. Convertix a Fahrenheit (`°F = °C × 9/5 + 32`).
-16. **Els desbordats** Declara `int max = Integer.MAX_VALUE;` i suma-li 1. Què passa?
+> ðŸ—ºï¸ **El mapa del paquet:** ðŸšª Benvinguda â†’ â˜• U01 â†’ **ðŸ”¤ ACI ETS (U02)** â†’ ðŸ”€ Control â†’ ðŸ§© AlgorÃ­tmica â†’ âš¡ TÃ¨cniques â†’ ðŸ—ï¸ POO â†’ ðŸ”’ Visibilitat â†’ ðŸ§¬ HerÃ¨ncia â†’ ðŸ“š ColÂ·leccions â†’ ðŸ—ºï¸ GenÃ¨rics â†’ ðŸ“ Fitxers â†’ ðŸ—„ï¸ JDBC â†’ ðŸŒ APIs
 
 ---
 
-**RAs treballats en esta unitat:**
-- **RA2** - Escriu i prova programes senzills
+Benvingut al magatzem. En la U01 vas aprendre a dir-li a Java que et salude per consola, perÃ² un programa que nomÃ©s imprimix text Ã©s un lloro: repetix, perÃ² no pensa. Per a pensar necessita *guardar* coses. Edats, preus, notes, si fa fred o no... i per a aixÃ² existixen les **variables**.
+
+Imagina que la memÃ²ria del teu ordinador Ã©s un **magatzem gegant** ple de prestatgeries. Cada prestatgeria tÃ© caixes, i les variables sÃ³n eixes caixes: cada una tÃ© una etiqueta perquÃ¨ sÃ pies quÃ¨ hi ha dins. I quan les caixes s'omplin de nÃºmeros i text, arriben els **operadors**: les mÃ quines de pesos del gimnÃ s de dades que sumen, resten, comparen i transformen.
+
+En esta unitat aprendrÃ s a declarar variables dels **8 tipus primitius**, a guardar text amb `String`, a fer immutables algunes caixes amb `final`, a manipular-les amb operadors aritmÃ¨tics, relacionals i lÃ²gics, a convertir-les entre tipus amb **casting**, i a fer que el teu programa **escolte el teclat** amb `Scanner` i jugue a la loteria amb `Math.random()`.
+
+Esta unitat es llig com un **llibre de 9 capÃ­tols**: els 8 primers punts sÃ³n teoria en progressiÃ³ i el 9 Ã©s un aterratge prÃ ctic per a machacar tot el que has aprÃ¨s.
 
 ---
 
-<div align="center">
-  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank">
-    <img src="/ApuntesProgramacion/cc-by-sa.png" alt="CC BY-SA 4.0" width="88" height="31">
-  </a>
-  <br>
-  <strong>Sergi Garcia Barea</strong> — CC BY-SA 4.0
+## ðŸŽ¯ Objectiu de la unitat
+
+En acabar, serÃ s capaÃ§ de:
+
+- Declarar i usar variables dels **8 tipus primitius** i saber quÃ¨ cap en cada caixa.
+- Aplicar les regles de **nomenclatura** i distingir `int`, `long`, `double`, `char` i `boolean` amb un cop d'ull.
+- Crear i usar `String` com una **classe** (no un primitiu) i entendre la seua immutabilitat.
+- Declarar **constants** amb `final` i entendre per quÃ¨ el compilador s'enfada si les toques.
+- Usar els operadors aritmÃ¨tics `+ - * / %`, sobreviure a la **divisiÃ³ entera** i respectar la **precedÃ¨ncia**.
+- Comparar valors amb operadors **relacionals**, combinar-los amb **lÃ²gics** (`&&`, `||`, `!`) i resumir decisions amb el **ternari**.
+- Convertir entre tipus amb **casting** implÃ­cit i explÃ­cit, sabent quan es perd precisiÃ³.
+- Llegir dades del teclat amb **`Scanner`** i generar nombres aleatoris amb **`Math.random()`**.
+- Manejar els **mÃ¨todes de `String`** mÃ©s usats per a manipular text.
+
+---
+
+## ðŸ—ºï¸ Mapa de la unitat
+
+| Punt | QuÃ¨ aprendrÃ s | Nivell |
+|---|---|---|
+| [01 Â· Variables i tipus primitius](/ApuntesProgramacion/va/02-variables-tipos-operadores/01-variables-tipos-primitivos) | Declarar variables, nomenclatura i els 8 primitius | Tots |
+| [02 Â· String, constants i final](/ApuntesProgramacion/va/02-variables-tipos-operadores/02-string-constantes-final) | `String`, immutabilitat, `==` vs `equals` i constants `final` | Tots |
+| [03 Â· Operadors aritmÃ¨tics](/ApuntesProgramacion/va/02-variables-tipos-operadores/03-operadores-aritmeticos) | `+ - * / %`, divisiÃ³ entera, precedÃ¨ncia i `++`/`--` | Tots |
+| [04 Â· Relacionals, lÃ²gics i ternari](/ApuntesProgramacion/va/02-variables-tipos-operadores/04-operadores-relacionales-logicos) | Comparacions, `&&`/`\|\|`/`!`, curtcircuit i ternari | Tots |
+| [05 Â· Casting i conversions](/ApuntesProgramacion/va/02-variables-tipos-operadores/05-casting-conversiones) | ConversiÃ³ implÃ­cita i explÃ­cita, truncament i desbordament | Tots |
+| [06 Â· Scanner: llegir pel teclat](/ApuntesProgramacion/va/02-variables-tipos-operadores/06-scanner-entrada-teclado) | `Scanner`, `nextInt`, `nextDouble` i `nextLine` | Tots |
+| [07 Â· Math.random() i nombres aleatoris](/ApuntesProgramacion/va/02-variables-tipos-operadores/07-math-random-aleatorios) | `Math.random()`, la fÃ³rmula min-max i les ferramentes de `Math` | Tots |
+| [08 Â· MÃ¨todes Ãºtils de String](/ApuntesProgramacion/va/02-variables-tipos-operadores/08-metodos-string) | `length`, `substring`, `replace`, `trim`, `charAt`â€¦ | Tots |
+| [09 Â· RepÃ s interactiu](/ApuntesProgramacion/va/02-variables-tipos-operadores/09-repaso-interactivo) | SÃ© el CÃ³digo, Fireside, Qui Soc, Laboratori, Crucigramaâ€¦ | Tots |
+
+> ðŸ“– **Flux de lectura:** els 8 primers punts sÃ³n teoria en progressiÃ³. El 9 Ã©s l'aterratge prÃ ctic: llig-lo just desprÃ©s del 8 i abans d'obrir els butlletins.
+
+---
+
+## ðŸ“ Butlletins de la unitat
+
+> Practica amb els parells del curs: comenÃ§a sempre pel resolt per a vore l'estil i desprÃ©s intenta el per-resoldre.
+
+<div class="ejercicio-links">
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial-resuelto" class="elink">âœ… Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial" class="elink">ðŸŸ¢ Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado-resuelto" class="elink">ðŸ’ª AvanÃ§at resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado" class="elink">â­ AvanÃ§at per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-extras" class="elink">ðŸ”¥ Extres</a>
 </div>
+
+---
+
+## âœ… Criteris d'avaluaciÃ³ coberts (RA2 + RA1)
+
+**RA1: Reconeix l'estructura d'un programa informÃ tic, identificant i relacionant els elements propis del llenguatge de programaciÃ³ utilitzat.**
+
+**RA2: Escriu i prova programes senzills, reconeixent i aplicant els fonaments de la programaciÃ³ orientada a objectes.**
+
+| CE | Criteri | On es cobreix |
+|---|---|---|
+| RA1 d) | S'han identificat els distints tipus de variables i la utilitat especÃ­fica de cada un. | âœ… Punt 1 |
+| RA1 e) | S'ha modificat el codi d'un programa per a crear i utilitzar variables. | âœ… Punt 1 |
+| RA1 f) | S'han creat i utilitzat constants i literals. | âœ… Punt 2 |
+| RA1 g) | S'han classificat, reconegut i utilitzat en expressions els operadors del llenguatge. | âœ… Punts 3 i 4 |
+| RA1 h) | S'ha comprovat el funcionament de les conversions de tipus explÃ­cites i implÃ­cites. | âœ… Punt 5 |
+| RA2 b) | S'han escrit programes simples. | âœ… Tots |
+| RA2 c) | S'han instanciat objectes a partir de classes predefinides. | âœ… Punts 2 i 6 |
+| RA2 d) | S'han utilitzat mÃ¨todes i propietats dels objectes. | âœ… Punts 6 i 8 |
+| RA2 e) | S'han escrit crides a mÃ¨todes estÃ tics. | âœ… Punt 7 |
+| RA2 g) | S'han incorporat i utilitzat llibreries d'objectes. | âœ… Punt 6 |
+| RA2 h) | S'han utilitzat constructors. | âœ… Punts 2 i 6 |
+
+> ðŸ“Œ El `Scanner` del punt 6 i els mÃ¨todes de `String` del punt 8 planten la llavor del RA5 (entrada i eixida d'informaciÃ³), que floreix en la U11.
+
+---
+
+## ðŸšª Per on comence?
+
+- Cero coneixements? â†’ ComenÃ§a en el [punt 1](/ApuntesProgramacion/va/02-variables-tipos-operadores/01-variables-tipos-primitivos). NomÃ©s necessites el que vas vore en la U01.
+- Ja saps declarar variables i vols cim? â†’ Ves directe al [punt 6](/ApuntesProgramacion/va/02-variables-tipos-operadores/06-scanner-entrada-teclado) i al [punt 7](/ApuntesProgramacion/va/02-variables-tipos-operadores/07-math-random-aleatorios): ahÃ­ comencen els programes interessants.
+- NomÃ©s vens a per operadors? â†’ Salta al [punt 3](/ApuntesProgramacion/va/02-variables-tipos-operadores/03-operadores-aritmeticos) i al [punt 4](/ApuntesProgramacion/va/02-variables-tipos-operadores/04-operadores-relacionales-logicos).
+- Vens a repassar? â†’ Fes el [RepÃ s interactiu](/ApuntesProgramacion/va/02-variables-tipos-operadores/09-repaso-interactivo) i desprÃ©s els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u02-inicial).
+
+**ðŸ“ Primer punt:** [01 Â· Variables i tipus primitius](/ApuntesProgramacion/va/02-variables-tipos-operadores/01-variables-tipos-primitivos)  
+**â­ï¸ En acabar la unitat, continua en [U03 Â· Estructures de Control](/ApuntesProgramacion/va/03-estructuras-control-excepciones).**
