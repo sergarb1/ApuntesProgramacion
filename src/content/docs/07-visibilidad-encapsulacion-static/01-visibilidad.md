@@ -112,7 +112,7 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 
 1. La **visibilidad** decide qué partes de tu clase puede ver y usar el resto del mundo.
 2. Con todo `public`, cualquier código puede romper tus objetos con valores imposibles.
-3. Esconder datos te da **control, seguridad y mantenibilidad**: los tres superpoderes del programador que no llora debuggeando.
+3. Esconder datos te da **control, seguridad y mantenibilidad**: los tres superpoderes del programador que no llora depurando.
 
 > 🐛 **Vocabulario rápido**
 >

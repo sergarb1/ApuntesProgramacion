@@ -9,7 +9,7 @@ description: Los mismos ejercicios que el boletín inicial, con soluciones
 
 ---
 
-## Ejercicio 1: Conversor de temperaturas
+## Ejercicio 1: conversor de temperaturas
 
 <details>
 <summary>🔄 Solución</summary>
@@ -58,7 +58,7 @@ Paso a paso, con `x` empezando en 5:
 
 ---
 
-## Ejercicio 3: Calculadora de descuentos
+## Ejercicio 3: calculadora de descuentos
 
 <details>
 <summary>🔄 Solución</summary>
@@ -193,7 +193,7 @@ Fíjate en el encadenado: `limpio.toUpperCase().substring(0, 1)` limpia, pone en
 
 ---
 
-## Ejercicio 8: Saludo con Scanner
+## Ejercicio 8: saludo con Scanner
 
 <details>
 <summary>🔄 Solución</summary>

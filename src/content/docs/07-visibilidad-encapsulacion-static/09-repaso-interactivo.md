@@ -393,7 +393,7 @@ No. Otra opción muy profesional es **lanzar una excepción** (`IllegalArgumentE
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 El programador termina su clase `CuentaBancaria` blindada: atributos `private`, getters, setters con validación y un contador estático que cuenta las cuentas creadas. Se siente un fortín andante.
 

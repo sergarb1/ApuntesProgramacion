@@ -59,7 +59,7 @@ public class Main {
 
 ---
 
-## 🔥 Fireside Chat: Clase vs Objeto
+## 🔥 Fireside Chat: Clase vs objeto
 
 > *Dos veteranos del molde y la galleta discuten junto a la bandeja del horno.*
 
@@ -330,7 +330,7 @@ No. El constructor siempre se llama igual que la clase y no devuelve nada. Un m�
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 La programadora termina su fábrica de galletas virtual: una clase `Galleta` con constructor, una clase `Horno` que la instancia, y un `main` que hornea cinco galletas distintas. Cada una con su sabor. Hasta que, en la última línea, se le escapa un `null` y todo se apaga con un `NullPointerException`.
 

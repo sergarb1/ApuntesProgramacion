@@ -9,7 +9,7 @@ description: Los mismos ejercicios que el boletín inicial, con soluciones
 
 ---
 
-## Ejercicio 1: Desordena esto
+## Ejercicio 1: desordena esto
 
 <details>
 <summary>🔄 Solución</summary>
@@ -43,7 +43,7 @@ Dijo: "Java mola" y siguió: 	programando.
 
 ---
 
-## Ejercicio 3: Cazador de errores
+## Ejercicio 3: cazador de errores
 
 <details>
 <summary>🔄 Solución</summary>
@@ -92,7 +92,7 @@ El `true` va entre comillas porque es parte del texto. Si lo hubieras escrito si
 
 ---
 
-## Ejercicio 5: Completa el programa
+## Ejercicio 5: completa el programa
 
 <details>
 <summary>🔄 Solución</summary>
@@ -111,7 +111,7 @@ public class Completame {
 
 ---
 
-## Ejercicio 6: Empareja conceptos
+## Ejercicio 6: empareja conceptos
 
 <details>
 <summary>🔄 Solución</summary>

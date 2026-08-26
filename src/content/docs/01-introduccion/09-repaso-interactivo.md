@@ -244,7 +244,7 @@ No, ni siquiera son del mismo planeta. Java es a JavaScript como un perro es a u
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 El programador novato termina su primer programa, lo compila y lo ejecuta. Todo perfecto. Entonces se acerca CONRAD, el compilador cascarrabias, con cara de pocos amigos y una taza humeante en la mano.
 

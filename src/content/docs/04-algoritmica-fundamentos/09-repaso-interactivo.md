@@ -319,7 +319,7 @@ Por dos motivos: en el **caso medio** hace menos intercambios (desplaza, no inte
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 El programador termina su catálogo: ordena las notas con inserción, y cuando un cliente pregunta por su nota, responde con búsqueda binaria en un parpadeo. Está contento. Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 

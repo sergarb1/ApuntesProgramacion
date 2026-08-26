@@ -32,7 +32,7 @@ Cada `println` se encarga de una fila y salta de línea al final. Si hubieras us
 
 ---
 
-## ⭐ Ejercicio 2: Sin ejecutar — secuencias de escape
+## ⭐ Ejercicio 2: sin ejecutar — secuencias de escape
 
 <details>
 <summary>🔄 Solución</summary>
@@ -81,7 +81,7 @@ El resultado variará según la velocidad de tu ordenador. Fíjate en el `100_00
 
 ---
 
-## ⭐⭐ Ejercicio 4: Contador de argumentos
+## ⭐⭐ Ejercicio 4: contador de argumentos
 
 <details>
 <summary>🔄 Solución</summary>

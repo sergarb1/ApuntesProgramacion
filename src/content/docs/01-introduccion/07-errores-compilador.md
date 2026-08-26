@@ -37,7 +37,7 @@ Tu código (.java) --javac--> bytecode (.class) --java--> salida
 
 ---
 
-## 😤 El Error del Novato: 4 errores en un programa
+## 😤 El error del novato: 4 errores en un programa
 
 Este código está fatal. Encuentra los 4 errores antes de mirar la solución:
 

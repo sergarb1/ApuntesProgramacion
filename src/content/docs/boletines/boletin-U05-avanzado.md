@@ -109,7 +109,7 @@ Pruébalo con `{9, 8, 7, 6, 5, 4, 3, 2, 1}` (el peor caso visual). ¿Cuántas co
 
 ---
 
-## Ejercicio 7: ⭐⭐⭐ Las torres de Hanói con contador
+## Ejercicio 7: ⭐⭐⭐ las torres de Hanói con contador
 
 Implementa las Torres de Hanói recursivas de la unidad y añade un **contador de movimientos**:
 

@@ -48,7 +48,7 @@ public class MisterioRecursivo {
 
 ---
 
-## 🎯 Verdadero o Falso
+## 🎯 Verdadero o falso
 
 1. "Toda función recursiva necesita un caso base." 
 2. "El Fibonacci ingenua es O(n log n)."
@@ -357,7 +357,7 @@ Los dos, en función del tipo: **Dual-Pivot Quicksort** para primitivos y **TimS
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 El programador novato termina su Quicksort, lo ejecuta y... funciona a la primera. Se frota los ojos. Su compañero Mergesort, ese maratoniano fiable, le sonríe desde el otro monitor.
 

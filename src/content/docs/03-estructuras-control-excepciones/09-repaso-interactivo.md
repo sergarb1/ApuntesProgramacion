@@ -289,7 +289,7 @@ Si pones `catch (Exception e)`, capturas todas las `Exception` y sus hijas (incl
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 El programador termina su menú blindado: `do-while` para pedir opción, `try`/`catch` para sobrevivir a las letras del usuario, `switch` para las opciones... y una excepción propia que lanzó con `throw` cuando el usuario intentó retirar más saldo del que tenía.
 

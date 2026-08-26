@@ -96,7 +96,7 @@ public class Escapista {
 
 ---
 
-## ⭐⭐ Ejercicio 6: Cazador de primos
+## ⭐⭐ Ejercicio 6: cazador de primos
 
 Escribe un programa que imprima todos los números primos del 1 al 50, cada uno en su línea. Reutiliza la lógica del detective de divisores (`for` + `break`) dentro de otro `for`.
 

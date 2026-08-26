@@ -285,7 +285,7 @@ Sí: `"Resultado: " + 5` da `"Resultado: 5"`. Java convierte el número a texto 
 
 ---
 
-## 🎬 Post-Créditos
+## 🎬 Poscréditos
 
 El programador novato termina su cajero de billetes, lo compila y lo ejecuta. Funciona. Entonces se acerca CONRAD, el compilador cascarrabias, con cara de pocos amigos y una caja etiquetada `double` en la mano.
 

@@ -629,7 +629,7 @@ public abstract class Pajaro extends Animal { } // No obligada: también abstrac
 | Concepto general | Algo específico |
 | `abstract class` | Solo `class` |
 
-### Ejemplo: Figuras geométricas
+### Ejemplo: figuras geométricas
 
 ```java
 public abstract class Figura {
@@ -754,7 +754,7 @@ public interface Programable {
 
 Cualquier clase que firme el contrato (con `implements`) TIENE que implementar todos esos métodos.
 
-### Declarando e Implementando
+### Declarando e implementando
 
 ```java
 public interface Reproducible {
@@ -907,7 +907,7 @@ Son la base de la programación funcional en Java.
 
 ## Jerarquía de Clases y Composición
 
-### Composición sobre herencia: "Tener vs Ser"
+### Composición sobre herencia: "tener vs ser"
 
 Herencia es "IS-A". Composición es "HAS-A". Cada vez más gente prefiere composición.
 

@@ -61,7 +61,7 @@ En un `main`, crea un termómetro, ponle -500 (debe rechazarse) y luego 36.5, y 
 
 ---
 
-## Ejercicio 4: Getter sin setter
+## Ejercicio 4: getter sin setter
 
 Esta clase representa la configuración de una app: el idioma se elige al crearla y **no debe poder cambiarse después**.
 
@@ -102,7 +102,7 @@ Pista: `int resultado = Utilidades.sumar(5, 3);`
 
 ---
 
-## Ejercicio 7: Las constantes del barrio
+## Ejercicio 7: las constantes del barrio
 
 Escribe una clase `Constantes` que contenga:
 

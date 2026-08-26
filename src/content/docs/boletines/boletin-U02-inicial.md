@@ -91,7 +91,7 @@ Escribe un programa llamado `NombreEnAccion` que, con la variable `String nombre
 
 ---
 
-## Ejercicio 8: Saludo con Scanner
+## Ejercicio 8: saludo con Scanner
 
 Escribe un programa llamado `SaludoScanner` que:
 

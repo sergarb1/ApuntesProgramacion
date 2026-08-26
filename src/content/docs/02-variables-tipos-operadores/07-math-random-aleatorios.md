@@ -11,7 +11,7 @@ description: El casino de Java, con dados y fórmulas para no hacer trampa 🎲
 
 ## 📬 La idea en una frase
 
-> **`Math.random()` devuelve un número aleatorio entre `0.0` (incluido) y `1.0` (excluido), y con la fórmula `(int)(Math.random() * (max - min + 1)) + min` lo conviertes en un dado, una lotería o cualquier número que necesites.**
+> **`Math.random()` devuelve un número aleatorio entre `0,0` (incluido) y `1,0` (excluido), y con la fórmula `(int)(Math.random() * (max - min + 1)) + min` lo conviertes en un dado, una lotería o cualquier número que necesites.**
 
 Tus programas ya escuchan (Scanner) y calculan (operadores). Ahora van a jugar: a los dados, a la lotería, a adivinar números. Y para eso necesitas el casino de Java: `Math.random()`.
 
@@ -19,7 +19,7 @@ Tus programas ya escuchan (Scanner) y calculan (operadores). Ahora van a jugar: 
 
 ## 🎲 El casino: qué devuelve Math.random()
 
-`Math.random()` es un **método estático** de la clase `Math`. Devuelve un número entre `0.0` y `1.0`... con un detalle importante: **el `1.0` no está incluido**. Es como cuando te toca la lotería pero no.
+`Math.random()` es un **método estático** de la clase `Math`. Devuelve un número entre `0,0` y `1,0`... con un detalle importante: **el `1.0` no está incluido**. Es como cuando te toca la lotería pero no.
 
 ```java
 double aleatorio = Math.random();          // Entre 0.0 y 0.999999...
@@ -42,7 +42,7 @@ int dado = (int) (Math.random() * 6) + 1;            // Entre 1 y 6 (como un dad
 
 ¿Ves el patrón? El truco está en multiplicar y sumar:
 
-- `Math.random() * 6` → número entre `0.0` y `5.999...`
+- `Math.random() * 6` → número entre `0,0` y `5,999...`
 - `(int)` lo trunca → entre `0` y `5`
 - `+ 1` lo desplaza → entre `1` y `6` ✅
 
@@ -165,7 +165,7 @@ La diferencia entre `b` y `c` es sutil pero decisiva: la `+ 1` debe ir **fuera**
 
 ## ✅ Resumen en 3 frases
 
-1. `Math.random()` devuelve un número entre `0.0` y `1.0` (sin incluir el 1), y se combina con multiplicaciones y casting para generar el rango que quieras.
+1. `Math.random()` devuelve un número entre `0,0` y `1,0` (sin incluir el 1), y se combina con multiplicaciones y casting para generar el rango que quieras.
 2. La fórmula `(int)(Math.random() * (max - min + 1)) + min` es tu navaja suiza para cualquier número aleatorio.
 3. `Math` es la sala de máquinas estática: `PI`, `pow`, `sqrt`, `abs`, `round`... todos se llaman con `Math.nombre`, sin crear objetos.
 

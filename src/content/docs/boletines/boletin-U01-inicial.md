@@ -9,7 +9,7 @@ description: Ejercicios básicos de Introducción a Java
 
 ---
 
-## Ejercicio 1: Desordena esto
+## Ejercicio 1: desordena esto
 
 Las líneas de este programa están desordenadas. Ordénalas para formar un programa Java válido que compile y se ejecute.
 
@@ -40,7 +40,7 @@ Pista: `\"` imprime una comilla literal, `\t` es un tabulador.
 
 ---
 
-## Ejercicio 3: Cazador de errores
+## Ejercicio 3: cazador de errores
 
 Este código tiene **4 errores**. Encuéntralos y corrígelos.
 
@@ -70,7 +70,7 @@ Usa una línea `println` para cada campo y asegúrate de que los booleanos no ll
 
 ---
 
-## Ejercicio 5: Completa el programa
+## Ejercicio 5: completa el programa
 
 Falta una línea crucial y un par de caracteres. Añádelos para que compile y muestre "Aprobado, esto funciona".
 
@@ -83,7 +83,7 @@ public class Completame {
 
 ---
 
-## Ejercicio 6: Empareja conceptos
+## Ejercicio 6: empareja conceptos
 
 Relaciona cada concepto de la izquierda con su definición de la derecha:
 

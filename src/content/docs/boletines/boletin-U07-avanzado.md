@@ -9,7 +9,7 @@ description: Ejercicios de dificultad progresiva para exprimir la unidad
 
 ---
 
-## ⭐ Ejercicio 1: Empleado con validación
+## ⭐ Ejercicio 1: empleado con validación
 
 Escribe una clase `Empleado` con:
 
@@ -53,7 +53,7 @@ En un `main`, crea un alumno con el constructor completo y luego modifica su not
 
 ---
 
-## ⭐⭐ Ejercicio 4: Hora inmutable
+## ⭐⭐ Ejercicio 4: hora inmutable
 
 Escribe una clase `Hora` que represente una hora del día y que sea **inmutable**: sus atributos solo se asignan en el constructor y no tienen setters.
 
@@ -116,7 +116,7 @@ public class PuzleGatos {
 
 ---
 
-## ⭐⭐ Ejercicio 6: Contador de usuarios
+## ⭐⭐ Ejercicio 6: contador de usuarios
 
 Escribe una clase `Usuario` que asigne a cada objeto un `id` **único y automático**:
 
@@ -146,7 +146,7 @@ En un `main`, usa la clase **sin crear ningún objeto** sobre `{3, 1, 4, 1, 5}` 
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: Validador de datos
+## ⭐⭐⭐ Ejercicio 8: validador de datos
 
 Escribe una clase `Validador` **utilitaria** (constructor privado) con estos métodos `static`:
 

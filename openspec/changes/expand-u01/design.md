@@ -29,7 +29,7 @@
 
 ### Punto 09 `09-head-first.md`
 
-- Todas las secciones: ⭐ Sé el Código, 🔥 Fireside Chat, 🕵️ ¿Quién Soy?, 🤬 CONRAD VS EL MUNDO, ⚡ Laboratorio de Tortura (fallo intencionado), 🏆 Logros, 🧠 Atrévete a Pensar, 🧩 Crucigrama de Bits, 💬 Entrevista de trabajo, 🤷 No Hay Preguntas Tontas, 🎬 Post-Créditos ("PRÓXIMAMENTE EN U02").
+- Todas las secciones: ⭐ Sé el Código, 🔥 Fireside Chat, 🕵️ ¿Quién Soy?, 🤬 CONRAD VS EL MUNDO, ⚡ Laboratorio de Tortura (fallo intencionado), 🏆 Logros, 🧠 Atrévete a Pensar, 🧩 Crucigrama de Bits, 💬 Entrevista de trabajo, 🤷 No Hay Preguntas Tontas, 🎬 Poscréditos ("PRÓXIMAMENTE EN U02").
 
 ### Boletines
 
@@ -42,7 +42,7 @@
 ## Continuidad narrativa
 
 - Personaje CONRAD = compilador cascarrabias. Secciones Head First adaptadas a Java.
-- Post-Créditos enlaza con U02 (variables, tipos y operadores).
+- Poscréditos enlaza con U02 (variables, tipos y operadores).
 
 ## URLs
 

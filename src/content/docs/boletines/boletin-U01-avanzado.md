@@ -27,7 +27,7 @@ Debes usar exactamente **5 líneas de código** (una por cada fila), combinando 
 
 ---
 
-## ⭐ Ejercicio 2: Sin ejecutar — secuencias de escape
+## ⭐ Ejercicio 2: sin ejecutar — secuencias de escape
 
 ¿Qué imprime exactamente este programa? Escribe la salida carácter por carácter.
 
@@ -57,7 +57,7 @@ public class EscapeRoom {
 
 ---
 
-## ⭐⭐ Ejercicio 4: Contador de argumentos
+## ⭐⭐ Ejercicio 4: contador de argumentos
 
 Escribe un programa llamado `ContadorArgs` que reciba argumentos desde la línea de comandos y muestre:
 

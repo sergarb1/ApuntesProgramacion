@@ -9,7 +9,7 @@ description: Los mismos ejercicios que el boletín avanzado, con soluciones
 
 ---
 
-## ⭐ Ejercicio 1: Empleado con validación
+## ⭐ Ejercicio 1: empleado con validación
 
 <details>
 <summary>🔄 Solución</summary>
@@ -166,7 +166,7 @@ JavaBean: atributos privados, constructores (vacío y con datos) y getters/sette
 
 ---
 
-## ⭐⭐ Ejercicio 4: Hora inmutable
+## ⭐⭐ Ejercicio 4: hora inmutable
 
 <details>
 <summary>🔄 Solución</summary>
@@ -228,7 +228,7 @@ Total: 2
 
 ---
 
-## ⭐⭐ Ejercicio 6: Contador de usuarios
+## ⭐⭐ Ejercicio 6: contador de usuarios
 
 <details>
 <summary>🔄 Solución</summary>
@@ -327,7 +327,7 @@ Constructor privado + todo `static` = clase utilitaria, como `Math`. `estaOrdena
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: Validador de datos
+## ⭐⭐⭐ Ejercicio 8: validador de datos
 
 <details>
 <summary>🔄 Solución</summary>

@@ -136,7 +136,7 @@ Salida: `Temperatura fuera de rango.` y luego `Temperatura: 36.5`. El setter con
 
 ---
 
-## Ejercicio 4: Getter sin setter
+## Ejercicio 4: getter sin setter
 
 <details>
 <summary>🔄 Solución</summary>
@@ -222,7 +222,7 @@ Salida: `8` y `6`. Como los métodos son `static`, se llaman con el nombre de la
 
 ---
 
-## Ejercicio 7: Las constantes del barrio
+## Ejercicio 7: las constantes del barrio
 
 <details>
 <summary>🔄 Solución</summary>

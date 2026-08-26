@@ -161,7 +161,7 @@ Entonces la salida real es: `11 12 13 21 22 23 31 41`.
 
 ---
 
-## ⭐⭐ Ejercicio 6: Cazador de primos
+## ⭐⭐ Ejercicio 6: cazador de primos
 
 <details>
 <summary>🔄 Solución</summary>

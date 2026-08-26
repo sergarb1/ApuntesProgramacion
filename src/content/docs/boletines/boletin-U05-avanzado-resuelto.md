@@ -254,7 +254,7 @@ Salida (ejemplo): `[1, 2, 3, 4, 5, 6, 7, 8, 9]`, `comparaciones (caso malo) = 25
 
 ---
 
-## Ejercicio 7: ⭐⭐⭐ Las torres de Hanói con contador
+## Ejercicio 7: ⭐⭐⭐ las torres de Hanói con contador
 
 <details>
 <summary>🔄 Solución</summary>

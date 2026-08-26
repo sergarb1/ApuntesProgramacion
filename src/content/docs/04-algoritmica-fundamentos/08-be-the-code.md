@@ -70,7 +70,7 @@ public class RetoBinaria {
 5. Fuera del bucle, devuelve el "no encontrado".
    <details><summary>¿Atascado?</summary>`return -1;`</details>
 
-> 💡 **Consejo de debugging:** si algo falla, dibuja el array en un papel con 3 elementos y simula los pasos con un objetivo que no esté. El papel y el boli son tus mejores herramientas de depuración. Sí, en pleno 2026, y sí, funcionan.
+> 💡 **Consejo de depuración:** si algo falla, dibuja el array en un papel con 3 elementos y simula los pasos con un objetivo que no esté. El papel y el boli son tus mejores herramientas de depuración. Sí, en pleno 2026, y sí, funcionan.
 
 <details>
 <summary>🔄 Solución completa</summary>
