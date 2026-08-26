@@ -9,9 +9,9 @@ nav_order: 8
 - Utilizar iteradores para recorrer y modificar colecciones
 - Conocer las diferencias entre ArrayList, LinkedList, HashSet y TreeSet
 
-## Arrays: El Aparcamiento de Datos
+## Arrays: el aparcamiento de datos
 
-### El Problema: Tienes 100 Gatos y un Solo Nombre
+### El problema: tienes 100 gatos y un solo nombre
 
 Imagina que tienes 100 gatos y necesitas guardar sus nombres. Podrías hacer esto:
 
@@ -27,7 +27,7 @@ Pero entonces llega el gato 101 y tu programa se cae. O peor: quieres saber cuá
 
 > **⚠️ Advertencia:** Si alguna vez escribes `gato1`, `gato2`, `gato3`, ... `gatoN` en tu código, en algún lugar un programador senior llora. Los arrays existen exactamente para esto.
 
-### El Array: Tu Primer Aparcamiento
+### El array: tu primer aparcamiento
 
 Un array es como un parking de varias plantas. Cada plaza tiene un número (índice) y en cada plaza solo caben coches del mismo tipo (bueno, y sus subclases).
 
@@ -40,7 +40,7 @@ La primera plaza es la 0, no la 1. Esto confunde a todo el mundo al principio. A
 
 > **💡 Consejo:** Piensa en los índices como distancias desde la primera posición. La primera casa está a 0 pasos de ti, no a 1.
 
-### Cómo Meter Cosas en el Parking
+### Cómo meter cosas en el parking
 
 ```java
 String[] gatos = new String[3];
@@ -66,7 +66,7 @@ numeros[5] = 60; // Index 5 out of bounds for length 5
 
 > **⚠️ Advertencia:** El array es un objeto (está en el heap), pero la referencia está en la pila (stack). Cuando pasas un array a un método, pasas la referencia, no los datos. ¡Ojo! Si modificas el array dentro del método, los cambios afectan al original.
 
-### El Dúo Inseparable: for + Array
+### El dúo inseparable: for + array
 
 Los arrays y los bucles `for` son como el pan y la mantequilla. Nunca verás uno sin el otro.
 
@@ -142,7 +142,7 @@ public class BeTheArrayRevelde {
 >
 > **Respuesta: (C) 9.** Se eleva cada número al cuadrado: {1,4,9,16,25}. nums[2] = 9.
 
-### for-each: La Variante Perezosa
+### for-each: la variante perezosa
 
 Si no necesitas el índice (solo quieres leer los valores), existe una sintaxis más corta:
 
@@ -158,7 +158,7 @@ Se lee: "para cada String gato en gatos, haz esto".
 
 > **📝 Nota:** El for-each es de solo lectura. No puedes modificar el array original dentro del bucle. Bueno, puedes intentarlo, pero el cambio se pierde en el éter.
 
-### Arrays Multidimensionales: El Parking de Varias Plantas
+### Arrays multidimensionales: el parking de varias plantas
 
 ¿Necesitas una tabla con filas y columnas? Usa un array bidimensional.
 
@@ -180,7 +180,7 @@ irregular[2] = new int[3];
 
 ¿Para qué sirve? Triángulos, pirámides, o simplemente datos que no forman un rectángulo perfecto.
 
-### Recorrer un Array 2D
+### Recorrer un array 2D
 
 ```java
 int[][] matriz = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
@@ -195,7 +195,7 @@ for (int i = 0; i < matriz.length; i++) {
 
 > **💡 Consejo:** Nombra los índices de arrays multidimensionales como `fila` y `col` o `i` y `j`. NO uses `x` e `y` a menos que realmente trabajes con coordenadas. Tu yo del futuro te lo agradecerá.
 
-### La Clase Arrays: Tu Navaja Suiza
+### La clase Arrays: tu navaja suiza
 
 Java proporciona la clase `java.util.Arrays` con métodos utilities:
 
@@ -244,7 +244,7 @@ public class BeTheSort {
 >
 > **Respuesta: (B) 3.** Después de ordenar: {3, 8, 17, 42, 99}. 42 está en el índice 3.
 
-### Arrays y Métodos: Pasando el Testigo
+### Arrays y métodos: pasando el testigo
 
 ```java
 public static void main(String[] args) {
@@ -260,9 +260,9 @@ public static void modificar(int[] arr) {
 
 Esto funciona porque Java pasa la referencia del objeto array por valor. El array no se copia, solo se copia la dirección de memoria donde está.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Por qué el primer índice es 0 y no 1? ¡Eso no es natural!
 > **A:** Porque en la memoria, el índice es el desplazamiento desde la dirección base del array. El primer elemento está en la dirección base + 0. Java no inventó esto para fastidiarte; viene de las cavernas del lenguaje C.
 >
@@ -278,9 +278,9 @@ Esto funciona porque Java pasa la referencia del objeto array por valor. El arra
 > **Q:** ¿Los arrays pueden cambiar de tamaño?
 > **A:** No. Son inmutables en tamaño. Si necesitas que crezca, crea uno nuevo y copia los datos con `System.arraycopy()` o `Arrays.copyOf()`.
 
-### ❓ ¡No Hay Preguntas Tontas! (Arrays y Memoria)
+### ❓ ¡No hay preguntas tontas! (arrays y memoria)
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Los arrays de primitivos guardan los valores en el heap o en el stack?
 > **A:** El objeto array (con todos sus elementos) está en el heap. La variable que lo referencia está en el stack. El array es un objeto, aunque sea de `int`.
 >
@@ -328,9 +328,9 @@ Arrays.binarySearch(arr, val);  // Buscar (requiere ordenación)
 
 ---
 
-## Colecciones: Cuando un Array Se Queda Pequeño
+## Colecciones: cuando un array se queda pequeño
 
-### El Problema: Tu Array se Ha Quedado Sin Plazas
+### El problema: tu array se ha quedado sin plazas
 
 Has creado un array de 10 plazas. Han llegado 11 gatos. ¿Qué haces?
 
@@ -351,18 +351,18 @@ Funciona, pero es tedioso. Y si tienes que borrar un elemento en medio, es peor.
 
 ### El Java Collections Framework (JCF)
 
-Para eso está el JCF: una familia de clases e interfaces en `java.util` que manejan grupos de objetos como si fueran de goma.
+Para eso está el JCF: una familia de clases e interfaces en `java.util` que gestionan grupos de objetos como si fueran de goma.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Por qué no usar siempre ArrayList y olvidarme de los arrays?
 > **A:** Los arrays son más rápidos y consumen menos memoria. Para un millón de elementos, la diferencia se nota. Úsalos cuando sepas el tamaño de antemano.
 >
 > **Q:** ¿Qué significa `<String>`?
 > **A:** Es un *generic*. Le dice a la colección: "Solo acepto Strings". Si intentas meter un `int`, te casca en compilación, no en ejecución. Es tu red de seguridad.
 
-### ArrayList: El Parking que Crece Solito
+### ArrayList: el parking que crece solito
 
 ArrayList es como un array, pero con superpoderes: se redimensiona automáticamente cuando te pasas de capacidad.
 
@@ -465,7 +465,7 @@ public class BeTheSum {
 >
 > **Respuesta: (B) 60.** La lista es {10, 20, 30, 40, 50}. Los múltiplos de 20 son 20 y 40. 20 + 40 = 60.
 
-### LinkedList: La Conga Line
+### LinkedList: la conga line
 
 LinkedList es una lista enlazada. Cada elemento sabe quién está delante y detrás, como en una conga. Es lenta si buscas por índice, pero rapidísima para añadir/borrar al principio o al final.
 
@@ -481,7 +481,7 @@ String primero = cola.removeFirst(); // "Colado" - se va
 
 > **💡 Consejo:** Usa `LinkedList` cuando necesites una cola (FIFO) o una pila (LIFO). Para acceso aleatorio frecuente, usa `ArrayList`. LinkedList busca elemento por elemento. ArrayList va directo al índice.
 
-### HashSet: El Portero que No Deja Duplicados
+### HashSet: el portero que no deja duplicados
 
 HashSet es como una discoteca: no deja entrar a nadie que ya esté dentro. No importa el orden, solo la exclusividad.
 
@@ -499,7 +499,7 @@ System.out.println(invitados.size()); // 2, no 3
 
 > **⚠️ Advertencia:** Si sobreescribes `equals()` en una clase, SOBREESCRIBE `hashCode()`. Siempre. Si dos objetos son iguales según `equals()`, deben tener el mismo `hashCode()`. Si no, HashSet se volverá loco. Repito: **siempre**.
 
-### Operaciones Típicas con HashSet
+### Operaciones típicas con HashSet
 
 ```java
 HashSet<String> set = new HashSet<>();
@@ -512,7 +512,7 @@ set.isEmpty();          // false
 set.clear();            // lo vacía todo
 ```
 
-### TreeSet: El Organizado
+### TreeSet: el organizado
 
 TreeSet es como un HashSet que se ordena solo. Internamente usa un árbol rojo-negro. Todo lo que metas se ordena automáticamente.
 
@@ -533,7 +533,7 @@ ordenado.headSet("Bob"); // [Ana] - elementos antes de Bob
 
 > **💡 Consejo:** Necesitas elementos ordenados automáticamente? Usa TreeSet. Solo necesitas eliminar duplicados? Usa HashSet (es más rápido: O(1) vs O(log n)).
 
-### Iterator: El Camarero que Toma Nota Uno a Uno
+### Iterator: el camarero que toma nota uno a uno
 
 Iterator recorre una colección sin que te importe cómo está implementada por dentro. Es como un camarero: "¿Qué quiere? ¿Y usted? ¿Y usted?"
 
@@ -557,7 +557,7 @@ while (it.hasNext()) {
 
 > **⚠️ Advertencia:** Nunca hagas `lista.remove(elemento)` mientras usas un for-each. Lanzarás `ConcurrentModificationException`. Usa SIEMPRE `iterator.remove()` si necesitas borrar durante el recorrido.
 
-### Collections: El Amigo Utilitario
+### Collections: el amigo utilitario
 
 Igual que `Arrays` para arrays, `Collections` es el amigo de las colecciones:
 
@@ -614,9 +614,9 @@ public class BeTheCollections {
 >
 > **Respuesta: (C) 5.** Sort → {1,3,5,8}. Reverse → {8,5,3,1}. get(1) = 5.
 
-### ❓ ¡No Hay Preguntas Tontas! (Colecciones)
+### ❓ ¡No hay preguntas tontas! (colecciones)
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Cuándo uso ArrayList y cuándo LinkedList?
 > **A:** Usa ArrayList para el 95% de los casos. LinkedList solo cuando necesites añadir/borrar mucho al principio o estés implementando una cola/pila. ArrayList es más simple y más rápido en acceso aleatorio.
 >
@@ -632,7 +632,7 @@ public class BeTheCollections {
 > **Q:** ¿Qué es más rápido, for-each o iterator?
 > **A:** Internamente son casi lo mismo. El for-each usa iterator por debajo. Usa el que te resulte más legible.
 
-### Resumen Rápido: Colecciones
+### Resumen rápido: colecciones
 
 ```java
 ArrayList<String> a = new ArrayList<>();       // Lista dinámica
@@ -657,25 +657,25 @@ Collections.max(lista);
 
 ---
 
-## Ejercicios Propuestos
+## Ejercicios propuestos
 
-### Ejercicio 1: El Inverso
+### Ejercicio 1: el inverso
 Escribe un programa que cree un array de 10 enteros, los rellene con números del 1 al 10, y luego los imprima en orden inverso.
 
-### Ejercicio 2: Buscaminas Simplificado
+### Ejercicio 2: buscaminas simplificado
 Crea un array bidimensional de 5x5 que represente un campo de minas. Rellénalo con 5 minas (representadas como `true`) en posiciones aleatorias. El usuario introduce coordenadas (fila, columna) y el programa dice si hay mina o no. Si acierta una mina, el juego termina.
 
-### Ejercicio 3: Estadísticas de Clase
+### Ejercicio 3: estadísticas de clase
 Pide al usuario las notas de 20 alumnos, guárdalas en un array, y calcula:
 - La nota media
 - La nota más alta
 - La nota más baja
 - Cuántos alumnos aprobaron (nota >= 5)
 
-### Ejercicio 4: Eliminar Duplicados
+### Ejercicio 4: eliminar duplicados
 Escribe un programa que lea una lista de palabras desde teclado (termina con "FIN") y las muestre sin duplicados, en el mismo orden en que aparecieron la primera vez. Pista: usa un `LinkedHashSet` para mantener el orden de inserción.
 
-### Ejercicio 5: Lista de la Compra
+### Ejercicio 5: lista de la compra
 Crea un programa que gestione una lista de la compra usando `ArrayList<String>`. Debe permitir: añadir, eliminar, marcar como comprado y mostrar la lista.
 
 ---

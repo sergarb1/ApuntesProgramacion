@@ -99,7 +99,7 @@ Crea una interfaz `Pagable` con el método:
 Implementa la interfaz en:
 - `TarjetaCredito`: tiene `double limite` y `double saldoUsado`. Puede pagar si `cantidad + saldoUsado <= limite`.
 - `PayPal`: tiene `double saldo`. Puede pagar si `cantidad <= saldo`.
-- `TransferenciaBancaria`: tiene `double saldo`. Puede pagar siempre que `cantidad <= saldo`, pero tiene un coste fijo de 1€ por transferencia.
+- `TransferenciaBancaria`: tiene `double saldo`. Puede pagar siempre que `cantidad <= saldo`, pero tiene un coste fijo de 1 € por transferencia.
 
 ```java
 public interface Pagable {

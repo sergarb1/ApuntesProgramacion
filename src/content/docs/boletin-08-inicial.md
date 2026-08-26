@@ -80,7 +80,7 @@ Cada clase debe tener un constructor que reciba sus atributos y use `super`. En 
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — Polimorfismo con referencias
+## Ejercicio 5: ¿Qué imprime? — polimorfismo con referencias
 
 ```java
 class X {

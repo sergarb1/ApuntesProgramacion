@@ -183,7 +183,7 @@ public class Animal {
 > ```
 > **Respuesta:** "Soy un vehículo", "Soy un coche deportivo", "Soy un coche deportivo". `super.describir()` va a Vehiculo, `this.describir()` se resuelve en runtime como Deportivo.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
 > **Q:** ¿Puedo heredar de varias clases a la vez?
 > **A:** No. Java no permite herencia múltiple (el _problema del diamante_). Pero existen las interfaces para eso.
@@ -248,7 +248,7 @@ public class Coche extends Vehiculo {
 | "Yo lo hago mejor" | `@Override` |
 | El secreto que solo sabe la familia | `protected` |
 
-### Ejercicios Propuestos - Herencia
+### Ejercicios propuestos - Herencia
 
 1. **La familia Simpson:** Clase base `IntegranteFamilia` con `nombre` y `edad`. `Homero`, `Marge`, `Bart`, `Lisa` que hereden. Cada una con un método único (`comerRosquilla()`, `decirAyeCaramba()`).
 
@@ -444,7 +444,7 @@ if (a instanceof Perro) {
 > ```
 > **Solución:** Los tres imprimen "Vuela alto". El tipo de la referencia no importa.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
 > **Q:** ¿Por qué no puedo hacer `Perro p = new Animal()`?
 > **A:** Porque Animal podría no tener los métodos de Perro. ¿Qué pasa si llamas a `moverCola()` y Animal no tiene cola?
@@ -487,7 +487,7 @@ Dos palabras clave discuten sobre quién es más importante.
 | Preguntar quién eres | `instanceof` |
 | Convertir a la fuerza | Downcasting `(Perro) a` |
 
-### Ejercicios Propuestos - Polimorfismo
+### Ejercicios propuestos - Polimorfismo
 
 1. **Orquesta polimórfica:** `Instrumento` con `tocar()`. `Guitarra`, `Piano`, `Bateria`, `Flauta`.
 
@@ -580,7 +580,7 @@ public int hashCode() { return Objects.hash(nombre, edad); }
 > ```
 > **Respuesta:** `false`. `getClass()` devuelve clases diferentes.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
 > **Q:** ¿Sobreescribo `equals()` siempre?
 > **A:** No. Solo cuando necesites comparar por valor lógico. Dos `Persona` con mismo DNI sí, dos `Scanner` no.
@@ -722,7 +722,7 @@ public class Te extends Bebida {
 > ```
 > **Respuesta:** "Miau". Dynamic binding.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
 > **Q:** ¿Por qué existen las clases abstractas?
 > **A:** 1) Definir un contrato obligatorio. 2) Compartir código. 3) Modelar conceptos sin instancia directa ("Figura").
@@ -730,7 +730,7 @@ public class Te extends Bebida {
 > **Q:** ¿Puedo tener una clase abstracta sin métodos abstractos?
 > **A:** Sí. Para impedir que se instancie directamente.
 
-### Ejercicios Propuestos - Clases Abstractas
+### Ejercicios propuestos - Clases Abstractas
 
 1. **Selección abstracta:** `Empleado` con `nombre`, `salarioBase`, abstracto `calcularSalario()`, concreto `mostrarInfo()`. `Programador` y `Vendedor`.
 
@@ -843,7 +843,7 @@ public class Avion implements Volable {
 > ```
 > **Respuesta:** "Ataca con espada", "Lanza hechizo", "¡Y usa ambas!". Conflicto resuelto.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
 > **Q:** ¿Por qué no usar simplemente una clase abstracta?
 > **A:** Una clase solo hereda de UNA clase, pero implementa VARIAS interfaces. Las interfaces no tienen estado.
@@ -866,7 +866,7 @@ public class Avion implements Volable {
 | Herencia múltiple | No (extends uno) | Sí (implements varios) |
 | Constructores | Sí | No |
 
-### Ejercicios Propuestos - Interfaces
+### Ejercicios propuestos - Interfaces
 
 1. **Interface Encendible:** `Encendible` con `encender()`, `apagar()`, `default estaEncendido()`. `Television` y `Lampara`.
 
@@ -942,12 +942,12 @@ public class Coche {
 
 Cada flecha = `extends`. Object está siempre arriba, aunque no lo escribas.
 
-### ❓ ¡No Hay Preguntas Tontas!
+### ❓ ¡No hay preguntas tontas!
 
 > **Q:** ¿Hasta qué profundidad debería tener mi jerarquía?
 > **A:** Como mucho, 2-3 niveles. Jerarquías muy profundas son difíciles de mantener.
 
-### Ejercicios Propuestos - Jerarquías
+### Ejercicios propuestos - Jerarquías
 
 1. **Jerarquía de animales completa:** Al menos 3 niveles, con `toString()`, `equals()` y `hashCode()`. Clase base abstracta.
 
@@ -970,7 +970,7 @@ obj.hablar();
 
 > 🕶️ **Don Tip:** El polimorfismo dinámico significa que el método ejecutado depende del tipo REAL del objeto, no del tipo de la variable. Pase lo que pase con los casts, el objeto sigue siendo un `C`.
 
-## Resumen Global
+## Resumen global
 
 Los 4 pilares de la POO en Java:
 

@@ -33,7 +33,46 @@ boletin-XX-extras.md              → CodeWars + AceptaElReto con pistas.
 ```
 
 ## Estilo
-Humor, secciones "⭐ Be the Code", "¡No Hay Preguntas Tontas!", [NOTE]/[WARNING]/[TIP] en blockquotes, lenguaje conversacional en castellano y valenciano. Formato Markdown compatible con Google Docs (importación directa).
+Humor, secciones "⭐ Be the Code", "¡No hay preguntas tontas!", [NOTE]/[WARNING]/[TIP] en blockquotes, lenguaje conversacional en castellano y valenciano. Formato Markdown compatible con Google Docs (importación directa).
+
+## 🗣️ Requisito lingüístico (es-ES)
+Todo el contenido dirigido al usuario en castellano debe estar redactado en **español de España natural (es-ES)**. Este requisito NO aplica a `src/content/docs/va/` (valenciano).
+
+### Vocabulario peninsular
+| Evitar | Preferir |
+| --- | --- |
+| prender / prendida | encender / encendida |
+| empacar / desempacar | empaquetar / desempaquetar |
+| cómputo | procesamiento |
+| hacer click / Click derecho | hacer clic / clic derecho |
+| driver (en prosa) | controlador |
+| armar (= montar) | montar |
+| bajar una descarga | descargar |
+| correr un programa/servicio | ejecutar / arrancar |
+| email (en prosa) | correo |
+| manejar (= gestionar) | gestionar |
+| monitorear / monitoreo | monitorizar / monitorización |
+| computadora | ordenador |
+| celular | móvil |
+| laptop / notebook | portátil |
+| mouse | ratón |
+
+Sustitución siempre contextual: no tocar `aprender`/`comprender`/`sorprender`; conservar `manejar` como destreza ("saber manejar una herramienta"); conservar términos técnicos ingleses asentados (`router`, `socket`, `software`, `backup`, `timeout`...) y todo lo que esté dentro de código, comandos, identificadores o sintaxis.
+
+### Mayúsculas
+Estilo oracional español en títulos y encabezados: solo la primera palabra y los nombres propios; siglas y denominaciones técnicas con su forma oficial (`JVM`, `POO`, `DNI`, `HTTP`); sin Title Case ni encabezados en mayúsculas salvo marcas deliberadas del proyecto (`Fireside Chat`, `BE THE CODE`, nombres de katas CodeWars).
+
+### Números
+Formato numérico español: punto para miles (`65.536`), coma para decimales (`2,4 GHz`), espacio antes del símbolo (`0,50 €`). Nunca modificar números dentro de código, IPs, versiones, rutas ni salidas de programa.
+
+### Comprobación obligatoria
+Antes de dar por terminado cualquier contenido nuevo o modificado:
+1. Revisar vocabulario es-ES.
+2. Revisar mayúsculas de títulos.
+3. Revisar formato numérico.
+4. Comprobar que código e identificadores siguen intactos.
+5. Lectura final: ¿suena natural para un profesor de España?
+6. **Checklist de unidades:** cada unidad nueva o ampliada debe superar esta revisión lingüística completa antes de cerrarse (ver también la nota 13).
 
 ## Bilingüe obligatorio
 **Cualquier cambio debe aplicarse SIEMPRE en ambos idiomas:**
@@ -128,3 +167,4 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - Sección de boletines dedicada al final de la landing (`📝 Boletines`); las cards de unidades no incluyen boletines
 - `Ver unidad` en las cards es un botón verde degradado (`.unit-link` en `custom.css`)
 - PDF generado con `--preceding-html scripts/pdf-cover.html` (portada castellano) o `scripts/pdf-cover-va.html` (portada valenciano), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
+- **13 · Lingüística:** todo contenido en castellano cumple el «Requisito lingüístico (es-ES)» de la sección Estilo (vocabulario peninsular, mayúsculas oracionales, formato numérico español); revisión obligatoria antes de cerrar cualquier unidad o boletín.

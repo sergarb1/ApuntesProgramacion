@@ -11,13 +11,13 @@ title: "🌐 Unidad 13: Servir y Consumir APIs con Web"
 - Parsear JSON y manejar errores HTTP
 - Conocer frameworks modernos (Javalin, Spring Boot)
 
-## Hola, Mundo Web
+## Hola, mundo web
 
 > "Hasta ahora tus programas vivían en la terminal. Es hora de que salgan a Internet. Sin JavaScript frameworks. Sin servidores de aplicaciones. Solo Java y HTTP."
 
 Hemos visto consola, ficheros y hasta bases de datos. Ahora toca lo que hoy en día hace casi cualquier aplicación: **hablar por HTTP**. Y sí, Java puede ser servidor web sin instalar Tomcat ni Spring. Pero además, también puede **consumir** APIs externas como un cliente más.
 
-## 1. El Protocolo HTTP en 30 Segundos
+## 1. El protocolo HTTP en 30 segundos
 
 Cuando escribes `https://google.com` en tu navegador, ocurre esto:
 
@@ -32,7 +32,7 @@ Tú (cliente)                  Google (servidor)
 
 HTTP es un protocolo de **petición-respuesta**. Tú pides una URL y el servidor te devuelve un recurso (HTML, JSON, imagen, etc.). Eso es todo. El resto (cookies, sesiones, APIs) son capas que se construyen encima.
 
-## 2. Servidor Web Mínimo con `HttpServer`
+## 2. Servidor web mínimo con `HttpServer`
 
 Java incluye desde la versión 6 un servidor HTTP básico en el paquete `com.sun.net.httpserver`. No necesitas nada más:
 
@@ -49,7 +49,7 @@ public class ServidorMinimo {
             new InetSocketAddress(8080), 0
         );
         server.createContext("/", intercambio -> {
-            String resp = "Hola, Mundo Web!";
+            String resp = "Hola, mundo web!";
             intercambio.sendResponseHeaders(200, resp.length());
             OutputStream os = intercambio.getResponseBody();
             os.write(resp.getBytes());
@@ -92,7 +92,7 @@ server.createContext("/", intercambio -> {
 
 También puedes leer HTML desde un fichero con `Files.readString()` y servirlo igual. Así tienes el HTML separado del código Java.
 
-## 4. Parámetros GET: El Cliente Pregunta
+## 4. Parámetros GET: el cliente pregunta
 
 Cuando un formulario se envía por GET, los datos van en la URL: `http://localhost:8080/saludo?nombre=Ana`. Así se leen:
 
@@ -114,7 +114,7 @@ server.createContext("/saludo", intercambio -> {
 
 > ⚠️ **WARNING**: Esto es frágil. Si el nombre contiene `&` o `%20`, petará. En producción usa `URLDecoder.decode()` y un parser de query params de verdad. Esto es un ejemplo didáctico, no código de producción.
 
-## 5. Formularios POST: El Cliente Envía Datos
+## 5. Formularios POST: el cliente envía datos
 
 Para recibir datos de un formulario POST necesitas leer el cuerpo de la petición:
 
@@ -148,7 +148,7 @@ Y el HTML del formulario:
 
 > **💡 Consejo:** ¿Por qué `"POST".equals(intercambio.getRequestMethod())` y no `intercambio.getRequestMethod().equals("POST")`? Porque si `getRequestMethod()` devuelve `null`, la segunda forma casca con `NullPointerException`. La primera forma es **null-safe**. Es una manía que te ahorrará dolores de cabeza.
 
-## 6. Devolviendo JSON (Como una API de Verdad)
+## 6. Devolviendo JSON (como una API de verdad)
 
 Las aplicaciones modernas no devuelven HTML directamente. El frontend (JavaScript) pide datos y el backend se los da en JSON. Aquí un ejemplo:
 
@@ -178,7 +178,7 @@ fetch('/api/usuarios')
 </script>
 ```
 
-## 7. Mini Proyecto: Gestor de Tareas (API REST)
+## 7. Mini proyecto: gestor de tareas (API REST)
 
 Combinando todo, puedes construir una API REST completa. El patrón es:
 
@@ -191,7 +191,7 @@ Combinando todo, puedes construir una API REST completa. El patrón es:
 
 Cada ruta se implementa como un contexto en el servidor, y los datos se guardan en un `ArrayList` en memoria (más adelante, en base de datos).
 
-## 8. Consumir APIs Externas con `HttpClient`
+## 8. Consumir APIs externas con `HttpClient`
 
 Hasta ahora has sido el **servidor**. Pero en el mundo real, tus programas también serán **clientes** que llaman a APIs de terceros: GitHub, OpenAI, el tiempo, tu red social favorita...
 
@@ -199,7 +199,7 @@ Java 11 trae `java.net.http.HttpClient` — un cliente HTTP moderno, sin depende
 
 > **📝 Nota:** Antes de Java 11 tenías que usar `HttpURLConnection` (feo, verboso, un castigo) o librerías externas como Apache HttpClient u OkHttp. `java.net.http.HttpClient` llegó para salvar la humanidad.
 
-### 8.1 GET: Pedir Datos a una API
+### 8.1 GET: pedir datos a una API
 
 Empecemos por lo básico: hacer una petición GET a una API pública y leer la respuesta como texto.
 
@@ -230,7 +230,7 @@ public class ClienteGET {
 
 > **📝 Nota:** `HttpResponse.BodyHandlers.ofString()` le dice a Java "conviérteme el cuerpo de la respuesta en un String". Hay otros handlers: `ofByteArray()`, `ofInputStream()`, `ofFile(Path)`… según lo que necesites.
 
-### 8.2 Parsear JSON con la Librería que Toque
+### 8.2 Parsear JSON con la librería que toque
 
 El cuerpo que devuelve GitHub es JSON. En Java no hay un parser JSON nativo (sí, es triste, pero es así). Necesitas una librería. Las más usadas:
 
@@ -266,7 +266,7 @@ System.out.println(usuario.name() + " tiene " + usuario.public_repos() + " repos
 
 > ⚠️ **WARNING**: Si la API devuelve campos que no existen en tu `record`, Gson por defecto los ignora. Si tu `record` tiene campos que no están en el JSON, se quedan con valor `null`. Con Jackson puedes configurarlo con `@JsonIgnoreProperties(ignoreUnknown = true)`.
 
-### 8.3 POST: Enviar Datos a una API
+### 8.3 POST: enviar datos a una API
 
 Para enviar datos (crear un recurso, hacer login, etc.) usamos POST con un cuerpo JSON:
 
@@ -304,7 +304,7 @@ public class ClientePOST {
 
 > **💡 Consejo:** `HttpRequest.BodyPublishers` tiene métodos para enviar String, byte[], archivos, etc. El más común es `ofString()` para JSON. Si no pones el header `Content-Type: application/json`, el servidor puede rechazar tu petición o interpretar mal el cuerpo.
 
-### 8.4 Cabeceras, Timeouts y Manejo de Errores
+### 8.4 Cabeceras, timeouts y manejo de errores
 
 Las APIs no siempre se portan bien. A veces tardan, a veces se caen, a veces te devuelven 401, 403, 404 o 500. Tu código debe estar preparado.
 
@@ -361,7 +361,7 @@ Aquí tienes las cabeceras más comunes que enviarás:
 | `User-Agent` | Identifica tu aplicación (muchas APIs lo exigen) |
 | `Cache-Control` | Control de caché |
 
-### 8.5 Ejemplo Completo: Consultar Repos de GitHub
+### 8.5 Ejemplo completo: consultar repos de GitHub
 
 Vamos a juntarlo todo: consumir la API de GitHub para listar los repositorios de un usuario.
 
@@ -483,7 +483,7 @@ HttpRequest patchRequest = HttpRequest.newBuilder()
     .build();
 ```
 
-## 9. Frameworks Modernos
+## 9. Frameworks modernos
 
 El `HttpServer` básico está bien para aprender, pero en el mundo real se usan frameworks:
 
@@ -510,7 +510,7 @@ public class App {
 
 ---
 
-### ⭐ BE THE CODE, MY FRIEND: Sigue la Pista de una Petición HTTP
+### ⭐ BE THE CODE, MY FRIEND: Sigue la pista de una petición HTTP
 
 > 🕶️ **Don Tip:** El método HTTP lo determina el cliente. GET para obtener, POST para enviar. El `exchange.getRequestMethod()` te dice cuál es.
 
@@ -542,7 +542,7 @@ curl -X POST http://localhost:8080/track -d "clave=valor"
 
 ---
 
-## ❓ ¡No Hay Preguntas Tontas!
+## ❓ ¡No hay preguntas tontas!
 
 **¿HTTP y HTTPS son lo mismo?** — Casi. HTTPS es HTTP con una capa de cifrado (SSL/TLS). Los datos viajan encriptados. Para producción siempre HTTPS; para desarrollo local, HTTP basta.
 
@@ -586,7 +586,7 @@ curl -X POST http://localhost:8080/track -d "clave=valor"
 
 ---
 
-## Ejercicios Propuestos
+## Ejercicios propuestos
 
 1. **API de frases célebres** — Crea un servidor con un endpoint `/frase` que devuelva una frase aleatoria de una lista en memoria. Añade `/frases` que devuelva todas.
 

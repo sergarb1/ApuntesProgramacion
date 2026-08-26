@@ -1,0 +1,6 @@
+specFileNames:
+  - spec.md
+changeFilenames:
+  - proposal.md
+  - design.md
+  - tasks.md

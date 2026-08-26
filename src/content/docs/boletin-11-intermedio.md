@@ -101,7 +101,7 @@ esto-no-es-email;email
 
 Valida cada línea según el tipo usando expresiones regulares:
 
-- **Email:** formato básico `xxx@xxx.xxx`
+- **Correo:** formato básico `xxx@xxx.xxx`
 - **DNI:** 8 dígitos + letra mayúscula (la letra debe ser válida según el algoritmo)
 - **Teléfono:** opcional `+34` seguido de 9 dígitos, con o sin espacios
 

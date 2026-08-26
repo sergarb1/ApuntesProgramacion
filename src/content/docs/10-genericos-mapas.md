@@ -9,11 +9,11 @@ nav_order: 9
 - Manejar mapas (HashMap, TreeMap) y sus operaciones principales
 - Elegir entre Map, List y Set según el problema
 
-## Genéricos: El `<T>` Que Lo Cambió Todo
+## Genéricos: el `<T>` que lo cambió todo
 
 > Antes de los genéricos, programar Java era como hacer malabares con cuchillos... vendados. Con genéricos, el compilador es tu red de seguridad.
 
-### ¡Menudo Lío Antes De Los Genéricos!
+### ¡Menudo lío antes de los genéricos!
 
 Imagina que tienes una `ArrayList` a la antigua usanza, sin genéricos. Es como una caja donde puedes meter cualquier cosa: un zapato, una manzana, un gato, un número de la suerte. El problema es que cuando _sacas_ las cosas, Java te devuelve un `Object` y tú tienes que recordar qué metiste. ¿Y si metiste un `Integer` pero lo tratas como `String`? **BOOM**. `ClassCastException` en toda la cara.
 
@@ -38,7 +38,7 @@ public class InfiernoSinGenericos {
 
 > **⚠️ Advertencia:** Sin genéricos, los errores de tipo saltan en tiempo de EJECUCIÓN (cuando el usuario está usando tu programa). Con genéricos, saltan en tiempo de COMPILACIÓN (cuando tú estás programando). ¿Cuándo prefieres que te enteres?
 
-### Llegan Los Genéricos: El Compilador Se Vuelve Tu Amigo
+### Llegan los genéricos: el compilador se vuelve tu amigo
 
 A partir de Java 5, los genéricos cambiaron las reglas del juego. Una `ArrayList<String>` ya no es una caja de caos: es una máquina expendedora que SOLO da Coca-Colas. No puedes meter un zapato, y si lo intentas, el compilador te para el brazo.
 
@@ -61,7 +61,7 @@ public class CieloConGenericos {
 
 > **💡 Consejo:** Los genéricos existen para una sola razón: **seguridad de tipos**. Comprueban en compilación que no estés metiendo la pata con los tipos, eliminando la necesidad de castings y los temidos `ClassCastException`.
 
-### ⭐ BE THE CODE, MY FRIEND: Eres Una ArrayList<T>
+### ⭐ BE THE CODE, MY FRIEND: Eres una ArrayList<T>
 
 > 🕶️ **Don Tip:** Los genéricos aseguran que solo metas el tipo correcto. Sin ellos, tendrías casting a punta pala.
 
@@ -73,7 +73,7 @@ public class CieloConGenericos {
 >
 > Eres como un portero de discoteca que solo deja pasar a gente con el tipo adecuado. Sin genéricos, dejabas pasar a cualquiera y luego liabas. Con genéricos, eres selectivo, y la fiesta es mucho mejor.
 
-### Tu Propia Clase Genérica: `Caja<T>`
+### Tu propia clase genérica: `Caja<T>`
 
 No solo las colecciones pueden ser genéricas. ¡Tú también puedes crear tus propias clases genéricas! El truco está en el parámetro de tipo `<T>` (de "Type"), aunque puedes usar cualquier letra:
 
@@ -115,7 +115,7 @@ Integer numero = cajaDeNumeros.sacar();
 
 > **⚠️ Advertencia:** No puedes usar tipos primitivos como parámetro de tipo. `Caja<int>` no compila. Usa `Caja<Integer>`, con su clase envolvente (wrapper). El autoboxing de Java se encarga del resto.
 
-### ⭐ BE THE CODE, MY FRIEND: La Caja Genérica
+### ⭐ BE THE CODE, MY FRIEND: la caja genérica
 
 > 🕶️ **Don Tip:** El tipo `T` es un comodín. Cuando instancies, se reemplaza por el tipo real.
 
@@ -140,7 +140,7 @@ public class BeTheCaja {
 >
 > **Respuesta: (B) 10.** La caja solo guarda un elemento, el segundo `guardar(10)` sobrescribe el 5.
 
-### El Operador Diamante `<>`: El Perezoso Oficial
+### El operador diamante `<>`: el perezoso oficial
 
 Desde Java 7, no hace falta repetir el tipo dos veces. El compilador lo infiere por ti:
 
@@ -156,7 +156,7 @@ El `<>` es como el "etcétera" de los genéricos: "ya sabes de qué tipo estoy h
 
 > **💡 Consejo:** Usa siempre el operador diamante `<>`. Tu código queda más limpio, más legible y tus compañeros de equipo te lo agradecerán.
 
-### Type Erasure: El Mago Se Lleva los Genéricos
+### Type erasure: el mago se lleva los genéricos
 
 Aquí va el truco: los genéricos SOLO existen en tiempo de compilación. Cuando tu código se convierte en bytecode, el compilador borra toda la información de tipos genéricos. Es como si un mago hiciera desaparecer los `<String>` y `<Integer>`.
 
@@ -177,7 +177,7 @@ A esto se le llama **type erasure**. El compilador:
 
 Es como un portero que revisa tu DNI en la puerta, pero una vez dentro, tú no llevas ninguna identificación.
 
-### Métodos Genéricos: Funciones Para Todo Tipo
+### Métodos genéricos: funciones para todo tipo
 
 No solo las clases pueden ser genéricas. Los métodos también pueden declarar sus propios parámetros de tipo, independientemente de la clase donde estén.
 
@@ -234,9 +234,9 @@ public class BeTheGenericMethod {
 >
 > **Respuesta: (A) Sí, imprime "Hola".** La sintaxis `Clase.<Tipo>metodo()` es válida para invocar métodos genéricos especificando el tipo explícitamente, aunque normalmente el compilador lo infiere solo.
 
-### ❓ ¡No Hay Preguntas Tontas! (Genéricos)
+### ❓ ¡No hay preguntas tontas! (genéricos)
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Por qué no puedo hacer `new T()` dentro de un método genérico?
 > **A:** Porque en tiempo de compilación, Java no sabe qué es `T`. No puede crear una instancia de algo que no conoce. Es como pedirle a un pastelero que haga "un pastel" pero sin decirle de qué.
 >
@@ -246,9 +246,9 @@ public class BeTheGenericMethod {
 > **Q:** ¿Los genéricos ralentizan mi programa?
 > **A:** No. Java aplica **type erasure**: el compilador borra toda la información genérica y la convierte a castings normales. Es solo azúcar sintáctico en compilación. En runtime, no hay genéricos.
 
-### ❓ ¡No Hay Preguntas Tontas! (Más Genéricos)
+### ❓ ¡No hay preguntas tontas! (más genéricos)
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Qué significa `<?>` en los genéricos?
 > **A:** Es un wildcard sin restricciones. Significa "cualquier tipo". Es como decir "me da igual el tipo, solo quiero trabajar con la colección". Pero ojo: no puedes añadir elementos (excepto null) porque el compilador no sabe de qué tipo es.
 >
@@ -338,7 +338,7 @@ public class BeTheWildcard {
 >
 > **Respuesta: (C) 2.** `List<? extends Number>` acepta cualquier lista cuyo tipo herede de Number, tanto `List<Integer>` como `List<Double>`.
 
-### Resumen Rápido: Genéricos
+### Resumen rápido: genéricos
 
 ```java
 ArrayList<Tipo>     ← Solo acepta ese Tipo y subclases
@@ -351,9 +351,9 @@ new Caja<>()        ← El diamante: infiere el tipo
 
 ---
 
-## Mapas: La Guía Telefónica
+## Mapas: la guía telefónica
 
-### HashMap: La Guía Telefónica
+### HashMap: la guía telefónica
 
 HashMap asocia claves con valores. Como una agenda: buscas por nombre (clave) y obtienes el teléfono (valor).
 
@@ -393,7 +393,7 @@ for (HashMap.Entry<String, Integer> entrada : agenda.entrySet()) {
 }
 ```
 
-### ⭐ BE THE CODE, MY FRIEND: El HashMap Traicionero
+### ⭐ BE THE CODE, MY FRIEND: el HashMap traicionero
 
 > 🕶️ **Don Tip:** HashMap no garantiza orden. Si necesitas orden, usa TreeMap o LinkedHashMap.
 
@@ -423,7 +423,7 @@ public class BeTheMap {
 >
 > **Respuesta: (B) Barcelona.** La clave "España" se sobrescribe con el nuevo valor. Madrid ha sido reemplazado.
 
-### ⭐ BE THE CODE, MY FRIEND: Frecuencia de Letras
+### ⭐ BE THE CODE, MY FRIEND: frecuencia de letras
 
 > 🕶️ **Don Tip:** `getOrDefault()` evita el null check. Úsalo siempre que puedas.
 
@@ -452,7 +452,7 @@ public class BeTheFrequency {
 >
 > **Respuesta: (B) 3 1.** En "banana": la 'a' aparece 3 veces, la 'n' aparece 1 vez. getOrDefault es el héroe que evita los NullPointerException.
 
-### TreeMap: El Ordenado
+### TreeMap: el ordenado
 
 TreeMap es un HashMap ordenado por clave. Internamente usa un árbol rojo-negro.
 
@@ -473,9 +473,9 @@ ordenado.headMap("Bob"); // {Ana=25} - entradas antes de Bob
 
 > **💡 Consejo:** HashMap para velocidad (O(1)). TreeMap para orden (O(log n)). Si preguntas en una entrevista "¿cuál es mejor?", la respuesta correcta es "depende".
 
-### ❓ ¡No Hay Preguntas Tontas! (Mapas)
+### ❓ ¡No hay preguntas tontas! (mapas)
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 > **Q:** ¿Puedo tener un HashMap con clave null?
 > **A:** HashMap admite una clave null. TreeMap no. HashMap guarda la clave null en una posición especial.
 >
@@ -527,7 +527,7 @@ Dos implementaciones de Map se enfrentan.
 
 > 🕶️ **Don Tip:** ¿Velocidad? HashMap. ¿Orden? TreeMap. ¿Orden de inserción? LinkedHashMap. Cada uno tiene su superpoder.
 
-### Resumen Rápido: Mapas
+### Resumen rápido: mapas
 
 ```java
 HashMap<K, V> m = new HashMap<>();             // Clave → Valor, rápido
@@ -547,18 +547,18 @@ m.entrySet();         // conjunto de entradas
 
 ---
 
-## Ejercicios Propuestos
+## Ejercicios propuestos
 
-### Ejercicio 1: Contactos de Toda la Vida
+### Ejercicio 1: contactos de toda la vida
 Implementa una mini agenda usando `HashMap<String, String>` que asocie nombre con teléfono. El programa debe permitir añadir contactos, buscar por nombre, listar todos y borrar. Usa un menú.
 
 ### Ejercicio 2: Crea una clase `Pareja<T, U>`
 Almacena dos objetos de tipos posiblemente distintos. Incluye métodos `getPrimero()`, `getSegundo()`, `setPrimero(T)`, `setSegundo(U)` y un método `intercambiar()` que devuelva una nueva `Pareja<U, T>` con los valores intercambiados.
 
-### Ejercicio 3: Contador de Palabras
+### Ejercicio 3: contador de palabras
 Escribe un programa que lea un texto y cuente cuántas veces aparece cada palabra usando un `HashMap<String, Integer>`.
 
-### Ejercicio 4: Método Genérico `maximo`
+### Ejercicio 4: método genérico `maximo`
 Implementa un método genérico `public static <T extends Comparable<T>> T maximo(T[] array)` que devuelva el elemento más grande de un array.
 
 ---

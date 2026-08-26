@@ -8,7 +8,7 @@ nav_order: 14
 
 ## Ejercicio 1: Los 5 pasos
 
-1. **Cargar el driver** → `Class.forName("com.mysql.cj.jdbc.Driver")` (opcional desde Java 6)
+1. **Cargar el controlador** → `Class.forName("com.mysql.cj.jdbc.Driver")` (opcional desde Java 6)
 2. **Establecer conexión** → `DriverManager.getConnection(url, user, pass)` devuelve `Connection`
 3. **Crear Statement** → `con.createStatement()` devuelve `Statement` o `con.prepareStatement(sql)` devuelve `PreparedStatement`
 4. **Ejecutar consulta** → `stmt.executeQuery(sql)` para SELECT o `stmt.executeUpdate(sql)` para INSERT/UPDATE/DELETE
@@ -16,7 +16,7 @@ nav_order: 14
 6. **(Bonus) Cerrar todo** → `con.close()`, `stmt.close()`, `rs.close()` (o `try-with-resources`)
 
 > **💡 Explicación:**
-> El paso 1 es opcional desde Java 6 (los drivers JDBC 4.0 se cargan automáticamente si están en el classpath). Pero verás `Class.forName()` en mucho código legacy. No pasa nada si lo pones. El paso 6 es obligatorio: conexiones abiertas = servidor saturado.
+> El paso 1 es opcional desde Java 6 (los controladores JDBC 4.0 se cargan automáticamente si están en el classpath). Pero verás `Class.forName()` en mucho código legacy. No pasa nada si lo pones. El paso 6 es obligatorio: conexiones abiertas = servidor saturado.
 
 ---
 

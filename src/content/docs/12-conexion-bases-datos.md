@@ -6,21 +6,21 @@ title: "🗄️ Unidad 12: Conexión a Bases de Datos con JDBC"
 - CRUD: INSERT, SELECT, UPDATE, DELETE con PreparedStatement
 - Entender SQL Injection y cómo evitarla
 - Aplicar el patrón DAO
-- Manejar transacciones con commit y rollback
+- Gestionar transacciones con commit y rollback
 
 ## ¿Qué es JDBC?
 
-JDBC (Java Database Connectivity) es un conjunto de interfaces en `java.sql` que permiten a Java hablar con cualquier base de datos que tenga un driver JDBC.
+JDBC (Java Database Connectivity) es un conjunto de interfaces en `java.sql` que permiten a Java hablar con cualquier base de datos que tenga un controlador JDBC.
 
-> **💡 Consejo:** Piensa en JDBC como el USB de las bases de datos: da igual SQLite, MySQL o PostgreSQL. Si tienen driver JDBC, Java se conecta.
+> **💡 Consejo:** Piensa en JDBC como el USB de las bases de datos: da igual SQLite, MySQL o PostgreSQL. Si tienen controlador JDBC, Java se conecta.
 
 ## Conexión a SQLite
 
 SQLite es ideal para aprender: no necesita servidor, es un solo archivo.
 
-### Los 5 Pasos
+### Los 5 pasos
 
-1. Cargar el driver
+1. Cargar el controlador
 2. Establecer la conexión
 3. Crear un Statement
 4. Ejecutar la consulta
@@ -71,7 +71,7 @@ while (rs.next()) {
 
 > **⚠️ Advertencia:** Usar `executeQuery()` con un INSERT lanza excepción. Cada cosa en su sitio.
 
-### Try-With-Resources
+### Try-with-resources
 
 Desde Java 7, los recursos se cierran solos:
 
@@ -267,7 +267,7 @@ public boolean eliminarContacto(int id) {
 
 ---
 
-## PreparedStatement y SQL Injection
+## PreparedStatement y SQL injection
 
 Concatenar strings para construir SQL es PELIGROSO:
 
@@ -280,7 +280,7 @@ Si el usuario escribe `Luis'; DROP TABLE alumnos; --`, tu tabla `alumnos` se bor
 
 > **⚠️ Advertencia:** NUNCA construyas SQL concatenando strings con datos del usuario. Es como dejar las llaves puestas con un cartel "PASE USTED".
 
-### PreparedStatement al Rescate
+### PreparedStatement al rescate
 
 ```java
 String sql = "SELECT * FROM alumnos WHERE nombre = ?";
@@ -302,7 +302,7 @@ Los `?` son placeholders posicionales (empiezan en 1):
 
 > **💡 Consejo:** Para muchas consultas iguales, PreparedStatement puede ser MÁS RÁPIDO porque la BD compila la consulta una sola vez.
 
-### La Historia de Bobby Tables
+### La historia de Bobby Tables
 
 ```
 Madre: "He criado a mi hijo para que sea un programador cuidadoso,
@@ -449,7 +449,7 @@ if (algoMal) {
 
 ---
 
-## ⭐ BE THE CODE, MY FRIEND: Implementa un DAO Completo Desde Cero
+## ⭐ BE THE CODE, MY FRIEND: Implementa un DAO completo desde cero
 
 > 🕶️ **Don Tip:** Un DAO encapsula el acceso a datos. Si cambias de SQLite a MySQL, solo cambias el DAO, el resto del código ni se entera.
 
@@ -516,14 +516,14 @@ Dos formas de ejecutar SQL discuten.
 
 > 🕶️ **Don Tip:** Usa siempre PreparedStatement para consultas con datos de usuario. No es solo seguridad: es más rápido en consultas repetitivas y más legible.
 
-## ¡No Hay Preguntas Tontas!
+## ¡No hay preguntas tontas!
 
-> **❓ ¡No Hay Preguntas Tontas!**
+> **❓ ¡No hay preguntas tontas!**
 >
 > **Q:** ¿Qué pasa si no cierro la conexión?
 > **A:** Se queda abierta, consume memoria. Los servidores tienen un límite de conexiones simultáneas. Si llegas al límite, el próximo `getConnection()` casca con "Too many connections". Cierra siempre.
 >
-> **Q:** ¿Es necesario `Class.forName()` para cargar el driver?
+> **Q:** ¿Es necesario `Class.forName()` para cargar el controlador?
 > **A:** Desde Java 6 no hace falta. Pero lo verás en tutoriales antiguos. Si lo pones no pasa nada, si no lo pones tampoco.
 >
 > **Q:** ¿PreparedStatement es más lento que Statement?
@@ -542,14 +542,14 @@ Dos formas de ejecutar SQL discuten.
 > **A:** No. Usa `config.properties` o variables de entorno. Las credenciales no van en el código. Es como llevar la contraseña del banco escrita en la frente.
 >
 > **Q:** ¿Y si cambio de BD, tengo que reescribir todo?
-> **A:** Si usaste SQL estándar y JDBC, solo cambias el driver y la URL. Esa es la magia de JDBC.
+> **A:** Si usaste SQL estándar y JDBC, solo cambias el controlador y la URL. Esa es la magia de JDBC.
 >
 > **Q:** ¿Puedo compartir una conexión entre varios hilos?
 > **A:** Técnicamente sí, prácticamente no. Connection no es thread-safe. Usa un pool de conexiones (HikariCP) y cada hilo que pida la suya.
 
 ---
 
-## Ejercicios Propuestos
+## Ejercicios propuestos
 
 1. **Conexión desde cero** — Crea una clase `TestConexion` que se conecte a una base de datos SQLite `test.db`, cree una tabla `alumnos(id INTEGER PRIMARY KEY, nombre TEXT, nota REAL)` e inserte 3 alumnos. Verifica que los datos están insertados.
 
@@ -563,7 +563,7 @@ Dos formas de ejecutar SQL discuten.
 
 6. **DAO genérico** — Refactoriza tu DAO para que sea genérico: `public abstract class DAO<T>`. Implementa `EstudianteDAO extends DAO<Estudiante>`. ¿Cuánto código has reutilizado?
 
-## Buenas Prácticas: El Decálogo del JDBC
+## Buenas prácticas: el decálogo del JDBC
 
 1. **PreparedStatement siempre.** Nunca concatenes SQL.
 2. **Try-with-resources.** Connection, Statement, ResultSet se cierran solos.
@@ -586,12 +586,12 @@ Pista: hay una diferencia entre "varias consultas en bucle" y "una consulta con 
 
 > 🕶️ **Don Tip:** Una consulta con JOIN es UNA sola llamada a la base de datos. Hacer una consulta por cada usuario en un bucle es N+1 consultas, que es mucho más lento.
 
-## Resumen Exprés
+## Resumen exprés
 
 | Concepto | Analogía |
 |----------|----------|
 | JDBC | Traductor universal Java ↔ BD |
-| Driver | El enchufe específico para cada BD |
+| Driver (controlador) | El enchufe específico para cada BD |
 | Connection | El cable telefónico |
 | PreparedStatement | El mensajero seguro |
 | ResultSet | La respuesta (tabla virtual) |

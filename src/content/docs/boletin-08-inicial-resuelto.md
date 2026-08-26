@@ -138,7 +138,7 @@ public class Test {
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — Referencias polimórficas
+## Ejercicio 5: ¿Qué imprime? — referencias polimórficas
 
 ```java
 class A {

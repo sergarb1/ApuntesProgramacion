@@ -9,7 +9,7 @@ title: "📁 Unidad 11: Consola, Ficheros y Expresiones Regulares"
 - Crear y usar expresiones regulares con Pattern y Matcher
 - Validar, buscar, reemplazar y extraer partes de texto con regex
 
-## Comunicación por Consola
+## Comunicación por consola
 
 ### System.out
 
@@ -104,7 +104,7 @@ NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
 System.out.println(moneda.format(12345.67));  // 12.345,67 €
 ```
 
-### Errores Comunes con Scanner
+### Errores comunes con Scanner
 
 ```java
 // Olvidar import java.util.Scanner;
@@ -113,7 +113,7 @@ System.out.println(moneda.format(12345.67));  // 12.345,67 €
 // nextInt() seguido de nextLine() sin consumir el Intro
 ```
 
-### ❓ ¡No Hay Preguntas Tontas! (Consola)
+### ❓ ¡No hay preguntas tontas! (consola)
 
 > **Q:** ¿Por qué se llama `System.out`?  
 > **A:** `System` tiene tres flujos estáticos: `out` (salida), `in` (entrada), `err` (errores).
@@ -127,7 +127,7 @@ System.out.println(moneda.format(12345.67));  // 12.345,67 €
 > **Q:** ¿Puedo usar `printf()` para fechas?  
 > **A:** Sí, con `%tF` (fecha ISO: 2026-06-20) y `%tT` (hora: 14:30:00).
 
-### Resumen Exprés: Consola
+### Resumen exprés: Consola
 
 - `System.out.println()` / `printf()` → imprimir
 - `Scanner sc = new Scanner(System.in)` → leer teclado
@@ -192,7 +192,7 @@ while (linea != null) {
 lector.close();
 ```
 
-### ⭐ BE THE CODE, MY FRIEND: El Detective de Archivos
+### ⭐ BE THE CODE, MY FRIEND: el detective de archivos
 
 > 🕶️ **Don Tip:** `File` representa rutas, no contenido. Para leer el contenido usa `Scanner`, `BufferedReader` o `Files.readAllLines()`.
 
@@ -329,7 +329,7 @@ public class GuardandoObjetos {
 
 > La clase debe implementar `Serializable`. Si tiene campos no serializables → `NotSerializableException`.
 
-### ❓ ¡No Hay Preguntas Tontas! (Ficheros)
+### ❓ ¡No hay preguntas tontas! (ficheros)
 
 > **Q:** ¿File crea el archivo?  
 > **A:** No. `new File("ruta")` solo representa la ruta, no crea nada.
@@ -345,7 +345,7 @@ public class GuardandoObjetos {
 
 ---
 
-## Expresiones Regulares
+## Expresiones regulares
 
 Una expresión regular (regex) es un **patrón de búsqueda** que describe un conjunto de cadenas.
 
@@ -421,7 +421,7 @@ texto.replaceFirst("\\s+", " ").trim();
 
 > `matches()` empareja **todo** el string. Para buscar subcadenas usa `find()`.
 
-### Validación: Email, Teléfono, DNI
+### Validación: correo, teléfono y DNI
 
 ```java
 public class ValidadorRegex {
@@ -454,7 +454,7 @@ public class ValidadorRegex {
 
 > Para validar DNI español de verdad necesitas comprobar la letra módulo 23. La regex solo verifica formato.
 
-### Grupos de Captura
+### Grupos de captura
 
 Los paréntesis `()` capturan lo que coincide para extraerlo después:
 
@@ -471,7 +471,7 @@ while (matcher.find()) {
 
 > Para agrupar sin capturar (más eficiente): `(?:patron)`.
 
-### Regex Con Flags
+### Regex con flags
 
 ```java
 Pattern p1 = Pattern.compile("java", Pattern.CASE_INSENSITIVE);
@@ -481,7 +481,7 @@ Pattern p4 = Pattern.compile("java", Pattern.CASE_INSENSITIVE | Pattern.MULTILIN
 Pattern p5 = Pattern.compile("(?i)java");  // flag inline
 ```
 
-### ⭐ BE THE CODE, MY FRIEND: Procesando Un Log
+### ⭐ BE THE CODE, MY FRIEND: procesando un log
 
 > 🕶️ **Don Tip:** Las regex se prueban con `matches()` (todo el string) o `find()` (subcadena). `group()` extrae lo capturado con paréntesis.
 
@@ -522,7 +522,7 @@ public class ProcesadorLog {
 
 > Cada paréntesis captura una parte: nivel, fecha, hora y mensaje. Para un log de 2 GB leerías línea a línea con `BufferedReader`.
 
-### ❓ ¡No Hay Preguntas Tontas! (Regex)
+### ❓ ¡No hay preguntas tontas! (Regex)
 
 > **Q:** ¿Por qué `"abc123".matches("\\d+")` devuelve `false`?  
 > **A:** `matches()` empareja **todo** el string. Usa `find()` para subcadenas.
@@ -539,7 +539,7 @@ public class ProcesadorLog {
 > **Q:** ¿`\w` incluye tildes?  
 > **A:** No por defecto. Usa `[a-zA-ZáéíóúüñÑ]` o `Pattern.UNICODE_CHARACTER_CLASS`.
 
-### Resumen Rápido: Regex
+### Resumen rápido: regex
 
 ```
 Pattern p = Pattern.compile("regex");   ← compilar
@@ -557,12 +557,12 @@ texto.split("regex")                    ← dividir por patrón
 
 ---
 
-## Ejercicios Propuestos
+## Ejercicios propuestos
 
 ### Ejercicio 1: El entrevistador
 Pregunta nombre, edad, años de experiencia y lenguaje favorito. Muestra resumen con `printf()`.
 
-### Ejercicio 2: Calculadora de propinas
+### Ejercicio 2: calculadora de propinas
 Solicita total y porcentaje. Muestra propina y total con 2 decimales con `printf()`.
 
 ### Ejercicio 3: El diario personal
@@ -571,19 +571,19 @@ Escribe en `diario.txt` con fecha y texto. Abre en modo append cada ejecución s
 ### Ejercicio 4: El contador de líneas
 Lee un archivo con `BufferedReader` y muestra cuántas líneas, palabras y caracteres tiene.
 
-### Ejercicio 5: Validador de contraseñas
+### Ejercicio 5: validador de contraseñas
 Valida: mínimo 8 caracteres, una mayúscula, una minúscula, un dígito, un carácter especial (`@#$%^&+=`).
 
-### Ejercicio 6: Extractor de URLs
+### Ejercicio 6: extractor de URLs
 Extrae URLs (http/https) separando protocolo, dominio y ruta con grupos de captura.
 
-### Ejercicio 7: Formateador de fechas
+### Ejercicio 7: formateador de fechas
 Convierte `dd/mm/aaaa` a `aaaa-mm-dd` con `replaceAll()` y grupos de captura.
 
-### Ejercicio 8: Cifrado César
+### Ejercicio 8: cifrado César
 Lee `mensaje.txt`, desplaza cada carácter +3 posiciones, escribe en `mensaje_cifrado.txt`.
 
-### Ejercicio 9: Analizador de logs
+### Ejercicio 9: analizador de logs
 Dado `[NIVEL] timestamp - mensaje: detalle`, cuenta mensajes por nivel y muestra los ERROR.
 
 ---
