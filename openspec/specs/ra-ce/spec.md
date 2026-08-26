@@ -121,3 +121,29 @@
 | U11 Consola, Ficheros y Regex | RA5, RA6 | I/O, ficheros, serialización, regex |
 | U12 Conexión a BD con JDBC | RA9 | JDBC, Connection, Statement, transacciones |
 | U13 Servir y Consumir APIs con Web | RA5 | HttpServer, REST, JSON |
+
+## Requirement: Lenguaje es-ES obligatorio
+
+Todo el texto destinado al usuario está escrito en español de España natural, sin latinamericanismos evitables ni calcos innecesarios del inglés.
+
+### Scenario: Vocabulario peninsular
+
+- **WHEN** se redacta o revisa cualquier párrafo, tabla, explicación o ejercicio en castellano
+- **THEN** no aparecen formas como `computadora`, `prender/prendida`, `celular`, `laptop`, `empacar`, `cómputo`, `monitorear`, `armar` cuando significa montar, `manejar` cuando significa gestionar, `driver` o `email` en prosa cuando exista una alternativa española natural, ni números con formato estadounidense.
+
+### Scenario: Mayúsculas en títulos
+
+- **WHEN** se redacta un título o nombre de sección en español
+- **THEN** se utiliza estilo oracional: primera palabra y nombres propios en mayúscula, manteniendo las siglas y denominaciones técnicas en su forma oficial.
+
+### Scenario: Terminología técnica
+
+- **WHEN** se utiliza un término técnico inglés asentado
+- **THEN** se mantiene cuando sea la forma habitual en informática.
+- **WHEN** exista un anglicismo evitable con una forma española natural
+- **THEN** se utiliza la forma española.
+
+### Scenario: Código y sintaxis técnica
+
+- **WHEN** el término aparece dentro de código, comandos, identificadores, rutas, parámetros o sintaxis de protocolos
+- **THEN** no se modifica por motivos lingüísticos.
