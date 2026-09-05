@@ -37,7 +37,7 @@ El teu codi (.java) --javac--> bytecode (.class) --java--> eixida
 
 ---
 
-## 😤 L'Error del Novat: 4 errors en un programa
+## 😤 L'error del novat: 4 errors en un programa
 
 Este codi està fatal. Troba els 4 errors abans de mirar la solució:
 
@@ -45,7 +45,7 @@ Este codi està fatal. Troba els 4 errors abans de mirar la solució:
 Public class Calculadora
     public static void main(string[] args) {
         System.out.println("Suma: " + 5 + 3)
-        SYSTEM.OUT.PRINTLN("Resta: " + (5 - 3));
+        System.out.println("Resta: " + (5 - 3));
     }
 }
 ```

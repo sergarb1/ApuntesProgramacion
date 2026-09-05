@@ -60,13 +60,13 @@ Public class ErrorFinder {
 Escriu un programa anomenat `FichaPersonal` que mostre:
 
 ```
-Nombre: [El teu nom]
-Edad: [La teua edat]
-Lenguaje favorito: Java
-¿Emocionado?: true
+Nom: [El teu nom]
+Edat: [La teua edat]
+Llenguatge favorit: Java
+¿Emocionat?: true
 ```
 
-Usa una línia `println` per a cada camp i assegura't que els booleans no porten cometes.
+Usa una línia `println` per a cada camp. Fixa't en l'últim: `true` va com a **text** dins de les cometes del `println` (així apareix el text «¿Emocionat?: true»), no com un booleà solt.
 
 ---
 

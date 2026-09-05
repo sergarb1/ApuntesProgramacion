@@ -45,7 +45,7 @@ Este código está fatal. Encuentra los 4 errores antes de mirar la solución:
 Public class Calculadora
     public static void main(string[] args) {
         System.out.println("Suma: " + 5 + 3)
-        SYSTEM.OUT.PRINTLN("Resta: " + (5 - 3));
+        System.out.println("Resta: " + (5 - 3));
     }
 }
 ```

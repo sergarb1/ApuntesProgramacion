@@ -158,7 +158,7 @@ Eixida correcta: `La suma es: 7` i `El producto es: 12`.
 
 ---
 
-## 🧠 Atreveix-te a Pensar
+## 🧠 Atreveix-te a pensar
 
 1. **Sense executar:** què imprimix este programa?
 
@@ -188,7 +188,7 @@ public class Misterio2 {
 
 ---
 
-## 🧩 Crucigrama de Bits
+## 🧩 Crucigrama de bits
 
 ```
 Horitzontal:
@@ -212,7 +212,7 @@ Vertical:
 
 ---
 
-## 💬 Preguntes d'Entrevista de Treball
+## 💬 Preguntes d'entrevista de treball
 
 > Preguntes reals que et farien per a programador Java júnior.
 
@@ -244,7 +244,7 @@ No, ni tan sols són del mateix planeta. Java és a JavaScript com un gos és a 
 
 ---
 
-## 🎬 Post-Crèdits
+## 🎬 Poscrèdits
 
 El programador novat acaba el seu primer programa, el compila i l'executa. Tot perfecte. Llavors s'acosta CONRAD, el compilador cascarrabias, amb cara de pocs amics i una tassa humejant a la mà.
 

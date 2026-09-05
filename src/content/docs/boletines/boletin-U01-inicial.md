@@ -66,7 +66,7 @@ Lenguaje favorito: Java
 ¿Emocionado?: true
 ```
 
-Usa una línea `println` para cada campo y asegúrate de que los booleanos no lleven comillas.
+Usa una línea `println` para cada campo. Fíjate en el último: `true` va como **texto** dentro de las comillas del `println` (así aparece el texto «¿Emocionado?: true»), no como un booleano suelto.
 
 ---
 

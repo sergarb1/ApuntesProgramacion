@@ -78,10 +78,10 @@ public class ErrorFinder {
 ```java
 public class FichaPersonal {
     public static void main(String[] args) {
-        System.out.println("Nombre: Sergi");
-        System.out.println("Edad: 30");
-        System.out.println("Lenguaje favorito: Java");
-        System.out.println("¿Emocionado?: true");
+        System.out.println("Nom: Sergi");
+        System.out.println("Edat: 30");
+        System.out.println("Llenguatge favorit: Java");
+        System.out.println("¿Emocionat?: true");
     }
 }
 ```
@@ -184,7 +184,7 @@ public class Detective {
 ```java
 public class Biografia {
     public static void main(String[] args) {
-        System.out.println("Nombre: Sergi\nEdad: 30\nLenguaje favorito: Java\nFrase: El código bien escrito se comenta solo");
+        System.out.println("Nom: Sergi\nEdat: 30\nLlenguatge favorit: Java\nFrase: El codi ben escrit es comenta sol");
     }
 }
 ```
