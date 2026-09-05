@@ -64,20 +64,23 @@ public class Quicksort {
 }
 ```
 
-**Execució pas a pas** amb `{3, 1, 4, 1, 5, 9, 2, 6}`:
+**Execució pas a pas** amb `{3, 1, 4, 1, 5, 9, 2, 6}` (primera partició):
 
 ```
 Array inicial:  [3, 1, 4, 1, 5, 9, 2, 6]
-Pivot = 5 (posició mitjana)
+Pivot = arr[(0 + 7) / 2] = arr[3] = 1
 Posicions i=0, j=7
 
-1. i avança fins a trobar 9 (>=5), j retrocedeix fins a trobar 2 (<=5)
-2. Intercanviem 9 i 2 → [3, 1, 4, 1, 5, 2, 9, 6]
-3. i=5, j=4 → i > j, acabem la partició
-4. Crida recursiva esquerra: [3, 1, 4, 1, 5, 2]
-5. Crida recursiva dreta: [9, 6]
+1. i no avança (arr[0]=3 no és < 1); j retrocedeix fins a 3 (arr[3]=1 no és > 1)
+2. i(0) <= j(3): intercanviem arr[0] i arr[3] → [1, 1, 4, 3, 5, 9, 2, 6]; i=1, j=2
+3. i no avança (arr[1]=1 no és < 1); j retrocedeix a 1 (arr[2]=4 > 1)
+4. i(1) <= j(1): s'intercanvia amb si mateix; i=2, j=0 → i > j, fi de la partició
+5. Recursió esquerra: segment [0..0] (un sol element, ja ordenat)
+6. Recursió dreta: segment [2..7] → [4, 3, 5, 9, 2, 6], amb pivot 5
 ...
 ```
+
+Fixa't: el pivot (1) ha quedat ben col·locat i l'array s'ha partit en `[1]` i `[4, 3, 5, 9, 2, 6]`. Cada zona s'ordena igual, recursivament. Si tries un pivot diferent, els intercanvis canvien, però el patró és el mateix.
 
 > [!TIP]
 > El secret de Quicksort està en la **partició**. Si aconseguixes que els elements es repartisquen més o menys equilibradament, l'algorisme vola. Si no... prepara els O(n²).

@@ -51,7 +51,8 @@ Eixida:
 1 moneda(s) de 100 céntimos
 1 moneda(s) de 50 céntimos
 1 moneda(s) de 20 céntimos
-3 moneda(s) de 1 céntimos
+1 moneda(s) de 2 céntimos
+1 moneda(s) de 1 céntimos
 ```
 
 > [!NOTE]

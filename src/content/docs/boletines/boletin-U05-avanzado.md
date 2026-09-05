@@ -52,7 +52,7 @@ public class ArbolRaro {
 Amplía el palíndromo para que **ignore espacios, signos y mayúsculas**:
 
 - `"Anita lava la tina"` → true
-- `"Dábale arroz a la zorra el abad"` → true
+- `"La ruta natural"` → true
 - `"No soy un palíndromo"` → false
 
 ```java

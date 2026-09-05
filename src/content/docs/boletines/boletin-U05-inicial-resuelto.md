@@ -189,7 +189,7 @@ public class GuardianPalindromos {
     }
 
     public static void main(String[] args) {
-        System.out.println("reconocer: " + esPalindromo("reconocer", 0, 9));  // true
+        System.out.println("reconocer: " + esPalindromo("reconocer", 0, 8));  // true
         System.out.println("salas:     " + esPalindromo("salas", 0, 4));      // true
         System.out.println("hola:      " + esPalindromo("hola", 0, 3));       // false
     }

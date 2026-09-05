@@ -79,7 +79,7 @@ Un sol `for` amb `i` de 1 fins al final comparant `arr[i - 1] >= arr[i]` → si 
 
 En [CodeWars](https://www.codewars.com/kata/556deca17c58da83c00002db).
 
-Igual que Fibonacci però amb tres nombres d'arrancada: cada terme és la suma dels tres anteriors. El firmant sempre dona una llavor `double[] signature` de 3 elements i un nombre `n`. Torna els primers `n` termes:
+Igual que Fibonacci però amb tres nombres d'arrancada: cada terme és la suma dels tres anteriors. L'enunciat sempre dona una llavor `double[] signature` de 3 elements i un nombre `n`. Torna els primers `n` termes:
 
 - `{1, 1, 1}, 10` → `{1, 1, 1, 3, 5, 9, 17, 31, 57, 105}`
 - `{0, 0, 1}, 10` → `{0, 0, 1, 1, 2, 4, 7, 13, 24, 44}`

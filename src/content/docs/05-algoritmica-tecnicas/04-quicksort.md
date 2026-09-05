@@ -64,20 +64,23 @@ public class Quicksort {
 }
 ```
 
-**Ejecución paso a paso** con `{3, 1, 4, 1, 5, 9, 2, 6}`:
+**Ejecución paso a paso** con `{3, 1, 4, 1, 5, 9, 2, 6}` (primera partición):
 
 ```
 Array inicial:  [3, 1, 4, 1, 5, 9, 2, 6]
-Pivote = 5 (posición media)
+Pivote = arr[(0 + 7) / 2] = arr[3] = 1
 Posiciones i=0, j=7
 
-1. i avanza hasta encontrar 9 (>=5), j retrocede hasta encontrar 2 (<=5)
-2. Intercambiamos 9 y 2 → [3, 1, 4, 1, 5, 2, 9, 6]
-3. i=5, j=4 → i > j, terminamos la partición
-4. Llamada recursiva izquierda: [3, 1, 4, 1, 5, 2]
-5. Llamada recursiva derecha: [9, 6]
+1. i no avanza (arr[0]=3 no es < 1); j retrocede hasta 3 (arr[3]=1 no es > 1)
+2. i(0) <= j(3): intercambiamos arr[0] y arr[3] → [1, 1, 4, 3, 5, 9, 2, 6]; i=1, j=2
+3. i no avanza (arr[1]=1 no es < 1); j retrocede a 1 (arr[2]=4 > 1)
+4. i(1) <= j(1): se intercambia consigo mismo; i=2, j=0 → i > j, fin de la partición
+5. Recursión izquierda: segmento [0..0] (un solo elemento, ya ordenado)
+6. Recursión derecha: segmento [2..7] → [4, 3, 5, 9, 2, 6], con pivote 5
 ...
 ```
+
+Fíjate: el pivote (1) ha quedado bien colocado y el array se ha partido en `[1]` y `[4, 3, 5, 9, 2, 6]`. Cada zona se ordena igual, recursivamente. Si eliges un pivote distinto, los intercambios cambian, pero el patrón es el mismo.
 
 > [!TIP]
 > El secreto de Quicksort está en la **partición**. Si consigues que los elementos se repartan más o menos equilibradamente, el algoritmo vuela. Si no... prepara los O(n²).

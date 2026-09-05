@@ -87,14 +87,14 @@ public class PalindromRebel {
     }
 
     public static void main(String[] args) {
-        System.out.println(esPalindromoFrase("Anita lava la tina", 0, 16));          // true
-        System.out.println(esPalindromoFrase("Dábale arroz a la zorra el abad", 0, 32)); // true
+        System.out.println(esPalindromoFrase("Anita lava la tina", 0, 17));          // true
+        System.out.println(esPalindromoFrase("La ruta natural", 0, 14));          // true
         System.out.println(esPalindromoFrase("No soy un palindromo", 0, 19));        // false
     }
 }
 ```
 
-Eixida: `true`, `true`, `false`. La clau està en els dos `if` que salten els caràcters que no són lletres ABANS de comparar. Ull amb l'accent de "Dábale": els dos `á` de l'enunciat ho compensen (comença i acaba amb la mateixa lletra).
+Eixida: `true`, `true`, `false`. La clau està en els dos `if` que salten els caràcters que no són lletres ABANS de comparar. Ull: `Character.toLowerCase()` no lleva accents, així que les frases d'exemple es trien sense tildes («La ruta natural»). Si tingueres tildes («Dábale arroz a la zorra el abad»), hauries de normalitzar els accents apart.
 
 </details>
 

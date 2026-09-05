@@ -87,14 +87,14 @@ public class PalindromoRebelde {
     }
 
     public static void main(String[] args) {
-        System.out.println(esPalindromoFrase("Anita lava la tina", 0, 16));          // true
-        System.out.println(esPalindromoFrase("Dábale arroz a la zorra el abad", 0, 32)); // true
+        System.out.println(esPalindromoFrase("Anita lava la tina", 0, 17));          // true
+        System.out.println(esPalindromoFrase("La ruta natural", 0, 14));          // true
         System.out.println(esPalindromoFrase("No soy un palindromo", 0, 19));        // false
     }
 }
 ```
 
-Salida: `true`, `true`, `false`. La clave está en los dos `if` que saltan los caracteres que no son letras ANTES de comparar. Ojo con el acento de "Dábale": los dos `á` del enunciado lo compensan (empieza y termina con la misma letra).
+Salida: `true`, `true`, `false`. La clave está en los dos `if` que saltan los caracteres que no son letras ANTES de comparar. Ojo: `Character.toLowerCase()` no quita acentos, así que las frases de ejemplo se eligen sin tildes («La ruta natural»). Si tuvieras tildes («Dábale arroz a la zorra el abad»), tendrías que normalizar los acentos aparte.
 
 </details>
 

@@ -79,7 +79,7 @@ Un solo `for` con `i` de 1 hasta el final comparando `arr[i - 1] >= arr[i]` → 
 
 En [CodeWars](https://www.codewars.com/kata/556deca17c58da83c00002db).
 
-Igual que Fibonacci pero con tres números de arranque: cada término es la suma de los tres anteriores. El firmante siempre da una semilla `double[] signature` de 3 elementos y un número `n`. Devuelve los primeros `n` términos:
+Igual que Fibonacci pero con tres números de arranque: cada término es la suma de los tres anteriores. El enunciado siempre da una semilla `double[] signature` de 3 elementos y un número `n`. Devuelve los primeros `n` términos:
 
 - `{1, 1, 1}, 10` → `{1, 1, 1, 3, 5, 9, 17, 31, 57, 105}`
 - `{0, 0, 1}, 10` → `{0, 0, 1, 1, 2, 4, 7, 13, 24, 44}`
