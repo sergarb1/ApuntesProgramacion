@@ -1,5 +1,5 @@
 ---
-title: "10 — Repàs interactiu: la caixa que no cabia"
+title: "10 · Repàs interactiu: la caixa que no cabia"
 description: El tancament pràctic de la unitat, amb un bug de truncament que no agradarà a ningú 😈
 ---
 

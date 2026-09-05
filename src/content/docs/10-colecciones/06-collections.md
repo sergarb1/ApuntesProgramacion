@@ -1,5 +1,5 @@
 ---
-title: "06 — La clase Collections: la navaja suiza"
+title: "06 · La clase Collections: la navaja suiza"
 description: "Métodos estáticos que hacen en una línea lo que tú tardarías en diez: sort, reverse, shuffle, max, min y compañía 🧰"
 ---
 

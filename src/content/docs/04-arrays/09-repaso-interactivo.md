@@ -1,5 +1,5 @@
 ---
-title: "09 — Repaso interactivo: el parking a examen"
+title: "09 · Repaso interactivo: el parking a examen"
 description: "El cierre práctico de la unidad, con recorridos, búsquedas y un array que no va a funcionar 😈"
 ---
 

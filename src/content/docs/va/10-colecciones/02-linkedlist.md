@@ -1,5 +1,5 @@
 ---
-title: "02 — LinkedList: la conga line"
+title: "02 · LinkedList: la conga line"
 description: "La llista que encadena els seus elements com una conga: rapidíssima al principi i al final, i perfecta per a cues i piles 🎉"
 ---
 

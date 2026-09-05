@@ -1,5 +1,5 @@
 ---
-title: "05 — Iterator: el camarero que toma nota"
+title: "05 · Iterator: el camarero que toma nota"
 description: "Recorre cualquier colección sin que te importe su estructura, y su remove() es la única forma segura de borrar mientras avanzas 🍽️"
 ---
 

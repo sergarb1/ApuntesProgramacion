@@ -1,5 +1,5 @@
 ---
-title: "06 — Aplicacions dels arrays"
+title: "06 · Aplicacions dels arrays"
 description: "Arrays de String, de char, d'objectes i de taules: quan l'aparcament deixa de ser teoria i comença a treballar 💼"
 ---
 

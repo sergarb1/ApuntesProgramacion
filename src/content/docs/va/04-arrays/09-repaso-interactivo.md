@@ -1,5 +1,5 @@
 ---
-title: "09 — Repàs interactiu: l'aparcament a examen"
+title: "09 · Repàs interactiu: l'aparcament a examen"
 description: "El tancament pràctic de la unitat, amb recorreguts, cerques i un array que no funcionarà 😈"
 ---
 

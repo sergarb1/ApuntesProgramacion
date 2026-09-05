@@ -1,5 +1,5 @@
 ---
-title: "09 — Repaso interactivo: domina las colecciones"
+title: "09 · Repaso interactivo: domina las colecciones"
 description: "El cierre práctico de la unidad, con colecciones, un remove() que lo va a liar todo y un bucle que va a explotar 😈"
 ---
 

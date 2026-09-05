@@ -1,5 +1,5 @@
 ---
-title: "08 — Be the Code: colecciones en acción"
+title: "08 · Be the Code: colecciones en acción"
 description: "Sé el Código puro: predice la salida, caza el bug y decide qué colección encaja antes de que compile nada 🧪"
 ---
 

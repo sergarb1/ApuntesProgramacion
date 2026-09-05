@@ -1,5 +1,5 @@
 ---
-title: "04 — TreeSet i LinkedHashSet: l'ordenat i el que recorda"
+title: "04 · TreeSet i LinkedHashSet: l'ordenat i el que recorda"
 description: "TreeSet ordena tot el que fiques i LinkedHashSet conserva l'ordre d'arribada: dos cosins de HashSet amb memòria i brúixola 🧭"
 ---
 

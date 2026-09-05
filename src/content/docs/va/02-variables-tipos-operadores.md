@@ -1,11 +1,11 @@
-﻿---
+---
 title: U02 — Variables, Tipus i Operadors
 description: Les caixes del magatzem de la memòria i les màquines del gimnàs de dades 🔤
 ---
 
 <p><small>Les caixes del magatzem de la memòria i les màquines del gimnàs de dades 🔤</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → **🔤 ACÍ ETS (U02)** → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → **🔤 ACI ETS (U02)** → 🔀 Control → 🅿️ Arrays → 🧩 Algorítmica → ⚡ Tècniques → 🏗️ POO → 🔒 Visibilitat → 🧬 Herència → 📚 Col·leccions → 🗺️ Genèrics → 📁 Fitxers → 🗄️ JDBC → 🌐 APIs
 
 ---
 

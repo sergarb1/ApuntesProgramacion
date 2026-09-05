@@ -1,5 +1,5 @@
 ---
-title: "04 — La classe Arrays: la teua navalla suïssa"
+title: "04 · La classe Arrays: la teua navalla suïssa"
 description: "toString, sort, copyOf, binarySearch i fill: els mètodes estàtics que t'estalvien reinventar la roda 🔧"
 ---
 

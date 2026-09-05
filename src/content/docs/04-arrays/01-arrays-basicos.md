@@ -1,5 +1,5 @@
 ---
-title: "01 — Arrays: el aparcamiento de datos"
+title: "01 · Arrays: el aparcamiento de datos"
 description: "Declaración, índices y el primer BOOM: la ArrayIndexOutOfBoundsException que te estrellará alguna vez 🅿️"
 ---
 

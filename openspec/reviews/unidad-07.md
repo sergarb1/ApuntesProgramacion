@@ -1,15 +1,17 @@
-# Revisión Unidad 07 — Visibilidad, Encapsulación y Static
+# Revisión U07 · POO: Clases y Objetos (renumerada desde U06)
 
 **Fecha:** 26/08/2026 · **Estado:** ✅ revisada y corregida
-**Alcance:** índice + 9 puntos + 5 boletines, en castellano y valenciano (30 archivos).
-**Método:** lectura completa bilingüe + compilación de bloques Java con `javac 25` + checklist es-ES/estructura/claridad.
+**Alcance:** índice + 9 puntos + 5 boletines, en castellano y valenciano (30 archivos) + corrección de coherencia en U04 (Kaprekar).
+**Método:** lectura completa bilingüe + compilación y ejecución de bloques Java con `javac 25` + checklist es-ES/estructura/claridad.
+> 🔄 **Nota (28/08/2026):** esta unidad fue renumerada durante el reordenamiento a 14 unidades (Arrays pasó a U04, colecciones a U10). El contenido no cambió salvo la numeración, los enlaces de navegación y las referencias cruzadas, que se actualizaron globalmente.
+
 
 ---
 
-## Resultado de la verificación técnica (javac)
+## Resultado de la verificación técnica (javac + ejecución)
 
-- Bloques de teoría y boletines revisados y verificados por análisis de ejecución.
-- **Salidas confirmadas por traza manual**: `Puzle` (1 2 2), `Coche` (Velocidad inválida / 120), `Termometro` (fuera de rango / 36.5), `Empleado` (Laura: 1500.0), `Validador` (true/false/false/false/false), banco refactorizado (Saldo insuficiente / 150), perímetro rectángulo (12/8), abadías (2).
+- Bloques de teoría y boletines compilados y ejecutados.
+- **Soluciones verificadas por ejecución**: `CuentaBancaria` (punto 08, "Seat va a 50" en el laboratorio corregido), `Kaprekar` U06 (3524→3, 1111→8, 6174→0, 5555→8), taller de coches (150/90), área círculo (19.63), fracción (5/6), bloque Building blocks (48/88).
 
 **Verificación técnica: ✅ PASADA** (0 errores reales tras las correcciones).
 
@@ -19,19 +21,28 @@
 
 ### 🔴 Crítico — corregido ✅
 
-1. **Punto 07 · constantes (ES)**
-   `public static final double IVA = 0,21;` y `Config.IVA = 0,5` usaban **coma decimal en código Java**, que es inválido (el pase es-ES anterior lo cambió por error). Corregido a `0.21` y `0.5`. El VA ya era correcto.
+1. **Punto 09 · Laboratorio de tortura (ES y VA)**
+   El «error de lógica» duplicaba el error de compilación (`new Coche()` sin argumentos). Rediseñado: el error de lógica ahora es real y distinto — `velocidad -= inc` **resta** en vez de sumar (imprime `Seat va a -50`). La solución compila y da `Seat va a 50`. Verificado por ejecución.
+
+2. **Coherencia cross-unidad — Kaprekar (AceptaElReto 100) en U04**
+   El avanzado-resuelto y el extras de U04 tenían una solución con `while (numero != 6174)` que **hace bucle infinito para repdigits** (1111 → 0 → 0 → ...), y el texto decía «la diferencia da 0 y el bucle acaba» (incorrecto). El problema oficial de AceptaElReto pide **8** para repdigits (confirmado: la solución de U06 avanzado-resuelto lo maneja correctamente).
+   - **Corregido** en `boletin-U04-avanzado-resuelto.md`, `boletin-U04-extras.md` y sus enunciados (ES y VA): añadido `esRepdigit` → 8, actualizado el ejemplo (1111 → `8`).
+
+### 🟡 Medio — corregido ✅
+
+3. **Boletín inicial · Ejercicio 8 «El taller de coches» (ES y VA)**
+   El método se llamaba `acelelar` (typo por `acelerar`) en el código del enunciado y del resuelto. Corregido a `acelerar` (4 apariciones).
 
 ### 🟢 Menor — corregido ✅
 
-2. **Índice VA · «tot lo demés»**
-   Castellanismo «lo» → «tot el demés».
+4. **Índice VA · «eixir del lío»**
+   Castellanismo «lío» → «eixir de l'embolic».
 
 ### Sin cambio — decisiones documentadas
 
-3. **Ejercicios de visibilidad con paquetes (punto 02)** — los ejemplos `package zoologico;`, `package barrio;` y `package otraCiudad;` son ilustrativos (no compilan como un solo archivo), pero didácticamente correctos. Aceptable.
+5. **Misterio (Sé el Código) del punto 09** — el bloque pone `Galleta` y `Main` como clases públicas en el mismo código (no compila como archivo único, pero es un ejercicio conceptual de «¿qué imprime?» con la respuesta correcta limón/vainilla). Aceptable para la didáctica del repaso.
 
-4. **Laboratorio «La caja fuerte sin candado» (punto 09)** — el conteo de «4 problemas» incluye correcciones de diseño (añadir setters validados), no solo bugs del código original. Aceptable como ejercicio de transformación.
+6. **Puntos 03-08** — usan atributos sin `private` (se ven en U07). Correcto pedagógicamente.
 
 ---
 
@@ -39,12 +50,12 @@
 
 | Dimensión | Estado |
 |---|---|
-| Corrección técnica Java | ✅ Pasada (salidas verificadas, 0 errores tras corregir) |
+| Corrección técnica Java | ✅ Pasada (soluciones ejecutadas, 0 errores tras corregir) |
 | es-ES | ✅ Cumple |
-| Claridad pedagógica | ✅ Nivel cero, analogías (casa de cristal, valla, diario, portero), humor |
+| Claridad pedagógica | ✅ Nivel cero, analogías (cortapastas, galletas, taquillas), humor |
 | Estructura spec | ✅ Frontmatter, breadcrumb, mini-chequeo, resumen, vocabulario, navegación encadenada |
 | Boletines 1:1 | ✅ Propuestos = resueltos (ES y VA) |
 | VA | ✅ Traducción natural, mismos slugs |
-| Coherencia global | ✅ Enlaces válidos, sin "Head First", "continúa en U08" correcto |
+| Coherencia global | ✅ Enlaces válidos, sin "Head First", "continúa en U07" correcto; **coherencia Kaprekar U04↔U06 restaurada** |
 
-**Total hallazgos:** 1 🔴 + 1 🟢 = 2 → **todos corregidos** (+2 documentados sin cambio).
+**Total hallazgos:** 2 🔴 + 1 🟡 + 1 🟢 = 4 → **todos corregidos** (+2 documentados sin cambio).

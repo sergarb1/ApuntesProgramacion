@@ -1,5 +1,5 @@
 ---
-title: "05 — Arrays y métodos"
+title: "05 · Arrays y métodos"
 description: "Pasar arrays a métodos y el paso por referencia: el testigo que se comparte, no se copia 🏃"
 ---
 

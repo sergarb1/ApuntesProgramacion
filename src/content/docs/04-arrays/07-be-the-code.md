@@ -1,5 +1,5 @@
 ---
-title: "07 — Be the Code: el parking se gestiona"
+title: "07 · Be the Code: el parking se gestiona"
 description: "Invierte, busca y compacta arrays a mano, sin ayuda de la clase Arrays, como en una entrevista de trabajo 🕶️"
 ---
 

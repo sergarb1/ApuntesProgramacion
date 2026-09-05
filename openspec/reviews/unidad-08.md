@@ -1,17 +1,19 @@
-# Revisión Unidad 08 — Herencia, Polimorfismo e Interfaces
+# Revisión U08 · Visibilidad, Encapsulación y Static (renumerada desde U07)
 
-**Fecha:** 27/08/2026 · **Estado:** ✅ revisada y corregida
+**Fecha:** 26/08/2026 · **Estado:** ✅ revisada y corregida
 **Alcance:** índice + 9 puntos + 5 boletines, en castellano y valenciano (30 archivos).
-**Método:** lectura completa bilingüe + compilación y ejecución con `javac 25` de los bloques clave + checklist es-ES/estructura/claridad.
+**Método:** lectura completa bilingüe + compilación de bloques Java con `javac 25` + checklist es-ES/estructura/claridad.
+> 🔄 **Nota (28/08/2026):** esta unidad fue renumerada durante el reordenamiento a 14 unidades (Arrays pasó a U04, colecciones a U10). El contenido no cambió salvo la numeración, los enlaces de navegación y las referencias cruzadas, que se actualizaron globalmente.
+
 
 ---
 
 ## Resultado de la verificación técnica (javac)
 
-- **Compilado y ejecutado:** encadenado `super` (punto 02) → `Soy un vehículo / Soy un coche deportivo / Soy un coche deportivo` ✓; polimorfismo (punto 04) → `Hola desde B / C / C` ✓ y `Coche acelera` ✓; **ejercicio 9 avanzado** (vehículos con combustible) tras corregir el bucle infinito; **Kaprekar** → `3 8 5 0 7` ✓.
-- Salidas del resto verificadas por traza manual (familia musical, cadena de constructores, gatos, etc.).
+- Bloques de teoría y boletines revisados y verificados por análisis de ejecución.
+- **Salidas confirmadas por traza manual**: `Puzle` (1 2 2), `Coche` (Velocidad inválida / 120), `Termometro` (fuera de rango / 36.5), `Empleado` (Laura: 1500.0), `Validador` (true/false/false/false/false), banco refactorizado (Saldo insuficiente / 150), perímetro rectángulo (12/8), abadías (2).
 
-**Verificación técnica: ✅ PASADA** (tras las correcciones).
+**Verificación técnica: ✅ PASADA** (0 errores reales tras las correcciones).
 
 ---
 
@@ -19,24 +21,19 @@
 
 ### 🔴 Crítico — corregido ✅
 
-1. **Boletín avanzado · Ejercicio 9 (ES y VA): bucle infinito en el `while`**
-   La solución usaba `while (v.combustible > 0)` con `abstract void mover()`. Cuando el combustible quedaba por debajo del gasto (pero > 0), `mover()` imprimía "Sin combustible" sin reducir el combustible → **bucle infinito**. Rediseñado: `abstract boolean mover()` devuelve `true` si pudo moverse y el `while (v.mover())` lo usa. Enunciado y resuelto actualizados en ES y VA.
-2. **Boletín avanzado-resuelto · Ejercicio 9: `public abstract class Vehiculo` junto a `public class Circuito` en el mismo archivo** → error de compilación ("class Vehiculo is public, should be declared in a file named Vehiculo.java"). Quitado el `public` de `Vehiculo`/`Vehicle` (ES y VA).
-
-### 🟡 Medio — corregido ✅
-
-3. **Boletín inicial-resuelto · Ejercicio 5 (ES y VA): salida incorrecta**
-   El enunciado usa clases `X/Y/Z` (referencias `X, X, Y` y objetos `Y, Z, Z`), pero el resuelto decía `Y / C / C` (clases que no existen en el enunciado). Corregido a `Y / Z / Z` con la explicación actualizada.
+1. **Punto 07 · constantes (ES)**
+   `public static final double IVA = 0,21;` y `Config.IVA = 0,5` usaban **coma decimal en código Java**, que es inválido (el pase es-ES anterior lo cambió por error). Corregido a `0.21` y `0.5`. El VA ya era correcto.
 
 ### 🟢 Menor — corregido ✅
 
-4. **Índice ES:** "hierarquías" → "jerarquías" (línea 100).
-5. **Punto 09 · Crucigrama:** `CLASSCASTEXCEPTION` tiene 18 letras, no 16. Corregido en ES y VA.
+2. **Índice VA · «tot lo demés»**
+   Castellanismo «lo» → «tot el demés».
 
 ### Sin cambio — decisiones documentadas
 
-6. **Kata "Adam and Eve"** (`boletin-U08-extras`): la solución incluye una clase `Human` con constructor público y getters; es válida para la kata real (la verificación de CodeWars comprueba la jerarquía `Man`/`Woman extends Human` y el método estático `God.create()`). Aceptable.
-7. **AceptaElReto 100 (Kaprekar):** la solución maneja repdigits con retorno `8` y el caso `6174` con `0`, coherente con la corrección de la U04. Verificado ejecutando la entrada de ejemplo → `3 8 5 0 7`.
+3. **Ejercicios de visibilidad con paquetes (punto 02)** — los ejemplos `package zoologico;`, `package barrio;` y `package otraCiudad;` son ilustrativos (no compilan como un solo archivo), pero didácticamente correctos. Aceptable.
+
+4. **Laboratorio «La caja fuerte sin candado» (punto 09)** — el conteo de «4 problemas» incluye correcciones de diseño (añadir setters validados), no solo bugs del código original. Aceptable como ejercicio de transformación.
 
 ---
 
@@ -44,12 +41,12 @@
 
 | Dimensión | Estado |
 |---|---|
-| Corrección técnica Java | ✅ Pasada (bucle infinito y visibilidad corregidos, salidas verificadas) |
-| es-ES | ✅ Cumple (vocabulario, números, mayúsculas) |
-| Claridad pedagógica | ✅ Nivel cero, analogías (chaqueta del padre, contrato, boceto), EL RING y Fireside |
-| Estructura spec | ✅ Frontmatter comillado, breadcrumb, mini-chequeo, resumen, vocabulario, navegación encadenada |
+| Corrección técnica Java | ✅ Pasada (salidas verificadas, 0 errores tras corregir) |
+| es-ES | ✅ Cumple |
+| Claridad pedagógica | ✅ Nivel cero, analogías (casa de cristal, valla, diario, portero), humor |
+| Estructura spec | ✅ Frontmatter, breadcrumb, mini-chequeo, resumen, vocabulario, navegación encadenada |
 | Boletines 1:1 | ✅ Propuestos = resueltos (ES y VA) |
-| VA | ✅ Traducción natural, mismos slugs, títulos coherentes |
-| Coherencia global | ✅ Enlaces válidos, sin "Head First", "continúa en U09" correcto |
+| VA | ✅ Traducción natural, mismos slugs |
+| Coherencia global | ✅ Enlaces válidos, sin "Head First", "continúa en U08" correcto |
 
-**Total hallazgos:** 2 🔴 + 1 🟡 + 2 🟢 = 5 → **todos corregidos** (+2 documentados sin cambio).
+**Total hallazgos:** 1 🔴 + 1 🟢 = 2 → **todos corregidos** (+2 documentados sin cambio).

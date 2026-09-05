@@ -1,5 +1,5 @@
 ---
-title: "03 — Arrays multidimensionals"
+title: "03 · Arrays multidimensionals"
 description: "L'aparcament de diverses plantes: arrays de arrays, files i columnes, i com recórrer-los sense perdre't 🏢"
 ---
 

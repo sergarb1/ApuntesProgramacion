@@ -1,5 +1,5 @@
 ---
-title: "01 — ArrayList y el Java Collections Framework"
+title: "01 · ArrayList y el Java Collections Framework"
 description: "El parking que crece solo: ArrayList, la familia java.util y por qué no puede guardar int a pelo 🅿️📈"
 ---
 

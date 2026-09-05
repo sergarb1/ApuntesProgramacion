@@ -1,5 +1,5 @@
 ---
-title: "10 — Repaso interactivo: la caja que no cabía"
+title: "10 · Repaso interactivo: la caja que no cabía"
 description: El cierre práctico de la unidad, con un bug de truncamiento que no va a gustar a nadie 😈
 ---
 

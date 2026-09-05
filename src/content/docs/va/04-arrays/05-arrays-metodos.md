@@ -1,5 +1,5 @@
 ---
-title: "05 — Arrays i mètodes"
+title: "05 · Arrays i mètodes"
 description: "Passar arrays a mètodes i el pas per referència: el testimoni que es compartix, no es copia 🏃"
 ---
 

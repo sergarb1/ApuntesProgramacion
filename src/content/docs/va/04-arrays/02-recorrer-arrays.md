@@ -1,5 +1,5 @@
 ---
-title: "02 — Recórrer arrays: for i for-each"
+title: "02 · Recórrer arrays: for i for-each"
 description: "El duo inseparable (for + array) i la variant peresosa que només llig: el for-each 🌀"
 ---
 

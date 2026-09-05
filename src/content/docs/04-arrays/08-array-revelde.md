@@ -1,5 +1,5 @@
 ---
-title: "08 — Array-revelde: errores comunes y depuración"
+title: "08 · Array-revelde: errores comunes y depuración"
 description: "La galería de monstruos de los arrays: excepciones, null, comparaciones que no comparan y cómo cazarlos con calma 🐛"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "05 — Iterator: el cambrer que pren nota"
+title: "05 · Iterator: el cambrer que pren nota"
 description: "Recorre qualsevol col·lecció sense que t'importe la seua estructura, i el seu remove() és l'única forma segura d'esborrar mentre avances 🍽️"
 ---
 

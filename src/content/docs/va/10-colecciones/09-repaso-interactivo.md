@@ -1,5 +1,5 @@
 ---
-title: "09 — Repàs interactiu: domina les col·leccions"
+title: "09 · Repàs interactiu: domina les col·leccions"
 description: "El tancament pràctic de la unitat, amb col·leccions, un remove() que ho liarà tot i un bucle que explotarà 😈"
 ---
 

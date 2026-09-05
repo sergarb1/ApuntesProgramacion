@@ -1,5 +1,5 @@
 ---
-title: "03 — HashSet: el portero sin duplicados"
+title: "03 · HashSet: el portero sin duplicados"
 description: "La discoteca de Java: no deja entrar a nadie que ya esté dentro, y es O(1) para preguntar ¿ya lo tengo? 🚫"
 ---
 

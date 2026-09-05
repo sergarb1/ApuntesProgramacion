@@ -1,5 +1,5 @@
 ---
-title: "01 — Arrays: l'aparcament de dades"
+title: "01 · Arrays: l'aparcament de dades"
 description: "Declaració, índexs i el primer BOOM: la ArrayIndexOutOfBoundsException que et farà estavellar-te alguna volta 🅿️"
 ---
 

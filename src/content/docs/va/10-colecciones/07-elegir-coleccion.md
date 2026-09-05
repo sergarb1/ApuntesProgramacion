@@ -1,5 +1,5 @@
 ---
-title: "07 — Triar la col·lecció adequada"
+title: "07 · Triar la col·lecció adequada"
 description: "ArrayList, LinkedList, HashSet, TreeSet o LinkedHashSet: les tres preguntes que decidixen abans d'escriure la primera línia ⚖️"
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: "04 — TreeSet y LinkedHashSet: el ordenado y el que recuerda"
+title: "04 · TreeSet y LinkedHashSet: el ordenado y el que recuerda"
 description: "TreeSet ordena todo lo que metes y LinkedHashSet conserva el orden de llegada: dos primos de HashSet con memoria y brújula 🧭"
 ---
 

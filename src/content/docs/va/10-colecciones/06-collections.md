@@ -1,5 +1,5 @@
 ---
-title: "06 — La classe Collections: la navalla suïssa"
+title: "06 · La classe Collections: la navalla suïssa"
 description: "Mètodes estàtics que fan en una línia el que tu tardaries en deu: sort, reverse, shuffle, max, min i companyia 🧰"
 ---
 
