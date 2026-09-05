@@ -1,260 +1,129 @@
 ---
 title: Butlletí U06 — Extres
-description: CodeWars i AceptaElReto per a anar més enllà de la unitat
+description: Katas de CodeWars i problemes d'AceptaElReto sobre recursivitat i ordenació per als valents
 ---
 
 # 📝 Butlletí U06 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està amagada: resisteix-te fins a esgotar la teua pista.
+> T'has quedat amb ganes de més? Esta secció és per als que volen arribar a l'examen amb el stack templat: 4 katas de CodeWars i 2 problemes d'AceptaElReto. Cada pista està amagada al seu desplegable per a no espatlar el misteri.
 
 ---
 
-## CodeWars
+## 🥋 CodeWars
 
-### 1. FIXME: Get Full Name
+> Regista't a [CodeWars](https://www.codewars.com), tria Java i resol les katas per ordre. Comencen assequibles i pugen de nivell.
 
-Et donen una classe `Dinglemouse` amb un mètode `getFullName()` que hauria de tornar `"Nom Cognom"`, però el resultat està al revés o incomplet. Arregla-la.
+---
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/597c684822bc9388f600010f)
-- Dificultat: 7 kyu
+### Kata 1: Factorial (7 kyu)
 
-**Pista:** fixa't en quins atributs existixen (`firstName` i `lastName`) i en com el mètode els concatena. La classe està feta per a rompre's: busca l'error de `this` o d'ordre.
+En [CodeWars](https://www.codewars.com/kata/54ff0d1f355cfd20e60001fc).
 
-<details>
-<summary>🔄 Solució</summary>
+En matemàtiques, el factorial d'un enter no negatiu `n`, denotat `n!`, és el producte de tots els enters positius menors o iguals que `n`:
 
-```java
-public class Dinglemouse {
-    private final String firstName;
-    private final String lastName;
-
-    public Dinglemouse(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    public String getFullName() {
-        if (firstName.isEmpty() && lastName.isEmpty()) {
-            return "";
-        }
-        if (firstName.isEmpty()) {
-            return lastName;
-        }
-        if (lastName.isEmpty()) {
-            return firstName;
-        }
-        return firstName + " " + lastName;
-    }
-}
+```
+n! = 1 * 2 * 3 * ... * n
 ```
 
-La classe original fallava en construir el nom complet: els casos en què falta un nom o tots dos havien de tornar el que hi ha. El mètode correcte encadena els casos límit abans de juntar tots dos noms amb un espai.
+Amb la convenció que `0! = 1`. Implementa `public static long factorial(int n)` amb recursivitat.
+
+<details>
+<summary>💡 Pista</summary>
+
+Cas base `n <= 1` → 1; cas recursiu `n * factorial(n - 1)`.
 
 </details>
 
 ---
 
-### 2. Geometry Basics: Distance between points in 2D
+### Kata 2: Descending Order (7 kyu)
 
-Et donen una classe `Point` amb dos propietats (`x` i `y`) i has d'implementar el mètode `distanceBetweenPoints(Point a, Point b)` que torne la distància entre ells.
+En [CodeWars](https://www.codewars.com/kata/5467e4d82edf8bbf40000155).
 
-**Exemple:** `Point(3, 3)` i `Point(3, 3)` → `0`. `Point(1, 6)` i `Point(4, 2)` → `5`.
+Agafa un nombre no negatiu i torna el **nombre major possible** reordenant els seus dígits de major a menor. Exemples:
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/58dced7b702b805b200000be)
-- Dificultat: 8 kyu
-
-**Pista:** distància euclidiana `Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))`. Els objectes es passen com a paràmetre, com vam fer amb `Fraccio.sumar`.
+- `42145` → `54421`
+- `145263` → `654321`
+- `123456789` → `987654321`
 
 <details>
-<summary>🔄 Solució</summary>
+<summary>💡 Pista</summary>
 
-```java
-public class Kata {
-    public static double distanceBetweenPoints(Point a, Point b) {
-        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
-    }
-}
-
-class Point {
-    public double x;
-    public double y;
-
-    public Point(double x, double y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-```
-
-El mètode rep dos objectes `Point` i llig els seus atributs (`a.x`, `b.x`...). És exactament el mateix patró de `sumar(Fraccio altra)`: un objecte treballa amb un altre. La fórmula de Pitàgores resolta per objectes.
+Convertix el nombre a `String`, passa a un array de `char` o `int`, ordena'l descendent i reconstruïx el nombre amb `Long.parseLong`. Este exercici et demana ordenar, no recursivitat: usa el que has aprés.
 
 </details>
 
 ---
 
-### 3. Grasshopper — Personalized Message
+### Kata 3: Are the numbers in order? (7 kyu)
 
-Crea el mètode `greet(name, owner)` que torne `"Hello boss"` si `name` i `owner` són iguals, o `"Hello guest"` si són distints.
+En [CodeWars](https://www.codewars.com/kata/56b7f2f3f18876033f000307).
 
-**Exemples:** `greet("Daniel", "Daniel")` → `"Hello boss"`, `greet("Greg", "Daniel")` → `"Hello guest"`.
+Escriu `public static boolean isAscOrder(int[] arr)` que torne `true` si els nombres estan **estrictament en ordre ascendent** (cada un major que l'anterior) i `false` en cas contrari.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5772da22b89313a4d50012f7)
-- Dificultat: 8 kyu
-
-**Pista:** compara `String` amb `.equals()`, mai amb `==`. Un `if`/`else` o un ternari.
+- `[1, 2, 3, 4]` → true
+- `[1, 4, 13, 97, 508, 717]` → true
+- `[1, 3, 2]` → false
+- `[9, 5, 5]` → false (no és estrictament ascendent)
 
 <details>
-<summary>🔄 Solució</summary>
+<summary>💡 Pista</summary>
 
-```java
-public class Kata {
-    public static String greet(String name, String owner) {
-        return name.equals(owner) ? "Hello boss" : "Hello guest";
-    }
-}
-```
-
-Una línia amb el ternari i `.equals()`. Si uses `==` amb cadenes, els resultats seran imprevisibles: en Java els `String` es comparen amb `.equals()` perquè són objectes (encara que Java els done un tracte especial). La U07 t'explicarà per què.
+Un sol `for` amb `i` de 1 fins al final comparant `arr[i - 1] >= arr[i]` → si alguna vegada es complix, torna `false` al moment.
 
 </details>
 
 ---
 
-### 4. Sleigh Authentication
+### Kata 4: Tribonacci Sequence (6 kyu)
 
-Has de completar la classe `Sleigh` amb un mètode `authenticate(name, password)` que torne `true` només si `name` és `"Santa Claus"` i `password` és `"Ho Ho Ho!"`.
+En [CodeWars](https://www.codewars.com/kata/556deca17c58da83c00002db).
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
-- Dificultat: 8 kyu
+Igual que Fibonacci però amb tres nombres d'arrancada: cada terme és la suma dels tres anteriors. L'enunciat sempre dona una llavor `double[] signature` de 3 elements i un nombre `n`. Torna els primers `n` termes:
 
-**Pista:** torna `name.equals("Santa Claus") && password.equals("Ho Ho Ho!")`. Una altra vegada `.equals()`, i el `&&` de la U03.
+- `{1, 1, 1}, 10` → `{1, 1, 1, 3, 5, 9, 17, 31, 57, 105}`
+- `{0, 0, 1}, 10` → `{0, 0, 1, 1, 2, 4, 7, 13, 24, 44}`
+- `{1, 1, 1}, 1` → `{1}` (recorda: si `n < 3`, només tornes els que demane)
 
 <details>
-<summary>🔄 Solució</summary>
+<summary>💡 Pista</summary>
 
-```java
-public class Sleigh {
-    public boolean authenticate(String name, String password) {
-        return name.equals("Santa Claus") && password.equals("Ho Ho Ho!");
-    }
-}
-```
-
-Un mètode d'una sola línia: dos comparacions amb `.equals()` unides per `&&`. És una d'eixes katas trampa: sembla trivial, però molts cauen usant `==` i fallen els tests. Objectes per tot arreu.
+Si `n < 3`, torna un subarray amb els primers `n` de la llavor. Si no, crea un `double[n]`, copia la llavor al principi i ompli de `i = 3` endavant amb `arr[i] = arr[i-1] + arr[i-2] + arr[i-3]`. Pots fer-ho iteratiu; el "truc del tribonacci" no necessita recursivitat.
 
 </details>
 
 ---
 
-## AceptaElReto
+## 🏆 AceptaElReto
 
-### 5. 148 — Nochevieja
+> Dos problemes del concurs [ProgramaMe](https://aceptaelreto.com). El primer és un clàssic absolut de la recursivitat; el segon, un sudorífer d'ordenació.
 
-Ramón es passa el dia de cap d'any contant els minuts que falten per a mitjanit. Per a cada hora de l'entrada (format `HH:MM`), digues quants minuts falten per a les `00:00`. L'entrada acaba amb `00:00`, que no es processa.
+---
 
-**Entrada:**
+### Repre 1: Mòbils (104)
 
-```
-23:45
-21:30
-00:01
-00:00
-```
+En [AceptaElReto](https://aceptaelreto.com/problem/statement.php?id=104).
 
-**Eixida:**
-
-```
-15
-150
-1439
-```
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=148)
-- Dificultat: Fàcil
-
-**Pista:** separa l'hora i el minut amb `split(":")`. Els minuts que falten són `(23 - hora) * 60 + (60 - minut)`. Escriu una classe `Hora` amb un mètode `minutsFinsMitjanit()` i veuràs com de natural queda.
+Un mòbil penjant es descriu amb quatre enters: `pi di pd dd` (pes i distància esquerres, pes i distància dretes). La barra està equilibrada si `pi * di == pd * dd`. Un pes `0` indica que dalt penja un altre mòbil, que es descriu a continuació en l'entrada. Has de dir `SI` si el mòbil complet està equilibrat (barra I submòbils) i `NO` en cas contrari. L'entrada acaba amb `0 0 0 0`.
 
 <details>
-<summary>🔄 Solució</summary>
+<summary>💡 Pista</summary>
 
-```java
-import java.util.Scanner;
-
-public class Nochevieja {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String linea = sc.next();
-
-        while (!linea.equals("00:00")) {
-            String[] parts = linea.split(":");
-            int hora = Integer.parseInt(parts[0]);
-            int minut = Integer.parseInt(parts[1]);
-            System.out.println((23 - hora) * 60 + (60 - minut));
-            linea = sc.next();
-        }
-        sc.close();
-    }
-}
-```
-
-Per a `23:45`: `(23-23)*60 + (60-45)` = 15. Per a `21:30`: `2*60 + 30` = 150. El `while` es deté amb la línia `00:00` perquè es compara amb `.equals()` (és un `String`, recorda). La versió amb classe `Hora` és un bon exercici voluntari.
+No hi ha comptador de casos: els mòbils es lliguen **recursivament**. Crea un mètode que lligca una barra i torne el pes total del mòbil si està equilibrat, o `-1` si no. Quan un pes és 0, crida al mètode per a llegir el submòbil. Un submòbil desequilibrat (torna `-1`) contamina tota la cadena cap amunt.
 
 </details>
 
 ---
 
-### 6. 117 — La fiesta aburrida
+### Repre 2: Tortetes (143)
 
-Tinín odia saludar desconeguts. L'entrada comença amb un nombre N (quanta gent hi ha) i després N línies amb el format `"Soy Lotario"`. Per a cada una, imprimix `"Hola, Lotario."`.
+En [AceptaElReto](https://aceptaelreto.com/problem/statement.php?id=143).
 
-**Entrada:**
-
-```
-3
-Soy Lotario
-Soy Aldonza
-Soy Ender
-```
-
-**Eixida:**
-
-```
-Hola, Lotario.
-Hola, Aldonza.
-Hola, Ender.
-```
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
-- Dificultat: Fàcil
-
-**Pista:** `split(" ")` sobre cada línia i agafa la segona part (índex 1). Pots modelar cada persona com un objecte d'una classe `Persona` amb el nom i un mètode `saludar()`.
+Tens una pila de tortetes amb mides diferents. Amb una espàtula pots donar la volta a les `k` tortetes superiors (invertir l'ordre de les primeres `k`). Troba el mínim nombre de voltes per a ordenar-les de major (dalt) a menor (baix). L'entrada acaba amb `0`. Per a cada cas, imprimix quantes voltes necessites.
 
 <details>
-<summary>🔄 Solució</summary>
+<summary>💡 Pista</summary>
 
-```java
-import java.util.Scanner;
-
-public class FiestaAburrida {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        sc.nextLine();
-
-        for (int i = 0; i < n; i++) {
-            String linea = sc.nextLine();
-            String nom = linea.split(" ")[1];
-            System.out.println("Hola, " + nom + ".");
-        }
-        sc.close();
-    }
-}
-```
-
-`split(" ")` partix `"Soy Lotario"` en `["Soy", "Lotario"]` i l'índex 1 és el nom. El `sc.nextLine()` després del `nextInt()` consumix el salt de línia sobrant. Una versió amb classe `Persona` i el seu mètode `saludar()` és el repte extra ideal per a esta unitat.
+Voraç (greedy): busca la torteta més gran que no estiga al seu lloc. Si no està dalt, dona-li la volta fins a la seua posició (invertir `k` on `k` és la seua posició) per a pujar-la. Després invertix tota la part sense ordenar per a baixar-la al seu lloc. Cada torteta queda fixada per sempre: eixe és el famós "flip-sort". Amb 2 voltes per torteta mal col·locada et val.
 
 </details>
-
----
-
-> 🧭 **I si et quedes amb ganes?** Quan domines les classes, el pas natural és protegir les seues dades: això és l'**encapsulació** de la U07. I si vols vore objectes que es creen i destrueixen sols, espera't als arrays i col·leccions de la U09, on crearàs desenes d'objectes en un bucle.

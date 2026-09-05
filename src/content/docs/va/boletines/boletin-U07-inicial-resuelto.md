@@ -5,279 +5,312 @@ description: Els mateixos exercicis que el butlletí inicial, amb solucions
 
 # 📝 Butlletí U07 — Inicial (Resolt)
 
-> Les solucions estan ocultes en cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
 
 ---
 
-## Exercici 1: La casa de cristall
+## Exercici 1: El gos que parla
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Gos {
+    String nom;
+    int edat;
+
+    public Gos(String nom, int edat) {
+        this.nom = nom;
+        this.edat = edat;
+    }
+
+    void lladrar() {
+        System.out.println("¡Guau guau! Soc " + nom);
+    }
+
+    public static void main(String[] args) {
+        Gos toby = new Gos("Toby", 3);
+        toby.lladrar();
+    }
+}
+```
+
+Eixida: `¡Guau guau! Soc Toby`
+
+El constructor amb `this` col·loca el nom i l'edat en l'objecte acabat de nàixer. El mètode `lladrar()` no rep res: usa l'atribut `nom` que ja va quedar guardat.
+
+</details>
+
+---
+
+## Exercici 2: El telèfon amb bateria
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Telefon {
+    String marca;
+    int bateria;
+
+    public Telefon(String marca, int bateria) {
+        this.marca = marca;
+        this.bateria = bateria;
+    }
+
+    void trucar() {
+        System.out.println("Trucant... (bateria al " + bateria + "%)");
+    }
+
+    void carregar(int minuts) {
+        this.bateria += minuts;
+    }
+
+    public static void main(String[] args) {
+        Telefon mobil = new Telefon("Nokia", 50);
+        mobil.trucar();
+        mobil.carregar(30);
+        mobil.trucar();
+    }
+}
+```
+
+Eixida:
+
+```
+Trucant... (bateria al 50%)
+Trucant... (bateria al 80%)
+```
+
+`carregar(int minuts)` modifica l'atribut amb `this.bateria += minuts;`. El mateix objecte conserva la bateria entre trucades: això és tindre estat.
+
+</details>
+
+---
+
+## Exercici 3: L'estudiant amb nota
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Estudiant {
+    String nom;
+    double nota;
+
+    public Estudiant(String nom, double nota) {
+        this.nom = nom;
+        this.nota = nota;
+    }
+
+    void mostrarEstat() {
+        if (nota >= 5) {
+            System.out.println(nom + " ha aprovat");
+        } else {
+            System.out.println(nom + " ha suspés");
+        }
+    }
+
+    public static void main(String[] args) {
+        Estudiant anna = new Estudiant("Anna", 8.5);
+        Estudiant lluis = new Estudiant("Lluís", 3.0);
+        anna.mostrarEstat();
+        lluis.mostrarEstat();
+    }
+}
+```
+
+Eixida:
+
+```
+Anna ha aprovat
+Lluís ha suspés
+```
+
+El mètode mescla dos mons: usa els atributs de l'objecte (`nom`, `nota`) amb la lògica de decisió (`if`/`else`) que vas aprendre en la U03. Dos objectes, dos estats, una classe.
+
+</details>
+
+---
+
+## Exercici 4: La pel·lícula en cartellera
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Pelicula {
+    String titol;
+    String genere;
+
+    public Pelicula(String titol, String genere) {
+        this.titol = titol;
+        this.genere = genere;
+    }
+
+    void mostrarCartellera() {
+        System.out.println("Ara en cinemes: " + titol + " (" + genere + ")");
+    }
+
+    public static void main(String[] args) {
+        Pelicula p = new Pelicula("El curs de Java", "Terror");
+        p.mostrarCartellera();
+    }
+}
+```
+
+Eixida: `Ara en cinemes: El curs de Java (Terror)`
+
+El mateix patró que el gos i el telèfon: atributs, constructor amb `this`, mètode que els usa. A aquestes alçades ja hauries de notar que totes les classes fàcils s'assemblen.
+
+</details>
+
+---
+
+## Exercici 5: La persona educada
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Persona {
-    private String nom;
-    private int edat;
+    String nom;
+    int edat;
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
+    public Persona(String nom, int edat) {
         this.nom = nom;
-    }
-
-    public int getEdat() {
-        return edat;
-    }
-
-    public void setEdat(int edat) {
         this.edat = edat;
     }
 
+    void presentarSe() {
+        System.out.println("Hola, soc " + nom + " i tinc " + edat + " anys.");
+    }
+
     public static void main(String[] args) {
-        Persona p = new Persona();
-        p.setNom("Anna");
-        p.setEdat(25);
-        System.out.println(p.getNom() + " té " + p.getEdat() + " anys.");
+        Persona anna = new Persona("Anna", 25);
+        anna.presentarSe();
     }
 }
 ```
 
-Els atributs passen a `private` i tot l'accés es fa amb getters i setters. El `this` en els setters desambiguïx: el paràmetre s'assigna a l'atribut, no a si mateix.
+Eixida: `Hola, soc Anna i tinc 25 anys.`
+
+Ací és on `this` demostra el seu valor: sense `this`, `nom = nom` assignaria el paràmetre al paràmetre i l'atribut quedaria en `null`. Amb `this`, l'atribut rep el valor del paràmetre.
 
 </details>
 
 ---
 
-## Exercici 2: El cotxe del veïnat
+## Exercici 6: El cercle calculador
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Cotxe {
-    private String marca;
-    private double velocitat;
+public class Cercle {
+    double radi;
 
-    public Cotxe(String marca) {
-        this.marca = marca;
-        this.velocitat = 0;
+    public Cercle(double radi) {
+        this.radi = radi;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public double getVelocitat() {
-        return velocitat;
-    }
-
-    public void setVelocitat(double velocitat) {
-        if (velocitat >= 0 && velocitat <= 200) {
-            this.velocitat = velocitat;
-        } else {
-            System.out.println("Velocitat invàlida.");
-        }
+    double calcularArea() {
+        return Math.PI * this.radi * this.radi;
     }
 
     public static void main(String[] args) {
-        Cotxe c = new Cotxe("Seat");
-        c.setVelocitat(-50);
-        c.setVelocitat(120);
-        System.out.println("Velocitat: " + c.getVelocitat());
+        Cercle c = new Cercle(2.5);
+        System.out.println("Àrea: " + c.calcularArea());
     }
 }
 ```
 
-Eixida: `Velocitat invàlida.` (pel -50) i després `Velocitat: 120.0`. El setter valida abans de tocar l'atribut: és la frontera que protegix l'estat de l'objecte.
+Eixida: `Àrea: 19.634954084936208`
+
+Este mètode no és `void`: usa `return` per a tornar l'àrea. Els mètodes que *calculen* tornen un valor; els que només *mostren* són `void`. Eixa distinció és la meitat de la batalla d'esta unitat.
 
 </details>
 
 ---
 
-## Exercici 3: El termòmetre amb cervell
+## Exercici 7: El videojoc jugable
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Termometre {
-    private double temperatura;
+public class Videojoc {
+    String titol;
+    int horesJugades;
 
-    public Termometre() {
-        temperatura = 20.0;
+    public Videojoc(String titol, int horesJugades) {
+        this.titol = titol;
+        this.horesJugades = horesJugades;
     }
 
-    public double getTemperatura() {
-        return temperatura;
+    void jugar(int hores) {
+        this.horesJugades += hores;
     }
 
-    public void setTemperatura(double temperatura) {
-        if (temperatura >= -273.15 && temperatura <= 100.0) {
-            this.temperatura = temperatura;
-        } else {
-            System.out.println("Temperatura fora de rang.");
-        }
+    void mostrar() {
+        System.out.println(titol + " - " + horesJugades + " hores");
     }
 
     public static void main(String[] args) {
-        Termometre t = new Termometre();
-        t.setTemperatura(-500);
-        t.setTemperatura(36.5);
-        System.out.println("Temperatura: " + t.getTemperatura());
+        Videojoc joc = new Videojoc("Minecraft", 10);
+        joc.jugar(5);
+        joc.mostrar();
     }
 }
 ```
 
-Eixida: `Temperatura fora de rang.` i després `Temperatura: 36.5`. El setter convertix la classe en un "termòmetre amb cervell": no accepta qualsevol número, només valors físicament possibles.
+Eixida: `Minecraft - 15 hores`
+
+El mètode `jugar(int hores)` és un *setter* informal: modifica l'estat de l'objecte. L'objecte no és una caixa estàtica: els seus atributs canvien amb els mètodes. Això és la vida d'un objecte.
 
 </details>
 
 ---
 
-## Exercici 4: Getter sense setter
+## Exercici 8: Què imprimeix? — el taller de cotxes
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+Seat va a 150 km/h
+Ford va a 90 km/h
+```
+
+Hi ha **dos** objectes (`c1` i `c2`), cada un amb la seua pròpia `velocidad`. `c1.acelerar(30)` suma 30 a la velocitat de `c1` (120 + 30 = 150) però no toca la de `c2`. Quan `c2.mostrar()` corre, la seua velocitat continua sent 90. Els atributs d'un objecte són privats d'eixe objecte.
+
+</details>
+
+---
+
+## Exercici 9: CodeWars — Object Oriented Piracy
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Configuracio {
-    private String idioma;
+public class Ship {
+    private final double draft;
+    private final int crew;
 
-    public Configuracio(String idioma) {
-        this.idioma = idioma;
+    public Ship(double draft, int crew) {
+        this.draft = draft;
+        this.crew = crew;
     }
 
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public static void main(String[] args) {
-        Configuracio config = new Configuracio("es");
-        System.out.println("Idioma: " + config.getIdioma());
+    public boolean isWorthIt() {
+        return draft - (crew * 1.5) > 20;
     }
 }
 ```
 
-No té setter perquè l'idioma és una decisió d'una sola vegada: es tria en el constructor i prou. Si algú intentàs `config.idioma = "va"` des de fora, **no compilaria**: `idioma` és `private`, i fora de la classe no es pot tocar. Obligar que el canvi passe per un setter (o que no existisca) és l'essència de l'encapsulació.
-
-</details>
-
----
-
-## Exercici 5: El comptador de la classe
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Comptador {
-    public static int total = 0;
-
-    public Comptador() {
-        total++;
-    }
-
-    public static void main(String[] args) {
-        Comptador c1 = new Comptador();
-        Comptador c2 = new Comptador();
-        Comptador c3 = new Comptador();
-        System.out.println("Total: " + Comptador.total);
-    }
-}
-```
-
-`total` val **3**. És `static`: una sola còpia compartida per tota la classe. Cada `new` crida al constructor i l'incrementa; com que els tres objectes compartixen la mateixa variable, el comptador conta els tres. No és 1 perquè no hi ha una còpia per objecte: n'hi ha una única de classe.
-
-</details>
-
----
-
-## Exercici 6: La calculadora sense piles
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Utilitats {
-    public static int sumar(int a, int b) {
-        return a + b;
-    }
-
-    public static int restar(int a, int b) {
-        return a - b;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Utilitats.sumar(5, 3));
-        System.out.println(Utilitats.restar(10, 4));
-    }
-}
-```
-
-Eixida: `8` i `6`. Com que els mètodes són `static`, es diuen amb el nom de la classe (`Utilitats.sumar`), sense `new` i sense objecte. És el mateix patró que ja uses amb `Math.sqrt` o `Integer.parseInt`.
-
-</details>
-
----
-
-## Exercici 7: Les constants del barri
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Constants {
-    public static final double IVA = 0.21;
-    public static final int MAX_INTENTS_LOGIN = 3;
-    public static final String NOM_APP = "GestioCurs";
-
-    public static void main(String[] args) {
-        System.out.println("IVA: " + Constants.IVA);
-        System.out.println("Màxim intents: " + Constants.MAX_INTENTS_LOGIN);
-        System.out.println("App: " + Constants.NOM_APP);
-        // Constants.IVA = 0.5; // Error de compilació
-    }
-}
-```
-
-En intentar `Constants.IVA = 0.5;` el compilador ho **prohibix**: `final` significa que el valor no es pot reassignar després de la seua declaració. Les constants són a prova de bombes, per això van en MAJÚSCULES amb `_`: tothom sap que no es toquen.
-
-</details>
-
----
-
-## Exercici 8: Què imprimeix? — el trencaclosques estàtic
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimix **`1 2 2`**.
-
-`Trencaclosques.s` és `static`: una sola còpia compartida. Amb el primer `new`, `s` passa a 1 i `t1.i` es copia eixe 1. Amb el segon `new`, `s` passa a 2 i `t2.i` es copia eixe 2. Al final, `t1.i` = 1, `t2.i` = 2 i `Trencaclosques.s` = 2. L'estàtic puja per a tots; el d'instància es congela amb el valor que tenia la classe en el moment de nàixer.
-
-</details>
-
----
-
-## Exercici 9: CodeWars — Square(n) Sum
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Kata {
-    public static int squareSum(int[] n) {
-        int suma = 0;
-        for (int i = 0; i < n.length; i++) {
-            suma += n[i] * n[i];
-        }
-        return suma;
-    }
-}
-```
-
-Per a `[1, 2, 2]` → `1 + 4 + 4 = 9`. El bucle recorre cada element i acumula `n[i] * n[i]`. Nota el `static`: CodeWars exigix el mètode estàtic per a poder cridar-lo sense crear objectes, just el que acabeu de practicar.
+El constructor guarda `draft` i `crew` amb `this`, i `isWorthIt()` aplica la fórmula: cada membre de la tripulació reduïx el calat útil en 1.5 peus. Si el que queda supera 20, el vaixell val la pena. Objecte + operacions de la U02, resolt.
 
 </details>

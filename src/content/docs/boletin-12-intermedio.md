@@ -1,118 +1,111 @@
 ---
-title: "Boletín 14 - Intermedio: Conexión a BD con JDBC"
-nav_order: 14
+title: "Boletín 12 - Intermedio: Ficheros y Regex"
+nav_order: 12
 ---
 *Ejercicios de dificultad progresiva. De ⭐ a ⭐⭐⭐.*
 
 ---
 
-## ⭐ Ejercicio 1: Conexión desde archivo de propiedades
+## ⭐ Ejercicio 1: Buscador de archivos por extensión
 
-Crea un archivo `db.properties` con los datos de conexión:
+Crea un programa que pida una ruta de directorio y una extensión (ej: `.txt`, `.java`) y liste **recursivamente** todos los archivos con esa extensión. Usa la clase `File` y su método `listFiles()`.
 
-```properties
-url=jdbc:mysql://localhost:3306/instituto
-user=root
-password=admin123
-```
-
-Escribe un programa que lea este archivo usando `Properties` y establezca la conexión. Si el archivo no existe o falta alguna propiedad, muestra un mensaje de error claro.
+Pista: Si el archivo es un directorio, llama al método de nuevo (recursión).
 
 ---
 
-## ⭐ Ejercicio 2: INSERT con clave autogenerada
+## ⭐ Ejercicio 2: Lector de CSV con Scanner
 
-Inserta un nuevo alumno en la tabla `alumnos` y **recupera el ID** que la base de datos le ha asignado automáticamente. Usa `PreparedStatement` con la opción `Statement.RETURN_GENERATED_KEYS` y el método `getGeneratedKeys()`.
-
-Pista:
-
-```java
-PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-```
-
----
-
-## ⭐ Ejercicio 3: UPDATE condicional
-
-Actualiza el curso de todos los alumnos que tengan una edad superior a un valor dado. Por ejemplo:
+Dado un archivo `datos.csv` con el siguiente formato (sin cabecera):
 
 ```
-¿Edad mínima? 25
-¿Nuevo curso? DAM2
+Ana;25;DAM
+Bob;22;DAW
+Carlos;30;DAM
 ```
 
-Todos los alumnos mayores de 25 años pasan al curso «DAM2». Muestra cuántas filas se actualizaron.
+Usa `Scanner` con `useDelimiter()` para leer el archivo y mostrar los datos en formato tabla alineada. Usa `printf()` para formatear.
+
+Asegúrate de que el `Scanner` maneje correctamente tanto el delimitador `;` como el salto de línea.
 
 ---
 
-## ⭐⭐ Ejercicio 4: INNER JOIN con PreparedStatement
+## ⭐⭐ Ejercicio 3: Filtro de líneas por palabra clave
 
-Dada una tabla `matriculas` con `id_alumno`, `asignatura`, `nota`, escribe un programa que reciba un nombre de alumno y muestre todas sus asignaturas y notas. Usa un `INNER JOIN` entre `alumnos` y `matriculas`.
+Crea un programa que lea un archivo de texto (`origen.txt`) y escriba en `destino.txt` solo las líneas que contienen una palabra clave (pedida al usuario). Usa `BufferedReader` y `PrintWriter`.
 
-Ejemplo de salida:
+Muestra al final cuántas líneas coincidieron y cuántas se descartaron.
+
+---
+
+## ⭐⭐ Ejercicio 4: Separador de líneas pares e impares
+
+Crea un programa que lea un archivo `entrada.txt` y genere dos archivos:
+
+- `pares.txt` → contiene las líneas en posición par (0, 2, 4...).
+- `impares.txt` → contiene las líneas en posición impar (1, 3, 5...).
+
+Usa `try-with-resources` con **tres** recursos (un `BufferedReader` y dos `PrintWriter`).
+
+---
+
+## ⭐⭐ Ejercicio 5: Split con regex — analizador de frases
+
+Escribe un programa que lea una frase del usuario y use `split()` con una expresión regular para:
+
+1. Separar las palabras (ignorando espacios, comas, puntos, signos).
+2. Mostrar cuántas palabras hay.
+3. Mostrar la palabra más larga.
+4. Mostrar las palabras que empiezan por vocal.
+
+Ejemplo: `"Hola, mundo. Esto es Java: ¿mola?"` →
 ```
-Alumno: Ana García
-  Matemáticas: 8.5
-  Programación: 9.0
-  Bases de Datos: 7.5
+Palabras: 6
+Más larga: "mundo"
+Empiezan por vocal: ["Esto"]
 ```
 
 ---
 
-## ⭐⭐ Ejercicio 5: Fechas en JDBC
+## ⭐⭐⭐ Ejercicio 6 (ProgramaMe): Validador de datos con regex
 
-Añade una columna `fecha_nacimiento DATE` a la tabla `alumnos` (asume que ya existe). Crea un programa que:
+Crea un programa que lea un archivo `datos.txt` donde cada línea contiene un dato y su tipo (separados por `;`):
 
-1. Pida nombre, edad, curso y fecha de nacimiento (formato `YYYY-MM-DD`).
-2. Inserte el alumno usando `PreparedStatement` con `java.sql.Date.valueOf()`.
-3. Liste todos los alumnos mostrando también su fecha de nacimiento formateada con `DateTimeFormatter`.
+```
+ana@email.com;email
+12345678Z;dni
++34 612345678;telefono
+91 123 45 67;telefono
+esto-no-es-email;email
+```
 
----
+Valida cada línea según el tipo usando expresiones regulares:
 
-## ⭐⭐ Ejercicio 6: Batch INSERT — 100 alumnos de prueba
+- **Correo:** formato básico `xxx@xxx.xxx`
+- **DNI:** 8 dígitos + letra mayúscula (la letra debe ser válida según el algoritmo)
+- **Teléfono:** opcional `+34` seguido de 9 dígitos, con o sin espacios
 
-Crea un programa que inserte **100 alumnos de prueba** en la tabla `alumnos` usando lotes (batch). Los nombres pueden ser genéricos: `Alumno1`, `Alumno2`, etc.
-
-Usa `addBatch()` y `executeBatch()` de `PreparedStatement`. Mide el tiempo que tarda con `System.currentTimeMillis()`.
-
-Compara: ¿cuánto tardaría si hicieras 100 `executeUpdate()` individuales?
-
----
-
-## ⭐⭐⭐ Ejercicio 7 (ProgramaMe): Patrón DAO
-
-Implementa el patrón **Data Access Object (DAO)** para la tabla `alumnos`. Crea las siguientes clases:
-
-1. `Alumno` — clase modelo con `id`, `nombre`, `edad`, `curso`.
-2. `AlumnoDAO` — interfaz con métodos:
-   - `List<Alumno> listar()`
-   - `Alumno buscarPorId(int id)`
-   - `List<Alumno> buscarPorNombre(String nombre)`
-   - `boolean insertar(Alumno a)`
-   - `boolean actualizar(Alumno a)`
-   - `boolean eliminar(int id)`
-3. `AlumnoDAOImpl` — implementación concreta con JDBC.
-4. `Main` — programa con menú que use el DAO.
+Muestra un resumen: cuántos válidos, cuántos inválidos, y lista los inválidos.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8 (CodeWars + AceptaElReto)
+## ⭐⭐⭐ Ejercicio 7 (CodeWars + AceptaElReto)
 
-Resuelve estos problemas que refuerzan conceptos de Bases de Datos y SQL:
+Resuelve estos problemas para machacar regex y la entrada de datos con `Scanner`:
 
-**CodeWars:** [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu) — Practica JOINs en SQL.
+**CodeWars:** [Regex validate PIN code](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132) (7 kyu) — Valida que un String sea un PIN de 4 o 6 dígitos exactos.
 
-**CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6 kyu) — Consultas con LIKE y ordenación.
+**CodeWars:** [Exes and Ohs](https://www.codewars.com/kata/55908aad6620c066bc00002a) (7 kyu) — Cuenta si el número de X y O es el mismo en un String (puedes resolverlo con o sin regex).
 
-**AceptaElReto:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200) — Problema de estructura de datos que puedes resolver con JDBC.
+**AceptaElReto:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149) — Lectura de múltiples casos de prueba desde consola.
 
 ---
 
 ## 📚 Referencias
 
-- **CodeWars:** [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu)
-- **CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6 kyu)
-- **CodeWars:** [SQL Basics: Simple HAVING](https://www.codewars.com/kata/58167e8fcbd14c0d7d0000f8) (6 kyu)
-- **AceptaElReto.com:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200)
-- **AceptaElReto.com:** [340 - Juegos de naipes](https://www.aceptaelreto.com/problem/statement.php?id=340)
-- **AceptaElReto.com:** [100 - Kaprekar](https://www.aceptaelreto.com/problem/statement.php?id=100)
+- **CodeWars:** [Regex validate PIN code](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132) (7 kyu)
+- **CodeWars:** [Exes and Ohs](https://www.codewars.com/kata/55908aad6620c066bc00002a) (7 kyu)
+- **CodeWars:** [String repeat](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e) (8 kyu)
+- **AceptaElReto.com:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149)
+- **AceptaElReto.com:** [140 - Suma de dígitos](https://www.aceptaelreto.com/problem/statement.php?id=140)
+- **AceptaElReto.com:** [152 - Suma pares e impares](https://www.aceptaelreto.com/problem/statement.php?id=152)

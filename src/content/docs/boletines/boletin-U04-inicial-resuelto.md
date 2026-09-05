@@ -1,6 +1,6 @@
 ---
-title: Boletín U04 — Inicial Resuelto
-description: Los mismos ejercicios que el boletín inicial, con soluciones
+title: "Boletín U04 — Inicial Resuelto"
+description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 ---
 
 # 📝 Boletín U04 — Inicial (Resuelto)
@@ -9,220 +9,218 @@ description: Los mismos ejercicios que el boletín inicial, con soluciones
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — la búsqueda de la gema
+## Ejercicio 1: ¿Qué imprime? — Array de booleanos
 
 <details>
 <summary>🔄 Solución</summary>
 
-Imprime **`Posición: 3`**.
+Imprime **`false true false`**.
 
-Recorrido: `cofre[0] = 12` (no), `cofre[1] = 7` (no), `cofre[2] = 25` (no), `cofre[3] = 9` (¡sí!). Guardamos `posicion = 3` y el `break` corta el bucle. No hace falta seguir buscando: ya está.
+`flags` es un `boolean[]` de 3 plazas recién creadas. El valor por defecto de `boolean` es `false`, así que `flags[0]` y `flags[2]` valen `false`. Solo `flags[1]` se puso a `true`. Cada plaza nace con el valor por defecto de su tipo: `false` para `boolean`.
 
 </details>
 
 ---
 
-## Ejercicio 2: El buscador de tesoros
+## Ejercicio 2: Encuentra el error — NullPointerException
+
+<details>
+<summary>🔄 Solución</summary>
+
+Se lanza una **`NullPointerException`** en la última línea.
+
+`nombres[2]` nunca se asignó, así que vale `null` (el valor por defecto de los objetos). Llamar a `nombres[2].toUpperCase()` sobre `null` es pedirle un método a la nada: Java no sabe qué hacer y lanza la excepción. Las plazas de un `String[]` recién creado están llenas de `null`, no de `""`.
+
+</details>
+
+---
+
+## Ejercicio 3: Completa el código — for básico para buscar el mayor
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public static int buscar(int[] datos, int objetivo) {
-    for (int i = 0; i < datos.length; i++) {
-        if (datos[i] == objetivo) {
-            return i;
-        }
-    }
-    return -1;
-}
-```
+int[] numeros = {12, 45, 7, 34, 89, 23};
+int mayor = numeros[0];
 
-Si lo encuentra, el `return i` devuelve el índice y corta el método al instante. Solo si el bucle termina entero sin encontrarlo, se ejecuta el `return -1`. Ese `-1` es la contraseña universal del "no encontrado" que usa toda la industria.
-
-</details>
-
----
-
-## Ejercicio 3: ¿Qué imprime? — la bombolla mínima
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`1 2 3 `**.
-
-Traza de la bombolla sobre `{3, 1, 2}`:
-
-| Pasada | j | Compara | Intercambia | Array |
-|---|---|---|---|---|
-| 1 | 0 | 3 vs 1 | Sí | 1 3 2 |
-| 1 | 1 | 3 vs 2 | Sí | 1 2 3 |
-| 2 | 0 | 1 vs 2 | No | 1 2 3 |
-
-La pasada 2 solo comprueba (el `-1 - i` reduce el recorrido) y confirma que ya está ordenado.
-
-</details>
-
----
-
-## Ejercicio 4: La caja de zapatos ordenada
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public static void ordenar(int[] datos) {
-    for (int i = 1; i < datos.length; i++) {
-        int clave = datos[i];
-        int j = i - 1;
-
-        while (j >= 0 && datos[j] > clave) {
-            datos[j + 1] = datos[j];
-            j--;
-        }
-        datos[j + 1] = clave;
+for (int i = 1; i < numeros.length; i++) {   // hasta length, sin pasar
+    if (numeros[i] > mayor) {                // ¿es más grande que el actual?
+        mayor = numeros[i];                  // actualiza el mayor
     }
 }
 
-// En main:
-int[] caja = {9, 2, 7, 1};
-ordenar(caja);
-for (int num : caja) {
-    System.out.print(num + " ");
-}
+System.out.println("El mayor es: " + mayor);
 ```
 
-Salida: `1 2 7 9 `
-
-Sobre `{9, 2, 7, 1}`: el 2 se cuela a la izquierda del 9, el 7 entra entre el 2 y el 9, y el 1 viaja hasta el principio. Cada elemento se inserta en su sitio dentro de la "mano" ya ordenada.
+El patrón del "máximo acumulado": empiezas asumiendo que el primero es el mayor y, si aparece uno más grande, lo sustituyes. El bucle empieza en `i = 1` porque el candidato inicial ya es `numeros[0]`. Imprime `El mayor es: 89`.
 
 </details>
 
 ---
 
-## Ejercicio 5: El detective de la búsqueda binaria
+## Ejercicio 4: Escribe este programa — contar números pares
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public static int busquedaBinaria(int[] datos, int objetivo) {
-    int izquierda = 0;
-    int derecha = datos.length - 1;
+import java.util.Arrays;
 
-    while (izquierda <= derecha) {
-        int medio = izquierda + (derecha - izquierda) / 2;
-
-        if (datos[medio] == objetivo) {
-            return medio;
-        } else if (datos[medio] < objetivo) {
-            izquierda = medio + 1;
-        } else {
-            derecha = medio - 1;
-        }
-    }
-    return -1;
-}
-```
-
-Para el 23: medio = 4 (16 < 23 → izquierda = 5), medio = 7 (56 > 23 → derecha = 6), medio = 5 (23 → devuelve 5). Para el 30: descarta y descarta hasta que `izquierda` supera a `derecha` y cae el `return -1`. Los `+1`/`-1` son los que garantizan que el segmento siempre se reduce.
-
-</details>
-
----
-
-## Ejercicio 6: ¿Qué imprime? — la binaria que falla
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`false`**.
-
-El 35 no está en el array. La binaria va descartando mitades: medio = 2 (30 < 35 → izquierda = 3), medio = 4 (50 > 35 → derecha = 3), medio = 3 (40 > 35 → derecha = 2). Ahora `izquierda = 3` > `derecha = 2`, el `while` termina y `encontrado` sigue en `false`. Sin error, sin drama: el "no encontrado" también se comunica.
-
-</details>
-
----
-
-## Ejercicio 7: El contador de intercambios
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class ContadorIntercambios {
+public class ContarPares {
     public static void main(String[] args) {
-        int[] datos = {5, 2, 9, 1, 5};
-        int intercambios = 0;
+        int[] numeros = {3, 8, 12, 5, 7, 10, 2, 9, 6, 1};
+        int pares = 0;
 
-        for (int i = 0; i < datos.length - 1; i++) {
-            for (int j = 0; j < datos.length - 1 - i; j++) {
-                if (datos[j] > datos[j + 1]) {
-                    int temp = datos[j];
-                    datos[j] = datos[j + 1];
-                    datos[j + 1] = temp;
-                    intercambios++;
-                }
+        for (int i = 0; i < numeros.length; i++) {
+            if (numeros[i] % 2 == 0) {
+                pares++;
             }
         }
 
-        System.out.println("Intercambios: " + intercambios);
+        System.out.println("Array: " + Arrays.toString(numeros));
+        System.out.println("Pares: " + pares);
     }
 }
 ```
 
-Salida: `Intercambios: 5`
-
-Cada vez que el `if` dispara un intercambio, sumamos 1 al contador. Con los dos 5 (repetidos), la bombolla no los intercambia entre sí (porque `5 > 5` es `false`): la comparación estricta mantiene el orden relativo de los iguales. Ordenado: `{1, 2, 5, 5, 9}`.
+Salida: `Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]` y `Pares: 5`. Un número es par si su resto al dividir entre 2 es 0 (`% 2 == 0`). Y `Arrays.toString` es lo que hace la salida legible.
 
 </details>
 
 ---
 
-## Ejercicio 8: La nota más alta de la clase
+## Ejercicio 5: Encuentra el error — length vs length()
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-public static int notaMaxima(int[] notas) {
-    int maximo = notas[0];
+Las **dos líneas tienen error**, pero por motivos opuestos:
 
-    for (int i = 1; i < notas.length; i++) {
-        if (notas[i] > maximo) {
-            maximo = notas[i];
-        }
-    }
-    return maximo;
-}
-```
+- `numeros.length()` → los arrays usan `length` como **atributo**, sin paréntesis. `numeros.length()` no compila.
+- `texto.length` → los `String` usan `length()` como **método**, con paréntesis. `texto.length` no compila.
 
-Inicializamos `maximo` con el primer elemento (no con 0, por si hubiera notas negativas) y comparamos con los demás. Recorrido lineal O(n): un solo bucle. Devuelve 10.
+Regla de oro: **array → `length`; `String` → `length()`; colecciones → `size()`.** Confundirlos es la trampa favorita de los exámenes.
 
 </details>
 
 ---
 
-## Ejercicio 9: CodeWars — Find the smallest integer in the array
+## Ejercicio 6: ¿Qué imprime? — la suma de los impares
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`17`**.
+
+El `for-each` recorre los 5 valores: 3, 8, 2, 9, 5. El `if` solo suma los que son impares (`n % 2 == 1`): 3, 9 y 5. `3 + 9 + 5 = 17`. El 8 y el 2 son pares y se ignoran.
+
+</details>
+
+---
+
+## Ejercicio 7: Escribe este programa — búsqueda lineal
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Kata {
-    public static int findSmallestInt(int[] args) {
-        int minimo = args[0];
+import java.util.Scanner;
 
-        for (int i = 1; i < args.length; i++) {
-            if (args[i] < minimo) {
-                minimo = args[i];
+public class BusquedaLineal {
+    public static void main(String[] args) {
+        int[] edades = {12, 45, 25, 67, 33, 18, 40, 21};
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Introduce edad a buscar: ");
+        int buscado = sc.nextInt();
+
+        int posicion = -1;
+        for (int i = 0; i < edades.length; i++) {
+            if (edades[i] == buscado) {
+                posicion = i;
+                break;
             }
         }
-        return minimo;
+
+        if (posicion >= 0) {
+            System.out.println("Encontrado en posición " + posicion);
+        } else {
+            System.out.println("No encontrado");
+        }
+        sc.close();
     }
 }
 ```
 
-El espejo del ejercicio 8: en vez de buscar el máximo, buscamos el mínimo. `args[0]` como valor inicial y un solo recorrido. O(n): no puedes hacerlo más rápido sin mirar cada elemento al menos una vez.
+La búsqueda lineal recorre el array de principio a fin. `posicion = -1` es el "no encontrado"; si aparece el valor, guardas el índice y cortas con `break` (ya no hace falta seguir).
+
+</details>
+
+---
+
+## Ejercicio 8: Escribe este programa — el inverso
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Arrays;
+
+public class Inverso {
+    public static void main(String[] args) {
+        int[] numeros = new int[10];
+        for (int i = 0; i < numeros.length; i++) {
+            numeros[i] = i + 1;
+        }
+
+        System.out.println("Original: " + Arrays.toString(numeros));
+
+        System.out.print("Inverso: ");
+        for (int i = numeros.length - 1; i >= 0; i--) {
+            System.out.print(numeros[i] + " ");
+        }
+    }
+}
+```
+
+El primer bucle rellena del 1 al 10. El segundo recorre **hacia atrás**: empieza en `length - 1` (el 10) y baja hasta 0 (el 1). Imprime `10 9 8 7 6 5 4 3 2 1`.
+
+</details>
+
+---
+
+## Ejercicio 9: Escribe este programa — la clase Arrays en acción
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Arrays;
+
+public class ArraysEnAccion {
+    public static void main(String[] args) {
+        int[] notas = {7, 3, 9, 5, 2, 8};
+
+        System.out.println("Original: " + Arrays.toString(notas));
+
+        Arrays.sort(notas);
+        System.out.println("Ordenado: " + Arrays.toString(notas));
+
+        int pos = Arrays.binarySearch(notas, 8);
+        System.out.println("El 8 está en la posición " + pos);
+    }
+}
+```
+
+Salida:
+
+```
+Original: [7, 3, 9, 5, 2, 8]
+Ordenado: [2, 3, 5, 7, 8, 9]
+El 8 está en la posición 4
+```
+
+`Arrays.sort` ordena "en el sitio" (modifica el array). Después `binarySearch` encuentra el 8 en el índice 4. Si lo buscaras antes de ordenar, el resultado sería impredecible.
 
 </details>

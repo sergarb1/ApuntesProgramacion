@@ -132,7 +132,41 @@ public class Kata {
 }
 ```
 
-El contador usa `++`, la suma acumulada usa `+=`, y el `if` decide con operadores relacionales. Un repaso perfecto de la unidad (el `for...each` completo lo verás en la U09).
+El contador usa `++`, la suma acumulada usa `+=`, y el `if` decide con operadores relacionales. Un repaso perfecto de la unidad (el `for...each` completo lo verás en la U04).
+
+</details>
+
+---
+
+### 5. Get the Middle Character
+
+Dada una palabra, devuelve el carácter (o los dos caracteres) del centro.
+
+**Ejemplos:** `"test"` → `"es"`, `"testing"` → `"t"`, `"middle"` → `"dd"`, `"A"` → `"A"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/56747fd5cb988479af000028)
+- Dificultad: 7 kyu
+
+**Pista:** usa `length()` y `substring()` del punto 9. Si la longitud es par, devuelve los dos caracteres centrales; si es impar, solo uno.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static String getMiddle(String word) {
+        int longitud = word.length();
+        int medio = longitud / 2;
+
+        if (longitud % 2 == 0) {
+            return word.substring(medio - 1, medio + 1);
+        }
+        return word.substring(medio, medio + 1);
+    }
+}
+```
+
+`longitud / 2` te da el centro. Si la longitud es par, el centro está repartido entre dos letras (`"test"` → medio 2 → `substring(1, 3)` = `"es"`); si es impar, el centro es una sola letra. `%` para saber si es par o impar, `length` para medir y `substring` para cortar: el trío de herramientas de esta unidad.
 
 </details>
 
@@ -140,7 +174,7 @@ El contador usa `++`, la suma acumulada usa `+=`, y el `if` decide con operadore
 
 ## AceptaElReto
 
-### 5. 148 — Nochevieja
+### 6. 148 — Nochevieja
 
 El 31 de diciembre, los más impacientes miran el reloj y cuentan cuántos segundos faltan para las 12 de la noche. Dado un instante con formato `HH:MM:SS`, calcula los segundos que faltan para medianoche.
 
@@ -201,7 +235,7 @@ Lectura alternativa sin `split`: declarar el `Scanner` con `useDelimiter("\\s*:\
 
 ---
 
-### 6. 217 — ¿Qué lado de la calle?
+### 7. 217 — ¿Qué lado de la calle?
 
 En la calle principal de Doña Lita las casas se distribuyen en dos lados: los números impares van en un lado y los pares en el otro. Dado un número de casa, di en qué lado está.
 

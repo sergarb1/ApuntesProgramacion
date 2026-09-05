@@ -1,126 +1,135 @@
 ---
-title: "Boletín 10 - Inicial: Consola, Fitxers i Regex"
-nav_order: 10
+title: "Butlletí 11 - Inicial: Genèrics i Mapes"
+nav_order: 11
 ---
-*Sense solucions. A donar-li al teclat.*
+*Sense solucions. A donar-li.*
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — printf con conversiones
+## Ejercicio 1: Completa el código — clase con dos tipos genéricos
 
 ```java
-int entero = 42;
-double decimal = 3.1416;
-String texto = "Java";
+public class Par<______, ______> {   // ¿qué dos tipos faltan?
+    private T primero;
+    private U segundo;
 
-System.out.printf("%d %f %s %n", entero, decimal, texto);
+    public Par(T primero, U segundo) {
+        this.primero = primero;
+        this.segundo = segundo;
+    }
+
+    public T getPrimero() { return primero; }
+    public U getSegundo() { return segundo; }
+}
 ```
 
-¿Qué imprime? ¿Qué hace `%n` al final?
+Completa la declaración para que `Par` acepte dos tipos genéricos distintos.
 
 ---
 
-## Ejercicio 2: Encuentra el error — IOException sin capturar
+## Ejercicio 2: ¿Qué imprime? — HashMap con merge
 
 ```java
-import java.io.*;
+import java.util.HashMap;
 
 public class Test {
     public static void main(String[] args) {
-        FileWriter writer = new FileWriter("salida.txt");
-        writer.write("Hola mundo");
-        writer.close();
+        HashMap<String, Integer> mapa = new HashMap<>();
+        mapa.put("Ana", 10);
+        mapa.put("Bob", 20);
+        mapa.put("Ana", 30);
+
+        System.out.println(mapa.get("Ana"));
+        System.out.println(mapa.size());
     }
 }
 ```
 
-Este código no compila. ¿Por qué? ¿Qué dos formas hay de solucionarlo?
+¿Qué imprime? ¿Por qué `size()` no es 3?
 
 ---
 
-## Ejercicio 3: Completa el código — try-with-resources
-
-Completa el siguiente programa para que lea un archivo y muestre su contenido:
+## Ejercicio 3: Encuentra el error — TreeSet sin Comparable
 
 ```java
-import java.io.*;
-import java.nio.file.*;
-
-public class Lector {
-    public static void main(String[] args) {
-        Path ruta = Paths.get("datos.txt");
-
-        try (______ reader = Files.newBufferedReader(ruta)) {  // ¿qué tipo?
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                System.out.println(______);  // ¿qué va aquí?
-            }
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-
----
-
-## Ejercicio 4: Escribe este programa — guardar array en archivo
-
-Crea un array de cadenas con 5 nombres de ciudades. Escribe cada nombre en una línea de un archivo llamado `ciudades.txt`, usando `BufferedWriter` y `try-with-resources`. No olvides el salto de línea.
-
----
-
-## Ejercicio 5: ¿Qué imprime? — Scanner next vs nextLine
-
-```java
-import java.util.Scanner;
+import java.util.TreeSet;
 
 public class Test {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Palabra: ");
-        String palabra = sc.next();
-        System.out.print("Frase: ");
-        String frase = sc.nextLine();
-        System.out.println("[" + palabra + "] [" + frase + "]");
+        TreeSet<Persona> conjunto = new TreeSet<>();
+        conjunto.add(new Persona("Ana"));
+        conjunto.add(new Persona("Bob"));
+        System.out.println(conjunto);
+    }
+}
+
+class Persona {
+    String nombre;
+    Persona(String nombre) { this.nombre = nombre; }
+}
+```
+
+¿Qué ocurre al ejecutar? ¿Por qué `TreeSet` necesita que `Persona` implemente una interfaz concreta?
+
+---
+
+## Ejercicio 4: Escribe este programa — contador de palabras con HashMap
+
+Crea un programa que tenga un array de palabras (hardcodeado) como este:
+
+```java
+String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
+```
+
+Usa un `HashMap<String, Integer>` para contar cuántas veces aparece cada palabra. Al final, recorre el mapa con un bucle for-each sobre `entrySet()` y muestra cada palabra con su cuenta.
+
+---
+
+## Ejercicio 5: ¿Qué imprime? — método genérico con límite
+
+```java
+public class Util {
+    public static <T extends Comparable<T>> T maximo(T a, T b) {
+        return a.compareTo(b) > 0 ? a : b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(maximo(5, 8));
+        System.out.println(maximo("gato", "perro"));
     }
 }
 ```
 
-Si el usuario introduce `Hola mundo` y pulsa Enter, luego `Esto es una frase` y pulsa Enter, ¿qué imprime exactamente? ¿Por qué `next()` y `nextLine()` se comportan distinto?
+¿Qué imprime? ¿Qué pasaría si `T` no tuviera el límite `Comparable<T>`?
 
 ---
 
-## Ejercicio 6: Encuentra el error — File.createNewFile sin comprobar
+## Ejercicio 6: Encuentra el error — clave duplicada el primero se pierde
 
 ```java
-File f = new File("documento.txt");
-f.createNewFile();
-FileWriter w = new FileWriter(f);
-w.write("Contenido importante");
-w.close();
+HashMap<Integer, String> mapa = new HashMap<>();
+mapa.put(1, "uno");
+mapa.put(2, "dos");
+mapa.put(1, "Uno otra vez");
+
+System.out.println(mapa.get(1));
 ```
 
-¿Qué pasa si el archivo `documento.txt` ya existe? ¿Qué devuelve `createNewFile()`?
+¿Qué imprime? ¿Se pierde el primer valor asociado a la clave 1?
 
 ---
 
-## Ejercicio 7: Escribe este programa — menú con Scanner y switch
+## Ejercicio 7: Escribe este programa — TreeMap con valores por defecto
 
-Crea un programa que muestre un menú con estas opciones:
+Crea un `TreeMap<String, Integer>` para almacenar las edades de 5 personas. Rellénalo con nombres y edades. Luego, pide al usuario un nombre por teclado y muestra su edad. Si el nombre no existe, muestra un mensaje de error.
 
-1. **Saludar** → imprime «¡Hola, programador!»
-2. **Despedirse** → imprime «¡Hasta luego!»
-3. **Cuenta atrás** → pide un número y cuenta desde ese número hasta 0
-0. **Salir**
-
-El menú debe repetirse hasta que el usuario elija 0. Usa `Scanner`, `switch` y `printf()` para formatear la salida.
+Usa `getOrDefault()` para evitar el `null`.
 
 ---
 
 ## 🔗 Referències per seguir practicant
 
-- **CodeWars:** [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028) (7 kyu)
-- **CodeWars:** [String repeat](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e) (8 kyu)
-- **AceptaElReto.com:** [140 - Suma de dígitos](https://www.aceptaelreto.com/problem/statement.php?id=140)
-- **AceptaElReto.com:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149)
+- **CodeWars:** [Grasshopper - Grade book](https://www.codewars.com/kata/55cbd4ba903825f7970000f5) (7 kyu)
+- **CodeWars:** [Word Count](https://www.codewars.com/kata/570cc83d616be859a5000c9b) (7 kyu)
+- **AceptaElReto.com:** [416 - Casillas](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- **AceptaElReto.com:** [462 - Tres dedos](https://www.aceptaelreto.com/problem/statement.php?id=462)

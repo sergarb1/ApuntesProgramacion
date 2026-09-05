@@ -150,6 +150,42 @@ Donat un nombre N (0 ≤ N ≤ 1.000.000), calcula l'últim dígit de N! (factor
 
 ---
 
+## ⭐⭐ Exercici 10: el tiquet de compra amb NumberFormat
+
+Escriu un programa anomenat `TiquetCompra` que simule un tiquet de compra amb tres productes (Pa, Llet i Ous, cadascun amb el seu preu i la seua quantitat). Mostra el tiquet usant `NumberFormat` amb moneda i locale espanyol per als preus:
+
+```
+==========================
+    TICKET DE COMPRA
+==========================
+Pa    2 x 1,20 € = 2,40 €
+Llet  3 x 0,95 € = 2,85 €
+Ous   1 x 3,50 € = 3,50 €
+--------------------------
+TOTAL               = 8,75 €
+==========================
+```
+
+Requisits: alinear els noms a l'esquerra, dos decimals en els preus i formatar tots els imports amb `NumberFormat.getCurrencyInstance(new Locale("es", "ES"))`.
+
+**Pista:** `NumberFormat` formata un `double` com a moneda amb el separador del teu idioma (`1.234,56 €`). Per a cada producte calcula el subtotal (`preu * quantitat`) i suma'l al total. El `Locale("es", "ES")` li diu "parla com a Espanya": coma per als decimals i símbol €.
+
+---
+
+## ⭐⭐⭐ Exercici 11: l'edat a prova de bombes
+
+Escriu un programa anomenat `EdatSegura` que demane l'edat pel teclat amb `Scanner` i **la repetixca fins que l'usuari escriga un nombre enter**. Si l'usuari escriu lletres o un decimal, el programa ha d'avisar amb "Això no és un nombre enter." i tornar a preguntar sense trencar-se (res d'`InputMismatchException`).
+
+Quan per fi aconseguisca un enter, mostra amb `printf`:
+
+```
+Genial, 20 anys i llest per a programar.
+```
+
+**Pista:** abans de cada `nextInt()`, pregunta amb `sc.hasNextInt()`. Si retorna `false`, descarta la brossa amb `sc.next()` i repetix. Recorda: `hasNextInt()` **mira** la següent dada sense consumir-la; si no la descartes, es quedarà ací per sempre.
+
+---
+
 ## 📚 Referències
 
 | Plataforma | Problema | Dificultat |
@@ -160,3 +196,4 @@ Donat un nombre N (0 ≤ N ≤ 1.000.000), calcula l'últim dígit de N! (factor
 | CodeWars | Will you make it? (8 kyu) | Principiant |
 | CodeWars | Convert boolean to Yes/No (8 kyu) | Principiant |
 | CodeWars | Keep Hydrated (8 kyu) | Principiant |
+| CodeWars | Get the Middle Character (7 kyu) | Intermedi |

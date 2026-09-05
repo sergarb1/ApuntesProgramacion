@@ -240,3 +240,82 @@ public class Kata {
 Multipliques els litres que tens pels quilòmetres per litre: això et dona la distància màxima que pots recórrer. Si és més gran o igual que la distància a la gasolinera, hi arribes (`true`); si no, et quedes tirat (`false`). Una línia amb un operador relacional i un `>=`.
 
 </details>
+
+---
+
+## Exercici 10: Què imprimeix? — printf amb conversions
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+42 3.141600 Java
+```
+
+`%d` rellena amb l'enter (42), `%f` amb el decimal (per defecte mostra **6 decimals**: 3.141600) i `%s` amb el text (Java). El `%n` és un salt de línia independent del sistema operatiu: funciona igual en Windows, Linux i Mac. En un `printf`, el `%n` és l'opció "oficial" per a saltar de línia.
+
+</details>
+
+---
+
+## Exercici 11: la nota amb dos decimals
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class NotaFormatejada {
+    public static void main(String[] args) {
+        String nom = "Marta";
+        double nota = 9.5678;
+
+        String missatge = String.format("%s ha tret un %.2f.", nom, nota);
+        System.out.println(missatge);
+
+        System.out.printf("%s ha tret un %.2f.%n", nom, nota);
+    }
+}
+```
+
+`String.format` construïx el text i el guarda en la variable `missatge` (no imprimeix res); `printf` escriu directament en pantalla. Els dos redonixen a dos decimals amb `%.2f`. Fixa't: usa `String.format` quan vulgues el text com a valor, i `printf` quan només vulgues escriure'l.
+
+</details>
+
+---
+
+## Exercici 12: la propina amb dos decimals
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class PropinaFormatejada {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Total del compte: ");
+        double total = sc.nextDouble();
+
+        System.out.print("Percentatge de propina: ");
+        int percentatge = sc.nextInt();
+
+        double propina = total * percentatge / 100.0;
+        double totalFinal = total + propina;
+
+        System.out.printf("Total: %.2f €%n", total);
+        System.out.printf("Propina (%d%%): %.2f €%n", percentatge, propina);
+        System.out.printf("Total a pagar: %.2f €%n", totalFinal);
+
+        sc.close();
+    }
+}
+```
+
+- Per a mostrar el símbol `%` en un `printf` cal escriure'l **doble**: `%%`.
+- Fixa't en `100.0`: si usares `100` (enter), `percentatge / 100` faria divisió entera i la propina eixiria 0. Ordre de les operacions i divisió entera, les dos trampes del punt 3.
+
+</details>

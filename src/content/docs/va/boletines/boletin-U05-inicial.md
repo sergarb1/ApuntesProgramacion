@@ -1,129 +1,163 @@
 ---
 title: Butlletí U05 — Inicial
-description: Exercicis bàsics de recursivitat per a escalfar els motors del stack
+description: "Exercicis bàsics d'Algorísmica: fonaments"
 ---
 
 # 📝 Butlletí U05 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, respira fondo i recorda: per a entendre la recursivitat, primer has d'entendre la recursivitat.
+> Sense solucions. Sense presses. Obri l'IDE i deixa que els teus bucles busquen, ordenen i calculen. L'ordinador mai no es cansa de recórrer un array: eres tu qui decidix com.
 
 ---
 
-## Exercici 1: El factorial del valent
-
-Escriu un programa anomenat `FactorialValent` amb un mètode recursiu `static long fact(int n)` que calcule el factorial d'un nombre. Prova'l amb `fact(5)`, `fact(0)` i `fact(10)`.
-
-Recorda: `0! = 1` i `n! = n * (n-1)!`.
-
----
-
-## Exercici 2: L'àvia suma l'array
-
-Escriu un programa anomenat `SumaRecursiva` que sume tots els elements d'un array usant un mètode recursiu:
-
-```java
-static int sumar(int[] arr, int indice)
-```
-
-Si `indice == arr.length`, torna 0. Si no, `arr[indice] + sumar(arr, indice + 1)`. Prova'l amb `{3, 8, 2, 10, 5}` → ha de donar 28.
-
----
-
-## Exercici 3: Què imprimeix? — la compte arrere recursiva
+## Exercici 1: Què imprimeix? — la cerca de la gema
 
 Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-public class CompteRara {
-    static void compte(int n) {
-        if (n == 0) {
-            System.out.println("¡BOOM!");
-            return;
+public class CercaGema {
+    public static void main(String[] args) {
+        int[] cofre = {12, 7, 25, 9, 31};
+        int objectiu = 9;
+        int posicio = -1;
+
+        for (int i = 0; i < cofre.length; i++) {
+            if (cofre[i] == objectiu) {
+                posicio = i;
+                break;
+            }
         }
-        System.out.println(n);
-        compte(n - 1);
-    }
 
-    public static void main(String[] args) {
-        compte(3);
+        System.out.println("Posició: " + posicio);
     }
 }
 ```
 
-Pista: primer baixa imprimint nombres i, quan arriba al cas base, fa BOOM.
+Pista: recorre l'array mentalment element a element. En quin índex apareix el 9 per primera vegada?
 
 ---
 
-## Exercici 4: La potència de l'aprenent
+## Exercici 2: El buscador de tresors
 
-Escriu un programa anomenat `PotenciaRecursiva` amb un mètode recursiu `static double potencia(double base, int exponente)` que calcule `base^exponente`:
+Escriu un mètode `public static int buscar(int[] dades, int objectiu)` que recórrega l'array amb un `for` i retorne l'**índex** on apareix l'objectiu. Si no hi és, retorna `-1`.
 
-- Cas base: `exponente == 0` → torna 1.
-- Cas recursiu: `base * potencia(base, exponente - 1)`.
+Prova amb `int[] tresors = {4, 8, 15, 16, 23, 42}`:
 
-Prova'l amb `potencia(2, 10)` → 1024.
+- `buscar(tresors, 15)` → ha de retornar `2`
+- `buscar(tresors, 7)` → ha de retornar `-1`
 
----
-
-## Exercici 5: El detectiu de dígits
-
-Escriu un programa anomenat `ContadorDigitos` amb un mètode recursiu `static int contarDigitos(int n)` que compte quants dígits té un nombre:
-
-- Cas base: `n < 10` → torna 1.
-- Cas recursiu: `1 + contarDigitos(n / 10)`.
-
-Prova'l amb `12345` → ha de donar 5.
+Pista: retorna `i` tan bon punt trobes l'objectiu; només després del bucle retornes `-1`.
 
 ---
 
-## Exercici 6: El mirall de lletres
+## Exercici 3: Què imprimeix? — la bombolla mínima
 
-Escriu un programa anomenat `InvertirText` amb un mètode recursiu `static String invertir(String s)` que torne el text al revés:
-
-- Cas base: `s.isEmpty()` → torna `""`.
-- Cas recursiu: `invertir(s.substring(1)) + s.charAt(0)`.
-
-Prova'l amb `"hola"` → ha de tornar `"aloh"`.
-
----
-
-## Exercici 7: Què imprimeix? — l'enigma del stack
-
-Sense executar, escriu l'eixida exacta:
+Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-public class EnigmaStack {
-    static int misterio(int n) {
-        if (n == 0) return 0;
-        return n % 10 + misterio(n / 10);
-    }
-
+public class BombollaMinima {
     public static void main(String[] args) {
-        System.out.println(misterio(1234));
+        int[] dades = {3, 1, 2};
+
+        for (int i = 0; i < dades.length - 1; i++) {
+            for (int j = 0; j < dades.length - 1 - i; j++) {
+                if (dades[j] > dades[j + 1]) {
+                    int temp = dades[j];
+                    dades[j] = dades[j + 1];
+                    dades[j + 1] = temp;
+                }
+            }
+        }
+
+        for (int num : dades) {
+            System.out.print(num + " ");
+        }
     }
 }
 ```
 
-Pista: `n % 10` extrau l'última xifra i `n / 10` la lleva.
+Pista: fes la traça en un paper. Primera passada: el 3 vs 1, després 3 vs 2. Què queda al final?
 
 ---
 
-## Exercici 8: El guardià dels palíndroms
+## Exercici 4: La capsa de sabates ordenada
 
-Escriu un programa anomenat `GuardiaPalindroms` amb un mètode recursiu que comprove si una paraula és un palíndrom (es llig igual cap avant i cap arrere):
+Escriu un mètode `public static void ordenar(int[] dades)` que òrdene l'array **de menor a major** usant l'ordenació per inserció.
+
+Prova amb `int[] capsa = {9, 2, 7, 1}` i mostra l'array resultant amb un `for...each`.
+
+Pista: guarda `int clau = dades[i]` i llisca cap a la dreta els elements majors amb un `while`.
+
+---
+
+## Exercici 5: El detectiu de la cerca binària
+
+Escriu un mètode `public static int cercaBinaria(int[] dades, int objectiu)` que use la cerca binària sobre un array **ja ordenat** i retorne l'índex de l'objectiu (o `-1`).
+
+Prova amb `int[] agenda = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}`:
+
+- `cercaBinaria(agenda, 23)` → ha de retornar `5`
+- `cercaBinaria(agenda, 30)` → ha de retornar `-1`
+
+Pista: dos punters `esquerra = 0` i `dreta = dades.length - 1`, un `while (esquerra <= dreta)` i `int mig = esquerra + (dreta - esquerra) / 2`.
+
+---
+
+## Exercici 6: Què imprimeix? — la binària que falla
+
+Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-static boolean esPalindromo(String s, int inicio, int fin)
+public class BinariaQueFalla {
+    public static void main(String[] args) {
+        int[] dades = {10, 20, 30, 40, 50};
+        int objectiu = 35;
+        int esquerra = 0;
+        int dreta = dades.length - 1;
+        boolean trobat = false;
+
+        while (esquerra <= dreta) {
+            int mig = esquerra + (dreta - esquerra) / 2;
+            if (dades[mig] == objectiu) {
+                trobat = true;
+                break;
+            } else if (dades[mig] < objectiu) {
+                esquerra = mig + 1;
+            } else {
+                dreta = mig - 1;
+            }
+        }
+
+        System.out.println(trobat);
+    }
+}
 ```
 
-Prova'l amb `"reconocer"` (sí), `"salas"` (sí) i `"hola"` (no). Pista: si les puntes no coincidixen, ja pots tornar `false` sense continuar recursant.
+Pista: el 35 no està en l'array. Quin valor té `trobat` al final del bucle?
 
 ---
 
-## Exercici 9: CodeWars — Factorial
+## Exercici 7: El comptador d'intercanvis
 
-Resol la kata **"Factorial"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/54ff0d1f355cfd20e60001fc).
+Escriu un programa anomenat `ComptadorIntercanvis` que use la bombolla per a ordenar `int[] dades = {5, 2, 9, 1, 5}` i **compte quants intercanvis** realitza en total. Al final mostra: `Intercanvis: X`.
 
-Crea el mètode `public static long factorial(int n)` que torne el factorial de `n` (recorda: `0! = 1`). ¡Resol-la amb recursivitat, que és el que toca!
+Pista: declara `int intercanvis = 0;` i suma-li 1 dins del `if` d'intercanvi, just després de l'operació.
 
-Pista: `if (n <= 1) return 1; return n * factorial(n - 1);`
+---
+
+## Exercici 8: La nota més alta de la classe
+
+Escriu un mètode `public static int notaMaxima(int[] notes)` que recórrega l'array i retorne la nota més alta.
+
+Prova amb `int[] notes = {7, 9, 5, 10, 6, 8, 4}` → ha de retornar `10`.
+
+Pista: usa una variable `maxim` inicialitzada amb el primer element (`notes[0]`) i compara amb cada un.
+
+---
+
+## Exercici 9: CodeWars — Find the smallest integer in the array
+
+Resol la kata **"Find the smallest integer in the array"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2).
+
+Crea el mètode `public static int findSmallestInt(int[] args)` que retorne l'enter més menut de l'array.
+
+Pista: és el mateix patró de l'exercici 8: recorre i compara. Ací l'array mai no està buit.

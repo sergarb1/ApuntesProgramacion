@@ -1,165 +1,143 @@
 ---
 title: Boletín U06 — Avanzado
-description: Ejercicios de dificultad progresiva para exprimir la unidad
+description: Ejercicios intermedios de recursividad, divide y vencerás y ordenación para sudar el stack
 ---
 
 # 📝 Boletín U06 — Avanzado
 
-> Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. Cada ejercicio incluye una pista (resiste a mirarla).
+> La zona intermedia: aquí ya no basta con copiar el patrón, hay que pensar. Cada ejercicio trae su **Pista** para cuando lleves 10 minutos dándole vueltas.
 
 ---
 
-## ⭐ Ejercicio 1: La biblioteca
+## Ejercicio 1: ⭐ Fibonacci con el contador chivato
 
-Escribe una clase `Libro` con los atributos `String titulo`, `String autor` e `int paginas`. Añade un método `void mostrarInfo()` que imprima:
-
-```
-El Quijote, de Miguel de Cervantes (863 páginas)
-```
-
-Crea en el `main` dos libros distintos y muestra su información.
-
-**Pista:** tres atributos, un constructor con tres parámetros y `this.` tres veces. El método usa los atributos para construir la frase.
-
----
-
-## ⭐ Ejercicio 2: El rectángulo razonador
-
-Escribe una clase `Rectangulo` con los atributos `double ancho` y `double alto`. Añade:
-- `double calcularArea()` → `ancho * alto`
-- `double calcularPerimetro()` → `2 * (ancho + alto)`
-- `boolean esCuadrado()` → `true` si `ancho == alto`
-
-Crea un rectángulo de 4 x 4 y otro de 5 x 8 y prueba los tres métodos en ambos.
-
-**Pista:** los tres métodos devuelven valores con `return`. `esCuadrado()` devuelve el resultado de una comparación con `==`.
-
----
-
-## ⭐ Ejercicio 3: La cuenta bancaria blindada
-
-Escribe una clase `CuentaBancaria` con los atributos `String titular` y `double saldo`. Añade:
-- `void ingresar(double cantidad)` → suma a saldo.
-- `void retirar(double cantidad)` → resta a saldo **solo si** `cantidad <= saldo`; si no, imprime `"Saldo insuficiente"`.
-- `void mostrar()` → imprime `"Titular: X | Saldo: Y €"`.
-
-Crea una cuenta con 100 €, retira 30 €, intenta retirar 200 € y muestra el saldo final.
-
-**Pista:** dentro de `retirar`, un `if (cantidad <= this.saldo)` protege el saldo de quedarse en negativo. Ese `if` es la diferencia entre una cuenta y un agujero.
-
----
-
-## ⭐⭐ Ejercicio 4: La hora que se corrige sola
-
-Escribe una clase `Hora` con los atributos `int hora`, `int minuto` y `int segundo`. El constructor debe validar: si los valores no son válidos (hora entre 0 y 23, minuto y segundo entre 0 y 59), se inicializan a 0. Añade el método `void incrementarSegundo()` que suma 1 segundo gestionando los acarreos: si llega a 60 segundos pasa a 0 y suma un minuto, y así con los minutos y las horas.
-
-Crea una `Hora(23, 59, 59)`, llama a `incrementarSegundo()` y muestra `00:00:00`.
-
-**Pista:** la validación es un `if` grande en el constructor. El acarreo son tres `if` encadenados, de segundo a minuto a hora. Para mostrar con dos dígitos, imprime `"0" + valor` si es menor que 10.
-
----
-
-## ⭐⭐ Ejercicio 5: ¿Qué imprime? — el baile de referencias
-
-Sin ejecutar, escribe la salida exacta:
+Crea un programa `FiboContador` que calcule el enésimo Fibonacci con la versión ingenua recursiva PERO que además cuente **cuántas llamadas hace en total**.
 
 ```java
-public class Baile {
+static long llamadas;   // variable estática que suma 1 en cada llamada
+static long fibo(int n)
+```
+
+Pruébalo con `fibo(30)`. ¿Cuántas llamadas hace? ¿Y cuántas haría si solo sumaras los índices `fibo(30) + fibo(29) + ... + 1`?
+
+**Pista:** súmale 1 a `llamadas` como primera línea del método, antes de cualquier caso base.
+
+---
+
+## Ejercicio 2: ⭐⭐ ¿Qué imprime? — el árbol de llamadas
+
+Sin ejecutar, escribe la salida exacta y el **orden de las llamadas** (quién llama a quién):
+
+```java
+public class ArbolRaro {
+    static void pintar(int n) {
+        if (n == 0) return;
+        System.out.println("bajo " + n);
+        pintar(n - 1);
+        System.out.println("subo " + n);
+    }
+
     public static void main(String[] args) {
-        Punto a = new Punto(3, 4);
-        Punto b = a;
-        b.x = 10;
-        System.out.println("a.x = " + a.x);
-
-        Punto c = new Punto(1, 1);
-        cambiar(c);
-        System.out.println("c.x = " + c.x);
-    }
-
-    static void cambiar(Punto p) {
-        p.x = 99;
-        p = new Punto(50, 50);
-    }
-}
-
-class Punto {
-    int x;
-    int y;
-
-    public Punto(int x, int y) {
-        this.x = x;
-        this.y = y;
+        pintar(3);
     }
 }
 ```
 
-**Pista:** `b = a` no copia el objeto: copia la referencia. Cuando `cambiar(c)` recibe `c`, el parámetro `p` es una *copia* de la referencia, así que modificar `p.x` sí se nota, pero `p = new Punto(...)` solo reasigna el parámetro local.
+**Pista:** el `System.out.println` de después de la llamada recursiva no se ejecuta hasta que esa llamada termina. Dibuja la pila con lápiz y papel.
 
 ---
 
-## ⭐⭐ Ejercicio 6: El correo que se encadena
+## Ejercicio 3: ⭐⭐ El palíndromo rebelde
 
-Escribe una clase `Email` con los atributos `String remitente`, `String destinatario` y `String asunto`. Crea **tres constructores sobrecargados**:
-- `Email(String remitente, String destinatario, String asunto)` → el completo.
-- `Email(String remitente, String destinatario)` → asunto por defecto `"(sin asunto)"`.
-- `Email(String remitente)` → destinatario `"(sin destino)"` y asunto `"(sin asunto)"`.
+Amplía el palíndromo para que **ignore espacios, signos y mayúsculas**:
 
-Usa `this(...)` para encadenar y evitar repetir código. Añade `void mostrar()` que imprima los tres datos.
+- `"Anita lava la tina"` → true
+- `"La ruta natural"` → true
+- `"No soy un palíndromo"` → false
 
-**Pista:** el constructor de un parámetro llama al de dos, y el de dos llama al de tres. Con `this(...)` escribes la asignación completa una sola vez, en el constructor de tres parámetros.
-
----
-
-## ⭐⭐ Ejercicio 7: La fracción que se simplifica
-
-Escribe una clase `Fraccion` con los atributos `int numerador` y `int denominador`. Añade:
-- Constructor que valide: si `denominador == 0`, se usa `1`.
-- `Fraccion sumar(Fraccion otra)` → devuelve una nueva fracción con `(a.num * b.den + b.num * a.den) / (a.den * b.den)`.
-- `void simplificar()` → divide numerador y denominador por su máximo común divisor (MCD).
-
-Crea `1/2` y `1/3`, súmalas y simplifica el resultado.
-
-**Pista:** para el MCD usa el algoritmo de Euclides (restas o módulos) o `Math.abs` con un bucle. `simplificar()` no devuelve nada: modifica `this`.
-
----
-
-## ⭐⭐⭐ Ejercicio 8: CodeWars — Building blocks
-
-Resuelve la kata **"Building blocks"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/55b75fcf67e558d3750000a3).
-
-Crea la clase `Block` con un constructor que reciba las tres dimensiones (como `int[]` de 3 o como 3 enteros) y los métodos:
-- `int getWidth()`, `int getLength()`, `int getHeight()`
-- `int getVolume()` → `width * length * height`
-- `int getSurfaceArea()` → `2 * (w*l + w*h + l*h)`
-
-**Pista:** guarda las tres dimensiones en atributos con `this` y deja que los getters simplemente las devuelvan. La superficie es la suma de las caras por dos.
-
----
-
-## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
-
-Resuelve el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
-
-La entrada empieza con un número de casos. Para cada caso de prueba (un número de 4 cifras), aplica la rutina de Kaprekar: ordena sus dígitos de mayor a menor y de menor a mayor, resta, y repite hasta llegar a 6174. Imprime el número de iteraciones necesarias. Para los repdigits (1111, 2222...) imprime `8`. Para 6174 imprime `0`.
-
-**Ejemplo:**
-
-```
-3524 → 5432 - 2345 = 3087 → 8730 - 0378 = 8352 → 8532 - 2358 = 6174
+```java
+static boolean esPalindromoFrase(String s, int inicio, int fin)
 ```
 
-Resultado: **3** iteraciones.
-
-**Pista:** pasa el número a `String`, usa `Arrays.sort` sobre el array de caracteres para ordenarlos, y construye el mayor y el menor. Un `while (n != 6174)` cuenta las vueltas. Esta es la oportunidad perfecta para practicar una clase `Numero` con métodos como `ordenarDigitos()`.
+**Pista:** en vez de comparar directamente `s.charAt(inicio)`, saltate los caracteres que no sean letras avanzando `inicio` o retrocediendo `fin` en el propio método. Usa `Character.isLetter()` y `Character.toLowerCase()`.
 
 ---
 
-## 📚 Referencias
+## Ejercicio 4: ⭐⭐ La potencia exprés (divide y vencerás)
 
-| Plataforma | Problema | Dificultad |
-|---|---|---|
-| AceptaElReto | 100 — Constante de Kaprekar | Medio |
-| AceptaElReto | 148 — Nochevieja | Fácil |
-| CodeWars | Object Oriented Piracy (8 kyu) | Principiante |
-| CodeWars | Building blocks (7 kyu) | Aficionado |
-| CodeWars | FIXME: Get Full Name (7 kyu) | Aficionado |
+Escribe un programa `PotenciaRapida` con un método recursivo `static long potenciaRapida(int base, int exponente)` que calcule `base^exponente` en **O(log n)**:
+
+```
+potenciaRapida(b, e):
+  si e == 0 → 1
+  mitad = potenciaRapida(b, e / 2)
+  si e es par  → mitad * mitad
+  si e es impar → mitad * mitad * b
+```
+
+Pruébalo con `potenciaRapida(2, 20)` → 1048576. ¿Cuántas llamadas hace comparado con `potencia(2, 20)` del boletín inicial?
+
+**Pista:** ojo con el redondeo: cuando `e` es impar, `e / 2` se queda con la parte entera y por eso multiplicas por `b` una vez más.
+
+---
+
+## Ejercicio 5: ⭐⭐⭐ Quicksort con mediana de tres
+
+Mejora el Quicksort de la unidad: en vez de coger el primer elemento como pivote, elige la **mediana de tres** (primero, medio y último) para evitar el peor caso con arrays casi ordenados.
+
+```java
+static void quicksort(int[] arr, int inicio, int fin)
+```
+
+Pruébalo con el array ya ordenado `{1, 2, 3, 4, 5, 6, 7, 8}`. ¿Cuántas particiones hace tu versión con mediana de tres?
+
+**Pista:** `int medio = (inicio + fin) / 2;` compara `arr[inicio]`, `arr[medio]` y `arr[fin]` y coloca el del medio en `arr[inicio]` (intercambiándolos) antes de particionar con la técnica de la unidad.
+
+---
+
+## Ejercicio 6: ⭐⭐⭐ Mergesort con el contador de comparaciones
+
+Modifica el Mergesort de la unidad para que cuente **cuántas comparaciones** hace la fusión en total, y muestra el número al final.
+
+```java
+static long comparaciones;   // suma 1 en cada comparación de la fusión
+```
+
+Pruébalo con `{9, 8, 7, 6, 5, 4, 3, 2, 1}` (el peor caso visual). ¿Cuántas comparaciones? ¿Y con `{1, 2, 3, 4, 5, 6, 7, 8, 9}`?
+
+**Pista:** en la fusión, suma 1 en cada `while` que compara dos elementos. En los bucles donde una lista ya se ha acabado, también hay comparaciones contra el final del array: cuéntalas con la misma variable.
+
+---
+
+## Ejercicio 7: ⭐⭐⭐ las torres de Hanói con contador
+
+Implementa las Torres de Hanói recursivas de la unidad y añade un **contador de movimientos**:
+
+```java
+static int movimientos;
+static void hanoi(int n, char origen, char destino, char auxiliar)
+```
+
+Cada vez que se mueva un disco, imprime `"Mueve disco X de ORIGEN a DESTINO"` y suma 1 al contador. Al final, imprime el total. Pruébalo con 3, 4 y 8 discos.
+
+**Pista:** con `n` discos el mínimo de movimientos es `2^n - 1`. Si tu contador con 8 discos no da 255, algo estás moviendo de más.
+
+---
+
+## Ejercicio 8: ⭐⭐⭐ CodeWars — Sort Numbers
+
+Resuelve la kata **"Sort Numbers"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/5174a4c0f2769dd8b1000003).
+
+Crea el método `public static int[] sortArray(int[] nums)` que devuelva el array ordenado de menor a mayor. Si `nums` es `null` o está vacío, devuelve un array vacío.
+
+**Pista:** haz un método `int[] copia` (para no mutar el original) y ordénalo con `Arrays.sort()`. O, si te sientes con ganas, implementa tu propio Mergesort sobre la copia.
+
+---
+
+## Ejercicio 9: ⭐⭐⭐ AceptaElReto — 104 Móviles
+
+Resuelve el problema **"Móviles" (104)** de [AceptaElReto](https://aceptaelreto.com/problem/statement.php?id=104).
+
+Un móvil cuelga de una barra con dos pesos `izq` y `der` a distancias `dizq` y `dder`. Está equilibrado si `izq * dizq == der * dder` y además las dos subbarras (que pueden contener otros móviles) también lo están. Un peso `0` significa que ahí cuelga otro móvil, que se describe a continuación. Devuelve `SI` si el móvil está equilibrado y `NO` en caso contrario.
+
+**Pista:** no hay un caso base con `n`: los móviles se leen recursivamente. Lee `izq dizq der dder`; si `izq == 0`, hay que leer (y comprobar) un submóvil completo antes de continuar; si `der == 0`, otro. Recuerda que **ambos** submóviles deben estar equilibrados, no solo la barra.

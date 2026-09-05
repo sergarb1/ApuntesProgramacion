@@ -150,6 +150,42 @@ Dado un número N (0 ≤ N ≤ 1.000.000), calcula el último dígito de N! (fac
 
 ---
 
+## ⭐⭐ Ejercicio 10: el ticket de compra con NumberFormat
+
+Escribe un programa llamado `TicketCompra` que simule un ticket de compra con tres productos (Pan, Leche y Huevos, cada uno con su precio y su cantidad). Muestra el ticket usando `NumberFormat` con moneda y locale español para los precios:
+
+```
+==========================
+    TICKET DE COMPRA
+==========================
+Pan    2 x 1,20 € = 2,40 €
+Leche  3 x 0,95 € = 2,85 €
+Huevos 1 x 3,50 € = 3,50 €
+--------------------------
+TOTAL               = 8,75 €
+==========================
+```
+
+Requisitos: alinear los nombres a la izquierda, dos decimales en los precios y formatear todos los importes con `NumberFormat.getCurrencyInstance(new Locale("es", "ES"))`.
+
+**Pista:** `NumberFormat` formatea un `double` como moneda con el separador de tu idioma (`1.234,56 €`). Para cada producto calcula el subtotal (`precio * cantidad`) y súmalo al total. El `Locale("es", "ES")` le dice "habla como en España": coma para los decimales y símbolo €.
+
+---
+
+## ⭐⭐⭐ Ejercicio 11: la edad a prueba de bombas
+
+Escribe un programa llamado `EdadSegura` que pida la edad por teclado con `Scanner` y **la repita hasta que el usuario escriba un número entero**. Si el usuario escribe letras o un decimal, el programa debe avisar con "Eso no es un número entero." y volver a preguntar sin romperse (nada de `InputMismatchException`).
+
+Cuando por fin consiga un entero, muestra con `printf`:
+
+```
+Genial, 20 años y listo para programar.
+```
+
+**Pista:** antes de cada `nextInt()`, pregunta con `sc.hasNextInt()`. Si devuelve `false`, descarta la basura con `sc.next()` y repite. Recuerda: `hasNextInt()` **mira** el siguiente dato sin consumirlo; si no lo descartas, se quedará ahí para siempre.
+
+---
+
 ## 📚 Referencias
 
 | Plataforma | Problema | Dificultad |
@@ -160,3 +196,4 @@ Dado un número N (0 ≤ N ≤ 1.000.000), calcula el último dígito de N! (fac
 | CodeWars | Will you make it? (8 kyu) | Principiante |
 | CodeWars | Convert boolean to Yes/No (8 kyu) | Principiante |
 | CodeWars | Keep Hydrated (8 kyu) | Principiante |
+| CodeWars | Get the Middle Character (7 kyu) | Intermedio |

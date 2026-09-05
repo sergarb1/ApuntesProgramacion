@@ -9,255 +9,275 @@ description: Los mismos ejercicios que el boletín inicial, con soluciones
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — La familia musical
+## Ejercicio 1: La casa de cristal
 
 <details>
 <summary>🔄 Solución</summary>
-
-Imprime **"El bajista toca el bajo"**.
-
-`Bajista` tiene su propia versión de `tocar()`. Java busca el método empezando por la clase más específica (`Bajista`) y lo encuentra ahí mismo: nunca sube a `Guitarrista` ni a `Musico`. Ese es el *dynamic dispatch*: el método se resuelve según el tipo real del objeto, no según el tipo de la referencia.
-
-</details>
-
----
-
-## Ejercicio 2: Encuentra el error — extends mal usado
-
-<details>
-<summary>🔄 Solución</summary>
-
-El error es que `Perro` no llama al constructor de `Animal`. Cuando una clase hija no pone `super(...)`, Java intenta llamar a `super()` sin parámetros. Pero `Animal` solo tiene `Animal(String)`, así que el compilador no encuentra el constructor vacío: **error de compilación**.
 
 ```java
-public class Perro extends Animal {
-    private String raza;
+public class Persona {
+    private String nombre;
+    private int edad;
 
-    public Perro(String especie, String raza) {
-        super(especie);   // ¡la clave!
-        this.raza = raza;
+    public String getNombre() {
+        return nombre;
     }
-}
-```
 
-Piensa en `super()` como llamar a papá para que configure su parte antes de que tú configures la tuya. Si papá necesita una especie para construirse, tú tienes que pasársela. Es como construir una casa sin cimientos: el constructor del padre es la base.
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-</details>
+    public int getEdad() {
+        return edad;
+    }
 
----
-
-## Ejercicio 3: Completa el código — el gato que llama a su padre
-
-<details>
-<summary>🔄 Solución</summary>
-
-La palabra es **`super`**:
-
-```java
-public class Gato extends Animal {
-    @Override
-    public void hacerSonido() {
-        super.hacerSonido();   // primero lo del padre
-        System.out.println("¡MIAU!");
+    public void setEdad(int edad) {
+        this.edad = edad;
     }
 
     public static void main(String[] args) {
-        Gato g = new Gato();
-        g.hacerSonido();
+        Persona p = new Persona();
+        p.setNombre("Ana");
+        p.setEdad(25);
+        System.out.println(p.getNombre() + " tiene " + p.getEdad() + " años.");
     }
 }
 ```
 
-Salida:
-
-```
-Algún sonido genérico...
-¡MIAU!
-```
-
-`super.hacerSonido()` ejecuta la versión de `Animal` y luego el `Gato` añade lo suyo. Sin el `super`, el método estaría sobrescrito por completo y la línea del padre no saldría jamás.
+Los atributos pasan a `private` y todo el acceso se hace con getters y setters. El `this` en los setters desambigua: el parámetro se asigna al atributo, no a sí mismo.
 
 </details>
 
 ---
 
-## Ejercicio 4: Escribe este programa — la herencia de vehículos
+## Ejercicio 2: El coche del vecindario
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Vehiculo {
-    protected String marca;
+public class Coche {
+    private String marca;
+    private double velocidad;
 
-    public Vehiculo(String marca) {
+    public Coche(String marca) {
         this.marca = marca;
-    }
-}
-
-public class Coche extends Vehiculo {
-    protected int numPuertas;
-
-    public Coche(String marca, int numPuertas) {
-        super(marca);
-        this.numPuertas = numPuertas;
-    }
-}
-
-public class Deportivo extends Coche {
-    private int velocidadMaxima;
-
-    public Deportivo(String marca, int numPuertas, int velocidadMaxima) {
-        super(marca, numPuertas);
-        this.velocidadMaxima = velocidadMaxima;
+        this.velocidad = 0;
     }
 
-    public static void main(String[] args) {
-        Deportivo d = new Deportivo("Ferrari", 2, 340);
-        System.out.println(d.marca + " con " + d.numPuertas
-                + " puertas y " + d.velocidadMaxima + " km/h");
+    public String getMarca() {
+        return marca;
     }
-}
-```
 
-La herencia en cadena: `Deportivo` → `Coche` → `Vehiculo`. Cada constructor llama al de su padre con `super(...)`. Por eso `marca` (de `Vehiculo`) y `numPuertas` (de `Coche`) son accesibles en `Deportivo` gracias a `protected`.
+    public double getVelocidad() {
+        return velocidad;
+    }
 
-</details>
-
----
-
-## Ejercicio 5: ¿Qué imprime? — polimorfismo con referencias
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime:
-
-```
-Y
-Z
-Z
-```
-
-El tipo de la **referencia** (X, X, Y) no importa. Lo que importa es el tipo **real** del objeto (Y, Z, Z). Java siempre ejecuta el método más específico del objeto real. Es como llevar la chaqueta de tu padre: por fuera pareces tu padre (la referencia), pero por dentro eres tú (el objeto). Cuando hablas, se oye tu voz, no la de tu padre. Dynamic binding en todo su esplendor.
-
-</details>
-
----
-
-## Ejercicio 6: Escribe este programa — la granja polimórfica
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.ArrayList;
-
-public class Animal {
-    public void hacerSonido() { System.out.println("..."); }
-}
-
-class Vaca extends Animal {
-    @Override public void hacerSonido() { System.out.println("Muuuu"); }
-}
-
-class Oveja extends Animal {
-    @Override public void hacerSonido() { System.out.println("Beeee"); }
-}
-
-class Gallina extends Animal {
-    @Override public void hacerSonido() { System.out.println("Cloc cloc"); }
-}
-
-public class Granja {
-    public static void main(String[] args) {
-        ArrayList<Animal> animales = new ArrayList<>();
-        animales.add(new Vaca());
-        animales.add(new Oveja());
-        animales.add(new Gallina());
-
-        for (Animal a : animales) {
-            a.hacerSonido();
+    public void setVelocidad(double velocidad) {
+        if (velocidad >= 0 && velocidad <= 200) {
+            this.velocidad = velocidad;
+        } else {
+            System.out.println("Velocidad inválida.");
         }
     }
+
+    public static void main(String[] args) {
+        Coche c = new Coche("Seat");
+        c.setVelocidad(-50);
+        c.setVelocidad(120);
+        System.out.println("Velocidad: " + c.getVelocidad());
+    }
 }
 ```
 
-Salida:
-
-```
-Muuuu
-Beeee
-Cloc cloc
-```
-
-Un solo `ArrayList<Animal>` y un solo bucle: cada animal ejecuta su propia versión gracias al polimorfismo. Sin él, tendrías tres listas separadas. Esto es lo que hace que el polimorfismo valga su peso en oro.
+Salida: `Velocidad inválida.` (por el -50) y luego `Velocidad: 120.0`. El setter valida antes de tocar el atributo: es la frontera que protege el estado del objeto.
 
 </details>
 
 ---
 
-## Ejercicio 7: Encuentra el error — @Override que no lo es
-
-<details>
-<summary>🔄 Solución</summary>
-
-La línea que **no compila** es:
-
-```java
-@Override
-public void nadar() { }   // ✗ ERROR: Animal no tiene nadar()
-```
-
-`@Override` le dice al compilador: "verifica que realmente estoy sobrescribiendo un método del padre". Como `Animal` no tiene `nadar()`, el compilador lo avisa en el acto. La otra línea (`hacerSonido()`) sí es un override válido. Ese aviso a tiempo es el regalo de `@Override`: si escribes mal un nombre de método, te entera el compilador, no un bug rarísimo a medianoche.
-
-</details>
-
----
-
-## Ejercicio 8: Escribe este programa — el perro bien heredado
+## Ejercicio 3: El termómetro con cerebro
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Perro extends Animal {
-    public Perro(String nombre, int edad) {
-        super(nombre, edad);
+public class Termometro {
+    private double temperatura;
+
+    public Termometro() {
+        temperatura = 20.0;
     }
 
-    public void ladrar() {
-        System.out.println(nombre + " dice: ¡Guau!");
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        if (temperatura >= -273.15 && temperatura <= 100.0) {
+            this.temperatura = temperatura;
+        } else {
+            System.out.println("Temperatura fuera de rango.");
+        }
     }
 
     public static void main(String[] args) {
-        Perro p = new Perro("Firulais", 3);
-        p.ladrar();
+        Termometro t = new Termometro();
+        t.setTemperatura(-500);
+        t.setTemperatura(36.5);
+        System.out.println("Temperatura: " + t.getTemperatura());
     }
 }
 ```
 
-Salida: `Firulais dice: ¡Guau!`
-
-`Perro` puede usar `nombre` y `edad` porque están declarados como `protected` en `Animal`: la herencia los pone a disposición de toda la familia. Si fueran `private`, ni `Perro` los vería. Es como la herencia familiar: lo que es privado en casa de los abuelos, no lo ven ni los nietos.
+Salida: `Temperatura fuera de rango.` y luego `Temperatura: 36.5`. El setter convierte la clase en un "termómetro con cerebro": no acepta cualquier número, solo valores físicamente posibles.
 
 </details>
 
 ---
 
-## Ejercicio 9: ¿Qué imprime? — la cadena de constructores
+## Ejercicio 4: getter sin setter
 
 <details>
 <summary>🔄 Solución</summary>
 
-Imprime:
+```java
+public class Configuracion {
+    private String idioma;
 
-```
-Abuelo
-Padre
-Hijo
+    public Configuracion(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public static void main(String[] args) {
+        Configuracion config = new Configuracion("es");
+        System.out.println("Idioma: " + config.getIdioma());
+    }
+}
 ```
 
-Al crear un `Hijo` se ejecutan **todos** los constructores de la cadena, del más general al más específico. Como cada constructor llama a `super()` (o Java lo pone automáticamente), primero se construye `Abuelo`, luego `Padre` y por último `Hijo`. Los cimientos antes que el tejado, siempre.
+No tiene setter porque el idioma es una decisión de una sola vez: se elige en el constructor y ya. Si alguien intentase `config.idioma = "va"` desde fuera, **no compilaría**: `idioma` es `private`, y fuera de la clase no se puede tocar. Obligar a que el cambio pase por un setter (o a que no exista) es la esencia de la encapsulación.
+
+</details>
+
+---
+
+## Ejercicio 5: El contador de la clase
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Contador {
+    public static int total = 0;
+
+    public Contador() {
+        total++;
+    }
+
+    public static void main(String[] args) {
+        Contador c1 = new Contador();
+        Contador c2 = new Contador();
+        Contador c3 = new Contador();
+        System.out.println("Total: " + Contador.total);
+    }
+}
+```
+
+`total` vale **3**. Es `static`: una sola copia compartida por toda la clase. Cada `new` llama al constructor y lo incrementa; como los tres objetos comparten la misma variable, el contador cuenta los tres. No es 1 porque no hay una copia por objeto: hay una única copia de clase.
+
+</details>
+
+---
+
+## Ejercicio 6: La calculadora sin pilas
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Utilidades {
+    public static int sumar(int a, int b) {
+        return a + b;
+    }
+
+    public static int restar(int a, int b) {
+        return a - b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Utilidades.sumar(5, 3));
+        System.out.println(Utilidades.restar(10, 4));
+    }
+}
+```
+
+Salida: `8` y `6`. Como los métodos son `static`, se llaman con el nombre de la clase (`Utilidades.sumar`), sin `new` y sin objeto. Es el mismo patrón que ya usas con `Math.sqrt` o `Integer.parseInt`.
+
+</details>
+
+---
+
+## Ejercicio 7: las constantes del barrio
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Constantes {
+    public static final double IVA = 0.21;
+    public static final int MAX_INTENTOS_LOGIN = 3;
+    public static final String NOMBRE_APP = "GestionCurso";
+
+    public static void main(String[] args) {
+        System.out.println("IVA: " + Constantes.IVA);
+        System.out.println("Máximo intentos: " + Constantes.MAX_INTENTOS_LOGIN);
+        System.out.println("App: " + Constantes.NOMBRE_APP);
+        // Constantes.IVA = 0.5; // Error de compilación
+    }
+}
+```
+
+Al intentar `Constantes.IVA = 0.5;` el compilador lo **prohíbe**: `final` significa que el valor no se puede reasignar después de su declaración. Las constantes son a prueba de bombas, por eso van en MAÚSCULAS con `_`: todo el mundo sabe que no se tocan.
+
+</details>
+
+---
+
+## Ejercicio 8: ¿Qué imprime? — el puzle estático
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`1 2 2`**.
+
+`Puzle.s` es `static`: una sola copia compartida. Con el primer `new`, `s` pasa a 1 y `p1.i` se copia ese 1. Con el segundo `new`, `s` pasa a 2 y `p2.i` se copia ese 2. Al final, `p1.i` = 1, `p2.i` = 2 y `Puzle.s` = 2. El estático sube para todos; el de instancia se congela con el valor que tenía la clase en el momento de nacer.
+
+</details>
+
+---
+
+## Ejercicio 9: CodeWars — Square(n) Sum
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static int squareSum(int[] n) {
+        int suma = 0;
+        for (int i = 0; i < n.length; i++) {
+            suma += n[i] * n[i];
+        }
+        return suma;
+    }
+}
+```
+
+Para `[1, 2, 2]` → `1 + 4 + 4 = 9`. El bucle recorre cada elemento y acumula `n[i] * n[i]`. Nota el `static`: CodeWars exige el método estático para poder llamarlo sin crear objetos, justo lo que acabas de practicar.
 
 </details>

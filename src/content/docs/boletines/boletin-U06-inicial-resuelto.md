@@ -1,316 +1,222 @@
 ---
-title: Boletín U06 — Inicial Resuelto
-description: Los mismos ejercicios que el boletín inicial, con soluciones
+title: Boletín U06 — Inicial (Resuelto)
+description: Los mismos ejercicios básicos del boletín inicial con sus soluciones
 ---
 
 # 📝 Boletín U06 — Inicial (Resuelto)
 
-> Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
+> Las soluciones están escondidas detrás de cada 🔄. Primero intenta resolverlos tú; mirar la respuesta antes de intentarlo es como copiar en un examen de magia: el truco se estropea.
 
 ---
 
-## Ejercicio 1: El perro que habla
+## Ejercicio 1: El factorial del valiente
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Perro {
-    String nombre;
-    int edad;
+public class FactorialValiente {
 
-    public Perro(String nombre, int edad) {
-        this.nombre = nombre;
-        this.edad = edad;
-    }
-
-    void ladrar() {
-        System.out.println("¡Guau guau! Soy " + nombre);
+    static long fact(int n) {
+        if (n <= 1) return 1;
+        return n * fact(n - 1);
     }
 
     public static void main(String[] args) {
-        Perro toby = new Perro("Toby", 3);
-        toby.ladrar();
+        System.out.println("fact(5)  = " + fact(5));   // 120
+        System.out.println("fact(0)  = " + fact(0));   // 1
+        System.out.println("fact(10) = " + fact(10));  // 3628800
     }
 }
 ```
 
-Salida: `¡Guau guau! Soy Toby`
-
-El constructor con `this` coloca el nombre y la edad en el objeto recién nacido. El método `ladrar()` no recibe nada: usa el atributo `nombre` que ya quedó guardado.
+Salida: `fact(5) = 120`, `fact(0) = 1`, `fact(10) = 3628800`.
 
 </details>
 
 ---
 
-## Ejercicio 2: El teléfono con batería
+## Ejercicio 2: La abuela suma el array
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Telefono {
-    String marca;
-    int bateria;
+public class SumaRecursiva {
 
-    public Telefono(String marca, int bateria) {
-        this.marca = marca;
-        this.bateria = bateria;
-    }
-
-    void llamar() {
-        System.out.println("Llamando... (batería al " + bateria + "%)");
-    }
-
-    void cargar(int minutos) {
-        this.bateria += minutos;
+    static int sumar(int[] arr, int indice) {
+        if (indice == arr.length) return 0;
+        return arr[indice] + sumar(arr, indice + 1);
     }
 
     public static void main(String[] args) {
-        Telefono movil = new Telefono("Nokia", 50);
-        movil.llamar();
-        movil.cargar(30);
-        movil.llamar();
+        int[] datos = {3, 8, 2, 10, 5};
+        System.out.println("Suma: " + sumar(datos, 0));   // 28
     }
 }
 ```
 
-Salida:
-
-```
-Llamando... (batería al 50%)
-Llamando... (batería al 80%)
-```
-
-`cargar(int minutos)` modifica el atributo con `this.bateria += minutos;`. El mismo objeto conserva su batería entre llamadas: eso es tener estado.
+Salida: `Suma: 28`. El caso base cuando `indice` se sale del array devuelve 0 (elemento neutro de la suma).
 
 </details>
 
 ---
 
-## Ejercicio 3: El estudiante con nota
+## Ejercicio 3: ¿Qué imprime? — la cuenta atrás recursiva
+
+<details>
+<summary>🔄 Solución</summary>
+
+```
+3
+2
+1
+¡BOOM!
+```
+
+Imprime 3, 2 y 1 mientras baja recursivamente, y al llegar al caso base (`n == 0`) hace ¡BOOM! y la pila se va desenrollando sin hacer nada más.
+
+</details>
+
+---
+
+## Ejercicio 4: La potencia del aprendiz
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Estudiante {
-    String nombre;
-    double nota;
+public class PotenciaRecursiva {
 
-    public Estudiante(String nombre, double nota) {
-        this.nombre = nombre;
-        this.nota = nota;
-    }
-
-    void mostrarEstado() {
-        if (nota >= 5) {
-            System.out.println(nombre + " ha aprobado");
-        } else {
-            System.out.println(nombre + " ha suspendido");
-        }
+    static double potencia(double base, int exponente) {
+        if (exponente == 0) return 1;
+        return base * potencia(base, exponente - 1);
     }
 
     public static void main(String[] args) {
-        Estudiante ana = new Estudiante("Ana", 8.5);
-        Estudiante luis = new Estudiante("Luis", 3.0);
-        ana.mostrarEstado();
-        luis.mostrarEstado();
+        System.out.println("2^10 = " + potencia(2, 10));   // 1024
+        System.out.println("3^3  = " + potencia(3, 3));    // 27
+        System.out.println("5^0  = " + potencia(5, 0));    // 1
     }
 }
 ```
 
-Salida:
-
-```
-Ana ha aprobado
-Luis ha suspendido
-```
-
-El método mezcla dos mundos: usa los atributos del objeto (`nombre`, `nota`) con la lógica de decisión (`if`/`else`) que aprendiste en la U03. Dos objetos, dos estados, una clase.
+Salida: `2^10 = 1024.0`, `3^3 = 27.0`, `5^0 = 1.0`.
 
 </details>
 
 ---
 
-## Ejercicio 4: La película en cartelera
+## Ejercicio 5: El detective de dígitos
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Pelicula {
-    String titulo;
-    String genero;
+public class ContadorDigitos {
 
-    public Pelicula(String titulo, String genero) {
-        this.titulo = titulo;
-        this.genero = genero;
-    }
-
-    void mostrarCartelera() {
-        System.out.println("Ahora en cines: " + titulo + " (" + genero + ")");
+    static int contarDigitos(int n) {
+        if (n < 10) return 1;
+        return 1 + contarDigitos(n / 10);
     }
 
     public static void main(String[] args) {
-        Pelicula p = new Pelicula("El curso de Java", "Terror");
-        p.mostrarCartelera();
+        System.out.println("12345 tiene " + contarDigitos(12345) + " dígitos");  // 5
+        System.out.println("7 tiene " + contarDigitos(7) + " dígitos");          // 1
     }
 }
 ```
 
-Salida: `Ahora en cines: El curso de Java (Terror)`
-
-Mismo patrón que el perro y el teléfono: atributos, constructor con `this`, método que los usa. A estas alturas ya deberías notar que todas las clases fáciles se parecen.
+Salida: `12345 tiene 5 dígitos`, `7 tiene 1 dígito`. Cada llamada arranca la última cifra (`n / 10`) y suma 1.
 
 </details>
 
 ---
 
-## Ejercicio 5: La persona educada
+## Ejercicio 6: El espejo de letras
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Persona {
-    String nombre;
-    int edad;
+public class InvertirTexto {
 
-    public Persona(String nombre, int edad) {
-        this.nombre = nombre;
-        this.edad = edad;
-    }
-
-    void presentarse() {
-        System.out.println("Hola, soy " + nombre + " y tengo " + edad + " años.");
+    static String invertir(String s) {
+        if (s.isEmpty()) return "";
+        return invertir(s.substring(1)) + s.charAt(0);
     }
 
     public static void main(String[] args) {
-        Persona ana = new Persona("Ana", 25);
-        ana.presentarse();
+        System.out.println("\"hola\" → " + invertir("hola"));   // aloh
+        System.out.println("\"juan\" → " + invertir("juan"));    // nauj
     }
 }
 ```
 
-Salida: `Hola, soy Ana y tengo 25 años.`
-
-Aquí es donde `this` demuestra su valor: sin `this`, `nombre = nombre` asignaría el parámetro al parámetro y el atributo quedaría en `null`. Con `this`, el atributo recibe el valor del parámetro.
+Salida: `"hola" → aloh`, `"juan" → nauj`. La llamada recursiva primero invierte el resto y luego concatena el primer carácter al final.
 
 </details>
 
 ---
 
-## Ejercicio 6: El círculo calculador
+## Ejercicio 7: ¿Qué imprime? — el enigma del stack
+
+<details>
+<summary>🔄 Solución</summary>
+
+```
+10
+```
+
+Es una **suma de dígitos recursiva**: 4 + 3 + 2 + 1 = 10. En cada llamada, `n % 10` extrae la última cifra y `n / 10` se la quita al número.
+
+</details>
+
+---
+
+## Ejercicio 8: El guardián de los palíndromos
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Circulo {
-    double radio;
+public class GuardianPalindromos {
 
-    public Circulo(double radio) {
-        this.radio = radio;
-    }
-
-    double calcularArea() {
-        return Math.PI * this.radio * this.radio;
+    static boolean esPalindromo(String s, int inicio, int fin) {
+        if (inicio >= fin) return true;
+        if (s.charAt(inicio) != s.charAt(fin)) return false;
+        return esPalindromo(s, inicio + 1, fin - 1);
     }
 
     public static void main(String[] args) {
-        Circulo c = new Circulo(2.5);
-        System.out.println("Área: " + c.calcularArea());
+        System.out.println("reconocer: " + esPalindromo("reconocer", 0, 8));  // true
+        System.out.println("salas:     " + esPalindromo("salas", 0, 4));      // true
+        System.out.println("hola:      " + esPalindromo("hola", 0, 3));       // false
     }
 }
 ```
 
-Salida: `Área: 19.634954084936208`
-
-Este método no es `void`: usa `return` para devolver el área. Los métodos que *calculan* devuelven un valor; los que solo *muestran* son `void`. Esa distinción es mitad de la batalla de esta unidad.
+Salida: `reconocer: true`, `salas: true`, `hola: false`. El truco: comparar las puntas y, si no coinciden, devolver `false` sin seguir gastando stack.
 
 </details>
 
 ---
 
-## Ejercicio 7: El videojuego jugable
+## Ejercicio 9: CodeWars — Factorial
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Videojuego {
-    String titulo;
-    int horasJugadas;
+public class Kata {
 
-    public Videojuego(String titulo, int horasJugadas) {
-        this.titulo = titulo;
-        this.horasJugadas = horasJugadas;
-    }
-
-    void jugar(int horas) {
-        this.horasJugadas += horas;
-    }
-
-    void mostrar() {
-        System.out.println(titulo + " - " + horasJugadas + " horas");
-    }
-
-    public static void main(String[] args) {
-        Videojuego juego = new Videojuego("Minecraft", 10);
-        juego.jugar(5);
-        juego.mostrar();
+    public static long factorial(int n) {
+        if (n <= 1) return 1;
+        return n * factorial(n - 1);
     }
 }
 ```
 
-Salida: `Minecraft - 15 horas`
-
-El método `jugar(int horas)` es un *setter* informal: modifica el estado del objeto. El objeto no es una caja estática: sus atributos cambian con los métodos. Eso es la vida de un objeto.
-
-</details>
-
----
-
-## Ejercicio 8: ¿Qué imprime? — el taller de coches
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime:
-
-```
-Seat va a 150 km/h
-Ford va a 90 km/h
-```
-
-Hay **dos** objetos (`c1` y `c2`), cada uno con su propia `velocidad`. `c1.acelerar(30)` suma 30 a la velocidad de `c1` (120 + 30 = 150) pero no toca la de `c2`. Cuando `c2.mostrar()` se ejecuta, su velocidad sigue siendo 90. Los atributos de un objeto son privados de ese objeto.
-
-</details>
-
----
-
-## Ejercicio 9: CodeWars — Object Oriented Piracy
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Ship {
-    private final double draft;
-    private final int crew;
-
-    public Ship(double draft, int crew) {
-        this.draft = draft;
-        this.crew = crew;
-    }
-
-    public boolean isWorthIt() {
-        return draft - (crew * 1.5) > 20;
-    }
-}
-```
-
-El constructor guarda `draft` y `crew` con `this`, y `isWorthIt()` aplica la fórmula: cada miembro de la tripulación reduce el calado útil en 1.5 pies. Si lo que queda supera 20, el barco merece la pena. Objeto + operaciones de la U02, resuelto.
+Con `factorial(5)` → `120` y `factorial(0)` → `1`. El caso base `n <= 1` cubre tanto el 0 como el 1, y el caso recursivo encadena las multiplicaciones.
 
 </details>

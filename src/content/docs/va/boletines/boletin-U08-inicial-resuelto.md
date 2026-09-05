@@ -5,259 +5,279 @@ description: Els mateixos exercicis que el butlletí inicial, amb solucions
 
 # 📝 Butlletí U08 — Inicial (Resolt)
 
-> Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan ocultes en cada exercici. No faces trampa: primer intenta-ho de veritat.
 
 ---
 
-## Exercici 1: Què imprimeix? — La família musical
+## Exercici 1: La casa de cristall
 
 <details>
 <summary>🔄 Solució</summary>
-
-Imprimeix **"El baixista toca el baix"**.
-
-`Baixista` té la seua pròpia versió de `tocar()`. Java busca el mètode començant per la classe més específica (`Baixista`) i el troba ahí mateix: mai no puja a `Guitarrista` ni a `Instrumentista`. Eixe és el *dynamic dispatch*: el mètode es resol segons el tipus real de l'objecte, no segons el tipus de la referència.
-
-</details>
-
----
-
-## Exercici 2: Troba l'error — extends mal usat
-
-<details>
-<summary>🔄 Solució</summary>
-
-L'error és que `Gos` no crida al constructor d'`Animal`. Quan una classe filla no posa `super(...)`, Java intenta cridar a `super()` sense paràmetres. Però `Animal` només té `Animal(String)`, així que el compilador no troba el constructor buit: **error de compilació**.
 
 ```java
-public class Gos extends Animal {
-    private String raça;
+public class Persona {
+    private String nom;
+    private int edat;
 
-    public Gos(String especie, String raça) {
-        super(especie);   // la clau!
-        this.raça = raça;
+    public String getNom() {
+        return nom;
     }
-}
-```
 
-Pensa en `super()` com cridar a papà perquè configure la seua part abans que tu configures la teua. Si papà necessita una espècie per a construir-se, tu l'hi has de passar. És com construir una casa sense fonaments: el constructor del pare és la base.
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-</details>
+    public int getEdat() {
+        return edat;
+    }
 
----
-
-## Exercici 3: Completa el codi — el gat que crida el seu pare
-
-<details>
-<summary>🔄 Solució</summary>
-
-La paraula és **`super`**:
-
-```java
-public class Gat extends Animal {
-    @Override
-    public void ferSo() {
-        super.ferSo();   // primer el del pare
-        System.out.println("¡MIAU!");
+    public void setEdat(int edat) {
+        this.edat = edat;
     }
 
     public static void main(String[] args) {
-        Gat g = new Gat();
-        g.ferSo();
+        Persona p = new Persona();
+        p.setNom("Anna");
+        p.setEdat(25);
+        System.out.println(p.getNom() + " té " + p.getEdat() + " anys.");
     }
 }
 ```
 
-Eixida:
-
-```
-Algun so genèric...
-¡MIAU!
-```
-
-`super.ferSo()` executa la versió d'`Animal` i després el `Gat` afig el seu. Sense el `super`, el mètode estaria sobreescrit per complet i la línia del pare no eixiria mai.
+Els atributs passen a `private` i tot l'accés es fa amb getters i setters. El `this` en els setters desambiguïx: el paràmetre s'assigna a l'atribut, no a si mateix.
 
 </details>
 
 ---
 
-## Exercici 4: Escriu este programa — l'herència de vehicles
+## Exercici 2: El cotxe del veïnat
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Vehicle {
-    protected String marca;
+public class Cotxe {
+    private String marca;
+    private double velocitat;
 
-    public Vehicle(String marca) {
+    public Cotxe(String marca) {
         this.marca = marca;
-    }
-}
-
-public class Cotxe extends Vehicle {
-    protected int numPortes;
-
-    public Cotxe(String marca, int numPortes) {
-        super(marca);
-        this.numPortes = numPortes;
-    }
-}
-
-public class Esportiu extends Cotxe {
-    private int velocitatMaxima;
-
-    public Esportiu(String marca, int numPortes, int velocitatMaxima) {
-        super(marca, numPortes);
-        this.velocitatMaxima = velocitatMaxima;
+        this.velocitat = 0;
     }
 
-    public static void main(String[] args) {
-        Esportiu e = new Esportiu("Ferrari", 2, 340);
-        System.out.println(e.marca + " amb " + e.numPortes
-                + " portes i " + e.velocitatMaxima + " km/h");
+    public String getMarca() {
+        return marca;
     }
-}
-```
 
-L'herència en cadena: `Esportiu` → `Cotxe` → `Vehicle`. Cada constructor crida al del seu pare amb `super(...)`. Per això `marca` (de `Vehicle`) i `numPortes` (de `Cotxe`) són accessibles en `Esportiu` gràcies a `protected`.
+    public double getVelocitat() {
+        return velocitat;
+    }
 
-</details>
-
----
-
-## Exercici 5: Què imprimeix? — Polimorfisme amb referències
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix:
-
-```
-Y
-Z
-Z
-```
-
-El tipus de la **referència** (X, X, Y) no importa. El que importa és el tipus **real** de l'objecte (Y, Z, Z). Java sempre executa el mètode més específic de l'objecte real. És com portar la jaqueta del teu pare: per fora pareixes el teu pare (la referència), però per dins ets tu (l'objecte). Quan parles, se sent la teua veu, no la del teu pare. Dynamic binding en tot el seu esplendor.
-
-</details>
-
----
-
-## Exercici 6: Escriu este programa — la granja polimòrfica
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.ArrayList;
-
-public class Animal {
-    public void ferSo() { System.out.println("..."); }
-}
-
-class Vaca extends Animal {
-    @Override public void ferSo() { System.out.println("Muuuu"); }
-}
-
-class Ovella extends Animal {
-    @Override public void ferSo() { System.out.println("Beeee"); }
-}
-
-class Gallina extends Animal {
-    @Override public void ferSo() { System.out.println("Cloc cloc"); }
-}
-
-public class Granja {
-    public static void main(String[] args) {
-        ArrayList<Animal> animals = new ArrayList<>();
-        animals.add(new Vaca());
-        animals.add(new Ovella());
-        animals.add(new Gallina());
-
-        for (Animal a : animals) {
-            a.ferSo();
+    public void setVelocitat(double velocitat) {
+        if (velocitat >= 0 && velocitat <= 200) {
+            this.velocitat = velocitat;
+        } else {
+            System.out.println("Velocitat invàlida.");
         }
     }
+
+    public static void main(String[] args) {
+        Cotxe c = new Cotxe("Seat");
+        c.setVelocitat(-50);
+        c.setVelocitat(120);
+        System.out.println("Velocitat: " + c.getVelocitat());
+    }
 }
 ```
 
-Eixida:
-
-```
-Muuuu
-Beeee
-Cloc cloc
-```
-
-Un sol `ArrayList<Animal>` i un sol bucle: cada animal executa la seua pròpia versió gràcies al polimorfisme. Sense ell, tindries tres llistes separades. Això és el que fa que el polimorfisme valga el seu pes en or.
+Eixida: `Velocitat invàlida.` (pel -50) i després `Velocitat: 120.0`. El setter valida abans de tocar l'atribut: és la frontera que protegix l'estat de l'objecte.
 
 </details>
 
 ---
 
-## Exercici 7: Troba l'error — @Override que no ho és
-
-<details>
-<summary>🔄 Solució</summary>
-
-La línia que **no compila** és:
-
-```java
-@Override
-public void nedar() { }   // ✗ ERROR: Animal no té nedar()
-```
-
-`@Override` li diu al compilador: "verifica que realment estic sobreescrivint un mètode del pare". Com que `Animal` no té `nedar()`, el compilador t'avisa en l'acte. L'altra línia (`ferSo()`) sí que és un override vàlid. Eixe avís a temps és el regal de `@Override`: si escrius malament un nom de mètode, te n'assabenta el compilador, no un bug raríssim a mitjanit.
-
-</details>
-
----
-
-## Exercici 8: Escriu este programa — el gos ben heretat
+## Exercici 3: El termòmetre amb cervell
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Gos extends Animal {
-    public Gos(String nom, int edat) {
-        super(nom, edat);
+public class Termometre {
+    private double temperatura;
+
+    public Termometre() {
+        temperatura = 20.0;
     }
 
-    public void lladrar() {
-        System.out.println(nom + " diu: ¡Guau!");
+    public double getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(double temperatura) {
+        if (temperatura >= -273.15 && temperatura <= 100.0) {
+            this.temperatura = temperatura;
+        } else {
+            System.out.println("Temperatura fora de rang.");
+        }
     }
 
     public static void main(String[] args) {
-        Gos g = new Gos("Firulais", 3);
-        g.lladrar();
+        Termometre t = new Termometre();
+        t.setTemperatura(-500);
+        t.setTemperatura(36.5);
+        System.out.println("Temperatura: " + t.getTemperatura());
     }
 }
 ```
 
-Eixida: `Firulais diu: ¡Guau!`
-
-`Gos` pot usar `nom` i `edat` perquè estan declarats com a `protected` en `Animal`: l'herència els posa a disposició de tota la família. Si foren `private`, ni `Gos` els veuria. És com l'herència familiar: el que és privat a casa dels avis, no ho veuen ni els néts.
+Eixida: `Temperatura fora de rang.` i després `Temperatura: 36.5`. El setter convertix la classe en un "termòmetre amb cervell": no accepta qualsevol número, només valors físicament possibles.
 
 </details>
 
 ---
 
-## Exercici 9: Què imprimeix? — la cadena de constructors
+## Exercici 4: Getter sense setter
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix:
+```java
+public class Configuracio {
+    private String idioma;
 
-```
-Avi
-Pare
-Fill
+    public Configuracio(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
+
+    public static void main(String[] args) {
+        Configuracio config = new Configuracio("es");
+        System.out.println("Idioma: " + config.getIdioma());
+    }
+}
 ```
 
-En crear un `Fill` s'executen **tots** els constructors de la cadena, del més general al més específic. Com que cada constructor crida a `super()` (o Java el posa automàticament), primer es construïx `Avi`, després `Pare` i per últim `Fill`. Els fonaments abans que el teulada, sempre.
+No té setter perquè l'idioma és una decisió d'una sola vegada: es tria en el constructor i prou. Si algú intentàs `config.idioma = "va"` des de fora, **no compilaria**: `idioma` és `private`, i fora de la classe no es pot tocar. Obligar que el canvi passe per un setter (o que no existisca) és l'essència de l'encapsulació.
+
+</details>
+
+---
+
+## Exercici 5: El comptador de la classe
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Comptador {
+    public static int total = 0;
+
+    public Comptador() {
+        total++;
+    }
+
+    public static void main(String[] args) {
+        Comptador c1 = new Comptador();
+        Comptador c2 = new Comptador();
+        Comptador c3 = new Comptador();
+        System.out.println("Total: " + Comptador.total);
+    }
+}
+```
+
+`total` val **3**. És `static`: una sola còpia compartida per tota la classe. Cada `new` crida al constructor i l'incrementa; com que els tres objectes compartixen la mateixa variable, el comptador conta els tres. No és 1 perquè no hi ha una còpia per objecte: n'hi ha una única de classe.
+
+</details>
+
+---
+
+## Exercici 6: La calculadora sense piles
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Utilitats {
+    public static int sumar(int a, int b) {
+        return a + b;
+    }
+
+    public static int restar(int a, int b) {
+        return a - b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Utilitats.sumar(5, 3));
+        System.out.println(Utilitats.restar(10, 4));
+    }
+}
+```
+
+Eixida: `8` i `6`. Com que els mètodes són `static`, es diuen amb el nom de la classe (`Utilitats.sumar`), sense `new` i sense objecte. És el mateix patró que ja uses amb `Math.sqrt` o `Integer.parseInt`.
+
+</details>
+
+---
+
+## Exercici 7: Les constants del barri
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Constants {
+    public static final double IVA = 0.21;
+    public static final int MAX_INTENTS_LOGIN = 3;
+    public static final String NOM_APP = "GestioCurs";
+
+    public static void main(String[] args) {
+        System.out.println("IVA: " + Constants.IVA);
+        System.out.println("Màxim intents: " + Constants.MAX_INTENTS_LOGIN);
+        System.out.println("App: " + Constants.NOM_APP);
+        // Constants.IVA = 0.5; // Error de compilació
+    }
+}
+```
+
+En intentar `Constants.IVA = 0.5;` el compilador ho **prohibix**: `final` significa que el valor no es pot reassignar després de la seua declaració. Les constants són a prova de bombes, per això van en MAJÚSCULES amb `_`: tothom sap que no es toquen.
+
+</details>
+
+---
+
+## Exercici 8: Què imprimeix? — el trencaclosques estàtic
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimix **`1 2 2`**.
+
+`Trencaclosques.s` és `static`: una sola còpia compartida. Amb el primer `new`, `s` passa a 1 i `t1.i` es copia eixe 1. Amb el segon `new`, `s` passa a 2 i `t2.i` es copia eixe 2. Al final, `t1.i` = 1, `t2.i` = 2 i `Trencaclosques.s` = 2. L'estàtic puja per a tots; el d'instància es congela amb el valor que tenia la classe en el moment de nàixer.
+
+</details>
+
+---
+
+## Exercici 9: CodeWars — Square(n) Sum
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Kata {
+    public static int squareSum(int[] n) {
+        int suma = 0;
+        for (int i = 0; i < n.length; i++) {
+            suma += n[i] * n[i];
+        }
+        return suma;
+    }
+}
+```
+
+Per a `[1, 2, 2]` → `1 + 4 + 4 = 9`. El bucle recorre cada element i acumula `n[i] * n[i]`. Nota el `static`: CodeWars exigix el mètode estàtic per a poder cridar-lo sense crear objectes, just el que acabeu de practicar.
 
 </details>

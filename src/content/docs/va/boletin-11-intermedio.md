@@ -1,131 +1,116 @@
 ---
-title: "Boletín 10 - Intermedi: Consola, Fitxers i Regex"
-nav_order: 10
+title: "Butlletí 11 - Intermedi: Genèrics i Mapes"
+nav_order: 11
 ---
 *Exercicis de dificultat progressiva. De ⭐ a ⭐⭐⭐.*
 
 ---
 
-## ⭐ Ejercicio 1: Formateador de ticket de compra
+## ⭐ Ejercicio 1: Pila genérica `<T>`
 
-Crea un programa que simule un ticket de compra. Usa un array de productos (nombre, precio, cantidad) y muestra un ticket formateado con `printf()`:
+Implementa una clase genérica `Pila<T>` que funcione como una pila (LIFO). Debe tener los métodos:
 
-```
-================================
-    TICKET DE COMPRA
-================================
-Pan            2 x 1.20€ =  2.40€
-Leche          3 x 0.95€ =  2.85€
-Huevos         1 x 3.50€ =  3.50€
---------------------------------
-TOTAL                     =  8.75€
-================================
-```
+- `void push(T elemento)` — apila un elemento.
+- `T pop()` — desapila y devuelve el elemento superior (lanza `EmptyStackException` si está vacía).
+- `T peek()` — devuelve el elemento superior sin desapilarlo.
+- `boolean isEmpty()` — indica si está vacía.
+- `int size()` — número de elementos.
 
-Requisitos: alinear nombres a la izquierda, precios a la derecha, 2 decimales, ancho fijo de columnas.
+Internamente, usa un `ArrayList<T>` como almacenamiento. Pruébala con `Pila<Integer>`, `Pila<String>` y `Pila<Double>`.
 
 ---
 
-## ⭐ Ejercicio 2: Buscador de archivos por extensión
+## ⭐ Ejercicio 2: HashMap inverso
 
-Crea un programa que pida una ruta de directorio y una extensión (ej: `.txt`, `.java`) y liste **recursivamente** todos los archivos con esa extensión. Usa la clase `File` y su método `listFiles()`.
+Escribe un método genérico estático:
 
-Pista: Si el archivo es un directorio, llama al método de nuevo (recursión).
-
----
-
-## ⭐ Ejercicio 3: Lector de CSV con Scanner
-
-Dado un archivo `datos.csv` con el siguiente formato (sin cabecera):
-
-```
-Ana;25;DAM
-Bob;22;DAW
-Carlos;30;DAM
+```java
+public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original)
 ```
 
-Usa `Scanner` con `useDelimiter()` para leer el archivo y mostrar los datos en formato tabla alineada. Usa `printf()` para formatear.
+Que devuelva un nuevo `HashMap` intercambiando claves y valores. Si hay valores duplicados en el mapa original, el último encontrado sobrescribe al anterior.
 
-Asegúrate de que el `Scanner` maneje correctamente tanto el delimitador `;` como el salto de línea.
-
----
-
-## ⭐⭐ Ejercicio 4: Filtro de líneas por palabra clave
-
-Crea un programa que lea un archivo de texto (`origen.txt`) y escriba en `destino.txt` solo las líneas que contienen una palabra clave (pedida al usuario). Usa `BufferedReader` y `PrintWriter`.
-
-Muestra al final cuántas líneas coincidieron y cuántas se descartaron.
+Prueba con un mapa de `String → Integer` y otro de `String → String`.
 
 ---
 
-## ⭐⭐ Ejercicio 5: Separador de líneas pares e impares
+## ⭐ Ejercicio 3: Método genérico — filtrar por condición
 
-Crea un programa que lea un archivo `entrada.txt` y genere dos archivos:
+Implementa un método genérico:
 
-- `pares.txt` → contiene las líneas en posición par (0, 2, 4...).
-- `impares.txt` → contiene las líneas en posición impar (1, 3, 5...).
-
-Usa `try-with-resources` con **tres** recursos (un `BufferedReader` y dos `PrintWriter`).
-
----
-
-## ⭐⭐ Ejercicio 6: Split con regex — analizador de frases
-
-Escribe un programa que lea una frase del usuario y use `split()` con una expresión regular para:
-
-1. Separar las palabras (ignorando espacios, comas, puntos, signos).
-2. Mostrar cuántas palabras hay.
-3. Mostrar la palabra más larga.
-4. Mostrar las palabras que empiezan por vocal.
-
-Ejemplo: `"Hola, mundo. Esto es Java: ¿mola?"` →
+```java
+public static <T> List<T> filtrar(List<T> lista, Predicate<T> condicion)
 ```
-Palabras: 6
-Más larga: "mundo"
-Empiezan por vocal: ["Esto"]
+
+Que devuelva una nueva lista con los elementos que cumplen la condición. Usa la interfaz `Predicate<T>` de Java.
+
+Pruébalo filtrando números pares de una `List<Integer>` y palabras que empiecen por «A» de una `List<String>`.
+
+---
+
+## ⭐⭐ Ejercicio 4: Caché LRU con LinkedHashMap
+
+Crea una clase `CacheLRU<K, V>` que extienda o use internamente un `LinkedHashMap<K, V>` con capacidad máxima de 5 elementos. Cuando se añade un elemento y ya hay 5, se elimina el **menos recientemente usado** (acceso, no inserción).
+
+Pista: `LinkedHashMap` tiene el constructor con `accessOrder=true` y el método `removeEldestEntry()`.
+
+---
+
+## ⭐⭐ Ejercicio 5: TreeMap — frecuencia de letras
+
+Escribe un programa que lea un texto por teclado (o use uno hardcodeado) y cuente cuántas veces aparece cada **letra** (ignorando espacios, números y signos). Usa un `TreeMap<Character, Integer>` para que las letras se muestren automáticamente ordenadas alfabéticamente.
+
+Ejemplo de salida para «Hola mundo»:
+```
+a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
 ```
 
 ---
 
-## ⭐⭐⭐ Ejercicio 7 (ProgramaMe): Validador de datos con regex
+## ⭐⭐ Ejercicio 6 (Wildcards): Suma de números genérica
 
-Crea un programa que lea un archivo `datos.txt` donde cada línea contiene un dato y su tipo (separados por `;`):
+Implementa un método que sume todos los números de una lista, aceptando cualquier subtipo de `Number`:
 
-```
-ana@email.com;email
-12345678Z;dni
-+34 612345678;telefono
-91 123 45 67;telefono
-esto-no-es-email;email
+```java
+public static double sumar(List<? extends Number> lista)
 ```
 
-Valida cada línea según el tipo usando expresiones regulares:
+Pruébalo con `List<Integer>`, `List<Double>` y `List<Float>`. ¿Qué ocurre si intentas pasar una `List<String>`?
 
-- **Email:** formato básico `xxx@xxx.xxx`
-- **DNI:** 8 dígitos + letra mayúscula (la letra debe ser válida según el algoritmo)
-- **Teléfono:** opcional `+34` seguido de 9 dígitos, con o sin espacios
+Crea también un segundo método que **mezcle** dos listas de números de tipos distintos en una sola `List<Double>`:
 
-Muestra un resumen: cuántos válidos, cuántos inválidos, y lista los inválidos.
+```java
+public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b)
+```
+
+---
+
+## ⭐⭐⭐ Ejercicio 7 (ProgramaMe): Sistema de inventario genérico
+
+Crea un sistema de inventario genérico para una tienda:
+
+1. Clase `Producto<T>` con `String nombre`, `double precio`, `T categoria` (el tipo de categoría puede ser `String` o un `Enum`).
+2. Clase `Inventario<T>` que almacene `Producto<T>` en un `HashMap<String, Producto<T>>` (clave = nombre del producto).
+3. Métodos: `agregar`, `eliminar`, `buscar`, `listar`, `valorTotal()`.
+4. Crea un inventario de productos con categoría `String` y otro con categoría `enum`.
 
 ---
 
 ## ⭐⭐⭐ Ejercicio 8 (CodeWars + AceptaElReto)
 
-Resuelve estos problemas que combinan ficheros, regex y consola:
+Resuelve los siguientes problemas aplicando mapas y genéricos:
 
-**CodeWars:** [Regex validate PIN code](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132) (7 kyu) — Valida que un String sea un PIN de 4 o 6 dígitos exactos.
+**CodeWars:** [Counting Duplicates](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1) (6 kyu) — Cuenta cuántos caracteres aparecen más de una vez en una cadena. Ideal para `HashMap<Character, Integer>`.
 
-**CodeWars:** [Exes and Ohs](https://www.codewars.com/kata/55908aad6620c066bc00002a) (7 kyu) — Cuenta si el número de X y O es el mismo en un String (puedes resolverlo con o sin regex).
-
-**AceptaElReto:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149) — Lectura de múltiples casos de prueba desde consola.
+**AceptaElReto:** [416 - Casillas de corrección](https://www.aceptaelreto.com/problem/statement.php?id=416) — Gestiona casillas de corrección usando un mapa de errores por alumno.
 
 ---
 
 ## 📚 Referències
 
-- **CodeWars:** [Regex validate PIN code](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132) (7 kyu)
-- **CodeWars:** [Exes and Ohs](https://www.codewars.com/kata/55908aad6620c066bc00002a) (7 kyu)
-- **CodeWars:** [String repeat](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e) (8 kyu)
-- **AceptaElReto.com:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149)
-- **AceptaElReto.com:** [140 - Suma de dígitos](https://www.aceptaelreto.com/problem/statement.php?id=140)
-- **AceptaElReto.com:** [152 - Suma pares e impares](https://www.aceptaelreto.com/problem/statement.php?id=152)
+- **CodeWars:** [Counting Duplicates](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1) (6 kyu)
+- **CodeWars:** [Sort arrays - 1](https://www.codewars.com/kata/51f41b98e8f2e0b8fd0000b5) (6 kyu)
+- **CodeWars:** [Merging sorted integer arrays](https://www.codewars.com/kata/573f5c61e7752709df0005d6) (6 kyu)
+- **AceptaElReto.com:** [416 - Casillas](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- **AceptaElReto.com:** [462 - Tres dedos](https://www.aceptaelreto.com/problem/statement.php?id=462)
+- **AceptaElReto.com:** [417 - Binomiales](https://www.aceptaelreto.com/problem/statement.php?id=417)

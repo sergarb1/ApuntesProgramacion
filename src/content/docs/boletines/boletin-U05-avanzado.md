@@ -1,143 +1,175 @@
 ---
 title: Boletín U05 — Avanzado
-description: Ejercicios intermedios de recursividad, divide y vencerás y ordenación para sudar el stack
+description: Ejercicios de dificultad progresiva para exprimir la unidad
 ---
 
 # 📝 Boletín U05 — Avanzado
 
-> La zona intermedia: aquí ya no basta con copiar el patrón, hay que pensar. Cada ejercicio trae su **Pista** para cuando lleves 10 minutos dándole vueltas.
+> Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. Cada ejercicio incluye una pista (resiste a mirarla).
 
 ---
 
-## Ejercicio 1: ⭐ Fibonacci con el contador chivato
+## ⭐ Ejercicio 1: ¿Qué imprime? — la binaria con historial
 
-Crea un programa `FiboContador` que calcule el enésimo Fibonacci con la versión ingenua recursiva PERO que además cuente **cuántas llamadas hace en total**.
-
-```java
-static long llamadas;   // variable estática que suma 1 en cada llamada
-static long fibo(int n)
-```
-
-Pruébalo con `fibo(30)`. ¿Cuántas llamadas hace? ¿Y cuántas haría si solo sumaras los índices `fibo(30) + fibo(29) + ... + 1`?
-
-**Pista:** súmale 1 a `llamadas` como primera línea del método, antes de cualquier caso base.
-
----
-
-## Ejercicio 2: ⭐⭐ ¿Qué imprime? — el árbol de llamadas
-
-Sin ejecutar, escribe la salida exacta y el **orden de las llamadas** (quién llama a quién):
+Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class ArbolRaro {
-    static void pintar(int n) {
-        if (n == 0) return;
-        System.out.println("bajo " + n);
-        pintar(n - 1);
-        System.out.println("subo " + n);
-    }
-
+public class BinariaHistorial {
     public static void main(String[] args) {
-        pintar(3);
+        int[] datos = {2, 4, 6, 8, 10, 12, 14, 16};
+        int objetivo = 10;
+        int izquierda = 0;
+        int derecha = datos.length - 1;
+
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            System.out.println("Pruebo el índice " + medio);
+
+            if (datos[medio] == objetivo) {
+                System.out.println("Encontrado en " + medio);
+                break;
+            } else if (datos[medio] < objetivo) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
     }
 }
 ```
 
-**Pista:** el `System.out.println` de después de la llamada recursiva no se ejecuta hasta que esa llamada termina. Dibuja la pila con lápiz y papel.
+**Pista:** escribe en una tabla cada vuelta con sus `izquierda`, `derecha`, `medio` y qué decide. Solo son 3 o 4 líneas de traza.
 
 ---
 
-## Ejercicio 3: ⭐⭐ El palíndromo rebelde
+## ⭐ Ejercicio 2: El buscador binario con historial
 
-Amplía el palíndromo para que **ignore espacios, signos y mayúsculas**:
+Escribe un método `public static int busquedaBinaria(int[] datos, int objetivo)` como el de la teoría, pero que **cada vez que pruebe un índice, lo muestre por pantalla**: `Probando el índice X`. Al final devuelve el índice o `-1`.
 
-- `"Anita lava la tina"` → true
-- `"La ruta natural"` → true
-- `"No soy un palíndromo"` → false
+Prueba con `int[] datos = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}` y `objetivo = 7`.
+
+**Pista:** el `System.out.println` va dentro del `while`, justo después de calcular `medio` y antes de comparar.
+
+---
+
+## ⭐⭐ Ejercicio 3: La bombolla con recuento (y flag)
+
+Escribe un programa llamado `BombollaRecuento` que ordene `int[] datos = {9, 3, 7, 1, 5}` con bombolla y **cuente los intercambios**, igual que en el inicial. Pero además, añade el flag `boolean huboIntercambio` con su `break` para no hacer pasadas inútiles.
+
+Muestra al final el array ordenado y `Intercambios: X`.
+
+**Pista:** el flag se resetea a `false` al principio de cada pasada y se pone a `true` dentro del `if`. Después de la pasada: `if (!huboIntercambio) break;`.
+
+---
+
+## ⭐⭐ Ejercicio 4: La inserción descendente
+
+Modifica la ordenación por inserción para que ordene **de mayor a menor**. Escribe un método `public static void ordenarDescendente(int[] datos)`.
+
+Prueba con `int[] notas = {6, 9, 3, 8, 5}` y muestra el resultado.
+
+**Pista:** solo cambia un signo: en la condición del `while`, los mayores deben deslizarse hacia la derecha. Piensa cuál es ahora el "orden correcto".
+
+---
+
+## ⭐⭐ Ejercicio 5: El analista de complejidad
+
+Di la complejidad Big O de cada método y justifica brevemente:
 
 ```java
-static boolean esPalindromoFrase(String s, int inicio, int fin)
+public class Analista {
+
+    public static int metodoA(int[] datos) {
+        int total = 0;
+        for (int num : datos) {
+            total += num;
+        }
+        return total;
+    }
+
+    public static int metodoB(int[] datos) {
+        int pares = 0;
+        for (int i = 0; i < datos.length; i++) {
+            for (int j = i + 1; j < datos.length; j++) {
+                if (datos[i] == datos[j]) {
+                    pares++;
+                }
+            }
+        }
+        return pares;
+    }
+
+    public static int metodoC(int[] datos, int objetivo) {
+        int izquierda = 0;
+        int derecha = datos.length - 1;
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            if (datos[medio] == objetivo) return medio;
+            if (datos[medio] < objetivo) izquierda = medio + 1;
+            else derecha = medio - 1;
+        }
+        return -1;
+    }
+}
 ```
 
-**Pista:** en vez de comparar directamente `s.charAt(inicio)`, saltate los caracteres que no sean letras avanzando `inicio` o retrocediendo `fin` en el propio método. Usa `Character.isLetter()` y `Character.toLowerCase()`.
+**Pista:** cuenta bucles: uno → O(n), dos anidados → O(n²). El que divide el segmento por la mitad en cada vuelta es O(log n). El `j = i + 1` no lo salva de ser O(n²): sigue siendo casi n × n.
 
 ---
 
-## Ejercicio 4: ⭐⭐ La potencia exprés (divide y vencerás)
+## ⭐⭐ Ejercicio 6: El cazador de parejas
 
-Escribe un programa `PotenciaRapida` con un método recursivo `static long potenciaRapida(int base, int exponente)` que calcule `base^exponente` en **O(log n)**:
+Escribe un método `public static boolean existePareja(int[] datos, int sumaObjetivo)` que devuelva `true` si existen **dos elementos distintos** del array cuya suma sea `sumaObjetivo`.
 
-```
-potenciaRapida(b, e):
-  si e == 0 → 1
-  mitad = potenciaRapida(b, e / 2)
-  si e es par  → mitad * mitad
-  si e es impar → mitad * mitad * b
-```
+Prueba con `int[] precios = {10, 3, 7, 5, 12}`:
 
-Pruébalo con `potenciaRapida(2, 20)` → 1048576. ¿Cuántas llamadas hace comparado con `potencia(2, 20)` del boletín inicial?
+- `existePareja(precios, 17)` → `true` (10 + 7)
+- `existePareja(precios, 25)` → `false`
 
-**Pista:** ojo con el redondeo: cuando `e` es impar, `e / 2` se queda con la parte entera y por eso multiplicas por `b` una vez más.
+**Pista:** dos bucles anidados con `j = i + 1` (para no probar un elemento consigo mismo). En el interior: `if (datos[i] + datos[j] == sumaObjetivo) return true;`. Al final, `return false;`.
 
 ---
 
-## Ejercicio 5: ⭐⭐⭐ Quicksort con mediana de tres
+## ⭐⭐ Ejercicio 7: El detective de inversiones
 
-Mejora el Quicksort de la unidad: en vez de coger el primer elemento como pivote, elige la **mediana de tres** (primero, medio y último) para evitar el peor caso con arrays casi ordenados.
+Una **inversión** es una pareja de posiciones `(i, j)` con `i < j` donde `datos[i] > datos[j]` (están desordenadas). Escribe un método `public static int contarInversiones(int[] datos)` que las cuente.
 
-```java
-static void quicksort(int[] arr, int inicio, int fin)
-```
+Prueba con `int[] datos = {2, 4, 1, 3}` → hay 3 inversiones: (2,1), (4,1), (4,3).
 
-Pruébalo con el array ya ordenado `{1, 2, 3, 4, 5, 6, 7, 8}`. ¿Cuántas particiones hace tu versión con mediana de tres?
-
-**Pista:** `int medio = (inicio + fin) / 2;` compara `arr[inicio]`, `arr[medio]` y `arr[fin]` y coloca el del medio en `arr[inicio]` (intercambiándolos) antes de particionar con la técnica de la unidad.
+**Pista:** el patrón de doble bucle con `j = i + 1` otra vez, pero ahora el `if` compara `datos[i] > datos[j]` y suma 1 al contador.
 
 ---
 
-## Ejercicio 6: ⭐⭐⭐ Mergesort con el contador de comparaciones
+## ⭐⭐⭐ Ejercicio 8: CodeWars — Ones and Zeros
 
-Modifica el Mergesort de la unidad para que cuente **cuántas comparaciones** hace la fusión en total, y muestra el número al final.
+Resuelve la kata **"Ones and Zeros"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/578553c3a1b8d5c40300037c).
 
-```java
-static long comparaciones;   // suma 1 en cada comparación de la fusión
-```
+Te dan un array de enteros (solo 0 y 1) que representa un número en binario. Devuelve su valor decimal.
 
-Pruébalo con `{9, 8, 7, 6, 5, 4, 3, 2, 1}` (el peor caso visual). ¿Cuántas comparaciones? ¿Y con `{1, 2, 3, 4, 5, 6, 7, 8, 9}`?
+**Ejemplo:** `[1, 0, 1, 1]` → `11` (1·8 + 0·4 + 1·2 + 1·1).
 
-**Pista:** en la fusión, suma 1 en cada `while` que compara dos elementos. En los bucles donde una lista ya se ha acabado, también hay comparaciones contra el final del array: cuéntalas con la misma variable.
+**Pista:** recorre el array de izquierda a derecha acumulando `valor = valor * 2 + digito`. Ese es el algoritmo para convertir de binario a decimal sin usar `Math.pow`.
 
 ---
 
-## Ejercicio 7: ⭐⭐⭐ las torres de Hanói con contador
+## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
 
-Implementa las Torres de Hanói recursivas de la unidad y añade un **contador de movimientos**:
+Resuelve el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
 
-```java
-static int movimientos;
-static void hanoi(int n, char origen, char destino, char auxiliar)
-```
+El algoritmo de Kaprekar: dado un número de 4 cifras, ordena sus dígitos de mayor a menor y de menor a mayor, resta ambos, y repite con el resultado. Al final siempre se llega a **6174** (o al propio 6174) y, si el número tiene todas las cifras iguales (como 1111), la diferencia da 0.
 
-Cada vez que se mueva un disco, imprime `"Mueve disco X de ORIGEN a DESTINO"` y suma 1 al contador. Al final, imprime el total. Pruébalo con 3, 4 y 8 discos.
+La entrada trae varios números (pueden tener menos de 4 cifras: hay que completar con ceros a la izquierda). Para cada uno, muestra **cuántas iteraciones** se necesitan para alcanzar 6174. El 6174 necesita 0 iteraciones. **Cuidado con los repdigits** (1111, 5555...): la primera resta da 0 y el bucle nunca llegaría a 6174; el problema oficial pide **8** para ellos. El 0 de entrada termina el programa.
 
-**Pista:** con `n` discos el mínimo de movimientos es `2^n - 1`. Si tu contador con 8 discos no da 255, algo estás moviendo de más.
+**Pista:** para ordenar los dígitos, extráelos en un `int[]` de 4 posiciones con `% 10` y `/ 10`, ordénalo con bombolla (¡reutiliza la U05!), y reconstruye el número mayor (dígitos en orden descendente) y el menor (ascendente). Cuenta las iteraciones con un contador.
 
 ---
 
-## Ejercicio 8: ⭐⭐⭐ CodeWars — Sort Numbers
+## 📚 Referencias
 
-Resuelve la kata **"Sort Numbers"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/5174a4c0f2769dd8b1000003).
-
-Crea el método `public static int[] sortArray(int[] nums)` que devuelva el array ordenado de menor a mayor. Si `nums` es `null` o está vacío, devuelve un array vacío.
-
-**Pista:** haz un método `int[] copia` (para no mutar el original) y ordénalo con `Arrays.sort()`. O, si te sientes con ganas, implementa tu propio Mergesort sobre la copia.
-
----
-
-## Ejercicio 9: ⭐⭐⭐ AceptaElReto — 104 Móviles
-
-Resuelve el problema **"Móviles" (104)** de [AceptaElReto](https://aceptaelreto.com/problem/statement.php?id=104).
-
-Un móvil cuelga de una barra con dos pesos `izq` y `der` a distancias `dizq` y `dder`. Está equilibrado si `izq * dizq == der * dder` y además las dos subbarras (que pueden contener otros móviles) también lo están. Un peso `0` significa que ahí cuelga otro móvil, que se describe a continuación. Devuelve `SI` si el móvil está equilibrado y `NO` en caso contrario.
-
-**Pista:** no hay un caso base con `n`: los móviles se leen recursivamente. Lee `izq dizq der dder`; si `izq == 0`, hay que leer (y comprobar) un submóvil completo antes de continuar; si `der == 0`, otro. Recuerda que **ambos** submóviles deben estar equilibrados, no solo la barra.
+| Plataforma | Problema | Dificultad |
+|---|---|---|
+| AceptaElReto | 100 — Constante de Kaprekar | Fácil |
+| AceptaElReto | 185 — Potitos | Fácil |
+| CodeWars | Find the smallest integer in the array (8 kyu) | Principiante |
+| CodeWars | Ones and Zeros (7 kyu) | Aficionado |
+| CodeWars | You only need one (8 kyu) | Principiante |

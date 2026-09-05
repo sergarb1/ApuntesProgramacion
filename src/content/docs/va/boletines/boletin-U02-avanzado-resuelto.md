@@ -291,6 +291,82 @@ La clau matemàtica: 5! = 120, i a partir d'ací qualsevol factorial multiplica 
 
 ---
 
+## ⭐⭐ Exercici 10: el tiquet de compra amb NumberFormat
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class TiquetCompra {
+    public static void main(String[] args) {
+        NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
+
+        double preuPa = 1.20;
+        double preuLlet = 0.95;
+        double preuOus = 3.50;
+
+        double subtotalPa = preuPa * 2;
+        double subtotalLlet = preuLlet * 3;
+        double subtotalOus = preuOus * 1;
+        double total = subtotalPa + subtotalLlet + subtotalOus;
+
+        System.out.println("==========================");
+        System.out.println("    TICKET DE COMPRA");
+        System.out.println("==========================");
+        System.out.println("Pa    2 x " + moneda.format(preuPa) + " = " + moneda.format(subtotalPa));
+        System.out.println("Llet  3 x " + moneda.format(preuLlet) + " = " + moneda.format(subtotalLlet));
+        System.out.println("Ous   1 x " + moneda.format(preuOus) + " = " + moneda.format(subtotalOus));
+        System.out.println("--------------------------");
+        System.out.println("TOTAL               = " + moneda.format(total));
+        System.out.println("==========================");
+    }
+}
+```
+
+`NumberFormat.getCurrencyInstance(new Locale("es", "ES"))` formata qualsevol `double` com a moneda espanyola: `1.234,56 €`. Com que els tres subtotals es calculen amb `preu * quantitat` abans de sumar-los, el total és exacte i sense errors d'arredoniment acumulats. Este exercici et deixa llest per al punt 7 en l'examen: separadors de milers i moneda en un sol objecte.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 11: l'edat a prova de bombes
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class EdatSegura {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int edat = -1;
+
+        while (edat == -1) {
+            System.out.print("Quants anys tens? ");
+            if (sc.hasNextInt()) {
+                edat = sc.nextInt();
+            } else {
+                System.out.println("Això no és un nombre enter.");
+                sc.next();
+            }
+        }
+
+        System.out.printf("Genial, %d anys i llest per a programar.%n", edat);
+        sc.close();
+    }
+}
+```
+
+El bucle `while` repetix la pregunta fins que l'usuari dona un enter. `hasNextInt()` mira si la següent dada és un enter sense consumir-la; si no ho és, `sc.next()` es menja la brossa i el bucle torna a preguntar. Així el programa és **a prova de bombes**: no importa quantes vegades l'usuari escriga "hola" o "3.14", mai no saltarà la `InputMismatchException`.
+
+</details>
+
+---
+
 ## 📚 Referències
 
 | Plataforma | Problema | Dificultat |
@@ -301,3 +377,4 @@ La clau matemàtica: 5! = 120, i a partir d'ací qualsevol factorial multiplica 
 | CodeWars | Will you make it? (8 kyu) | Principiant |
 | CodeWars | Convert boolean to Yes/No (8 kyu) | Principiant |
 | CodeWars | Keep Hydrated (8 kyu) | Principiant |
+| CodeWars | Get the Middle Character (7 kyu) | Intermedi |

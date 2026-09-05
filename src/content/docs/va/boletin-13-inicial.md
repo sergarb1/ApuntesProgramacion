@@ -1,100 +1,150 @@
 ---
-title: "Butlletí 13 - Inicial: Servir i Consumir APIs amb Web"
+title: "Butlletí 13 - Inicial: Connexió a BD amb JDBC"
 nav_order: 13
 ---
-Escalfa motors amb HttpServer. Promet que cap bit eixirà ferit.
+*Sense solucions. 7 passos per no perdre la connexió.*
 
 ---
 
-## Exercici 1: Servidor de l'hora
+## Ejercicio 1: ¿Qué necesitas para usar JDBC?
 
-Crea un servidor HTTP al port 8080 amb una ruta `/hora` que torne l'hora actual en text pla amb format `HH:mm:ss`.
+Responde brevemente:
 
-Cada vegada que recarregues el navegador, l'hora canvia. Màgia negra amb `LocalTime.now()`.
+1. ¿Qué archivo `.jar` necesitas incluir en tu proyecto para conectar con MySQL?
+2. ¿Qué clase de Java proporciona el método `getConnection()`?
+3. ¿Qué interfaz representa una conexión a la base de datos?
+4. ¿Qué excepción checked tienes que manejar siempre al trabajar con JDBC?
+
+---
+
+## Ejercicio 2: Completa el código — try-with-resources
+
+Completa los tipos que faltan:
 
 ```java
-// Pista:
-String hora = java.time.LocalTime.now().format(
-    java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
-);
-```
+String url = "jdbc:mysql://localhost:3306/instituto";
+String user = "root";
+String pass = "admin123";
 
----
+String sql = "SELECT * FROM alumnos";
 
-## Exercici 2: Pàgina que diu el teu nom
+try (______ con = DriverManager.getConnection(url, user, pass);
+     ______ stmt = con.createStatement();
+     ______ rs = stmt.executeQuery(sql)) {
 
-Afig una ruta `/saludo?nombre=Pepe` que torne una pàgina HTML amb `<h1>¡Hola, Pepe!</h1>`.
+    while (rs.next()) {
+        System.out.println(rs.getString("nombre"));
+    }
 
-Si no es passa nom, que diga `¡Hola, desconocido!`.
-
-> Pista: `e.getRequestURI().getQuery()` et dona `nombre=Pepe`. Divideix per `=` i llest.
-
----
-
-## Exercici 3: Comptador de visites global
-
-Usa una variable `static int visites = 0`. Cada vegada que algú visita `/`, incrementa el comptador i mostra:
-
-```
-Eres el visitante número 47
-```
-
-Què passa si dos persones recarreguen alhora? (spoiler: problemes — però de moment no et preocupes).
-
----
-
-## Exercici 4: Generador d'excuses per a lliuraments tardans
-
-Crea rutes `/excusa` que torne una excusa generada aleatòriament combinant elements de tres arrays:
-
-```java
-String[] subjectes = {"El meu gos", "GitHub", "El plugin d'IntelliJ", "La connexió"};
-String[] verbs     = {"es va menjar", "va esborrar", "va corrompre", "va perdre"};
-String[] objectes  = {"l'examen", "la pràctica", "els apunts", "la meua paciència"};
-```
-
-Exemple: *"GitHub va esborrar la pràctica"*. Torna-ho en HTML amb bona lletra.
-
----
-
-## Exercici 5: Taula de multiplicar personalitzada
-
-Ruta `/tabla?num=7` que genere una taula HTML completa amb la taula de multiplicar del 7 (del 7×1 al 7×10).
-
-Si no es passa número, usa el 5 per defecte. Formata la taula amb `border=1` i colors alterns en les files.
-
----
-
-## Exercici 6: Pàgina d'estat del servidor
-
-Ruta `/estado` que torne un JSON amb esta pinta:
-
-```json
-{
-    "servidor": "ok",
-    "hora": "14:30:01",
-    "visites": 47,
-    "versio": "1.0",
-    "autor": "El teu nom ací"
+} catch (______ e) {  // ¿qué excepción?
+    System.err.println("Error: " + e.getMessage());
 }
 ```
 
-No oblides el `Content-Type: application/json` o el navegador es tornarà tonto.
+---
+
+## Ejercicio 3: ¿Qué imprime? — ResultSet vacío
+
+```java
+try (Connection con = DriverManager.getConnection(url, user, pass);
+     Statement stmt = con.createStatement();
+     ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos WHERE id = 9999")) {
+
+    if (rs.next()) {
+        System.out.println("Encontrado: " + rs.getString("nombre"));
+    } else {
+        System.out.println("No encontrado");
+    }
+}
+```
+
+Si no hay ningún alumno con `id = 9999`, ¿qué imprime? ¿Qué devuelve `rs.next()` la primera vez que se llama?
 
 ---
 
-## Exercici 7: Convertidor d'euros a pessetes (sí, pessetes)
+## Ejercicio 4: Encuentra el error — SQLException sin manejo
 
-Ruta `/conversor?euros=50` que torne HTML amb el resultat: "50 euros son 8319.3 pesetas".
+```java
+public class Test {
+    public static void main(String[] args) {
+        Connection con = DriverManager.getConnection(
+            "jdbc:mysql://localhost:3306/instituto", "root", "admin123");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos");
+        while (rs.next()) {
+            System.out.println(rs.getString("nombre"));
+        }
+    }
+}
+```
 
-1 € = 166.386 pts. Mostra dos decimals.
-
-> Pista: `String.format("%.2f", valor)` per als decimals. Sí, pessetes. Si eres jove, pregunta-li a un vell què era això.
+Este código no compila. ¿Por qué? ¿Qué dos cosas faltan para que funcione?
 
 ---
 
-## 📚 Referències
+## Ejercicio 5: Escribe este programa — mostrar nombres de columnas
 
-- **CodeWars:** [Decode the Morse code](https://www.codewars.com/kata/54b724efac3d5402db00065e) (6 kyu)
-- **AceptaElReto:** [396 - ¿Cuántos días faltan?](https://www.aceptaelreto.com/problem/statement.php?id=396) (⭐⭐)
-- **Documentació Oracle:** [HttpServer](https://docs.oracle.com/en/java/javase/21/docs/api/jdk.httpserver/com/sun/net/httpserver/HttpServer.html)
+Escribe un programa que se conecte a la base de datos y, usando `ResultSetMetaData`, muestre:
+
+1. El número de columnas de la tabla `alumnos`.
+2. El nombre de cada columna.
+3. El tipo de dato de cada columna (usando `getColumnTypeName()`).
+
+Ejemplo de salida:
+```
+La tabla alumnos tiene 4 columnas:
+  id (INT)
+  nombre (VARCHAR)
+  edad (INT)
+  curso (VARCHAR)
+```
+
+---
+
+## Ejercicio 6: ¿Qué imprime? — executeQuery en UPDATE
+
+```java
+Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery("UPDATE alumnos SET edad = 25 WHERE id = 1");
+```
+
+¿Qué ocurre al ejecutar esta línea? ¿Por qué no debes usar `executeQuery()` para un `UPDATE`?
+
+---
+
+## Ejercicio 7: Encuentra el error — PreparedStatement con índices incorrectos
+
+```java
+String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
+PreparedStatement pstmt = con.prepareStatement(sql);
+pstmt.setString(0, "Ana");    // ¿índice correcto?
+pstmt.setInt(1, 22);          // ¿índice correcto?
+pstmt.setString(2, "DAM");    // ¿índice correcto?
+pstmt.executeUpdate();
+```
+
+¿Qué índices son correctos para los `?` en un `PreparedStatement`? ¿En qué número empiezan?
+
+---
+
+## Ejercicio 8: Completa el código — cerrar recursos
+
+```java
+public void listarAlumnos() {
+    // Escribe el código para:
+    // 1. Conectarte a la BD usando try-with-resources
+    // 2. Ejecutar un SELECT * FROM alumnos
+    // 3. Mostrar cada alumno con printf("%d - %s (%d)", id, nombre, edad)
+    // 4. Manejar SQLException
+}
+```
+
+Completa el método. Recuerda que `try-with-resources` cierra automáticamente `Connection`, `Statement` y `ResultSet`.
+
+---
+
+## 🔗 Referències per seguir practicant
+
+- **CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6 kyu)
+- **CodeWars:** [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu)
+- **AceptaElReto.com:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200)

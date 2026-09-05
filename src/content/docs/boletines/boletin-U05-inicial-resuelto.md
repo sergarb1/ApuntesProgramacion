@@ -1,222 +1,228 @@
 ---
-title: Boletín U05 — Inicial (Resuelto)
-description: Los mismos ejercicios básicos del boletín inicial con sus soluciones
+title: Boletín U05 — Inicial Resuelto
+description: Los mismos ejercicios que el boletín inicial, con soluciones
 ---
 
 # 📝 Boletín U05 — Inicial (Resuelto)
 
-> Las soluciones están escondidas detrás de cada 🔄. Primero intenta resolverlos tú; mirar la respuesta antes de intentarlo es como copiar en un examen de magia: el truco se estropea.
+> Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
 
 ---
 
-## Ejercicio 1: El factorial del valiente
+## Ejercicio 1: ¿Qué imprime? — la búsqueda de la gema
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`Posición: 3`**.
+
+Recorrido: `cofre[0] = 12` (no), `cofre[1] = 7` (no), `cofre[2] = 25` (no), `cofre[3] = 9` (¡sí!). Guardamos `posicion = 3` y el `break` corta el bucle. No hace falta seguir buscando: ya está.
+
+</details>
+
+---
+
+## Ejercicio 2: El buscador de tesoros
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class FactorialValiente {
-
-    static long fact(int n) {
-        if (n <= 1) return 1;
-        return n * fact(n - 1);
+public static int buscar(int[] datos, int objetivo) {
+    for (int i = 0; i < datos.length; i++) {
+        if (datos[i] == objetivo) {
+            return i;
+        }
     }
-
-    public static void main(String[] args) {
-        System.out.println("fact(5)  = " + fact(5));   // 120
-        System.out.println("fact(0)  = " + fact(0));   // 1
-        System.out.println("fact(10) = " + fact(10));  // 3628800
-    }
+    return -1;
 }
 ```
 
-Salida: `fact(5) = 120`, `fact(0) = 1`, `fact(10) = 3628800`.
+Si lo encuentra, el `return i` devuelve el índice y corta el método al instante. Solo si el bucle termina entero sin encontrarlo, se ejecuta el `return -1`. Ese `-1` es la contraseña universal del "no encontrado" que usa toda la industria.
 
 </details>
 
 ---
 
-## Ejercicio 2: La abuela suma el array
+## Ejercicio 3: ¿Qué imprime? — la bombolla mínima
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`1 2 3 `**.
+
+Traza de la bombolla sobre `{3, 1, 2}`:
+
+| Pasada | j | Compara | Intercambia | Array |
+|---|---|---|---|---|
+| 1 | 0 | 3 vs 1 | Sí | 1 3 2 |
+| 1 | 1 | 3 vs 2 | Sí | 1 2 3 |
+| 2 | 0 | 1 vs 2 | No | 1 2 3 |
+
+La pasada 2 solo comprueba (el `-1 - i` reduce el recorrido) y confirma que ya está ordenado.
+
+</details>
+
+---
+
+## Ejercicio 4: La caja de zapatos ordenada
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class SumaRecursiva {
+public static void ordenar(int[] datos) {
+    for (int i = 1; i < datos.length; i++) {
+        int clave = datos[i];
+        int j = i - 1;
 
-    static int sumar(int[] arr, int indice) {
-        if (indice == arr.length) return 0;
-        return arr[indice] + sumar(arr, indice + 1);
+        while (j >= 0 && datos[j] > clave) {
+            datos[j + 1] = datos[j];
+            j--;
+        }
+        datos[j + 1] = clave;
     }
+}
 
-    public static void main(String[] args) {
-        int[] datos = {3, 8, 2, 10, 5};
-        System.out.println("Suma: " + sumar(datos, 0));   // 28
-    }
+// En main:
+int[] caja = {9, 2, 7, 1};
+ordenar(caja);
+for (int num : caja) {
+    System.out.print(num + " ");
 }
 ```
 
-Salida: `Suma: 28`. El caso base cuando `indice` se sale del array devuelve 0 (elemento neutro de la suma).
+Salida: `1 2 7 9 `
+
+Sobre `{9, 2, 7, 1}`: el 2 se cuela a la izquierda del 9, el 7 entra entre el 2 y el 9, y el 1 viaja hasta el principio. Cada elemento se inserta en su sitio dentro de la "mano" ya ordenada.
 
 </details>
 
 ---
 
-## Ejercicio 3: ¿Qué imprime? — la cuenta atrás recursiva
-
-<details>
-<summary>🔄 Solución</summary>
-
-```
-3
-2
-1
-¡BOOM!
-```
-
-Imprime 3, 2 y 1 mientras baja recursivamente, y al llegar al caso base (`n == 0`) hace ¡BOOM! y la pila se va desenrollando sin hacer nada más.
-
-</details>
-
----
-
-## Ejercicio 4: La potencia del aprendiz
+## Ejercicio 5: El detective de la búsqueda binaria
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class PotenciaRecursiva {
+public static int busquedaBinaria(int[] datos, int objetivo) {
+    int izquierda = 0;
+    int derecha = datos.length - 1;
 
-    static double potencia(double base, int exponente) {
-        if (exponente == 0) return 1;
-        return base * potencia(base, exponente - 1);
-    }
+    while (izquierda <= derecha) {
+        int medio = izquierda + (derecha - izquierda) / 2;
 
-    public static void main(String[] args) {
-        System.out.println("2^10 = " + potencia(2, 10));   // 1024
-        System.out.println("3^3  = " + potencia(3, 3));    // 27
-        System.out.println("5^0  = " + potencia(5, 0));    // 1
+        if (datos[medio] == objetivo) {
+            return medio;
+        } else if (datos[medio] < objetivo) {
+            izquierda = medio + 1;
+        } else {
+            derecha = medio - 1;
+        }
     }
+    return -1;
 }
 ```
 
-Salida: `2^10 = 1024.0`, `3^3 = 27.0`, `5^0 = 1.0`.
+Para el 23: medio = 4 (16 < 23 → izquierda = 5), medio = 7 (56 > 23 → derecha = 6), medio = 5 (23 → devuelve 5). Para el 30: descarta y descarta hasta que `izquierda` supera a `derecha` y cae el `return -1`. Los `+1`/`-1` son los que garantizan que el segmento siempre se reduce.
 
 </details>
 
 ---
 
-## Ejercicio 5: El detective de dígitos
+## Ejercicio 6: ¿Qué imprime? — la binaria que falla
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`false`**.
+
+El 35 no está en el array. La binaria va descartando mitades: medio = 2 (30 < 35 → izquierda = 3), medio = 4 (50 > 35 → derecha = 3), medio = 3 (40 > 35 → derecha = 2). Ahora `izquierda = 3` > `derecha = 2`, el `while` termina y `encontrado` sigue en `false`. Sin error, sin drama: el "no encontrado" también se comunica.
+
+</details>
+
+---
+
+## Ejercicio 7: El contador de intercambios
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class ContadorDigitos {
-
-    static int contarDigitos(int n) {
-        if (n < 10) return 1;
-        return 1 + contarDigitos(n / 10);
-    }
-
+public class ContadorIntercambios {
     public static void main(String[] args) {
-        System.out.println("12345 tiene " + contarDigitos(12345) + " dígitos");  // 5
-        System.out.println("7 tiene " + contarDigitos(7) + " dígitos");          // 1
+        int[] datos = {5, 2, 9, 1, 5};
+        int intercambios = 0;
+
+        for (int i = 0; i < datos.length - 1; i++) {
+            for (int j = 0; j < datos.length - 1 - i; j++) {
+                if (datos[j] > datos[j + 1]) {
+                    int temp = datos[j];
+                    datos[j] = datos[j + 1];
+                    datos[j + 1] = temp;
+                    intercambios++;
+                }
+            }
+        }
+
+        System.out.println("Intercambios: " + intercambios);
     }
 }
 ```
 
-Salida: `12345 tiene 5 dígitos`, `7 tiene 1 dígito`. Cada llamada arranca la última cifra (`n / 10`) y suma 1.
+Salida: `Intercambios: 5`
+
+Cada vez que el `if` dispara un intercambio, sumamos 1 al contador. Con los dos 5 (repetidos), la bombolla no los intercambia entre sí (porque `5 > 5` es `false`): la comparación estricta mantiene el orden relativo de los iguales. Ordenado: `{1, 2, 5, 5, 9}`.
 
 </details>
 
 ---
 
-## Ejercicio 6: El espejo de letras
+## Ejercicio 8: La nota más alta de la clase
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class InvertirTexto {
+public static int notaMaxima(int[] notas) {
+    int maximo = notas[0];
 
-    static String invertir(String s) {
-        if (s.isEmpty()) return "";
-        return invertir(s.substring(1)) + s.charAt(0);
+    for (int i = 1; i < notas.length; i++) {
+        if (notas[i] > maximo) {
+            maximo = notas[i];
+        }
     }
-
-    public static void main(String[] args) {
-        System.out.println("\"hola\" → " + invertir("hola"));   // aloh
-        System.out.println("\"juan\" → " + invertir("juan"));    // nauj
-    }
+    return maximo;
 }
 ```
 
-Salida: `"hola" → aloh`, `"juan" → nauj`. La llamada recursiva primero invierte el resto y luego concatena el primer carácter al final.
+Inicializamos `maximo` con el primer elemento (no con 0, por si hubiera notas negativas) y comparamos con los demás. Recorrido lineal O(n): un solo bucle. Devuelve 10.
 
 </details>
 
 ---
 
-## Ejercicio 7: ¿Qué imprime? — el enigma del stack
-
-<details>
-<summary>🔄 Solución</summary>
-
-```
-10
-```
-
-Es una **suma de dígitos recursiva**: 4 + 3 + 2 + 1 = 10. En cada llamada, `n % 10` extrae la última cifra y `n / 10` se la quita al número.
-
-</details>
-
----
-
-## Ejercicio 8: El guardián de los palíndromos
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class GuardianPalindromos {
-
-    static boolean esPalindromo(String s, int inicio, int fin) {
-        if (inicio >= fin) return true;
-        if (s.charAt(inicio) != s.charAt(fin)) return false;
-        return esPalindromo(s, inicio + 1, fin - 1);
-    }
-
-    public static void main(String[] args) {
-        System.out.println("reconocer: " + esPalindromo("reconocer", 0, 8));  // true
-        System.out.println("salas:     " + esPalindromo("salas", 0, 4));      // true
-        System.out.println("hola:      " + esPalindromo("hola", 0, 3));       // false
-    }
-}
-```
-
-Salida: `reconocer: true`, `salas: true`, `hola: false`. El truco: comparar las puntas y, si no coinciden, devolver `false` sin seguir gastando stack.
-
-</details>
-
----
-
-## Ejercicio 9: CodeWars — Factorial
+## Ejercicio 9: CodeWars — Find the smallest integer in the array
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
+    public static int findSmallestInt(int[] args) {
+        int minimo = args[0];
 
-    public static long factorial(int n) {
-        if (n <= 1) return 1;
-        return n * factorial(n - 1);
+        for (int i = 1; i < args.length; i++) {
+            if (args[i] < minimo) {
+                minimo = args[i];
+            }
+        }
+        return minimo;
     }
 }
 ```
 
-Con `factorial(5)` → `120` y `factorial(0)` → `1`. El caso base `n <= 1` cubre tanto el 0 como el 1, y el caso recursivo encadena las multiplicaciones.
+El espejo del ejercicio 8: en vez de buscar el máximo, buscamos el mínimo. `args[0]` como valor inicial y un solo recorrido. O(n): no puedes hacerlo más rápido sin mirar cada elemento al menos una vez.
 
 </details>

@@ -1,109 +1,141 @@
 ---
-title: "Boletín 11 - Inicial resuelto: Interfaz Web"
+title: "Butlletí 13 - Inicial Resolt: JDBC - Connexió i Consultes"
+nav_order: 13
 ---
-Los mismos ejercicios con soluciones paso a paso.
+> 💡 Los 5 pasos, bien explicados y con humor.
 
-## Ejercicio 1: Hola Mundo Web
+---
+
+## Ejercicio 1: Los 5 pasos
+
+1. **Cargar el driver** → `Class.forName("com.mysql.cj.jdbc.Driver")` (opcional desde Java 6)
+2. **Establecer conexión** → `DriverManager.getConnection(url, user, pass)` devuelve `Connection`
+3. **Crear Statement** → `con.createStatement()` devuelve `Statement` o `con.prepareStatement(sql)` devuelve `PreparedStatement`
+4. **Ejecutar consulta** → `stmt.executeQuery(sql)` para SELECT o `stmt.executeUpdate(sql)` para INSERT/UPDATE/DELETE
+5. **Procesar resultados** → `rs.next()` + `rs.getXxx("columna")`
+6. **(Bonus) Cerrar todo** → `con.close()`, `stmt.close()`, `rs.close()` (o `try-with-resources`)
+
+> **💡 Explicación:**
+> El paso 1 es opcional desde Java 6 (los drivers JDBC 4.0 se cargan automáticamente si están en el classpath). Pero verás `Class.forName()` en mucho código legacy. No pasa nada si lo pones. El paso 6 es obligatorio: conexiones abiertas = servidor saturado.
+
+---
+
+## Ejercicio 2: Completa la conexión
 
 ```java
-import com.sun.net.httpserver.HttpServer;
-import java.io.OutputStream;
-import java.net.InetSocketAddress;
+String url = "jdbc:mysql://localhost:3306/instituto";
+String user = "root";
+String pass = "admin123";
 
-public class HolaMundoWeb {
-    public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/", e -> {
-            String resp = "Hola Mundo";
-            e.sendResponseHeaders(200, resp.getBytes().length);
-            OutputStream os = e.getResponseBody();
-            os.write(resp.getBytes());
-            os.close();
-        });
-        server.setExecutor(null);
-        server.start();
-        System.out.println("Servidor en http://localhost:8080");
+Connection con = DriverManager.getConnection(url, user, pass);
+Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos");
+
+while (rs.next()) {
+    System.out.println(rs.getString("nombre"));
+}
+
+// ¡Falta cerrar!
+con.close();
+stmt.close();
+rs.close();
+```
+
+> **💡 Explicación:**
+> `Connection`, `Statement`, `ResultSet`. Al final hay que cerrar todo. Mejor con `try-with-resources` para que se cierre automáticamente. Si se te olvida cerrar, la conexión queda abierta hasta que el garbage collector decida visitarte (y no sabe cuándo venir).
+
+---
+
+## Ejercicio 3: ¿Qué imprime?
+
+```java
+try (Connection con = DriverManager.getConnection(url, user, pass);
+     Statement stmt = con.createStatement();
+     ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM alumnos")) {
+
+    if (rs.next()) {
+        System.out.println(rs.getInt(1));  // número total de alumnos
     }
 }
 ```
 
-## Ejercicio 2: Hora del servidor
+> **💡 Explicación:**
+> Imprime el número total de filas en la tabla `alumnos`. `COUNT(*)` devuelve una sola fila con una columna. Como no tiene nombre (o el nombre depende de la BD), accedemos por índice `1` (la primera columna). También funciona `rs.getInt("COUNT(*)")` pero es más feo. `rs.getInt(1)` es la forma estándar cuando hay una columna sin alias.
+
+---
+
+## Ejercicio 4: Encuentra el error
 
 ```java
-server.createContext("/hora", e -> {
-    String resp = java.time.LocalDateTime.now().toString();
-    e.sendResponseHeaders(200, resp.getBytes().length);
-    e.getResponseBody().write(resp.getBytes());
-    e.getResponseBody().close();
-});
-```
-
-## Ejercicio 3: HTML bonito
-
-```java
-server.createContext("/", e -> {
-    String html = """
-        <html><head><meta charset="UTF-8"><title>Mi Web</title>
-        <style>body{background:#e0f7e0;font-family:sans-serif;padding:2em}</style>
-        </head><body><h1>Bienvenido</h1><p>Esto es HTML servido desde Java.</p>
-        </body></html>
-        """;
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
-```
-
-## Ejercicio 4: Saludo personalizado
-
-```java
-server.createContext("/saludo", e -> {
-    String query = e.getRequestURI().getQuery();
-    String nombre = "Mundo";
-    if (query != null && query.startsWith("nombre="))
-        nombre = java.net.URLDecoder.decode(query.split("=")[1], "UTF-8");
-    String html = "<h1>Hola, " + nombre + "!</h1>";
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
-```
-
-## Ejercicio 5: Contador de visitas
-
-```java
-public class ContadorVisitas {
-    static int visitas = 0;
-    public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/", e -> {
-            visitas++;
-            String resp = "Visita #" + visitas;
-            e.sendResponseHeaders(200, resp.getBytes().length);
-            e.getResponseBody().write(resp.getBytes());
-            e.getResponseBody().close();
-        });
-        server.start();
-        System.out.println("http://localhost:8080");
-    }
+public void buscarAlumno(String nombre) {
+    String sql = "SELECT * FROM alumnos WHERE nombre = '" + nombre + "'";
+    // ¡SQL INJECTION!
+    try (Statement stmt = con.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) { ... }
 }
 ```
 
-## Ejercicio 6: Tabla HTML
+> **💡 Explicación:**
+> ¡SQL Injection! Si `nombre` vale `Luis'; DROP TABLE alumnos; --`, la consulta se convierte en:
+> ```sql
+> SELECT * FROM alumnos WHERE nombre = 'Luis'; DROP TABLE alumnos; --'
+> ```
+> Adiós, tabla alumnos. Solución: usar `PreparedStatement`:
 
 ```java
-server.createContext("/tabla", e -> {
-    StringBuilder sb = new StringBuilder("<table border=1>");
-    sb.append("<tr><th>N</th><th>N²</th></tr>");
-    for (int i = 1; i <= 10; i++)
-        sb.append("<tr><td>").append(i).append("</td><td>").append(i*i).append("</td></tr>");
-    sb.append("</table>");
-    String html = "<html><body>" + sb + "</body></html>";
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
+String sql = "SELECT * FROM alumnos WHERE nombre = ?";
+PreparedStatement pstmt = con.prepareStatement(sql);
+pstmt.setString(1, nombre);
+ResultSet rs = pstmt.executeQuery();
 ```
+
+> Nunca, jamás, concatenes SQL con datos de usuario. Es la regla de oro número 1 de JDBC.
+
+---
+
+## Ejercicio 5: INSERT con PreparedStatement
+
+```java
+String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
+
+try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+    pstmt.setString(1, "María");
+    pstmt.setInt(2, 22);
+    pstmt.setString(3, "DAM");
+    int filas = pstmt.executeUpdate();
+    System.out.println("Insertadas " + filas + " filas");
+}
+```
+
+> **💡 Explicación:**
+> `setString`, `setInt`, etc. reemplazan los `?` en orden (empezando en 1). `executeUpdate()` devuelve el número de filas afectadas. Si es 1, todo bien. Si es 0, algo falló (o el INSERT tenía una condición WHERE que no coincidió — cosa rara en INSERT).
+
+---
+
+## Ejercicio 6: ¿Qué hace `executeUpdate()`?
+
+```java
+int filas = stmt.executeUpdate("DELETE FROM alumnos WHERE id = 10");
+System.out.println(filas);
+```
+
+> **💡 Explicación:**
+> `executeUpdate()` devuelve el **número de filas afectadas**. Si el alumno con id=10 existe y se borra, imprime `1`. Si no existe, imprime `0`. No lanza excepción por no encontrar filas — solo devuelve 0. Siempre comprueba el valor devuelto para saber si la operación tuvo efecto.
+
+---
+
+## Ejercicio 7: Diferencia entre executeQuery y executeUpdate
+
+1. Mostrar todos los productos → `executeQuery()` (SELECT)
+2. Borrar un cliente por ID → `executeUpdate()` (DELETE)
+3. Actualizar el precio de un producto → `executeUpdate()` (UPDATE)
+4. Contar cuántos usuarios hay → `executeQuery()` (SELECT COUNT)
+5. Insertar un nuevo pedido → `executeUpdate()` (INSERT)
+
+> **💡 Explicación:**
+> Regla mnemotécnica: si esperas datos de vuelta (filas con columnas), usa `executeQuery()`. Si solo quieres saber cuántas filas se modificaron, usa `executeUpdate()`. Mezclarlos da `SQLException`. Como meter un tenedor en el microondas.
+
+---
+
+> **🔗 CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6kyu)  
+> **🔗 AceptaElReto.com:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200)

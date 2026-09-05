@@ -145,7 +145,7 @@ public class Kata {
 }
 ```
 
-Para `[1, 2, 2]`: 1² + 2² + 2² = 1 + 4 + 4 = 9. Fíjate en que usamos un `for` y un array `n[]`, conceptos que verás con profundidad en la U09.
+Para `[1, 2, 2]`: 1² + 2² + 2² = 1 + 4 + 4 = 9. Fíjate en que usamos un `for` y un array `n[]`, conceptos que verás con profundidad en la U04.
 
 </details>
 

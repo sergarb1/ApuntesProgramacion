@@ -104,7 +104,7 @@ Donat un array d'enters, retorna un array de dos elements: el **nombre de númer
 - [Enunciat en CodeWars](https://www.codewars.com/kata/571effabb625ed9b0600107a)
 - Dificultat: 7 kyu
 
-**Pista:** no cal ni bucles fins que arribes a la U09, però pots declarar `int[] resultat = new int[2];` i usar un bucle `for...each` (ja l'has vist en classe) per a comptar positius i sumar negatius amb `if`. Ací l'important és recordar com accedir als forats d'un array.
+**Pista:** no cal ni bucles fins que arribes a la U04, però pots declarar `int[] resultat = new int[2];` i usar un bucle `for...each` (ja l'has vist en classe) per a comptar positius i sumar negatius amb `if`. Ací l'important és recordar com accedir als forats d'un array.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -132,7 +132,41 @@ public class Kata {
 }
 ```
 
-El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decidix amb operadors relacionals. Un repàs perfecte de la unitat (el `for...each` complet el veuràs en la U09).
+El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decidix amb operadors relacionals. Un repàs perfecte de la unitat (el `for...each` complet el veuràs en la U04).
+
+</details>
+
+---
+
+### 5. Get the Middle Character
+
+Donada una paraula, retorna el caràcter (o els dos caràcters) del centre.
+
+**Exemples:** `"test"` → `"es"`, `"testing"` → `"t"`, `"middle"` → `"dd"`, `"A"` → `"A"`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/56747fd5cb988479af000028)
+- Dificultat: 7 kyu
+
+**Pista:** usa `length()` i `substring()` del punt 9. Si la longitud és parell, retorna els dos caràcters centrals; si és senar, només un.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Kata {
+    public static String getMiddle(String word) {
+        int longitud = word.length();
+        int mig = longitud / 2;
+
+        if (longitud % 2 == 0) {
+            return word.substring(mig - 1, mig + 1);
+        }
+        return word.substring(mig, mig + 1);
+    }
+}
+```
+
+`longitud / 2` et dona el centre. Si la longitud és parell, el centre està repartit entre dos lletres (`"test"` → mig 2 → `substring(1, 3)` = `"es"`); si és senar, el centre és una sola lletra. `%` per a saber si és parell o senar, `length` per a mesurar i `substring` per a tallar: el trio de ferramentes d'esta unitat.
 
 </details>
 
@@ -140,7 +174,7 @@ El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decidix amb operado
 
 ## AceptaElReto
 
-### 5. 148 — Cap d'any
+### 6. 148 — Cap d'any
 
 El 31 de desembre, els més impacients miren el rellotge i conten quants segons falten per a les 12 de la nit. Donat un instant amb format `HH:MM:SS`, calcula els segons que falten per a mitjanit.
 
@@ -201,7 +235,7 @@ Lectura alternativa sense `split`: declarar el `Scanner` amb `useDelimiter("\\s*
 
 ---
 
-### 6. 217 — Quin costat del carrer?
+### 7. 217 — Quin costat del carrer?
 
 En el carrer principal de Donya Lita les cases es distribuïxen en dos costats: els números senars van en un costat i els parells en l'altre. Donat un número de casa, digues en quin costat està.
 

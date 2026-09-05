@@ -1,163 +1,139 @@
 ---
-title: Butlletí U04 — Inicial
-description: "Exercicis bàsics d'Algorísmica: fonaments"
+title: "Butlletí U04 — Inicial"
+description: "Exercicis bàsics d'Arrays"
 ---
 
 # 📝 Butlletí U04 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE i deixa que els teus bucles busquen, ordenen i calculen. L'ordinador mai no es cansa de recórrer un array: eres tu qui decidix com.
+> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer aparcament de dades i fes que el `for-each` deixe de semblar màgia. Cap plaça no naix sabent tindre amo.
 
 ---
 
-## Exercici 1: Què imprimeix? — la cerca de la gema
+## Exercici 1: Què imprimeix? — Array de booleans
+
+```java
+boolean[] flags = new boolean[3];
+flags[1] = true;
+System.out.println(flags[0] + " " + flags[1] + " " + flags[2]);
+```
+
+Què imprimeix? Quin és el valor per defecte d'un `boolean` en un array?
+
+---
+
+## Exercici 2: Troba l'error — NullPointerException
+
+```java
+String[] nombres = new String[3];
+nombres[0] = "Ana";
+nombres[1] = "Bob";
+System.out.println(nombres[2].toUpperCase());
+```
+
+Què ocorre en executar este codi? Per què?
+
+---
+
+## Exercici 3: Completa el codi — for bàsic per a buscar el major
+
+Completa el següent programa perquè trobe i imprimisca el número més gran de l'array:
+
+```java
+int[] numeros = {12, 45, 7, 34, 89, 23};
+int mayor = numeros[0];
+
+for (int i = 1; i < ______; i++) {   // fins on arriba el bucle?
+    if (numeros[i] ______ mayor) {    // quin operador?
+        ______ = numeros[i];          // què assignem?
+    }
+}
+
+System.out.println("El mayor es: " + mayor);
+```
+
+---
+
+## Exercici 4: Escriu este programa — comptar números parells
+
+Crea un array de 10 enters amb valors que tria tu. Recórrel amb un bucle `for` i compta quants d'ells són parells. Al final, imprimeix el total de parells i l'array original amb `Arrays.toString`.
+
+Exemple d'eixida:
+
+```
+Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]
+Pares: 5
+```
+
+Pista: un número és parell si `numeros[i] % 2 == 0`.
+
+---
+
+## Exercici 5: Troba l'error — length vs length()
+
+```java
+int[] numeros = {10, 20, 30};
+String texto = "Hola";
+
+System.out.println(numeros.length());
+System.out.println(texto.length);
+```
+
+Quines línies tenen error? Explica la diferència entre `length` (sense parèntesis) i `length()` (amb parèntesis).
+
+---
+
+## Exercici 6: Què imprimeix? — la suma dels senars
 
 Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-public class CercaGema {
+public class SumaImpares {
     public static void main(String[] args) {
-        int[] cofre = {12, 7, 25, 9, 31};
-        int objectiu = 9;
-        int posicio = -1;
+        int[] datos = {3, 8, 2, 9, 5};
+        int total = 0;
 
-        for (int i = 0; i < cofre.length; i++) {
-            if (cofre[i] == objectiu) {
-                posicio = i;
-                break;
+        for (int n : datos) {
+            if (n % 2 == 1) {
+                total += n;
             }
         }
 
-        System.out.println("Posició: " + posicio);
+        System.out.println(total);
     }
 }
 ```
 
-Pista: recorre l'array mentalment element a element. En quin índex apareix el 9 per primera vegada?
+Pista: el `for-each` recorre tots els valors; només se sumen els que deixen resta 1 en dividir entre 2.
 
 ---
 
-## Exercici 2: El buscador de tresors
+## Exercici 7: Escriu este programa — cerca lineal
 
-Escriu un mètode `public static int buscar(int[] dades, int objectiu)` que recórrega l'array amb un `for` i retorne l'**índex** on apareix l'objectiu. Si no hi és, retorna `-1`.
+Crea un array d'enters anomenat `edades` amb 8 valors. Demana a l'usuari un número pel teclat (amb `Scanner`) i busca si eixe número està a l'array. Imprimeix «Encontrado en posición X» o «No encontrado».
 
-Prova amb `int[] tresors = {4, 8, 15, 16, 23, 42}`:
-
-- `buscar(tresors, 15)` → ha de retornar `2`
-- `buscar(tresors, 7)` → ha de retornar `-1`
-
-Pista: retorna `i` tan bon punt trobes l'objectiu; només després del bucle retornes `-1`.
-
----
-
-## Exercici 3: Què imprimeix? — la bombolla mínima
-
-Sense executar, escriu l'eixida exacta d'este programa:
-
-```java
-public class BombollaMinima {
-    public static void main(String[] args) {
-        int[] dades = {3, 1, 2};
-
-        for (int i = 0; i < dades.length - 1; i++) {
-            for (int j = 0; j < dades.length - 1 - i; j++) {
-                if (dades[j] > dades[j + 1]) {
-                    int temp = dades[j];
-                    dades[j] = dades[j + 1];
-                    dades[j + 1] = temp;
-                }
-            }
-        }
-
-        for (int num : dades) {
-            System.out.print(num + " ");
-        }
-    }
-}
+```
+Introduce edad a buscar: 25
+Encontrado en posición 3
 ```
 
-Pista: fes la traça en un paper. Primera passada: el 3 vs 1, després 3 vs 2. Què queda al final?
+Pista: usa una variable `posicion = -1` com a "no trobat", i `break` tan bon punt el trobes.
 
 ---
 
-## Exercici 4: La capsa de sabates ordenada
+## Exercici 8: Escriu este programa — l'invers
 
-Escriu un mètode `public static void ordenar(int[] dades)` que òrdene l'array **de menor a major** usant l'ordenació per inserció.
+Crea un array de 10 enters, ompli'l amb els números de l'1 al 10 i després imprimeix-lo en **ordre invers** (del 10 a l'1). Fes-ho amb un `for` que recórrega l'array cap arrere.
 
-Prova amb `int[] capsa = {9, 2, 7, 1}` i mostra l'array resultant amb un `for...each`.
-
-Pista: guarda `int clau = dades[i]` i llisca cap a la dreta els elements majors amb un `while`.
+Pista: el bucle va de `length - 1` fins a `0`, baixant amb `i--`.
 
 ---
 
-## Exercici 5: El detectiu de la cerca binària
+## Exercici 9: Escriu este programa — la classe Arrays en acció
 
-Escriu un mètode `public static int cercaBinaria(int[] dades, int objectiu)` que use la cerca binària sobre un array **ja ordenat** i retorne l'índex de l'objectiu (o `-1`).
+Crea l'array `int[] notas = {7, 3, 9, 5, 2, 8}` i fes el següent:
 
-Prova amb `int[] agenda = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}`:
+1. Mostra'l amb `Arrays.toString`.
+2. Ordena amb `Arrays.sort` i mostra'l una altra vegada.
+3. Busca el `8` amb `Arrays.binarySearch` i imprimeix la seua posició.
 
-- `cercaBinaria(agenda, 23)` → ha de retornar `5`
-- `cercaBinaria(agenda, 30)` → ha de retornar `-1`
-
-Pista: dos punters `esquerra = 0` i `dreta = dades.length - 1`, un `while (esquerra <= dreta)` i `int mig = esquerra + (dreta - esquerra) / 2`.
-
----
-
-## Exercici 6: Què imprimeix? — la binària que falla
-
-Sense executar, escriu l'eixida exacta d'este programa:
-
-```java
-public class BinariaQueFalla {
-    public static void main(String[] args) {
-        int[] dades = {10, 20, 30, 40, 50};
-        int objectiu = 35;
-        int esquerra = 0;
-        int dreta = dades.length - 1;
-        boolean trobat = false;
-
-        while (esquerra <= dreta) {
-            int mig = esquerra + (dreta - esquerra) / 2;
-            if (dades[mig] == objectiu) {
-                trobat = true;
-                break;
-            } else if (dades[mig] < objectiu) {
-                esquerra = mig + 1;
-            } else {
-                dreta = mig - 1;
-            }
-        }
-
-        System.out.println(trobat);
-    }
-}
-```
-
-Pista: el 35 no està en l'array. Quin valor té `trobat` al final del bucle?
-
----
-
-## Exercici 7: El comptador d'intercanvis
-
-Escriu un programa anomenat `ComptadorIntercanvis` que use la bombolla per a ordenar `int[] dades = {5, 2, 9, 1, 5}` i **compte quants intercanvis** realitza en total. Al final mostra: `Intercanvis: X`.
-
-Pista: declara `int intercanvis = 0;` i suma-li 1 dins del `if` d'intercanvi, just després de l'operació.
-
----
-
-## Exercici 8: La nota més alta de la classe
-
-Escriu un mètode `public static int notaMaxima(int[] notes)` que recórrega l'array i retorne la nota més alta.
-
-Prova amb `int[] notes = {7, 9, 5, 10, 6, 8, 4}` → ha de retornar `10`.
-
-Pista: usa una variable `maxim` inicialitzada amb el primer element (`notes[0]`) i compara amb cada un.
-
----
-
-## Exercici 9: CodeWars — Find the smallest integer in the array
-
-Resol la kata **"Find the smallest integer in the array"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2).
-
-Crea el mètode `public static int findSmallestInt(int[] args)` que retorne l'enter més menut de l'array.
-
-Pista: és el mateix patró de l'exercici 8: recorre i compara. Ací l'array mai no està buit.
+Pista: `import java.util.Arrays;` al principi, i recorda: `binarySearch` només és fiable si l'array ja està ordenat.

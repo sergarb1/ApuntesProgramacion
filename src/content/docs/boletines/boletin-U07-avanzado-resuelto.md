@@ -5,211 +5,218 @@ description: Los mismos ejercicios que el boletín avanzado, con soluciones
 
 # 📝 Boletín U07 — Avanzado (Resuelto)
 
-> Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
+> Las soluciones están ocultas. Inténtalo de verdad antes de destaparlas.
 
 ---
 
-## ⭐ Ejercicio 1: empleado con validación
+## ⭐ Ejercicio 1: La biblioteca
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Empleado {
-    private String nombre;
-    private double salario;
+public class Libro {
+    String titulo;
+    String autor;
+    int paginas;
 
-    public Empleado(String nombre, double salario) {
-        this.nombre = nombre;
-        setSalario(salario);
+    public Libro(String titulo, String autor, int paginas) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.paginas = paginas;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        if (salario >= 0) {
-            this.salario = salario;
-        } else {
-            System.out.println("Salario inválido.");
-        }
+    void mostrarInfo() {
+        System.out.println(titulo + ", de " + autor + " (" + paginas + " páginas)");
     }
 
     public static void main(String[] args) {
-        Empleado e = new Empleado("Laura", 1500);
-        e.setSalario(-300);
-        System.out.println(e.getNombre() + ": " + e.getSalario());
+        Libro quijote = new Libro("El Quijote", "Miguel de Cervantes", 863);
+        Libro java = new Libro("Java", "Sergi", 100);
+        quijote.mostrarInfo();
+        java.mostrarInfo();
     }
 }
 ```
 
-Salida: `Salario inválido.` y `Laura: 1500.0`. El truco: el constructor llama a `setSalario(salario)`, así la validación vive en un solo sitio y no hay dos copias de la misma regla.
+Tres atributos, tres asignaciones con `this`, un método que los combina. Dos libros, dos objetos, dos salidas independientes.
 
 </details>
 
 ---
 
-## ⭐ Ejercicio 2: Círculo encapsulado
+## ⭐ Ejercicio 2: El rectángulo razonador
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Circulo {
-    private double radio;
+public class Rectangulo {
+    double ancho;
+    double alto;
 
-    public Circulo(double radio) {
-        setRadio(radio);
+    public Rectangulo(double ancho, double alto) {
+        this.ancho = ancho;
+        this.alto = alto;
     }
 
-    public double getRadio() {
-        return radio;
+    double calcularArea() {
+        return ancho * alto;
     }
 
-    public void setRadio(double radio) {
-        if (radio > 0) {
-            this.radio = radio;
-        } else {
-            System.out.println("Radio inválido.");
-        }
+    double calcularPerimetro() {
+        return 2 * (ancho + alto);
     }
 
-    public double getArea() {
-        return Math.PI * radio * radio;
-    }
-
-    public double getPerimetro() {
-        return 2 * Math.PI * radio;
+    boolean esCuadrado() {
+        return ancho == alto;
     }
 
     public static void main(String[] args) {
-        Circulo c = new Circulo(5);
-        System.out.println("Área: " + c.getArea());
-        System.out.println("Perímetro: " + c.getPerimetro());
+        Rectangulo cuadrado = new Rectangulo(4, 4);
+        Rectangulo rectangulo = new Rectangulo(5, 8);
+
+        System.out.println("Cuadrado: área " + cuadrado.calcularArea()
+                + ", perímetro " + cuadrado.calcularPerimetro()
+                + ", ¿es cuadrado? " + cuadrado.esCuadrado());
+        System.out.println("Rectángulo: área " + rectangulo.calcularArea()
+                + ", perímetro " + rectangulo.calcularPerimetro()
+                + ", ¿es cuadrado? " + rectangulo.esCuadrado());
     }
 }
 ```
 
-`getArea()` y `getPerimetro()` son getters "calculados": no devuelven un atributo, sino un valor derivado de él. `Math.PI` es una constante estática, y los métodos los creas tú con `static` cuando conviene. Área del radio 5: ≈ 78.54, perímetro ≈ 31.42.
+Salida:
+
+```
+Cuadrado: área 16.0, perímetro 16.0, ¿es cuadrado? true
+Rectángulo: área 40.0, perímetro 26.0, ¿es cuadrado? false
+```
+
+Tres métodos que *devuelven* valores. Fíjate: `esCuadrado()` convierte una comparación en un booleano de un solo `return`. Objetos que razonan, no solo que muestran.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 3: JavaBean Alumno
+## ⭐ Ejercicio 3: La cuenta bancaria blindada
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Alumno {
-    private String nombre;
-    private int edad;
-    private double notaMedia;
+public class CuentaBancaria {
+    String titular;
+    double saldo;
 
-    public Alumno() {}
-
-    public Alumno(String nombre, int edad, double notaMedia) {
-        this.nombre = nombre;
-        setEdad(edad);
-        setNotaMedia(notaMedia);
+    public CuentaBancaria(String titular, double saldo) {
+        this.titular = titular;
+        this.saldo = saldo;
     }
 
-    public String getNombre() {
-        return nombre;
+    void ingresar(double cantidad) {
+        this.saldo += cantidad;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        if (edad >= 0 && edad <= 120) {
-            this.edad = edad;
+    void retirar(double cantidad) {
+        if (cantidad <= this.saldo) {
+            this.saldo -= cantidad;
         } else {
-            System.out.println("Edad inválida.");
+            System.out.println("Saldo insuficiente");
         }
     }
 
-    public double getNotaMedia() {
-        return notaMedia;
-    }
-
-    public void setNotaMedia(double notaMedia) {
-        if (notaMedia >= 0 && notaMedia <= 10) {
-            this.notaMedia = notaMedia;
-        } else {
-            System.out.println("Nota inválida.");
-        }
+    void mostrar() {
+        System.out.println("Titular: " + titular + " | Saldo: " + saldo + " €");
     }
 
     public static void main(String[] args) {
-        Alumno a = new Alumno("Sara", 18, 7.5);
-        a.setNotaMedia(8.75);
-        System.out.println(a.getNombre() + ": " + a.getNotaMedia());
+        CuentaBancaria cuenta = new CuentaBancaria("Ana", 100);
+        cuenta.retirar(30);
+        cuenta.retirar(200);
+        cuenta.mostrar();
     }
 }
 ```
 
-JavaBean: atributos privados, constructores (vacío y con datos) y getters/setters de todo. Los setters con validación evitan estados imposibles (edad 250, nota 15). El constructor con parámetros reutiliza los setters para no duplicar reglas.
+Salida:
+
+```
+Saldo insuficiente
+Titular: Ana | Saldo: 70 €
+```
+
+El `if` de `retirar` es el guardián: la retirada de 200 € se rechaza porque supera el saldo, y la cuenta nunca queda en negativo. Un objeto que se protege a sí mismo.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 4: hora inmutable
+## ⭐⭐ Ejercicio 4: La hora que se corrige sola
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Hora {
-    private final int hora;
-    private final int minuto;
+    int hora;
+    int minuto;
+    int segundo;
 
-    public Hora(int hora, int minuto) {
-        if (hora < 0 || hora > 23 || minuto < 0 || minuto > 59) {
-            throw new IllegalArgumentException("Hora o minuto inválidos.");
+    public Hora(int hora, int minuto, int segundo) {
+        if (hora < 0 || hora > 23) {
+            hora = 0;
+        }
+        if (minuto < 0 || minuto > 59) {
+            minuto = 0;
+        }
+        if (segundo < 0 || segundo > 59) {
+            segundo = 0;
         }
         this.hora = hora;
         this.minuto = minuto;
+        this.segundo = segundo;
     }
 
-    public int getHora() {
-        return hora;
+    void incrementarSegundo() {
+        segundo++;
+        if (segundo == 60) {
+            segundo = 0;
+            minuto++;
+            if (minuto == 60) {
+                minuto = 0;
+                hora++;
+                if (hora == 24) {
+                    hora = 0;
+                }
+            }
+        }
     }
 
-    public int getMinuto() {
-        return minuto;
-    }
-
-    public String mostrar() {
-        return String.format("%02d:%02d", hora, minuto);
+    void mostrar() {
+        String h = hora < 10 ? "0" + hora : "" + hora;
+        String m = minuto < 10 ? "0" + minuto : "" + minuto;
+        String s = segundo < 10 ? "0" + segundo : "" + segundo;
+        System.out.println(h + ":" + m + ":" + s);
     }
 
     public static void main(String[] args) {
-        Hora h = new Hora(9, 5);
-        System.out.println(h.mostrar());
+        Hora h = new Hora(23, 59, 59);
+        h.incrementarSegundo();
+        h.mostrar();
     }
 }
 ```
 
-Salida: `09:05`. No necesita setters porque es **inmutable**: una vez creada, su valor no cambia jamás (los `final` lo garantizan). Cambiar la hora es crear una `Hora` nueva. El constructor usa `throw` (viste la U03) para los valores imposibles.
+Salida: `00:00:00`
+
+Tres niveles de validación en el constructor y tres acarreos encadenados en `incrementarSegundo()`. De 23:59:59 pasa a 00:00:00: la hora se corrige sola porque cada unidad sabe cuándo resetear y avisar a la siguiente.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 5: ¿Qué imprime? — el puzle de los gatos
+## ⭐⭐ Ejercicio 5: ¿Qué imprime? — el baile de referencias
 
 <details>
 <summary>🔄 Solución</summary>
@@ -217,221 +224,261 @@ Salida: `09:05`. No necesita setters porque es **inmutable**: una vez creada, su
 Imprime:
 
 ```
-Bigotes (7 vidas)
-Garfield (8 vidas)
-Total: 2
+a.x = 10
+c.x = 99
 ```
 
-`Bigotes` pierde 2 vidas (de 9 a 7), `Garfield` pierde 1 (de 9 a 8). `totalGatos` es `static` y sube con cada `new`, así que vale 2. Los `vidas` son de cada gato; el `totalGatos`, de la clase. `toString()` es el método que Java llama al imprimir un objeto con `System.out.println`.
+**Primera parte:** `b = a` copia la *referencia*, no el objeto. `b.x = 10` modifica el mismo objeto que ve `a`, así que `a.x` también es 10.
+
+**Segunda parte:** al llamar a `cambiar(c)`, el parámetro `p` recibe una *copia* de la referencia. `p.x = 99` modifica el objeto original (por eso `c.x` es 99). Pero `p = new Punto(50, 50)` solo reasigna la copia local: el objeto de `c` no cambia y el nuevo `Punto` se pierde al terminar el método. En Java las referencias se pasan por valor.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 6: contador de usuarios
+## ⭐⭐ Ejercicio 6: El correo que se encadena
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Usuario {
-    private static int contador = 0;
-    private int id;
+public class Email {
+    String remitente;
+    String destinatario;
+    String asunto;
 
-    public Usuario() {
-        contador++;
-        id = contador;
+    public Email(String remitente, String destinatario, String asunto) {
+        this.remitente = remitente;
+        this.destinatario = destinatario;
+        this.asunto = asunto;
     }
 
-    public int getId() {
-        return id;
+    public Email(String remitente, String destinatario) {
+        this(remitente, destinatario, "(sin asunto)");
     }
 
-    public static int getTotalUsuarios() {
-        return contador;
+    public Email(String remitente) {
+        this(remitente, "(sin destino)");
+    }
+
+    void mostrar() {
+        System.out.println("De: " + remitente + " | Para: " + destinatario + " | Asunto: " + asunto);
     }
 
     public static void main(String[] args) {
-        Usuario u1 = new Usuario();
-        Usuario u2 = new Usuario();
-        Usuario u3 = new Usuario();
-        Usuario u4 = new Usuario();
-        Usuario u5 = new Usuario();
-        System.out.println("Último id: " + u5.getId());
-        System.out.println("Total: " + Usuario.getTotalUsuarios());
+        Email completo = new Email("ana@gmail.com", "luis@gmail.com", "Tarea Java");
+        Email medio = new Email("ana@gmail.com", "luis@gmail.com");
+        Email corto = new Email("ana@gmail.com");
+
+        completo.mostrar();
+        medio.mostrar();
+        corto.mostrar();
     }
 }
 ```
 
-Salida: `Último id: 5` y `Total: 5`. El patrón "contador + id": `contador` (estático) sube en cada constructor y el objeto se guarda su número como `id`. `getTotalUsuarios()` es `static` porque la pregunta se la haces a la clase, no a un usuario concreto.
+Salida:
+
+```
+De: ana@gmail.com | Para: luis@gmail.com | Asunto: Tarea Java
+De: ana@gmail.com | Para: luis@gmail.com | Asunto: (sin asunto)
+De: ana@gmail.com | Para: (sin destino) | Asunto: (sin asunto)
+```
+
+Los dos constructores cortos delegan en el largo con `this(...)`. La asignación completa se escribe **una sola vez**; los valores por defecto se rellenan en el encadenamiento. Eso es sobrecarga sin duplicar código.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 7: La clase utilitaria OperacionesArray
+## ⭐⭐ Ejercicio 7: La fracción que se simplifica
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class OperacionesArray {
-    private OperacionesArray() {}
+public class Fraccion {
+    int numerador;
+    int denominador;
 
-    public static int suma(int[] numeros) {
-        int suma = 0;
-        for (int numero : numeros) {
-            suma += numero;
+    public Fraccion(int numerador, int denominador) {
+        if (denominador == 0) {
+            denominador = 1;
         }
-        return suma;
+        this.numerador = numerador;
+        this.denominador = denominador;
     }
 
-    public static double media(double[] numeros) {
-        double suma = 0;
-        for (double numero : numeros) {
-            suma += numero;
-        }
-        return numeros.length > 0 ? suma / numeros.length : 0;
+    Fraccion sumar(Fraccion otra) {
+        int num = this.numerador * otra.denominador + otra.numerador * this.denominador;
+        int den = this.denominador * otra.denominador;
+        return new Fraccion(num, den);
     }
 
-    public static int maximo(int[] numeros) {
-        int max = numeros[0];
-        for (int i = 1; i < numeros.length; i++) {
-            if (numeros[i] > max) {
-                max = numeros[i];
-            }
-        }
-        return max;
+    void simplificar() {
+        int mcd = mcd(Math.abs(numerador), Math.abs(denominador));
+        numerador /= mcd;
+        denominador /= mcd;
     }
 
-    public static boolean estaOrdenado(int[] numeros) {
-        for (int i = 1; i < numeros.length; i++) {
-            if (numeros[i] < numeros[i - 1]) {
+    int mcd(int a, int b) {
+        while (b != 0) {
+            int resto = a % b;
+            a = b;
+            b = resto;
+        }
+        return a == 0 ? 1 : a;
+    }
+
+    void mostrar() {
+        System.out.println(numerador + "/" + denominador);
+    }
+
+    public static void main(String[] args) {
+        Fraccion unMedio = new Fraccion(1, 2);
+        Fraccion unTercio = new Fraccion(1, 3);
+        Fraccion suma = unMedio.sumar(unTercio);
+        suma.simplificar();
+        suma.mostrar();
+    }
+}
+```
+
+Salida: `5/6`
+
+`sumar(Fraccion otra)` usa `this` para el primer sumando y `otra.` para el segundo, y devuelve una **fracción nueva** (no toca a ninguna de las dos). `simplificar()` sí modifica el objeto (por eso es `void`). Euclides con módulos encuentra el MCD en pocas vueltas.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: CodeWars — Building blocks
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Block {
+    private int width;
+    private int length;
+    private int height;
+
+    public Block(int[] dimensions) {
+        this.width = dimensions[0];
+        this.length = dimensions[1];
+        this.height = dimensions[2];
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getVolume() {
+        return width * length * height;
+    }
+
+    public int getSurfaceArea() {
+        return 2 * (width * length + width * height + length * height);
+    }
+
+    public static void main(String[] args) {
+        Block bloque = new Block(new int[]{2, 4, 6});
+        System.out.println("Volumen: " + bloque.getVolume());
+        System.out.println("Superficie: " + bloque.getSurfaceArea());
+    }
+}
+```
+
+Salida:
+
+```
+Volumen: 48
+Superficie: 88
+```
+
+Los getters devuelven cada atributo, y los dos métodos calculados combinan los tres. La superficie es cada par de caras multiplicado y sumado, todo por dos. La kata acepta también tres enteros por separado en el constructor.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Kaprekar {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int casos = sc.nextInt();
+
+        for (int i = 0; i < casos; i++) {
+            int numero = sc.nextInt();
+            System.out.println(iteraciones(numero));
+        }
+        sc.close();
+    }
+
+    static int iteraciones(int numero) {
+        if (numero == 6174) {
+            return 0;
+        }
+        if (esRepdigit(numero)) {
+            return 8;
+        }
+
+        int vueltas = 0;
+        int actual = numero;
+        while (actual != 6174) {
+            actual = pasoKaprekar(actual);
+            vueltas++;
+        }
+        return vueltas;
+    }
+
+    static boolean esRepdigit(int numero) {
+        String s = String.format("%04d", numero);
+        char primera = s.charAt(0);
+        for (char c : s.toCharArray()) {
+            if (c != primera) {
                 return false;
             }
         }
         return true;
     }
 
-    public static void main(String[] args) {
-        System.out.println("Suma: " + OperacionesArray.suma(new int[]{3, 1, 4, 1, 5}));
-        System.out.println("Máximo: " + OperacionesArray.maximo(new int[]{3, 1, 4, 1, 5}));
-        System.out.println("Ordenado: " + OperacionesArray.estaOrdenado(new int[]{1, 2, 3}));
+    static int pasoKaprekar(int numero) {
+        String s = String.format("%04d", numero);
+        char[] asc = s.toCharArray();
+        Arrays.sort(asc);
+        char[] desc = new char[4];
+        for (int i = 0; i < 4; i++) {
+            desc[i] = asc[3 - i];
+        }
+
+        int mayor = Integer.parseInt(new String(desc));
+        int menor = Integer.parseInt(new String(asc));
+        return mayor - menor;
     }
 }
 ```
 
-Constructor privado + todo `static` = clase utilitaria, como `Math`. `estaOrdenado` devuelve `false` en cuanto encuentra una pareja fuera de orden (`return` temprano). El `for...each` de la U09 se puede usar ya: recorre sin índice.
+Para 3524, el `while` da: 3524 → 3087 → 8352 → 6174, tres vueltas. `%04d` rellena con ceros a la izquierda (necesario para números como 3087). `esRepdigit` devuelve `false` en cuanto encuentra un dígito distinto. Este es un problema estupendo para probar tu clase `Numero` con métodos separados.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: validador de datos
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Validador {
-    private Validador() {}
-
-    public static boolean esEmailValido(String email) {
-        if (email == null) {
-            return false;
-        }
-        int arroba = email.indexOf('@');
-        if (arroba < 1) {
-            return false;
-        }
-        if (email.indexOf('@', arroba + 1) != -1) {
-            return false;
-        }
-        return email.indexOf('.', arroba + 1) != -1;
-    }
-
-    public static boolean esEdadValida(int edad) {
-        return edad >= 0 && edad <= 120;
-    }
-
-    public static boolean esTextoNoVacio(String texto) {
-        return texto != null && !texto.trim().isEmpty();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Validador.esEmailValido("ana@mail.com"));
-        System.out.println(Validador.esEmailValido("ana@"));
-        System.out.println(Validador.esEdadValida(-5));
-        System.out.println(Validador.esEdadValida(200));
-        System.out.println(Validador.esTextoNoVacio("  "));
-    }
-}
-```
-
-Salida: `true`, `false`, `false`, `false`, `false`. `esEmailValido` exige: algo antes de la `@`, una sola `@`, y un `.` después. `indexOf('@', pos)` busca desde `pos` en adelante. Cada condición fallida sale con `false` al instante: sin `else` encadenados.
-
-</details>
-
----
-
-## ⭐⭐⭐ Ejercicio 9: El gran reto — refactoriza el banco
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class CuentaBancaria {
-    public static final String NOMBRE_BANCO = "Banco DAM";
-
-    private String titular;
-    private double saldo;
-
-    public CuentaBancaria(String titular, double saldo) {
-        this.titular = titular;
-        if (saldo >= 0) {
-            this.saldo = saldo;
-        } else {
-            System.out.println("Saldo inicial inválido.");
-        }
-    }
-
-    public String getTitular() {
-        return titular;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void retirar(double cantidad) {
-        if (cantidad <= 0) {
-            System.out.println("Cantidad inválida.");
-            return;
-        }
-        if (cantidad > saldo) {
-            System.out.println("Saldo insuficiente.");
-            return;
-        }
-        saldo = saldo - cantidad;
-    }
-
-    public void ingresar(double cantidad) {
-        if (cantidad <= 0) {
-            System.out.println("Cantidad inválida.");
-            return;
-        }
-        saldo = saldo + cantidad;
-    }
-
-    public static void main(String[] args) {
-        CuentaBancaria cuenta = new CuentaBancaria("Ana", 100);
-        cuenta.ingresar(50);
-        cuenta.retirar(400);
-        System.out.println("Saldo: " + cuenta.getSaldo());
-    }
-}
-```
-
-Salida: `Saldo insuficiente.` y `Saldo: 150.0`. El constructor corregido usa `this` (el bug original asignaba el parámetro a sí mismo). Sin setter de saldo, solo `ingresar` y `retirar` pueden tocarlo, y ambas validan. La constante da identidad al banco. La cuenta ya no puede quedar en negativo ni en valores arbitrarios.
-
-</details>
+> 📚 **¿Quieres más?** Revisa el boletín de **extras** de esta unidad: tiene cuatro katas de CodeWars (incluida una de depuración de una clase) y dos problemas de AceptaElReto.

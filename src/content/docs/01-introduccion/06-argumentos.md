@@ -25,7 +25,7 @@ Recuerda la firma del `main`:
 public static void main(String[] args)
 ```
 
-`String[] args` significa: "un array de cadenas de texto llamado `args`". Un array es una lista de cosas (los verás a fondo en la U09). Aquí, la lista contiene **cada palabra que escribiste después del nombre de la clase al ejecutar**.
+`String[] args` significa: "un array de cadenas de texto llamado `args`". Un array es una lista de cosas (los verás a fondo en la U04). Aquí, la lista contiene **cada palabra que escribiste después del nombre de la clase al ejecutar**.
 
 ```java
 public class UsoDeArgumentos {

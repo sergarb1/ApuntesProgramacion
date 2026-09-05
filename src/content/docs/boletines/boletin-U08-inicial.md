@@ -1,210 +1,151 @@
 ---
 title: Boletín U08 — Inicial
-description: Ejercicios básicos de Herencia, Polimorfismo e Interfaces
+description: Ejercicios básicos de Visibilidad, Encapsulación y Static
 ---
 
 # 📝 Boletín U08 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, dale la mano a tu primera superclase y haz que `extends` deje de parecer magia. La herencia en Java es como la de verdad: a veces te llevas genial con las subclases, a veces quieres renegar de todo. Pero nadie nace sabiendo usar `super`.
+> Sin soluciones. Sin prisas. Abre el IDE, ponle cadenato a tu primera clase y haz que el `static` deje de parecer magia. Ningún atributo nace sabiendo ser `private`.
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — La familia musical
+## Ejercicio 1: La casa de cristal
+
+Esta clase es una casa de cristal: todo el mundo puede entrar y tocar lo que quiera.
 
 ```java
-class Musico {
-    void tocar() { System.out.println("El músico toca un instrumento"); }
+public class Persona {
+    public String nombre;
+    public int edad;
 }
+```
 
-class Guitarrista extends Musico {
-    void tocar() { System.out.println("El guitarrista toca la guitarra"); }
+Convierte los atributos en `private` y añade getters y setters para `nombre` y `edad`. Escribe también un `main` que cree una `Persona`, le ponga "Ana" y 25 años usando los setters, y luego muestre los valores con los getters.
+
+---
+
+## Ejercicio 2: El coche del vecindario
+
+Parte de esta clase:
+
+```java
+public class Coche {
+    private String marca;
+    private double velocidad;
+
+    public Coche(String marca) {
+        this.marca = marca;
+        this.velocidad = 0;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
 }
+```
 
-class Bajista extends Guitarrista {
-    void tocar() { System.out.println("El bajista toca el bajo"); }
+Añade `getVelocidad()` y un `setVelocidad(double velocidad)` que **rechace** las velocidades negativas y las superiores a 200 (mostrando "Velocidad inválida."). Escribe un `main` que cree un coche "Seat" e intente ponerle -50 y luego 120.
+
+---
+
+## Ejercicio 3: El termómetro con cerebro
+
+Escribe una clase `Termometro` con:
+
+- Atributo `private double temperatura`.
+- Constructor que inicialice la temperatura a 20.0.
+- Getter `getTemperatura()`.
+- Setter `setTemperatura(double temperatura)` que **solo** acepte valores entre -273.15 y 100.0. Si el valor no es válido, muestra "Temperatura fuera de rango.".
+
+En un `main`, crea un termómetro, ponle -500 (debe rechazarse) y luego 36.5, y muestra la temperatura final.
+
+---
+
+## Ejercicio 4: getter sin setter
+
+Esta clase representa la configuración de una app: el idioma se elige al crearla y **no debe poder cambiarse después**.
+
+```java
+public class Configuracion {
+    private String idioma;
+
+    public Configuracion(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
 }
+```
 
-public class Banda {
+Fíjate: tiene getter pero **no** setter. Escribe un `main` que cree una configuración con "es" y muestre el idioma. Responde: ¿por qué no tiene setter? ¿Qué le pasaría a un usuario que intentase hacer `config.idioma = "va"` desde fuera?
+
+---
+
+## Ejercicio 5: El contador de la clase
+
+Escribe una clase `Contador` con:
+
+- Atributo `public static int total = 0;`.
+- Un constructor que incremente `total` en 1 cada vez que se crea un objeto.
+
+En un `main`, crea 3 objetos `Contador` y muestra `Contador.total`. Responde: ¿cuánto vale `total` y por qué no es 1?
+
+---
+
+## Ejercicio 6: La calculadora sin pilas
+
+Escribe una clase `Utilidades` con dos métodos **estáticos**: `sumar(int a, int b)` y `restar(int a, int b)`. En un `main`, usa ambos métodos **sin crear ningún objeto** (usa el nombre de la clase) y muestra los resultados de `sumar(5, 3)` y `restar(10, 4)`.
+
+Pista: `int resultado = Utilidades.sumar(5, 3);`
+
+---
+
+## Ejercicio 7: las constantes del barrio
+
+Escribe una clase `Constantes` que contenga:
+
+- `public static final double IVA = 0.21;`
+- `public static final int MAX_INTENTOS_LOGIN = 3;`
+- `public static final String NOMBRE_APP = "GestionCurso";`
+
+En un `main`, muestra las tres constantes. Después, intenta hacer `Constantes.IVA = 0.5;` y responde: ¿qué ocurre al compilar?
+
+---
+
+## Ejercicio 8: ¿Qué imprime? — el puzle estático
+
+Sin ejecutar, escribe la salida exacta de este programa:
+
+```java
+public class Puzle {
+    static int s = 0;
+    int i = 0;
+
+    public Puzle() {
+        s++;
+        i = s;
+    }
+
     public static void main(String[] args) {
-        Bajista b = new Bajista();
-        b.tocar();
+        Puzle p1 = new Puzle();
+        Puzle p2 = new Puzle();
+        System.out.println(p1.i + " " + p2.i + " " + Puzle.s);
     }
 }
 ```
 
-¿Qué imprime? ¿Por qué?
+Pista: `s` es de la clase (una sola copia compartida); `i` es de cada objeto y se copia del valor de `s` en el momento de nacer.
 
 ---
 
-## Ejercicio 2: Encuentra el error — extends mal usado
+## Ejercicio 9: CodeWars — Square(n) Sum
 
-```java
-public class Animal {
-    private String especie;
+Resuelve la kata **"Square(n) Sum"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/515e271a311df0350d00000f).
 
-    public Animal(String especie) {
-        this.especie = especie;
-    }
-}
+Completa el método `public static int squareSum(int[] n)` que reciba un array de enteros y devuelva la suma de los cuadrados de cada número.
 
-public class Perro extends Animal {
-    private String raza;
+**Ejemplo:** `[1, 2, 2]` → `1 + 4 + 4 = 9`.
 
-    public Perro(String raza) {
-        this.raza = raza;
-    }
-}
-```
-
-Este código **no compila**. ¿Por qué? Explica el error y corrígelo.
-
----
-
-## Ejercicio 3: Completa el código — el gato que llama a su padre
-
-```java
-public class Animal {
-    public void hacerSonido() {
-        System.out.println("Algún sonido genérico...");
-    }
-}
-
-public class Gato extends Animal {
-    @Override
-    public void hacerSonido() {
-        ________.hacerSonido();   // primero lo del padre
-        System.out.println("¡MIAU!");
-    }
-}
-```
-
-¿Qué palabra falta en el hueco para que `Gato` primero ejecute el sonido de `Animal` y después su "¡MIAU!"? Escribe además un `main` que cree un `Gato` y llame a `hacerSonido()`.
-
----
-
-## Ejercicio 4: Escribe este programa — la herencia de vehículos
-
-Crea una jerarquía de 3 niveles usando `extends`:
-
-- `Vehiculo` (atributo: `String marca`)
-- `Coche` (atributo: `int numPuertas`)
-- `Deportivo` (atributo: `int velocidadMaxima`)
-
-Cada clase debe tener un constructor que reciba sus atributos y use `super`. En `main()`, crea un `Deportivo` de marca "Ferrari", 2 puertas y 340 km/h. Imprime sus atributos.
-
----
-
-## Ejercicio 5: ¿Qué imprime? — polimorfismo con referencias
-
-```java
-class X {
-    void mensaje() { System.out.println("X"); }
-}
-
-class Y extends X {
-    void mensaje() { System.out.println("Y"); }
-}
-
-class Z extends Y { }
-
-public class Test {
-    public static void main(String[] args) {
-        X ref1 = new Y();
-        X ref2 = new Z();
-        Y ref3 = new Z();
-
-        ref1.mensaje();
-        ref2.mensaje();
-        ref3.mensaje();
-    }
-}
-```
-
-¿Qué imprime cada llamada? ¿Por qué el tipo de la referencia no decide nada?
-
----
-
-## Ejercicio 6: Escribe este programa — la granja polimórfica
-
-Crea una clase `Animal` con método `hacerSonido()`. Crea `Vaca`, `Oveja` y `Gallina` que lo sobrescriban. En `main()`, crea un `ArrayList<Animal>`, mete una vaca, una oveja y una gallina, recórrelo con un for-each llamando a `hacerSonido()`.
-
-```java
-// Salida esperada:
-// Muuuu
-// Beeee
-// Cloc cloc
-```
-
----
-
-## Ejercicio 7: Encuentra el error — @Override que no lo es
-
-```java
-public class Animal {
-    public void hacerSonido() {
-        System.out.println("...");
-    }
-}
-
-public class Pez extends Animal {
-    @Override
-    public void hacerSonido() { }   // ¿compila?
-
-    @Override
-    public void nadar() { }         // ¿compila?
-}
-```
-
-Una de las dos líneas con `@Override` impide compilar. ¿Cuál y por qué? ¿Qué te avisa el compilador en el instante en que escribes esa línea?
-
----
-
-## Ejercicio 8: Escribe este programa — el perro bien heredado
-
-Parte de esta clase base:
-
-```java
-public class Animal {
-    protected String nombre;
-    protected int edad;
-
-    public Animal(String nombre, int edad) {
-        this.nombre = nombre;
-        this.edad = edad;
-    }
-}
-```
-
-Escribe una clase `Perro extends Animal` con:
-
-- Constructor que use `super(nombre, edad)`.
-- Método `ladrar()` que imprima `nombre + " dice: ¡Guau!"`.
-- Un `main` que cree un `Perro("Firulais", 3)` y llame a `ladrar()`.
-
-Responde: ¿por qué `Perro` puede usar `nombre` y `edad` aunque no las declare?
-
----
-
-## Ejercicio 9: ¿Qué imprime? — la cadena de constructores
-
-```java
-class Abuelo {
-    public Abuelo() { System.out.println("Abuelo"); }
-}
-
-class Padre extends Abuelo {
-    public Padre() { System.out.println("Padre"); }
-}
-
-class Hijo extends Padre {
-    public Hijo() { System.out.println("Hijo"); }
-}
-
-public class Test {
-    public static void main(String[] args) {
-        new Hijo();
-    }
-}
-```
-
-¿Qué imprime y por qué en ese orden?
+Pista: usa un `for` que acumule `n[i] * n[i]`. Los arrays se recorren con la U04, pero ya puedes usar el índice.

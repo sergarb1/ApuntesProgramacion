@@ -1,6 +1,6 @@
 ---
-title: "Boletín U09 — Avanzado Resuelto"
-description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
+title: Boletín U09 — Avanzado Resuelto
+description: Los mismos ejercicios que el boletín avanzado, con soluciones
 ---
 
 # 📝 Boletín U09 — Avanzado (Resuelto)
@@ -9,385 +9,731 @@ description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 
 ---
 
-## ⭐ Ejercicio 1: La fusión de arrays ordenados
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Fusion {
-    public static int[] fusionarArrays(int[] a, int[] b) {
-        int[] resultado = new int[a.length + b.length];
-        int i = 0, j = 0, k = 0;
-
-        while (i < a.length && j < b.length) {
-            if (a[i] < b[j]) {
-                resultado[k++] = a[i++];
-            } else {
-                resultado[k++] = b[j++];
-            }
-        }
-
-        while (i < a.length) {
-            resultado[k++] = a[i++];
-        }
-        while (j < b.length) {
-            resultado[k++] = b[j++];
-        }
-
-        return resultado;
-    }
-
-    public static void main(String[] args) {
-        int[] a = {1, 3, 5};
-        int[] b = {2, 4, 6};
-        int[] r = fusionarArrays(a, b);
-        System.out.println(java.util.Arrays.toString(r)); // [1, 2, 3, 4, 5, 6]
-    }
-}
-```
-
-Dos punteros (`i` y `j`) avanzan por cada array comparando en cada paso. El menor de los dos se coloca en el resultado. Cuando un array se agota, se copia el resto del otro. Es el mismo algoritmo que usa `merge` en el mergesort de la U05.
-
-</details>
-
----
-
-## ⭐ Ejercicio 2: Rotación circular a la derecha
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Rotar {
-    public static void rotarDerecha(int[] arr, int k) {
-        int n = arr.length;
-        if (n == 0) return;
-        k = k % n; // si k >= n, sobra dar vueltas completas
-
-        int[] guardados = new int[k];
-        for (int i = 0; i < k; i++) {
-            guardados[i] = arr[n - k + i]; // los últimos k
-        }
-        for (int i = n - 1; i >= k; i--) {
-            arr[i] = arr[i - k];           // desplaza el resto a la derecha
-        }
-        for (int i = 0; i < k; i++) {
-            arr[i] = guardados[i];         // los guardados al principio
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
-        rotarDerecha(arr, 2);
-        System.out.println(Arrays.toString(arr)); // [4, 5, 1, 2, 3]
-    }
-}
-```
-
-Con `{1,2,3,4,5}` y `k = 2`: guardas `{4,5}`, desplazas `{1,2,3}` a las posiciones 2, 3, 4 y colocas `{4,5}` al principio. El `k % n` evita dar vueltas completas inútiles si `k` es mayor que el tamaño.
-
-</details>
-
----
-
-## ⭐ Ejercicio 3: Suma de diagonales (matriz cuadrada)
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Diagonales {
-    public static void main(String[] args) {
-        int n = 5;
-        int[][] matriz = new int[n][n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matriz[i][j] = (int) (Math.random() * 100) + 1;
-            }
-        }
-
-        int diagPrincipal = 0;
-        int diagSecundaria = 0;
-        for (int i = 0; i < n; i++) {
-            diagPrincipal += matriz[i][i];
-            diagSecundaria += matriz[i][n - 1 - i];
-        }
-
-        int diferencia = Math.abs(diagPrincipal - diagSecundaria);
-        System.out.println("Principal: " + diagPrincipal);
-        System.out.println("Secundaria: " + diagSecundaria);
-        System.out.println("Diferencia: " + diferencia);
-    }
-}
-```
-
-En la diagonal principal, `fila == columna` (`matriz[i][i]`). En la secundaria, la columna es la "espejo": `n - 1 - i`. Un solo bucle recorre ambas a la vez. `Math.abs` da la diferencia absoluta, sin signo.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 4: La cola del supermercado con LinkedList
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.LinkedList;
-import java.util.Scanner;
-
-public class ColaSupermercado {
-    public static void main(String[] args) {
-        LinkedList<String> cola = new LinkedList<>();
-        Scanner sc = new Scanner(System.in);
-        int opcion;
-
-        do {
-            System.out.println("\n1. Llega cliente  2. Atender cliente  3. ¿Quién sigue?  4. Estado  0. Salir");
-            opcion = sc.nextInt();
-            sc.nextLine();
-
-            switch (opcion) {
-                case 1:
-                    System.out.print("Nombre del cliente: ");
-                    cola.addLast(sc.nextLine());
-                    break;
-                case 2:
-                    if (!cola.isEmpty()) {
-                        System.out.println("Atendiendo a: " + cola.removeFirst());
-                    } else {
-                        System.out.println("No hay nadie en la cola.");
-                    }
-                    break;
-                case 3:
-                    if (!cola.isEmpty()) {
-                        System.out.println("El siguiente es: " + cola.getFirst());
-                    } else {
-                        System.out.println("No hay nadie en la cola.");
-                    }
-                    break;
-                case 4:
-                    System.out.println("Cola: " + cola);
-                    break;
-            }
-        } while (opcion != 0);
-
-        sc.close();
-    }
-}
-```
-
-`addLast` mete al final (los clientes se ponen detrás), `removeFirst` atiende al primero (FIFO) y `getFirst` lo mira sin sacarlo. El `isEmpty()` evita el error de pedirle el primero a una cola vacía.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 5: Intersección y unión de conjuntos
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.HashSet;
-import java.util.Set;
-
-public class Conjuntos {
-    public static void main(String[] args) {
-        Set<Integer> a = new HashSet<>();
-        Set<Integer> b = new HashSet<>();
-
-        while (a.size() < 8) a.add((int) (Math.random() * 20) + 1);
-        while (b.size() < 8) b.add((int) (Math.random() * 20) + 1);
-
-        Set<Integer> interseccion = new HashSet<>(a);
-        interseccion.retainAll(b);
-
-        Set<Integer> union = new HashSet<>(a);
-        union.addAll(b);
-
-        Set<Integer> difSimetrica = new HashSet<>(union);
-        difSimetrica.removeAll(interseccion);
-
-        System.out.println("A: " + a);
-        System.out.println("B: " + b);
-        System.out.println("Intersección: " + interseccion);
-        System.out.println("Unión: " + union);
-        System.out.println("Diferencia simétrica: " + difSimetrica);
-    }
-}
-```
-
-La magia son los tres métodos de `Set`: `retainAll` deja solo lo común, `addAll` une sin duplicados y `removeAll` quita la intersección de la unión para dejar lo que está solo en uno de los dos. Como `HashSet` no admite duplicados, la unión sale limpia sola.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 6: Eliminar duplicados manteniendo el orden
+## ⭐ Ejercicio 1: Interfaz FiguraGeometrica
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
-public class SinDuplicados {
-    public static ArrayList<Integer> sinDuplicados(ArrayList<Integer> lista) {
-        LinkedHashSet<Integer> set = new LinkedHashSet<>(lista);
-        return new ArrayList<>(set);
+public interface FiguraGeometrica {
+    double calcularArea();
+    double calcularPerimetro();
+}
+
+class Circulo implements FiguraGeometrica {
+    private double radio;
+
+    public Circulo(double radio) {
+        this.radio = radio;
     }
 
+    @Override
+    public double calcularArea() {
+        return Math.PI * radio * radio;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * Math.PI * radio;
+    }
+}
+
+class Rectangulo implements FiguraGeometrica {
+    private double ancho, alto;
+
+    public Rectangulo(double ancho, double alto) {
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ancho * alto;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * (ancho + alto);
+    }
+}
+
+class TrianguloRectangulo implements FiguraGeometrica {
+    private double base, altura;
+
+    public TrianguloRectangulo(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    @Override
+    public double calcularArea() {
+        return base * altura / 2;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        double hipotenusa = Math.sqrt(base * base + altura * altura);
+        return base + altura + hipotenusa;
+    }
+}
+
+public class TestFiguras {
     public static void main(String[] args) {
-        ArrayList<Integer> lista = new ArrayList<>();
-        for (int n : new int[]{3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5}) {
-            lista.add(n);
+        ArrayList<FiguraGeometrica> figuras = new ArrayList<>();
+        figuras.add(new Circulo(5));
+        figuras.add(new Rectangulo(4, 3));
+        figuras.add(new TrianguloRectangulo(3, 4));
+
+        for (FiguraGeometrica f : figuras) {
+            System.out.println("Área: " + f.calcularArea()
+                    + ", perímetro: " + f.calcularPerimetro());
         }
-        System.out.println(sinDuplicados(lista)); // [3, 1, 4, 5, 9, 2, 6]
     }
 }
 ```
 
-`LinkedHashSet` es la combinación perfecta: elimina duplicados (como `HashSet`) pero conserva el orden de inserción (como una lista). Se construye pasándole la lista y se vuelve a convertir en `ArrayList`. Resultado: `[3, 1, 4, 5, 9, 2, 6]`, sin repetidos y en orden de primera aparición.
+La interfaz es el contrato: `ArrayList<FiguraGeometrica>` acepta cualquier clase que firme el contrato, y cada una calcula su área y su perímetro a su manera. Polimorfismo con interfaces en estado puro.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 7: ¿Qué imprime? — el remove que rompe el baile
+## ⭐ Ejercicio 2: Jerarquía de Empleados
 
 <details>
 <summary>🔄 Solución</summary>
 
-Lanza una **`ConcurrentModificationException`**.
+```java
+public class Empleado {
+    protected String nombre;
+    protected double salarioBase;
 
-El `for-each` usa un `Iterator` por debajo. Cuando dentro del bucle llamas a `palabras.remove(p)`, la lista cambia mientras el iterador la está recorriendo. El iterador detecta la modificación externa y explota. La solución es recorrer con un `Iterator` explícito y usar `it.remove()`. O construir una nueva lista con los elementos que quieres conservar.
+    public Empleado(String nombre, double salarioBase) {
+        this.nombre = nombre;
+        this.salarioBase = salarioBase;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double calcularSalario() {
+        return salarioBase;
+    }
+}
+
+class Gerente extends Empleado {
+    private double bono;
+
+    public Gerente(String nombre, double salarioBase, double bono) {
+        super(nombre, salarioBase);
+        this.bono = bono;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return salarioBase + bono;
+    }
+}
+
+class Vendedor extends Empleado {
+    private double comision;
+    private int ventasRealizadas;
+
+    public Vendedor(String nombre, double salarioBase,
+                    double comision, int ventasRealizadas) {
+        super(nombre, salarioBase);
+        this.comision = comision;
+        this.ventasRealizadas = ventasRealizadas;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return salarioBase + comision * ventasRealizadas;
+    }
+}
+
+public class Nomina {
+    public static void main(String[] args) {
+        Empleado[] plantilla = {
+            new Gerente("Ana", 2000, 500),
+            new Vendedor("Luis", 1200, 20, 15)
+        };
+
+        for (Empleado e : plantilla) {
+            System.out.println(e.getNombre() + " cobra "
+                    + e.calcularSalario() + " €");
+        }
+    }
+}
+```
+
+El array es de `Empleado`, pero cada objeto ejecuta su propio `calcularSalario()`: el gerente con bono, el vendedor con comisiones. `protected` permite que las subclases lean `salarioBase` sin necesidad de un getter.
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 3: Sistema de pagos con interfaz
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public interface Pagable {
+    boolean procesarPago(double cantidad);
+}
+
+class TarjetaCredito implements Pagable {
+    private double limite;
+    private double saldoUsado;
+
+    public TarjetaCredito(double limite, double saldoUsado) {
+        this.limite = limite;
+        this.saldoUsado = saldoUsado;
+    }
+
+    @Override
+    public boolean procesarPago(double cantidad) {
+        if (cantidad + saldoUsado <= limite) {
+            saldoUsado += cantidad;
+            return true;
+        }
+        return false;
+    }
+}
+
+class PayPal implements Pagable {
+    private double saldo;
+
+    public PayPal(double saldo) {
+        this.saldo = saldo;
+    }
+
+    @Override
+    public boolean procesarPago(double cantidad) {
+        if (cantidad <= saldo) {
+            saldo -= cantidad;
+            return true;
+        }
+        return false;
+    }
+}
+
+class TransferenciaBancaria implements Pagable {
+    private double saldo;
+
+    public TransferenciaBancaria(double saldo) {
+        this.saldo = saldo;
+    }
+
+    @Override
+    public boolean procesarPago(double cantidad) {
+        if (cantidad + 1 <= saldo) {
+            saldo -= (cantidad + 1);
+            return true;
+        }
+        return false;
+    }
+}
+
+public class TestPagos {
+    public static void main(String[] args) {
+        Pagable tarjeta = new TarjetaCredito(1000, 0);
+        System.out.println(tarjeta.procesarPago(500));  // true
+        System.out.println(tarjeta.procesarPago(600));  // false
+
+        Pagable paypal = new PayPal(200);
+        System.out.println(paypal.procesarPago(150));   // true
+        System.out.println(paypal.procesarPago(100));   // false
+    }
+}
+```
+
+Tres formas de pagar, un solo contrato. Cada clase guarda su lógica de aprobación y su saldo interno: la interfaz solo exige el método. La transferencia descuenta además su comisión fija de 1 €, que es la "tasa" del banco.
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 4: Interfaces múltiples: Volador y Nadador
+
+<details>
+<summary>🔄 Solución</summary>
 
 ```java
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Puzle {
+public interface Volador {
+    void volar();
+}
+
+public interface Nadador {
+    void nadar();
+}
+
+class Pato implements Volador, Nadador {
+    @Override
+    public void volar() {
+        System.out.println("El pato vuela en formación en V");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("El pato nada tranquilamente en el estanque");
+    }
+}
+
+class Avion implements Volador {
+    @Override
+    public void volar() {
+        System.out.println("El avión vuela a 900 km/h");
+    }
+}
+
+class Pez implements Nadador {
+    @Override
+    public void nadar() {
+        System.out.println("El pez nada contracorriente");
+    }
+}
+
+public class TestAnimales {
     public static void main(String[] args) {
-        ArrayList<String> palabras = new ArrayList<>();
-        palabras.add("hola");
-        palabras.add("mundo");
-        palabras.add("adiós");
+        ArrayList<Volador> voladores = new ArrayList<>();
+        voladores.add(new Pato());
+        voladores.add(new Avion());
 
-        Iterator<String> it = palabras.iterator();
-        while (it.hasNext()) {
-            if (it.next().equals("mundo")) {
-                it.remove();
-            }
+        for (Volador v : voladores) {
+            v.volar();
         }
-        System.out.println(palabras); // [hola, adiós]
+
+        ArrayList<Nadador> nadadores = new ArrayList<>();
+        nadadores.add(new Pato());
+        nadadores.add(new Pez());
+
+        for (Nadador n : nadadores) {
+            n.nadar();
+        }
     }
 }
 ```
+
+El `Pato` es el campeón: firma dos contratos a la vez. En la lista de `Volador` se comporta como volador; en la de `Nadador`, como nadador. Una clase, dos personalidades, cero conflictos: ese es el poder de las interfaces frente a la herencia única.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: Estadísticas de clase
+## ⭐⭐ Ejercicio 5: Downcasting seguro
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Estadisticas {
+public class Empleado {
+    protected String nombre;
+
+    public Empleado(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void mostrarInfo() {
+        System.out.println("Empleado: " + nombre);
+    }
+}
+
+class Programador extends Empleado {
+    public Programador(String nombre) {
+        super(nombre);
+    }
+
+    public void escribirCodigo() {
+        System.out.println(nombre + " escribe código Java");
+    }
+}
+
+class Disenador extends Empleado {
+    public Disenador(String nombre) {
+        super(nombre);
+    }
+
+    public void disenar() {
+        System.out.println(nombre + " diseña la interfaz");
+    }
+}
+
+public class Empresa {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        double[] notas = new double[20];
+        ArrayList<Empleado> plantilla = new ArrayList<>();
+        plantilla.add(new Programador("Ana"));
+        plantilla.add(new Disenador("Luis"));
+        plantilla.add(new Programador("Eva"));
 
-        for (int i = 0; i < notas.length; i++) {
-            System.out.print("Nota del alumno " + (i + 1) + ": ");
-            notas[i] = sc.nextDouble();
+        for (Empleado e : plantilla) {
+            e.mostrarInfo();
+            if (e instanceof Programador) {
+                ((Programador) e).escribirCodigo();
+            } else if (e instanceof Disenador) {
+                ((Disenador) e).disenar();
+            }
         }
-
-        double suma = 0;
-        double max = notas[0];
-        double min = notas[0];
-        int aprobados = 0;
-
-        for (double n : notas) {
-            suma += n;
-            if (n > max) max = n;
-            if (n < min) min = n;
-            if (n >= 5) aprobados++;
-        }
-
-        System.out.println("Media: " + (suma / notas.length));
-        System.out.println("Máxima: " + max);
-        System.out.println("Mínima: " + min);
-        System.out.println("Aprobados: " + aprobados);
-        sc.close();
     }
 }
 ```
 
-Un bucle rellena el array, y el for-each hace el resto en una sola pasada: acumula la suma, actualiza máximo y mínimo y cuenta aprobados. Como `max` y `min` empiezan en la primera nota, el algoritmo funciona incluso con todas las notas iguales.
+`instanceof` es la mirilla: antes de bajar la referencia, preguntas si el objeto real es de ese tipo. Sin el cast, no podrías llamar a `escribirCodigo()` ni a `disenar()`; sin el `instanceof`, arriesgarías un `ClassCastException`. Nunca bajes sin preguntar.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: El gran reto — buscaminas simplificado
+## ⭐⭐ Ejercicio 6: Calculadora de figuras con clase abstracta
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Scanner;
+import java.util.ArrayList;
 
-public class Buscaminas {
+public abstract class Figura {
+    protected String color;
+
+    public Figura(String color) {
+        this.color = color;
+    }
+
+    public abstract double calcularArea();
+    public abstract double calcularPerimetro();
+
+    public void mostrarColor() {
+        System.out.println("Color: " + color);
+    }
+}
+
+class Circulo extends Figura {
+    private double radio;
+
+    public Circulo(String color, double radio) {
+        super(color);
+        this.radio = radio;
+    }
+
+    @Override
+    public double calcularArea() {
+        return Math.PI * radio * radio;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * Math.PI * radio;
+    }
+}
+
+class Rectangulo extends Figura {
+    private double ancho, alto;
+
+    public Rectangulo(String color, double ancho, double alto) {
+        super(color);
+        this.ancho = ancho;
+        this.alto = alto;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ancho * alto;
+    }
+
+    @Override
+    public double calcularPerimetro() {
+        return 2 * (ancho + alto);
+    }
+}
+
+public class TestFiguras {
     public static void main(String[] args) {
-        boolean[][] minas = new boolean[5][5];
-        int puestas = 0;
-        while (puestas < 5) {
-            int f = (int) (Math.random() * 5);
-            int c = (int) (Math.random() * 5);
-            if (!minas[f][c]) {
-                minas[f][c] = true;
-                puestas++;
-            }
+        ArrayList<Figura> figuras = new ArrayList<>();
+        figuras.add(new Circulo("rojo", 3));
+        figuras.add(new Rectangulo("azul", 4, 2));
+
+        for (Figura f : figuras) {
+            f.mostrarColor();
+            System.out.println("Área: " + f.calcularArea());
         }
-
-        Scanner sc = new Scanner(System.in);
-        boolean juegoActivo = true;
-
-        while (juegoActivo) {
-            System.out.print("Introduce fila y columna (0-4): ");
-            int fila = sc.nextInt();
-            int col = sc.nextInt();
-
-            if (minas[fila][col]) {
-                System.out.println("¡BOOM! Has pisado una mina.");
-                juegoActivo = false;
-            } else {
-                int alrededor = 0;
-                for (int i = fila - 1; i <= fila + 1; i++) {
-                    for (int j = col - 1; j <= col + 1; j++) {
-                        if (i >= 0 && i < 5 && j >= 0 && j < 5 && minas[i][j]) {
-                            alrededor++;
-                        }
-                    }
-                }
-                System.out.println("Seguro. Minas alrededor: " + alrededor);
-            }
-        }
-        sc.close();
     }
 }
 ```
 
-El `while` que coloca minas garantiza exactamente 5 en posiciones distintas (la condición `!minas[f][c]` evita repetir). Para contar vecinas, el doble bucle revisa las 8 casillas alrededor y el `if` con los límites (0-4) impide salirte del array: sin esa comprobación, `minas[-1][...]` sería `ArrayIndexOutOfBoundsException`.
+`Figura` aporta el color (concreto) y obliga al área y al perímetro (abstractos). Las subclases solo implementan lo obligatorio. `mostrarColor()` se hereda tal cual: código compartido donde toca, contrato donde toca.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 7: Sistema de notificaciones polimórfico
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public interface Notificable {
+    void enviar(String mensaje);
+    String getEstado();
+}
+
+class EmailNotificacion implements Notificable {
+    private String direccion;
+    private boolean enviado;
+
+    public EmailNotificacion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    @Override
+    public void enviar(String mensaje) {
+        System.out.println("Enviando email a " + direccion + ": " + mensaje);
+        enviado = true;
+    }
+
+    @Override
+    public String getEstado() {
+        return enviado ? "Enviado" : "Pendiente";
+    }
+}
+
+class SMSNotificacion implements Notificable {
+    private String telefono;
+    private boolean enviado;
+
+    public SMSNotificacion(String telefono) {
+        this.telefono = telefono;
+    }
+
+    @Override
+    public void enviar(String mensaje) {
+        System.out.println("Enviando SMS a " + telefono + ": " + mensaje);
+        enviado = true;
+    }
+
+    @Override
+    public String getEstado() {
+        return enviado ? "Enviado" : "Pendiente";
+    }
+}
+
+class PushNotificacion implements Notificable {
+    private String dispositivoId;
+    private boolean enviado;
+
+    public PushNotificacion(String dispositivoId) {
+        this.dispositivoId = dispositivoId;
+    }
+
+    @Override
+    public void enviar(String mensaje) {
+        System.out.println("Enviando push a " + dispositivoId + ": " + mensaje);
+        enviado = true;
+    }
+
+    @Override
+    public String getEstado() {
+        return enviado ? "Enviado" : "Pendiente";
+    }
+}
+
+public class GestorNotificaciones {
+    public static void enviarTodas(List<Notificable> notificaciones, String mensaje) {
+        for (Notificable n : notificaciones) {
+            n.enviar(mensaje);
+        }
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Notificable> notificaciones = new ArrayList<>();
+        notificaciones.add(new EmailNotificacion("ana@mail.com"));
+        notificaciones.add(new SMSNotificacion("600123456"));
+        notificaciones.add(new PushNotificacion("dev-001"));
+
+        enviarTodas(notificaciones, "Examen de Java el lunes");
+    }
+}
+```
+
+`enviarTodas` no sabe (ni le importa) qué tipo concreto hay en la lista: solo conoce el contrato `Notificable`. Añadir un cuarto canal de notificación no obliga a tocar ni una línea del gestor. Diseño abierto al cambio, que es el premio del polimorfismo.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: Template method — las bebidas
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public abstract class Bebida {
+    public final void preparar() {
+        hervirAgua();
+        prepararIngrediente();
+        servirEnTaza();
+        anadirExtras();
+    }
+
+    private void hervirAgua() { System.out.println("Hirviendo agua..."); }
+    private void servirEnTaza() { System.out.println("Sirviendo en taza..."); }
+
+    protected abstract void prepararIngrediente();
+    protected abstract void anadirExtras();
+}
+
+class Te extends Bebida {
+    @Override
+    protected void prepararIngrediente() {
+        System.out.println("Poniendo la bolsita de té...");
+    }
+
+    @Override
+    protected void anadirExtras() {
+        System.out.println("Añadiendo limón...");
+    }
+}
+
+class Cafe extends Bebida {
+    @Override
+    protected void prepararIngrediente() {
+        System.out.println("Echando el café molido...");
+    }
+
+    @Override
+    protected void anadirExtras() {
+        System.out.println("Añadiendo azúcar...");
+    }
+}
+
+public class Cafeteria {
+    public static void main(String[] args) {
+        Bebida b1 = new Te();
+        Bebida b2 = new Cafe();
+        b1.preparar();
+        b2.preparar();
+    }
+}
+```
+
+El esqueleto (`preparar()`) es `final`: nadie puede reordenar los pasos. Las subclases solo personalizan los dos detalles variables. El template method garantiza que el algoritmo siempre se ejecute en el orden correcto, pase lo que pase.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: El gran reto — vehículos con combustible
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.ArrayList;
+
+abstract class Vehiculo {
+    protected String matricula;
+    protected int combustible;
+
+    public Vehiculo(String matricula, int combustible) {
+        this.matricula = matricula;
+        this.combustible = combustible;
+    }
+
+    public abstract boolean mover();
+}
+
+class Coche extends Vehiculo {
+    private static final int GASTO = 5;
+
+    public Coche(String matricula, int combustible) {
+        super(matricula, combustible);
+    }
+
+    @Override
+    public boolean mover() {
+        if (combustible >= GASTO) {
+            combustible -= GASTO;
+            System.out.println("Coche " + matricula + " avanza (combustible: " + combustible + ")");
+            return true;
+        } else {
+            System.out.println("Sin combustible");
+            return false;
+        }
+    }
+}
+
+class Moto extends Vehiculo {
+    private static final int GASTO = 3;
+
+    public Moto(String matricula, int combustible) {
+        super(matricula, combustible);
+    }
+
+    @Override
+    public boolean mover() {
+        if (combustible >= GASTO) {
+            combustible -= GASTO;
+            System.out.println("Moto " + matricula + " avanza (combustible: " + combustible + ")");
+            return true;
+        } else {
+            System.out.println("Sin combustible");
+            return false;
+        }
+    }
+}
+
+class Camion extends Vehiculo {
+    private static final int GASTO = 10;
+    private int carga;
+
+    public Camion(String matricula, int combustible, int carga) {
+        super(matricula, combustible);
+        this.carga = carga;
+    }
+
+    @Override
+    public boolean mover() {
+        if (combustible >= GASTO) {
+            combustible -= GASTO;
+            System.out.println("Camión " + matricula + " con carga " + carga
+                    + " avanza (combustible: " + combustible + ")");
+            return true;
+        } else {
+            System.out.println("Sin combustible");
+            return false;
+        }
+    }
+}
+
+public class Circuito {
+    public static void main(String[] args) {
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        vehiculos.add(new Coche("1234ABC", 12));
+        vehiculos.add(new Moto("5678DEF", 8));
+        vehiculos.add(new Camion("9999ZZZ", 25, 3000));
+
+        for (Vehiculo v : vehiculos) {
+            int movimientos = 0;
+            while (v.mover()) {
+                movimientos++;
+            }
+            System.out.println("Movimientos: " + movimientos);
+        }
+    }
+}
+```
+
+Cada subclase define su gasto con una constante y su `mover()`, que devuelve `true` solo si pudo moverse. El `main` usa solo `Vehiculo`: el `while (v.mover())` pregunta al propio vehículo y el polimorfismo hace el resto. Esa forma de escribir el bucle evita el problema de comprobar el combustible desde fuera (que dejaría un bucle infinito cuando el vehículo no puede moverse pero aún le queda combustible). Si mañana llega una `Bicicleta` (gasto 0), entra sin tocar el circuito. La abstracción paga la casa.
 
 </details>

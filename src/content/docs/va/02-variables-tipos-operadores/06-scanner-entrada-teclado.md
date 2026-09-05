@@ -226,4 +226,4 @@ String nombre = sc.nextLine();    // ara sí que llig el nom
 > | Buffer | Zona de memòria on queda l'Enter residual |
 > | Instanciar | Crear un objecte a partir d'una classe |
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/02-variables-tipos-operadores) · **Anterior:** [05 · Casting i conversions](/ApuntesProgramacion/va/02-variables-tipos-operadores/05-casting-conversiones) · **Següent:** [07 · Math.random() i nombres aleatoris](/ApuntesProgramacion/va/02-variables-tipos-operadores/07-math-random-aleatorios)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/02-variables-tipos-operadores) · **Anterior:** [05 · Casting i conversions](/ApuntesProgramacion/va/02-variables-tipos-operadores/05-casting-conversiones) · **Següent:** [07 · Consola: eixida amb format i errors d'entrada](/ApuntesProgramacion/va/02-variables-tipos-operadores/07-consola-salida-formateada)

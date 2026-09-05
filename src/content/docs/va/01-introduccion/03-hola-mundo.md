@@ -67,7 +67,7 @@ Pareix un encanteri de Harry Potter. Desgranem cada paraula:
 | Paraula | Què significa |
 |---|---|
 | `public` | Java pot trobar-lo des de fora: el botó és visible |
-| `static` | Pot cridar-se sense necessitat de crear un objecte (ho veuràs en la U06) |
+| `static` | Pot cridar-se sense necessitat de crear un objecte (ho veuràs en la U07) |
 | `void` | No torna cap valor: fa el seu treball i es calla |
 | `main` | El nom exacte que Java busca en arrancar. No val un altre |
 | `String[] args` | Una butxaca on pots ficar arguments en executar (punt 6) |

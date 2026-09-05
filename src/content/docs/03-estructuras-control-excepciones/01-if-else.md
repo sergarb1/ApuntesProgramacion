@@ -86,7 +86,7 @@ if (edad >= 18) {
 }
 ```
 
-> ⚠️ **Advertencia:** no conviertas tus programas en las Torres Kio. Más de 3 niveles de anidamiento es señal de que estás haciendo las cosas raro: en la U04 aprenderás a aplanarlo.
+> ⚠️ **Advertencia:** no conviertas tus programas en las Torres Kio. Más de 3 niveles de anidamiento es señal de que estás haciendo las cosas raro: en la U05 aprenderás a aplanarlo.
 
 ---
 

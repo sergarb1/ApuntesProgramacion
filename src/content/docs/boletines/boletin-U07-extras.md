@@ -11,133 +11,136 @@ description: CodeWars y AceptaElReto para ir más allá de la unidad
 
 ## CodeWars
 
-### 1. Remove String Spaces
+### 1. FIXME: Get Full Name
 
-Te dan una cadena y tienes que quitarle todos los espacios en blanco.
+Te dan una clase `Dinglemouse` con un método `getFullName()` que debería devolver `"Nombre Apellido"`, pero el resultado está al revés o incompleto. Arréglala.
 
-**Ejemplos:** `"8 j 8   mBliB8g  imjB8B8  jl  B"` → `"8j8mBliB8gimjB8B8jlB"`, `"8aaaaa dddd r     "` → `"8aaaaaddddr"`.
+- [Enunciado en CodeWars](https://www.codewars.com/kata/597c684822bc9388f600010f)
+- Dificultad: 7 kyu
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/57eae20f5500ad98e50002c5)
-- Dificultad: 8 kyu
-
-**Pista:** el método `String.replace(" ", "")` cambia todas las apariciones de un texto por otro. Quitar los espacios es reemplazarlos por "nada".
+**Pista:** fíjate en qué atributos existen (`firstName` y `lastName`) y en cómo el método los concatena. La clase está hecha para romperse: busca el error de `this` o de orden.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Kata {
-    public static String noSpace(final String x) {
-        return x.replace(" ", "");
+public class Dinglemouse {
+    private final String firstName;
+    private final String lastName;
+
+    public Dinglemouse(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-}
-```
 
-`replace(" ", "")` recorre toda la cadena y sustituye cada espacio por la cadena vacía. Sin bucles, sin condiciones: un solo método estático resuelto con el material de cadenas de la U05.
-
-</details>
-
----
-
-### 2. String repeat
-
-Te dan un número `repeat` y una cadena `string`. Devuelve la cadena repetida ese número de veces.
-
-**Ejemplos:** `repeatStr(6, "I")` → `"IIIIII"`, `repeatStr(5, "Hello")` → `"HelloHelloHelloHelloHello"`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e)
-- Dificultad: 8 kyu
-
-**Pista:** un `for` que vaya sumando la cadena a un acumulador tantas veces como indique `repeat`. (O el método `string.repeat(repeat)`, si te va el atajo.)
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Kata {
-    public static String repeatStr(final int repeat, final String string) {
-        return string.repeat(repeat);
-    }
-}
-```
-
-O, a la antigua:
-
-```java
-public class Kata {
-    public static String repeatStr(final int repeat, final String string) {
-        StringBuilder resultado = new StringBuilder();
-        for (int i = 0; i < repeat; i++) {
-            resultado.append(string);
+    public String getFullName() {
+        if (firstName.isEmpty() && lastName.isEmpty()) {
+            return "";
         }
-        return resultado.toString();
-    }
-}
-```
-
-`String.repeat(repeat)` es el método moderno, directo y sin bucles. Si prefieres entender la mecánica, el `for` con `StringBuilder` (lo viste en la U05) hace exactamente lo mismo: acumular la cadena `repeat` veces.
-
-</details>
-
----
-
-### 3. Convert boolean values to strings 'Yes' or 'No'
-
-Completa el método `boolToWord(boolean b)` para que devuelva `"Yes"` si es `true` y `"No"` si es `false`.
-
-**Ejemplos:** `boolToWord(true)` → `"Yes"`, `boolToWord(false)` → `"No"`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/53369039d7ab3ac506000467)
-- Dificultad: 8 kyu
-
-**Pista:** un `if`/`else` que devuelva una cadena u otra, o el operador ternario que viste en la U03: `return b ? "Yes" : "No";`.
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Kata {
-    public static String boolToWord(boolean b) {
-        return b ? "Yes" : "No";
-    }
-}
-```
-
-Un ternario en una sola línea: si `b` es `true` devuelve `"Yes"`, si no `"No"`. Decidir con elegancia, justo el espíritu de las estructuras de control de la U03 aplicado a un método estático.
-
-</details>
-
----
-
-### 4. Find the smallest integer in the array
-
-Te dan un array de enteros. Devuelve el número más pequeño.
-
-**Ejemplo:** `[34, 15, 88, 2]` → `2`, `[34, -345, -1, 100]` → `-345`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2)
-- Dificultad: 8 kyu
-
-**Pista:** recorre el array y ve guardando en una variable el mínimo encontrado hasta el momento. Empieza con `args[0]` como primer candidato.
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Kata {
-    public static int findSmallestInt(int[] args) {
-        int minimo = args[0];
-        for (int i = 1; i < args.length; i++) {
-            if (args[i] < minimo) {
-                minimo = args[i];
-            }
+        if (firstName.isEmpty()) {
+            return lastName;
         }
-        return minimo;
+        if (lastName.isEmpty()) {
+            return firstName;
+        }
+        return firstName + " " + lastName;
     }
 }
 ```
 
-La idea del "mínimo acumulado": empiezas asumiendo que el primero es el menor y, si aparece uno más pequeño, actualizas. Es el mismo razonamiento que el `Validador` del boletín avanzado, ahora aplicado a números. `Math.min` sería el atajo, pero este `for` enseña la mecánica.
+La clase original fallaba al construir el nombre completo: los casos en los que falta un nombre o los dos debían devolver lo que hay. El método correcto encadena los casos límite antes de juntar ambos nombres con un espacio.
+
+</details>
+
+---
+
+### 2. Geometry Basics: Distance between points in 2D
+
+Te dan una clase `Point` con dos propiedades (`x` e `y`) y tienes que implementar el método `distanceBetweenPoints(Point a, Point b)` que devuelva la distancia entre ellos.
+
+**Ejemplo:** `Point(3, 3)` y `Point(3, 3)` → `0`. `Point(1, 6)` y `Point(4, 2)` → `5`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/58dced7b702b805b200000be)
+- Dificultad: 8 kyu
+
+**Pista:** distancia euclidiana `Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))`. Los objetos se pasan como parámetro, como hicimos con `Fraccion.sumar`.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static double distanceBetweenPoints(Point a, Point b) {
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
+    }
+}
+
+class Point {
+    public double x;
+    public double y;
+
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+```
+
+El método recibe dos objetos `Point` y lee sus atributos (`a.x`, `b.x`...). Es exactamente el mismo patrón de `sumar(Fraccion otra)`: un objeto trabaja con otro. La fórmula de Pitágoras resuelta por objetos.
+
+</details>
+
+---
+
+### 3. Grasshopper — Personalized Message
+
+Crea el método `greet(name, owner)` que devuelva `"Hello boss"` si `name` y `owner` son iguales, o `"Hello guest"` si son distintos.
+
+**Ejemplos:** `greet("Daniel", "Daniel")` → `"Hello boss"`, `greet("Greg", "Daniel")` → `"Hello guest"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5772da22b89313a4d50012f7)
+- Dificultad: 8 kyu
+
+**Pista:** compara `String` con `.equals()`, nunca con `==`. Un `if`/`else` o un ternario.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static String greet(String name, String owner) {
+        return name.equals(owner) ? "Hello boss" : "Hello guest";
+    }
+}
+```
+
+Una línea con el ternario y `.equals()`. Si usas `==` con cadenas, los resultados serán impredecibles: en Java los `String` se comparan con `.equals()` porque son objetos (aunque Java les da un trato especial). La U08 te contará por qué.
+
+</details>
+
+---
+
+### 4. Sleigh Authentication
+
+Tienes que completar la clase `Sleigh` con un método `authenticate(name, password)` que devuelva `true` solo si `name` es `"Santa Claus"` y `password` es `"Ho Ho Ho!"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
+- Dificultad: 8 kyu
+
+**Pista:** devuelve `name.equals("Santa Claus") && password.equals("Ho Ho Ho!")`. Otra vez `.equals()`, y el `&&` de la U03.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Sleigh {
+    public boolean authenticate(String name, String password) {
+        return name.equals("Santa Claus") && password.equals("Ho Ho Ho!");
+    }
+}
+```
+
+Un método de una sola línea: dos comparaciones con `.equals()` unidas por `&&`. Es una de esas katas trampa: parece trivial, pero muchos caen usando `==` y fallan los tests. Objetos por todos lados.
 
 </details>
 
@@ -145,31 +148,31 @@ La idea del "mínimo acumulado": empiezas asumiendo que el primero es el menor y
 
 ## AceptaElReto
 
-### 5. 155 — Perímetro de un rectángulo
+### 5. 148 — Nochevieja
 
-Varios rectángulos se colocan uno a continuación de otro, todos apoyados sobre la misma base horizontal. Dado el número de rectángulos y el ancho y el alto de cada uno, calcula el **perímetro** de la figura resultante.
+Ramón se pasa el día de Nochevieja contando los minutos que faltan para medianoche. Para cada hora de la entrada (formato `HH:MM`), di cuántos minutos faltan para las `00:00`. La entrada termina con `00:00`, que no se procesa.
 
-**Entrada:** varios casos de prueba. Cada caso es una línea con un número N (el número de rectángulos) seguido de N pares `ancho alto`. La entrada termina con `0`.
-
-**Ejemplo:**
+**Entrada:**
 
 ```
-2 2 2 1
-3 1 1 1 1 1 1
-0
+23:45
+21:30
+00:01
+00:00
 ```
 
 **Salida:**
 
 ```
-12
-8
+15
+150
+1439
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=155)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=148)
 - Dificultad: Fácil
 
-**Pista:** el perímetro de la figura es `2 * (sumaAnchos + sumaAltos) - 2 * suma(alturaCompartida entre rectángulos vecinos)`, donde la altura compartida entre dos vecinos es la **menor** de sus alturas (`Math.min`). Los lados internos se restan porque no forman parte del perímetro exterior.
+**Pista:** separa la hora y el minuto con `split(":")`. Los minutos que faltan son `(23 - hora) * 60 + (60 - minuto)`. Escribe una clase `Hora` con un método `minutosHastaMedianoche()` y verás lo natural que queda.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -177,70 +180,54 @@ Varios rectángulos se colocan uno a continuación de otro, todos apoyados sobre
 ```java
 import java.util.Scanner;
 
-public class PerimetroRectangulo {
+public class Nochevieja {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String linea = sc.next();
 
-        while (true) {
-            int n = sc.nextInt();
-            if (n == 0) break;
-
-            int sumaAnchos = 0;
-            int sumaAltos = 0;
-            int[] altos = new int[n];
-            int compartido = 0;
-
-            for (int i = 0; i < n; i++) {
-                int ancho = sc.nextInt();
-                int alto = sc.nextInt();
-                sumaAnchos += ancho;
-                sumaAltos += alto;
-                altos[i] = alto;
-            }
-
-            for (int i = 0; i < n - 1; i++) {
-                compartido += Math.min(altos[i], altos[i + 1]);
-            }
-
-            System.out.println(2 * (sumaAnchos + sumaAltos) - 2 * compartido);
+        while (!linea.equals("00:00")) {
+            String[] partes = linea.split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            System.out.println((23 - hora) * 60 + (60 - minuto));
+            linea = sc.next();
         }
         sc.close();
     }
 }
 ```
 
-Primero acumulamos anchos y altos y guardamos los altos en un array. Después, por cada pareja de vecinos restamos el doble de su altura compartida (`Math.min`): esa pared queda dentro de la figura y no cuenta en el perímetro. Verifícalo con `2 2 2 1`: `2 * (4 + 3) - 2 * 1 = 14 - 2 = 12`.
+Para `23:45`: `(23-23)*60 + (60-45)` = 15. Para `21:30`: `2*60 + 30` = 150. El `while` se detiene con la línea `00:00` porque se compara con `.equals()` (es un `String`, recuerda). La versión con clase `Hora` es un buen ejercicio voluntario.
 
 </details>
 
 ---
 
-### 6. 171 — Abadías de piedra
+### 6. 117 — La fiesta aburrida
 
-En los Picos de Europa hay montañas en fila, y una **abadía** (construida en la cima de una montaña) solo puede ver el mar si **no hay ninguna montaña a su derecha que sea más alta o igual**. Dado el número de montañas y sus alturas, cuenta cuántas abadías ven el mar.
+Tinín odia saludar a desconocidos. La entrada empieza con un número N (cuánta gente hay) y luego N líneas con el formato `"Soy Lotario"`. Para cada una, imprime `"Hola, Lotario."`.
 
-**Entrada:** varios casos de prueba. Cada caso: una línea con N (número de montañas) seguida de otra línea con las N alturas. La entrada termina con `0`.
-
-**Ejemplo:**
+**Entrada:**
 
 ```
 3
-3 1 2
-0
+Soy Lotario
+Soy Aldonza
+Soy Ender
 ```
 
 **Salida:**
 
 ```
-2
+Hola, Lotario.
+Hola, Aldonza.
+Hola, Ender.
 ```
 
-(La de altura 3 ve el mar: a su derecha hay 1 y 2, ambas más bajas. La de altura 1 no: la tapa la de 2. La última, de altura 2, siempre ve el mar.)
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=171)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
 - Dificultad: Fácil
 
-**Pista:** recorre las montañas **de derecha a izquierda** llevando la altura máxima vista hasta ahora. Una montaña ve el mar si su altura es **mayor** que ese máximo; entonces la cuentas y actualizas el máximo. La última montaña siempre ve el mar.
+**Pista:** `split(" ")` sobre cada línea y coge la segunda parte (índice 1). Puedes modelar cada persona como un objeto de una clase `Persona` con el nombre y un método `saludar()`.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -248,40 +235,26 @@ En los Picos de Europa hay montañas en fila, y una **abadía** (construida en l
 ```java
 import java.util.Scanner;
 
-public class AbadiasPiedra {
+public class FiestaAburrida {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
 
-        while (true) {
-            int n = sc.nextInt();
-            if (n == 0) break;
-
-            int[] alturas = new int[n];
-            for (int i = 0; i < n; i++) {
-                alturas[i] = sc.nextInt();
-            }
-
-            int maxVisto = 0;
-            int abadias = 0;
-
-            for (int i = n - 1; i >= 0; i--) {
-                if (alturas[i] > maxVisto) {
-                    abadias++;
-                    maxVisto = alturas[i];
-                }
-            }
-
-            System.out.println(abadias);
+        for (int i = 0; i < n; i++) {
+            String linea = sc.nextLine();
+            String nombre = linea.split(" ")[1];
+            System.out.println("Hola, " + nombre + ".");
         }
         sc.close();
     }
 }
 ```
 
-La clave es ir **de derecha a izquierda**: la montaña más a la derecha no tiene nada delante y siempre cuenta. Luego, cada montaña ve el mar solo si supera a todo lo que ya hemos visto por su derecha (`maxVisto`). Para `3 1 2`: la 2 cuenta (máx. 2), la 1 no, la 3 sí (3 > 2) → `2`. Arrays + el patrón del máximo, en una sola pasada.
+`split(" ")` parte `"Soy Lotario"` en `["Soy", "Lotario"]` y el índice 1 es el nombre. El `sc.nextLine()` tras el `nextInt()` consume el salto de línea sobrante. Una versión con clase `Persona` y su método `saludar()` es el reto extra ideal para esta unidad.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines la encapsulación podrás volver a los problemas de las unidades anteriores (como San Fermines o la suma centinela) y reescribir sus soluciones con clases bien blindadas y métodos `static` utilitarios. El material no se pierde: se reutiliza.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines las clases, el paso natural es proteger sus datos: eso es la **encapsulación** de la U08. Y si quieres ver objetos que se crean y destruyen solos, espérate a los arrays de la U04 y las colecciones de la U10, donde crearás decenas de objetos en un bucle.

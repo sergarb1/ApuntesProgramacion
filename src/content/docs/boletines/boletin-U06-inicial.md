@@ -1,112 +1,129 @@
 ---
 title: Boletín U06 — Inicial
-description: Ejercicios básicos de POO, Clases y Objetos
+description: Ejercicios básicos de recursividad para calentar los motores del stack
 ---
 
 # 📝 Boletín U06 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, enciende la fábrica de galletas y haz que tus objetos nazcan, hablen y funcionen. Nadie nace sabiendo cuándo usar `this`.
+> Sin soluciones. Sin prisas. Abre el IDE, respira hondo y recuerda: para entender la recursividad, primero tienes que entender la recursividad.
 
 ---
 
-## Ejercicio 1: El perro que habla
+## Ejercicio 1: El factorial del valiente
 
-Escribe una clase `Perro` con dos atributos: `String nombre` e `int edad`. Incluye un método `void ladrar()` que imprima `"¡Guau guau! Soy [nombre]"`. Luego, en un `main`, crea un perro llamado `Toby` de 3 años y haz que ladre.
+Escribe un programa llamado `FactorialValiente` con un método recursivo `static long fact(int n)` que calcule el factorial de un número. Pruébalo con `fact(5)`, `fact(0)` y `fact(10)`.
 
-Pista: recuerda que los atributos se inicializan en el constructor con `this`.
-
----
-
-## Ejercicio 2: El teléfono con batería
-
-Escribe una clase `Telefono` con los atributos `String marca` e `int bateria`. Incluye un método `void llamar()` que imprima `"Llamando... (batería al X%)"` y otro `void cargar(int minutos)` que suba la batería en los minutos recibidos. Crea en el `main` un `Telefono` de marca `"Nokia"` con batería inicial `50`, llámalo y cárgalo `30` minutos.
-
-Pista: `cargar(int minutos)` modifica el atributo `bateria`: `this.bateria += minutos;`.
+Recuerda: `0! = 1` y `n! = n * (n-1)!`.
 
 ---
 
-## Ejercicio 3: El estudiante con nota
+## Ejercicio 2: La abuela suma el array
 
-Escribe una clase `Estudiante` con los atributos `String nombre` y `double nota`. Incluye un método `void mostrarEstado()` que imprima `"[nombre] ha aprobado"` si la nota es mayor o igual que 5, o `"[nombre] ha suspendido"` si es menor. Crea en el `main` dos estudiantes (una con nota 8.5 y otro con nota 3) y muestra su estado.
+Escribe un programa llamado `SumaRecursiva` que sume todos los elementos de un array usando un método recursivo:
 
-Pista: dentro de `mostrarEstado()` puedes usar `if`/`else` con `this.nota`.
+```java
+static int sumar(int[] arr, int indice)
+```
 
----
-
-## Ejercicio 4: La película en cartelera
-
-Escribe una clase `Pelicula` con los atributos `String titulo` y `String genero`. Incluye un método `void mostrarCartelera()` que imprima `"Ahora en cines: [titulo] ([genero])"`. Crea en el `main` una película `"El curso de Java"` de género `"Terror"` y muéstrala en cartelera.
-
-Pista: el constructor recibe los dos valores y los asigna con `this`.
+Si `indice == arr.length`, devuelve 0. Si no, `arr[indice] + sumar(arr, indice + 1)`. Pruébalo con `{3, 8, 2, 10, 5}` → debe dar 28.
 
 ---
 
-## Ejercicio 5: La persona educada
-
-Escribe una clase `Persona` con los atributos `String nombre` y `int edad`. Usa un constructor con parámetros. Añade un método `void presentarse()` que imprima `"Hola, soy [nombre] y tengo [edad] años."`. Crea en el `main` a `"Ana"` de 25 años y haz que se presente.
-
-Pista: esta es la clase con la que vas a entender por qué `this` separa al atributo del parámetro.
-
----
-
-## Ejercicio 6: El círculo calculador
-
-Escribe una clase `Circulo` con el atributo `double radio`. Incluye un método `double calcularArea()` que devuelva el área (`π * radio²`). Usa `Math.PI` para π. Crea en el `main` un círculo de radio `2.5` y muestra su área.
-
-Pista: dentro del método, `return Math.PI * this.radio * this.radio;`.
-
----
-
-## Ejercicio 7: El videojuego jugable
-
-Escribe una clase `Videojuego` con los atributos `String titulo` y `int horasJugadas`. Incluye un método `void jugar(int horas)` que sume las horas a `horasJugadas` y otro `void mostrar()` que imprima `"[titulo] - X horas"`. Crea en el `main` un juego con 10 horas, juega 5 más y muéstralo.
-
-Pista: suma las horas al atributo: `this.horasJugadas += horas;`.
-
----
-
-## Ejercicio 8: ¿Qué imprime? — el taller de coches
+## Ejercicio 3: ¿Qué imprime? — la cuenta atrás recursiva
 
 Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class Taller {
+public class CuentaRara {
+    static void cuenta(int n) {
+        if (n == 0) {
+            System.out.println("¡BOOM!");
+            return;
+        }
+        System.out.println(n);
+        cuenta(n - 1);
+    }
+
     public static void main(String[] args) {
-        Coche c1 = new Coche("Seat", 120);
-        Coche c2 = new Coche("Ford", 90);
-        c1.acelerar(30);
-        c1.mostrar();
-        c2.mostrar();
-    }
-}
-
-class Coche {
-    String marca;
-    int velocidad;
-
-    public Coche(String marca, int velocidad) {
-        this.marca = marca;
-        this.velocidad = velocidad;
-    }
-
-    void acelerar(int inc) {
-        velocidad += inc;
-    }
-
-    void mostrar() {
-        System.out.println(marca + " va a " + velocidad + " km/h");
+        cuenta(3);
     }
 }
 ```
 
-Pista: ¿cuántos objetos hay? Cada uno guarda su propia `velocidad`; acelerar al `c1` no toca a `c2`.
+Pista: primero baja imprimiendo números y, cuando llega al caso base, hace BOOM.
 
 ---
 
-## Ejercicio 9: CodeWars — Object Oriented Piracy
+## Ejercicio 4: La potencia del aprendiz
 
-Resuelve la kata **"Object Oriented Piracy"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add).
+Escribe un programa llamado `PotenciaRecursiva` con un método recursivo `static double potencia(double base, int exponente)` que calcule `base^exponente`:
 
-Crea la clase `Ship` con un constructor que reciba `draft` (calado en pies) y `crew` (tripulación), y un método `boolean isWorthIt()` que devuelva `true` si `draft - (crew * 1.5) > 20`.
+- Caso base: `exponente == 0` → devuelve 1.
+- Caso recursivo: `base * potencia(base, exponente - 1)`.
 
-Pista: guarda `draft` y `crew` en atributos con `this` y usa el operador `-` y `*` de la U02 dentro de `isWorthIt()`.
+Pruébalo con `potencia(2, 10)` → 1024.
+
+---
+
+## Ejercicio 5: El detective de dígitos
+
+Escribe un programa llamado `ContadorDigitos` con un método recursivo `static int contarDigitos(int n)` que cuente cuántos dígitos tiene un número:
+
+- Caso base: `n < 10` → devuelve 1.
+- Caso recursivo: `1 + contarDigitos(n / 10)`.
+
+Pruébalo con `12345` → debe dar 5.
+
+---
+
+## Ejercicio 6: El espejo de letras
+
+Escribe un programa llamado `InvertirTexto` con un método recursivo `static String invertir(String s)` que devuelva el texto al revés:
+
+- Caso base: `s.isEmpty()` → devuelve `""`.
+- Caso recursivo: `invertir(s.substring(1)) + s.charAt(0)`.
+
+Pruébalo con `"hola"` → debe devolver `"aloh"`.
+
+---
+
+## Ejercicio 7: ¿Qué imprime? — el enigma del stack
+
+Sin ejecutar, escribe la salida exacta:
+
+```java
+public class EnigmaStack {
+    static int misterio(int n) {
+        if (n == 0) return 0;
+        return n % 10 + misterio(n / 10);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(misterio(1234));
+    }
+}
+```
+
+Pista: `n % 10` extrae la última cifra y `n / 10` se la quita.
+
+---
+
+## Ejercicio 8: El guardián de los palíndromos
+
+Escribe un programa llamado `GuardianPalindromos` con un método recursivo que compruebe si una palabra es un palíndromo (se lee igual hacia delante y hacia atrás):
+
+```java
+static boolean esPalindromo(String s, int inicio, int fin)
+```
+
+Pruébalo con `"reconocer"` (sí), `"salas"` (sí) y `"hola"` (no). Pista: si las puntas no coinciden, ya puedes devolver `false` sin seguir recursando.
+
+---
+
+## Ejercicio 9: CodeWars — Factorial
+
+Resuelve la kata **"Factorial"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/54ff0d1f355cfd20e60001fc).
+
+Crea el método `public static long factorial(int n)` que devuelva el factorial de `n` (recuerda: `0! = 1`). ¡Resuélvela con recursividad, que es lo que toca!
+
+Pista: `if (n <= 1) return 1; return n * factorial(n - 1);`

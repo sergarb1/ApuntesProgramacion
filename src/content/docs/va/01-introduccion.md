@@ -5,7 +5,7 @@ description: El teu primer cafè amb Java ☕
 
 <p><small>El teu primer cafè amb Java ☕</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → **☕ ACI ETS (U01)** → 🔤 Variables → 🔀 Control → 🧩 Algorítmica → ⚡ Tècniques → 🏗️ POO → 🔒 Visibilitat → 🧬 Herència → 📚 Col·leccions → 🗺️ Genèrics → 📁 Fitxers → 🗄️ JDBC → 🌐 APIs
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → **☕ ACÍ ETS (U01)** → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
 
 ---
 

@@ -1,91 +1,31 @@
 ---
-title: Butlletí U04 — Extres
-description: CodeWars i AceptaElReto per a anar més enllà de la unitat
+title: "Butlletí U04 — Extres"
+description: "CodeWars i AceptaElReto per a anar més enllà dels arrays"
 ---
 
 # 📝 Butlletí U04 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està amagada: resistix fins a esgotar la teua pista.
+> Exercicis de CodeWars i AceptaElReto amb pistes. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
 
 ---
 
 ## CodeWars
 
-### 1. You only need one — Beginner
+### 1. Convert number to reversed array of digits
 
-Et donen un array i un valor. Retorna `true` si l'array **conté** el valor.
-
-**Exemples:** `{"a", "b", "c"}`, `"a"` → `true` · `{"a", "b", "c"}`, `"z"` → `false`.
-
-- [Enunciat en CodeWars](https://www.codewars.com/kata/57cc975ed542d3148f00015b)
-- Dificultat: 8 kyu
-
-**Pista:** un `for` que recórrega l'array i un `if` que retorne `true` si algun element és igual al valor. Després del bucle, `false`.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Kata {
-    public static boolean check(Object[] a, Object x) {
-        for (Object element : a) {
-            if (element.equals(x)) {
-                return true;
-            }
-        }
-        return false;
-    }
-}
-```
-
-És la cerca lineal en la seua forma més pura: recórrer i retornar tan bon punt trobes. Per a objectes usem `.equals()` en comptes de `==`. La complexitat és O(n): pot ser que el trobes a la primera o al final.
-
-</details>
-
----
-
-### 2. Square(n) Sum
-
-Et donen un array d'enters. Retorna la suma dels **quadrats** de cada nombre.
-
-**Exemple:** `[1, 2, 2]` → `1 + 4 + 4 = 9`.
-
-- [Enunciat en CodeWars](https://www.codewars.com/kata/515e271a311df0350d00000f)
-- Dificultat: 8 kyu
-
-**Pista:** un acumulador `suma` i, dins del bucle, `suma += numero * numero;`.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Kata {
-    public static int squareSum(int[] numeros) {
-        int suma = 0;
-        for (int numero : numeros) {
-            suma += numero * numero;
-        }
-        return suma;
-    }
-}
-```
-
-`numero * numero` és el quadrat (evita `Math.pow`, que és més lent per a un enter). Un acumulador i un bucle: O(n). El mateix esquelet que "suma tots" però amb un xicotet càlcul dins.
-
-</details>
-
----
-
-### 3. Convert number to reversed array of digits
-
-Et donen un nombre enter no negatiu. Retorna els seus dígits en un array d'enters, **en ordre invers**.
+Et donen un número enter no negatiu. Torna els seus dígits en un array d'enters, **en ordre invers**.
 
 **Exemple:** `35231` → `[1, 3, 2, 5, 3]` · `0` → `[0]`.
 
 - [Enunciat en CodeWars](https://www.codewars.com/kata/5583090cbe83f4fd8c000051)
 - Dificultat: 8 kyu
 
-**Pista:** per a extraure dígits, `% 10` et dóna l'últim i `/ 10` se'l lleva. Amb això ja ixen invertits: el primer que traus és l'últim del nombre.
+<details>
+<summary>💡 Pista</summary>
+
+Per a extraure dígits, `% 10` et dona l'últim i `/ 10` se'l treu. Amb això ja eixen invertits: el primer que traus és l'últim del número.
+
+</details>
 
 <details>
 <summary>🔄 Solució</summary>
@@ -93,13 +33,13 @@ Et donen un nombre enter no negatiu. Retorna els seus dígits en un array d'ente
 ```java
 public class Kata {
     public static int[] digitize(long n) {
-        String text = Long.toString(n);
-        int[] resultat = new int[text.length()];
+        String texto = Long.toString(n);
+        int[] resultado = new int[texto.length()];
 
-        for (int i = 0; i < resultat.length; i++) {
-            resultat[i] = Character.getNumericValue(text.charAt(resultat.length - 1 - i));
+        for (int i = 0; i < resultado.length; i++) {
+            resultado[i] = Character.getNumericValue(texto.charAt(resultado.length - 1 - i));
         }
-        return resultat;
+        return resultado;
     }
 }
 ```
@@ -108,65 +48,138 @@ Una altra forma, sense convertir a text, si prefereixes `%` i `/`:
 
 ```java
 public static int[] digitize(long n) {
-    String text = String.valueOf(n);
-    int[] resultat = new int[text.length()];
-    for (int i = 0; i < text.length(); i++) {
-        resultat[i] = (int) (n % 10);
+    String texto = String.valueOf(n);
+    int[] resultado = new int[texto.length()];
+    for (int i = 0; i < texto.length(); i++) {
+        resultado[i] = (int) (n % 10);
         n /= 10;
     }
-    return resultat;
+    return resultado;
 }
 ```
 
-Amb `% 10` i `/ 10`: l'últim dígit ix primer (ja ve invertit), i després de dividir entre 10 es repetix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
+Amb `% 10` i `/ 10`: l'últim dígit eix primer (ja ve invertit), i després de dividir entre 10 es repetix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
 
 </details>
 
 ---
 
-### 4. Count the divisors of a number
+### 2. Find the smallest integer in the array
 
-Compta quants divisors té un nombre `n` (positiu).
+Et donen un array d'enters. Torna l'enter **més menut**.
 
-**Exemples:** `divisors(4)` → `3` (1, 2, 4) · `divisors(12)` → `6` (1, 2, 3, 4, 6, 12).
+**Exemples:** `[78, 56, 232, 12, 11, 43]` → `11` · `[34, -345, -1, 100]` → `-345`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/542c0f198e077084c0000c2e)
-- Dificultat: 7 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2)
+- Dificultat: 8 kyu
 
-**Pista:** un bucle de l'1 a `n` amb un `if (n % i == 0)` i un comptador. (Optimització opcional: només arribes a l'arrel quadrada i comptes de dos en dos.)
+<details>
+<summary>💡 Pista</summary>
+
+El patró del mínim: comença assumint que el primer és el mínim i compara amb cada un. Ací l'array mai no està buit.
+
+</details>
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static long numberOfDivisors(int n) {
-        int comptador = 0;
-        for (int i = 1; i <= n; i++) {
-            if (n % i == 0) {
-                comptador++;
+    public static int findSmallestInt(int[] args) {
+        int minimo = args[0];
+        for (int i = 1; i < args.length; i++) {
+            if (args[i] < minimo) {
+                minimo = args[i];
             }
         }
-        return comptador;
+        return minimo;
     }
 }
 ```
 
-Versió optimitzada (O(√n) en comptes d'O(n)):
+El mateix esquelet que el "màxim acumulat", però al revés. Com l'array mai no està buit, pots usar `args[0]` com a punt de partida sense por.
+
+</details>
+
+---
+
+### 3. Count by X
+
+Torna un array amb els **primers `n` múltiples** de `x`.
+
+**Exemples:** `countBy(2, 5)` → `[2, 4, 6, 8, 10]` · `countBy(1, 10)` → `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5513795bd3fafb56c200049e)
+- Dificultat: 8 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Crea l'array amb `new int[n]` i ompli amb un `for`: la plaça `i` guarda `x * (i + 1)`.
+
+</details>
+
+<details>
+<summary>🔄 Solució</summary>
 
 ```java
-public static long numberOfDivisors(int n) {
-    int comptador = 0;
-    for (int i = 1; i * i <= n; i++) {
-        if (n % i == 0) {
-            comptador += (i * i == n) ? 1 : 2;
+public class Kata {
+    public static int[] countBy(int x, int n) {
+        int[] resultado = new int[n];
+        for (int i = 0; i < n; i++) {
+            resultado[i] = x * (i + 1);
         }
+        return resultado;
     }
-    return comptador;
 }
 ```
 
-La versió simple recorre de l'1 a n: si `n % i == 0`, és divisor. L'optimitzada s'aprofita que els divisors van en parelles: si `i` dividix `n`, llavors `n / i` també, excepte quan són el mateix (el cas del quadrat perfecte). D'O(n) a O(√n): Big O en acció.
+Saps la grandària per endavant (`n`), així que no cal el patró de dues passades: un sol `for` crea i ompli. El `(i + 1)` és perquè els múltiples comencen en `x * 1`, no en `x * 0`.
+
+</details>
+
+---
+
+### 4. Take a Ten Minute Walk
+
+Vius en una ciutat en graella. Et donen un array de direccions (`'n'`, `'s'`, `'e'`, `'w'`). Torna `true` si el passeig dura **exactament 10 minuts** (una illa per minut) **i et deixa al punt de partida**.
+
+**Exemples:** `['n','s','n','s','n','s','n','s','n','s']` → `true` · `['n','n','n','s','n','s','n','s','n','s']` → `false`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/54da539698eb8f52b900053b)
+- Dificultat: 6 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Porta dos comptadors: un per a nord/sud i un altre per a est/oest. Si el passeig no dura 10 minuts, ja pots tornar `false` sense comptar res.
+
+</details>
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Kata {
+    public static boolean isValid(char[] walk) {
+        if (walk.length != 10) {
+            return false;
+        }
+
+        int x = 0, y = 0;
+        for (char c : walk) {
+            if (c == 'n') y++;
+            if (c == 's') y--;
+            if (c == 'e') x++;
+            if (c == 'w') x--;
+        }
+
+        return x == 0 && y == 0;
+    }
+}
+```
+
+Nord puja `y`, sud el baixa; est puja `x`, oest el baixa. Si al final tots dos comptadors tornen a 0, ets on vas començar. És un array recorregut una sola volta, amb la suma com a testimoni. O(n), com ha de ser.
 
 </details>
 
@@ -174,35 +187,38 @@ La versió simple recorre de l'1 a n: si `n % i == 0`, és divisor. L'optimitzad
 
 ## AceptaElReto
 
-### 5. 185 — Potitos
+### 5. 171 — Abadies de pedra
 
-Un pare li compra potets (bots de menjar per a bebé) al seu fill. A vegades el bebé li **dona la volta** al bot per a vore el revers, on es llig l'ingredient *que menys li agrada* (o "FIN" si no n'hi ha cap). El pare vol saber els ingredients que el bebé **odia**, per a deixar de comprar-los.
+Una serralada té una sèrie de muntanyes, cada una amb la seua altura. Es pot construir una **abadia** sobre una muntanya si és **més alta que totes les que té a la dreta** (cap al mar). Compta quantes muntanyes complixen la condició.
 
-**Entrada:** diversos casos de prova. Cada cas comença amb `N` (nombre de potets). A continuació, `N` línies: cada una amb un ingredient `I` que li agrada, un guió `--`, i opcionalment un `FIN` o un ingredient que detesta. El cas `0` acaba.
+**Entrada:** diversos casos de prova. Cada cas comença amb `N` (nombre de muntanyes), seguit de `N` altures en la mateixa línia. Un `0` acaba l'entrada.
 
 **Exemple:**
 
 ```
+3
+5 3 4
 4
-pollo--FIN
-pescado--FIN
-verdura--atun
-pollo--FIN
+2 3 4 1
 0
 ```
 
 **Eixida:**
 
 ```
-atun
+2
+2
 ```
 
-(L'únic detestat és `atun`; els altres no tenien revers o deien `FIN`.) Els ingredients detestats es mostren **ordenats alfabèticament** i **sense repetir**.
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=185)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=171)
 - Dificultat: Fàcil
 
-**Pista:** per a cada línia, separa amb `split("--")`. Si la segona part no és `"FIN"`, és un ingredient detestat: guarda'l. Al final, ordena'l (la bombolla del punt 4, però amb `String.compareTo` en comptes de `>`) i elimina els repetits.
+<details>
+<summary>💡 Pista</summary>
+
+Recorre l'array **de dreta a esquerra** guardant l'altura màxima vista. L'última muntanya sempre val. Quan una muntanya supere la màxima vista fins ara, és una abadia nova.
+
+</details>
 
 <details>
 <summary>🔄 Solució</summary>
@@ -210,85 +226,72 @@ atun
 ```java
 import java.util.Scanner;
 
-public class Potitos {
+public class Abadias {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        sc.nextLine();
 
         while (n != 0) {
-            String[] odiats = new String[n];
-            int quants = 0;
-
+            int[] montanas = new int[n];
             for (int i = 0; i < n; i++) {
-                String linea = sc.nextLine();
-                String[] parts = linea.split("--");
+                montanas[i] = sc.nextInt();
+            }
 
-                if (parts.length > 1 && !parts[1].equals("FIN")) {
-                    odiats[quants] = parts[1];
-                    quants++;
+            int abadias = 0;
+            int maxVista = -1;
+            for (int i = n - 1; i >= 0; i--) {
+                if (montanas[i] > maxVista) {
+                    abadias++;
+                    maxVista = montanas[i];
                 }
             }
 
-            for (int i = 0; i < quants - 1; i++) {
-                for (int j = 0; j < quants - 1 - i; j++) {
-                    if (odiats[j].compareTo(odiats[j + 1]) > 0) {
-                        String temp = odiats[j];
-                        odiats[j] = odiats[j + 1];
-                        odiats[j + 1] = temp;
-                    }
-                }
-            }
-
-            StringBuilder eixida = new StringBuilder();
-            for (int i = 0; i < quants; i++) {
-                if (i == 0 || !odiats[i].equals(odiats[i - 1])) {
-                    eixida.append(odiats[i]).append(" ");
-                }
-            }
-            System.out.println(eixida.toString().trim());
-
+            System.out.println(abadias);
             n = sc.nextInt();
-            sc.nextLine();
         }
         sc.close();
     }
 }
 ```
 
-Dues idees de la U04 treballant alhora: la **bombolla** per a ordenar (adaptada a `String` amb `compareTo`) i la idea de recórrer per a **filtrar repetits** (comparant amb l'anterior una vegada ordenat). `split("--")` trosseja cada línia, i només els que tenen revers diferent de `FIN` entren en la llista d'odiats.
+La clau és recórrer cap arrere: la muntanya veu el mar si és més alta que **tot** el que té a la dreta, i la màxima vista ho resumix tot. Amb `5 3 4`: el 4 val, el 3 no (hi ha un 4 més alt), el 5 val → 2. És un array + recorregut en el sentit correcte.
 
 </details>
 
 ---
 
-### 6. 100 — Constant de Kaprekar
+### 6. 369 — Comptant en la sorra
 
-Aplicant l'algoritme de Kaprekar (ordenar els dígits de major a menor, restar l'ordenat de menor a major, i repetir), tot nombre de 4 xifres (amb zeros a l'esquerra si cal) acaba en **6174**. Compta quantes iteracions necessita cada nombre de l'entrada.
+Un xiquet escriu els números en la sorra amb marques de compte: l'`1` el escriu com `1`, el `2` com `11`, el `3` com `111`... És a dir, cada número es representa amb tants uns com val. Donat un número, escriu-lo com ho faria el xiquet.
 
-**Entrada:** diversos nombres, un per línia, fins a un `0` final. El `6174` necessita `0` iteracions. Els nombres amb totes les xifres iguals (1111, 5555...) són el cas especial del problema: la resposta oficial és **8**.
+**Entrada:** diversos números, un per línia, fins a un `0` final.
 
 **Exemple:**
 
 ```
-6174
-3524
-1111
+1
+5
+3
 0
 ```
 
 **Eixida:**
 
 ```
-0
-3
-8
+1
+11111
+111
 ```
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=100)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=369)
 - Dificultat: Fàcil
 
-**Pista:** usa la teua bombolla per a ordenar els dígits extraïts amb `% 10` i `/ 10` en un `int[]` de 4 posicions. Reconstruïx el descendent (dígits de major a menor) i l'ascendent, resta'ls i compta amb un comptador fins a arribar a 6174. El problema complet, en el butlletí avançat.
+<details>
+<summary>💡 Pista</summary>
+
+Un bucle que afija `'1'` a un `StringBuilder` tantes voltes com indique el número. No cal array: és la prova que de vegades n'hi ha prou amb saber quantes voltes repetir.
+
+</details>
 
 <details>
 <summary>🔄 Solució</summary>
@@ -296,70 +299,28 @@ Aplicant l'algoritme de Kaprekar (ordenar els dígits de major a menor, restar l
 ```java
 import java.util.Scanner;
 
-public class Kaprekar {
+public class ContandoEnLaArena {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int numero = sc.nextInt();
+        int n = sc.nextInt();
 
-        while (numero != 0) {
-            if (esRepdigit(numero)) {
-                System.out.println(8);
-                numero = sc.nextInt();
-                continue;
+        while (n != 0) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                sb.append('1');
             }
-
-            int iteracions = 0;
-
-            while (numero != 6174) {
-                int[] digits = new int[4];
-
-                for (int i = 3; i >= 0; i--) {
-                    digits[i] = numero % 10;
-                    numero /= 10;
-                }
-
-                for (int i = 0; i < digits.length - 1; i++) {
-                    for (int j = 0; j < digits.length - 1 - i; j++) {
-                        if (digits[j] > digits[j + 1]) {
-                            int temp = digits[j];
-                            digits[j] = digits[j + 1];
-                            digits[j + 1] = temp;
-                        }
-                    }
-                }
-
-                int ascendent = 0;
-                int descendent = 0;
-                for (int i = 0; i < 4; i++) {
-                    ascendent = ascendent * 10 + digits[i];
-                    descendent = descendent * 10 + digits[3 - i];
-                }
-
-                numero = descendent - ascendent;
-                iteracions++;
-            }
-
-            System.out.println(iteracions);
-            numero = sc.nextInt();
+            System.out.println(sb);
+            n = sc.nextInt();
         }
         sc.close();
-    }
-
-    static boolean esRepdigit(int n) {
-        String s = String.format("%04d", n);
-        char primera = s.charAt(0);
-        for (char c : s.toCharArray()) {
-            if (c != primera) return false;
-        }
-        return true;
     }
 }
 ```
 
-El mateix algoritme del butlletí avançat, ara en el seu format AceptaElReto (diversos casos fins al 0). Per a `3524`: dígits {3,5,2,4}, ordenats {2,3,4,5} → ascendent 2345, descendent 5432, resta 3087 (iteració 1); després {3,0,8,7} → 8730 − 0378 = 8352 (2); després 8532 − 2358 = 6174 (3). Els repdigits (1111, 5555...) es detecten abans d'entrar al bucle: la primera resta dóna 0 i, sense `esRepdigit`, el `while (numero != 6174)` es quedaria donant voltes per sempre. El problema demana `8` per a ells. La bombolla, una altra vegada, protagonista.
+Cada número `n` es convertix en `n` uns. El bucle és el mateix que usaríes per a omplir un array, però ací l'"array" és un `StringBuilder` que creix. El `0` marca el final de l'entrada, com sempre en AceptaElReto.
 
 </details>
 
 ---
 
-> 🧭 **¿I si et quedes amb ganes?** Quan domines cerques, bombolles i Big O, torna als problemes d'esta unitat amb el punt 9 com a examen. I en la U05 t'esperen les bèsties: QuickSort, MergeSort i la recursivitat. Ordenar un milió de dades en un sospir està a un pas.
+> 🧭 **I si et quedes amb ganes?** Quan domines l'aparcament sencer —crear, recórrer, ordenar, buscar, invertir i compactar—, torna a estos problemes amb el punt 9 com a examen. I en la U05 t'esperen els algoritmes: cerca binària, bombolla i Big O. Els arrays que has après hui són la matèria primera de tot el que ve.

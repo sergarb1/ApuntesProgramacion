@@ -1,322 +1,236 @@
 ---
-title: Boletín U05 — Avanzado (Resuelto)
-description: Los mismos ejercicios intermedios del boletín avanzado con sus soluciones
+title: Boletín U05 — Avanzado Resuelto
+description: Los mismos ejercicios que el boletín avanzado, con soluciones
 ---
 
 # 📝 Boletín U05 — Avanzado (Resuelto)
 
-> Los ejercicios avanzados con sus soluciones. Inténtalos primero; bajar a ver la solución sin sudar es como pedir el 10 antes del examen.
+> Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
 
 ---
 
-## Ejercicio 1: ⭐ Fibonacci con el contador chivato
+## Ejercicio 1: ¿Qué imprime? — la binaria con historial
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-public class FiboContador {
+Imprime:
 
-    static long llamadas;
-
-    static long fibo(int n) {
-        llamadas++;
-        if (n <= 1) return n;
-        return fibo(n - 1) + fibo(n - 2);
-    }
-
-    public static void main(String[] args) {
-        long resultado = fibo(30);
-        System.out.println("fibo(30) = " + resultado);
-        System.out.println("llamadas = " + llamadas);
-    }
-}
+```
+Pruebo el índice 3
+Pruebo el índice 5
+Pruebo el índice 4
+Encontrado en 4
 ```
 
-Salida: `fibo(30) = 832040` y `llamadas = 2692537`. ¡Más de 2,6 millones de llamadas para un número de 6 cifras! La versión ingenua es brutalmente cara: cada `fibo(n)` vuelve a calcular `fibo(n-1)` y `fibo(n-2)` por completo.
+Traza sobre `{2, 4, 6, 8, 10, 12, 14, 16}` (8 elementos, índices 0 a 7):
 
-El "truco de los índices" (`fibo(n) + fibo(n-1) + ... + 1`) NO funciona aquí porque las llamadas no se encadenan limpiamente: cada término del árbol recalcula subárboles enteros.
+| Vuelta | izq | der | medio | datos[medio] | Decisión |
+|---|---|---|---|---|---|
+| 1 | 0 | 7 | 3 | 8 | 8 < 10 → izq = 4 |
+| 2 | 4 | 7 | 5 | 12 | 12 > 10 → der = 4 |
+| 3 | 4 | 4 | 4 | 10 | ¡Encontrado! |
+
+Tres pruebas, tres líneas, y el índice 4. Así de compacta es la binaria: cada vuelta descarta la mitad del espacio.
 
 </details>
 
 ---
 
-## Ejercicio 2: ⭐⭐ ¿Qué imprime? — el árbol de llamadas
-
-<details>
-<summary>🔄 Solución</summary>
-
-```
-bajo 3
-bajo 2
-bajo 1
-subo 1
-subo 2
-subo 3
-```
-
-El orden: `pintar(3)` imprime "bajo 3", llama a `pintar(2)`, que imprime "bajo 2", llama a `pintar(1)`, que imprime "bajo 1" y llama a `pintar(0)` (que no hace nada). Al volver, cada nivel ejecuta su `println` pendiente: primero el de 1, luego el de 2, luego el de 3. La pila se desenrolla en orden inverso: **baja todo, luego sube todo**.
-
-</details>
-
----
-
-## Ejercicio 3: ⭐⭐ El palíndromo rebelde
+## Ejercicio 2: El buscador binario con historial
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class PalindromoRebelde {
+public static int busquedaBinaria(int[] datos, int objetivo) {
+    int izquierda = 0;
+    int derecha = datos.length - 1;
 
-    static boolean esPalindromoFrase(String s, int inicio, int fin) {
-        if (inicio >= fin) return true;
+    while (izquierda <= derecha) {
+        int medio = izquierda + (derecha - izquierda) / 2;
+        System.out.println("Probando el índice " + medio);
 
-        if (!Character.isLetter(s.charAt(inicio))) {
-            return esPalindromoFrase(s, inicio + 1, fin);   // salta el no-letra
-        }
-        if (!Character.isLetter(s.charAt(fin))) {
-            return esPalindromoFrase(s, inicio, fin - 1);   // salta el no-letra
-        }
-
-        char a = Character.toLowerCase(s.charAt(inicio));
-        char b = Character.toLowerCase(s.charAt(fin));
-        if (a != b) return false;
-
-        return esPalindromoFrase(s, inicio + 1, fin - 1);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(esPalindromoFrase("Anita lava la tina", 0, 17));          // true
-        System.out.println(esPalindromoFrase("La ruta natural", 0, 14));          // true
-        System.out.println(esPalindromoFrase("No soy un palindromo", 0, 19));        // false
-    }
-}
-```
-
-Salida: `true`, `true`, `false`. La clave está en los dos `if` que saltan los caracteres que no son letras ANTES de comparar. Ojo: `Character.toLowerCase()` no quita acentos, así que las frases de ejemplo se eligen sin tildes («La ruta natural»). Si tuvieras tildes («Dábale arroz a la zorra el abad»), tendrías que normalizar los acentos aparte.
-
-</details>
-
----
-
-## Ejercicio 4: ⭐⭐ La potencia exprés (divide y vencerás)
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class PotenciaRapida {
-
-    static long potenciaRapida(int base, int exponente) {
-        if (exponente == 0) return 1;
-        long mitad = potenciaRapida(base, exponente / 2);
-        if (exponente % 2 == 0) {
-            return mitad * mitad;
+        if (datos[medio] == objetivo) {
+            return medio;
+        } else if (datos[medio] < objetivo) {
+            izquierda = medio + 1;
         } else {
-            return mitad * mitad * base;
+            derecha = medio - 1;
         }
     }
-
-    public static void main(String[] args) {
-        System.out.println("2^20 = " + potenciaRapida(2, 20));   // 1048576
-        System.out.println("3^10 = " + potenciaRapida(3, 10));   // 59049
-    }
+    return -1;
 }
 ```
 
-Salida: `2^20 = 1048576`, `3^10 = 59049`. `potenciaRapida(2, 20)` hace solo **5 llamadas recursivas** (20 → 10 → 5 → 2 → 1 → 0), mientras que la versión lineal del boletín inicial hace 20. De O(n) a O(log n): ese salto es todo el divide y vencerás. Cuando `e` es impar, `e / 2` redondea hacia abajo y por eso hay que multiplicar por `base` una vez más.
+Salida para `objetivo = 7`: `Probando el índice 4`, `Probando el índice 1`, `Probando el índice 2`, y devuelve `2` (7 está en `datos[2]`). El `println` dentro del bucle convierte a la binaria en una caja de cristal: puedes ver cada intento.
 
 </details>
 
 ---
 
-## Ejercicio 5: ⭐⭐⭐ Quicksort con mediana de tres
+## Ejercicio 3: La bombolla con recuento (y flag)
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class QuicksortMedianaTres {
+public class BombollaRecuento {
+    public static void main(String[] args) {
+        int[] datos = {9, 3, 7, 1, 5};
+        int intercambios = 0;
+        boolean huboIntercambio;
 
-    static void quicksort(int[] arr, int inicio, int fin) {
-        if (inicio >= fin) return;
+        for (int i = 0; i < datos.length - 1; i++) {
+            huboIntercambio = false;
 
-        int medio = (inicio + fin) / 2;
+            for (int j = 0; j < datos.length - 1 - i; j++) {
+                if (datos[j] > datos[j + 1]) {
+                    int temp = datos[j];
+                    datos[j] = datos[j + 1];
+                    datos[j + 1] = temp;
+                    intercambios++;
+                    huboIntercambio = true;
+                }
+            }
 
-        // elegir la mediana de arr[inicio], arr[medio], arr[fin] y llevarla a arr[inicio]
-        if (arr[medio] < arr[inicio]) intercambiar(arr, inicio, medio);
-        if (arr[fin] < arr[inicio]) intercambiar(arr, inicio, fin);
-        if (arr[fin] < arr[medio]) intercambiar(arr, medio, fin);
-        intercambiar(arr, inicio, medio);
+            if (!huboIntercambio) break;
+        }
 
-        int pivote = arr[inicio];
-        int i = inicio + 1;
+        System.out.println("Intercambios: " + intercambios);
+        for (int num : datos) {
+            System.out.print(num + " ");
+        }
+    }
+}
+```
 
-        for (int j = inicio + 1; j <= fin; j++) {
-            if (arr[j] < pivote) {
-                intercambiar(arr, i, j);
-                i++;
+Salida:
+
+```
+Intercambios: 7
+1 3 5 7 9
+```
+
+Sobre `{9, 3, 7, 1, 5}` son 7 intercambios. El flag hace que, en cuanto una pasada no mueve nada, el `break` corta: no merece la pena seguir. Compara con el boletín inicial, donde el flag no existía y siempre se hacían todas las pasadas.
+
+</details>
+
+---
+
+## Ejercicio 4: La inserción descendente
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public static void ordenarDescendente(int[] datos) {
+    for (int i = 1; i < datos.length; i++) {
+        int clave = datos[i];
+        int j = i - 1;
+
+        while (j >= 0 && datos[j] < clave) {
+            datos[j + 1] = datos[j];
+            j--;
+        }
+        datos[j + 1] = clave;
+    }
+}
+```
+
+El único cambio es el signo: `datos[j] < clave` en vez de `>`. Ahora deslizamos hacia la derecha los elementos **menores** que la clave, porque queremos que los grandes queden a la izquierda. Sobre `{6, 9, 3, 8, 5}` devuelve `9 8 6 5 3`. Cambiar una comparación y todo el sentido del algoritmo gira.
+
+</details>
+
+---
+
+## Ejercicio 5: El analista de complejidad
+
+<details>
+<summary>🔄 Solución</summary>
+
+- **`metodoA` → O(n)**: un solo bucle que recorre el array completo.
+- **`metodoB` → O(n²)**: dos bucles anidados. Aunque el interior empiece en `j = i + 1`, son ≈ n·(n-1)/2 iteraciones, que es O(n²). En Big O, las constantes y la mitad no cuentan.
+- **`metodoC` → O(log n)**: la búsqueda binaria. En cada vuelta el segmento se parte por la mitad, así que el número de vueltas es log₂(n).
+
+</details>
+
+---
+
+## Ejercicio 6: El cazador de parejas
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public static boolean existePareja(int[] datos, int sumaObjetivo) {
+    for (int i = 0; i < datos.length; i++) {
+        for (int j = i + 1; j < datos.length; j++) {
+            if (datos[i] + datos[j] == sumaObjetivo) {
+                return true;
             }
         }
-
-        intercambiar(arr, inicio, i - 1);
-
-        quicksort(arr, inicio, i - 2);
-        quicksort(arr, i, fin);
     }
-
-    static void intercambiar(int[] arr, int a, int b) {
-        int tmp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = tmp;
-    }
-
-    public static void main(String[] args) {
-        int[] datos = {1, 2, 3, 4, 5, 6, 7, 8};
-        quicksort(datos, 0, datos.length - 1);
-        System.out.println(java.util.Arrays.toString(datos));
-    }
+    return false;
 }
 ```
 
-Salida: `[1, 2, 3, 4, 5, 6, 7, 8]`. Con el array ya ordenado, el pivote ya NO es el menor (o el mayor): con la mediana de tres (`inicio`, `medio`, `fin`) el pivote de la primera llamada es 4, partiendo el array por la mitad. Así se evita el peor caso O(n²) de los arrays casi ordenados. Los tres `if` colocan el valor del medio de los tres en `arr[medio]`, y luego se intercambia a `arr[inicio]` para no cambiar la técnica de partición de la unidad.
+`j = i + 1` evita probar un elemento consigo mismo y duplicar parejas (probar (3,5) y (5,3)). Para 17: 10 + 7 → `true`. Para 25: ninguna combinación → `false`. Es O(n²), pero para arrays pequeños es instantáneo.
 
 </details>
 
 ---
 
-## Ejercicio 6: ⭐⭐⭐ Mergesort con el contador de comparaciones
+## Ejercicio 7: El detective de inversiones
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class MergesortContador {
+public static int contarInversiones(int[] datos) {
+    int inversiones = 0;
 
-    static long comparaciones;
-
-    static void mergesort(int[] arr) {
-        if (arr.length <= 1) return;
-        int medio = arr.length / 2;
-
-        int[] izq = new int[medio];
-        int[] der = new int[arr.length - medio];
-
-        for (int i = 0; i < medio; i++) izq[i] = arr[i];
-        for (int i = medio; i < arr.length; i++) der[i - medio] = arr[i];
-
-        mergesort(izq);
-        mergesort(der);
-        fusionar(arr, izq, der);
-    }
-
-    static void fusionar(int[] destino, int[] izq, int[] der) {
-        int i = 0, j = 0, k = 0;
-
-        while (i < izq.length && j < der.length) {
-            comparaciones++;
-            if (izq[i] <= der[j]) {
-                destino[k++] = izq[i++];
-            } else {
-                destino[k++] = der[j++];
+    for (int i = 0; i < datos.length; i++) {
+        for (int j = i + 1; j < datos.length; j++) {
+            if (datos[i] > datos[j]) {
+                inversiones++;
             }
         }
-
-        while (i < izq.length) {
-            comparaciones++;
-            destino[k++] = izq[i++];
-        }
-        while (j < der.length) {
-            comparaciones++;
-            destino[k++] = der[j++];
-        }
     }
-
-    public static void main(String[] args) {
-        comparaciones = 0;
-        int[] datos = {9, 8, 7, 6, 5, 4, 3, 2, 1};
-        mergesort(datos);
-        System.out.println(java.util.Arrays.toString(datos));
-        System.out.println("comparaciones (caso malo) = " + comparaciones);
-
-        comparaciones = 0;
-        int[] datos2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-        mergesort(datos2);
-        System.out.println("comparaciones (ya ordenado) = " + comparaciones);
-    }
+    return inversiones;
 }
 ```
 
-Salida (ejemplo): `[1, 2, 3, 4, 5, 6, 7, 8, 9]`, `comparaciones (caso malo) = 25`, `comparaciones (ya ordenado) = 18`. Mergesort siempre hace ~n·log₂(n) comparaciones (para n=9, 9·3,17 ≈ 28 en el peor de los casos teóricos), por eso es tan predecible: el orden de entrada apenas cambia el total. Compara con Quicksort, donde la entrada lo cambia TODO.
+Sobre `{2, 4, 1, 3}`: parejas `(0,1)` 2<4 no, `(0,2)` 2>1 sí, `(0,3)` 2<3 no, `(1,2)` 4>1 sí, `(1,3)` 4>3 sí, `(2,3)` 1<3 no → 3 inversiones. Curiosidad: las inversiones miden "lo desordenado" que está un array. Un array ya ordenado tiene 0; uno invertido tiene el máximo.
 
 </details>
 
 ---
 
-## Ejercicio 7: ⭐⭐⭐ las torres de Hanói con contador
+## Ejercicio 8: CodeWars — Ones and Zeros
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class HanoiContador {
-
-    static int movimientos;
-
-    static void hanoi(int n, char origen, char destino, char auxiliar) {
-        if (n == 1) {
-            System.out.println("Mueve disco 1 de " + origen + " a " + destino);
-            movimientos++;
-            return;
-        }
-        hanoi(n - 1, origen, auxiliar, destino);
-        System.out.println("Mueve disco " + n + " de " + origen + " a " + destino);
-        movimientos++;
-        hanoi(n - 1, auxiliar, destino, origen);
-    }
-
-    public static void main(String[] args) {
-        movimientos = 0;
-        hanoi(3, 'A', 'C', 'B');
-        System.out.println("Total de movimientos: " + movimientos);
-    }
-}
-```
-
-Con 3 discos, `Total de movimientos: 7`. Con 4 → 15, y con 8 → 255. La fórmula `2^n - 1` se cumple exactamente. El patrón clásico: mover `n-1` al auxiliar, mover el disco grande, mover `n-1` del auxiliar al destino. Cada movimiento impreso suma 1 al contador.
-
-</details>
-
----
-
-## Ejercicio 8: ⭐⭐⭐ CodeWars — Sort Numbers
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
 public class Kata {
-
-    public static int[] sortArray(int[] nums) {
-        if (nums == null || nums.length == 0) return new int[0];
-
-        int[] copia = nums.clone();
-        Arrays.sort(copia);
-        return copia;
+    public static int binaryArrayToNumber(int[] numeros) {
+        int valor = 0;
+        for (int digito : numeros) {
+            valor = valor * 2 + digito;
+        }
+        return valor;
     }
 }
 ```
 
-Con `{1, 5, 2, 3, 4}` → `{1, 2, 3, 4, 5}`, con `null` → `[]`, con `{}` → `[]`. Se clona el array para no mutar el original y se ordena la copia.
+Para `[1, 0, 1, 1]`: valor = 0·2+1 = 1, luego 1·2+0 = 2, luego 2·2+1 = 5, luego 5·2+1 = 11. El truco `valor * 2 + digito` convierte binario a decimal en un solo recorrido, sin `Math.pow`. Es un algoritmo clásico que te encontraras en todos lados: dígito a dígito, el valor "se desplaza" hacia la izquierda.
 
 </details>
 
 ---
 
-## Ejercicio 9: ⭐⭐⭐ AceptaElReto — 104 Móviles
+## Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
 
 <details>
 <summary>🔄 Solución</summary>
@@ -324,65 +238,66 @@ Con `{1, 5, 2, 3, 4}` → `{1, 2, 3, 4, 5}`, con `null` → `[]`, con `{}` → `
 ```java
 import java.util.Scanner;
 
-public class Moviles {
-
-    // Lee un móvil completo (su barra y sus submóviles) y devuelve:
-    //   su peso total si está equilibrado
-    //   -1 si NO está equilibrado
-    static int leerMovil(Scanner sc) {
-        int pi = sc.nextInt();   // peso izquierdo
-        int di = sc.nextInt();   // distancia izquierda
-        int pd = sc.nextInt();   // peso derecho
-        int dd = sc.nextInt();   // distancia derecha
-
-        boolean ok = true;
-
-        if (pi == 0) {                 // hay un submóvil a la izquierda
-            int sub = leerMovil(sc);
-            if (sub == -1) ok = false;
-            else pi = sub;
-        }
-        if (pd == 0) {                 // hay un submóvil a la derecha
-            int sub = leerMovil(sc);
-            if (sub == -1) ok = false;
-            else pd = sub;
-        }
-
-        if (!ok) return -1;                       // algún submóvil ya estaba desequilibrado
-        if (pi * di != pd * dd) return -1;        // esta barra no se equilibra
-        return pi + pd;                           // el peso total de este móvil
-    }
-
+public class Kaprekar {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int numero = sc.nextInt();
 
-        while (true) {
-            int pi = sc.nextInt();
-            int di = sc.nextInt();
-            int pd = sc.nextInt();
-            int dd = sc.nextInt();
-
-            if (pi == 0 && di == 0 && pd == 0 && dd == 0) break;   // fin de la entrada
-
-            boolean ok = true;
-            if (pi == 0) {
-                int sub = leerMovil(sc);
-                if (sub == -1) ok = false;
-                else pi = sub;
-            }
-            if (pd == 0) {
-                int sub = leerMovil(sc);
-                if (sub == -1) ok = false;
-                else pd = sub;
+        while (numero != 0) {
+            if (esRepdigit(numero)) {
+                System.out.println(8);
+                numero = sc.nextInt();
+                continue;
             }
 
-            boolean equilibrada = ok && pi * di == pd * dd;
-            System.out.println(equilibrada ? "SI" : "NO");
+            int iteraciones = 0;
+
+            while (numero != 6174) {
+                int[] digitos = new int[4];
+
+                for (int i = 3; i >= 0; i--) {
+                    digitos[i] = numero % 10;
+                    numero /= 10;
+                }
+
+                for (int i = 0; i < digitos.length - 1; i++) {
+                    for (int j = 0; j < digitos.length - 1 - i; j++) {
+                        if (digitos[j] > digitos[j + 1]) {
+                            int temp = digitos[j];
+                            digitos[j] = digitos[j + 1];
+                            digitos[j + 1] = temp;
+                        }
+                    }
+                }
+
+                int ascendente = 0;
+                int descendente = 0;
+                for (int i = 0; i < 4; i++) {
+                    ascendente = ascendente * 10 + digitos[i];
+                    descendente = descendente * 10 + digitos[3 - i];
+                }
+
+                numero = descendente - ascendente;
+                iteraciones++;
+            }
+
+            System.out.println(iteraciones);
+            numero = sc.nextInt();
         }
+        sc.close();
+    }
+
+    static boolean esRepdigit(int n) {
+        String s = String.format("%04d", n);
+        char primera = s.charAt(0);
+        for (char c : s.toCharArray()) {
+            if (c != primera) return false;
+        }
+        return true;
     }
 }
 ```
 
-El caso base no es un número: el móvil "hoja" es aquel cuyos dos lados tienen peso > 0 (no hay submóviles que leer). Cada llamada recursiva lee y comprueba un submóvil completo y devuelve su peso total. El flag `ok` (o el `-1`) propaga hacia arriba que TODAS las subbarras estén equilibradas. Entrada `0 0 0 0` marca el final de la entrada.
+Los números con menos de 4 cifras se completan con ceros porque extraemos con `% 10` y `/ 10` sobre un array de 4 posiciones: el 21 se convierte en `{0, 0, 2, 1}`. El algoritmo de Kaprekar termina siempre (máximo unas pocas iteraciones) y llega a 6174... **excepto los repdigits** (1111, 5555...): la primera resta da 0 y, si entraras en el `while (numero != 6174)`, te quedarías dando vueltas con 0 para siempre. Por eso el problema oficial de AceptaElReto pide que los repdigits impriman `8`, y lo detectamos antes con `esRepdigit`. La bombolla del punto 4, reutilizada dentro del propio Kaprekar: el código de la U05 resolviendo problemas reales.
 
 </details>

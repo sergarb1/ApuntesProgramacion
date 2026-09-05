@@ -1,141 +1,119 @@
 ---
-title: "Boletín 14 - Inicial Resuelto: JDBC - Conexión y Consultas"
-nav_order: 14
+title: "Butlletí 12 - Inicial Resolt: Fitxers i Expressions Regulars"
+nav_order: 12
 ---
-> 💡 Los 5 pasos, bien explicados y con humor.
-
----
-
-## Ejercicio 1: Los 5 pasos
-
-1. **Cargar el driver** → `Class.forName("com.mysql.cj.jdbc.Driver")` (opcional desde Java 6)
-2. **Establecer conexión** → `DriverManager.getConnection(url, user, pass)` devuelve `Connection`
-3. **Crear Statement** → `con.createStatement()` devuelve `Statement` o `con.prepareStatement(sql)` devuelve `PreparedStatement`
-4. **Ejecutar consulta** → `stmt.executeQuery(sql)` para SELECT o `stmt.executeUpdate(sql)` para INSERT/UPDATE/DELETE
-5. **Procesar resultados** → `rs.next()` + `rs.getXxx("columna")`
-6. **(Bonus) Cerrar todo** → `con.close()`, `stmt.close()`, `rs.close()` (o `try-with-resources`)
-
-> **💡 Explicación:**
-> El paso 1 es opcional desde Java 6 (los drivers JDBC 4.0 se cargan automáticamente si están en el classpath). Pero verás `Class.forName()` en mucho código legacy. No pasa nada si lo pones. El paso 6 es obligatorio: conexiones abiertas = servidor saturado.
+*Con soluciones. A aprender.*
 
 ---
 
-## Ejercicio 2: Completa la conexión
+## Ejercicio 1: Completa el código — leer archivo
 
 ```java
-String url = "jdbc:mysql://localhost:3306/instituto";
-String user = "root";
-String pass = "admin123";
+import java.io.*;
+import java.nio.file.*;
+import java.util.List;  // ¡este import falta!
 
-Connection con = DriverManager.getConnection(url, user, pass);
-Statement stmt = con.createStatement();
-ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos");
-
-while (rs.next()) {
-    System.out.println(rs.getString("nombre"));
-}
-
-// ¡Falta cerrar!
-con.close();
-stmt.close();
-rs.close();
-```
-
-> **💡 Explicación:**
-> `Connection`, `Statement`, `ResultSet`. Al final hay que cerrar todo. Mejor con `try-with-resources` para que se cierre automáticamente. Si se te olvida cerrar, la conexión queda abierta hasta que el garbage collector decida visitarte (y no sabe cuándo venir).
-
----
-
-## Ejercicio 3: ¿Qué imprime?
-
-```java
-try (Connection con = DriverManager.getConnection(url, user, pass);
-     Statement stmt = con.createStatement();
-     ResultSet rs = stmt.executeQuery("SELECT COUNT(*) FROM alumnos")) {
-
-    if (rs.next()) {
-        System.out.println(rs.getInt(1));  // número total de alumnos
+public class Test {
+    public static void main(String[] args) throws IOException {
+        Path ruta = Paths.get("datos.txt");
+        List<String> lineas = Files.readAllLines(ruta);
+        for (String linea : lineas) {
+            System.out.println(linea);
+        }
     }
 }
 ```
 
-> **💡 Explicación:**
-> Imprime el número total de filas en la tabla `alumnos`. `COUNT(*)` devuelve una sola fila con una columna. Como no tiene nombre (o el nombre depende de la BD), accedemos por índice `1` (la primera columna). También funciona `rs.getInt("COUNT(*)")` pero es más feo. `rs.getInt(1)` es la forma estándar cuando hay una columna sin alias.
+Falta `linea` en el `println` y también el `import java.util.List;`.
+
+> **💡 Explicación:** `Files.readAllLines()` devuelve un `List<String>`, que necesita import. El for-each recorre cada línea y `linea` es la variable que contiene cada línea. Sin `import java.util.List;`, el compilador no sabe qué es `List` y se queja.
 
 ---
 
-## Ejercicio 4: Encuentra el error
+## Ejercicio 2: Escribe este programa — Hola mundo archivo
 
 ```java
-public void buscarAlumno(String nombre) {
-    String sql = "SELECT * FROM alumnos WHERE nombre = '" + nombre + "'";
-    // ¡SQL INJECTION!
-    try (Statement stmt = con.createStatement();
-         ResultSet rs = stmt.executeQuery(sql)) { ... }
+import java.io.*;
+
+public class HolaArchivo {
+    public static void main(String[] args) {
+        // Escribir
+        try {
+            FileWriter writer = new FileWriter("saludo.txt");
+            writer.write("¡Hola, archivo!\n");
+            writer.write("Esto es una segunda línea.\n");
+            writer.close();
+            System.out.println("Archivo escrito.");
+        } catch (IOException e) {
+            System.out.println("Error al escribir: " + e.getMessage());
+        }
+
+        // Leer
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("saludo.txt"));
+            String linea = reader.readLine();
+            while (linea != null) {
+                System.out.println(linea);
+                linea = reader.readLine();
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Error al leer: " + e.getMessage());
+        }
+    }
 }
 ```
 
-> **💡 Explicación:**
-> ¡SQL Injection! Si `nombre` vale `Luis'; DROP TABLE alumnos; --`, la consulta se convierte en:
-> ```sql
-> SELECT * FROM alumnos WHERE nombre = 'Luis'; DROP TABLE alumnos; --'
-> ```
-> Adiós, tabla alumnos. Solución: usar `PreparedStatement`:
-
-```java
-String sql = "SELECT * FROM alumnos WHERE nombre = ?";
-PreparedStatement pstmt = con.prepareStatement(sql);
-pstmt.setString(1, nombre);
-ResultSet rs = pstmt.executeQuery();
-```
-
-> Nunca, jamás, concatenes SQL con datos de usuario. Es la regla de oro número 1 de JDBC.
+> **💡 Explicación:** `FileWriter` escribe caracteres en un archivo. Si el archivo no existe, lo crea. Si existe, lo sobrescribe. `BufferedReader` envuelve a `FileReader` para leer por líneas (más rápido). El bucle `while (linea != null)` es el estándar para leer archivos línea por línea. Siempre cierra los recursos con `close()` para evitar pérdidas de datos.
 
 ---
 
-## Ejercicio 5: INSERT con PreparedStatement
+## Ejercicio 3: ¿Qué imprime? — el contador de líneas
 
 ```java
-String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
+import java.io.*;
 
-try (PreparedStatement pstmt = con.prepareStatement(sql)) {
-    pstmt.setString(1, "María");
-    pstmt.setInt(2, 22);
-    pstmt.setString(3, "DAM");
-    int filas = pstmt.executeUpdate();
-    System.out.println("Insertadas " + filas + " filas");
+public class Test {
+    public static void main(String[] args) throws IOException {
+        File f = new File("datos.txt");
+        FileWriter w = new FileWriter(f);
+        w.write("linea1\nlinea2\nlinea3\n");
+        w.close();
+
+        BufferedReader r = new BufferedReader(new FileReader(f));
+        int contador = 0;
+        while (r.readLine() != null) {
+            contador++;
+        }
+        r.close();
+        System.out.println(contador);
+    }
 }
 ```
 
-> **💡 Explicación:**
-> `setString`, `setInt`, etc. reemplazan los `?` en orden (empezando en 1). `executeUpdate()` devuelve el número de filas afectadas. Si es 1, todo bien. Si es 0, algo falló (o el INSERT tenía una condición WHERE que no coincidió — cosa rara en INSERT).
+**Solución:** Imprime `3`.
+
+> **💡 Explicación:** El archivo tiene tres líneas: "linea1", "linea2", "linea3" (el último `\n` crea una línea adicional vacía, pero `readLine()` no la cuenta como línea porque devuelve `null` cuando no hay más). `readLine()` devuelve cada línea hasta que no quedan más, momento en que devuelve `null`. El contador se incrementa 3 veces. Nota: en realidad, si el archivo termina con `\n`, `readLine()` leería "linea3" y luego devolvería `null`, por lo que contaríamos 3 líneas. Si no hubiera `\n` al final, también serían 3.
 
 ---
 
-## Ejercicio 6: ¿Qué hace `executeUpdate()`?
+## Ejercicio 4: Encuentra el error — archivo no cerrado
 
 ```java
-int filas = stmt.executeUpdate("DELETE FROM alumnos WHERE id = 10");
-System.out.println(filas);
+FileWriter writer = new FileWriter("notas.txt");
+writer.write("Esto es una nota importante.");
+// falta: writer.close();
 ```
 
-> **💡 Explicación:**
-> `executeUpdate()` devuelve el **número de filas afectadas**. Si el alumno con id=10 existe y se borra, imprime `1`. Si no existe, imprime `0`. No lanza excepción por no encontrar filas — solo devuelve 0. Siempre comprueba el valor devuelto para saber si la operación tuvo efecto.
+**Solución:** Falta `writer.close()`. Sin cerrar el archivo, los datos pueden no escribirse físicamente en el disco porque `FileWriter` usa un buffer interno.
+
+> **💡 Explicación:** `FileWriter` no escribe directamente en el disco. Usa un buffer. Cuando haces `write()`, los datos se almacenan en el buffer. Si no llamas a `close()` o `flush()`, parte de los datos pueden perderse cuando el programa termina. Es como echar una carta al buzón pero no cerrar la puerta: el cartero puede no recogerla. Además, el sistema operativo mantiene el archivo bloqueado hasta que se cierre. **Siempre cierra los archivos** o usa try-with-resources (Java 7+).
 
 ---
 
-## Ejercicio 7: Diferencia entre executeQuery y executeUpdate
+## 🔗 Referencias para seguir practicando
 
-1. Mostrar todos los productos → `executeQuery()` (SELECT)
-2. Borrar un cliente por ID → `executeUpdate()` (DELETE)
-3. Actualizar el precio de un producto → `executeUpdate()` (UPDATE)
-4. Contar cuántos usuarios hay → `executeQuery()` (SELECT COUNT)
-5. Insertar un nuevo pedido → `executeUpdate()` (INSERT)
-
-> **💡 Explicación:**
-> Regla mnemotécnica: si esperas datos de vuelta (filas con columnas), usa `executeQuery()`. Si solo quieres saber cuántas filas se modificaron, usa `executeUpdate()`. Mezclarlos da `SQLException`. Como meter un tenedor en el microondas.
-
----
-
-> **🔗 CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6kyu)  
-> **🔗 AceptaElReto.com:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200)
+- **CodeWars:** [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028) (7 kyu)
+- **CodeWars:** [String repeat](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e) (8 kyu)
+- **AceptaElReto.com:** [140 - Suma de dígitos](https://www.aceptaelreto.com/problem/statement.php?id=140)
+- **AceptaElReto.com:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149)

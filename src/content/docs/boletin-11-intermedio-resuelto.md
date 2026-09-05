@@ -1,64 +1,69 @@
 ---
-title: "Boletín 10 - Resuelto: Consola y Ficheros"
-nav_order: 10
+title: "Boletín 11 - Resuelto: Genéricos y Mapas"
+nav_order: 11
 ---
 *Dificultad progresiva. De ⭐ a ⭐⭐⭐.*
 
 ---
 
-## ⭐ Ejercicio 1: La entrevista de trabajo
+## ⭐ Ejercicio 1: Clase genérica `Pareja<T, U>`
 
-Crea un programa que haga una entrevista de trabajo simulada. Pregunta nombre, edad, años de experiencia y lenguaje favorito. Al final, muestra un resumen con `printf()` formateado en forma de tarjeta.
-
----
-
-## ⭐ Ejercicio 2: Calculadora de propinas
-
-Solicita el total de la cuenta y el porcentaje de propina. Calcula la propina y el total final. Muestra los resultados con 2 decimales usando `printf()`.
+Crea una clase genérica `Pareja<T, U>` que almacene dos objetos de tipos posiblemente distintos. Incluye métodos `getPrimero()`, `getSegundo()`, `setPrimero(T)`, `setSegundo(U)` y un método `intercambiar()` que devuelva una nueva `Pareja<U, T>`.
 
 ---
 
-## ⭐ Ejercicio 3: El diario personal (append)
+## ⭐ Ejercicio 2: Contador de palabras con HashMap
 
-Crea un programa que escriba en un archivo `diario.txt` una línea con la fecha y el texto que el usuario introduzca. Cada ejecución debe añadir una nueva entrada al final sin borrar las anteriores. Usa `FileWriter` en modo append.
-
----
-
-## ⭐⭐ Ejercicio 4: El contador de líneas, palabras y caracteres
-
-Crea un programa que lea un archivo de texto y muestre cuántas líneas, palabras y caracteres tiene. Usa `BufferedReader` para leer.
+Escribe un programa que lea un texto (hardcodeado o por Scanner) y cuente cuántas veces aparece cada palabra usando `HashMap<String, Integer>`.
 
 ---
 
-## ⭐⭐ Ejercicio 5: El gestor de contactos (archivo)
+## ⭐ Ejercicio 3: Método genérico `maximo`
 
-Crea un programa con menú que permita: añadir un contacto (nombre, teléfono) a `contactos.txt`, listar todos los contactos, buscar un contacto por nombre. Usa `BufferedReader` y `PrintWriter`. Formatea con `printf()`.
-
----
-
-## ⭐⭐ Ejercicio 6: Lectura con NIO (Files y Paths)
-
-Reescribe el ejercicio del contador de líneas usando la API NIO (`Files.readAllLines()` y `Path`). Compara la diferencia.
+Implementa un método genérico `public static <T extends Comparable<T>> T maximo(T[] array)` que devuelva el elemento más grande de un array usando el método `compareTo()`.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 7 (ProgramaMe): Cifrado César con archivos
+## ⭐⭐ Ejercicio 4: Agenda completa con menú
 
-Crea un programa que lea un archivo `mensaje.txt`, desplace cada carácter 3 posiciones en el alfabeto (cifrado César) y escriba el resultado en `mensaje_cifrado.txt`. Luego, otro programa (o el mismo con una opción) que lo descifre. Usa try-with-resources y BufferedReader/PrintWriter.
+Implementa una agenda usando `HashMap<String, String>` con menú interactivo: añadir contacto, buscar por nombre, listar todos, borrar contacto y salir.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8 (ProgramaMe): Serialización de objetos
+## ⭐⭐ Ejercicio 5: TreeMap — ordenando por clave
 
-Crea una clase `Estudiante` que implemente `Serializable` con `String nombre`, `int edad`, `double notaMedia`. Crea un programa que guarde un `ArrayList<Estudiante>` en un archivo `estudiantes.dat` usando `ObjectOutputStream`. Luego, otro programa (o el mismo con opción) que lo lea con `ObjectInputStream` y muestre los datos formateados.
+Crea un programa que lea 5 países y sus capitales, los guarde en un `TreeMap<String, String>` y los muestre ordenados alfabéticamente por país. Luego muestra el primer y último país alfabéticamente.
+
+---
+
+## ⭐⭐⭐ Ejercicio 6 (ProgramaMe): Wildcards — el método de comparación
+
+Crea un método `compararMedias(List<? extends Number> a, List<? extends Number> b)` que compare la media de dos listas de números. Devuelve -1, 0 o 1 según si la media de a es menor, igual o mayor que la de b. Usa wildcards para que acepte `List<Integer>`, `List<Double>`, etc.
+
+---
+
+## ⭐⭐⭐ Ejercicio 7 (ProgramaMe): Sistema de votaciones
+
+Crea un sistema de votaciones donde:
+- Cada votante puede votar por un candidato (String)
+- Usa un `HashMap<String, Integer>` para los votos
+- Usa un `TreeMap<String, Integer>` para mostrar el ranking ordenado
+
+Crea un método genérico `public static <T> T obtenerGanador(Map<T, Integer> votos)` que devuelva la clave con más votos.
+
+---
+
+## ⭐⭐⭐ Ejercicio 8 (ProgramaMe): Cache simple con genéricos
+
+Implementa una clase `Cache<K, V>` que almacene hasta `maxElementos` pares clave-valor usando un `LinkedHashMap<K, V>`. Cuando se añade un elemento y la cache está llena, elimina el elemento más antiguo (LRU - Least Recently Used). Incluye `get(K clave)` y `put(K clave, V valor)`.
 
 ---
 
 ## 🔗 Referencias para seguir practicando
 
-- **CodeWars:** [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028) (7 kyu)
-- **CodeWars:** [String repeat](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e) (8 kyu)
-- **CodeWars:** [Exes and Ohs](https://www.codewars.com/kata/55908aad6620c066bc00002a) (7 kyu)
-- **AceptaElReto.com:** [140 - Suma de dígitos](https://www.aceptaelreto.com/problem/statement.php?id=140)
-- **AceptaElReto.com:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149)
-- **AceptaElReto.com:** [152 - Suma pares e impares](https://www.aceptaelreto.com/problem/statement.php?id=152)
+- **CodeWars:** [Word Count](https://www.codewars.com/kata/570cc83d616be859a5000c9b) (7 kyu)
+- **CodeWars:** [Sort arrays - 1](https://www.codewars.com/kata/51f41b98e8f2e0b8fd0000b5) (6 kyu)
+- **CodeWars:** [Counting duplicates](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1) (6 kyu)
+- **AceptaElReto.com:** [416 - Casillas](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- **AceptaElReto.com:** [417 - Binomiales](https://www.aceptaelreto.com/problem/statement.php?id=417)
+- **AceptaElReto.com:** [462 - Tres dedos](https://www.aceptaelreto.com/problem/statement.php?id=462)

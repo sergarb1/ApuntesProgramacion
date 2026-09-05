@@ -5,433 +5,480 @@ description: Els mateixos exercicis que el butlletí avançat, amb solucions
 
 # 📝 Butlletí U07 — Avançat (Resolt)
 
-> Les solucions estan ocultes en cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan amagades. Intenta-ho de veritat abans de destapar-les.
 
 ---
 
-## ⭐ Exercici 1: Empleat amb validació
+## ⭐ Exercici 1: La biblioteca
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Empleat {
-    private String nom;
-    private double salari;
+public class Llibre {
+    String titol;
+    String autor;
+    int pagines;
 
-    public Empleat(String nom, double salari) {
-        this.nom = nom;
-        setSalari(salari);
+    public Llibre(String titol, String autor, int pagines) {
+        this.titol = titol;
+        this.autor = autor;
+        this.pagines = pagines;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public double getSalari() {
-        return salari;
-    }
-
-    public void setSalari(double salari) {
-        if (salari >= 0) {
-            this.salari = salari;
-        } else {
-            System.out.println("Salari invàlid.");
-        }
+    void mostrarInfo() {
+        System.out.println(titol + ", de " + autor + " (" + pagines + " pàgines)");
     }
 
     public static void main(String[] args) {
-        Empleat e = new Empleat("Laura", 1500);
-        e.setSalari(-300);
-        System.out.println(e.getNom() + ": " + e.getSalari());
+        Llibre quixot = new Llibre("El Quixot", "Miguel de Cervantes", 863);
+        Llibre java = new Llibre("Java", "Sergi", 100);
+        quixot.mostrarInfo();
+        java.mostrarInfo();
     }
 }
 ```
 
-Eixida: `Salari invàlid.` i `Laura: 1500.0`. El truc: el constructor crida a `setSalari(salari)`, així la validació viu en un sol lloc i no hi ha dues còpies de la mateixa regla.
+Tres atributs, tres assignacions amb `this`, un mètode que els combina. Dos llibres, dos objectes, dos eixides independents.
 
 </details>
 
 ---
 
-## ⭐ Exercici 2: Cercle encapsulat
+## ⭐ Exercici 2: El rectangle que raona
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Cercle {
-    private double radi;
+public class Rectangle {
+    double ample;
+    double alt;
 
-    public Cercle(double radi) {
-        setRadi(radi);
+    public Rectangle(double ample, double alt) {
+        this.ample = ample;
+        this.alt = alt;
     }
 
-    public double getRadi() {
-        return radi;
+    double calcularArea() {
+        return ample * alt;
     }
 
-    public void setRadi(double radi) {
-        if (radi > 0) {
-            this.radi = radi;
-        } else {
-            System.out.println("Radi invàlid.");
-        }
+    double calcularPerimetre() {
+        return 2 * (ample + alt);
     }
 
-    public double getArea() {
-        return Math.PI * radi * radi;
-    }
-
-    public double getPerimetre() {
-        return 2 * Math.PI * radi;
+    boolean esQuadrat() {
+        return ample == alt;
     }
 
     public static void main(String[] args) {
-        Cercle c = new Cercle(5);
-        System.out.println("Àrea: " + c.getArea());
-        System.out.println("Perímetre: " + c.getPerimetre());
+        Rectangle quadrat = new Rectangle(4, 4);
+        Rectangle rectangle = new Rectangle(5, 8);
+
+        System.out.println("Quadrat: àrea " + quadrat.calcularArea()
+                + ", perímetre " + quadrat.calcularPerimetre()
+                + ", és quadrat? " + quadrat.esQuadrat());
+        System.out.println("Rectangle: àrea " + rectangle.calcularArea()
+                + ", perímetre " + rectangle.calcularPerimetre()
+                + ", és quadrat? " + rectangle.esQuadrat());
     }
 }
 ```
 
-`getArea()` i `getPerimetre()` són getters "calculats": no retornen un atribut, sinó un valor derivat d'ell. `Math.PI` és una constant estàtica, i els mètodes els crees tu amb `static` quan convé. Àrea del radi 5: ≈ 78.54, perímetre ≈ 31.42.
+Eixida:
+
+```
+Quadrat: àrea 16.0, perímetre 16.0, és quadrat? true
+Rectangle: àrea 40.0, perímetre 26.0, és quadrat? false
+```
+
+Tres mètodes que *tornen* valors. Fixa't: `esQuadrat()` convertix una comparació en un booleà d'un sol `return`. Objectes que raonen, no només que mostren.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 3: JavaBean Alumne
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Alumne {
-    private String nom;
-    private int edat;
-    private double notaMitjana;
-
-    public Alumne() {}
-
-    public Alumne(String nom, int edat, double notaMitjana) {
-        this.nom = nom;
-        setEdat(edat);
-        setNotaMitjana(notaMitjana);
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public int getEdat() {
-        return edat;
-    }
-
-    public void setEdat(int edat) {
-        if (edat >= 0 && edat <= 120) {
-            this.edat = edat;
-        } else {
-            System.out.println("Edat invàlida.");
-        }
-    }
-
-    public double getNotaMitjana() {
-        return notaMitjana;
-    }
-
-    public void setNotaMitjana(double notaMitjana) {
-        if (notaMitjana >= 0 && notaMitjana <= 10) {
-            this.notaMitjana = notaMitjana;
-        } else {
-            System.out.println("Nota invàlida.");
-        }
-    }
-
-    public static void main(String[] args) {
-        Alumne a = new Alumne("Sara", 18, 7.5);
-        a.setNotaMitjana(8.75);
-        System.out.println(a.getNom() + ": " + a.getNotaMitjana());
-    }
-}
-```
-
-JavaBean: atributs privats, constructors (buit i amb dades) i getters/setters de tot. Els setters amb validació eviten estats impossibles (edat 250, nota 15). El constructor amb paràmetres reutilitza els setters per a no duplicar regles.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 4: Hora immutable
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Hora {
-    private final int hora;
-    private final int minut;
-
-    public Hora(int hora, int minut) {
-        if (hora < 0 || hora > 23 || minut < 0 || minut > 59) {
-            throw new IllegalArgumentException("Hora o minut invàlids.");
-        }
-        this.hora = hora;
-        this.minut = minut;
-    }
-
-    public int getHora() {
-        return hora;
-    }
-
-    public int getMinut() {
-        return minut;
-    }
-
-    public String mostrar() {
-        return String.format("%02d:%02d", hora, minut);
-    }
-
-    public static void main(String[] args) {
-        Hora h = new Hora(9, 5);
-        System.out.println(h.mostrar());
-    }
-}
-```
-
-Eixida: `09:05`. No necessita setters perquè és **immutable**: una vegada creada, el seu valor no canvia mai (els `final` ho garantixen). Canviar l'hora és crear una `Hora` nova. El constructor usa `throw` (vist en la U03) per als valors impossibles.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 5: Què imprimeix? — el trencaclosques dels gats
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimix:
-
-```
-Bigotis (7 vides)
-Garfield (8 vides)
-Total: 2
-```
-
-`Bigotis` perd 2 vides (de 9 a 7), `Garfield` en perd 1 (de 9 a 8). `totalGats` és `static` i puja amb cada `new`, així que val 2. Les `vides` són de cada gat; el `totalGats`, de la classe. `toString()` és el mètode que Java crida en imprimir un objecte amb `System.out.println`.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 6: Comptador d'usuaris
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Usuari {
-    private static int comptador = 0;
-    private int id;
-
-    public Usuari() {
-        comptador++;
-        id = comptador;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public static int getTotalUsuaris() {
-        return comptador;
-    }
-
-    public static void main(String[] args) {
-        Usuari u1 = new Usuari();
-        Usuari u2 = new Usuari();
-        Usuari u3 = new Usuari();
-        Usuari u4 = new Usuari();
-        Usuari u5 = new Usuari();
-        System.out.println("Últim id: " + u5.getId());
-        System.out.println("Total: " + Usuari.getTotalUsuaris());
-    }
-}
-```
-
-Eixida: `Últim id: 5` i `Total: 5`. El patró "comptador + id": `comptador` (estàtic) puja en cada constructor i l'objecte es guarda el seu número com a `id`. `getTotalUsuaris()` és `static` perquè la pregunta se li fa a la classe, no a un usuari concret.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 7: La classe utilitària OperacionsArray
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class OperacionsArray {
-    private OperacionsArray() {}
-
-    public static int suma(int[] numeros) {
-        int suma = 0;
-        for (int numero : numeros) {
-            suma += numero;
-        }
-        return suma;
-    }
-
-    public static double mitjana(double[] numeros) {
-        double suma = 0;
-        for (double numero : numeros) {
-            suma += numero;
-        }
-        return numeros.length > 0 ? suma / numeros.length : 0;
-    }
-
-    public static int maxim(int[] numeros) {
-        int max = numeros[0];
-        for (int i = 1; i < numeros.length; i++) {
-            if (numeros[i] > max) {
-                max = numeros[i];
-            }
-        }
-        return max;
-    }
-
-    public static boolean estaOrdenat(int[] numeros) {
-        for (int i = 1; i < numeros.length; i++) {
-            if (numeros[i] < numeros[i - 1]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static void main(String[] args) {
-        System.out.println("Suma: " + OperacionsArray.suma(new int[]{3, 1, 4, 1, 5}));
-        System.out.println("Màxim: " + OperacionsArray.maxim(new int[]{3, 1, 4, 1, 5}));
-        System.out.println("Ordenat: " + OperacionsArray.estaOrdenat(new int[]{1, 2, 3}));
-    }
-}
-```
-
-Constructor privat + tot `static` = classe utilitària, com `Math`. `estaOrdenat` retorna `false` en seguint que trobe una parella fora d'orde (`return` primerenc). El `for...each` de la U09 es pot usar ja: recorre sense índex.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 8: Validador de dades
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Validador {
-    private Validador() {}
-
-    public static boolean esEmailValid(String email) {
-        if (email == null) {
-            return false;
-        }
-        int arrova = email.indexOf('@');
-        if (arrova < 1) {
-            return false;
-        }
-        if (email.indexOf('@', arrova + 1) != -1) {
-            return false;
-        }
-        return email.indexOf('.', arrova + 1) != -1;
-    }
-
-    public static boolean esEdatValida(int edat) {
-        return edat >= 0 && edat <= 120;
-    }
-
-    public static boolean esTextNoBuit(String text) {
-        return text != null && !text.trim().isEmpty();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Validador.esEmailValid("ana@mail.com"));
-        System.out.println(Validador.esEmailValid("ana@"));
-        System.out.println(Validador.esEdatValida(-5));
-        System.out.println(Validador.esEdatValida(200));
-        System.out.println(Validador.esTextNoBuit("  "));
-    }
-}
-```
-
-Eixida: `true`, `false`, `false`, `false`, `false`. `esEmailValid` exigix: alguna cosa abans de la `@`, una sola `@`, i un `.` després. `indexOf('@', pos)` busca des de `pos` endavant. Cada condició fallida ix amb `false` a l'instant: sense `else` encadenats.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 9: El gran repte — refactoritza el banc
+## ⭐ Exercici 3: El compte bancari blindat
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class CompteBancari {
-    public static final String NOM_BANC = "Banc DAM";
-
-    private String titular;
-    private double saldo;
+    String titular;
+    double saldo;
 
     public CompteBancari(String titular, double saldo) {
         this.titular = titular;
-        if (saldo >= 0) {
-            this.saldo = saldo;
+        this.saldo = saldo;
+    }
+
+    void ingressar(double quantitat) {
+        this.saldo += quantitat;
+    }
+
+    void retirar(double quantitat) {
+        if (quantitat <= this.saldo) {
+            this.saldo -= quantitat;
         } else {
-            System.out.println("Saldo inicial invàlid.");
+            System.out.println("Saldo insuficient");
         }
     }
 
-    public String getTitular() {
-        return titular;
-    }
-
-    public double getSaldo() {
-        return saldo;
-    }
-
-    public void retirar(double quantitat) {
-        if (quantitat <= 0) {
-            System.out.println("Quantitat invàlida.");
-            return;
-        }
-        if (quantitat > saldo) {
-            System.out.println("Saldo insuficient.");
-            return;
-        }
-        saldo = saldo - quantitat;
-    }
-
-    public void ingressar(double quantitat) {
-        if (quantitat <= 0) {
-            System.out.println("Quantitat invàlida.");
-            return;
-        }
-        saldo = saldo + quantitat;
+    void mostrar() {
+        System.out.println("Titular: " + titular + " | Saldo: " + saldo + " €");
     }
 
     public static void main(String[] args) {
-        CompteBancari compte = new CompteBancari("Ana", 100);
-        compte.ingressar(50);
-        compte.retirar(400);
-        System.out.println("Saldo: " + compte.getSaldo());
+        CompteBancari compte = new CompteBancari("Anna", 100);
+        compte.retirar(30);
+        compte.retirar(200);
+        compte.mostrar();
     }
 }
 ```
 
-Eixida: `Saldo insuficient.` i `Saldo: 150.0`. El constructor corregit usa `this` (el bug original assignava el paràmetre a si mateix). Sense setter de saldo, només `ingressar` i `retirar` poden tocar-lo, i totes dues validen. La constant dona identitat al banc. El compte ja no pot quedar en negatiu ni en valors arbitraris.
+Eixida:
+
+```
+Saldo insuficient
+Titular: Anna | Saldo: 70 €
+```
+
+L'`if` de `retirar` és el guardià: la retirada de 200 € es rebutja perquè supera el saldo, i el compte no queda mai en negatiu. Un objecte que es protegix a si mateix.
 
 </details>
+
+---
+
+## ⭐⭐ Exercici 4: L'hora que es corregeix sola
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Hora {
+    int hora;
+    int minut;
+    int segon;
+
+    public Hora(int hora, int minut, int segon) {
+        if (hora < 0 || hora > 23) {
+            hora = 0;
+        }
+        if (minut < 0 || minut > 59) {
+            minut = 0;
+        }
+        if (segon < 0 || segon > 59) {
+            segon = 0;
+        }
+        this.hora = hora;
+        this.minut = minut;
+        this.segon = segon;
+    }
+
+    void incrementarSegon() {
+        segon++;
+        if (segon == 60) {
+            segon = 0;
+            minut++;
+            if (minut == 60) {
+                minut = 0;
+                hora++;
+                if (hora == 24) {
+                    hora = 0;
+                }
+            }
+        }
+    }
+
+    void mostrar() {
+        String h = hora < 10 ? "0" + hora : "" + hora;
+        String m = minut < 10 ? "0" + minut : "" + minut;
+        String s = segon < 10 ? "0" + segon : "" + segon;
+        System.out.println(h + ":" + m + ":" + s);
+    }
+
+    public static void main(String[] args) {
+        Hora h = new Hora(23, 59, 59);
+        h.incrementarSegon();
+        h.mostrar();
+    }
+}
+```
+
+Eixida: `00:00:00`
+
+Tres nivells de validació en el constructor i tres arrossegaments encadenats en `incrementarSegon()`. De 23:59:59 passa a 00:00:00: l'hora es corregeix sola perquè cada unitat sap quan reinicia i avisa la següent.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 5: Què imprimeix? — el ball de referències
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+a.x = 10
+c.x = 99
+```
+
+**Primera part:** `b = a` copia la *referència*, no l'objecte. `b.x = 10` modifica el mateix objecte que veu `a`, així que `a.x` també és 10.
+
+**Segona part:** en cridar `cambiar(c)`, el paràmetre `p` rep una *còpia* de la referència. `p.x = 99` modifica l'objecte original (per això `c.x` és 99). Però `p = new Punto(50, 50)` només reassigna la còpia local: l'objecte de `c` no canvia i el nou `Punto` es perd en acabar el mètode. En Java les referències es passen per valor.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 6: El correu que s'encadena
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Email {
+    String remitent;
+    String destinatari;
+    String assumpte;
+
+    public Email(String remitent, String destinatari, String assumpte) {
+        this.remitent = remitent;
+        this.destinatari = destinatari;
+        this.assumpte = assumpte;
+    }
+
+    public Email(String remitent, String destinatari) {
+        this(remitent, destinatari, "(sense assumpte)");
+    }
+
+    public Email(String remitent) {
+        this(remitent, "(sense destí)");
+    }
+
+    void mostrar() {
+        System.out.println("De: " + remitent + " | Per a: " + destinatari + " | Assumpte: " + assumpte);
+    }
+
+    public static void main(String[] args) {
+        Email complet = new Email("anna@gmail.com", "lluis@gmail.com", "Tasca Java");
+        Email mig = new Email("anna@gmail.com", "lluis@gmail.com");
+        Email curt = new Email("anna@gmail.com");
+
+        complet.mostrar();
+        mig.mostrar();
+        curt.mostrar();
+    }
+}
+```
+
+Eixida:
+
+```
+De: anna@gmail.com | Per a: lluis@gmail.com | Assumpte: Tasca Java
+De: anna@gmail.com | Per a: lluis@gmail.com | Assumpte: (sense assumpte)
+De: anna@gmail.com | Per a: (sense destí) | Assumpte: (sense assumpte)
+```
+
+Els dos constructors curts deleguen en el llarg amb `this(...)`. L'assignació completa s'escriu **una sola vegada**; els valors per defecte s'omplin en l'encadenament. Això és sobrecàrrega sense duplicar codi.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 7: La fracció que es simplifica
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Fraccio {
+    int numerador;
+    int denominador;
+
+    public Fraccio(int numerador, int denominador) {
+        if (denominador == 0) {
+            denominador = 1;
+        }
+        this.numerador = numerador;
+        this.denominador = denominador;
+    }
+
+    Fraccio sumar(Fraccio altra) {
+        int num = this.numerador * altra.denominador + altra.numerador * this.denominador;
+        int den = this.denominador * altra.denominador;
+        return new Fraccio(num, den);
+    }
+
+    void simplificar() {
+        int mcd = mcd(Math.abs(numerador), Math.abs(denominador));
+        numerador /= mcd;
+        denominador /= mcd;
+    }
+
+    int mcd(int a, int b) {
+        while (b != 0) {
+            int resto = a % b;
+            a = b;
+            b = resto;
+        }
+        return a == 0 ? 1 : a;
+    }
+
+    void mostrar() {
+        System.out.println(numerador + "/" + denominador);
+    }
+
+    public static void main(String[] args) {
+        Fraccio unMig = new Fraccio(1, 2);
+        Fraccio unTerç = new Fraccio(1, 3);
+        Fraccio suma = unMig.sumar(unTerç);
+        suma.simplificar();
+        suma.mostrar();
+    }
+}
+```
+
+Eixida: `5/6`
+
+`sumar(Fraccio altra)` usa `this` per al primer sumand i `altra.` per al segon, i torna una **fracció nova** (no toca cap de les dos). `simplificar()` sí que modifica l'objecte (per això és `void`). Euclides amb mòduls troba el MCD en poques voltes.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 8: CodeWars — Building blocks
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Block {
+    private int width;
+    private int length;
+    private int height;
+
+    public Block(int[] dimensions) {
+        this.width = dimensions[0];
+        this.length = dimensions[1];
+        this.height = dimensions[2];
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getVolume() {
+        return width * length * height;
+    }
+
+    public int getSurfaceArea() {
+        return 2 * (width * length + width * height + length * height);
+    }
+
+    public static void main(String[] args) {
+        Block bloque = new Block(new int[]{2, 4, 6});
+        System.out.println("Volum: " + bloque.getVolume());
+        System.out.println("Superfície: " + bloque.getSurfaceArea());
+    }
+}
+```
+
+Eixida:
+
+```
+Volum: 48
+Superfície: 88
+```
+
+Els getters tornen cada atribut, i els dos mètodes calculats combinen els tres. La superfície és cada parell de cares multiplicat i sumat, tot per dos. La kata accepta també tres enters per separat en el constructor.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 100 Constante de Kaprekar
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Kaprekar {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int casos = sc.nextInt();
+
+        for (int i = 0; i < casos; i++) {
+            int numero = sc.nextInt();
+            System.out.println(iteracions(numero));
+        }
+        sc.close();
+    }
+
+    static int iteracions(int numero) {
+        if (numero == 6174) {
+            return 0;
+        }
+        if (esRepdigit(numero)) {
+            return 8;
+        }
+
+        int voltes = 0;
+        int actual = numero;
+        while (actual != 6174) {
+            actual = pasKaprekar(actual);
+            voltes++;
+        }
+        return voltes;
+    }
+
+    static boolean esRepdigit(int numero) {
+        String s = String.format("%04d", numero);
+        char primera = s.charAt(0);
+        for (char c : s.toCharArray()) {
+            if (c != primera) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static int pasKaprekar(int numero) {
+        String s = String.format("%04d", numero);
+        char[] asc = s.toCharArray();
+        Arrays.sort(asc);
+        char[] desc = new char[4];
+        for (int i = 0; i < 4; i++) {
+            desc[i] = asc[3 - i];
+        }
+
+        int major = Integer.parseInt(new String(desc));
+        int menor = Integer.parseInt(new String(asc));
+        return major - menor;
+    }
+}
+```
+
+Per a 3524, el `while` dona: 3524 → 3087 → 8352 → 6174, tres voltes. `%04d` ompli amb zeros a l'esquerra (necessari per a nombres com 3087). `esRepdigit` torna `false` en trobar un dígit distint. Este és un problema magnífic per a provar la teua classe `Numero` amb mètodes separats.
+
+</details>
+
+---
+
+> 📚 **Vols més?** Revisa el butlletí d'**extres** d'esta unitat: té quatre katas de CodeWars (inclosa una de depuració d'una classe) i dos problemes d'AceptaElReto.

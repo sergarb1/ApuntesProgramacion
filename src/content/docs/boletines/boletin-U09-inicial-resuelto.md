@@ -1,6 +1,6 @@
 ---
-title: "Boletín U09 — Inicial Resuelto"
-description: "Los mismos ejercicios que el boletín inicial, con soluciones"
+title: Boletín U09 — Inicial Resuelto
+description: Los mismos ejercicios que el boletín inicial, con soluciones
 ---
 
 # 📝 Boletín U09 — Inicial (Resuelto)
@@ -9,226 +9,255 @@ description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — Array de booleanos
+## Ejercicio 1: ¿Qué imprime? — La familia musical
 
 <details>
 <summary>🔄 Solución</summary>
 
-Imprime **`false true false`**.
+Imprime **"El bajista toca el bajo"**.
 
-`flags` es un `boolean[]` de 3 plazas recién creadas. El valor por defecto de `boolean` es `false`, así que `flags[0]` y `flags[2]` valen `false`. Solo `flags[1]` se puso a `true`. Cada plaza nace con el valor por defecto de su tipo: `false` para `boolean`.
+`Bajista` tiene su propia versión de `tocar()`. Java busca el método empezando por la clase más específica (`Bajista`) y lo encuentra ahí mismo: nunca sube a `Guitarrista` ni a `Musico`. Ese es el *dynamic dispatch*: el método se resuelve según el tipo real del objeto, no según el tipo de la referencia.
 
 </details>
 
 ---
 
-## Ejercicio 2: Encuentra el error — NullPointerException
+## Ejercicio 2: Encuentra el error — extends mal usado
 
 <details>
 <summary>🔄 Solución</summary>
 
-Se lanza una **`NullPointerException`** en la última línea.
-
-`nombres[2]` nunca se asignó, así que vale `null` (el valor por defecto de los objetos). Llamar a `nombres[2].toUpperCase()` sobre `null` es pedirle un método a la nada: Java no sabe qué hacer y lanza la excepción. Las plazas de un `String[]` recién creado están llenas de `null`, no de `""`.
-
-</details>
-
----
-
-## Ejercicio 3: Completa el código — for básico para buscar el mayor
-
-<details>
-<summary>🔄 Solución</summary>
+El error es que `Perro` no llama al constructor de `Animal`. Cuando una clase hija no pone `super(...)`, Java intenta llamar a `super()` sin parámetros. Pero `Animal` solo tiene `Animal(String)`, así que el compilador no encuentra el constructor vacío: **error de compilación**.
 
 ```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
+public class Perro extends Animal {
+    private String raza;
 
-for (int i = 1; i < numeros.length; i++) {   // hasta length, sin pasar
-    if (numeros[i] > mayor) {                // ¿es más grande que el actual?
-        mayor = numeros[i];                  // actualiza el mayor
+    public Perro(String especie, String raza) {
+        super(especie);   // ¡la clave!
+        this.raza = raza;
     }
 }
-
-System.out.println("El mayor es: " + mayor);
 ```
 
-El patrón del "máximo acumulado": empiezas asumiendo que el primero es el mayor y, si aparece uno más grande, lo sustituyes. El bucle empieza en `i = 1` porque el candidato inicial ya es `numeros[0]`. Imprime `El mayor es: 89`.
+Piensa en `super()` como llamar a papá para que configure su parte antes de que tú configures la tuya. Si papá necesita una especie para construirse, tú tienes que pasársela. Es como construir una casa sin cimientos: el constructor del padre es la base.
 
 </details>
 
 ---
 
-## Ejercicio 4: Escribe este programa — contar números pares
+## Ejercicio 3: Completa el código — el gato que llama a su padre
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-import java.util.Arrays;
+La palabra es **`super`**:
 
-public class ContarPares {
+```java
+public class Gato extends Animal {
+    @Override
+    public void hacerSonido() {
+        super.hacerSonido();   // primero lo del padre
+        System.out.println("¡MIAU!");
+    }
+
     public static void main(String[] args) {
-        int[] numeros = {3, 8, 12, 5, 7, 10, 2, 9, 6, 1};
-        int pares = 0;
-
-        for (int i = 0; i < numeros.length; i++) {
-            if (numeros[i] % 2 == 0) {
-                pares++;
-            }
-        }
-
-        System.out.println("Array: " + Arrays.toString(numeros));
-        System.out.println("Pares: " + pares);
+        Gato g = new Gato();
+        g.hacerSonido();
     }
 }
 ```
 
-Salida: `Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]` y `Pares: 5`. Un número es par si su resto al dividir entre 2 es 0 (`% 2 == 0`). Y `Arrays.toString` es lo que hace la salida legible.
+Salida:
+
+```
+Algún sonido genérico...
+¡MIAU!
+```
+
+`super.hacerSonido()` ejecuta la versión de `Animal` y luego el `Gato` añade lo suyo. Sin el `super`, el método estaría sobrescrito por completo y la línea del padre no saldría jamás.
 
 </details>
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — ArrayList remove por índice vs valor
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`[A, C, B, D]`**.
-
-Paso a paso:
-
-- `lista.remove(1)` borra por **índice**: se va el `"B"` de la posición 1 → `[A, C, B, D]`.
-- `lista.remove("B")` borra por **objeto**: busca la primera aparición de `"B"` y la borra → `[A, C, D]`.
-
-El primer `remove` borra el `"B"` de la posición 1 (el primero). Cuando después llamas a `remove("B")`, ese `"B"` ya no está, pero queda el `"B"` que estaba en la posición 3 (el cuarto elemento), que ahora es el primero que encuentra: lo borra. Resultado final `[A, C, D]`.
-
-</details>
-
----
-
-## Ejercicio 6: Encuentra el error — length vs length()
-
-<details>
-<summary>🔄 Solución</summary>
-
-Las **dos líneas tienen error**, pero por motivos opuestos:
-
-- `numeros.length()` → los arrays usan `length` como **atributo**, sin paréntesis. `numeros.length()` no compila.
-- `texto.length` → los `String` usan `length()` como **método**, con paréntesis. `texto.length` no compila.
-
-Regla de oro: **array → `length`; `String` → `length()`; colecciones → `size()`.** Confundirlos es la trampa favorita de los exámenes.
-
-</details>
-
----
-
-## Ejercicio 7: Escribe este programa — búsqueda lineal
+## Ejercicio 4: Escribe este programa — la herencia de vehículos
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Scanner;
+public class Vehiculo {
+    protected String marca;
 
-public class BusquedaLineal {
+    public Vehiculo(String marca) {
+        this.marca = marca;
+    }
+}
+
+public class Coche extends Vehiculo {
+    protected int numPuertas;
+
+    public Coche(String marca, int numPuertas) {
+        super(marca);
+        this.numPuertas = numPuertas;
+    }
+}
+
+public class Deportivo extends Coche {
+    private int velocidadMaxima;
+
+    public Deportivo(String marca, int numPuertas, int velocidadMaxima) {
+        super(marca, numPuertas);
+        this.velocidadMaxima = velocidadMaxima;
+    }
+
     public static void main(String[] args) {
-        int[] edades = {12, 45, 25, 67, 33, 18, 40, 21};
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Introduce edad a buscar: ");
-        int buscado = sc.nextInt();
-
-        int posicion = -1;
-        for (int i = 0; i < edades.length; i++) {
-            if (edades[i] == buscado) {
-                posicion = i;
-                break;
-            }
-        }
-
-        if (posicion >= 0) {
-            System.out.println("Encontrado en posición " + posicion);
-        } else {
-            System.out.println("No encontrado");
-        }
-        sc.close();
+        Deportivo d = new Deportivo("Ferrari", 2, 340);
+        System.out.println(d.marca + " con " + d.numPuertas
+                + " puertas y " + d.velocidadMaxima + " km/h");
     }
 }
 ```
 
-La búsqueda lineal recorre el array de principio a fin. `posicion = -1` es el "no encontrado"; si aparece el valor, guardas el índice y cortas con `break` (ya no hace falta seguir).
+La herencia en cadena: `Deportivo` → `Coche` → `Vehiculo`. Cada constructor llama al de su padre con `super(...)`. Por eso `marca` (de `Vehiculo`) y `numPuertas` (de `Coche`) son accesibles en `Deportivo` gracias a `protected`.
 
 </details>
 
 ---
 
-## Ejercicio 8: Escribe este programa — el inverso
+## Ejercicio 5: ¿Qué imprime? — polimorfismo con referencias
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime:
+
+```
+Y
+Z
+Z
+```
+
+El tipo de la **referencia** (X, X, Y) no importa. Lo que importa es el tipo **real** del objeto (Y, Z, Z). Java siempre ejecuta el método más específico del objeto real. Es como llevar la chaqueta de tu padre: por fuera pareces tu padre (la referencia), pero por dentro eres tú (el objeto). Cuando hablas, se oye tu voz, no la de tu padre. Dynamic binding en todo su esplendor.
+
+</details>
+
+---
+
+## Ejercicio 6: Escribe este programa — la granja polimórfica
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Arrays;
+import java.util.ArrayList;
 
-public class Inverso {
+public class Animal {
+    public void hacerSonido() { System.out.println("..."); }
+}
+
+class Vaca extends Animal {
+    @Override public void hacerSonido() { System.out.println("Muuuu"); }
+}
+
+class Oveja extends Animal {
+    @Override public void hacerSonido() { System.out.println("Beeee"); }
+}
+
+class Gallina extends Animal {
+    @Override public void hacerSonido() { System.out.println("Cloc cloc"); }
+}
+
+public class Granja {
     public static void main(String[] args) {
-        int[] numeros = new int[10];
-        for (int i = 0; i < numeros.length; i++) {
-            numeros[i] = i + 1;
-        }
+        ArrayList<Animal> animales = new ArrayList<>();
+        animales.add(new Vaca());
+        animales.add(new Oveja());
+        animales.add(new Gallina());
 
-        System.out.println("Original: " + Arrays.toString(numeros));
-
-        System.out.print("Inverso: ");
-        for (int i = numeros.length - 1; i >= 0; i--) {
-            System.out.print(numeros[i] + " ");
+        for (Animal a : animales) {
+            a.hacerSonido();
         }
     }
 }
 ```
 
-El primer bucle rellena del 1 al 10. El segundo recorre **hacia atrás**: empieza en `length - 1` (el 10) y baja hasta 0 (el 1). Imprime `10 9 8 7 6 5 4 3 2 1`.
+Salida:
+
+```
+Muuuu
+Beeee
+Cloc cloc
+```
+
+Un solo `ArrayList<Animal>` y un solo bucle: cada animal ejecuta su propia versión gracias al polimorfismo. Sin él, tendrías tres listas separadas. Esto es lo que hace que el polimorfismo valga su peso en oro.
 
 </details>
 
 ---
 
-## Ejercicio 9: CodeWars — Convert number to reversed array of digits
+## Ejercicio 7: Encuentra el error — @Override que no lo es
+
+<details>
+<summary>🔄 Solución</summary>
+
+La línea que **no compila** es:
+
+```java
+@Override
+public void nadar() { }   // ✗ ERROR: Animal no tiene nadar()
+```
+
+`@Override` le dice al compilador: "verifica que realmente estoy sobrescribiendo un método del padre". Como `Animal` no tiene `nadar()`, el compilador lo avisa en el acto. La otra línea (`hacerSonido()`) sí es un override válido. Ese aviso a tiempo es el regalo de `@Override`: si escribes mal un nombre de método, te entera el compilador, no un bug rarísimo a medianoche.
+
+</details>
+
+---
+
+## Ejercicio 8: Escribe este programa — el perro bien heredado
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Kata {
-    public static int[] digitize(long n) {
-        String texto = String.valueOf(n);
-        int[] resultado = new int[texto.length()];
-        for (int i = 0; i < texto.length(); i++) {
-            resultado[i] = texto.charAt(texto.length() - 1 - i) - '0';
-        }
-        return resultado;
+public class Perro extends Animal {
+    public Perro(String nombre, int edad) {
+        super(nombre, edad);
+    }
+
+    public void ladrar() {
+        System.out.println(nombre + " dice: ¡Guau!");
+    }
+
+    public static void main(String[] args) {
+        Perro p = new Perro("Firulais", 3);
+        p.ladrar();
     }
 }
 ```
 
-O, con aritmética pura:
+Salida: `Firulais dice: ¡Guau!`
 
-```java
-public class Kata {
-    public static int[] digitize(long n) {
-        String texto = String.valueOf(n);
-        int[] resultado = new int[texto.length()];
-        for (int i = 0; i < resultado.length; i++) {
-            resultado[i] = (int) (n % 10);
-            n /= 10;
-        }
-        return resultado;
-    }
-}
+`Perro` puede usar `nombre` y `edad` porque están declarados como `protected` en `Animal`: la herencia los pone a disposición de toda la familia. Si fueran `private`, ni `Perro` los vería. Es como la herencia familiar: lo que es privado en casa de los abuelos, no lo ven ni los nietos.
+
+</details>
+
+---
+
+## Ejercicio 9: ¿Qué imprime? — la cadena de constructores
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime:
+
+```
+Abuelo
+Padre
+Hijo
 ```
 
-Para `35231` → `{1, 3, 2, 5, 3}`. La primera versión recorre el texto de atrás hacia adelante y resta `'0'` para pasar de carácter a número. La segunda usa el truco del módulo: el último dígito es `n % 10`, y dividir entre 10 "quita" ese dígito. Ambos caminos usan el `length` del texto, no un número fijo.
+Al crear un `Hijo` se ejecutan **todos** los constructores de la cadena, del más general al más específico. Como cada constructor llama a `super()` (o Java lo pone automáticamente), primero se construye `Abuelo`, luego `Padre` y por último `Hijo`. Los cimientos antes que el tejado, siempre.
 
 </details>

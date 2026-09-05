@@ -1,484 +1,388 @@
 ---
-title: Butlletí U06 — Avançat Resolt
-description: Els mateixos exercicis que el butlletí avançat, amb solucions
+title: Butlletí U06 — Avançat (Resolt)
+description: Els mateixos exercicis intermedis del butlletí avançat amb les seues solucions
 ---
 
 # 📝 Butlletí U06 — Avançat (Resolt)
 
-> Les solucions estan amagades. Intenta-ho de veritat abans de destapar-les.
+> Els exercicis avançats amb les seues solucions. Intenta'ls primer; baixar a vore la solució sense suar és com demanar el 10 abans de l'examen.
 
 ---
 
-## ⭐ Exercici 1: La biblioteca
+## Exercici 1: ⭐ Fibonacci amb el comptador xafarder
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Llibre {
-    String titol;
-    String autor;
-    int pagines;
+public class FiboContador {
 
-    public Llibre(String titol, String autor, int pagines) {
-        this.titol = titol;
-        this.autor = autor;
-        this.pagines = pagines;
-    }
+    static long crides;
 
-    void mostrarInfo() {
-        System.out.println(titol + ", de " + autor + " (" + pagines + " pàgines)");
+    static long fibo(int n) {
+        crides++;
+        if (n <= 1) return n;
+        return fibo(n - 1) + fibo(n - 2);
     }
 
     public static void main(String[] args) {
-        Llibre quixot = new Llibre("El Quixot", "Miguel de Cervantes", 863);
-        Llibre java = new Llibre("Java", "Sergi", 100);
-        quixot.mostrarInfo();
-        java.mostrarInfo();
+        long resultat = fibo(30);
+        System.out.println("fibo(30) = " + resultat);
+        System.out.println("crides = " + crides);
     }
 }
 ```
 
-Tres atributs, tres assignacions amb `this`, un mètode que els combina. Dos llibres, dos objectes, dos eixides independents.
+Eixida: `fibo(30) = 832040` i `crides = 2692537`. ¡Més de 2,6 milions de crides per a un nombre de 6 xifres! La versió ingènua és brutalment cara: cada `fibo(n)` torna a calcular `fibo(n-1)` i `fibo(n-2)` per complet.
+
+El "truc dels índexs" (`fibo(n) + fibo(n-1) + ... + 1`) NO funciona ací perquè les crides no s'encadenen netament: cada terme de l'arbre recalcula subarbres sencers.
 
 </details>
 
 ---
 
-## ⭐ Exercici 2: El rectangle que raona
+## Exercici 2: ⭐⭐ Què imprimeix? — l'arbre de crides
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-public class Rectangle {
-    double ample;
-    double alt;
-
-    public Rectangle(double ample, double alt) {
-        this.ample = ample;
-        this.alt = alt;
-    }
-
-    double calcularArea() {
-        return ample * alt;
-    }
-
-    double calcularPerimetre() {
-        return 2 * (ample + alt);
-    }
-
-    boolean esQuadrat() {
-        return ample == alt;
-    }
-
-    public static void main(String[] args) {
-        Rectangle quadrat = new Rectangle(4, 4);
-        Rectangle rectangle = new Rectangle(5, 8);
-
-        System.out.println("Quadrat: àrea " + quadrat.calcularArea()
-                + ", perímetre " + quadrat.calcularPerimetre()
-                + ", és quadrat? " + quadrat.esQuadrat());
-        System.out.println("Rectangle: àrea " + rectangle.calcularArea()
-                + ", perímetre " + rectangle.calcularPerimetre()
-                + ", és quadrat? " + rectangle.esQuadrat());
-    }
-}
+```
+baixe 3
+baixe 2
+baixe 1
+puge 1
+puge 2
+puge 3
 ```
 
-Eixida:
-
-```
-Quadrat: àrea 16.0, perímetre 16.0, és quadrat? true
-Rectangle: àrea 40.0, perímetre 26.0, és quadrat? false
-```
-
-Tres mètodes que *tornen* valors. Fixa't: `esQuadrat()` convertix una comparació en un booleà d'un sol `return`. Objectes que raonen, no només que mostren.
+L'ordre: `pintar(3)` imprimix "baixe 3", crida a `pintar(2)`, que imprimix "baixe 2", crida a `pintar(1)`, que imprimix "baixe 1" i crida a `pintar(0)` (que no fa res). En tornar, cada nivell executa el seu `println` pendent: primer el d'1, després el de 2, després el de 3. La pila es desenrotlla en ordre invers: **baixa tot, després puja tot**.
 
 </details>
 
 ---
 
-## ⭐ Exercici 3: El compte bancari blindat
+## Exercici 3: ⭐⭐ El palíndrom rebel
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class CompteBancari {
-    String titular;
-    double saldo;
+public class PalindromRebel {
 
-    public CompteBancari(String titular, double saldo) {
-        this.titular = titular;
-        this.saldo = saldo;
+    static boolean esPalindromoFrase(String s, int inicio, int fin) {
+        if (inicio >= fin) return true;
+
+        if (!Character.isLetter(s.charAt(inicio))) {
+            return esPalindromoFrase(s, inicio + 1, fin);   // salta el no-lletra
+        }
+        if (!Character.isLetter(s.charAt(fin))) {
+            return esPalindromoFrase(s, inicio, fin - 1);   // salta el no-lletra
+        }
+
+        char a = Character.toLowerCase(s.charAt(inicio));
+        char b = Character.toLowerCase(s.charAt(fin));
+        if (a != b) return false;
+
+        return esPalindromoFrase(s, inicio + 1, fin - 1);
     }
 
-    void ingressar(double quantitat) {
-        this.saldo += quantitat;
+    public static void main(String[] args) {
+        System.out.println(esPalindromoFrase("Anita lava la tina", 0, 17));          // true
+        System.out.println(esPalindromoFrase("La ruta natural", 0, 14));          // true
+        System.out.println(esPalindromoFrase("No soy un palindromo", 0, 19));        // false
     }
+}
+```
 
-    void retirar(double quantitat) {
-        if (quantitat <= this.saldo) {
-            this.saldo -= quantitat;
+Eixida: `true`, `true`, `false`. La clau està en els dos `if` que salten els caràcters que no són lletres ABANS de comparar. Ull: `Character.toLowerCase()` no lleva accents, així que les frases d'exemple es trien sense tildes («La ruta natural»). Si tingueres tildes («Dábale arroz a la zorra el abad»), hauries de normalitzar els accents apart.
+
+</details>
+
+---
+
+## Exercici 4: ⭐⭐ La potència exprés (divide i venceràs)
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class PotenciaRapida {
+
+    static long potenciaRapida(int base, int exponente) {
+        if (exponente == 0) return 1;
+        long meitat = potenciaRapida(base, exponente / 2);
+        if (exponente % 2 == 0) {
+            return meitat * meitat;
         } else {
-            System.out.println("Saldo insuficient");
+            return meitat * meitat * base;
         }
     }
 
-    void mostrar() {
-        System.out.println("Titular: " + titular + " | Saldo: " + saldo + " €");
-    }
-
     public static void main(String[] args) {
-        CompteBancari compte = new CompteBancari("Anna", 100);
-        compte.retirar(30);
-        compte.retirar(200);
-        compte.mostrar();
+        System.out.println("2^20 = " + potenciaRapida(2, 20));   // 1048576
+        System.out.println("3^10 = " + potenciaRapida(3, 10));   // 59049
     }
 }
 ```
 
-Eixida:
-
-```
-Saldo insuficient
-Titular: Anna | Saldo: 70 €
-```
-
-L'`if` de `retirar` és el guardià: la retirada de 200 € es rebutja perquè supera el saldo, i el compte no queda mai en negatiu. Un objecte que es protegix a si mateix.
+Eixida: `2^20 = 1048576`, `3^10 = 59049`. `potenciaRapida(2, 20)` fa només **5 crides recursives** (20 → 10 → 5 → 2 → 1 → 0), mentre que la versió lineal del butlletí inicial en fa 20. De O(n) a O(log n): eixe salt és tot el divide i venceràs. Quan `e` és senar, `e / 2` arredonix cap avall i per això cal multiplicar per `base` una vegada més.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 4: L'hora que es corregeix sola
+## Exercici 5: ⭐⭐⭐ Quicksort amb mediana de tres
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Hora {
-    int hora;
-    int minut;
-    int segon;
+public class QuicksortMedianaTres {
 
-    public Hora(int hora, int minut, int segon) {
-        if (hora < 0 || hora > 23) {
-            hora = 0;
-        }
-        if (minut < 0 || minut > 59) {
-            minut = 0;
-        }
-        if (segon < 0 || segon > 59) {
-            segon = 0;
-        }
-        this.hora = hora;
-        this.minut = minut;
-        this.segon = segon;
-    }
+    static void quicksort(int[] arr, int inicio, int fin) {
+        if (inicio >= fin) return;
 
-    void incrementarSegon() {
-        segon++;
-        if (segon == 60) {
-            segon = 0;
-            minut++;
-            if (minut == 60) {
-                minut = 0;
-                hora++;
-                if (hora == 24) {
-                    hora = 0;
-                }
+        int medio = (inicio + fin) / 2;
+
+        // triar la mediana de arr[inicio], arr[medio], arr[fin] i portar-la a arr[inicio]
+        if (arr[medio] < arr[inicio]) intercanviar(arr, inicio, medio);
+        if (arr[fin] < arr[inicio]) intercanviar(arr, inicio, fin);
+        if (arr[fin] < arr[medio]) intercanviar(arr, medio, fin);
+        intercanviar(arr, inicio, medio);
+
+        int pivote = arr[inicio];
+        int i = inicio + 1;
+
+        for (int j = inicio + 1; j <= fin; j++) {
+            if (arr[j] < pivote) {
+                intercanviar(arr, i, j);
+                i++;
             }
         }
+
+        intercanviar(arr, inicio, i - 1);
+
+        quicksort(arr, inicio, i - 2);
+        quicksort(arr, i, fin);
     }
 
-    void mostrar() {
-        String h = hora < 10 ? "0" + hora : "" + hora;
-        String m = minut < 10 ? "0" + minut : "" + minut;
-        String s = segon < 10 ? "0" + segon : "" + segon;
-        System.out.println(h + ":" + m + ":" + s);
+    static void intercanviar(int[] arr, int a, int b) {
+        int tmp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = tmp;
     }
 
     public static void main(String[] args) {
-        Hora h = new Hora(23, 59, 59);
-        h.incrementarSegon();
-        h.mostrar();
+        int[] datos = {1, 2, 3, 4, 5, 6, 7, 8};
+        quicksort(datos, 0, datos.length - 1);
+        System.out.println(java.util.Arrays.toString(datos));
     }
 }
 ```
 
-Eixida: `00:00:00`
-
-Tres nivells de validació en el constructor i tres arrossegaments encadenats en `incrementarSegon()`. De 23:59:59 passa a 00:00:00: l'hora es corregeix sola perquè cada unitat sap quan reinicia i avisa la següent.
+Eixida: `[1, 2, 3, 4, 5, 6, 7, 8]`. Amb l'array ja ordenat, el pivot ja NO és el menor (o el major): amb la mediana de tres (`inicio`, `medio`, `fin`) el pivot de la primera crida és 4, partint l'array per la meitat. Així s'evita el pitjor cas O(n²) dels arrays quasi ordenats. Els tres `if` col·loquen el valor del mig dels tres en `arr[medio]`, i després s'intercanvia a `arr[inicio]` per a no canviar la tècnica de partició de la unitat.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 5: Què imprimeix? — el ball de referències
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix:
-
-```
-a.x = 10
-c.x = 99
-```
-
-**Primera part:** `b = a` copia la *referència*, no l'objecte. `b.x = 10` modifica el mateix objecte que veu `a`, així que `a.x` també és 10.
-
-**Segona part:** en cridar `cambiar(c)`, el paràmetre `p` rep una *còpia* de la referència. `p.x = 99` modifica l'objecte original (per això `c.x` és 99). Però `p = new Punto(50, 50)` només reassigna la còpia local: l'objecte de `c` no canvia i el nou `Punto` es perd en acabar el mètode. En Java les referències es passen per valor.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 6: El correu que s'encadena
+## Exercici 6: ⭐⭐⭐ Mergesort amb el comptador de comparacions
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Email {
-    String remitent;
-    String destinatari;
-    String assumpte;
+public class MergesortContador {
 
-    public Email(String remitent, String destinatari, String assumpte) {
-        this.remitent = remitent;
-        this.destinatari = destinatari;
-        this.assumpte = assumpte;
+    static long comparacions;
+
+    static void mergesort(int[] arr) {
+        if (arr.length <= 1) return;
+        int medio = arr.length / 2;
+
+        int[] izq = new int[medio];
+        int[] der = new int[arr.length - medio];
+
+        for (int i = 0; i < medio; i++) izq[i] = arr[i];
+        for (int i = medio; i < arr.length; i++) der[i - medio] = arr[i];
+
+        mergesort(izq);
+        mergesort(der);
+        fusionar(arr, izq, der);
     }
 
-    public Email(String remitent, String destinatari) {
-        this(remitent, destinatari, "(sense assumpte)");
-    }
+    static void fusionar(int[] destino, int[] izq, int[] der) {
+        int i = 0, j = 0, k = 0;
 
-    public Email(String remitent) {
-        this(remitent, "(sense destí)");
-    }
-
-    void mostrar() {
-        System.out.println("De: " + remitent + " | Per a: " + destinatari + " | Assumpte: " + assumpte);
-    }
-
-    public static void main(String[] args) {
-        Email complet = new Email("anna@gmail.com", "lluis@gmail.com", "Tasca Java");
-        Email mig = new Email("anna@gmail.com", "lluis@gmail.com");
-        Email curt = new Email("anna@gmail.com");
-
-        complet.mostrar();
-        mig.mostrar();
-        curt.mostrar();
-    }
-}
-```
-
-Eixida:
-
-```
-De: anna@gmail.com | Per a: lluis@gmail.com | Assumpte: Tasca Java
-De: anna@gmail.com | Per a: lluis@gmail.com | Assumpte: (sense assumpte)
-De: anna@gmail.com | Per a: (sense destí) | Assumpte: (sense assumpte)
-```
-
-Els dos constructors curts deleguen en el llarg amb `this(...)`. L'assignació completa s'escriu **una sola vegada**; els valors per defecte s'omplin en l'encadenament. Això és sobrecàrrega sense duplicar codi.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 7: La fracció que es simplifica
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Fraccio {
-    int numerador;
-    int denominador;
-
-    public Fraccio(int numerador, int denominador) {
-        if (denominador == 0) {
-            denominador = 1;
+        while (i < izq.length && j < der.length) {
+            comparacions++;
+            if (izq[i] <= der[j]) {
+                destino[k++] = izq[i++];
+            } else {
+                destino[k++] = der[j++];
+            }
         }
-        this.numerador = numerador;
-        this.denominador = denominador;
-    }
 
-    Fraccio sumar(Fraccio altra) {
-        int num = this.numerador * altra.denominador + altra.numerador * this.denominador;
-        int den = this.denominador * altra.denominador;
-        return new Fraccio(num, den);
-    }
-
-    void simplificar() {
-        int mcd = mcd(Math.abs(numerador), Math.abs(denominador));
-        numerador /= mcd;
-        denominador /= mcd;
-    }
-
-    int mcd(int a, int b) {
-        while (b != 0) {
-            int resto = a % b;
-            a = b;
-            b = resto;
+        while (i < izq.length) {
+            comparacions++;
+            destino[k++] = izq[i++];
         }
-        return a == 0 ? 1 : a;
-    }
-
-    void mostrar() {
-        System.out.println(numerador + "/" + denominador);
+        while (j < der.length) {
+            comparacions++;
+            destino[k++] = der[j++];
+        }
     }
 
     public static void main(String[] args) {
-        Fraccio unMig = new Fraccio(1, 2);
-        Fraccio unTerç = new Fraccio(1, 3);
-        Fraccio suma = unMig.sumar(unTerç);
-        suma.simplificar();
-        suma.mostrar();
+        comparacions = 0;
+        int[] datos = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+        mergesort(datos);
+        System.out.println(java.util.Arrays.toString(datos));
+        System.out.println("comparacions (cas dolent) = " + comparacions);
+
+        comparacions = 0;
+        int[] datos2 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        mergesort(datos2);
+        System.out.println("comparacions (ja ordenat) = " + comparacions);
     }
 }
 ```
 
-Eixida: `5/6`
-
-`sumar(Fraccio altra)` usa `this` per al primer sumand i `altra.` per al segon, i torna una **fracció nova** (no toca cap de les dos). `simplificar()` sí que modifica l'objecte (per això és `void`). Euclides amb mòduls troba el MCD en poques voltes.
+Eixida (exemple): `[1, 2, 3, 4, 5, 6, 7, 8, 9]`, `comparacions (cas dolent) = 25`, `comparacions (ja ordenat) = 18`. Mergesort sempre fa ~n·log₂(n) comparacions (per a n=9, 9·3,17 ≈ 28 en el pitjor cas teòric), per això és tan previsible: l'ordre de l'entrada amb prou faenes canvia el total. Compara-ho amb Quicksort, on l'entrada ho canvia TOT.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 8: CodeWars — Building blocks
+## Exercici 7: ⭐⭐⭐ Les torres de Hanói amb comptador
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Block {
-    private int width;
-    private int length;
-    private int height;
+public class HanoiContador {
 
-    public Block(int[] dimensions) {
-        this.width = dimensions[0];
-        this.length = dimensions[1];
-        this.height = dimensions[2];
-    }
+    static int moviments;
 
-    public int getWidth() {
-        return width;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getVolume() {
-        return width * length * height;
-    }
-
-    public int getSurfaceArea() {
-        return 2 * (width * length + width * height + length * height);
+    static void hanoi(int n, char origen, char destino, char auxiliar) {
+        if (n == 1) {
+            System.out.println("Mueve disco 1 de " + origen + " a " + destino);
+            moviments++;
+            return;
+        }
+        hanoi(n - 1, origen, auxiliar, destino);
+        System.out.println("Mueve disco " + n + " de " + origen + " a " + destino);
+        moviments++;
+        hanoi(n - 1, auxiliar, destino, origen);
     }
 
     public static void main(String[] args) {
-        Block bloque = new Block(new int[]{2, 4, 6});
-        System.out.println("Volum: " + bloque.getVolume());
-        System.out.println("Superfície: " + bloque.getSurfaceArea());
+        moviments = 0;
+        hanoi(3, 'A', 'C', 'B');
+        System.out.println("Total de moviments: " + moviments);
     }
 }
 ```
 
-Eixida:
-
-```
-Volum: 48
-Superfície: 88
-```
-
-Els getters tornen cada atribut, i els dos mètodes calculats combinen els tres. La superfície és cada parell de cares multiplicat i sumat, tot per dos. La kata accepta també tres enters per separat en el constructor.
+Amb 3 discos, `Total de moviments: 7`. Amb 4 → 15, i amb 8 → 255. La fórmula `2^n - 1` es complix exactament. El patró clàssic: moure `n-1` a l'auxiliar, moure el disc gran, moure `n-1` de l'auxiliar al destí. Cada moviment imprés suma 1 al comptador.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 9: AceptaElReto — 100 Constante de Kaprekar
+## Exercici 8: ⭐⭐⭐ CodeWars — Sort Numbers
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 import java.util.Arrays;
-import java.util.Scanner;
 
-public class Kaprekar {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int casos = sc.nextInt();
+public class Kata {
 
-        for (int i = 0; i < casos; i++) {
-            int numero = sc.nextInt();
-            System.out.println(iteracions(numero));
-        }
-        sc.close();
-    }
+    public static int[] sortArray(int[] nums) {
+        if (nums == null || nums.length == 0) return new int[0];
 
-    static int iteracions(int numero) {
-        if (numero == 6174) {
-            return 0;
-        }
-        if (esRepdigit(numero)) {
-            return 8;
-        }
-
-        int voltes = 0;
-        int actual = numero;
-        while (actual != 6174) {
-            actual = pasKaprekar(actual);
-            voltes++;
-        }
-        return voltes;
-    }
-
-    static boolean esRepdigit(int numero) {
-        String s = String.format("%04d", numero);
-        char primera = s.charAt(0);
-        for (char c : s.toCharArray()) {
-            if (c != primera) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    static int pasKaprekar(int numero) {
-        String s = String.format("%04d", numero);
-        char[] asc = s.toCharArray();
-        Arrays.sort(asc);
-        char[] desc = new char[4];
-        for (int i = 0; i < 4; i++) {
-            desc[i] = asc[3 - i];
-        }
-
-        int major = Integer.parseInt(new String(desc));
-        int menor = Integer.parseInt(new String(asc));
-        return major - menor;
+        int[] copia = nums.clone();
+        Arrays.sort(copia);
+        return copia;
     }
 }
 ```
 
-Per a 3524, el `while` dona: 3524 → 3087 → 8352 → 6174, tres voltes. `%04d` ompli amb zeros a l'esquerra (necessari per a nombres com 3087). `esRepdigit` torna `false` en trobar un dígit distint. Este és un problema magnífic per a provar la teua classe `Numero` amb mètodes separats.
+Amb `{1, 5, 2, 3, 4}` → `{1, 2, 3, 4, 5}`, amb `null` → `[]`, amb `{}` → `[]`. Es clona l'array per a no mutar l'original i s'ordena la còpia.
 
 </details>
 
 ---
 
-> 📚 **Vols més?** Revisa el butlletí d'**extres** d'esta unitat: té quatre katas de CodeWars (inclosa una de depuració d'una classe) i dos problemes d'AceptaElReto.
+## Exercici 9: ⭐⭐⭐ AceptaElReto — 104 Mòbils
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class Mobils {
+
+    // Llig un mòbil complet (la seua barra i els seus submòbils) i torna:
+    //   el seu pes total si està equilibrat
+    //   -1 si NO està equilibrat
+    static int llegirMobil(Scanner sc) {
+        int pi = sc.nextInt();   // pes esquerre
+        int di = sc.nextInt();   // distància esquerra
+        int pd = sc.nextInt();   // pes dret
+        int dd = sc.nextInt();   // distància dreta
+
+        boolean ok = true;
+
+        if (pi == 0) {                 // hi ha un submòbil a l'esquerra
+            int sub = llegirMobil(sc);
+            if (sub == -1) ok = false;
+            else pi = sub;
+        }
+        if (pd == 0) {                 // hi ha un submòbil a la dreta
+            int sub = llegirMobil(sc);
+            if (sub == -1) ok = false;
+            else pd = sub;
+        }
+
+        if (!ok) return -1;                       // algun submòbil ja estava desequilibrat
+        if (pi * di != pd * dd) return -1;        // esta barra no s'equilibra
+        return pi + pd;                           // el pes total d'este mòbil
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            int pi = sc.nextInt();
+            int di = sc.nextInt();
+            int pd = sc.nextInt();
+            int dd = sc.nextInt();
+
+            if (pi == 0 && di == 0 && pd == 0 && dd == 0) break;   // fi de l'entrada
+
+            boolean ok = true;
+            if (pi == 0) {
+                int sub = llegirMobil(sc);
+                if (sub == -1) ok = false;
+                else pi = sub;
+            }
+            if (pd == 0) {
+                int sub = llegirMobil(sc);
+                if (sub == -1) ok = false;
+                else pd = sub;
+            }
+
+            boolean equilibrada = ok && pi * di == pd * dd;
+            System.out.println(equilibrada ? "SI" : "NO");
+        }
+    }
+}
+```
+
+El cas base no és un nombre: el mòbil "fulla" és aquell els dos costats del qual tenen pes > 0 (no hi ha submòbils a llegir). Cada crida recursiva llig i comprova un submòbil complet i torna el seu pes total. El flag `ok` (o el `-1`) propaga cap amunt que TOTES les subbarres estiguen equilibrades. Entrada `0 0 0 0` marca el final de l'entrada.
+
+</details>

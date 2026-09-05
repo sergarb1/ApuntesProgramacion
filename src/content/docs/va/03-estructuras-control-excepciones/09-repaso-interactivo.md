@@ -312,8 +312,8 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa humejant.
 
 El novell guarda el seu projecte, tanca l'IDE i sent que els programes ja no li tenen por a res.
 
-**PRÒXIMAMENT EN U04:** Algorítmica I: Fonaments. El moment en què els teus programes no només pensen, sinó que **pensen amb mètode**. 🧩
+**PRÒXIMAMENT EN U05:** Algorítmica I: Fonaments. El moment en què els teus programes no només pensen, sinó que **pensen amb mètode**. 🧩
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/03-estructuras-control-excepciones) · **Anterior:** [08 · throw i excepcions pròpies](/ApuntesProgramacion/va/03-estructuras-control-excepciones/08-throw-excepciones-propias) · **Següent:** **[U04 · Algorítmica I: Fonaments](/ApuntesProgramacion/va/04-algoritmica-fundamentos)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/03-estructuras-control-excepciones) · **Anterior:** [08 · throw i excepcions pròpies](/ApuntesProgramacion/va/03-estructuras-control-excepciones/08-throw-excepciones-propias) · **Següent:** **[U04 · Arrays](/ApuntesProgramacion/va/04-arrays)**

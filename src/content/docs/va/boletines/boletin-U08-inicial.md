@@ -1,210 +1,151 @@
 ---
 title: Butlletí U08 — Inicial
-description: Exercicis bàsics d'Herència, Polimorfisme i Interfícies
+description: Exercicis bàsics de Visibilitat, Encapsulació i Static
 ---
 
 # 📝 Butlletí U08 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, dona-li la mà a la primera superclasse i fes que `extends` deixe de semblar màgia. L'herència en Java és com la de veritat: de vegades et portes genial amb les subclasses, de vegades vols renegar de tot. Però ningú no naix sabent usar `super`.
+> Sense solucions. Sense presses. Obri l'IDE, posa-li cadenat a la primera classe i fes que el `static` deixe de semblar màgia. Cap atribut no naix sabent ser `private`.
 
 ---
 
-## Exercici 1: Què imprimeix? — La família musical
+## Exercici 1: La casa de cristall
+
+Esta classe és una casa de cristall: tothom pot entrar i tocar el que vulga.
 
 ```java
-class Instrumentista {
-    void tocar() { System.out.println("L'instrumentista toca un instrument"); }
+public class Persona {
+    public String nom;
+    public int edat;
 }
+```
 
-class Guitarrista extends Instrumentista {
-    void tocar() { System.out.println("El guitarrista toca la guitarra"); }
+Convertix els atributs en `private` i afig getters i setters per a `nom` i `edat`. Escriu també un `main` que cree una `Persona`, li pose "Anna" i 25 anys usant els setters, i després mostre els valors amb els getters.
+
+---
+
+## Exercici 2: El cotxe del veïnat
+
+Parteix d'esta classe:
+
+```java
+public class Cotxe {
+    private String marca;
+    private double velocitat;
+
+    public Cotxe(String marca) {
+        this.marca = marca;
+        this.velocitat = 0;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
 }
+```
 
-class Baixista extends Guitarrista {
-    void tocar() { System.out.println("El baixista toca el baix"); }
+Afig `getVelocitat()` i un `setVelocitat(double velocitat)` que **rebutge** les velocitats negatives i les superiors a 200 (mostrant "Velocitat invàlida."). Escriu un `main` que cree un cotxe "Seat" i intente posar-li -50 i després 120.
+
+---
+
+## Exercici 3: El termòmetre amb cervell
+
+Escriu una classe `Termometre` amb:
+
+- Atribut `private double temperatura`.
+- Constructor que inicialitze la temperatura a 20.0.
+- Getter `getTemperatura()`.
+- Setter `setTemperatura(double temperatura)` que **només** accepte valors entre -273.15 i 100.0. Si el valor no és vàlid, mostra "Temperatura fora de rang.".
+
+En un `main`, cree un termòmetre, posa-li -500 (s'ha de rebutjar) i després 36.5, i mostra la temperatura final.
+
+---
+
+## Exercici 4: Getter sense setter
+
+Esta classe representa la configuració d'una app: l'idioma es tria en crear-la i **no ha de poder canviar-se després**.
+
+```java
+public class Configuracio {
+    private String idioma;
+
+    public Configuracio(String idioma) {
+        this.idioma = idioma;
+    }
+
+    public String getIdioma() {
+        return idioma;
+    }
 }
+```
 
-public class Banda {
+Fixa't: té getter però **no** setter. Escriu un `main` que cree una configuració amb "es" i mostre l'idioma. Respon: per què no té setter? Què li passaria a un usuari que intentàs fer `config.idioma = "va"` des de fora?
+
+---
+
+## Exercici 5: El comptador de la classe
+
+Escriu una classe `Comptador` amb:
+
+- Atribut `public static int total = 0;`.
+- Un constructor que incremente `total` en 1 cada vegada que es crea un objecte.
+
+En un `main`, crea 3 objectes `Comptador` i mostra `Comptador.total`. Respon: quant val `total` i per què no és 1?
+
+---
+
+## Exercici 6: La calculadora sense piles
+
+Escriu una classe `Utilitats` amb dos mètodes **estàtics**: `sumar(int a, int b)` i `restar(int a, int b)`. En un `main`, usa els dos mètodes **sense crear cap objecte** (usa el nom de la classe) i mostra els resultats de `sumar(5, 3)` i `restar(10, 4)`.
+
+Pista: `int resultat = Utilitats.sumar(5, 3);`
+
+---
+
+## Exercici 7: Les constants del barri
+
+Escriu una classe `Constants` que continga:
+
+- `public static final double IVA = 0.21;`
+- `public static final int MAX_INTENTS_LOGIN = 3;`
+- `public static final String NOM_APP = "GestioCurs";`
+
+En un `main`, mostra les tres constants. Després, intenta fer `Constants.IVA = 0.5;` i respon: què ocorre en compilar?
+
+---
+
+## Exercici 8: Què imprimeix? — el trencaclosques estàtic
+
+Sense executar, escriu l'eixida exacta d'este programa:
+
+```java
+public class Trencaclosques {
+    static int s = 0;
+    int i = 0;
+
+    public Trencaclosques() {
+        s++;
+        i = s;
+    }
+
     public static void main(String[] args) {
-        Baixista b = new Baixista();
-        b.tocar();
+        Trencaclosques t1 = new Trencaclosques();
+        Trencaclosques t2 = new Trencaclosques();
+        System.out.println(t1.i + " " + t2.i + " " + Trencaclosques.s);
     }
 }
 ```
 
-Què imprimeix? Per què?
+Pista: `s` és de la classe (una sola còpia compartida); `i` és de cada objecte i es copia del valor de `s` en el moment de nàixer.
 
 ---
 
-## Exercici 2: Troba l'error — extends mal usat
+## Exercici 9: CodeWars — Square(n) Sum
 
-```java
-public class Animal {
-    private String especie;
+Resol la kata **"Square(n) Sum"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/515e271a311df0350d00000f).
 
-    public Animal(String especie) {
-        this.especie = especie;
-    }
-}
+Completa el mètode `public static int squareSum(int[] n)` que reba un array d'enters i retorne la suma dels quadrats de cada número.
 
-public class Gos extends Animal {
-    private String raça;
+**Exemple:** `[1, 2, 2]` → `1 + 4 + 4 = 9`.
 
-    public Gos(String raça) {
-        this.raça = raça;
-    }
-}
-```
-
-Este codi **no compila**. Per què? Explica l'error i corregeix-lo.
-
----
-
-## Exercici 3: Completa el codi — el gat que crida el seu pare
-
-```java
-public class Animal {
-    public void ferSo() {
-        System.out.println("Algun so genèric...");
-    }
-}
-
-public class Gat extends Animal {
-    @Override
-    public void ferSo() {
-        ________.ferSo();   // primer el del pare
-        System.out.println("¡MIAU!");
-    }
-}
-```
-
-Quina paraula falta al buit perquè `Gat` primer execute el so d'`Animal` i després el seu "¡MIAU!"? Escriu a més un `main` que cree un `Gat` i crida a `ferSo()`.
-
----
-
-## Exercici 4: Escriu este programa — l'herència de vehicles
-
-Crea una jerarquia de 3 nivells usant `extends`:
-
-- `Vehicle` (atribut: `String marca`)
-- `Cotxe` (atribut: `int numPortes`)
-- `Esportiu` (atribut: `int velocitatMaxima`)
-
-Cada classe ha de tindre un constructor que reba els seus atributs i use `super`. En `main()`, crea un `Esportiu` de marca "Ferrari", 2 portes i 340 km/h. Imprimeix els seus atributs.
-
----
-
-## Exercici 5: Què imprimeix? — Polimorfisme amb referències
-
-```java
-class X {
-    void missatge() { System.out.println("X"); }
-}
-
-class Y extends X {
-    void missatge() { System.out.println("Y"); }
-}
-
-class Z extends Y { }
-
-public class Test {
-    public static void main(String[] args) {
-        X ref1 = new Y();
-        X ref2 = new Z();
-        Y ref3 = new Z();
-
-        ref1.missatge();
-        ref2.missatge();
-        ref3.missatge();
-    }
-}
-```
-
-Què imprimeix cada crida? Per què el tipus de la referència no decidix res?
-
----
-
-## Exercici 6: Escriu este programa — la granja polimòrfica
-
-Crea una classe `Animal` amb mètode `ferSo()`. Crea `Vaca`, `Ovella` i `Gallina` que el sobreescriguen. En `main()`, crea un `ArrayList<Animal>`, fica una vaca, una ovella i una gallina, recorre'l amb un for-each cridant a `ferSo()`.
-
-```java
-// Eixida esperada:
-// Muuuu
-// Beeee
-// Cloc cloc
-```
-
----
-
-## Exercici 7: Troba l'error — @Override que no ho és
-
-```java
-public class Animal {
-    public void ferSo() {
-        System.out.println("...");
-    }
-}
-
-public class Peix extends Animal {
-    @Override
-    public void ferSo() { }   // ¿compila?
-
-    @Override
-    public void nedar() { }   // ¿compila?
-}
-```
-
-Una de les dos línies amb `@Override` impedix compilar. Quina i per què? Què t'avisa el compilador en l'instant en què escrius eixa línia?
-
----
-
-## Exercici 8: Escriu este programa — el gos ben heretat
-
-Parteix d'esta classe base:
-
-```java
-public class Animal {
-    protected String nom;
-    protected int edat;
-
-    public Animal(String nom, int edat) {
-        this.nom = nom;
-        this.edat = edat;
-    }
-}
-```
-
-Escriu una classe `Gos extends Animal` amb:
-
-- Constructor que use `super(nom, edat)`.
-- Mètode `lladrar()` que imprimisca `nom + " diu: ¡Guau!"`.
-- Un `main` que cree un `Gos("Firulais", 3)` i crida a `lladrar()`.
-
-Respon: per què `Gos` pot usar `nom` i `edat` encara que no les declare?
-
----
-
-## Exercici 9: Què imprimeix? — la cadena de constructors
-
-```java
-class Avi {
-    public Avi() { System.out.println("Avi"); }
-}
-
-class Pare extends Avi {
-    public Pare() { System.out.println("Pare"); }
-}
-
-class Fill extends Pare {
-    public Fill() { System.out.println("Fill"); }
-}
-
-public class Test {
-    public static void main(String[] args) {
-        new Fill();
-    }
-}
-```
-
-Què imprimeix i per què en eixe ordre?
+Pista: usa un `for` que acumule `n[i] * n[i]`. Els arrays es recorren amb la U04, però ja pots usar l'índex.

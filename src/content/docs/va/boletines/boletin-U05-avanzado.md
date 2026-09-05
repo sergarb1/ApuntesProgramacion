@@ -1,143 +1,175 @@
 ---
 title: Butlletí U05 — Avançat
-description: Exercicis intermedis de recursivitat, divide i venceràs i ordenació per a suar el stack
+description: Exercicis de dificultat progressiva per a exprimir la unitat
 ---
 
 # 📝 Butlletí U05 — Avançat
 
-> La zona intermèdia: ací ja no n'hi ha prou amb copiar el patró, cal pensar. Cada exercici porta la seua **Pista** per quan portes 10 minuts donant-li voltes.
+> Dificultat progressiva. ⭐ per a calfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resistix a mirar-la).
 
 ---
 
-## Exercici 1: ⭐ Fibonacci amb el comptador xafarder
+## ⭐ Exercici 1: Què imprimeix? — la binària amb historial
 
-Crea un programa `FiboContador` que calcule l'enèssim Fibonacci amb la versió ingènua recursiva PERÒ que a més compte **quantes crides fa en total**.
-
-```java
-static long crides;   // variable estàtica que suma 1 en cada crida
-static long fibo(int n)
-```
-
-Prova'l amb `fibo(30)`. Quantes crides fa? I quantes en faria si només sumares els índexs `fibo(30) + fibo(29) + ... + 1`?
-
-**Pista:** suma 1 a `crides` com a primera línia del mètode, abans de qualsevol cas base.
-
----
-
-## Exercici 2: ⭐⭐ Què imprimeix? — l'arbre de crides
-
-Sense executar, escriu l'eixida exacta i l'**ordre de les crides** (qui crida a qui):
+Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-public class ArbreRare {
-    static void pintar(int n) {
-        if (n == 0) return;
-        System.out.println("baixe " + n);
-        pintar(n - 1);
-        System.out.println("puge " + n);
-    }
-
+public class BinariaHistorial {
     public static void main(String[] args) {
-        pintar(3);
+        int[] dades = {2, 4, 6, 8, 10, 12, 14, 16};
+        int objectiu = 10;
+        int esquerra = 0;
+        int dreta = dades.length - 1;
+
+        while (esquerra <= dreta) {
+            int mig = esquerra + (dreta - esquerra) / 2;
+            System.out.println("Prove l'índex " + mig);
+
+            if (dades[mig] == objectiu) {
+                System.out.println("Trobat en " + mig);
+                break;
+            } else if (dades[mig] < objectiu) {
+                esquerra = mig + 1;
+            } else {
+                dreta = mig - 1;
+            }
+        }
     }
 }
 ```
 
-**Pista:** el `System.out.println` de després de la crida recursiva no s'executa fins que eixa crida acaba. Dibuixa la pila amb llapis i paper.
+**Pista:** escriu en una taula cada volta amb els seus `esquerra`, `dreta`, `mig` i què decidix. Només són 3 o 4 línies de traça.
 
 ---
 
-## Exercici 3: ⭐⭐ El palíndrom rebel
+## ⭐ Exercici 2: El buscador binari amb historial
 
-Amplia el palíndrom perquè **ignore espais, signes i majúscules**:
+Escriu un mètode `public static int cercaBinaria(int[] dades, int objectiu)` com el de la teoria, però que **cada vegada que prove un índex, el mostre per pantalla**: `Provant l'índex X`. Al final retorna l'índex o `-1`.
 
-- `"Anita lava la tina"` → true
-- `"La ruta natural"` → true
-- `"No soy un palíndromo"` → false
+Prova amb `int[] dades = {1, 3, 5, 7, 9, 11, 13, 15, 17, 19}` i `objectiu = 7`.
+
+**Pista:** el `System.out.println` va dins del `while`, just després de calcular `mig` i abans de comparar.
+
+---
+
+## ⭐⭐ Exercici 3: La bombolla amb recompte (i flag)
+
+Escriu un programa anomenat `BombollaRecompte` que òrdene `int[] dades = {9, 3, 7, 1, 5}` amb bombolla i **compte els intercanvis**, igual que en l'inicial. Però a més, afegix el flag `boolean hiHaIntercanvi` amb el seu `break` per a no fer passades inútils.
+
+Mostra al final l'array ordenat i `Intercanvis: X`.
+
+**Pista:** el flag es reinicia a `false` al principi de cada passada i es posa a `true` dins del `if`. Després de la passada: `if (!hiHaIntercanvi) break;`.
+
+---
+
+## ⭐⭐ Exercici 4: La inserció descendent
+
+Modifica l'ordenació per inserció perquè òrdene **de major a menor**. Escriu un mètode `public static void ordenarDescendent(int[] dades)`.
+
+Prova amb `int[] notes = {6, 9, 3, 8, 5}` i mostra el resultat.
+
+**Pista:** només canvia un signe: en la condició del `while`, els majors han de lliscar cap a la dreta. Pensa quin és ara l'"ordre correcte".
+
+---
+
+## ⭐⭐ Exercici 5: L'analista de complexitat
+
+Digues la complexitat Big O de cada mètode i justifica breument:
 
 ```java
-static boolean esPalindromoFrase(String s, int inicio, int fin)
+public class Analista {
+
+    public static int metodeA(int[] dades) {
+        int total = 0;
+        for (int num : dades) {
+            total += num;
+        }
+        return total;
+    }
+
+    public static int metodeB(int[] dades) {
+        int parells = 0;
+        for (int i = 0; i < dades.length; i++) {
+            for (int j = i + 1; j < dades.length; j++) {
+                if (dades[i] == dades[j]) {
+                    parells++;
+                }
+            }
+        }
+        return parells;
+    }
+
+    public static int metodeC(int[] dades, int objectiu) {
+        int esquerra = 0;
+        int dreta = dades.length - 1;
+        while (esquerra <= dreta) {
+            int mig = esquerra + (dreta - esquerra) / 2;
+            if (dades[mig] == objectiu) return mig;
+            if (dades[mig] < objectiu) esquerra = mig + 1;
+            else dreta = mig - 1;
+        }
+        return -1;
+    }
+}
 ```
 
-**Pista:** en lloc de comparar directament `s.charAt(inicio)`, salta't els caràcters que no siguen lletres avançant `inicio` o retrocedint `fin` dins del mateix mètode. Usa `Character.isLetter()` i `Character.toLowerCase()`.
+**Pista:** compte bucles: un → O(n), dos anidats → O(n²). El que partix el segment per la mitat en cada volta és O(log n). El `j = i + 1` no el salva de ser O(n²): seguix sent quasi n × n.
 
 ---
 
-## Exercici 4: ⭐⭐ La potència exprés (divide i venceràs)
+## ⭐⭐ Exercici 6: El caçador de parelles
 
-Escriu un programa `PotenciaRapida` amb un mètode recursiu `static long potenciaRapida(int base, int exponente)` que calcule `base^exponente` en **O(log n)**:
+Escriu un mètode `public static boolean existeixParella(int[] dades, int sumaObjectiu)` que retorne `true` si existixen **dos elements distints** de l'array la suma dels quals siga `sumaObjectiu`.
 
-```
-potenciaRapida(b, e):
-  si e == 0 → 1
-  meitat = potenciaRapida(b, e / 2)
-  si e és parell  → meitat * meitat
-  si e és senar → meitat * meitat * b
-```
+Prova amb `int[] preus = {10, 3, 7, 5, 12}`:
 
-Prova'l amb `potenciaRapida(2, 20)` → 1048576. Quantes crides fa comparat amb `potencia(2, 20)` del butlletí inicial?
+- `existeixParella(preus, 17)` → `true` (10 + 7)
+- `existeixParella(preus, 25)` → `false`
 
-**Pista:** ull amb l'arredoniment: quan `e` és senar, `e / 2` es queda amb la part entera i per això multipliques per `b` una vegada més.
+**Pista:** dos bucles anidats amb `j = i + 1` (per a no provar un element amb si mateix). Dins: `if (dades[i] + dades[j] == sumaObjectiu) return true;`. Al final, `return false;`.
 
 ---
 
-## Exercici 5: ⭐⭐⭐ Quicksort amb mediana de tres
+## ⭐⭐ Exercici 7: El detectiu d'inversions
 
-Millora el Quicksort de la unitat: en lloc d'agafar el primer element com a pivot, tria la **mediana de tres** (primer, mitjà i últim) per a evitar el pitjor cas amb arrays quasi ordenats.
+Una **inversió** és una parella de posicions `(i, j)` amb `i < j` on `dades[i] > dades[j]` (estan desordenades). Escriu un mètode `public static int contarInversions(int[] dades)` que les compte.
 
-```java
-static void quicksort(int[] arr, int inicio, int fin)
-```
+Prova amb `int[] dades = {2, 4, 1, 3}` → hi ha 3 inversions: (2,1), (4,1), (4,3).
 
-Prova'l amb l'array ja ordenat `{1, 2, 3, 4, 5, 6, 7, 8}`. Quantes particions fa la teua versió amb mediana de tres?
-
-**Pista:** `int medio = (inicio + fin) / 2;` compara `arr[inicio]`, `arr[medio]` i `arr[fin]` i col·loca el del mig en `arr[inicio]` (intercanviant-los) abans de particionar amb la tècnica de la unitat.
+**Pista:** el patró de doble bucle amb `j = i + 1` una altra vegada, però ara el `if` compara `dades[i] > dades[j]` i suma 1 al comptador.
 
 ---
 
-## Exercici 6: ⭐⭐⭐ Mergesort amb el comptador de comparacions
+## ⭐⭐⭐ Exercici 8: CodeWars — Ones and Zeros
 
-Modifica el Mergesort de la unitat perquè compte **quantes comparacions** fa la fusió en total, i mostra el nombre al final.
+Resol la kata **"Ones and Zeros"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/578553c3a1b8d5c40300037c).
 
-```java
-static long comparacions;   // suma 1 en cada comparació de la fusió
-```
+Et donen un array d'enters (només 0 i 1) que representa un nombre en binari. Retorna el seu valor decimal.
 
-Prova'l amb `{9, 8, 7, 6, 5, 4, 3, 2, 1}` (el pitjor cas visual). Quantes comparacions? I amb `{1, 2, 3, 4, 5, 6, 7, 8, 9}`?
+**Exemple:** `[1, 0, 1, 1]` → `11` (1·8 + 0·4 + 1·2 + 1·1).
 
-**Pista:** en la fusió, suma 1 en cada `while` que compara dos elements. En els bucles on una llista ja s'ha acabat, també hi ha comparacions contra el final de l'array: conta-les amb la mateixa variable.
+**Pista:** recorre l'array d'esquerra a dreta acumulant `valor = valor * 2 + digit`. Eixe és l'algoritme per a convertir de binari a decimal sense usar `Math.pow`.
 
 ---
 
-## Exercici 7: ⭐⭐⭐ Les torres de Hanói amb comptador
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 100 Constant de Kaprekar
 
-Implementa les Torres de Hanói recursives de la unitat i afig un **comptador de moviments**:
+Resol el problema **100 — Constant de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
 
-```java
-static int moviments;
-static void hanoi(int n, char origen, char destino, char auxiliar)
-```
+L'algoritme de Kaprekar: donat un nombre de 4 xifres, ordena els seus dígits de major a menor i de menor a major, resta tots dos, i repetix amb el resultat. Al final sempre s'arriba a **6174** (o al propi 6174) i, si el nombre té totes les xifres iguals (com 1111), la diferència dóna 0.
 
-Cada vegada que es mova un disc, imprimix `"Mueve disco X de ORIGEN a DESTINO"` i suma 1 al comptador. Al final, imprimix el total. Prova'l amb 3, 4 i 8 discos.
+L'entrada du diversos nombres (poden tindre menys de 4 xifres: cal completar amb zeros a l'esquerra). Per a cada un, mostra **quantes iteracions** calen per a arribar a 6174. El 6174 necessita 0 iteracions. **Compte amb els repdigits** (1111, 5555...): la primera resta dóna 0 i el bucle mai no arribaria a 6174; el problema oficial demana **8** per a ells. L'0 d'entrada acaba el programa.
 
-**Pista:** amb `n` discos el mínim de moviments és `2^n - 1`. Si el teu comptador amb 8 discos no dona 255, alguna cosa estàs movent de més.
+**Pista:** per a ordenar els dígits, extrau-los en un `int[]` de 4 posicions amb `% 10` i `/ 10`, ordena'l amb bombolla (¡reutilitza la U05!), i reconstrueix el nombre major (dígits en ordre descendent) i el menor (ascendent). Compta les iteracions amb un comptador.
 
 ---
 
-## Exercici 8: ⭐⭐⭐ CodeWars — Sort Numbers
+## 📚 Referències
 
-Resol la kata **"Sort Numbers"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/5174a4c0f2769dd8b1000003).
-
-Crea el mètode `public static int[] sortArray(int[] nums)` que torne l'array ordenat de menor a major. Si `nums` és `null` o està buit, torna un array buit.
-
-**Pista:** fes un mètode `int[] copia` (per a no mutar l'original) i ordena-la amb `Arrays.sort()`. O, si tens ganes, implementa el teu propi Mergesort sobre la còpia.
-
----
-
-## Exercici 9: ⭐⭐⭐ AceptaElReto — 104 Mòbils
-
-Resol el problema **"Mòbils" (104)** de [AceptaElReto](https://aceptaelreto.com/problem/statement.php?id=104).
-
-Un mòbil penja d'una barra amb dos pesos `pi` i `pd` a distàncies `di` i `dd`. Està equilibrat si `pi * di == pd * dd` i a més les dues subbarres (que poden contindre altres mòbils) també ho estan. Un pes `0` significa que dalt penja un altre mòbil, que es descriu a continuació. Torna `SI` si el mòbil està equilibrat i `NO` en cas contrari.
-
-**Pista:** no hi ha cas base amb `n`: els mòbils es lliguen recursivament. Llig `pi di pd dd`; si `pi == 0`, cal llegir (i comprovar) un submòbil complet abans de continuar; si `pd == 0`, un altre. Recorda que **ambdós** submòbils han d'estar equilibrats, no només la barra.
+| Plataforma | Problema | Dificultat |
+|---|---|---|
+| AceptaElReto | 100 — Constant de Kaprekar | Fàcil |
+| AceptaElReto | 185 — Potitos | Fàcil |
+| CodeWars | Find the smallest integer in the array (8 kyu) | Principiant |
+| CodeWars | Ones and Zeros (7 kyu) | Aficionat |
+| CodeWars | You only need one (8 kyu) | Principiant |

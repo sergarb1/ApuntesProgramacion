@@ -26,7 +26,7 @@ String saludo = "Hola, DAM";           // La forma normal
 String nombre = new String("Ana");     // También se puede crear así (usa un constructor)
 ```
 
-Fíjate en la segunda línea: `new String(...)` es un **constructor**. Aún no estudias POO a fondo (eso llega en la U06), pero ya puedes instanciar objetos de clases predefinidas como `String`. La primera línea es un atajo que Java te da para no escribir `new String(...)` cada vez.
+Fíjate en la segunda línea: `new String(...)` es un **constructor**. Aún no estudias POO a fondo (eso llega en la U07), pero ya puedes instanciar objetos de clases predefinidas como `String`. La primera línea es un atajo que Java te da para no escribir `new String(...)` cada vez.
 
 > 💡 **Detalle práctico:** `String` va con **comillas dobles** `"..."`. Las comillas simples `'...'` son solo para `char`, un único carácter.
 

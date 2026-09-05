@@ -1,151 +1,112 @@
 ---
 title: Butlletí U07 — Inicial
-description: Exercicis bàsics de Visibilitat, Encapsulació i Static
+description: Exercicis bàsics de POO, Classes i Objectes
 ---
 
 # 📝 Butlletí U07 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, posa-li cadenat a la primera classe i fes que el `static` deixe de semblar màgia. Cap atribut no naix sabent ser `private`.
+> Sense solucions. Sense presses. Obri l'IDE, encén la fàbrica de galetes i fes que els teus objectes nasquen, parlen i funcionen. Ningú no naix sabent quan cal usar `this`.
 
 ---
 
-## Exercici 1: La casa de cristall
+## Exercici 1: El gos que parla
 
-Esta classe és una casa de cristall: tothom pot entrar i tocar el que vulga.
+Escriu una classe `Gos` amb dos atributs: `String nom` i `int edat`. Inclou un mètode `void lladrar()` que imprimisca `"¡Guau guau! Soc [nom]"`. Després, en un `main`, crea un gos anomenat `Toby` de 3 anys i fes que lladre.
 
-```java
-public class Persona {
-    public String nom;
-    public int edat;
-}
-```
-
-Convertix els atributs en `private` i afig getters i setters per a `nom` i `edat`. Escriu també un `main` que cree una `Persona`, li pose "Anna" i 25 anys usant els setters, i després mostre els valors amb els getters.
+Pista: recorda que els atributs s'inicialitzen en el constructor amb `this`.
 
 ---
 
-## Exercici 2: El cotxe del veïnat
+## Exercici 2: El telèfon amb bateria
 
-Parteix d'esta classe:
+Escriu una classe `Telefon` amb els atributs `String marca` i `int bateria`. Inclou un mètode `void trucar()` que imprimisca `"Trucant... (bateria al X%)"` i un altre `void carregar(int minuts)` que puge la bateria en els minuts rebuts. Crea en el `main` un `Telefon` de marca `"Nokia"` amb bateria inicial `50`, truca-hi i carrega'l `30` minuts.
 
-```java
-public class Cotxe {
-    private String marca;
-    private double velocitat;
-
-    public Cotxe(String marca) {
-        this.marca = marca;
-        this.velocitat = 0;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-}
-```
-
-Afig `getVelocitat()` i un `setVelocitat(double velocitat)` que **rebutge** les velocitats negatives i les superiors a 200 (mostrant "Velocitat invàlida."). Escriu un `main` que cree un cotxe "Seat" i intente posar-li -50 i després 120.
+Pista: `carregar(int minuts)` modifica l'atribut `bateria`: `this.bateria += minuts;`.
 
 ---
 
-## Exercici 3: El termòmetre amb cervell
+## Exercici 3: L'estudiant amb nota
 
-Escriu una classe `Termometre` amb:
+Escriu una classe `Estudiant` amb els atributs `String nom` i `double nota`. Inclou un mètode `void mostrarEstat()` que imprimisca `"[nom] ha aprovat"` si la nota és major o igual que 5, o `"[nom] ha suspés"` si és menor. Crea en el `main` dos estudiants (una amb nota 8.5 i un altre amb nota 3) i mostra'n l'estat.
 
-- Atribut `private double temperatura`.
-- Constructor que inicialitze la temperatura a 20.0.
-- Getter `getTemperatura()`.
-- Setter `setTemperatura(double temperatura)` que **només** accepte valors entre -273.15 i 100.0. Si el valor no és vàlid, mostra "Temperatura fora de rang.".
-
-En un `main`, cree un termòmetre, posa-li -500 (s'ha de rebutjar) i després 36.5, i mostra la temperatura final.
+Pista: dins de `mostrarEstat()` pots usar `if`/`else` amb `this.nota`.
 
 ---
 
-## Exercici 4: Getter sense setter
+## Exercici 4: La pel·lícula en cartellera
 
-Esta classe representa la configuració d'una app: l'idioma es tria en crear-la i **no ha de poder canviar-se després**.
+Escriu una classe `Pelicula` amb els atributs `String titol` i `String genere`. Inclou un mètode `void mostrarCartellera()` que imprimisca `"Ara en cinemes: [titol] ([genere])"`. Crea en el `main` una pel·lícula `"El curs de Java"` de gènere `"Terror"` i mostra-la en cartellera.
 
-```java
-public class Configuracio {
-    private String idioma;
-
-    public Configuracio(String idioma) {
-        this.idioma = idioma;
-    }
-
-    public String getIdioma() {
-        return idioma;
-    }
-}
-```
-
-Fixa't: té getter però **no** setter. Escriu un `main` que cree una configuració amb "es" i mostre l'idioma. Respon: per què no té setter? Què li passaria a un usuari que intentàs fer `config.idioma = "va"` des de fora?
+Pista: el constructor rep els dos valors i els assigna amb `this`.
 
 ---
 
-## Exercici 5: El comptador de la classe
+## Exercici 5: La persona educada
 
-Escriu una classe `Comptador` amb:
+Escriu una classe `Persona` amb els atributs `String nom` i `int edat`. Usa un constructor amb paràmetres. Afegeix un mètode `void presentar-se()` que imprimisca `"Hola, soc [nom] i tinc [edat] anys."`. Crea en el `main` a `"Anna"` de 25 anys i fes que es presente.
 
-- Atribut `public static int total = 0;`.
-- Un constructor que incremente `total` en 1 cada vegada que es crea un objecte.
-
-En un `main`, crea 3 objectes `Comptador` i mostra `Comptador.total`. Respon: quant val `total` i per què no és 1?
+Pista: esta és la classe amb què entendràs per què `this` separa l'atribut del paràmetre.
 
 ---
 
-## Exercici 6: La calculadora sense piles
+## Exercici 6: El cercle calculador
 
-Escriu una classe `Utilitats` amb dos mètodes **estàtics**: `sumar(int a, int b)` i `restar(int a, int b)`. En un `main`, usa els dos mètodes **sense crear cap objecte** (usa el nom de la classe) i mostra els resultats de `sumar(5, 3)` i `restar(10, 4)`.
+Escriu una classe `Cercle` amb l'atribut `double radi`. Inclou un mètode `double calcularArea()` que torne l'àrea (`π * radi²`). Usa `Math.PI` per a π. Crea en el `main` un cercle de radi `2.5` i mostra'n l'àrea.
 
-Pista: `int resultat = Utilitats.sumar(5, 3);`
-
----
-
-## Exercici 7: Les constants del barri
-
-Escriu una classe `Constants` que continga:
-
-- `public static final double IVA = 0.21;`
-- `public static final int MAX_INTENTS_LOGIN = 3;`
-- `public static final String NOM_APP = "GestioCurs";`
-
-En un `main`, mostra les tres constants. Després, intenta fer `Constants.IVA = 0.5;` i respon: què ocorre en compilar?
+Pista: dins del mètode, `return Math.PI * this.radi * this.radi;`.
 
 ---
 
-## Exercici 8: Què imprimeix? — el trencaclosques estàtic
+## Exercici 7: El videojoc jugable
+
+Escriu una classe `Videojoc` amb els atributs `String titol` i `int horesJugades`. Inclou un mètode `void jugar(int hores)` que sume les hores a `horesJugades` i un altre `void mostrar()` que imprimisca `"[titol] - X hores"`. Crea en el `main` un joc amb 10 hores, juga'n 5 més i mostra'l.
+
+Pista: suma les hores a l'atribut: `this.horesJugades += hores;`.
+
+---
+
+## Exercici 8: Què imprimeix? — el taller de cotxes
 
 Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-public class Trencaclosques {
-    static int s = 0;
-    int i = 0;
+public class Taller {
+    public static void main(String[] args) {
+        Coche c1 = new Coche("Seat", 120);
+        Coche c2 = new Coche("Ford", 90);
+        c1.acelerar(30);
+        c1.mostrar();
+        c2.mostrar();
+    }
+}
 
-    public Trencaclosques() {
-        s++;
-        i = s;
+class Coche {
+    String marca;
+    int velocidad;
+
+    public Coche(String marca, int velocidad) {
+        this.marca = marca;
+        this.velocidad = velocidad;
     }
 
-    public static void main(String[] args) {
-        Trencaclosques t1 = new Trencaclosques();
-        Trencaclosques t2 = new Trencaclosques();
-        System.out.println(t1.i + " " + t2.i + " " + Trencaclosques.s);
+    void acelerar(int inc) {
+        velocidad += inc;
+    }
+
+    void mostrar() {
+        System.out.println(marca + " va a " + velocidad + " km/h");
     }
 }
 ```
 
-Pista: `s` és de la classe (una sola còpia compartida); `i` és de cada objecte i es copia del valor de `s` en el moment de nàixer.
+Pista: quants objectes hi ha? Cada un guarda la seua pròpia `velocidad`; accelerar el `c1` no toca el `c2`.
 
 ---
 
-## Exercici 9: CodeWars — Square(n) Sum
+## Exercici 9: CodeWars — Object Oriented Piracy
 
-Resol la kata **"Square(n) Sum"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/515e271a311df0350d00000f).
+Resol la kata **"Object Oriented Piracy"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add).
 
-Completa el mètode `public static int squareSum(int[] n)` que reba un array d'enters i retorne la suma dels quadrats de cada número.
+Crea la classe `Ship` amb un constructor que reba `draft` (calat en peus) i `crew` (tripulació), i un mètode `boolean isWorthIt()` que torne `true` si `draft - (crew * 1.5) > 20`.
 
-**Exemple:** `[1, 2, 2]` → `1 + 4 + 4 = 9`.
-
-Pista: usa un `for` que acumule `n[i] * n[i]`. Els arrays es recorren amb la U09, però ja pots usar l'índex.
+Pista: guarda `draft` i `crew` en atributs amb `this` i usa els operadors `-` i `*` de la U02 dins de `isWorthIt()`.

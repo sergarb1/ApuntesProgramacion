@@ -1,158 +1,118 @@
 ---
-title: "Butlletí 13 - Intermedi: Servir i Consumir APIs amb Web"
+title: "Butlletí 13 - Intermedi: Connexió a BD amb JDBC"
 nav_order: 13
 ---
-Exercicis per a dominar l'art de servir JSON, processar formularis i fer que frontend i backend es parlen sense barallar-se.
+*Exercicis de dificultat progressiva. De ⭐ a ⭐⭐⭐.*
 
 ---
 
-## ⭐ Exercici 1: API de frases motivacionals
+## ⭐ Ejercicio 1: Conexión desde archivo de propiedades
 
-Crea un endpoint `GET /api/frase` que torne un JSON amb una frase aleatòria d'un array precarregat i el seu autor.
+Crea un archivo `db.properties` con los datos de conexión:
 
-```json
-{"frase": "El código limpio es como un buen chiste: si tienes que explicarlo, es malo", "autor": "Alguien que sabe"}
+```properties
+url=jdbc:mysql://localhost:3306/instituto
+user=root
+password=admin123
 ```
 
-El frontend és un HTML amb un botó "Nova frase" que al fer clic fa `fetch('/api/frase')` i mostra la frase en pantalla.
-
-> Pista: usa `Math.random()` per a triar un índex aleatori de l'array.
+Escribe un programa que lea este archivo usando `Properties` y establezca la conexión. Si el archivo no existe o falta alguna propiedad, muestra un mensaje de error claro.
 
 ---
 
-## ⭐ Exercici 2: Traductor xungo (però funcional)
+## ⭐ Ejercicio 2: INSERT con clave autogenerada
 
-Implementa un endpoint `POST /api/traducir` que reba:
+Inserta un nuevo alumno en la tabla `alumnos` y **recupera el ID** que la base de datos le ha asignado automáticamente. Usa `PreparedStatement` con la opción `Statement.RETURN_GENERATED_KEYS` y el método `getGeneratedKeys()`.
 
-```json
-{"texto": "hola", "idioma": "en"}
-```
-
-I torne:
-
-```json
-{"traduccion": "hello"}
-```
-
-Usa un `HashMap<String, HashMap<String, String>>` com a diccionari. Fica almenys 10 paraules en espanyol traduïdes a anglés i francés.
-
-> Pista: Inicialitza el diccionari amb blocs static. `diccionario.get("hola").get("en")` et dona "hello".
-
----
-
-## ⭐⭐ Exercici 3: API REST de tasques amb prioritat
-
-Implementa un CRUD complet de tasques on cada tasca té: `id`, `titol`, `prioritat` ("ALTA", "MITJA", "BAIXA").
-
-| Mètode | Ruta | Descripció |
-|--------|------|-------------|
-| GET | `/api/tareas` | Llista totes |
-| POST | `/api/tareas` | Crea una (JSON: `{"titulo": "...", "prioridad": "ALTA"}`) |
-| PUT | `/api/tareas/{id}` | Canvia prioritat (JSON: `{"prioridad": "BAJA"}`) |
-| DELETE | `/api/tareas/{id}` | Borra una |
-
-Frontend: taula amb colors de fons segons prioritat (roig ALTA, groc MITJA, verd BAIXA). Botons per a crear, canviar prioritat i borrar.
-
-> Pista: guarda les tasques en un `ConcurrentHashMap<Integer, Tarea>` amb un `AtomicInteger` per a IDs.
-
----
-
-## ⭐⭐ Exercici 4: El temps que NO fa
-
-Crea `GET /api/clima?ciudad=Madrid` que torne un JSON amb dades meteorològiques **aleatòries** (generades cada vegada):
-
-```json
-{"ciudad": "Madrid", "temperatura": 28, "humedad": 45, "estado": "soleado"}
-```
-
-Estats possibles: "soleado", "nublado", "lluvia", "tormenta". Frontend amb emojis i temperatures de colors.
-
-> Pista: usa `String[] estados = {"soleado", "nublado", "lluvia", "tormenta"}` i tria aleatòriament. La temperatura pot ser `random.nextInt(40) - 5`.
-
----
-
-## ⭐⭐ Exercici 5: Catàleg de pel·lícules amb filtres
-
-Precarrega un array de 10-15 pel·lícules (amb `titol`, `genere`, `any`, `puntuacio`). Implementa:
-
-- `GET /api/peliculas` → llista totes
-- `GET /api/peliculas?genero=comedia` → filtra per gènere
-- `GET /api/peliculas?genero=comedia&anyo=1994` → filtra per gènere i any
-- `GET /api/peliculas/3` → detall de la pel·lícula amb ID 3
-
-Frontend: selectors de gènere i any, que al canviar actualitzen la llista via fetch.
-
-> Pista: per a filtrar usa `stream().filter(p -> p.getGenero().equals(genero)).toList()`. Per al path param, parseja la URI.
-
----
-
-## ⭐⭐⭐ Exercici 6: Middleware de logging
-
-Crea una classe `LoggerMiddleware` que embolique qualsevol `HttpHandler` i registre en consola:
-
-```
-[2026-06-21 14:30:01] GET /api/peliculas → 200 (15ms)
-[2026-06-21 14:30:05] POST /api/tareas → 201 (3ms)
-```
-
-Ha de poder aplicar-se a qualsevol handler així:
+Pista:
 
 ```java
-server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
+PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 ```
-
-> Pista: guarda `System.currentTimeMillis()` abans i després de cridar al handler original. Usa `e.getRequestMethod()` i `e.getResponseCode()` (després d'enviar capçaleres).
 
 ---
 
-## ⭐⭐⭐ Exercici 7: Server-Sent Events — El rellotge del servidor
+## ⭐ Ejercicio 3: UPDATE condicional
 
-Implementa un endpoint `GET /api/eventos` que use Server-Sent Events (SSE). Cada 5 segons, el servidor envia un esdeveniment amb l'hora actual:
-
-```
-data: {"hora": "14:30:05", "timestamp": 1718975405}
+Actualiza el curso de todos los alumnos que tengan una edad superior a un valor dado. Por ejemplo:
 
 ```
-
-Frontend amb `EventSource`:
-
-```js
-const source = new EventSource('/api/eventos');
-source.onmessage = (e) => {
-    document.getElementById('reloj').textContent = JSON.parse(e.data).hora;
-};
+¿Edad mínima? 25
+¿Nuevo curso? DAM2
 ```
 
-> Pista: en el handler, posa `e.getResponseHeaders().set("Content-Type", "text/event-stream")` i NO tanques la connexió. Usa `e.getResponseBody().write()` en un bucle amb `Thread.sleep(5000)`.
+Todos los alumnos mayores de 25 años pasan al curso «DAM2». Muestra cuántas filas se actualizaron.
 
 ---
 
-## ⭐ Exercici 8: Pedra, paper, tisora online
+## ⭐⭐ Ejercicio 4: INNER JOIN con PreparedStatement
 
-Endpoint `POST /api/jugar` que rep:
+Dada una tabla `matriculas` con `id_alumno`, `asignatura`, `nota`, escribe un programa que reciba un nombre de alumno y muestre todas sus asignaturas y notas. Usa un `INNER JOIN` entre `alumnos` y `matriculas`.
 
-```json
-{"jugada": "piedra"}
+Ejemplo de salida:
+```
+Alumno: Ana García
+  Matemáticas: 8.5
+  Programación: 9.0
+  Bases de Datos: 7.5
 ```
 
-I torna:
+---
 
-```json
-{"jugadaPC": "tijera", "resultado": "ganaste"}
-```
+## ⭐⭐ Ejercicio 5: Fechas en JDBC
 
-Regles clàssiques: pedra > tisora, tisora > paper, paper > pedra.
+Añade una columna `fecha_nacimiento DATE` a la tabla `alumnos` (asume que ya existe). Crea un programa que:
 
-Frontend: tres botons amb emojis 🪨📄✂️. Al fer clic, envia la jugada i mostra el resultat. Porta un comptador de victòries/derrotes/empats.
+1. Pida nombre, edad, curso y fecha de nacimiento (formato `YYYY-MM-DD`).
+2. Inserte el alumno usando `PreparedStatement` con `java.sql.Date.valueOf()`.
+3. Liste todos los alumnos mostrando también su fecha de nacimiento formateada con `DateTimeFormatter`.
 
-> Pista: la jugada del PC es tria amb `Random`. Les regles es poden implementar amb un `Map<String, String>` on la clau venç el valor: `{"piedra": "tijera", "tijera": "papel", "papel": "piedra"}`.
+---
+
+## ⭐⭐ Ejercicio 6: Batch INSERT — 100 alumnos de prueba
+
+Crea un programa que inserte **100 alumnos de prueba** en la tabla `alumnos` usando lotes (batch). Los nombres pueden ser genéricos: `Alumno1`, `Alumno2`, etc.
+
+Usa `addBatch()` y `executeBatch()` de `PreparedStatement`. Mide el tiempo que tarda con `System.currentTimeMillis()`.
+
+Compara: ¿cuánto tardaría si hicieras 100 `executeUpdate()` individuales?
+
+---
+
+## ⭐⭐⭐ Ejercicio 7 (ProgramaMe): Patrón DAO
+
+Implementa el patrón **Data Access Object (DAO)** para la tabla `alumnos`. Crea las siguientes clases:
+
+1. `Alumno` — clase modelo con `id`, `nombre`, `edad`, `curso`.
+2. `AlumnoDAO` — interfaz con métodos:
+   - `List<Alumno> listar()`
+   - `Alumno buscarPorId(int id)`
+   - `List<Alumno> buscarPorNombre(String nombre)`
+   - `boolean insertar(Alumno a)`
+   - `boolean actualizar(Alumno a)`
+   - `boolean eliminar(int id)`
+3. `AlumnoDAOImpl` — implementación concreta con JDBC.
+4. `Main` — programa con menú que use el DAO.
+
+---
+
+## ⭐⭐⭐ Ejercicio 8 (CodeWars + AceptaElReto)
+
+Resuelve estos problemas que refuerzan conceptos de Bases de Datos y SQL:
+
+**CodeWars:** [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu) — Practica JOINs en SQL.
+
+**CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6 kyu) — Consultas con LIKE y ordenación.
+
+**AceptaElReto:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200) — Problema de estructura de datos que puedes resolver con JDBC.
 
 ---
 
 ## 📚 Referències
 
-- **CodeWars:** [IP Validation](https://www.codewars.com/kata/515decfd9dcfc23bb6000006) (6 kyu)
-- **CodeWars:** [Simple URL parser](https://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7) (6 kyu)
-- **AceptaElReto:** [462 - Día de la semana](https://www.aceptaelreto.com/problem/statement.php?id=462) (⭐⭐)
-- **Documentació Oracle:** [HttpExchange](https://docs.oracle.com/en/java/javase/21/docs/api/jdk.httpserver/com/sun/net/httpserver/HttpExchange.html)
-- **MDN:** [Server-Sent Events](https://developer.mozilla.org/es/docs/Web/API/Server-sent_events)
+- **CodeWars:** [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu)
+- **CodeWars:** [SQL with Street Fighter](https://www.codewars.com/kata/585d8c8c28d62654a800025b) (6 kyu)
+- **CodeWars:** [SQL Basics: Simple HAVING](https://www.codewars.com/kata/58167e8fcbd14c0d7d0000f8) (6 kyu)
+- **AceptaElReto.com:** [200 - Aburrimiento en las aulas](https://www.aceptaelreto.com/problem/statement.php?id=200)
+- **AceptaElReto.com:** [340 - Juegos de naipes](https://www.aceptaelreto.com/problem/statement.php?id=340)
+- **AceptaElReto.com:** [100 - Kaprekar](https://www.aceptaelreto.com/problem/statement.php?id=100)

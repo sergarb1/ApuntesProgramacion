@@ -9,190 +9,157 @@ description: Ejercicios de dificultad progresiva para exprimir la unidad
 
 ---
 
-## ⭐ Ejercicio 1: empleado con validación
+## ⭐ Ejercicio 1: La biblioteca
 
-Escribe una clase `Empleado` con:
+Escribe una clase `Libro` con los atributos `String titulo`, `String autor` e `int paginas`. Añade un método `void mostrarInfo()` que imprima:
 
-- Atributos `private String nombre`, `private double salario`.
-- Constructor que valide que el salario no sea negativo (si lo es, lo deja en 0 y muestra un aviso).
-- Getters y setters. El setter de salario también debe rechazar negativos.
+```
+El Quijote, de Miguel de Cervantes (863 páginas)
+```
 
-En un `main`, crea un empleado "Laura" con salario 1500, intenta ponerle -300 y muestra el salario final.
+Crea en el `main` dos libros distintos y muestra su información.
 
-**Pista:** reutiliza la validación del setter dentro del constructor: `setSalario(salario)` en vez de asignar a pelo.
-
----
-
-## ⭐ Ejercicio 2: Círculo encapsulado
-
-Escribe una clase `Circulo` con:
-
-- Atributo `private double radio`.
-- Constructor que reciba el radio.
-- Getter `getRadio()`, setter `setRadio(double)` que rechace radios negativos o cero.
-- Métodos `getArea()` y `getPerimetro()` que usen `Math.PI`.
-
-En un `main`, crea un círculo de radio 5 y muestra su área y perímetro.
-
-**Pista:** `area = Math.PI * radio * radio;` y `perimetro = 2 * Math.PI * radio;`. Recuerda que `Math.PI` es una constante estática.
+**Pista:** tres atributos, un constructor con tres parámetros y `this.` tres veces. El método usa los atributos para construir la frase.
 
 ---
 
-## ⭐⭐ Ejercicio 3: JavaBean Alumno
+## ⭐ Ejercicio 2: El rectángulo razonador
 
-Escribe una clase `Alumno` siguiendo el estilo JavaBean (el estándar para clases de datos):
+Escribe una clase `Rectangulo` con los atributos `double ancho` y `double alto`. Añade:
+- `double calcularArea()` → `ancho * alto`
+- `double calcularPerimetro()` → `2 * (ancho + alto)`
+- `boolean esCuadrado()` → `true` si `ancho == alto`
 
-- Atributos `private String nombre`, `private int edad`, `private double notaMedia`.
-- Constructor sin parámetros y constructor con los tres valores.
-- Getter y setter para **cada** atributo.
-- El setter de `edad` debe rechazar edades fuera de 0 y 120; el de `notaMedia`, fuera de 0 y 10.
+Crea un rectángulo de 4 x 4 y otro de 5 x 8 y prueba los tres métodos en ambos.
 
-En un `main`, crea un alumno con el constructor completo y luego modifica su nota con el setter.
-
-**Pista:** un JavaBean es "atributos privados + getters/setters + constructores": el patrón que verás en cualquier framework. Los setters validan; los getters solo leen.
+**Pista:** los tres métodos devuelven valores con `return`. `esCuadrado()` devuelve el resultado de una comparación con `==`.
 
 ---
 
-## ⭐⭐ Ejercicio 4: hora inmutable
+## ⭐ Ejercicio 3: La cuenta bancaria blindada
 
-Escribe una clase `Hora` que represente una hora del día y que sea **inmutable**: sus atributos solo se asignan en el constructor y no tienen setters.
+Escribe una clase `CuentaBancaria` con los atributos `String titular` y `double saldo`. Añade:
+- `void ingresar(double cantidad)` → suma a saldo.
+- `void retirar(double cantidad)` → resta a saldo **solo si** `cantidad <= saldo`; si no, imprime `"Saldo insuficiente"`.
+- `void mostrar()` → imprime `"Titular: X | Saldo: Y €"`.
 
-- Atributos `private final int hora`, `private final int minuto`.
-- Constructor que valide `hora` entre 0 y 23 y `minuto` entre 0 y 59.
-- Getters `getHora()` y `getMinuto()`.
-- Método `mostrar()` que devuelva `"HH:MM"` (con ceros: `09:05`).
+Crea una cuenta con 100 €, retira 30 €, intenta retirar 200 € y muestra el saldo final.
 
-En un `main`, crea una hora 9:05 y muéstrala. Responde: ¿por qué no necesita setters?
-
-**Pista:** usa `String.format("%02d:%02d", hora, minuto)` o `"0" + ...` cuando el valor sea menor que 10.
+**Pista:** dentro de `retirar`, un `if (cantidad <= this.saldo)` protege el saldo de quedarse en negativo. Ese `if` es la diferencia entre una cuenta y un agujero.
 
 ---
 
-## ⭐⭐ Ejercicio 5: ¿Qué imprime? — el puzle de los gatos
+## ⭐⭐ Ejercicio 4: La hora que se corrige sola
+
+Escribe una clase `Hora` con los atributos `int hora`, `int minuto` y `int segundo`. El constructor debe validar: si los valores no son válidos (hora entre 0 y 23, minuto y segundo entre 0 y 59), se inicializan a 0. Añade el método `void incrementarSegundo()` que suma 1 segundo gestionando los acarreos: si llega a 60 segundos pasa a 0 y suma un minuto, y así con los minutos y las horas.
+
+Crea una `Hora(23, 59, 59)`, llama a `incrementarSegundo()` y muestra `00:00:00`.
+
+**Pista:** la validación es un `if` grande en el constructor. El acarreo son tres `if` encadenados, de segundo a minuto a hora. Para mostrar con dos dígitos, imprime `"0" + valor` si es menor que 10.
+
+---
+
+## ⭐⭐ Ejercicio 5: ¿Qué imprime? — el baile de referencias
 
 Sin ejecutar, escribe la salida exacta:
 
 ```java
-public class Gato {
-    public static int totalGatos = 0;
-    private String nombre;
-    private int vidas;
-
-    public Gato(String nombre) {
-        this.nombre = nombre;
-        this.vidas = 9;
-        totalGatos++;
-    }
-
-    public void perderVida() {
-        if (vidas > 0) {
-            vidas--;
-        }
-    }
-
-    public String toString() {
-        return nombre + " (" + vidas + " vidas)";
-    }
-}
-```
-
-```java
-public class PuzleGatos {
+public class Baile {
     public static void main(String[] args) {
-        Gato g1 = new Gato("Bigotes");
-        Gato g2 = new Gato("Garfield");
-        g1.perderVida();
-        g1.perderVida();
-        g2.perderVida();
+        Punto a = new Punto(3, 4);
+        Punto b = a;
+        b.x = 10;
+        System.out.println("a.x = " + a.x);
 
-        System.out.println(g1);
-        System.out.println(g2);
-        System.out.println("Total: " + Gato.totalGatos);
+        Punto c = new Punto(1, 1);
+        cambiar(c);
+        System.out.println("c.x = " + c.x);
+    }
+
+    static void cambiar(Punto p) {
+        p.x = 99;
+        p = new Punto(50, 50);
+    }
+}
+
+class Punto {
+    int x;
+    int y;
+
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
 ```
 
-**Pista:** cada gato nace con 9 vidas y las pierde una a una con `perderVida()`. Cuenta cuántas veces se llama sobre cada gato, y recuerda que `totalGatos` es `static`.
+**Pista:** `b = a` no copia el objeto: copia la referencia. Cuando `cambiar(c)` recibe `c`, el parámetro `p` es una *copia* de la referencia, así que modificar `p.x` sí se nota, pero `p = new Punto(...)` solo reasigna el parámetro local.
 
 ---
 
-## ⭐⭐ Ejercicio 6: contador de usuarios
+## ⭐⭐ Ejercicio 6: El correo que se encadena
 
-Escribe una clase `Usuario` que asigne a cada objeto un `id` **único y automático**:
+Escribe una clase `Email` con los atributos `String remitente`, `String destinatario` y `String asunto`. Crea **tres constructores sobrecargados**:
+- `Email(String remitente, String destinatario, String asunto)` → el completo.
+- `Email(String remitente, String destinatario)` → asunto por defecto `"(sin asunto)"`.
+- `Email(String remitente)` → destinatario `"(sin destino)"` y asunto `"(sin asunto)"`.
 
-- Atributo `private static int contador = 0;` y `private int id;`.
-- Constructor que incremente `contador` y asigne `id = contador`.
-- Método `public static int getTotalUsuarios()`.
-- Getter `getId()`.
+Usa `this(...)` para encadenar y evitar repetir código. Añade `void mostrar()` que imprima los tres datos.
 
-En un `main`, crea 5 usuarios y muestra el id del último y el total de usuarios.
-
-**Pista:** el patrón del punto 5: el `static` cuenta cuántos se han creado, y cada objeto se "congela" su número al nacer. `getTotalUsuarios` es estático porque pregunta a la clase, no a un objeto.
+**Pista:** el constructor de un parámetro llama al de dos, y el de dos llama al de tres. Con `this(...)` escribes la asignación completa una sola vez, en el constructor de tres parámetros.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 7: La clase utilitaria OperacionesArray
+## ⭐⭐ Ejercicio 7: La fracción que se simplifica
 
-Escribe una clase `OperacionesArray` **utilitaria** (constructor privado) con estos métodos `static`:
+Escribe una clase `Fraccion` con los atributos `int numerador` y `int denominador`. Añade:
+- Constructor que valide: si `denominador == 0`, se usa `1`.
+- `Fraccion sumar(Fraccion otra)` → devuelve una nueva fracción con `(a.num * b.den + b.num * a.den) / (a.den * b.den)`.
+- `void simplificar()` → divide numerador y denominador por su máximo común divisor (MCD).
 
-- `suma(int[] numeros)` → suma todos los elementos.
-- `media(double[] numeros)` → devuelve el promedio.
-- `maximo(int[] numeros)` → devuelve el mayor.
-- `estaOrdenado(int[] numeros)` → `true` si cada elemento es mayor o igual que el anterior.
+Crea `1/2` y `1/3`, súmalas y simplifica el resultado.
 
-En un `main`, usa la clase **sin crear ningún objeto** sobre `{3, 1, 4, 1, 5}` y `{1, 2, 3}`.
-
-**Pista:** el constructor `private OperacionesArray() {}` impide instanciarla, como `Math`. Para `estaOrdenado`, recorre con un `for` y compara cada elemento con el anterior (`numeros[i] < numeros[i - 1]` → no está ordenado).
+**Pista:** para el MCD usa el algoritmo de Euclides (restas o módulos) o `Math.abs` con un bucle. `simplificar()` no devuelve nada: modifica `this`.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: validador de datos
+## ⭐⭐⭐ Ejercicio 8: CodeWars — Building blocks
 
-Escribe una clase `Validador` **utilitaria** (constructor privado) con estos métodos `static`:
+Resuelve la kata **"Building blocks"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/55b75fcf67e558d3750000a3).
 
-- `esEmailValido(String email)` → `true` si contiene exactamente una `@` y al menos un `.` después de la `@`.
-- `esEdadValida(int edad)` → `true` si está entre 0 y 120.
-- `esTextoNoVacio(String texto)` → `true` si no es `null` y no está en blanco.
+Crea la clase `Block` con un constructor que reciba las tres dimensiones (como `int[]` de 3 o como 3 enteros) y los métodos:
+- `int getWidth()`, `int getLength()`, `int getHeight()`
+- `int getVolume()` → `width * length * height`
+- `int getSurfaceArea()` → `2 * (w*l + w*h + l*h)`
 
-En un `main`, prueba los tres métodos con casos válidos e inválidos (por ejemplo `"ana@mail.com"`, `"ana@"`, `"hola"`, `-5`, `200`, `null`).
-
-**Pista:** usa `String.indexOf("@")` para localizar la `@`, `indexOf("@", pos + 1)` para comprobar que no hay una segunda, y `indexOf(".", pos)` para el punto después de la `@`. Un `return` temprano en cada condición fallida simplifica mucho.
+**Pista:** guarda las tres dimensiones en atributos con `this` y deja que los getters simplemente las devuelvan. La superficie es la suma de las caras por dos.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: El gran reto — refactoriza el banco
+## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
 
-Este código funciona... pero es una puerta abierta. Refactorízalo siguiendo los pasos del punto 8 (Be the Code):
+Resuelve el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
 
-```java
-public class CuentaBancaria {
-    public String titular;
-    public double saldo;
+La entrada empieza con un número de casos. Para cada caso de prueba (un número de 4 cifras), aplica la rutina de Kaprekar: ordena sus dígitos de mayor a menor y de menor a mayor, resta, y repite hasta llegar a 6174. Imprime el número de iteraciones necesarias. Para los repdigits (1111, 2222...) imprime `8`. Para 6174 imprime `0`.
 
-    public CuentaBancaria(String titular, double saldo) {
-        titular = titular;
-        saldo = saldo;
-    }
+**Ejemplo:**
 
-    public void retirar(double cantidad) {
-        saldo = saldo - cantidad;
-    }
-
-    public void ingresar(double cantidad) {
-        saldo = saldo + cantidad;
-    }
-}
+```
+3524 → 5432 - 2345 = 3087 → 8730 - 0378 = 8352 → 8532 - 2358 = 6174
 ```
 
-Debe quedar así:
+Resultado: **3** iteraciones.
 
-1. Atributos `private`.
-2. Constructor con `this` y que valide que el saldo inicial no sea negativo.
-3. Getters para ambos; **sin setters** para el saldo.
-4. `retirar(double)` que rechace cantidades negativas y que **no permita** dejar el saldo en negativo (si `cantidad > saldo`, avisa y no retira).
-5. `ingresar(double)` que rechace cantidades negativas.
-6. Una constante `public static final String NOMBRE_BANCO = "Banco DAM";`.
+**Pista:** pasa el número a `String`, usa `Arrays.sort` sobre el array de caracteres para ordenarlos, y construye el mayor y el menor. Un `while (n != 6174)` cuenta las vueltas. Esta es la oportunidad perfecta para practicar una clase `Numero` con métodos como `ordenarDigitos()`.
 
-Escribe también un `main` de prueba que cree una cuenta, ingrese, intente retirar más de lo que tiene y muestre el saldo.
+---
 
-**Pista:** sin setter para el saldo, solo las operaciones `retirar` e `ingresar` pueden tocarlo: es la frontera del negocio. Recuerda el bug del constructor (`titular = titular` se asigna a sí mismo) y valida todo antes de asignar.
+## 📚 Referencias
+
+| Plataforma | Problema | Dificultad |
+|---|---|---|
+| AceptaElReto | 100 — Constante de Kaprekar | Medio |
+| AceptaElReto | 148 — Nochevieja | Fácil |
+| CodeWars | Object Oriented Piracy (8 kyu) | Principiante |
+| CodeWars | Building blocks (7 kyu) | Aficionado |
+| CodeWars | FIXME: Get Full Name (7 kyu) | Aficionado |

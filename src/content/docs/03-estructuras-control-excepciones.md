@@ -6,7 +6,7 @@ emoji: 🔀
 
 <p><small>El semáforo, la cinta de correr y el seguro de vida que hacen decidir y repetir a tus programas 🔀</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 Variables → **🔀 AQUÍ ESTÁS (U03)** → 🧩 Algorítmica → ⚡ Técnicas → 🏗️ POO → 🔒 Visibilidad → 🧬 Herencia → 📚 Colecciones → 🗺️ Genéricos → 📁 Ficheros → 🗄️ JDBC → 🌐 APIs
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → **🔀 AQUÍ ESTÁS (U03)** → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
 
 ---
 
@@ -86,7 +86,7 @@ Al terminar, serás capaz de:
 | RA3 f) | Se han probado y depurado los programas. | ✅ Todos, con chicha extra en los boletines |
 | RA3 g) | Se ha comentado y documentado el código. | ✅ Todos |
 
-> 📌 Los bucles que ves aquí son el músculo de todo lo que viene: los recorridos de arrays y colecciones (U09) y los algoritmos de ordenación y búsqueda (U05) no serían nada sin `for` y `while`.
+> 📌 Los bucles que ves aquí son el músculo de todo lo que viene: los recorridos de arrays y colecciones (U10) y los algoritmos de ordenación y búsqueda (U06) no serían nada sin `for` y `while`.
 
 ---
 
@@ -98,4 +98,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/03-estructuras-control-excepciones/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u03-inicial).
 
 **📍 Primer punto:** [01 · if, else if y else](/ApuntesProgramacion/03-estructuras-control-excepciones/01-if-else)  
-**⏭️ Al acabar la unidad, continúa en [U04 · Algorítmica I: Fundamentos](/ApuntesProgramacion/04-algoritmica-fundamentos).**
+**⏭️ Al acabar la unidad, continúa en [U04 · Arrays](/ApuntesProgramacion/04-arrays).**

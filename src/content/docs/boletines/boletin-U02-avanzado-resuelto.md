@@ -291,6 +291,82 @@ La clave matemática: 5! = 120, y a partir de ahí cualquier factorial multiplic
 
 ---
 
+## ⭐⭐ Ejercicio 10: el ticket de compra con NumberFormat
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class TicketCompra {
+    public static void main(String[] args) {
+        NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
+
+        double precioPan = 1.20;
+        double precioLeche = 0.95;
+        double precioHuevos = 3.50;
+
+        double subtotalPan = precioPan * 2;
+        double subtotalLeche = precioLeche * 3;
+        double subtotalHuevos = precioHuevos * 1;
+        double total = subtotalPan + subtotalLeche + subtotalHuevos;
+
+        System.out.println("==========================");
+        System.out.println("    TICKET DE COMPRA");
+        System.out.println("==========================");
+        System.out.println("Pan    2 x " + moneda.format(precioPan) + " = " + moneda.format(subtotalPan));
+        System.out.println("Leche  3 x " + moneda.format(precioLeche) + " = " + moneda.format(subtotalLeche));
+        System.out.println("Huevos 1 x " + moneda.format(precioHuevos) + " = " + moneda.format(subtotalHuevos));
+        System.out.println("--------------------------");
+        System.out.println("TOTAL               = " + moneda.format(total));
+        System.out.println("==========================");
+    }
+}
+```
+
+`NumberFormat.getCurrencyInstance(new Locale("es", "ES"))` formatea cualquier `double` como moneda española: `1.234,56 €`. Como los tres subtotales se calculan con `precio * cantidad` antes de sumarlos, el total es exacto y sin errores de redondeo acumulados. Este ejercicio te deja listo para el punto 7 en el examen: separadores de miles y moneda en un solo objeto.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 11: la edad a prueba de bombas
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class EdadSegura {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int edad = -1;
+
+        while (edad == -1) {
+            System.out.print("¿Cuántos años tienes? ");
+            if (sc.hasNextInt()) {
+                edad = sc.nextInt();
+            } else {
+                System.out.println("Eso no es un número entero.");
+                sc.next();
+            }
+        }
+
+        System.out.printf("Genial, %d años y listo para programar.%n", edad);
+        sc.close();
+    }
+}
+```
+
+El bucle `while` repite la pregunta hasta que el usuario da un entero. `hasNextInt()` mira si el siguiente dato es un entero sin consumirlo; si no lo es, `sc.next()` se traga la basura y el bucle vuelve a preguntar. Así el programa es **a prueba de bombas**: no importa cuántas veces el usuario escriba "hola" o "3.14", nunca saltará la `InputMismatchException`.
+
+</details>
+
+---
+
 ## 📚 Referencias
 
 | Plataforma | Problema | Dificultad |
@@ -301,3 +377,4 @@ La clave matemática: 5! = 120, y a partir de ahí cualquier factorial multiplic
 | CodeWars | Will you make it? (8 kyu) | Principiante |
 | CodeWars | Convert boolean to Yes/No (8 kyu) | Principiante |
 | CodeWars | Keep Hydrated (8 kyu) | Principiante |
+| CodeWars | Get the Middle Character (7 kyu) | Intermedio |

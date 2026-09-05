@@ -5,7 +5,7 @@ description: Las cajas del almacén de la memoria y las máquinas del gimnasio d
 
 <p><small>Las cajas del almacén de la memoria y las máquinas del gimnasio de datos 🔤</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → **🔤 AQUÍ ESTÁS (U02)** → 🔀 Control → 🧩 Algorítmica → ⚡ Técnicas → 🏗️ POO → 🔒 Visibilidad → 🧬 Herencia → 📚 Colecciones → 🗺️ Genéricos → 📁 Ficheros → 🗄️ JDBC → 🌐 APIs
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → **🔤 AQUÍ ESTÁS (U02)** → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
 
 ---
 
@@ -15,7 +15,7 @@ Imagina que la memoria de tu ordenador es un **almacén gigante** lleno de estan
 
 En esta unidad vas a aprender a declarar variables de los **8 tipos primitivos**, a guardar texto con `String`, a hacer inmutables algunas cajas con `final`, a manejarlas con operadores aritméticos, relacionales y lógicos, a convertirlas entre tipos con **casting**, y a hacer que tu programa **escuche el teclado** con `Scanner` y juegue a la lotería con `Math.random()`.
 
-Esta unidad se lee como un **libro de 9 capítulos**: los 8 primeros puntos son teoría en progresión y el 9º es un aterrizaje práctico para machacar todo lo aprendido.
+Esta unidad se lee como un **libro de 10 capítulos**: los 9 primeros puntos son teoría en progresión y el 10º es un aterrizaje práctico para machacar todo lo aprendido.
 
 ---
 
@@ -45,11 +45,12 @@ Al terminar, serás capaz de:
 | [04 · Relacionales, lógicos y ternario](/ApuntesProgramacion/02-variables-tipos-operadores/04-operadores-relacionales-logicos) | Comparaciones, `&&`/`\|\|`/`!`, cortocircuito y ternario | Todos |
 | [05 · Casting y conversiones](/ApuntesProgramacion/02-variables-tipos-operadores/05-casting-conversiones) | Conversión implícita y explícita, truncamiento y desbordamiento | Todos |
 | [06 · Scanner: leer por teclado](/ApuntesProgramacion/02-variables-tipos-operadores/06-scanner-entrada-teclado) | `Scanner`, `nextInt`, `nextDouble` y `nextLine` | Todos |
-| [07 · Math.random() y números aleatorios](/ApuntesProgramacion/02-variables-tipos-operadores/07-math-random-aleatorios) | `Math.random()`, la fórmula min-max y las herramientas de `Math` | Todos |
-| [08 · Métodos útiles de String](/ApuntesProgramacion/02-variables-tipos-operadores/08-metodos-string) | `length`, `substring`, `replace`, `trim`, `charAt`… | Todos |
-| [09 · Repaso interactivo](/ApuntesProgramacion/02-variables-tipos-operadores/09-repaso-interactivo) | Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… | Todos |
+| [07 · Consola: salida formateada y errores de entrada](/ApuntesProgramacion/02-variables-tipos-operadores/07-consola-salida-formateada) | `printf`, `String.format`, `NumberFormat` y errores del `Scanner` | Todos |
+| [08 · Math.random() y números aleatorios](/ApuntesProgramacion/02-variables-tipos-operadores/08-math-random-aleatorios) | `Math.random()`, la fórmula min-max y las herramientas de `Math` | Todos |
+| [09 · Métodos útiles de String](/ApuntesProgramacion/02-variables-tipos-operadores/09-metodos-string) | `length`, `substring`, `replace`, `trim`, `charAt`… | Todos |
+| [10 · Repaso interactivo](/ApuntesProgramacion/02-variables-tipos-operadores/10-repaso-interactivo) | Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… | Todos |
 
-> 📖 **Flujo de lectura:** los 8 primeros puntos son teoría en progresión. El 9º es el aterrizaje práctico: léelo justo después del 8º y antes de abrir los boletines.
+> 📖 **Flujo de lectura:** los 9 primeros puntos son teoría en progresión. El 10º es el aterrizaje práctico: léelo justo después del 9º y antes de abrir los boletines.
 
 ---
 
@@ -87,16 +88,16 @@ Al terminar, serás capaz de:
 | RA2 g) | Se han incorporado y utilizado librerías de objetos. | ✅ Punto 6 |
 | RA2 h) | Se han utilizado constructores. | ✅ Puntos 2 y 6 |
 
-> 📌 El `Scanner` del punto 6 y los métodos de `String` del punto 8 plantan la semilla del RA5 (entrada y salida de información), que florece en la U11.
+> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U12.
 
 ---
 
 ## 🚪 ¿Por dónde empiezo?
 
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/02-variables-tipos-operadores/01-variables-tipos-primitivos). Solo necesitas lo que viste en la U01.
-- ¿Ya sabes declarar variables y quieres chicha? → Ve directo al [punto 6](/ApuntesProgramacion/02-variables-tipos-operadores/06-scanner-entrada-teclado) y al [punto 7](/ApuntesProgramacion/02-variables-tipos-operadores/07-math-random-aleatorios): ahí empiezan los programas interesantes.
+- ¿Ya sabes declarar variables y quieres chicha? → Ve directo al [punto 6](/ApuntesProgramacion/02-variables-tipos-operadores/06-scanner-entrada-teclado) y al [punto 8](/ApuntesProgramacion/02-variables-tipos-operadores/08-math-random-aleatorios): ahí empiezan los programas interesantes.
 - ¿Solo vienes a por operadores? → Salta al [punto 3](/ApuntesProgramacion/02-variables-tipos-operadores/03-operadores-aritmeticos) y al [punto 4](/ApuntesProgramacion/02-variables-tipos-operadores/04-operadores-relacionales-logicos).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/02-variables-tipos-operadores/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u02-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/02-variables-tipos-operadores/10-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u02-inicial).
 
 **📍 Primer punto:** [01 · Variables y tipos primitivos](/ApuntesProgramacion/02-variables-tipos-operadores/01-variables-tipos-primitivos)  
 **⏭️ Al acabar la unidad, continúa en [U03 · Estructuras de Control](/ApuntesProgramacion/03-estructuras-control-excepciones).**

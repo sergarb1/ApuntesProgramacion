@@ -1,198 +1,165 @@
 ---
 title: Butlletí U07 — Avançat
-description: Exercicis de dificultat progressiva per a exprimir la unitat
+description: Exercicis de dificultat progressiva per a esprémer la unitat
 ---
 
 # 📝 Butlletí U07 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: Empleat amb validació
+## ⭐ Exercici 1: La biblioteca
 
-Escriu una classe `Empleat` amb:
+Escriu una classe `Llibre` amb els atributs `String titol`, `String autor` i `int pagines`. Afegeix un mètode `void mostrarInfo()` que imprimisca:
 
-- Atributs `private String nom`, `private double salari`.
-- Constructor que valide que el salari no siga negatiu (si ho és, el deixa en 0 i mostra un avís).
-- Getters i setters. El setter del salari també ha de rebutjar negatius.
+```
+El Quixot, de Miguel de Cervantes (863 pàgines)
+```
 
-En un `main`, crea un empleat "Laura" amb salari 1500, intenta posar-li -300 i mostra el salari final.
+Crea en el `main` dos llibres distints i mostra'n la informació.
 
-**Pista:** reutilitza la validació del setter dins del constructor: `setSalari(salari)` en comptes d'assignar a seques.
-
----
-
-## ⭐ Exercici 2: Cercle encapsulat
-
-Escriu una classe `Cercle` amb:
-
-- Atribut `private double radi`.
-- Constructor que reba el radi.
-- Getter `getRadi()`, setter `setRadi(double)` que rebutge radis negatius o zero.
-- Mètodes `getArea()` i `getPerimetre()` que usen `Math.PI`.
-
-En un `main`, crea un cercle de radi 5 i mostra la seua àrea i perímetre.
-
-**Pista:** `area = Math.PI * radi * radi;` i `perimetre = 2 * Math.PI * radi;`. Recorda que `Math.PI` és una constant estàtica.
+**Pista:** tres atributs, un constructor amb tres paràmetres i `this.` tres vegades. El mètode usa els atributs per a construir la frase.
 
 ---
 
-## ⭐⭐ Exercici 3: JavaBean Alumne
+## ⭐ Exercici 2: El rectangle que raona
 
-Escriu una classe `Alumne` seguint l'estil JavaBean (l'estàndard per a classes de dades):
+Escriu una classe `Rectangle` amb els atributs `double ample` i `double alt`. Afegeix:
+- `double calcularArea()` → `ample * alt`
+- `double calcularPerimetre()` → `2 * (ample + alt)`
+- `boolean esQuadrat()` → `true` si `ample == alt`
 
-- Atributs `private String nom`, `private int edat`, `private double notaMitjana`.
-- Constructor sense paràmetres i constructor amb els tres valors.
-- Getter i setter per a **cada** atribut.
-- El setter de `edat` ha de rebutjar edats fora de 0 i 120; el de `notaMitjana`, fora de 0 i 10.
+Crea un rectangle de 4 x 4 i un altre de 5 x 8 i prova els tres mètodes en tots dos.
 
-En un `main`, crea un alumne amb el constructor complet i després modifica la seua nota amb el setter.
-
-**Pista:** un JavaBean és "atributs privats + getters/setters + constructors": el patró que veuràs en qualsevol framework. Els setters validen; els getters només lligixen.
+**Pista:** els tres mètodes tornen valors amb `return`. `esQuadrat()` torna el resultat d'una comparació amb `==`.
 
 ---
 
-## ⭐⭐ Exercici 4: Hora immutable
+## ⭐ Exercici 3: El compte bancari blindat
 
-Escriu una classe `Hora` que represente una hora del dia i que siga **immutable**: els seus atributs només s'assignen en el constructor i no tenen setters.
+Escriu una classe `CompteBancari` amb els atributs `String titular` i `double saldo`. Afegeix:
+- `void ingressar(double quantitat)` → suma al saldo.
+- `void retirar(double quantitat)` → resta al saldo **només si** `quantitat <= saldo`; si no, imprimix `"Saldo insuficient"`.
+- `void mostrar()` → imprimix `"Titular: X | Saldo: Y €"`.
 
-- Atributs `private final int hora`, `private final int minut`.
-- Constructor que valide `hora` entre 0 i 23 i `minut` entre 0 i 59.
-- Getters `getHora()` i `getMinut()`.
-- Mètode `mostrar()` que retorne `"HH:MM"` (amb zeros: `09:05`).
+Crea un compte amb 100 €, retira 30 €, intenta retirar 200 € i mostra el saldo final.
 
-En un `main`, crea una hora 9:05 i mostra-la. Respon: per què no necessita setters?
-
-**Pista:** usa `String.format("%02d:%02d", hora, minut)` o `"0" + ...` quan el valor siga menor que 10.
+**Pista:** dins de `retirar`, un `if (quantitat <= this.saldo)` protegix el saldo de quedar-se en negatiu. Eixe `if` és la diferència entre un compte i un clot.
 
 ---
 
-## ⭐⭐ Exercici 5: Què imprimeix? — el trencaclosques dels gats
+## ⭐⭐ Exercici 4: L'hora que es corregeix sola
+
+Escriu una classe `Hora` amb els atributs `int hora`, `int minut` i `int segon`. El constructor ha de validar: si els valors no són vàlids (hora entre 0 i 23, minut i segon entre 0 i 59), s'inicialitzen a 0. Afegeix el mètode `void incrementarSegon()` que suma 1 segon gestionant els arrossegaments: si arriba a 60 segons passa a 0 i suma un minut, i així amb els minuts i les hores.
+
+Crea una `Hora(23, 59, 59)`, crida `incrementarSegon()` i mostra `00:00:00`.
+
+**Pista:** la validació és un `if` gran en el constructor. L'arrossegament són tres `if` encadenats, de segon a minut a hora. Per a mostrar amb dos dígits, imprimix `"0" + valor` si és menor que 10.
+
+---
+
+## ⭐⭐ Exercici 5: Què imprimeix? — el ball de referències
 
 Sense executar, escriu l'eixida exacta:
 
 ```java
-public class Gat {
-    public static int totalGats = 0;
-    private String nom;
-    private int vides;
-
-    public Gat(String nom) {
-        this.nom = nom;
-        this.vides = 9;
-        totalGats++;
-    }
-
-    public void perdreVida() {
-        if (vides > 0) {
-            vides--;
-        }
-    }
-
-    public String toString() {
-        return nom + " (" + vides + " vides)";
-    }
-}
-```
-
-```java
-public class TrencaclosquesGats {
+public class Baile {
     public static void main(String[] args) {
-        Gat g1 = new Gat("Bigotis");
-        Gat g2 = new Gat("Garfield");
-        g1.perdreVida();
-        g1.perdreVida();
-        g2.perdreVida();
+        Punto a = new Punto(3, 4);
+        Punto b = a;
+        b.x = 10;
+        System.out.println("a.x = " + a.x);
 
-        System.out.println(g1);
-        System.out.println(g2);
-        System.out.println("Total: " + Gat.totalGats);
+        Punto c = new Punto(1, 1);
+        cambiar(c);
+        System.out.println("c.x = " + c.x);
+    }
+
+    static void cambiar(Punto p) {
+        p.x = 99;
+        p = new Punto(50, 50);
+    }
+}
+
+class Punto {
+    int x;
+    int y;
+
+    public Punto(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }
 ```
 
-**Pista:** cada gat naix amb 9 vides i les perd una a una amb `perdreVida()`. Compta quantes vegades es diu sobre cada gat, i recorda que `totalGats` és `static`.
+**Pista:** `b = a` no copia l'objecte: copia la referència. Quan `cambiar(c)` rep `c`, el paràmetre `p` és una *còpia* de la referència, així que modificar `p.x` sí que es nota, però `p = new Punto(...)` només reassigna el paràmetre local.
 
 ---
 
-## ⭐⭐ Exercici 6: Comptador d'usuaris
+## ⭐⭐ Exercici 6: El correu que s'encadena
 
-Escriu una classe `Usuari` que assigne a cada objecte un `id` **únic i automàtic**:
+Escriu una classe `Email` amb els atributs `String remitent`, `String destinatari` i `String assumpte`. Crea **tres constructors sobrecarregats**:
+- `Email(String remitent, String destinatari, String assumpte)` → el complet.
+- `Email(String remitent, String destinatari)` → assumpte per defecte `"(sense assumpte)"`.
+- `Email(String remitent)` → destinatari `"(sense destí)"` i assumpte `"(sense assumpte)"`.
 
-- Atribut `private static int comptador = 0;` i `private int id;`.
-- Constructor que incremente `comptador` i assigne `id = comptador`.
-- Mètode `public static int getTotalUsuaris()`.
-- Getter `getId()`.
+Usa `this(...)` per a encadenar i evitar repetir codi. Afegeix `void mostrar()` que imprimisca les tres dades.
 
-En un `main`, crea 5 usuaris i mostra l'id de l'últim i el total d'usuaris.
-
-**Pista:** el patró del punt 5: el `static` compta quants s'han creat, i cada objecte es "congela" el seu número en nàixer. `getTotalUsuaris` és estàtic perquè pregunta a la classe, no a un objecte.
+**Pista:** el constructor d'un paràmetre crida el de dos, i el de dos crida el de tres. Amb `this(...)` escrius l'assignació completa una sola vegada, en el constructor de tres paràmetres.
 
 ---
 
-## ⭐⭐⭐ Exercici 7: La classe utilitària OperacionsArray
+## ⭐⭐ Exercici 7: La fracció que es simplifica
 
-Escriu una classe `OperacionsArray` **utilitària** (constructor privat) amb estos mètodes `static`:
+Escriu una classe `Fraccio` amb els atributs `int numerador` i `int denominador`. Afegeix:
+- Constructor que valide: si `denominador == 0`, s'usa `1`.
+- `Fraccio sumar(Fraccio altra)` → torna una fracció nova amb `(a.num * b.den + b.num * a.den) / (a.den * b.den)`.
+- `void simplificar()` → dividix numerador i denominador pel seu màxim comú divisor (MCD).
 
-- `suma(int[] numeros)` → suma tots els elements.
-- `mitjana(double[] numeros)` → retorna el promig.
-- `maxim(int[] numeros)` → retorna el més gran.
-- `estaOrdenat(int[] numeros)` → `true` si cada element és major o igual que l'anterior.
+Crea `1/2` i `1/3`, suma-les i simplifica el resultat.
 
-En un `main`, usa la classe **sense crear cap objecte** sobre `{3, 1, 4, 1, 5}` i `{1, 2, 3}`.
-
-**Pista:** el constructor `private OperacionsArray() {}` impedix instanciar-la, com `Math`. Per a `estaOrdenat`, recorre amb un `for` i compara cada element amb l'anterior (`numeros[i] < numeros[i - 1]` → no està ordenat).
+**Pista:** per al MCD usa l'algoritme d'Euclides (restes o mòduls) o `Math.abs` amb un bucle. `simplificar()` no torna res: modifica `this`.
 
 ---
 
-## ⭐⭐⭐ Exercici 8: Validador de dades
+## ⭐⭐⭐ Exercici 8: CodeWars — Building blocks
 
-Escriu una classe `Validador` **utilitària** (constructor privat) amb estos mètodes `static`:
+Resol la kata **"Building blocks"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/55b75fcf67e558d3750000a3).
 
-- `esEmailValid(String email)` → `true` si conté exactament una `@` i almenys un `.` després de la `@`.
-- `esEdatValida(int edat)` → `true` si està entre 0 i 120.
-- `esTextNoBuit(String text)` → `true` si no és `null` i no està en blanc.
+Crea la classe `Block` amb un constructor que reba les tres dimensions (com `int[]` de 3 o com 3 enters) i els mètodes:
+- `int getWidth()`, `int getLength()`, `int getHeight()`
+- `int getVolume()` → `width * length * height`
+- `int getSurfaceArea()` → `2 * (w*l + w*h + l*h)`
 
-En un `main`, prova els tres mètodes amb casos vàlids i invàlids (per exemple `"ana@mail.com"`, `"ana@"`, `"hola"`, `-5`, `200`, `null`).
-
-**Pista:** usa `String.indexOf("@")` per a localitzar la `@`, `indexOf("@", pos + 1)` per a comprovar que no n'hi ha una segona, i `indexOf(".", pos)` per al punt després de la `@`. Un `return` primerenc en cada condició fallida simplifica molt.
+**Pista:** guarda les tres dimensions en atributs amb `this` i deixa que els getters simplement les tornen. La superfície és la suma de les cares per dos.
 
 ---
 
-## ⭐⭐⭐ Exercici 9: El gran repte — refactoritza el banc
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 100 Constante de Kaprekar
 
-Este codi funciona... però és una porta oberta. Refactoritza'l seguint els passos del punt 8 (Be the Code):
+Resol el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
 
-```java
-public class CompteBancari {
-    public String titular;
-    public double saldo;
+L'entrada comença amb un nombre de casos. Per a cada cas de prova (un nombre de 4 xifres), aplica la rutina de Kaprekar: ordena les seues xifres de major a menor i de menor a major, resta, i repetix fins a arribar a 6174. Imprimix el nombre d'iteracions necessàries. Per als repdigits (1111, 2222...) imprimix `8`. Per a 6174 imprimix `0`.
 
-    public CompteBancari(String titular, double saldo) {
-        titular = titular;
-        saldo = saldo;
-    }
+**Exemple:**
 
-    public void retirar(double quantitat) {
-        saldo = saldo - quantitat;
-    }
-
-    public void ingressar(double quantitat) {
-        saldo = saldo + quantitat;
-    }
-}
+```
+3524 → 5432 - 2345 = 3087 → 8730 - 0378 = 8352 → 8532 - 2358 = 6174
 ```
 
-Ha de quedar així:
+Resultat: **3** iteracions.
 
-1. Atributs `private`.
-2. Constructor amb `this` i que valide que el saldo inicial no siga negatiu.
-3. Getters per als dos; **sense setters** per al saldo.
-4. `retirar(double)` que rebutge quantitats negatives i que **no permeta** deixar el saldo en negatiu (si `quantitat > saldo`, avisa i no retira).
-5. `ingressar(double)` que rebutge quantitats negatives.
-6. Una constant `public static final String NOM_BANC = "Banc DAM";`.
+**Pista:** passa el nombre a `String`, usa `Arrays.sort` sobre l'array de caràcters per a ordenar-los, i construïx el major i el menor. Un `while (n != 6174)` compta les voltes. Esta és l'oportunitat perfecta per a practicar una classe `Numero` amb mètodes com `ordenarDigits()`.
 
-Escriu també un `main` de prova que cree un compte, ingresse, intente retirar més del que té i mostre el saldo.
+---
 
-**Pista:** sense setter per al saldo, només les operacions `retirar` i `ingressar` poden tocar-lo: és la frontera del negoci. Recorda el bug del constructor (`titular = titular` s'assigna a si mateix) i valida tot abans d'assignar.
+## 📚 Referències
+
+| Plataforma | Problema | Dificultat |
+|---|---|---|
+| AceptaElReto | 100 — Constante de Kaprekar | Mitjana |
+| AceptaElReto | 148 — Nochevieja | Fàcil |
+| CodeWars | Object Oriented Piracy (8 kyu) | Principiant |
+| CodeWars | Building blocks (7 kyu) | Aficionat |
+| CodeWars | FIXME: Get Full Name (7 kyu) | Aficionat |

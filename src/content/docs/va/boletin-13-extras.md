@@ -1,5 +1,5 @@
 ---
-title: "Butlletí 13 — Extres: Servir i Consumir APIs amb Web"
+title: "Butlletí 13 — Extres: Connexió a Bases de Dades amb JDBC"
 description: Exercicis extra de la unitat 13 (CodeWars i AceptaElReto)
 ---
 > ⭐ **Extres — Converteix-te en un programador de molt alt nivell**  
@@ -7,16 +7,16 @@ description: Exercicis extra de la unitat 13 (CodeWars i AceptaElReto)
 
 **CodeWars:**
 
-- [IP Validation](https://www.codewars.com/kata/515decfd9dcfc23bb6000006) (6 kyu)
-> **Pista:** Dividix per '.'; han de ser exactament 4 parts, cada una entre 0 i 255, sense zeros a l'esquerra.
-- [Decode the Morse code](https://www.codewars.com/kata/54b724efac3d5402db00065e) (6 kyu)
-> **Pista:** Crea un `Map` amb cada símbol Morse → lletra; separa paraules per tres espais i lletres per un.
-- [Simple URL parser](https://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7) (6 kyu)
-> **Pista:** Extrau primer el protocol (abans de `://`), després el domini (següent segment) i la resta com a ruta.
+- [SQL with Street Fighter](https://www.codewars.com/kata/5ab7a736edbcfc8e62000007) (6 kyu)
+> **Pista:** Usa `INNER JOIN` amb `LIKE '%K%'` per a filtrar per nom i `ORDER BY` per a ordenar.
+- [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu)
+> **Pista:** `INNER JOIN` sobre la clau forana; selecciona les columnes que et demane el problema.
+- [SQL Basics: Simple HAVING](https://www.codewars.com/kata/58164ddf890632fa0f00011a) (6 kyu)
+> **Pista:** `GROUP BY` la columna indicada i filtra amb `HAVING COUNT(*) > algun valor`.
 
 **AceptaElReto:**
 
-- [396 - Quants dies falten?](https://www.aceptaelreto.com/problem/statement.php?id=396) (⭐⭐)
-> **Pista:** Converteix cada data a dia de l'any (nombre de dies des de l'1 de gener) i resta.
-- [462 - Dia de la setmana](https://www.aceptaelreto.com/problem/statement.php?id=462) (⭐⭐)
-> **Pista:** Usa la congruència de Zeller o pren un dia de referència conegut per a calcular el residu.
+- [245 - Qui guanya la partida?](https://www.aceptaelreto.com/problem/statement.php?id=245) (⭐⭐⭐)
+> **Pista:** Simula els torns amb una `Queue<Integer>`; cada ronda mou el primer al final si no encerta.
+- [424 - Bitllets d'autobús](https://www.aceptaelreto.com/problem/statement.php?id=424) (⭐⭐)
+> **Pista:** Algorisme voraç: ordena per hora d'eixida, tria sempre la següent ruta que acabe abans.

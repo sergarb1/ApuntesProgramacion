@@ -1,189 +1,177 @@
 ---
-title: "Boletín 10 - Inicial Resuelto: Consola y Ficheros"
-nav_order: 10
+title: "Boletín 11 - Inicial Resuelto: Genéricos y Mapas"
+nav_order: 11
 ---
 *Con soluciones. A aprender.*
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — printf()
+## Ejercicio 1: Completa el código — clase genérica
 
 ```java
-String nombre = "Ana";
-int edad = 20;
-double nota = 9.5;
+public class Caja<T> {
+    private T contenido;
 
-System.out.printf("Nombre: %s, Edad: %d, Nota: %.2f%n", nombre, edad, nota);
-```
+    public void guardar(T contenido) {
+        this.contenido = contenido;
+    }
 
-**Solución:** Imprime `Nombre: Ana, Edad: 20, Nota: 9.50` y un salto de línea.
-
-> **💡 Explicación:** `printf()` no es `println()`: no añade salto de línea automático. Por eso se usa `%n` al final, que es el salto de línea independiente de plataforma. `%s` para String, `%d` para entero, `%.2f` para decimal con 2 dígitos. El `%n` es como un `\n` pero más educado: sabe si estás en Windows (salto con \r\n) o Linux (solo \n).
-
----
-
-## Ejercicio 2: Encuentra el error — nextInt() + nextLine()
-
-```java
-Scanner sc = new Scanner(System.in);
-System.out.print("Edad: ");
-int edad = sc.nextInt();           // lee "25" y deja el "\n" sin consumir
-System.out.print("Nombre: ");
-String nombre = sc.nextLine();     // se traga el "\n" que quedó
-System.out.println(nombre + " tiene " + edad + " años.");
-sc.close();
-```
-
-**Solución:** `nextInt()` NO consume el salto de línea. Cuando el usuario escribe `25` y pulsa Enter, en el buffer queda `25\n`. `nextInt()` consume `25` y deja `\n`. Luego `nextLine()` consume ese `\n` y devuelve una cadena vacía. El programa imprime ` tiene 25 años.` (nombre vacío).
-
-Para arreglarlo: añade un `sc.nextLine()` extra después del `nextInt()` para consumir el salto de línea.
-
-```java
-int edad = sc.nextInt();
-sc.nextLine();  // consume el \n pendiente
-String nombre = sc.nextLine();
-```
-
-> **💡 Explicación:** Es el error más famoso de Java con Scanner. Siempre que uses `nextInt()`, `nextDouble()` o `next()` y luego `nextLine()`, necesitas un `nextLine()` extra para limpiar el buffer. O mejor: usa siempre `nextLine()` y convierte con `Integer.parseInt()`, que es más seguro.
-
----
-
-## Ejercicio 3: Completa el código — leer archivo
-
-```java
-import java.io.*;
-import java.nio.file.*;
-import java.util.List;  // ¡este import falta!
-
-public class Test {
-    public static void main(String[] args) throws IOException {
-        Path ruta = Paths.get("datos.txt");
-        List<String> lineas = Files.readAllLines(ruta);
-        for (String linea : lineas) {
-            System.out.println(linea);
-        }
+    public T sacar() {
+        return contenido;
     }
 }
 ```
 
-Falta `linea` en el `println` y también el `import java.util.List;`.
+La declaración correcta es `public class Caja<T>`.
 
-> **💡 Explicación:** `Files.readAllLines()` devuelve un `List<String>`, que necesita import. El for-each recorre cada línea y `linea` es la variable que contiene cada línea. Sin `import java.util.List;`, el compilador no sabe qué es `List` y se queja.
+> **💡 Explicación:** `<T>` declara un parámetro de tipo. `T` es una convención (de "Type"), pero podrías usar cualquier letra. A partir de ahí, puedes usar `T` como un tipo cualquiera dentro de la clase. Cuando alguien haga `Caja<String>`, todas las `T` se convierten en `String`. Es como una plantilla: dejas huecos (`T`) que se rellenan cuando alguien usa la clase.
 
 ---
 
-## Ejercicio 4: Escribe este programa — Hola mundo archivo
+## Ejercicio 2: ¿Qué imprime? — HashMap básico
 
 ```java
-import java.io.*;
+import java.util.HashMap;
 
-public class HolaArchivo {
+public class Test {
     public static void main(String[] args) {
-        // Escribir
-        try {
-            FileWriter writer = new FileWriter("saludo.txt");
-            writer.write("¡Hola, archivo!\n");
-            writer.write("Esto es una segunda línea.\n");
-            writer.close();
-            System.out.println("Archivo escrito.");
-        } catch (IOException e) {
-            System.out.println("Error al escribir: " + e.getMessage());
-        }
+        HashMap<String, String> capitales = new HashMap<>();
+        capitales.put("España", "Madrid");
+        capitales.put("Francia", "París");
+        capitales.put("Italia", "Roma");
+        capitales.put("España", "Barcelona");
 
-        // Leer
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("saludo.txt"));
-            String linea = reader.readLine();
-            while (linea != null) {
-                System.out.println(linea);
-                linea = reader.readLine();
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Error al leer: " + e.getMessage());
-        }
+        System.out.println(capitales.get("España"));
     }
 }
 ```
 
-> **💡 Explicación:** `FileWriter` escribe caracteres en un archivo. Si el archivo no existe, lo crea. Si existe, lo sobrescribe. `BufferedReader` envuelve a `FileReader` para leer por líneas (más rápido). El bucle `while (linea != null)` es el estándar para leer archivos línea por línea. Siempre cierra los recursos con `close()` para evitar pérdidas de datos.
+**Solución:** Imprime `Barcelona`.
+
+> **💡 Explicación:** En un `HashMap`, las claves son únicas. Cuando haces `put("España", "Madrid")` y luego `put("España", "Barcelona")`, la segunda llamada SOBRESCRIBE el valor anterior. "Madrid" se pierde para siempre. Es como apuntar un número en tu agenda y luego tacharlo para poner otro: solo queda el último. Si quisieras mantener ambos, tendrías que usar una estructura diferente (como `HashMap<String, List<String>>`).
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — el contador de líneas
+## Ejercicio 3: Encuentra el error — tipo primitivo en genérico
 
 ```java
-import java.io.*;
-
-public class Test {
-    public static void main(String[] args) throws IOException {
-        File f = new File("datos.txt");
-        FileWriter w = new FileWriter(f);
-        w.write("linea1\nlinea2\nlinea3\n");
-        w.close();
-
-        BufferedReader r = new BufferedReader(new FileReader(f));
-        int contador = 0;
-        while (r.readLine() != null) {
-            contador++;
-        }
-        r.close();
-        System.out.println(contador);
-    }
-}
+ArrayList<int> numeros = new ArrayList<>();  // ERROR
+numeros.add(1);
+numeros.add(2);
+numeros.add(3);
 ```
 
-**Solución:** Imprime `3`.
-
-> **💡 Explicación:** El archivo tiene tres líneas: "linea1", "linea2", "linea3" (el último `\n` crea una línea adicional vacía, pero `readLine()` no la cuenta como línea porque devuelve `null` cuando no hay más). `readLine()` devuelve cada línea hasta que no quedan más, momento en que devuelve `null`. El contador se incrementa 3 veces. Nota: en realidad, si el archivo termina con `\n`, `readLine()` leería "linea3" y luego devolvería `null`, por lo que contaríamos 3 líneas. Si no hubiera `\n` al final, también serían 3.
-
----
-
-## Ejercicio 6: Encuentra el error — archivo no cerrado
+**Solución:** No puedes usar tipos primitivos como parámetros de tipo en genéricos. `int` debe ser `Integer`.
 
 ```java
-FileWriter writer = new FileWriter("notas.txt");
-writer.write("Esto es una nota importante.");
-// falta: writer.close();
+ArrayList<Integer> numeros = new ArrayList<>();
+numeros.add(1);  // autoboxing: int → Integer
+numeros.add(2);
+numeros.add(3);
 ```
 
-**Solución:** Falta `writer.close()`. Sin cerrar el archivo, los datos pueden no escribirse físicamente en el disco porque `FileWriter` usa un buffer interno.
-
-> **💡 Explicación:** `FileWriter` no escribe directamente en el disco. Usa un buffer. Cuando haces `write()`, los datos se almacenan en el buffer. Si no llamas a `close()` o `flush()`, parte de los datos pueden perderse cuando el programa termina. Es como echar una carta al buzón pero no cerrar la puerta: el cartero puede no recogerla. Además, el sistema operativo mantiene el archivo bloqueado hasta que se cierre. **Siempre cierra los archivos** o usa try-with-resources (Java 7+).
+> **💡 Explicación:** Los genéricos solo funcionan con tipos referencia (objetos). `int`, `double`, `boolean` son tipos primitivos y no pueden ser parámetros de tipo. Por eso existen las clases wrapper: `Integer`, `Double`, `Boolean`. El autoboxing de Java convierte automáticamente `int` a `Integer` al añadir y `Integer` a `int` al obtener, por lo que apenas notas la diferencia en el código.
 
 ---
 
-## Ejercicio 7: Escribe este programa — Scanner que suma números
+## Ejercicio 4: Escribe este programa — mini agenda HashMap
 
 ```java
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class SumaNumeros {
+public class MiniAgenda {
     public static void main(String[] args) {
+        HashMap<String, String> agenda = new HashMap<>();
+        agenda.put("Ana", "612345678");
+        agenda.put("Bob", "698765432");
+        agenda.put("Carlos", "655111222");
+
         Scanner sc = new Scanner(System.in);
-        int suma = 0;
-        int num;
+        System.out.print("Buscar teléfono de: ");
+        String nombre = sc.nextLine();
 
-        System.out.println("Introduce números enteros (0 para terminar):");
-        do {
-            System.out.print("Número: ");
-            num = sc.nextInt();
-            suma += num;
-        } while (num != 0);
-
-        System.out.printf("La suma total es: %d%n", suma);
+        String telefono = agenda.get(nombre);
+        if (telefono != null) {
+            System.out.println(nombre + " → " + telefono);
+        } else {
+            System.out.println(nombre + " no está en la agenda.");
+        }
         sc.close();
     }
 }
 ```
 
-> **💡 Explicación:** El bucle `do-while` asegura que se pida al menos un número. Cuando el usuario introduce 0, el bucle termina. `suma += num` acumula todos los números, incluido el 0 final (que no afecta a la suma). `printf()` con `%d` formatea el entero. Es un programa simple pero que combina todas las piezas: Scanner, bucle, acumulación y salida formateada.
+> **💡 Explicación:** `HashMap` es perfecto para asociar nombres con teléfonos. La clave es el nombre (único) y el valor es el teléfono. `get(nombre)` devuelve `null` si la clave no existe, así que comprobamos antes de usarlo. Es la estructura de datos perfecta para una agenda: búsqueda rápida por clave (O(1)).
+
+---
+
+## Ejercicio 5: Completa el código — getOrDefault
+
+```java
+HashMap<String, Integer> edades = new HashMap<>();
+edades.put("Ana", 25);
+edades.put("Bob", 30);
+
+int edadAna = edades.get("Ana");             // 25
+int edadCarlos = edades.get("Carlos");       // null → NullPointerException (en realidad: error de compilación si es int, NPE si Integer)
+int edadCarlosSeguro = edades.getOrDefault("Carlos", 0);  // 0
+```
+
+**Solución:** `edadAna = 25`. `edad.get("Carlos")` devuelve `null` (la clave no existe). Si la variable es `int`, no compila o da error porque no puedes asignar `null` a un primitivo. `getOrDefault("Carlos", 0)` devuelve `0` (el valor por defecto).
+
+> **💡 Explicación:** `getOrDefault()` es el salvavidas de los HashMap. En lugar de hacer `if (map.get(clave) != null)`, haces `map.getOrDefault(clave, valorDefecto)` y te ahorras líneas y posibles `NullPointerException`. Es como tener un plan B: "si no encuentras a Carlos, devuelve 0". Siempre que trabajes con mapas, úsalo.
+
+---
+
+## Ejercicio 6: ¿Qué imprime? — método genérico
+
+```java
+public class Util {
+    public static <T> void imprimir(T elemento) {
+        System.out.println("Valor: " + elemento);
+    }
+
+    public static void main(String[] args) {
+        Util.imprimir(42);
+        Util.imprimir("Hola");
+        Util.imprimir(3.14);
+    }
+}
+```
+
+**Solución:**
+```
+Valor: 42
+Valor: Hola
+Valor: 3.14
+```
+
+> **💡 Explicación:** El método `imprimir` es genérico: ` <T>` antes del tipo de retorno. El compilador INFIERE el tipo `T` a partir del argumento. En la primera llamada, `T` es `Integer`. En la segunda, `T` es `String`. En la tercera, `T` es `Double`. No necesitas especificarlo: Java lo deduce solo. Es como un profesor que se adapta al alumno: da la misma clase pero adaptada a cada uno.
+
+---
+
+## Ejercicio 7: Encuentra el error — la clave mutable
+
+```java
+HashMap<ArrayList<Integer>, String> mapa = new HashMap<>();
+ArrayList<Integer> lista = new ArrayList<>();
+lista.add(1);
+lista.add(2);
+mapa.put(lista, "valor");
+lista.add(3);  // modificamos la clave después de usarla
+System.out.println(mapa.get(lista));  // posiblemente null
+```
+
+**Solución:** El problema es que las claves de un HashMap deben ser INMUTABLES. Al modificar `lista` después de usarla como clave, su `hashCode()` cambia. El HashMap busca en el bucket antiguo, pero la clave tiene un hash diferente ahora, así que `get()` puede devolver `null` aunque la clave esté en el mapa.
+
+> **💡 Explicación:** Las claves de un HashMap deben ser inmutables (como `String` o `Integer`). Si usas un objeto mutable y lo modificas, el HashMap se vuelve impredecible. Es como cambiar la cerradura de tu casa y esperar que tu llave vieja siga funcionando. Por eso `String` es la clave perfecta: es inmutable. Nunca uses `ArrayList`, arrays, o tus propias clases mutables como claves de un HashMap a menos que sepas muy bien lo que haces (spoiler: no lo sabes).
 
 ---
 
 ## 🔗 Referencias para seguir practicando
 
-- **CodeWars:** [Get the Middle Character](https://www.codewars.com/kata/56747fd5cb988479af000028) (7 kyu)
-- **CodeWars:** [String repeat](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e) (8 kyu)
-- **AceptaElReto.com:** [140 - Suma de dígitos](https://www.aceptaelreto.com/problem/statement.php?id=140)
-- **AceptaElReto.com:** [149 - San Fermines](https://www.aceptaelreto.com/problem/statement.php?id=149)
+- **CodeWars:** [Grasshopper - Grade book](https://www.codewars.com/kata/55cbd4ba903825f7970000f5) (7 kyu)
+- **CodeWars:** [Word Count](https://www.codewars.com/kata/570cc83d616be859a5000c9b) (7 kyu)
+- **AceptaElReto.com:** [416 - Casillas](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- **AceptaElReto.com:** [462 - Tres dedos](https://www.aceptaelreto.com/problem/statement.php?id=462)

@@ -1,130 +1,227 @@
 ---
-title: "Butlletí U09 — Avançat"
-description: "Exercicis de dificultat progressiva per a exprimir la unitat"
+title: Butlletí U09 — Avançat
+description: Exercicis de dificultat progressiva per a exprimir la unitat
 ---
 
 # 📝 Butlletí U09 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. L'herència és com la família: de vegades heretes coses bones, de vegades et toca la col·lecció de segells del teu tio avi. Però amb interfícies, almenys tries què implementar.
 
 ---
 
-## ⭐ Exercici 1: La fusió d'arrays ordenats
+## ⭐ Exercici 1: Interfície FiguraGeometrica
 
-Escriu un mètode `fusionarArrays(int[] a, int[] b)` que reba dos arrays ordenats de menor a major i torne un **nou array** també ordenat amb tots els elements d'ambdós. No uses `Arrays.sort()` ni col·leccions. Fes-ho amb l'algoritme de fusió (merge) tipus «dos punters».
+Crea una interfície `FiguraGeometrica` amb dos mètodes:
 
-**Pista:** avança amb dos índexs, un per array, comparant en cada pas quin element és menor. Quan un array s'acabe, copia la resta de l'altre.
+- `double calcularArea()`
+- `double calcularPerimetre()`
 
----
+Implementa la interfície en:
 
-## ⭐ Exercici 2: Rotació circular a la dreta
+- `Cercle` (constructor amb radi)
+- `Rectangle` (constructor amb ample i alt)
+- `TriangleRectangle` (constructor amb base i altura)
 
-Implementa un mètode `rotarDerecha(int[] arr, int k)` que desplace cada element de l'array `k` posicions cap a la dreta. Els elements que «ixen» pel final tornen a entrar pel principi.
-
-Exemple: `{1, 2, 3, 4, 5}` amb `k = 2` → `{4, 5, 1, 2, 3}`.
-
-**Pista:** usa un array temporal de la grandària de `k` amb els últims `k` elements, desplaça la resta cap a la dreta i després col·loca els guardats al principi. (O dividix els índexs amb `(i + k) % arr.length`.)
-
----
-
-## ⭐ Exercici 3: Suma de diagonals (matriu quadrada)
-
-Crea un programa que genere una matriu quadrada `int[N][N]` amb valors aleatoris entre 1 i 100, i calcule:
-
-1. Suma de la **diagonal principal** (de dalt-esquerra a baix-dreta).
-2. Suma de la **diagonal secundària** (de dalt-dreta a baix-esquerra).
-3. Diferència absoluta entre totes dues sumes.
-
-Usa `N = 5` per a les proves i `Math.random()` per a omplir-la.
-
-**Pista:** a la diagonal principal, `fila == columna`, així que un sol bucle amb `matriz[i][i]` basta. A la secundària, `columna = N - 1 - i`.
-
----
-
-## ⭐⭐ Exercici 4: La cua del supermercat amb LinkedList
-
-Simula una cua de supermercat usant `LinkedList<String>`. El programa ha de mostrar un menú:
-
-1. **Arriba client** → Afig un nom al final de la cua.
-2. **Atendre client** → Elimina i mostra el primer de la cua.
-3. **Qui seguix?** → Mostra el primer sense eliminar-lo.
-4. **Estat de la cua** → Mostra tots els clients en ordre.
-0. **Eixir**
-
-Usa els mètodes `addLast()`, `removeFirst()` i `getFirst()` de `LinkedList`, amb un `switch` i un `Scanner`.
-
-**Pista:** el menú es repetix amb un `while` fins que l'usuari trie `0`. Cuida els casos en què la cua està buida abans de cridar `removeFirst()` o `getFirst()`.
-
----
-
-## ⭐⭐ Exercici 5: Intersecció i unió de conjunts
-
-Crea dos `HashSet<Integer>` amb números aleatoris (entre 1 i 20, 8 elements cada un). Calcula i mostra:
-
-- **Intersecció:** elements que estan a tots dos conjunts.
-- **Unió:** tots els elements sense repetir.
-- **Diferència simètrica:** elements que estan en un o l'altre, però no en tots dos.
-
-**Pista:** usa `retainAll()`, `addAll()` i `removeAll()` de la interfície `Set`. Per a la diferència simètrica: `union.removeAll(interseccion)`.
-
----
-
-## ⭐⭐ Exercici 6: Eliminar duplicats mantenint l'ordre
-
-Crea un `ArrayList<Integer>` amb elements repetits (`[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]`). Escriu un mètode que torne un nou `ArrayList<Integer>` **sense duplicats però mantenint l'ordre de primera aparició**.
-
-**Pista:** un `HashSet` no val directament perquè perd l'ordre. Usa un `LinkedHashSet` (conserva l'ordre d'inserció) o recorre manualment comprovant amb `contains` abans d'afegir.
-
----
-
-## ⭐⭐⭐ Exercici 7: Què imprimeix? — el remove que trenca el ball
-
-Sense executar, respon què ocorre amb este programa:
+En el `main`, crea un `ArrayList<FiguraGeometrica>`, afig un cercle de radi 5, un rectangle 4x3 i un triangle rectangle 3x4. Recorre'ls imprimint àrea i perímetre de cadascun.
 
 ```java
-import java.util.ArrayList;
+public interface FiguraGeometrica {
+    double calcularArea();
+    double calcularPerimetre();
+}
+```
 
-public class Puzle {
-    public static void main(String[] args) {
-        ArrayList<String> palabras = new ArrayList<>();
-        palabras.add("hola");
-        palabras.add("mundo");
-        palabras.add("adiós");
+**Pista:** per al triangle rectangle, `area = base * altura / 2` i el perímetre és `base + altura + hipotenusa`, amb `hipotenusa = Math.sqrt(base*base + altura*altura)`.
 
-        for (String p : palabras) {
-            if (p.equals("mundo")) {
-                palabras.remove(p);
-            }
-        }
-        System.out.println(palabras);
+---
+
+## ⭐ Exercici 2: Jerarquia d'Empleats
+
+Crea una classe base `Empleat` amb:
+
+- `String nom`
+- `double salariBase`
+- Constructor, getters
+- Mètode `double calcularSalari()` que torne el `salariBase`
+
+Crea dos subclasses:
+
+- `Gerent`: té un `double bo` extra. `calcularSalari()` torna `salariBase + bo`.
+- `Venedor`: té un `double comissio` per venda i un `int vendesRealitzades`. `calcularSalari()` torna `salariBase + comissio * vendesRealitzades`.
+
+En el `main`, crea un array d'`Empleat` amb un gerent i un venedor, recorre'l polimòrficament i mostra el salari de cadascun.
+
+```java
+public class Empleat {
+    protected String nom;
+    protected double salariBase;
+
+    public Empleat(String nom, double salariBase) {
+        this.nom = nom;
+        this.salariBase = salariBase;
+    }
+
+    public double calcularSalari() {
+        return salariBase;
     }
 }
 ```
 
-Imprimeix alguna cosa? O llança una excepció? Quina i per què?
-
-**Pista:** pensa en el que fa el `for-each` per darrere (usa un `Iterator`) i en el que passa si la col·lecció canvia mentre es recorre.
+**Pista:** declara `nom` i `salariBase` com a `protected` perquè les subclasses els usen sense getters. L'`@Override` de `calcularSalari()` en cada subclasse és el cor del polimorfisme.
 
 ---
 
-## ⭐⭐⭐ Exercici 8: Estadístiques de classe
+## ⭐⭐ Exercici 3: Sistema de pagaments amb interfície
 
-Demana a l'usuari les notes de 20 alumnes amb `Scanner`, guarda-les en un `double[]` i calcula:
+Crea una interfície `Pagable` amb el mètode:
 
-- La nota mitjana.
-- La nota més alta i la més baixa.
-- Quants alumnes van aprovar (nota >= 5).
+- `boolean procesarPagament(double quantitat)`
 
-Usa un bucle per a omplir, un altre per a sumar i el patró del màxim/mínim acumulat.
+Implementa la interfície en:
 
-**Pista:** per al mínim comença amb `Double.MAX_VALUE` (o amb la primera nota); per al màxim, amb `Double.MIN_VALUE` (o la primera nota). Guarda les notes en un array i recórre'l diverses voltes: cada càlcul és un bucle.
+- `TarjetaCredito`: té `double limit` i `double saldoUsat`. Pot pagar si `quantitat + saldoUsat <= limit`.
+- `PayPal`: té `double saldo`. Pot pagar si `quantitat <= saldo`.
+- `TransferenciaBancaria`: té `double saldo`. Pot pagar sempre que `quantitat <= saldo`, però té un cost fix de 1 € per transferència.
+
+```java
+public interface Pagable {
+    boolean procesarPagament(double quantitat);
+}
+```
+
+Exemple:
+
+```java
+Pagable tarjeta = new TarjetaCredito(1000, 0);
+tarjeta.procesarPagament(500);   // true
+tarjeta.procesarPagament(600);   // false (supera el límit)
+```
+
+**Pista:** cada classe decidix la seua pròpia lògica d'aprovació; només el contracte `procesarPagament` és comú. Per a la transferència, comprova que `quantitat + 1 <= saldo`.
 
 ---
 
-## ⭐⭐⭐ Exercici 9: El gran repte — busca-mines simplificat
+## ⭐⭐ Exercici 4: Interfícies múltiples: Volador i Nedador
 
-Crea un array bidimensional `boolean[5][5]` que represente un camp de mines. Col·loca 5 mines en posicions **aleatòries** (amb `Math.random()`). L'usuari introduïx coordenades `(fila, columna)` i el programa diu si hi ha mina o no. Si encerta una mina, el joc acaba mostrant «¡BOOM!».
+Crea dos interfícies:
 
-Extres opcionals: digues quantes mines hi ha al voltant de la casella (mira les 8 veïnes) i acaba quan hagis comprovat totes les caselles sense mines.
+- `Volador`: mètode `void volar()`
+- `Nedador`: mètode `void nadar()`
 
-**Pista:** comprova abans de mirar una veïna que la seua fila i la seua columna estiguen entre 0 i 4, o eixiràs de l'array amb `ArrayIndexOutOfBoundsException`. El joc usa un `while` que acaba en trepitjar una mina o en esgotar les caselles.
+Crea una classe `Ànec` que implemente les dos interfícies, una classe `Avió` que només implemente `Volador` i una classe `Peix` que només implemente `Nedador`.
+
+En el `main`, crea un `ArrayList<Volador>` amb un `Ànec` i un `Avió`, i recorre'l cridant a `volar()`. Després fes el mateix amb un `ArrayList<Nedador>`.
+
+```java
+public interface Volador { void volar(); }
+public interface Nedador { void nadar(); }
+```
+
+**Pista:** l'`Ànec` és l'estrella: una sola classe que firma dos contractes. Els `ArrayList` de tipus interfície accepten qualsevol classe que implemente eixe contracte.
+
+---
+
+## ⭐⭐ Exercici 5: Downcasting segur
+
+Crea una jerarquia `Empleat` → `Programador`, `Dissenyador`:
+
+- `Programador` té `void escriureCodi()`.
+- `Dissenyador` té `void dissenyar()`.
+- `Empleat` té `String nom` i `void mostrarInfo()`.
+
+En el `main`, crea un `ArrayList<Empleat>` amb diversos empleats de tots dos tipus i recorre'l usant `instanceof` per a cridar els mètodes específics.
+
+**Pista:** dins del bucle, `if (e instanceof Programador)` → `((Programador) e).escriureCodi();`. Sempre amb `instanceof` abans del cast: mai no baixes sense preguntar.
+
+---
+
+## ⭐⭐ Exercici 6: Calculadora de figures amb classe abstracta
+
+Crea una classe abstracta `Figura` amb:
+
+- Atribut `protected String color`.
+- Constructor que reba el color.
+- Mètodes abstractes `double calcularArea()` i `double calcularPerimetre()`.
+- Mètode concret `void mostrarColor()` que imprimisca el color.
+
+Implementa `Cercle` (radi) i `Rectangle` (ample, alt). En el `main`, crea un `ArrayList<Figura>` amb un cercle roig de radi 3 i un rectangle blau de 4x2, i mostra l'àrea de cadascun i el seu color.
+
+**Pista:** l'àrea total de la llista es calcula recorrent-la amb `for (Figura f : figures)`. `mostrarColor()` ja està fet: les subclasses només implementen els dos mètodes abstractes.
+
+---
+
+## ⭐⭐⭐ Exercici 7: Sistema de notificacions polimòrfic
+
+Crea una interfície `Notificable` amb:
+
+- `void enviar(String missatge)`
+- `String getEstat()`
+
+Implementa:
+
+- `EmailNotificacio`: atributs `String direccio`, `boolean enviat`. En enviar, imprimeix "Enviant email a [direcció]: [missatge]". Estat: "Enviat" o "Pendent".
+- `SMSNotificacio`: atributs `String telefon`, `boolean enviat`. En enviar, imprimeix "Enviant SMS a [telèfon]: [missatge]". Estat similar.
+- `PushNotificacio`: atributs `String dispositiuId`, `boolean enviat`. En enviar, imprimeix "Enviant push a [dispositiuId]: [missatge]".
+
+```java
+public interface Notificable {
+    void enviar(String missatge);
+    String getEstat();
+}
+```
+
+En el `main`, crea un `ArrayList<Notificable>` amb els tres tipus. Afig un mètode estàtic que recorre la llista i envie totes les notificacions:
+
+```java
+public static void enviarTotes(List<Notificable> notificacions, String missatge) {
+    for (Notificable n : notificacions) {
+        n.enviar(missatge);
+    }
+}
+```
+
+**Pista:** els tres tipus compartixen el patró: en enviar, posen `enviat = true` i tornen "Enviat"; si no, "Pendent". El polimorfisme fa que `enviarTotes` no sàpiga amb quin tipus tracta.
+
+---
+
+## ⭐⭐⭐ Exercici 8: Template method — les begudes
+
+Crea una classe abstracta `Beguda` amb el patró template method:
+
+```java
+public abstract class Beguda {
+    public final void preparar() {
+        bullirAigua();
+        prepararIngredient();
+        servirEnTassa();
+        afegirExtres();
+    }
+
+    private void bullirAigua() { System.out.println("Bullint aigua..."); }
+    private void servirEnTassa() { System.out.println("Servint en tassa..."); }
+
+    protected abstract void prepararIngredient();
+    protected abstract void afegirExtres();
+}
+```
+
+Implementa `Te` (bosseta de te + llima) i `Cafe` (cafè mòlt + sucre). En el `main`, prepara un `Te` i un `Cafe` amb una variable de tipus `Beguda`.
+
+**Pista:** les subclasses només omplen els dos mètodes `protected abstract`. El `final` en `preparar()` garantix que ningú no reordene els passos. Per a provar ambdues, usa una referència polimòrfica: `Beguda b = new Te(); b.preparar();`.
+
+---
+
+## ⭐⭐⭐ Exercici 9: El gran repte — vehicles amb combustible
+
+Crea una jerarquia de vehicles:
+
+- `Vehicle` (abstracta): `String matricula`, `int combustible`, `abstract boolean moure()`
+- `Cotxe`: gasta 5 de combustible per moviment
+- `Moto`: gasta 3 de combustible per moviment
+- `Camio`: gasta 10 de combustible per moviment, però pot portar `int càrrega`
+
+Cada vehicle té un `moure()` que reduïx el combustible i torna `true` si va poder moure's. Si no n'hi ha prou, imprimeix "Sense combustible" i torna `false`.
+
+En `main()`, crea un `ArrayList<Vehicle>` amb diversos vehicles. Cada vehicle es mou repetidament mentre puga i compta quants moviments va fer.
+
+**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ...; return true; } else { System.out.println("Sense combustible"); return false; }`. El bucle del `main` usa el valor de retorn: `while (v.moure()) { moviments++; }`. Així no es queda mai en un bucle infinit quan el combustible no arriba per a moure's.

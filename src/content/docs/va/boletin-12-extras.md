@@ -1,5 +1,5 @@
 ---
-title: "Butlletí 12 — Extres: Connexió a Bases de Dades amb JDBC"
+title: "Butlletí 12 — Extres: Fitxers i Expressions Regulars"
 description: Exercicis extra de la unitat 12 (CodeWars i AceptaElReto)
 ---
 > ⭐ **Extres — Converteix-te en un programador de molt alt nivell**  
@@ -7,16 +7,16 @@ description: Exercicis extra de la unitat 12 (CodeWars i AceptaElReto)
 
 **CodeWars:**
 
-- [SQL with Street Fighter](https://www.codewars.com/kata/5ab7a736edbcfc8e62000007) (6 kyu)
-> **Pista:** Usa `INNER JOIN` amb `LIKE '%K%'` per a filtrar per nom i `ORDER BY` per a ordenar.
-- [SQL Basics: Simple JOIN](https://www.codewars.com/kata/5802e32dd8c944e562000020) (6 kyu)
-> **Pista:** `INNER JOIN` sobre la clau forana; selecciona les columnes que et demane el problema.
-- [SQL Basics: Simple HAVING](https://www.codewars.com/kata/58164ddf890632fa0f00011a) (6 kyu)
-> **Pista:** `GROUP BY` la columna indicada i filtra amb `HAVING COUNT(*) > algun valor`.
+- [Categorize New Member](https://www.codewars.com/kata/5502c9e7b3216ec63c000020) (7 kyu)
+> **Pista:** Edat >= 55 i hándicap > 7 → "Senior", si no → "Open". Simple lògica booleana.
+- [Two to One](https://www.codewars.com/kata/5656b6906de340bd1b0000ac) (7 kyu)
+> **Pista:** Concatena els dos strings, converteix-los a `char[]`, ordena'ls, i usa un `StringBuilder` per eliminar duplicats.
+- [Primes in numbers](https://www.codewars.com/kata/54d512e62a5e54c96200002e) (5 kyu)
+> **Pista:** Dividix per 2, després per imparells fins a √n; compta les repeticions de cada divisor.
 
 **AceptaElReto:**
 
-- [245 - Qui guanya la partida?](https://www.aceptaelreto.com/problem/statement.php?id=245) (⭐⭐⭐)
-> **Pista:** Simula els torns amb una `Queue<Integer>`; cada ronda mou el primer al final si no encerta.
-- [424 - Bitllets d'autobús](https://www.aceptaelreto.com/problem/statement.php?id=424) (⭐⭐)
-> **Pista:** Algorisme voraç: ordena per hora d'eixida, tria sempre la següent ruta que acabe abans.
+- [108 - Formigues](https://www.aceptaelreto.com/problem/statement.php?id=108) (⭐⭐)
+> **Pista:** Pens en posicions relatives: quan dos formigues es creuen, és com si s'ignoraren.
+- [380 - Quin gran és el cine!](https://www.aceptaelreto.com/problem/statement.php?id=380) (⭐⭐)
+> **Pista:** Simula l'ompliment de butaques fila per fila; busca forats consecutius suficients per a cada grup.

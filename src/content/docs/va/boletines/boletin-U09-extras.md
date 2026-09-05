@@ -1,197 +1,187 @@
 ---
-title: "Butlletí U09 — Extres"
-description: "CodeWars i AceptaElReto per a anar més enllà de la unitat"
+title: Butlletí U09 — Extres
+description: CodeWars i AceptaElReto per a anar més enllà de la unitat
 ---
 
 # 📝 Butlletí U09 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
+> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està amagada: resisteix-te fins a esgotar la teua pista. CodeWars i AceptaElReto són els gimnasos on els programadors es repte cada dia: ací és on l'herència deixa de ser teoria i es convertix en reflexos.
 
 ---
 
 ## CodeWars
 
-### 1. Mexican Wave
+### 1. Convert string to camel case
 
-Et donen una cadena. Has de tornar un array de cadenes on cada una té una sola lletra en majúscula: la de la posició `i`, avançant d'esquerra a dreta. Els espais se salten (no generen versió pròpia, però no canvien l'índex).
+Et donen una cadena amb guions o guions baixos separant paraules. Torna la versió en **camelCase**: cada paraula comença en majúscula excepte la primera.
 
-**Exemple:** `"gap"` → `["Gap", "gAp", "gaP"]`, i `"hello"` → `["Hello", "hEllo", "heLlo", "helLo", "hellO"]`.
+**Exemples:** `"the-stealth-warrior"` → `"theStealthWarrior"`, `"The_Stealth_Warrior"` → `"TheStealthWarrior"`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/58f5c63f1e26ecda7e000029)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/517abf86da9663f1d2000003)
 - Dificultat: 6 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Recorre la cadena caràcter a caràcter amb un `for`. Si el caràcter és un espai, `continue`. Si no, construïx la versió en ona: `texto.substring(0, i) + Character.toUpperCase(c) + texto.substring(i + 1)`.
-
-</details>
+**Pista:** recorre els caràcters amb un `for` i porta una variable `boolean` que recorde si el caràcter anterior era un separador (`-` o `_`). Si ho era, el següent caràcter va en majúscula.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static String[] wave(String str) {
-        java.util.List<String> resultado = new java.util.ArrayList<>();
-        for (int i = 0; i < str.length(); i++) {
-            char c = str.charAt(i);
-            if (c == ' ') {
-                continue;
+    public static String toCamelCase(String s) {
+        StringBuilder resultat = new StringBuilder();
+        boolean capitalitzar = false;
+
+        for (char c : s.toCharArray()) {
+            if (c == '-' || c == '_') {
+                capitalitzar = true;
+            } else if (capitalitzar) {
+                resultat.append(Character.toUpperCase(c));
+                capitalitzar = false;
+            } else {
+                resultat.append(c);
             }
-            String ola = str.substring(0, i) + Character.toUpperCase(c) + str.substring(i + 1);
-            resultado.add(ola);
         }
-        return resultado.toArray(new String[0]);
+        return resultat.toString();
     }
 }
 ```
 
-L'ona es construïx amb tres trossos: l'anterior, la lletra en majúscula i el posterior. Els espais se salten però no desplacen l'índex, així que `"two words"` produïx una ona per lletra, no per paraula.
+La bandera `capitalitzar` s'activa en vore un separador i es consumix en transformar la següent lletra. Un sol bucle, sense `split`: recórrer i recordar és suficient.
 
 </details>
 
 ---
 
-### 2. Delete occurrences of an element if it occurs more than n times
+### 2. Counting Duplicates
 
-Et donen una llista d'enters i un límit `n`. Torna una nova llista amb els mateixos elements, però cada valor només pot aparéixer com a màxim `n` voltes (es conserven les primeres `n` aparicions).
+Compta quants caràcters apareixen **més d'una vegada** en una cadena, sense distingir majúscules de minúscules.
 
-**Exemple:** `[1, 2, 3, 1, 2, 1, 2, 3]` amb `n = 2` → `[1, 2, 3, 1, 2, 3]`.
+**Exemples:** `"abcde"` → `0`, `"aabBcde"` → `2` (la `a` i la `b`), `"indivisibility"` → `1` (la `i`).
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/554ca54ffa7d91b236000023)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1)
 - Dificultat: 6 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Usa un `HashMap<Integer, Integer>` (el veuràs en la U10, però ja pots usar-lo) per a portar el compte de quantes voltes ha aparegut cada valor. Només afig l'element a la resposta si el seu comptador encara no ha arribat a `n`.
-
-</details>
+**Pista:** convertix a minúscules i compta freqüències amb un `Map<Character, Integer>`; al final, compta quantes entrades tenen freqüència major que 1. (El `Map` s'estudia a fons en la U11, però ja pots usar-lo.)
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Kata {
-    public static int[] deleteNth(int[] elements, int maxOcurrences) {
-        Map<Integer, Integer> contador = new HashMap<>();
-        List<Integer> resultado = new ArrayList<>();
+    public static int duplicateCount(String text) {
+        Map<Character, Integer> freqüències = new HashMap<>();
 
-        for (int e : elements) {
-            int veces = contador.getOrDefault(e, 0);
-            if (veces < maxOcurrences) {
-                resultado.add(e);
-                contador.put(e, veces + 1);
+        for (char c : text.toLowerCase().toCharArray()) {
+            freqüències.put(c, freqüències.getOrDefault(c, 0) + 1);
+        }
+
+        int repetits = 0;
+        for (int freqüència : freqüències.values()) {
+            if (freqüència > 1) {
+                repetits++;
             }
         }
-
-        int[] arr = new int[resultado.size()];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = resultado.get(i);
-        }
-        return arr;
+        return repetits;
     }
 }
 ```
 
-El `HashMap` associa cada valor amb les voltes que ha aparegut. `getOrDefault(e, 0)` torna el compte actual (o 0 si és la primera volta). Si encara no has arribat al límit, afegixes l'element i puges el comptador. És la combinació perfecta d'arrays (recorregut) i col·leccions (el compte).
+El `Map` guarda quantes vegades apareix cada caràcter. `getOrDefault(c, 0)` torna la freqüència actual o 0 si el caràcter encara no hi era. Després, basta comptar les que superen 1: `"aabBcde"` → la `a` (2) i la `b` (2) → `2`.
 
 </details>
 
 ---
 
-### 3. Roman Numerals Encoder
+### 3. Human Readable Time
 
-Crea una funció que convertisca un número positiu (1 a 3999) en la seua representació en **nombres romans**.
+Et donen un número de **segons** (màxim 359999). Torna'l amb format `HH:MM:SS` amb zeros a l'esquerra.
 
-**Exemple:** `182` → `"CLXXXII"`, `1990` → `"MCMXC"`, `1666` → `"MDCLXVI"`.
+**Exemples:** `makeReadable(0)` → `"00:00:00"`, `makeReadable(5)` → `"00:00:05"`, `makeReadable(86399)` → `"23:59:59"`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/51b62bf6a9c58071c600002b)
-- Dificultat: 6 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/52685f7382004e774f0001f7)
+- Dificultat: 5 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Prepara dos arrays paral·lels: els valors `{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}` i els seus símbols `{"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"}`. Recórre'ls en ordre descendent i, mentre el número arribe al valor, resta i afig el símbol.
-
-</details>
+**Pista:** divisió entera i mòdul: hores = `segons / 3600`, minuts = `(segons % 3600) / 60`, segons = `segons % 60`. Formata amb `String.format("%02d:%02d:%02d")`.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static String solution(int n) {
-        int[] valores = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        String[] simbolos = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
-
-        StringBuilder resultado = new StringBuilder();
-        for (int i = 0; i < valores.length; i++) {
-            while (n >= valores[i]) {
-                resultado.append(simbolos[i]);
-                n -= valores[i];
-            }
-        }
-        return resultado.toString();
+    public static String makeReadable(int seconds) {
+        int hores = seconds / 3600;
+        int minuts = (seconds % 3600) / 60;
+        int segons = seconds % 60;
+        return String.format("%02d:%02d:%02d", hores, minuts, segons);
     }
 }
 ```
 
-El truc està en els símbols compostos (`CM` = 900, `IV` = 4): sense ells, no podries representar els residus del 4 i el 9. El `while` va restant el valor màxim possible amb cada símbol. És un clàssic d'arrays paral·lels.
+El `%02d` ompli amb zeros a l'esquerra fins a dos dígits. Per a `86399`: `23`, `59`, `59` → `"23:59:59"`. És el mateix raonament d'unitats, desenes i centenes que ja uses en dividir.
 
 </details>
 
 ---
 
-### 4. Array.diff
+### 4. Basic subclasses — Adam and Eve
 
-Et donen dos arrays. Torna el primer array amb tots els valors que estaven en el segon **eliminats**.
+Segons el mite, Adam i Eva van ser els primers humans. El teu treball és "fer el treball de Déu": crear un mètode estàtic `create()` que torne un array d'`Human` amb dos objectes: el primer un `Man` i el segon una `Woman`. Ambdues classes hereden d'`Human`, i cada humà té `name`, `sex` i la propietat `species` amb valor `"Human"`.
 
-**Exemple:** `[1, 2, 2, 2, 3]` i `[2]` → `[1, 3]`, i `[1, 2, 3]` i `[1, 2]` → `[3]`.
+- [Enunciat en CodeWars](https://www.codewars.com/kata/547274e24481cfc469000416)
+- Dificultat: 8 kyu
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/523f5d21c841566fde000009)
-- Dificultat: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Convertix el segon array en un `HashSet<Integer>` i recorre el primer amb un `for-each`: només afig al resultat els elements que `set.contains(...)` diga que NO estan.
-
-</details>
+**Pista:** herència pura: `class Man extends Human` i `class Woman extends Human`. Cada subclasse crida a `super(...)` per a omplir el nom i el sexe. L'array de retorn és de tipus `Human`, així que accepta les dos subclasses.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
+public class Human {
+    private String name;
+    private String sex;
+    protected String species = "Human";
 
-public class Kata {
-    public static int[] arrayDiff(int[] a, int[] b) {
-        Set<Integer> aBorrar = new HashSet<>();
-        for (int x : b) {
-            aBorrar.add(x);
-        }
+    public Human(String name, String sex) {
+        this.name = name;
+        this.sex = sex;
+    }
 
-        List<Integer> resultado = new ArrayList<>();
-        for (int x : a) {
-            if (!aBorrar.contains(x)) {
-                resultado.add(x);
-            }
-        }
+    public String getName() {
+        return name;
+    }
 
-        int[] arr = new int[resultado.size()];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = resultado.get(i);
-        }
-        return arr;
+    public String getSex() {
+        return sex;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+}
+
+class Man extends Human {
+    public Man(String name) {
+        super(name, "man");
+    }
+}
+
+class Woman extends Human {
+    public Woman(String name) {
+        super(name, "woman");
+    }
+}
+
+public class God {
+    public static Human[] create() {
+        return new Human[] { new Man("Adam"), new Woman("Eve") };
     }
 }
 ```
 
-El `HashSet` convertix la cerca en O(1): preguntar "està este número per a esborrar?" és instantani encara que `b` siga enorme. Amb un array al seu lloc, cada `contains` seria un recorregut lineal complet. Per això esta kata es resol amb col·leccions, no amb més arrays.
+`Man` i `Woman` hereden tot d'`Human` i només aporten el seu constructor amb el sexe fix. `create()` torna un array d'`Human` (el tipus general) ple amb les dos subclasses: polimorfisme de dalt a baix, com Adam i Eva al Paradís.
 
 </details>
 
@@ -199,95 +189,126 @@ El `HashSet` convertix la cerca en O(1): preguntar "està este número per a esb
 
 ## AceptaElReto
 
-### 5. 102 — Encriptació de missatges
+### 5. 100 — Constant de Kaprekar
 
-Un missatge s'encripta desplaçant cada lletra un número fix de posicions en l'alfabet (xifrat Cèsar). Has d'implementar el programa que, donat un desplaçament i un text, torne el missatge encriptat, **envoltant al final de l'alfabet** (si et passes de la Z, tornes a la A).
+El matemàtic Kaprekar va descobrir que, aplicant a qualsevol número de 4 dígits (amb almenys dos de diferents) la rutina *ordena els dígits de major a menor, resta-li l'ordenat de menor a major*, sempre s'arriba al número **6174** en 7 voltes com a molt. Per exemple, `3524`: `5432 - 2345 = 3087`, `8730 - 0378 = 8352`, `8532 - 2358 = 6174` (3 voltes).
 
-**Entrada:** diversos casos. Cada cas: una línia amb el desplaçament seguit del text entre cometes. L'entrada acaba amb una línia amb `0` i un text buit.
+**Entrada:** la primera línia és el número de casos de prova. Cada cas és un número de 4 dígits.
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=102)
-- Dificultat: ⭐⭐
+**Eixida:** per a cada cas, les voltes fins a arribar a 6174. Per als *repdigits* (les 4 xifres iguals, com `1111`) escriu `8`. Per al propi `6174`, escriu `0`.
 
-<details>
-<summary>💡 Pista</summary>
+**Entrada d'exemple:**
 
-Convertix cada lletra a la seua posició amb `c - 'A'`, suma-li el desplaçament, aplica `% 26` per al wrap-around i torna a `char` amb `(char) ('A' + pos)`. Vigila que només encriptes lletres, no espais ni signes.
+```
+5
+3524
+1111
+1121
+6174
+1893
+```
 
-</details>
+**Eixida d'exemple:**
+
+```
+3
+8
+5
+0
+7
+```
+
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=100)
+- Dificultat: Fàcil/Mitjana
+
+**Pista:** passa el número a cadena amb `String.format("%04d", n)` per a mantindre els 4 dígits amb zeros. Ordena els caràcters amb `Arrays.sort` per a obtindre el menor; el major és el mateix array recorregut al revés. Repeteix fins a arribar a 6174.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class Encriptacion {
+public class Kaprekar {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int casos = sc.nextInt();
 
-        while (sc.hasNextInt()) {
-            int desplazamiento = sc.nextInt();
-            String texto = sc.nextLine().trim();
-            if (desplazamiento == 0 && texto.isEmpty()) break;
-
-            StringBuilder resultado = new StringBuilder();
-            for (int i = 0; i < texto.length(); i++) {
-                char c = texto.charAt(i);
-                if (c >= 'A' && c <= 'Z') {
-                    int pos = (c - 'A' + desplazamiento) % 26;
-                    resultado.append((char) ('A' + pos));
-                } else {
-                    resultado.append(c);
-                }
-            }
-            System.out.println(resultado);
+        for (int i = 0; i < casos; i++) {
+            int n = sc.nextInt();
+            System.out.println(voltesKaprekar(n));
         }
         sc.close();
+    }
+
+    static int voltesKaprekar(int n) {
+        if (n == 6174) {
+            return 0;
+        }
+
+        String s = String.format("%04d", n);
+        if (s.charAt(0) == s.charAt(1)
+                && s.charAt(1) == s.charAt(2)
+                && s.charAt(2) == s.charAt(3)) {
+            return 8;
+        }
+
+        int voltes = 0;
+        while (n != 6174) {
+            char[] asc = String.format("%04d", n).toCharArray();
+            Arrays.sort(asc);
+            int menor = Integer.parseInt(new String(asc));
+
+            char[] desc = new char[4];
+            for (int j = 0; j < 4; j++) {
+                desc[j] = asc[3 - j];
+            }
+            int major = Integer.parseInt(new String(desc));
+
+            n = major - menor;
+            voltes++;
+        }
+        return voltes;
     }
 }
 ```
 
-El wrap-around el fa el `% 26`: si estàs a la Z (pos 25) i sumes 3, `(25 + 3) % 26 = 2`, que és la C. Les lletres es tracten per separat dels espais i signes. La condició d'eixida usa el cas especial d'AceptaElReto: desplaçament 0 i text buit.
+Per a `3524`: els dígits ordenats donen `2345` (menor) i `5432` (major), es resten i es repetix fins a arribar a `6174`. El `String.format("%04d", ...)` conserva els zeros inicials (el `0378` de l'exemple). Verifica-ho amb `1121`: `5` voltes, tal com promet l'enunciat.
 
 </details>
 
 ---
 
-### 6. 341 — Matriu identitat
+### 6. 369 — Contant en la sorra
 
-Una **matriu identitat** té uns a la diagonal principal i zeros a la resta. Donada la grandària d'una matriu i els seus valors, has de dir si és identitat o no.
+Molts abans de la base 2 i dels números romans, els primers humans comptaven fent solcs en la sorra. Et demanen la "base 1": representar cada número com a tants **uns** com valga.
 
-**Entrada:** diversos casos. Cada cas: una línia amb la grandària `n`, seguida de `n` línies amb els `n` valors de cada fila. L'entrada acaba amb `0`.
+**Entrada:** diversos números majors que 0 i mai majors que 1.000, cadascun en una línia. L'entrada acaba amb un `0`, que no ha de processar-se.
 
-**Exemple:**
+**Eixida:** per a cada número, la seua codificació en base 1 (eixa quantitat d'`1` seguits).
+
+**Entrada d'exemple:**
 
 ```
-2
-1 0
-0 1
-3
-1 0 0
-0 1 0
-0 0 1
+1
+4
+6
 0
 ```
 
-**Eixida:**
+**Eixida d'exemple:**
 
 ```
-SI
-SI
+1
+1111
+111111
 ```
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=341)
-- Dificultat: ⭐⭐
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=369)
+- Dificultat: Fàcil
 
-<details>
-<summary>💡 Pista</summary>
-
-Recorre tota la matriu amb dos bucles i comprova: si `fila == columna` ha de valer 1, si no, ha de valer 0. En el moment que trobes un valor que no complixca la seua regla, el cas és "NO". Una matriu identitat de grandària 1 (només un `1`) també és identitat.
-
-</details>
+**Pista:** un `StringBuilder` i un bucle que afija `'1'` tantes vegades com el número. El patró de lectura "llegir fins a 0" és el sentinella que ja coneixes dels butlletins anteriors.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -295,42 +316,31 @@ Recorre tota la matriu amb dos bucles i comprova: si `fila == columna` ha de val
 ```java
 import java.util.Scanner;
 
-public class MatrizIdentidad {
+public class ContantSorra {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
             int n = sc.nextInt();
-            if (n == 0) break;
+            if (n == 0) {
+                break;
+            }
 
-            int[][] matriz = new int[n][n];
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    matriz[i][j] = sc.nextInt();
-                }
+                sb.append('1');
             }
-
-            boolean esIdentidad = true;
-            for (int i = 0; i < n && esIdentidad; i++) {
-                for (int j = 0; j < n; j++) {
-                    if ((i == j && matriz[i][j] != 1) || (i != j && matriz[i][j] != 0)) {
-                        esIdentidad = false;
-                        break;
-                    }
-                }
-            }
-
-            System.out.println(esIdentidad ? "SI" : "NO");
+            System.out.println(sb);
         }
         sc.close();
     }
 }
 ```
 
-La condició del `if` resumix tota la regla en una línia: a la diagonal (`i == j`) exigixes 1, fora d'ella exigixes 0. En el moment que falla una casella, `esIdentidad = false` i el `break` talla el bucle interior; el `&& esIdentidad` de l'exterior talla també el de fora. Arrays 2D + bucles niats al servei del problema.
+El bucle exterior llig fins que arriba el `0` sentinella. Per cada número, el bucle interior fabrica una cadena de `n` uns. `StringBuilder` evita crear cadenes noves en cada concatenació: és el patró eficient per a acumular caràcters.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines arrays i col·leccions, torna als problemes d'unitats anteriors i resol-los guardant les dades en estructures: ja no caldrà demanar-ho tot pel teclat de colp. El material no es perd: es reutilitza.
+> 🧭 **¿I si et quedes amb ganes?** Quan domines l'herència, torna als problemes de les unitats anteriors i reescriu-los amb jerarquies: un `Lector` abstracte, un `Solucionador` polimòrfic, figures que es calculen soles. El material no es perd: es reutilitza.

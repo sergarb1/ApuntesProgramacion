@@ -5,223 +5,194 @@ description: Exercicis de dificultat progressiva per a exprimir la unitat
 
 # 📝 Butlletí U08 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. L'herència és com la família: de vegades heretes coses bones, de vegades et toca la col·lecció de segells del teu tio avi. Però amb interfícies, almenys tries què implementar.
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: Interfície FiguraGeometrica
+## ⭐ Exercici 1: Empleat amb validació
 
-Crea una interfície `FiguraGeometrica` amb dos mètodes:
+Escriu una classe `Empleat` amb:
 
-- `double calcularArea()`
-- `double calcularPerimetre()`
+- Atributs `private String nom`, `private double salari`.
+- Constructor que valide que el salari no siga negatiu (si ho és, el deixa en 0 i mostra un avís).
+- Getters i setters. El setter del salari també ha de rebutjar negatius.
 
-Implementa la interfície en:
+En un `main`, crea un empleat "Laura" amb salari 1500, intenta posar-li -300 i mostra el salari final.
 
-- `Cercle` (constructor amb radi)
-- `Rectangle` (constructor amb ample i alt)
-- `TriangleRectangle` (constructor amb base i altura)
-
-En el `main`, crea un `ArrayList<FiguraGeometrica>`, afig un cercle de radi 5, un rectangle 4x3 i un triangle rectangle 3x4. Recorre'ls imprimint àrea i perímetre de cadascun.
-
-```java
-public interface FiguraGeometrica {
-    double calcularArea();
-    double calcularPerimetre();
-}
-```
-
-**Pista:** per al triangle rectangle, `area = base * altura / 2` i el perímetre és `base + altura + hipotenusa`, amb `hipotenusa = Math.sqrt(base*base + altura*altura)`.
+**Pista:** reutilitza la validació del setter dins del constructor: `setSalari(salari)` en comptes d'assignar a seques.
 
 ---
 
-## ⭐ Exercici 2: Jerarquia d'Empleats
+## ⭐ Exercici 2: Cercle encapsulat
 
-Crea una classe base `Empleat` amb:
+Escriu una classe `Cercle` amb:
 
-- `String nom`
-- `double salariBase`
-- Constructor, getters
-- Mètode `double calcularSalari()` que torne el `salariBase`
+- Atribut `private double radi`.
+- Constructor que reba el radi.
+- Getter `getRadi()`, setter `setRadi(double)` que rebutge radis negatius o zero.
+- Mètodes `getArea()` i `getPerimetre()` que usen `Math.PI`.
 
-Crea dos subclasses:
+En un `main`, crea un cercle de radi 5 i mostra la seua àrea i perímetre.
 
-- `Gerent`: té un `double bo` extra. `calcularSalari()` torna `salariBase + bo`.
-- `Venedor`: té un `double comissio` per venda i un `int vendesRealitzades`. `calcularSalari()` torna `salariBase + comissio * vendesRealitzades`.
+**Pista:** `area = Math.PI * radi * radi;` i `perimetre = 2 * Math.PI * radi;`. Recorda que `Math.PI` és una constant estàtica.
 
-En el `main`, crea un array d'`Empleat` amb un gerent i un venedor, recorre'l polimòrficament i mostra el salari de cadascun.
+---
+
+## ⭐⭐ Exercici 3: JavaBean Alumne
+
+Escriu una classe `Alumne` seguint l'estil JavaBean (l'estàndard per a classes de dades):
+
+- Atributs `private String nom`, `private int edat`, `private double notaMitjana`.
+- Constructor sense paràmetres i constructor amb els tres valors.
+- Getter i setter per a **cada** atribut.
+- El setter de `edat` ha de rebutjar edats fora de 0 i 120; el de `notaMitjana`, fora de 0 i 10.
+
+En un `main`, crea un alumne amb el constructor complet i després modifica la seua nota amb el setter.
+
+**Pista:** un JavaBean és "atributs privats + getters/setters + constructors": el patró que veuràs en qualsevol framework. Els setters validen; els getters només lligixen.
+
+---
+
+## ⭐⭐ Exercici 4: Hora immutable
+
+Escriu una classe `Hora` que represente una hora del dia i que siga **immutable**: els seus atributs només s'assignen en el constructor i no tenen setters.
+
+- Atributs `private final int hora`, `private final int minut`.
+- Constructor que valide `hora` entre 0 i 23 i `minut` entre 0 i 59.
+- Getters `getHora()` i `getMinut()`.
+- Mètode `mostrar()` que retorne `"HH:MM"` (amb zeros: `09:05`).
+
+En un `main`, crea una hora 9:05 i mostra-la. Respon: per què no necessita setters?
+
+**Pista:** usa `String.format("%02d:%02d", hora, minut)` o `"0" + ...` quan el valor siga menor que 10.
+
+---
+
+## ⭐⭐ Exercici 5: Què imprimeix? — el trencaclosques dels gats
+
+Sense executar, escriu l'eixida exacta:
 
 ```java
-public class Empleat {
-    protected String nom;
-    protected double salariBase;
+public class Gat {
+    public static int totalGats = 0;
+    private String nom;
+    private int vides;
 
-    public Empleat(String nom, double salariBase) {
+    public Gat(String nom) {
         this.nom = nom;
-        this.salariBase = salariBase;
+        this.vides = 9;
+        totalGats++;
     }
 
-    public double calcularSalari() {
-        return salariBase;
+    public void perdreVida() {
+        if (vides > 0) {
+            vides--;
+        }
     }
-}
-```
 
-**Pista:** declara `nom` i `salariBase` com a `protected` perquè les subclasses els usen sense getters. L'`@Override` de `calcularSalari()` en cada subclasse és el cor del polimorfisme.
-
----
-
-## ⭐⭐ Exercici 3: Sistema de pagaments amb interfície
-
-Crea una interfície `Pagable` amb el mètode:
-
-- `boolean procesarPagament(double quantitat)`
-
-Implementa la interfície en:
-
-- `TarjetaCredito`: té `double limit` i `double saldoUsat`. Pot pagar si `quantitat + saldoUsat <= limit`.
-- `PayPal`: té `double saldo`. Pot pagar si `quantitat <= saldo`.
-- `TransferenciaBancaria`: té `double saldo`. Pot pagar sempre que `quantitat <= saldo`, però té un cost fix de 1 € per transferència.
-
-```java
-public interface Pagable {
-    boolean procesarPagament(double quantitat);
-}
-```
-
-Exemple:
-
-```java
-Pagable tarjeta = new TarjetaCredito(1000, 0);
-tarjeta.procesarPagament(500);   // true
-tarjeta.procesarPagament(600);   // false (supera el límit)
-```
-
-**Pista:** cada classe decidix la seua pròpia lògica d'aprovació; només el contracte `procesarPagament` és comú. Per a la transferència, comprova que `quantitat + 1 <= saldo`.
-
----
-
-## ⭐⭐ Exercici 4: Interfícies múltiples: Volador i Nedador
-
-Crea dos interfícies:
-
-- `Volador`: mètode `void volar()`
-- `Nedador`: mètode `void nadar()`
-
-Crea una classe `Ànec` que implemente les dos interfícies, una classe `Avió` que només implemente `Volador` i una classe `Peix` que només implemente `Nedador`.
-
-En el `main`, crea un `ArrayList<Volador>` amb un `Ànec` i un `Avió`, i recorre'l cridant a `volar()`. Després fes el mateix amb un `ArrayList<Nedador>`.
-
-```java
-public interface Volador { void volar(); }
-public interface Nedador { void nadar(); }
-```
-
-**Pista:** l'`Ànec` és l'estrella: una sola classe que firma dos contractes. Els `ArrayList` de tipus interfície accepten qualsevol classe que implemente eixe contracte.
-
----
-
-## ⭐⭐ Exercici 5: Downcasting segur
-
-Crea una jerarquia `Empleat` → `Programador`, `Dissenyador`:
-
-- `Programador` té `void escriureCodi()`.
-- `Dissenyador` té `void dissenyar()`.
-- `Empleat` té `String nom` i `void mostrarInfo()`.
-
-En el `main`, crea un `ArrayList<Empleat>` amb diversos empleats de tots dos tipus i recorre'l usant `instanceof` per a cridar els mètodes específics.
-
-**Pista:** dins del bucle, `if (e instanceof Programador)` → `((Programador) e).escriureCodi();`. Sempre amb `instanceof` abans del cast: mai no baixes sense preguntar.
-
----
-
-## ⭐⭐ Exercici 6: Calculadora de figures amb classe abstracta
-
-Crea una classe abstracta `Figura` amb:
-
-- Atribut `protected String color`.
-- Constructor que reba el color.
-- Mètodes abstractes `double calcularArea()` i `double calcularPerimetre()`.
-- Mètode concret `void mostrarColor()` que imprimisca el color.
-
-Implementa `Cercle` (radi) i `Rectangle` (ample, alt). En el `main`, crea un `ArrayList<Figura>` amb un cercle roig de radi 3 i un rectangle blau de 4x2, i mostra l'àrea de cadascun i el seu color.
-
-**Pista:** l'àrea total de la llista es calcula recorrent-la amb `for (Figura f : figures)`. `mostrarColor()` ja està fet: les subclasses només implementen els dos mètodes abstractes.
-
----
-
-## ⭐⭐⭐ Exercici 7: Sistema de notificacions polimòrfic
-
-Crea una interfície `Notificable` amb:
-
-- `void enviar(String missatge)`
-- `String getEstat()`
-
-Implementa:
-
-- `EmailNotificacio`: atributs `String direccio`, `boolean enviat`. En enviar, imprimeix "Enviant email a [direcció]: [missatge]". Estat: "Enviat" o "Pendent".
-- `SMSNotificacio`: atributs `String telefon`, `boolean enviat`. En enviar, imprimeix "Enviant SMS a [telèfon]: [missatge]". Estat similar.
-- `PushNotificacio`: atributs `String dispositiuId`, `boolean enviat`. En enviar, imprimeix "Enviant push a [dispositiuId]: [missatge]".
-
-```java
-public interface Notificable {
-    void enviar(String missatge);
-    String getEstat();
-}
-```
-
-En el `main`, crea un `ArrayList<Notificable>` amb els tres tipus. Afig un mètode estàtic que recorre la llista i envie totes les notificacions:
-
-```java
-public static void enviarTotes(List<Notificable> notificacions, String missatge) {
-    for (Notificable n : notificacions) {
-        n.enviar(missatge);
+    public String toString() {
+        return nom + " (" + vides + " vides)";
     }
 }
 ```
 
-**Pista:** els tres tipus compartixen el patró: en enviar, posen `enviat = true` i tornen "Enviat"; si no, "Pendent". El polimorfisme fa que `enviarTotes` no sàpiga amb quin tipus tracta.
-
----
-
-## ⭐⭐⭐ Exercici 8: Template method — les begudes
-
-Crea una classe abstracta `Beguda` amb el patró template method:
-
 ```java
-public abstract class Beguda {
-    public final void preparar() {
-        bullirAigua();
-        prepararIngredient();
-        servirEnTassa();
-        afegirExtres();
+public class TrencaclosquesGats {
+    public static void main(String[] args) {
+        Gat g1 = new Gat("Bigotis");
+        Gat g2 = new Gat("Garfield");
+        g1.perdreVida();
+        g1.perdreVida();
+        g2.perdreVida();
+
+        System.out.println(g1);
+        System.out.println(g2);
+        System.out.println("Total: " + Gat.totalGats);
     }
-
-    private void bullirAigua() { System.out.println("Bullint aigua..."); }
-    private void servirEnTassa() { System.out.println("Servint en tassa..."); }
-
-    protected abstract void prepararIngredient();
-    protected abstract void afegirExtres();
 }
 ```
 
-Implementa `Te` (bosseta de te + llima) i `Cafe` (cafè mòlt + sucre). En el `main`, prepara un `Te` i un `Cafe` amb una variable de tipus `Beguda`.
-
-**Pista:** les subclasses només omplen els dos mètodes `protected abstract`. El `final` en `preparar()` garantix que ningú no reordene els passos. Per a provar ambdues, usa una referència polimòrfica: `Beguda b = new Te(); b.preparar();`.
+**Pista:** cada gat naix amb 9 vides i les perd una a una amb `perdreVida()`. Compta quantes vegades es diu sobre cada gat, i recorda que `totalGats` és `static`.
 
 ---
 
-## ⭐⭐⭐ Exercici 9: El gran repte — vehicles amb combustible
+## ⭐⭐ Exercici 6: Comptador d'usuaris
 
-Crea una jerarquia de vehicles:
+Escriu una classe `Usuari` que assigne a cada objecte un `id` **únic i automàtic**:
 
-- `Vehicle` (abstracta): `String matricula`, `int combustible`, `abstract boolean moure()`
-- `Cotxe`: gasta 5 de combustible per moviment
-- `Moto`: gasta 3 de combustible per moviment
-- `Camio`: gasta 10 de combustible per moviment, però pot portar `int càrrega`
+- Atribut `private static int comptador = 0;` i `private int id;`.
+- Constructor que incremente `comptador` i assigne `id = comptador`.
+- Mètode `public static int getTotalUsuaris()`.
+- Getter `getId()`.
 
-Cada vehicle té un `moure()` que reduïx el combustible i torna `true` si va poder moure's. Si no n'hi ha prou, imprimeix "Sense combustible" i torna `false`.
+En un `main`, crea 5 usuaris i mostra l'id de l'últim i el total d'usuaris.
 
-En `main()`, crea un `ArrayList<Vehicle>` amb diversos vehicles. Cada vehicle es mou repetidament mentre puga i compta quants moviments va fer.
+**Pista:** el patró del punt 5: el `static` compta quants s'han creat, i cada objecte es "congela" el seu número en nàixer. `getTotalUsuaris` és estàtic perquè pregunta a la classe, no a un objecte.
 
-**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ...; return true; } else { System.out.println("Sense combustible"); return false; }`. El bucle del `main` usa el valor de retorn: `while (v.moure()) { moviments++; }`. Així no es queda mai en un bucle infinit quan el combustible no arriba per a moure's.
+---
+
+## ⭐⭐⭐ Exercici 7: La classe utilitària OperacionsArray
+
+Escriu una classe `OperacionsArray` **utilitària** (constructor privat) amb estos mètodes `static`:
+
+- `suma(int[] numeros)` → suma tots els elements.
+- `mitjana(double[] numeros)` → retorna el promig.
+- `maxim(int[] numeros)` → retorna el més gran.
+- `estaOrdenat(int[] numeros)` → `true` si cada element és major o igual que l'anterior.
+
+En un `main`, usa la classe **sense crear cap objecte** sobre `{3, 1, 4, 1, 5}` i `{1, 2, 3}`.
+
+**Pista:** el constructor `private OperacionsArray() {}` impedix instanciar-la, com `Math`. Per a `estaOrdenat`, recorre amb un `for` i compara cada element amb l'anterior (`numeros[i] < numeros[i - 1]` → no està ordenat).
+
+---
+
+## ⭐⭐⭐ Exercici 8: Validador de dades
+
+Escriu una classe `Validador` **utilitària** (constructor privat) amb estos mètodes `static`:
+
+- `esEmailValid(String email)` → `true` si conté exactament una `@` i almenys un `.` després de la `@`.
+- `esEdatValida(int edat)` → `true` si està entre 0 i 120.
+- `esTextNoBuit(String text)` → `true` si no és `null` i no està en blanc.
+
+En un `main`, prova els tres mètodes amb casos vàlids i invàlids (per exemple `"ana@mail.com"`, `"ana@"`, `"hola"`, `-5`, `200`, `null`).
+
+**Pista:** usa `String.indexOf("@")` per a localitzar la `@`, `indexOf("@", pos + 1)` per a comprovar que no n'hi ha una segona, i `indexOf(".", pos)` per al punt després de la `@`. Un `return` primerenc en cada condició fallida simplifica molt.
+
+---
+
+## ⭐⭐⭐ Exercici 9: El gran repte — refactoritza el banc
+
+Este codi funciona... però és una porta oberta. Refactoritza'l seguint els passos del punt 8 (Be the Code):
+
+```java
+public class CompteBancari {
+    public String titular;
+    public double saldo;
+
+    public CompteBancari(String titular, double saldo) {
+        titular = titular;
+        saldo = saldo;
+    }
+
+    public void retirar(double quantitat) {
+        saldo = saldo - quantitat;
+    }
+
+    public void ingressar(double quantitat) {
+        saldo = saldo + quantitat;
+    }
+}
+```
+
+Ha de quedar així:
+
+1. Atributs `private`.
+2. Constructor amb `this` i que valide que el saldo inicial no siga negatiu.
+3. Getters per als dos; **sense setters** per al saldo.
+4. `retirar(double)` que rebutge quantitats negatives i que **no permeta** deixar el saldo en negatiu (si `quantitat > saldo`, avisa i no retira).
+5. `ingressar(double)` que rebutge quantitats negatives.
+6. Una constant `public static final String NOM_BANC = "Banc DAM";`.
+
+Escriu també un `main` de prova que cree un compte, ingresse, intente retirar més del que té i mostre el saldo.
+
+**Pista:** sense setter per al saldo, només les operacions `retirar` i `ingressar` poden tocar-lo: és la frontera del negoci. Recorda el bug del constructor (`titular = titular` s'assigna a si mateix) i valida tot abans d'assignar.

@@ -1,234 +1,263 @@
 ---
-title: "Butlletí U09 — Inicial Resolt"
-description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
+title: Butlletí U09 — Inicial Resolt
+description: Els mateixos exercicis que el butlletí inicial, amb solucions
 ---
 
 # 📝 Butlletí U09 — Inicial (Resolt)
 
-> Les solucions estan amagades a cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
 
 ---
 
-## Exercici 1: Què imprimeix? — Array de booleans
+## Exercici 1: Què imprimeix? — La família musical
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`false true false`**.
+Imprimeix **"El baixista toca el baix"**.
 
-`flags` és un `boolean[]` de 3 places acabades de crear. El valor per defecte de `boolean` és `false`, així que `flags[0]` i `flags[2]` valen `false`. Només `flags[1]` es va posar a `true`. Cada plaça naix amb el valor per defecte del seu tipus: `false` per a `boolean`.
+`Baixista` té la seua pròpia versió de `tocar()`. Java busca el mètode començant per la classe més específica (`Baixista`) i el troba ahí mateix: mai no puja a `Guitarrista` ni a `Instrumentista`. Eixe és el *dynamic dispatch*: el mètode es resol segons el tipus real de l'objecte, no segons el tipus de la referència.
 
 </details>
 
 ---
 
-## Exercici 2: Troba l'error — NullPointerException
+## Exercici 2: Troba l'error — extends mal usat
 
 <details>
 <summary>🔄 Solució</summary>
 
-Es llança una **`NullPointerException`** a l'última línia.
-
-`nombres[2]` mai no es va assignar, així que val `null` (el valor per defecte dels objectes). Cridar `nombres[2].toUpperCase()` sobre `null` és demanar un mètode al no-res: Java no sap què fer i llança l'excepció. Les places d'un `String[]` acabat de crear estan plenes de `null`, no de `""`.
-
-</details>
-
----
-
-## Exercici 3: Completa el codi — for bàsic per a buscar el major
-
-<details>
-<summary>🔄 Solució</summary>
+L'error és que `Gos` no crida al constructor d'`Animal`. Quan una classe filla no posa `super(...)`, Java intenta cridar a `super()` sense paràmetres. Però `Animal` només té `Animal(String)`, així que el compilador no troba el constructor buit: **error de compilació**.
 
 ```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
+public class Gos extends Animal {
+    private String raça;
 
-for (int i = 1; i < numeros.length; i++) {   // fins a length, sense passar
-    if (numeros[i] > mayor) {                // és més gran que l'actual?
-        mayor = numeros[i];                  // actualitza el major
+    public Gos(String especie, String raça) {
+        super(especie);   // la clau!
+        this.raça = raça;
     }
 }
-
-System.out.println("El mayor es: " + mayor);
 ```
 
-El patró del "màxim acumulat": comences assumint que el primer és el major i, si n'apareix un de més gran, el substituïx. El bucle comença en `i = 1` perquè el candidat inicial ja és `numeros[0]`. Imprimeix `El mayor es: 89`.
+Pensa en `super()` com cridar a papà perquè configure la seua part abans que tu configures la teua. Si papà necessita una espècie per a construir-se, tu l'hi has de passar. És com construir una casa sense fonaments: el constructor del pare és la base.
 
 </details>
 
 ---
 
-## Exercici 4: Escriu este programa — comptar números parells
+## Exercici 3: Completa el codi — el gat que crida el seu pare
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-import java.util.Arrays;
+La paraula és **`super`**:
 
-public class ContarPares {
+```java
+public class Gat extends Animal {
+    @Override
+    public void ferSo() {
+        super.ferSo();   // primer el del pare
+        System.out.println("¡MIAU!");
+    }
+
     public static void main(String[] args) {
-        int[] numeros = {3, 8, 12, 5, 7, 10, 2, 9, 6, 1};
-        int pares = 0;
-
-        for (int i = 0; i < numeros.length; i++) {
-            if (numeros[i] % 2 == 0) {
-                pares++;
-            }
-        }
-
-        System.out.println("Array: " + Arrays.toString(numeros));
-        System.out.println("Pares: " + pares);
+        Gat g = new Gat();
+        g.ferSo();
     }
 }
 ```
 
-Eixida: `Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]` i `Pares: 5`. Un número és parell si el seu residu en dividir entre 2 és 0 (`% 2 == 0`). I `Arrays.toString` és el que fa l'eixida llegible.
+Eixida:
+
+```
+Algun so genèric...
+¡MIAU!
+```
+
+`super.ferSo()` executa la versió d'`Animal` i després el `Gat` afig el seu. Sense el `super`, el mètode estaria sobreescrit per complet i la línia del pare no eixiria mai.
 
 </details>
 
 ---
 
-## Exercici 5: Què imprimeix? — ArrayList remove per índex vs valor
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`[A, C, B, D]`**.
-
-Pas a pas:
-
-- `lista.remove(1)` esborra per **índex**: se'n va el `"B"` de la posició 1 → `[A, C, B, D]`.
-- `lista.remove("B")` esborra per **objecte**: busca la primera aparició de `"B"` i la borra → `[A, C, D]`.
-
-El primer `remove` esborra el `"B"` de la posició 1 (el primer). Quan després crides `remove("B")`, eixe `"B"` ja no hi és, però queda el `"B"` que estava a la posició 3 (el quart element), que ara és el primer que troba: el borra. Resultat final `[A, C, D]`.
-
-</details>
-
----
-
-## Exercici 6: Troba l'error — length vs length()
-
-<details>
-<summary>🔄 Solució</summary>
-
-Les **dues línies tenen error**, però per motius oposats:
-
-- `numeros.length()` → els arrays usen `length` com a **atribut**, sense parèntesis. `numeros.length()` no compila.
-- `texto.length` → els `String` usen `length()` com a **mètode**, amb parèntesis. `texto.length` no compila.
-
-Regla d'or: **array → `length`; `String` → `length()`; col·leccions → `size()`.** Confondre'ls és la trampa favorita dels exàmens.
-
-</details>
-
----
-
-## Exercici 7: Escriu este programa — cerca lineal
+## Exercici 4: Escriu este programa — l'herència de vehicles
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.Scanner;
+public class Vehicle {
+    protected String marca;
 
-public class BusquedaLineal {
+    public Vehicle(String marca) {
+        this.marca = marca;
+    }
+}
+
+public class Cotxe extends Vehicle {
+    protected int numPortes;
+
+    public Cotxe(String marca, int numPortes) {
+        super(marca);
+        this.numPortes = numPortes;
+    }
+}
+
+public class Esportiu extends Cotxe {
+    private int velocitatMaxima;
+
+    public Esportiu(String marca, int numPortes, int velocitatMaxima) {
+        super(marca, numPortes);
+        this.velocitatMaxima = velocitatMaxima;
+    }
+
     public static void main(String[] args) {
-        int[] edades = {12, 45, 25, 67, 33, 18, 40, 21};
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Introduce edad a buscar: ");
-        int buscado = sc.nextInt();
-
-        int posicion = -1;
-        for (int i = 0; i < edades.length; i++) {
-            if (edades[i] == buscado) {
-                posicion = i;
-                break;
-            }
-        }
-
-        if (posicion >= 0) {
-            System.out.println("Encontrado en posición " + posicion);
-        } else {
-            System.out.println("No encontrado");
-        }
-        sc.close();
+        Esportiu e = new Esportiu("Ferrari", 2, 340);
+        System.out.println(e.marca + " amb " + e.numPortes
+                + " portes i " + e.velocitatMaxima + " km/h");
     }
 }
 ```
 
-La cerca lineal recorre l'array de principi a fi. `posicion = -1` és el "no trobat"; si apareix el valor, guardes l'índex i talles amb `break` (ja no cal seguir).
+L'herència en cadena: `Esportiu` → `Cotxe` → `Vehicle`. Cada constructor crida al del seu pare amb `super(...)`. Per això `marca` (de `Vehicle`) i `numPortes` (de `Cotxe`) són accessibles en `Esportiu` gràcies a `protected`.
 
 </details>
 
 ---
 
-## Exercici 8: Escriu este programa — l'invers
+## Exercici 5: Què imprimeix? — Polimorfisme amb referències
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+Y
+Z
+Z
+```
+
+El tipus de la **referència** (X, X, Y) no importa. El que importa és el tipus **real** de l'objecte (Y, Z, Z). Java sempre executa el mètode més específic de l'objecte real. És com portar la jaqueta del teu pare: per fora pareixes el teu pare (la referència), però per dins ets tu (l'objecte). Quan parles, se sent la teua veu, no la del teu pare. Dynamic binding en tot el seu esplendor.
+
+</details>
+
+---
+
+## Exercici 6: Escriu este programa — la granja polimòrfica
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.Arrays;
+import java.util.ArrayList;
 
-public class Inverso {
+public class Animal {
+    public void ferSo() { System.out.println("..."); }
+}
+
+class Vaca extends Animal {
+    @Override public void ferSo() { System.out.println("Muuuu"); }
+}
+
+class Ovella extends Animal {
+    @Override public void ferSo() { System.out.println("Beeee"); }
+}
+
+class Gallina extends Animal {
+    @Override public void ferSo() { System.out.println("Cloc cloc"); }
+}
+
+public class Granja {
     public static void main(String[] args) {
-        int[] numeros = new int[10];
-        for (int i = 0; i < numeros.length; i++) {
-            numeros[i] = i + 1;
-        }
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(new Vaca());
+        animals.add(new Ovella());
+        animals.add(new Gallina());
 
-        System.out.println("Original: " + Arrays.toString(numeros));
-
-        System.out.print("Inverso: ");
-        for (int i = numeros.length - 1; i >= 0; i--) {
-            System.out.print(numeros[i] + " ");
+        for (Animal a : animals) {
+            a.ferSo();
         }
     }
 }
 ```
 
-El primer bucle ompli de l'1 al 10. El segon recorre **cap arrere**: comença en `length - 1` (el 10) i baixa fins a 0 (l'1). Imprimeix `10 9 8 7 6 5 4 3 2 1`.
+Eixida:
+
+```
+Muuuu
+Beeee
+Cloc cloc
+```
+
+Un sol `ArrayList<Animal>` i un sol bucle: cada animal executa la seua pròpia versió gràcies al polimorfisme. Sense ell, tindries tres llistes separades. Això és el que fa que el polimorfisme valga el seu pes en or.
 
 </details>
 
 ---
 
-## Exercici 9: CodeWars — Convert number to reversed array of digits
+## Exercici 7: Troba l'error — @Override que no ho és
+
+<details>
+<summary>🔄 Solució</summary>
+
+La línia que **no compila** és:
+
+```java
+@Override
+public void nedar() { }   // ✗ ERROR: Animal no té nedar()
+```
+
+`@Override` li diu al compilador: "verifica que realment estic sobreescrivint un mètode del pare". Com que `Animal` no té `nedar()`, el compilador t'avisa en l'acte. L'altra línia (`ferSo()`) sí que és un override vàlid. Eixe avís a temps és el regal de `@Override`: si escrius malament un nom de mètode, te n'assabenta el compilador, no un bug raríssim a mitjanit.
+
+</details>
+
+---
+
+## Exercici 8: Escriu este programa — el gos ben heretat
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static int[] digitize(long n) {
-        String texto = String.valueOf(n);
-        int[] resultado = new int[texto.length()];
-        for (int i = 0; i < texto.length(); i++) {
-            resultado[i] = texto.charAt(texto.length() - 1 - i) - '0';
-        }
-        return resultado;
+public class Gos extends Animal {
+    public Gos(String nom, int edat) {
+        super(nom, edat);
+    }
+
+    public void lladrar() {
+        System.out.println(nom + " diu: ¡Guau!");
+    }
+
+    public static void main(String[] args) {
+        Gos g = new Gos("Firulais", 3);
+        g.lladrar();
     }
 }
 ```
 
-O, amb aritmètica pura:
+Eixida: `Firulais diu: ¡Guau!`
 
-```java
-public class Kata {
-    public static int[] digitize(long n) {
-        String texto = String.valueOf(n);
-        int[] resultado = new int[texto.length()];
-        for (int i = 0; i < resultado.length; i++) {
-            resultado[i] = (int) (n % 10);
-            n /= 10;
-        }
-        return resultado;
-    }
-}
+`Gos` pot usar `nom` i `edat` perquè estan declarats com a `protected` en `Animal`: l'herència els posa a disposició de tota la família. Si foren `private`, ni `Gos` els veuria. És com l'herència familiar: el que és privat a casa dels avis, no ho veuen ni els néts.
+
+</details>
+
+---
+
+## Exercici 9: Què imprimeix? — la cadena de constructors
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+Avi
+Pare
+Fill
 ```
 
-Per a `35231` → `{1, 3, 2, 5, 3}`. La primera versió recorre el text de darrere cap endavant i resta `'0'` per a passar de caràcter a número. La segona usa el truc del mòdul: l'últim dígit és `n % 10`, i dividir entre 10 "trau" eixe dígit. Tots dos camins usen el `length` del text, no un número fix.
+En crear un `Fill` s'executen **tots** els constructors de la cadena, del més general al més específic. Com que cada constructor crida a `super()` (o Java el posa automàticament), primer es construïx `Avi`, després `Pare` i per últim `Fill`. Els fonaments abans que el teulada, sempre.
 
 </details>

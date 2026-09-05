@@ -1,132 +1,210 @@
 ---
-title: "Butlletí U09 — Inicial"
-description: "Exercicis bàsics d'Arrays i Col·leccions"
+title: Butlletí U09 — Inicial
+description: Exercicis bàsics d'Herència, Polimorfisme i Interfícies
 ---
 
 # 📝 Butlletí U09 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer aparcament de dades i fes que el `for-each` deixe de semblar màgia. Cap plaça no naix sabent tindre amo.
+> Sense solucions. Sense presses. Obri l'IDE, dona-li la mà a la primera superclasse i fes que `extends` deixe de semblar màgia. L'herència en Java és com la de veritat: de vegades et portes genial amb les subclasses, de vegades vols renegar de tot. Però ningú no naix sabent usar `super`.
 
 ---
 
-## Exercici 1: Què imprimeix? — Array de booleans
+## Exercici 1: Què imprimeix? — La família musical
 
 ```java
-boolean[] flags = new boolean[3];
-flags[1] = true;
-System.out.println(flags[0] + " " + flags[1] + " " + flags[2]);
+class Instrumentista {
+    void tocar() { System.out.println("L'instrumentista toca un instrument"); }
+}
+
+class Guitarrista extends Instrumentista {
+    void tocar() { System.out.println("El guitarrista toca la guitarra"); }
+}
+
+class Baixista extends Guitarrista {
+    void tocar() { System.out.println("El baixista toca el baix"); }
+}
+
+public class Banda {
+    public static void main(String[] args) {
+        Baixista b = new Baixista();
+        b.tocar();
+    }
+}
 ```
 
-Què imprimeix? Quin és el valor per defecte d'un `boolean` en un array?
+Què imprimeix? Per què?
 
 ---
 
-## Exercici 2: Troba l'error — NullPointerException
+## Exercici 2: Troba l'error — extends mal usat
 
 ```java
-String[] nombres = new String[3];
-nombres[0] = "Ana";
-nombres[1] = "Bob";
-System.out.println(nombres[2].toUpperCase());
-```
+public class Animal {
+    private String especie;
 
-Què ocorre en executar este codi? Per què?
-
----
-
-## Exercici 3: Completa el codi — for bàsic per a buscar el major
-
-Completa el següent programa perquè trobe i imprimisca el número més gran de l'array:
-
-```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < ______; i++) {   // fins on arriba el bucle?
-    if (numeros[i] ______ mayor) {    // quin operador?
-        ______ = numeros[i];          // què assignem?
+    public Animal(String especie) {
+        this.especie = especie;
     }
 }
 
-System.out.println("El mayor es: " + mayor);
+public class Gos extends Animal {
+    private String raça;
+
+    public Gos(String raça) {
+        this.raça = raça;
+    }
+}
 ```
+
+Este codi **no compila**. Per què? Explica l'error i corregeix-lo.
 
 ---
 
-## Exercici 4: Escriu este programa — comptar números parells
-
-Crea un array de 10 enters amb valors que tria tu. Recórrel amb un bucle `for` i compta quants d'ells són parells. Al final, imprimeix el total de parells i l'array original amb `Arrays.toString`.
-
-Exemple d'eixida:
-
-```
-Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]
-Pares: 5
-```
-
----
-
-## Exercici 5: Què imprimeix? — ArrayList remove per índex vs valor
+## Exercici 3: Completa el codi — el gat que crida el seu pare
 
 ```java
-import java.util.ArrayList;
+public class Animal {
+    public void ferSo() {
+        System.out.println("Algun so genèric...");
+    }
+}
+
+public class Gat extends Animal {
+    @Override
+    public void ferSo() {
+        ________.ferSo();   // primer el del pare
+        System.out.println("¡MIAU!");
+    }
+}
+```
+
+Quina paraula falta al buit perquè `Gat` primer execute el so d'`Animal` i després el seu "¡MIAU!"? Escriu a més un `main` que cree un `Gat` i crida a `ferSo()`.
+
+---
+
+## Exercici 4: Escriu este programa — l'herència de vehicles
+
+Crea una jerarquia de 3 nivells usant `extends`:
+
+- `Vehicle` (atribut: `String marca`)
+- `Cotxe` (atribut: `int numPortes`)
+- `Esportiu` (atribut: `int velocitatMaxima`)
+
+Cada classe ha de tindre un constructor que reba els seus atributs i use `super`. En `main()`, crea un `Esportiu` de marca "Ferrari", 2 portes i 340 km/h. Imprimeix els seus atributs.
+
+---
+
+## Exercici 5: Què imprimeix? — Polimorfisme amb referències
+
+```java
+class X {
+    void missatge() { System.out.println("X"); }
+}
+
+class Y extends X {
+    void missatge() { System.out.println("Y"); }
+}
+
+class Z extends Y { }
 
 public class Test {
     public static void main(String[] args) {
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("A");
-        lista.add("B");
-        lista.add("C");
-        lista.add("B");
-        lista.add("D");
+        X ref1 = new Y();
+        X ref2 = new Z();
+        Y ref3 = new Z();
 
-        lista.remove(1);          // remove per índex
-        lista.remove("B");        // remove per objecte
-
-        System.out.println(lista);
+        ref1.missatge();
+        ref2.missatge();
+        ref3.missatge();
     }
 }
 ```
 
-Què imprimeix? Per què el segon `remove("B")` no esborra el mateix que el primer?
+Què imprimeix cada crida? Per què el tipus de la referència no decidix res?
 
 ---
 
-## Exercici 6: Troba l'error — length vs length()
+## Exercici 6: Escriu este programa — la granja polimòrfica
+
+Crea una classe `Animal` amb mètode `ferSo()`. Crea `Vaca`, `Ovella` i `Gallina` que el sobreescriguen. En `main()`, crea un `ArrayList<Animal>`, fica una vaca, una ovella i una gallina, recorre'l amb un for-each cridant a `ferSo()`.
 
 ```java
-int[] numeros = {10, 20, 30};
-String texto = "Hola";
-
-System.out.println(numeros.length());
-System.out.println(texto.length);
-```
-
-Quines línies tenen error? Explica la diferència entre `length` (sense parèntesis) i `length()` (amb parèntesis).
-
----
-
-## Exercici 7: Escriu este programa — cerca lineal
-
-Crea un array d'enters anomenat `edades` amb 8 valors. Demana a l'usuari un número pel teclat (amb `Scanner`) i busca si eixe número està a l'array. Imprimeix «Encontrado en posición X» o «No encontrado».
-
-```
-Introduce edad a buscar: 25
-Encontrado en posición 3
+// Eixida esperada:
+// Muuuu
+// Beeee
+// Cloc cloc
 ```
 
 ---
 
-## Exercici 8: Escriu este programa — l'invers
+## Exercici 7: Troba l'error — @Override que no ho és
 
-Crea un array de 10 enters, ompli'l amb els números de l'1 al 10 i després imprimeix-lo en **ordre invers** (del 10 a l'1). Fes-ho amb un `for` que recórrega l'array cap arrere.
+```java
+public class Animal {
+    public void ferSo() {
+        System.out.println("...");
+    }
+}
+
+public class Peix extends Animal {
+    @Override
+    public void ferSo() { }   // ¿compila?
+
+    @Override
+    public void nedar() { }   // ¿compila?
+}
+```
+
+Una de les dos línies amb `@Override` impedix compilar. Quina i per què? Què t'avisa el compilador en l'instant en què escrius eixa línia?
 
 ---
 
-## Exercici 9: CodeWars — Convert number to reversed array of digits
+## Exercici 8: Escriu este programa — el gos ben heretat
 
-Resol la kata **"Convert number to reversed array of digits"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/5583090cbe83f4fd8c000051).
+Parteix d'esta classe base:
 
-Completa el mètode `public static int[] digitize(long n)` que reba un número (per exemple `35231`) i torne un array amb els seus dígits **en ordre invers** (`{1, 3, 2, 5, 3}`).
+```java
+public class Animal {
+    protected String nom;
+    protected int edat;
 
-Pista: usa `String.valueOf(n).toCharArray()` per a obtindre els dígits com a text, o dividix per 10 dins d'un bucle mentre el número siga major que 0.
+    public Animal(String nom, int edat) {
+        this.nom = nom;
+        this.edat = edat;
+    }
+}
+```
+
+Escriu una classe `Gos extends Animal` amb:
+
+- Constructor que use `super(nom, edat)`.
+- Mètode `lladrar()` que imprimisca `nom + " diu: ¡Guau!"`.
+- Un `main` que cree un `Gos("Firulais", 3)` i crida a `lladrar()`.
+
+Respon: per què `Gos` pot usar `nom` i `edat` encara que no les declare?
+
+---
+
+## Exercici 9: Què imprimeix? — la cadena de constructors
+
+```java
+class Avi {
+    public Avi() { System.out.println("Avi"); }
+}
+
+class Pare extends Avi {
+    public Pare() { System.out.println("Pare"); }
+}
+
+class Fill extends Pare {
+    public Fill() { System.out.println("Fill"); }
+}
+
+public class Test {
+    public static void main(String[] args) {
+        new Fill();
+    }
+}
+```
+
+Què imprimeix i per què en eixe ordre?

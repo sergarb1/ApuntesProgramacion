@@ -6,7 +6,7 @@ emoji: 🔀
 
 <p><small>El semàfor, la cinta de córrer i l'assegurança de vida que fan decidir i repetir als teus programes 🔀</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 Variables → **🔀 ACI ETS (U03)** → 🧩 Algorítmica → ⚡ Tècniques → 🏗️ POO → 🔒 Visibilitat → 🧬 Herència → 📚 Col·leccions → 🗺️ Genèrics → 📁 Fitxers → 🗄️ JDBC → 🌐 APIs
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → **🔀 ACÍ ETS (U03)** → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
 
 ---
 
@@ -86,7 +86,7 @@ En acabar, seràs capaç de:
 | RA3 f) | S'han provat i depurat els programes. | ✅ Tots, amb molta cosa extra en els butlletins |
 | RA3 g) | S'ha comentat i documentat el codi. | ✅ Tots |
 
-> 📌 Els bucles que veus ací són el múscul de tot el que ve: els recorreguts d'arrays i col·leccions (U09) i els algoritmes d'ordenació i cerca (U05) no serien res sense `for` i `while`.
+> 📌 Els bucles que veus ací són el múscul de tot el que ve: els recorreguts d'arrays i col·leccions (U10) i els algoritmes d'ordenació i cerca (U06) no serien res sense `for` i `while`.
 
 ---
 
@@ -98,4 +98,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/03-estructuras-control-excepciones/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u03-inicial).
 
 **📍 Primer punt:** [01 · if, else if i else](/ApuntesProgramacion/va/03-estructuras-control-excepciones/01-if-else)  
-**⏭️ En acabar la unitat, continua en [U04 · Algorítmica I: Fonaments](/ApuntesProgramacion/va/04-algoritmica-fundamentos).**
+**⏭️ En acabar la unitat, continua en [U04 · Arrays](/ApuntesProgramacion/va/04-arrays).**

@@ -108,3 +108,53 @@ Recorda l'`import java.util.Scanner;` i el `sc.close()`.
 Resol la kata **"Will you make it?"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/5861d28f124b35723e00005e).
 
 Et donen la distància fins a una gasolinera, els litres que té el teu cotxe i els quilòmetres per litre. Determina si hi arribes o no. Retorna `true` si hi arribes, `false` si et quedes tirat.
+
+---
+
+## Exercici 10: Què imprimeix? — printf amb conversions
+
+Sense executar, escriu l'eixida exacta d'este programa:
+
+```java
+public class FormatacioBasica {
+    public static void main(String[] args) {
+        int enter = 42;
+        double decimal = 3.1416;
+        String text = "Java";
+
+        System.out.printf("%d %f %s %n", enter, decimal, text);
+    }
+}
+```
+
+Què imprimeix? Què fa `%n` al final?
+
+**Pista:** `%d` és per a enters, `%f` per a decimals i `%s` per a text. Quants decimals mostra `%f` quan no li poses `%.2f`?
+
+---
+
+## Exercici 11: la nota amb dos decimals
+
+Escriu un programa anomenat `NotaFormatejada` que declare `String nom = "Marta"` i `double nota = 9.5678;`. Usa `String.format()` per a construir este missatge:
+
+```
+Marta ha tret un 9.57.
+```
+
+Després mostra el mateix missatge amb `System.out.printf()`. Quina diferència hi ha entre les dos formes?
+
+**Pista:** `String.format` retorna un `String` i no imprimeix res; `printf` escriu directament en pantalla. Els dos usen `%.2f` per a deixar dos decimals.
+
+---
+
+## Exercici 12: la propina amb dos decimals
+
+Escriu un programa anomenat `PropinaFormatejada` que demane amb `Scanner` el total del compte (`double`) i el percentatge de propina (`int`). Calcula la propina i el total final, i mostra'ls amb `System.out.printf` i dos decimals:
+
+```
+Total: 45.50 €
+Propina (15%): 6.82 €
+Total a pagar: 52.33 €
+```
+
+**Pista:** `%.2f` controla els decimals. Multiplica primer (`total * percentatge`) i dividix després amb `100.0`, o `percentatge / 100` donarà 0.

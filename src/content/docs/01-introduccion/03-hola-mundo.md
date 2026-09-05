@@ -67,7 +67,7 @@ Parece un conjuro de Harry Potter. Desmenucemos cada palabra:
 | Palabra | Qué significa |
 |---|---|
 | `public` | Java puede encontrarlo desde fuera: el botón es visible |
-| `static` | Puede llamarse sin necesidad de crear un objeto (lo verás en la U06) |
+| `static` | Puede llamarse sin necesidad de crear un objeto (lo verás en la U07) |
 | `void` | No devuelve ningún valor: hace su trabajo y se calla |
 | `main` | El nombre exacto que Java busca al arrancar. No vale otro |
 | `String[] args` | Un bolsillo donde puedes meter argumentos al ejecutar (punto 6) |

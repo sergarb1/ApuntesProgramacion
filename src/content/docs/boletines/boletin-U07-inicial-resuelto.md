@@ -9,275 +9,308 @@ description: Los mismos ejercicios que el boletín inicial, con soluciones
 
 ---
 
-## Ejercicio 1: La casa de cristal
+## Ejercicio 1: El perro que habla
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Perro {
+    String nombre;
+    int edad;
+
+    public Perro(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    void ladrar() {
+        System.out.println("¡Guau guau! Soy " + nombre);
+    }
+
+    public static void main(String[] args) {
+        Perro toby = new Perro("Toby", 3);
+        toby.ladrar();
+    }
+}
+```
+
+Salida: `¡Guau guau! Soy Toby`
+
+El constructor con `this` coloca el nombre y la edad en el objeto recién nacido. El método `ladrar()` no recibe nada: usa el atributo `nombre` que ya quedó guardado.
+
+</details>
+
+---
+
+## Ejercicio 2: El teléfono con batería
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Telefono {
+    String marca;
+    int bateria;
+
+    public Telefono(String marca, int bateria) {
+        this.marca = marca;
+        this.bateria = bateria;
+    }
+
+    void llamar() {
+        System.out.println("Llamando... (batería al " + bateria + "%)");
+    }
+
+    void cargar(int minutos) {
+        this.bateria += minutos;
+    }
+
+    public static void main(String[] args) {
+        Telefono movil = new Telefono("Nokia", 50);
+        movil.llamar();
+        movil.cargar(30);
+        movil.llamar();
+    }
+}
+```
+
+Salida:
+
+```
+Llamando... (batería al 50%)
+Llamando... (batería al 80%)
+```
+
+`cargar(int minutos)` modifica el atributo con `this.bateria += minutos;`. El mismo objeto conserva su batería entre llamadas: eso es tener estado.
+
+</details>
+
+---
+
+## Ejercicio 3: El estudiante con nota
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Estudiante {
+    String nombre;
+    double nota;
+
+    public Estudiante(String nombre, double nota) {
+        this.nombre = nombre;
+        this.nota = nota;
+    }
+
+    void mostrarEstado() {
+        if (nota >= 5) {
+            System.out.println(nombre + " ha aprobado");
+        } else {
+            System.out.println(nombre + " ha suspendido");
+        }
+    }
+
+    public static void main(String[] args) {
+        Estudiante ana = new Estudiante("Ana", 8.5);
+        Estudiante luis = new Estudiante("Luis", 3.0);
+        ana.mostrarEstado();
+        luis.mostrarEstado();
+    }
+}
+```
+
+Salida:
+
+```
+Ana ha aprobado
+Luis ha suspendido
+```
+
+El método mezcla dos mundos: usa los atributos del objeto (`nombre`, `nota`) con la lógica de decisión (`if`/`else`) que aprendiste en la U03. Dos objetos, dos estados, una clase.
+
+</details>
+
+---
+
+## Ejercicio 4: La película en cartelera
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Pelicula {
+    String titulo;
+    String genero;
+
+    public Pelicula(String titulo, String genero) {
+        this.titulo = titulo;
+        this.genero = genero;
+    }
+
+    void mostrarCartelera() {
+        System.out.println("Ahora en cines: " + titulo + " (" + genero + ")");
+    }
+
+    public static void main(String[] args) {
+        Pelicula p = new Pelicula("El curso de Java", "Terror");
+        p.mostrarCartelera();
+    }
+}
+```
+
+Salida: `Ahora en cines: El curso de Java (Terror)`
+
+Mismo patrón que el perro y el teléfono: atributos, constructor con `this`, método que los usa. A estas alturas ya deberías notar que todas las clases fáciles se parecen.
+
+</details>
+
+---
+
+## Ejercicio 5: La persona educada
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Persona {
-    private String nombre;
-    private int edad;
+    String nombre;
+    int edad;
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
+    public Persona(String nombre, int edad) {
         this.nombre = nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
         this.edad = edad;
     }
 
+    void presentarse() {
+        System.out.println("Hola, soy " + nombre + " y tengo " + edad + " años.");
+    }
+
     public static void main(String[] args) {
-        Persona p = new Persona();
-        p.setNombre("Ana");
-        p.setEdad(25);
-        System.out.println(p.getNombre() + " tiene " + p.getEdad() + " años.");
+        Persona ana = new Persona("Ana", 25);
+        ana.presentarse();
     }
 }
 ```
 
-Los atributos pasan a `private` y todo el acceso se hace con getters y setters. El `this` en los setters desambigua: el parámetro se asigna al atributo, no a sí mismo.
+Salida: `Hola, soy Ana y tengo 25 años.`
+
+Aquí es donde `this` demuestra su valor: sin `this`, `nombre = nombre` asignaría el parámetro al parámetro y el atributo quedaría en `null`. Con `this`, el atributo recibe el valor del parámetro.
 
 </details>
 
 ---
 
-## Ejercicio 2: El coche del vecindario
+## Ejercicio 6: El círculo calculador
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Coche {
-    private String marca;
-    private double velocidad;
+public class Circulo {
+    double radio;
 
-    public Coche(String marca) {
-        this.marca = marca;
-        this.velocidad = 0;
+    public Circulo(double radio) {
+        this.radio = radio;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public double getVelocidad() {
-        return velocidad;
-    }
-
-    public void setVelocidad(double velocidad) {
-        if (velocidad >= 0 && velocidad <= 200) {
-            this.velocidad = velocidad;
-        } else {
-            System.out.println("Velocidad inválida.");
-        }
+    double calcularArea() {
+        return Math.PI * this.radio * this.radio;
     }
 
     public static void main(String[] args) {
-        Coche c = new Coche("Seat");
-        c.setVelocidad(-50);
-        c.setVelocidad(120);
-        System.out.println("Velocidad: " + c.getVelocidad());
+        Circulo c = new Circulo(2.5);
+        System.out.println("Área: " + c.calcularArea());
     }
 }
 ```
 
-Salida: `Velocidad inválida.` (por el -50) y luego `Velocidad: 120.0`. El setter valida antes de tocar el atributo: es la frontera que protege el estado del objeto.
+Salida: `Área: 19.634954084936208`
+
+Este método no es `void`: usa `return` para devolver el área. Los métodos que *calculan* devuelven un valor; los que solo *muestran* son `void`. Esa distinción es mitad de la batalla de esta unidad.
 
 </details>
 
 ---
 
-## Ejercicio 3: El termómetro con cerebro
+## Ejercicio 7: El videojuego jugable
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Termometro {
-    private double temperatura;
+public class Videojuego {
+    String titulo;
+    int horasJugadas;
 
-    public Termometro() {
-        temperatura = 20.0;
+    public Videojuego(String titulo, int horasJugadas) {
+        this.titulo = titulo;
+        this.horasJugadas = horasJugadas;
     }
 
-    public double getTemperatura() {
-        return temperatura;
+    void jugar(int horas) {
+        this.horasJugadas += horas;
     }
 
-    public void setTemperatura(double temperatura) {
-        if (temperatura >= -273.15 && temperatura <= 100.0) {
-            this.temperatura = temperatura;
-        } else {
-            System.out.println("Temperatura fuera de rango.");
-        }
+    void mostrar() {
+        System.out.println(titulo + " - " + horasJugadas + " horas");
     }
 
     public static void main(String[] args) {
-        Termometro t = new Termometro();
-        t.setTemperatura(-500);
-        t.setTemperatura(36.5);
-        System.out.println("Temperatura: " + t.getTemperatura());
+        Videojuego juego = new Videojuego("Minecraft", 10);
+        juego.jugar(5);
+        juego.mostrar();
     }
 }
 ```
 
-Salida: `Temperatura fuera de rango.` y luego `Temperatura: 36.5`. El setter convierte la clase en un "termómetro con cerebro": no acepta cualquier número, solo valores físicamente posibles.
+Salida: `Minecraft - 15 horas`
+
+El método `jugar(int horas)` es un *setter* informal: modifica el estado del objeto. El objeto no es una caja estática: sus atributos cambian con los métodos. Eso es la vida de un objeto.
 
 </details>
 
 ---
 
-## Ejercicio 4: getter sin setter
+## Ejercicio 8: ¿Qué imprime? — el taller de coches
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime:
+
+```
+Seat va a 150 km/h
+Ford va a 90 km/h
+```
+
+Hay **dos** objetos (`c1` y `c2`), cada uno con su propia `velocidad`. `c1.acelerar(30)` suma 30 a la velocidad de `c1` (120 + 30 = 150) pero no toca la de `c2`. Cuando `c2.mostrar()` se ejecuta, su velocidad sigue siendo 90. Los atributos de un objeto son privados de ese objeto.
+
+</details>
+
+---
+
+## Ejercicio 9: CodeWars — Object Oriented Piracy
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Configuracion {
-    private String idioma;
+public class Ship {
+    private final double draft;
+    private final int crew;
 
-    public Configuracion(String idioma) {
-        this.idioma = idioma;
+    public Ship(double draft, int crew) {
+        this.draft = draft;
+        this.crew = crew;
     }
 
-    public String getIdioma() {
-        return idioma;
-    }
-
-    public static void main(String[] args) {
-        Configuracion config = new Configuracion("es");
-        System.out.println("Idioma: " + config.getIdioma());
+    public boolean isWorthIt() {
+        return draft - (crew * 1.5) > 20;
     }
 }
 ```
 
-No tiene setter porque el idioma es una decisión de una sola vez: se elige en el constructor y ya. Si alguien intentase `config.idioma = "va"` desde fuera, **no compilaría**: `idioma` es `private`, y fuera de la clase no se puede tocar. Obligar a que el cambio pase por un setter (o a que no exista) es la esencia de la encapsulación.
-
-</details>
-
----
-
-## Ejercicio 5: El contador de la clase
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Contador {
-    public static int total = 0;
-
-    public Contador() {
-        total++;
-    }
-
-    public static void main(String[] args) {
-        Contador c1 = new Contador();
-        Contador c2 = new Contador();
-        Contador c3 = new Contador();
-        System.out.println("Total: " + Contador.total);
-    }
-}
-```
-
-`total` vale **3**. Es `static`: una sola copia compartida por toda la clase. Cada `new` llama al constructor y lo incrementa; como los tres objetos comparten la misma variable, el contador cuenta los tres. No es 1 porque no hay una copia por objeto: hay una única copia de clase.
-
-</details>
-
----
-
-## Ejercicio 6: La calculadora sin pilas
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Utilidades {
-    public static int sumar(int a, int b) {
-        return a + b;
-    }
-
-    public static int restar(int a, int b) {
-        return a - b;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(Utilidades.sumar(5, 3));
-        System.out.println(Utilidades.restar(10, 4));
-    }
-}
-```
-
-Salida: `8` y `6`. Como los métodos son `static`, se llaman con el nombre de la clase (`Utilidades.sumar`), sin `new` y sin objeto. Es el mismo patrón que ya usas con `Math.sqrt` o `Integer.parseInt`.
-
-</details>
-
----
-
-## Ejercicio 7: las constantes del barrio
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Constantes {
-    public static final double IVA = 0.21;
-    public static final int MAX_INTENTOS_LOGIN = 3;
-    public static final String NOMBRE_APP = "GestionCurso";
-
-    public static void main(String[] args) {
-        System.out.println("IVA: " + Constantes.IVA);
-        System.out.println("Máximo intentos: " + Constantes.MAX_INTENTOS_LOGIN);
-        System.out.println("App: " + Constantes.NOMBRE_APP);
-        // Constantes.IVA = 0.5; // Error de compilación
-    }
-}
-```
-
-Al intentar `Constantes.IVA = 0.5;` el compilador lo **prohíbe**: `final` significa que el valor no se puede reasignar después de su declaración. Las constantes son a prueba de bombas, por eso van en MAÚSCULAS con `_`: todo el mundo sabe que no se tocan.
-
-</details>
-
----
-
-## Ejercicio 8: ¿Qué imprime? — el puzle estático
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`1 2 2`**.
-
-`Puzle.s` es `static`: una sola copia compartida. Con el primer `new`, `s` pasa a 1 y `p1.i` se copia ese 1. Con el segundo `new`, `s` pasa a 2 y `p2.i` se copia ese 2. Al final, `p1.i` = 1, `p2.i` = 2 y `Puzle.s` = 2. El estático sube para todos; el de instancia se congela con el valor que tenía la clase en el momento de nacer.
-
-</details>
-
----
-
-## Ejercicio 9: CodeWars — Square(n) Sum
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Kata {
-    public static int squareSum(int[] n) {
-        int suma = 0;
-        for (int i = 0; i < n.length; i++) {
-            suma += n[i] * n[i];
-        }
-        return suma;
-    }
-}
-```
-
-Para `[1, 2, 2]` → `1 + 4 + 4 = 9`. El bucle recorre cada elemento y acumula `n[i] * n[i]`. Nota el `static`: CodeWars exige el método estático para poder llamarlo sin crear objetos, justo lo que acabas de practicar.
+El constructor guarda `draft` y `crew` con `this`, y `isWorthIt()` aplica la fórmula: cada miembro de la tripulación reduce el calado útil en 1.5 pies. Si lo que queda supera 20, el barco merece la pena. Objeto + operaciones de la U02, resuelto.
 
 </details>

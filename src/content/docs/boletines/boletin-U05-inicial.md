@@ -1,129 +1,163 @@
 ---
 title: Boletín U05 — Inicial
-description: Ejercicios básicos de recursividad para calentar los motores del stack
+description: "Ejercicios básicos de Algorítmica: fundamentos"
 ---
 
 # 📝 Boletín U05 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, respira hondo y recuerda: para entender la recursividad, primero tienes que entender la recursividad.
+> Sin soluciones. Sin prisas. Abre el IDE y deja que tus bucles busquen, ordenen y calculen. El ordenador nunca se cansa de recorrer un array: eres tú quien decide cómo.
 
 ---
 
-## Ejercicio 1: El factorial del valiente
-
-Escribe un programa llamado `FactorialValiente` con un método recursivo `static long fact(int n)` que calcule el factorial de un número. Pruébalo con `fact(5)`, `fact(0)` y `fact(10)`.
-
-Recuerda: `0! = 1` y `n! = n * (n-1)!`.
-
----
-
-## Ejercicio 2: La abuela suma el array
-
-Escribe un programa llamado `SumaRecursiva` que sume todos los elementos de un array usando un método recursivo:
-
-```java
-static int sumar(int[] arr, int indice)
-```
-
-Si `indice == arr.length`, devuelve 0. Si no, `arr[indice] + sumar(arr, indice + 1)`. Pruébalo con `{3, 8, 2, 10, 5}` → debe dar 28.
-
----
-
-## Ejercicio 3: ¿Qué imprime? — la cuenta atrás recursiva
+## Ejercicio 1: ¿Qué imprime? — la búsqueda de la gema
 
 Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class CuentaRara {
-    static void cuenta(int n) {
-        if (n == 0) {
-            System.out.println("¡BOOM!");
-            return;
+public class BusquedaGema {
+    public static void main(String[] args) {
+        int[] cofre = {12, 7, 25, 9, 31};
+        int objetivo = 9;
+        int posicion = -1;
+
+        for (int i = 0; i < cofre.length; i++) {
+            if (cofre[i] == objetivo) {
+                posicion = i;
+                break;
+            }
         }
-        System.out.println(n);
-        cuenta(n - 1);
-    }
 
-    public static void main(String[] args) {
-        cuenta(3);
+        System.out.println("Posición: " + posicion);
     }
 }
 ```
 
-Pista: primero baja imprimiendo números y, cuando llega al caso base, hace BOOM.
+Pista: recorre el array mentalmente elemento a elemento. ¿En qué índice aparece el 9 por primera vez?
 
 ---
 
-## Ejercicio 4: La potencia del aprendiz
+## Ejercicio 2: El buscador de tesoros
 
-Escribe un programa llamado `PotenciaRecursiva` con un método recursivo `static double potencia(double base, int exponente)` que calcule `base^exponente`:
+Escribe un método `public static int buscar(int[] datos, int objetivo)` que recorra el array con un `for` y devuelva el **índice** donde aparece el objetivo. Si no está, devuelve `-1`.
 
-- Caso base: `exponente == 0` → devuelve 1.
-- Caso recursivo: `base * potencia(base, exponente - 1)`.
+Prueba con `int[] tesoros = {4, 8, 15, 16, 23, 42}`:
 
-Pruébalo con `potencia(2, 10)` → 1024.
+- `buscar(tesoros, 15)` → debe devolver `2`
+- `buscar(tesoros, 7)` → debe devolver `-1`
 
----
-
-## Ejercicio 5: El detective de dígitos
-
-Escribe un programa llamado `ContadorDigitos` con un método recursivo `static int contarDigitos(int n)` que cuente cuántos dígitos tiene un número:
-
-- Caso base: `n < 10` → devuelve 1.
-- Caso recursivo: `1 + contarDigitos(n / 10)`.
-
-Pruébalo con `12345` → debe dar 5.
+Pista: devuelve `i` en cuanto encuentres el objetivo; solo después del bucle devuelves `-1`.
 
 ---
 
-## Ejercicio 6: El espejo de letras
+## Ejercicio 3: ¿Qué imprime? — la bombolla mínima
 
-Escribe un programa llamado `InvertirTexto` con un método recursivo `static String invertir(String s)` que devuelva el texto al revés:
-
-- Caso base: `s.isEmpty()` → devuelve `""`.
-- Caso recursivo: `invertir(s.substring(1)) + s.charAt(0)`.
-
-Pruébalo con `"hola"` → debe devolver `"aloh"`.
-
----
-
-## Ejercicio 7: ¿Qué imprime? — el enigma del stack
-
-Sin ejecutar, escribe la salida exacta:
+Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class EnigmaStack {
-    static int misterio(int n) {
-        if (n == 0) return 0;
-        return n % 10 + misterio(n / 10);
-    }
-
+public class BombollaMinima {
     public static void main(String[] args) {
-        System.out.println(misterio(1234));
+        int[] datos = {3, 1, 2};
+
+        for (int i = 0; i < datos.length - 1; i++) {
+            for (int j = 0; j < datos.length - 1 - i; j++) {
+                if (datos[j] > datos[j + 1]) {
+                    int temp = datos[j];
+                    datos[j] = datos[j + 1];
+                    datos[j + 1] = temp;
+                }
+            }
+        }
+
+        for (int num : datos) {
+            System.out.print(num + " ");
+        }
     }
 }
 ```
 
-Pista: `n % 10` extrae la última cifra y `n / 10` se la quita.
+Pista: haz la traza en un papel. Primera pasada: el 3 vs 1, luego 3 vs 2. ¿Qué queda al final?
 
 ---
 
-## Ejercicio 8: El guardián de los palíndromos
+## Ejercicio 4: La caja de zapatos ordenada
 
-Escribe un programa llamado `GuardianPalindromos` con un método recursivo que compruebe si una palabra es un palíndromo (se lee igual hacia delante y hacia atrás):
+Escribe un método `public static void ordenar(int[] datos)` que ordene el array **de menor a mayor** usando la ordenación por inserción.
+
+Prueba con `int[] caja = {9, 2, 7, 1}` y muestra el array resultante con un `for...each`.
+
+Pista: guarda `int clave = datos[i]` y desliza hacia la derecha los elementos mayores con un `while`.
+
+---
+
+## Ejercicio 5: El detective de la búsqueda binaria
+
+Escribe un método `public static int busquedaBinaria(int[] datos, int objetivo)` que use la búsqueda binaria sobre un array **ya ordenado** y devuelva el índice del objetivo (o `-1`).
+
+Prueba con `int[] agenda = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91}`:
+
+- `busquedaBinaria(agenda, 23)` → debe devolver `5`
+- `busquedaBinaria(agenda, 30)` → debe devolver `-1`
+
+Pista: dos punteros `izquierda = 0` y `derecha = datos.length - 1`, un `while (izquierda <= derecha)` y `int medio = izquierda + (derecha - izquierda) / 2`.
+
+---
+
+## Ejercicio 6: ¿Qué imprime? — la binaria que falla
+
+Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-static boolean esPalindromo(String s, int inicio, int fin)
+public class BinariaQueFalla {
+    public static void main(String[] args) {
+        int[] datos = {10, 20, 30, 40, 50};
+        int objetivo = 35;
+        int izquierda = 0;
+        int derecha = datos.length - 1;
+        boolean encontrado = false;
+
+        while (izquierda <= derecha) {
+            int medio = izquierda + (derecha - izquierda) / 2;
+            if (datos[medio] == objetivo) {
+                encontrado = true;
+                break;
+            } else if (datos[medio] < objetivo) {
+                izquierda = medio + 1;
+            } else {
+                derecha = medio - 1;
+            }
+        }
+
+        System.out.println(encontrado);
+    }
+}
 ```
 
-Pruébalo con `"reconocer"` (sí), `"salas"` (sí) y `"hola"` (no). Pista: si las puntas no coinciden, ya puedes devolver `false` sin seguir recursando.
+Pista: el 35 no está en el array. ¿Qué valor tiene `encontrado` al final del bucle?
 
 ---
 
-## Ejercicio 9: CodeWars — Factorial
+## Ejercicio 7: El contador de intercambios
 
-Resuelve la kata **"Factorial"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/54ff0d1f355cfd20e60001fc).
+Escribe un programa llamado `ContadorIntercambios` que use la bombolla para ordenar `int[] datos = {5, 2, 9, 1, 5}` y **cuente cuántos intercambios** realiza en total. Al final muestra: `Intercambios: X`.
 
-Crea el método `public static long factorial(int n)` que devuelva el factorial de `n` (recuerda: `0! = 1`). ¡Resuélvela con recursividad, que es lo que toca!
+Pista: declara `int intercambios = 0;` y súmale 1 dentro del `if` de intercambio, justo después de la operación.
 
-Pista: `if (n <= 1) return 1; return n * factorial(n - 1);`
+---
+
+## Ejercicio 8: La nota más alta de la clase
+
+Escribe un método `public static int notaMaxima(int[] notas)` que recorra el array y devuelva la nota más alta.
+
+Prueba con `int[] notas = {7, 9, 5, 10, 6, 8, 4}` → debe devolver `10`.
+
+Pista: usa una variable `maximo` inicializada con el primer elemento (`notas[0]`) y compara con cada uno.
+
+---
+
+## Ejercicio 9: CodeWars — Find the smallest integer in the array
+
+Resuelve la kata **"Find the smallest integer in the array"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2).
+
+Crea el método `public static int findSmallestInt(int[] args)` que devuelva el entero más pequeño del array.
+
+Pista: es el mismo patrón del ejercicio 8: recorre y compara. Aquí el array nunca está vacío.
