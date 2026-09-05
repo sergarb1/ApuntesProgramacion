@@ -47,7 +47,7 @@ public class Fusion {
 }
 ```
 
-Dos punters (`i` i `j`) avancen per cada array comparant a cada pas. El menor dels dos es col·loca al resultat. Quan un array s'esgota, es copia la resta de l'altre. És el mateix algoritme que usa `merge` en el mergesort de la U05.
+Dos punters (`i` i `j`) avancen per cada array comparant a cada pas. El menor dels dos es col·loca al resultat. Quan un array s'esgota, es copia la resta de l'altre. És el mateix algoritme que usa `merge` en el mergesort de la U06.
 
 </details>
 

@@ -33,7 +33,7 @@ public class Kata {
 }
 ```
 
-`replace(" ", "")` recorre tota la cadena i substituïx cada espai per la cadena buida. Sense bucles, sense condicions: un sol mètode estàtic resolt amb el material de cadenes de la U06.
+`replace(" ", "")` recorre tota la cadena i substituïx cada espai per la cadena buida. Sense bucles, sense condicions: un sol mètode estàtic resolt amb el material de cadenes de la U02.
 
 </details>
 
@@ -75,7 +75,7 @@ public class Kata {
 }
 ```
 
-`String.repeat(repeat)` és el mètode modern, directe i sense bucles. Si prefereixes entendre la mecànica, el `for` amb `StringBuilder` (vist en la U06) fa exactament el mateix: acumular la cadena `repeat` vegades.
+`String.repeat(repeat)` és el mètode modern, directe i sense bucles. Si prefereixes entendre la mecànica, el `for` amb `StringBuilder` (vist en la U02) fa exactament el mateix: acumular la cadena `repeat` vegades.
 
 </details>
 
