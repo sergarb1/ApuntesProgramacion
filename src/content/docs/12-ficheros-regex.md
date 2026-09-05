@@ -1,469 +1,110 @@
 ---
-title: "📁 Unidad 12: Ficheros y Expresiones Regulares"
+title: "U12 — Ficheros y Expresiones Regulares"
+description: "El GPS de los archivos, el lápiz que no olvida, la puerta que se cierra sola y el detective de patrones: File, FileWriter, BufferedReader, NIO, serialización y regex 📁"
+emoji: 📁
 ---
+
+<p><small>El GPS de los archivos, el lápiz que no olvida, la puerta que se cierra sola y el detective de patrones: File, FileWriter, BufferedReader, NIO, serialización y regex 📁</small></p>
+
 > 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → **📁 AQUÍ ESTÁS (U12)** → 🗄️ U13 → 🌐 U14
 
-🎯 **Objetivos de aprendizaje**
-- Leer y escribir archivos de texto con File, FileReader, FileWriter, BufferedReader
-- Usar try-with-resources, NIO (Files/Paths) y serialización básica
-- Crear y usar expresiones regulares con Pattern y Matcher
-- Validar, buscar, reemplazar y extraer partes de texto con regex
+---
 
-## Ficheros
+En la U11 viste genéricos y mapas: tus datos por fin viven en memoria como quisieras. Pero hay un problema: cuando el programa termina, todo se esfuma. Los arrays, los `ArrayList` y los `HashMap` mueren con el `main`. Hoy eso se acaba. Los **ficheros** hacen que tus datos sobrevivan a tu programa, y las **expresiones regulares** te dan vista de superhéroe para buscar, validar y extraer cualquier patrón en un texto.
 
-### La Clase File
+Esta unidad tiene tres grandes actos:
 
-Antes de leer o escribir, localiza el archivo. `java.io.File` es el GPS:
+- **Ficheros de texto:** la clase `File`, el GPS de los archivos; `FileWriter` y `FileReader` + `BufferedReader`, el lápiz y el lector de siempre; `try-with-resources`, la puerta que se cierra sola; y `PrintWriter` y `Scanner`, el sargento que formatea y el pulpo que tokeniza.
+- **La forma moderna y la de élite:** la API **NIO** (`Files` y `Paths`), que hace en una línea lo que antes costaba cinco, y la **serialización**, que guarda objetos enteros en un archivo como quien mete ropa en una maleta.
+- **Expresiones regulares:** `Pattern` y `Matcher`, la tabla de símbolos, y sus aplicaciones con `matches()`, `replaceAll()`, `split()` y grupos de captura para validar correos, DNIs y teléfonos como un profesional.
 
-```java
-import java.io.File;
+Por el camino entenderás por qué `new File("ruta")` no crea nada, qué es eso del "infierno de las contrabarras" (`\\d`), por qué no cerrar un archivo puede costarte los datos, y por qué una regex no sirve para validar HTML (por más que lo intentes).
 
-File f = new File("C:/datos/notas.txt");
-System.out.println("¿Existe? " + f.exists());
-System.out.println("¿Es archivo? " + f.isFile());
-System.out.println("¿Es carpeta? " + f.isDirectory());
-System.out.println("Tamaño: " + f.length() + " bytes");
-System.out.println("Ruta absoluta: " + f.getAbsolutePath());
-System.out.println("Nombre: " + f.getName());
-```
+> 📌 **Nota:** la consola (`System.out`, `printf`, `Scanner` por teclado) ya la viste en la **U02**, punto 7. Aquí el `Scanner` y el `PrintWriter` vuelven, pero jugando en su liga: leyendo y escribiendo archivos.
 
-> **💡 Consejo:** Usa `/` o `\\` en Windows. `"C:/datos/notas.txt"` o `"C:\\datos\\notas.txt"`.
-
-### Escribir: FileWriter
-
-```java
-import java.io.FileWriter;
-import java.io.IOException;
-
-FileWriter escritor = new FileWriter("salida.txt");
-escritor.write("Primera línea.\n");
-escritor.write("Segunda línea.\n");
-escritor.close();
-
-// Añadir al final (sin borrar):
-FileWriter writer = new FileWriter("bitacora.txt", true);
-```
-
-> Sin `close()` o `flush()` los datos se quedan en el buffer interno sin escribirse.
-
-### Leer: FileReader + BufferedReader
-
-`BufferedReader` envuelve a `FileReader` para leer líneas enteras de golpe:
-
-```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-
-BufferedReader lector = new BufferedReader(new FileReader("salida.txt"));
-String linea = lector.readLine();
-while (linea != null) {
-    System.out.println(linea);
-    linea = lector.readLine();
-}
-lector.close();
-```
-
-### ⭐ BE THE CODE, MY FRIEND: el detective de archivos
-
-> 🕶️ **Don Tip:** `File` representa rutas, no contenido. Para leer el contenido usa `Scanner`, `BufferedReader` o `Files.readAllLines()`.
-
-```java
-import java.io.*;
-
-public class DetectiveDeArchivos {
-    public static void main(String[] args) throws IOException {
-        File f = new File("misterio.txt");
-        if (!f.exists()) {
-            System.out.println("Creando archivo...");
-            FileWriter w = new FileWriter(f);
-            w.write("Tres\npalabras\nmisteriosas\n");  w.close();
-        }
-        BufferedReader r = new BufferedReader(new FileReader(f));
-        String s = "";
-        String linea;
-        while ((linea = r.readLine()) != null) {
-            s = linea + " " + s;
-        }
-        r.close();
-        System.out.println(s);
-    }
-}
-```
-
-> **⭐** ¿Qué imprime la **segunda** vez? (el archivo ya existe)  
-> **Respuesta:** `misteriosas palabras Tres` — lee y concatena al revés.
-
-### try-with-resources (Java 7+)
-
-Los recursos se cierran automáticamente al salir del bloque:
-
-```java
-try (BufferedReader br = new BufferedReader(new FileReader("salida.txt"))) {
-    String linea;
-    while ((linea = br.readLine()) != null) {
-        System.out.println(linea);
-    }
-} catch (IOException e) {
-    System.out.println("Error: " + e.getMessage());
-}
-// No hay br.close() — se cierra solo
-```
-
-### Scanner + File
-
-```java
-try (Scanner sc = new Scanner(new File("salida.txt"))) {
-    while (sc.hasNextLine()) {
-        System.out.println(sc.nextLine());
-    }
-}
-```
-
-> **Scanner vs BufferedReader:** Scanner es mejor para parsear tokens (nextInt()); BufferedReader es más rápido para archivos grandes.
-
-### PrintWriter
-
-Igual que `System.out` pero escribiendo en archivos:
-
-```java
-try (PrintWriter pw = new PrintWriter(new FileWriter("formato.txt"))) {
-    pw.println("Línea con salto automático");
-    pw.printf("PI vale %.4f%n", Math.PI);
-}
-```
-
-### NIO: Files y Paths
-
-API moderna desde Java 7. `Path` es como `File` pero con esteroides:
-
-```java
-import java.nio.file.*;
-import java.util.List;
-
-Path ruta = Paths.get("C:/datos/notas.txt");
-List<String> lineas = Files.readAllLines(ruta);       // leer
-Files.write(ruta, List.of("Línea 1", "Línea 2"));     // escribir
-```
-
-### ⭐ BE THE CODE, MY FRIEND: NIO en Acción
-
-> 🕶️ **Don Tip:** NIO usa `Path` y `Files`. Son más modernos y tienen métodos útiles como `Files.walk()` para recorrer árboles.
-
-```java
-import java.nio.file.*;
-import java.util.*;
-
-public class BeTheNIO {
-    public static void main(String[] args) throws IOException {
-        Path p = Paths.get("nums.txt");
-        Files.write(p, List.of("3", "7", "2", "9", "5"));
-        List<String> l = Files.readAllLines(p);
-        int suma = 0;
-        for (String s : l) { suma += Integer.parseInt(s); }
-        Files.write(p, List.of("Total: " + suma));
-        System.out.println(Files.readString(p));
-    }
-}
-```
-
-> **⭐** ¿Qué imprime? **Respuesta:** `Total: 26` — suma los números y sobrescribe.
-
-### Serialización: ObjectOutputStream
-
-Guardar objetos enteros en archivos con `Serializable`:
-
-```java
-import java.io.*;
-
-class Persona implements Serializable {
-    String nombre; int edad;
-    Persona(String n, int e) { this.nombre = n; this.edad = e; }
-}
-
-public class GuardandoObjetos {
-    public static void main(String[] args) throws Exception {
-        Persona p = new Persona("Luis", 25);
-
-        try (ObjectOutputStream oos = new ObjectOutputStream(
-                new FileOutputStream("persona.obj"))) {
-            oos.writeObject(p);
-        }
-
-        try (ObjectInputStream ois = new ObjectInputStream(
-                new FileInputStream("persona.obj"))) {
-            Persona recuperada = (Persona) ois.readObject();
-            System.out.println(recuperada.nombre + " tiene " + recuperada.edad);
-        }
-    }
-}
-```
-
-> La clase debe implementar `Serializable`. Si tiene campos no serializables → `NotSerializableException`.
-
-### ❓ ¡No hay preguntas tontas! (ficheros)
-
-> **Q:** ¿File crea el archivo?  
-> **A:** No. `new File("ruta")` solo representa la ruta, no crea nada.
->
-> **Q:** ¿Qué pasa si el archivo no existe al leer?  
-> **A:** `FileNotFoundException`. Usa `f.exists()` o try-catch.
->
-> **Q:** ¿Qué diferencia hay entre File, FileReader y FileWriter?  
-> **A:** `File` → la dirección. `FileReader` → para LEER. `FileWriter` → para ESCRIBIR.
->
-> **Q:** ¿Qué pasa si no cierro un archivo?  
-> **A:** Los datos pueden perderse (buffer sin vaciar) y el SO retiene recursos.
+Esta unidad se lee como un **libro de 9 capítulos**: los 8 primeros puntos son teoría en progresión y el 9º es un aterrizaje práctico para machacar todo lo aprendido.
 
 ---
 
-## Expresiones regulares
+## 🎯 Objetivo de la unidad
 
-Una expresión regular (regex) es un **patrón de búsqueda** que describe un conjunto de cadenas.
+Al terminar, serás capaz de:
 
-> **⚠️ En Java las contrabarras se duplican:** `\d` → `"\\d"`, `\.` → `"\\."`. Es el "infierno de las contrabarras".
+- Localizar y describir archivos y carpetas con la clase **`File`** (`exists`, `isFile`, `isDirectory`, `length`, `listFiles`).
+- Escribir texto con **`FileWriter`** (sobrescribiendo o añadiendo) y leerlo con **`FileReader`** + **`BufferedReader`** línea a línea.
+- Cerrar recursos sin llorar con **`try-with-resources`** y explicar por qué el `close()` importa.
+- Formatear la salida con **`PrintWriter`** y leer archivos con **`Scanner`** (incluido `useDelimiter`).
+- Manejar archivos con la API moderna **NIO** (`Files` y `Paths`): leer, escribir y consultar en una línea.
+- Guardar y recuperar objetos enteros con **`ObjectOutputStream`** y **`ObjectInputStream`** (serialización).
+- Crear y compilar **expresiones regulares** con `Pattern` y `Matcher`, y dominar los símbolos básicos.
+- Aplicar regex con **`matches()`, `replaceAll()` y `split()`**, y usar **grupos de captura** para validar y extraer.
 
-### Pattern y Matcher
+---
 
-- `Pattern`: la expresión regular compilada (el molde)
-- `Matcher`: se aplica a un texto concreto buscando coincidencias
+## 🗺️ Mapa de la unidad
 
-```java
-import java.util.regex.*;
-
-Pattern patron = Pattern.compile("\\d+");  // uno o más dígitos
-Matcher matcher = patron.matcher("Hay 123 manzanas y 456 peras");
-
-while (matcher.find()) {
-    System.out.println("Encontrado: " + matcher.group()
-        + " (" + matcher.start() + "-" + matcher.end() + ")");
-}
-// Encontrado: 123 (4-7), Encontrado: 456 (21-24)
-```
-
-> Compila el `Pattern` una sola vez y reutilízalo. `Pattern.compile()` es caro.
-
-### Símbolos Regex
-
-| Símbolo | Significado | Ejemplo |
+| Punto | Qué aprenderás | Dificultad |
 |---|---|---|
-| `.` | Cualquier carácter (ex. salto) | `c.sa` → "casa", "cose" |
-| `\d` | Dígito (0-9) | `\d{3}` → "123" |
-| `\D` | NO dígito | `\D+` → "Hola" |
-| `\w` | Letra, dígito o `_` | `\w+` → "Hola_123" |
-| `\W` | NO `\w` | `\W` → ".", " " |
-| `\s` | Espacio en blanco | `\s+` → separadores |
-| `\S` | NO espacio | `\S+` → palabras |
-| `*` | 0 o más veces | `a*` → "", "a", "aa" |
-| `+` | 1 o más veces | `a+` → "a", "aa" |
-| `?` | 0 o 1 vez (opcional) | `colou?r` → "color", "colour" |
-| `{n}` | Exactamente n | `\d{3}` |
-| `{n,m}` | Entre n y m | `\d{2,4}` |
-| `[abc]` | Uno del conjunto | `[aeiou]` → vocales |
-| `[a-z]` | Rango | `[a-z]` → minúsculas |
-| `[^abc]` | Negación | `[^0-9]` → no dígitos |
-| `( )` | Grupo de captura | `(\d+)-(\w+)` |
-| `^` | Inicio de línea | `^Hola` |
-| `$` | Final de línea | `mundo$` |
-| `\|` | OR lógico | `gato\|perro` |
-| `\b` | Límite de palabra | `\bJava\b` ≠ "JavaScript" |
+| [01 · La clase File: tu explorador de archivos](/ApuntesProgramacion/12-ficheros-regex/01-clase-file) | El GPS que localiza archivos sin leer su contenido | Todos |
+| [02 · Escribir y leer texto: FileWriter, FileReader y BufferedReader](/ApuntesProgramacion/12-ficheros-regex/02-escribir-leer-texto) | El lápiz que no olvida y el lector que no se atraganta | Todos |
+| [03 · try-with-resources: cerrar sin llorar](/ApuntesProgramacion/12-ficheros-regex/03-try-with-resources) | La puerta que se cierra sola: adiós al `close()` manual | Todos |
+| [04 · PrintWriter y Scanner + File](/ApuntesProgramacion/12-ficheros-regex/04-printwriter-scanner-file) | El sargento que formatea y el pulpo que tokeniza | Todos |
+| [05 · NIO: Files y Paths (la forma moderna)](/ApuntesProgramacion/12-ficheros-regex/05-nio-files-paths) | Leer, escribir y consultar archivos en una línea | Todos |
+| [06 · Serialización: guardar objetos con ObjectOutputStream](/ApuntesProgramacion/12-ficheros-regex/06-serializacion) | Tu objeto entero en una maleta: `Serializable` | Todos |
+| [07 · Expresiones regulares: Pattern y Matcher](/ApuntesProgramacion/12-ficheros-regex/07-regex-basica) | El molde, el texto y el infierno de las contrabarras | Todos |
+| [08 · Regex en acción: matches, replaceAll, split y validaciones](/ApuntesProgramacion/12-ficheros-regex/08-regex-aplicaciones) | Validar correos, DNIs, teléfonos y extraer con grupos | Todos |
+| [09 · Repaso interactivo](/ApuntesProgramacion/12-ficheros-regex/09-repaso-interactivo) | Sé el Código, Fireside, Laboratorio, Crucigrama y más | Todos |
 
-### String.matches(), replaceAll(), split()
-
-Métodos de `String` que aceptan regex directamente:
-
-```java
-String texto = "  Hola    mundo  de las   regex  ";
-
-// matches() → true solo si TODO el string coincide
-"123".matches("\\d+");               // true
-"Hola".matches("\\d+");              // false
-
-// replaceAll() → reemplaza todas las coincidencias
-String limpio = texto.replaceAll("\\s+", " ").trim();
-// "Hola mundo de las regex"
-
-// replaceFirst() → solo la primera coincidencia
-texto.replaceFirst("\\s+", " ").trim();
-
-// split() → divide por el patrón
-"a,b,c,d".split(",");                // [a, b, c, d]
-"a,b,c,d".split(",", 3);             // [a, b, c,d] (con límite)
-```
-
-> `matches()` empareja **todo** el string. Para buscar subcadenas usa `find()`.
-
-### Validación: correo, teléfono y DNI
-
-```java
-public class ValidadorRegex {
-    private static final Pattern PATRON_DNI = Pattern.compile("\\d{8}[A-Z]");
-    private static final Pattern PATRON_EMAIL =
-        Pattern.compile("[\\w.]+@[\\w.]+\\.[a-z]{2,}");
-    private static final Pattern PATRON_TELEFONO =
-        Pattern.compile("[679]\\d{8}");
-
-    public static boolean esEmailValido(String email) {
-        return PATRON_EMAIL.matcher(email.toLowerCase()).matches();
-    }
-    public static boolean esDNIValido(String dni) {
-        return PATRON_DNI.matcher(dni.toUpperCase()).matches();
-    }
-    public static boolean esTelefonoValido(String telefono) {
-        return PATRON_TELEFONO.matcher(telefono).matches();
-    }
-
-    public static void main(String[] args) {
-        System.out.println(esEmailValido("user@example.com"));   // true
-        System.out.println(esEmailValido("user@@example"));      // false
-        System.out.println(esDNIValido("12345678Z"));            // true
-        System.out.println(esDNIValido("12345678z"));            // false
-        System.out.println(esTelefonoValido("612345678"));       // true
-        System.out.println(esTelefonoValido("512345678"));       // false
-    }
-}
-```
-
-> Para validar DNI español de verdad necesitas comprobar la letra módulo 23. La regex solo verifica formato.
-
-### Grupos de captura
-
-Los paréntesis `()` capturan lo que coincide para extraerlo después:
-
-```java
-String texto = "Juan: 28 años, María: 32 años";
-Pattern patron = Pattern.compile("(\\w+): (\\d+) años");
-Matcher matcher = patron.matcher(texto);
-
-while (matcher.find()) {
-    System.out.println(matcher.group(1) + " tiene " + matcher.group(2) + " años");
-}
-// Juan tiene 28 años, María tiene 32 años
-```
-
-> Para agrupar sin capturar (más eficiente): `(?:patron)`.
-
-### Regex con flags
-
-```java
-Pattern p1 = Pattern.compile("java", Pattern.CASE_INSENSITIVE);
-Pattern p2 = Pattern.compile("^\\d+", Pattern.MULTILINE);
-Pattern p3 = Pattern.compile(".*", Pattern.DOTALL);
-Pattern p4 = Pattern.compile("java", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-Pattern p5 = Pattern.compile("(?i)java");  // flag inline
-```
-
-### ⭐ BE THE CODE, MY FRIEND: procesando un log
-
-> 🕶️ **Don Tip:** Las regex se prueban con `matches()` (todo el string) o `find()` (subcadena). `group()` extrae lo capturado con paréntesis.
-
-```java
-import java.util.regex.*;
-import java.util.*;
-
-public class ProcesadorLog {
-    public static void main(String[] args) {
-        String log = """
-            [ERROR] 2024-03-15 10:30:45 - Usuario no encontrado: id=42
-            [INFO]  2024-03-15 10:31:02 - Sesión iniciada: user=admin
-            [WARN]  2024-03-15 10:32:10 - Memoria baja: 128MB disponible
-            [ERROR] 2024-03-15 10:33:00 - Connection timeout: server=db01
-            """;
-
-        Pattern patron = Pattern.compile(
-            "\\[(ERROR|INFO|WARN)\\]\\s+" +
-            "(\\d{4}-\\d{2}-\\d{2})\\s+" +
-            "(\\d{2}:\\d{2}:\\d{2})\\s+-\\s+(.*)");
-
-        Matcher matcher = patron.matcher(log);
-        List<String> errores = new ArrayList<>();
-
-        while (matcher.find()) {
-            String nivel = matcher.group(1);
-            String fecha = matcher.group(2);
-            String hora = matcher.group(3);
-            String mensaje = matcher.group(4);
-            System.out.printf("[%s] %s a las %s: %s%n", nivel, fecha, hora, mensaje);
-            if (nivel.equals("ERROR")) errores.add(mensaje);
-        }
-        System.out.println("\nErrores: " + errores.size());
-        for (String e : errores) System.out.println("  ❌ " + e);
-    }
-}
-```
-
-> Cada paréntesis captura una parte: nivel, fecha, hora y mensaje. Para un log de 2 GB leerías línea a línea con `BufferedReader`.
-
-### ❓ ¡No hay preguntas tontas! (Regex)
-
-> **Q:** ¿Por qué `"abc123".matches("\\d+")` devuelve `false`?  
-> **A:** `matches()` empareja **todo** el string. Usa `find()` para subcadenas.
->
-> **Q:** ¿Cómo hago un punto literal?  
-> **A:** Escápalo: `"\\."`.
->
-> **Q:** ¿Puedo procesar 1M líneas con la misma regex?  
-> **A:** Sí, compila el `Pattern` una vez fuera del bucle y reutiliza el matcher.
->
-> **Q:** ¿Se pueden validar HTML con regex?  
-> **A:** No. HTML no es un lenguaje regular. Usa un parser.
->
-> **Q:** ¿`\w` incluye tildes?  
-> **A:** No por defecto. Usa `[a-zA-ZáéíóúüñÑ]` o `Pattern.UNICODE_CHARACTER_CLASS`.
-
-### Resumen rápido: regex
-
-```
-Pattern p = Pattern.compile("regex");   ← compilar
-Matcher m = p.matcher(texto);          ← aplicar
-m.find() → boolean                      ← buscar coincidencia
-m.group() / m.group(n) → String         ← obtener match / grupo
-texto.matches("regex")                  ← ¿todo coincide?
-texto.replaceAll("regex", "nuevo")      ← reemplazar todas
-texto.split("regex")                    ← dividir por patrón
-
-\d → dígito    \w → letra/_    \s → espacio    . → cualquier char
-* → 0+         + → 1+          ? → 0-1         {n} → exactamente n
-[abc] → conjunto   () → grupo de captura
-```
+> 📖 **Flujo de lectura:** los 8 primeros puntos son teoría en progresión. El 9º es el aterrizaje práctico: léelo justo después del 8º y antes de abrir los boletines.
 
 ---
 
-## Ejercicios propuestos
+## 📝 Boletines de la unidad
 
-### Ejercicio 1: El diario personal
-Escribe en `diario.txt` con fecha y texto. Abre en modo append cada ejecución sin borrar lo anterior.
+> Practica con los pares del curso: empieza siempre por el resuelto para ver el estilo y luego intenta el por-resolver.
 
-### Ejercicio 2: El contador de líneas
-Lee un archivo con `BufferedReader` y muestra cuántas líneas, palabras y caracteres tiene.
-
-### Ejercicio 3: validador de contraseñas
-Valida: mínimo 8 caracteres, una mayúscula, una minúscula, un dígito, un carácter especial (`@#$%^&+=`).
-
-### Ejercicio 4: extractor de URLs
-Extrae URLs (http/https) separando protocolo, dominio y ruta con grupos de captura.
-
-### Ejercicio 5: formateador de fechas
-Convierte `dd/mm/aaaa` a `aaaa-mm-dd` con `replaceAll()` y grupos de captura.
-
-### Ejercicio 6: cifrado César
-Lee `mensaje.txt`, desplaza cada carácter +3 posiciones, escribe en `mensaje_cifrado.txt`.
-
-### Ejercicio 7: analizador de logs
-Dado `[NIVEL] timestamp - mensaje: detalle`, cuenta mensajes por nivel y muestra los ERROR.
-
----
-
-**RAs trabajados en esta unidad:**
-- **RA5** - Entrada/Salida: ficheros
-- **RA6** - Tipos avanzados: Expresiones regulares
-
----
-
-<div align="center">
-  <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es" target="_blank">
-    <img src="/ApuntesProgramacion/cc-by-sa.png" alt="CC BY-SA 4.0" width="88" height="31">
-  </a>
-  <br>
-  <strong>Sergi Garcia Barea</strong> — CC BY-SA 4.0
+<div class="ejercicio-links">
+  <a href="/ApuntesProgramacion/boletines/boletin-u12-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u12-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u12-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u12-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u12-extras" class="elink">🔥 Extras</a>
 </div>
+
+---
+
+## ✅ Criterios de evaluación cubiertos (RA5)
+
+**RA5: Realiza operaciones de entrada y salida de información, utilizando procedimientos específicos del lenguaje y librerías de clases.**
+
+| CE | Criterio | Dónde se cubre |
+|---|---|---|
+| RA5 c) | Se han reconocido las posibilidades de entrada / salida del lenguaje y las librerías asociadas. | ✅ Puntos 1, 4 y 5 |
+| RA5 d) | Se han utilizado ficheros para almacenar y recuperar información. | ✅ Puntos 1, 2, 3, 4, 5 y 6 |
+| RA5 e) | Se han creado programas que utilicen diversos métodos de acceso al contenido de los ficheros. | ✅ Puntos 2, 4, 5 y 6 |
+
+> 📌 Los CEs **RA5 a)** (consola) y **RA5 b)** (formatos) se cubrieron en la **U02**, punto 7. Esta unidad completa la RA5 con los ficheros y las librerías de E/S.
+
+---
+
+## ✅ Criterios de evaluación cubiertos (RA6)
+
+**RA6: Escribe programas que manipulen información, seleccionando y utilizando tipos avanzados de datos.**
+
+| CE | Criterio | Dónde se cubre |
+|---|---|---|
+| RA6 g) | Se han utilizado expresiones regulares en la búsqueda de patrones en cadenas de texto. | ✅ Puntos 7, 8 y 9 |
+
+> 📌 La **RA6** se completa con la **U04** (arrays, CE a), la **U10** (colecciones, CEs b, c, d y e) y la **U11** (genéricos y mapas, CE f). Esta unidad aporta el CE g: las expresiones regulares.
+
+---
+
+## 🚪 ¿Por dónde empiezo?
+
+- ¿Vienes de la U11 y quieres lo esencial? → Arranca en el [punto 1](/ApuntesProgramacion/12-ficheros-regex/01-clase-file) y el [punto 2](/ApuntesProgramacion/12-ficheros-regex/02-escribir-leer-texto): localizar y leer archivos de texto.
+- ¿Ya sabes escribir y leer y quieres la forma moderna? → Salta al [punto 3](/ApuntesProgramacion/12-ficheros-regex/03-try-with-resources) (cerrar sin llorar) y al [punto 5](/ApuntesProgramacion/12-ficheros-regex/05-nio-files-paths) (NIO en una línea).
+- ¿Solo vienes a por las regex? → Ve directo al [punto 7](/ApuntesProgramacion/12-ficheros-regex/07-regex-basica) y al [punto 8](/ApuntesProgramacion/12-ficheros-regex/08-regex-aplicaciones): el detective de patrones.
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/12-ficheros-regex/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u12-inicial).
+
+**📍 Primer punto:** [01 · La clase File: tu explorador de archivos](/ApuntesProgramacion/12-ficheros-regex/01-clase-file)  
+**⏭️ Al acabar la unidad, continúa en [U13 · Conexión a BD con JDBC](/ApuntesProgramacion/13-conexion-bases-datos).**

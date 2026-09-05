@@ -198,10 +198,70 @@ export default defineConfig({
                 { slug: '10-colecciones/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
               ],
             },
-            { slug: '11-genericos-mapas', label: '🗺️ 11. Genéricos y Mapas', translations: { va: '🗺️ 11. Genèrics i Mapes' } },
-            { slug: '12-ficheros-regex', label: '📁 12. Ficheros y Regex', translations: { va: '📁 12. Fitxers i Expressions Regulars' } },
-            { slug: '13-conexion-bases-datos', label: '🗄️ 13. Conexión a BD con JDBC', translations: { va: '🗄️ 13. Connexió a BD amb JDBC' } },
-            { slug: '14-apis-web', label: '🌐 14. Servir y Consumir APIs con Web', translations: { va: '🌐 14. Servir i Consumir APIs amb Web' } },
+            {
+              label: '🗺️ 11. Genéricos y Mapas',
+              translations: { va: '🗺️ 11. Genèrics i Mapes' },
+              items: [
+                { slug: '11-genericos-mapas', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '11-genericos-mapas/01-que-son-genericos', label: '01 · Genéricos: el <T> que lo cambió todo', translations: { va: "01 · Genèrics: el <T> que ho va canviar tot" } },
+                { slug: '11-genericos-mapas/02-clases-genericas', label: '02 · Tu propia clase genérica', translations: { va: '02 · La teua pròpia classe genèrica' } },
+                { slug: '11-genericos-mapas/03-diamante-type-erasure', label: '03 · El diamante y type erasure', translations: { va: '03 · El diamant i el type erasure' } },
+                { slug: '11-genericos-mapas/04-metodos-genericos', label: '04 · Métodos genéricos', translations: { va: '04 · Mètodes genèrics' } },
+                { slug: '11-genericos-mapas/05-wildcards', label: '05 · Wildcards: ? extends y ? super', translations: { va: '05 · Wildcards: ? extends i ? super' } },
+                { slug: '11-genericos-mapas/06-hashmap', label: '06 · HashMap: la guía telefónica', translations: { va: '06 · HashMap: la guia telefònica' } },
+                { slug: '11-genericos-mapas/07-treemap-otros-mapas', label: '07 · TreeMap y otros mapas', translations: { va: '07 · TreeMap i altres mapes' } },
+                { slug: '11-genericos-mapas/08-elegir-estructura-datos', label: '08 · Map vs List vs Set', translations: { va: '08 · Map vs List vs Set' } },
+                { slug: '11-genericos-mapas/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+              ],
+            },
+            {
+              label: '📁 12. Ficheros y Regex',
+              translations: { va: '📁 12. Fitxers i Expressions Regulars' },
+              items: [
+                { slug: '12-ficheros-regex', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '12-ficheros-regex/01-clase-file', label: '01 · La clase File', translations: { va: '01 · La classe File' } },
+                { slug: '12-ficheros-regex/02-escribir-leer-texto', label: '02 · Escribir y leer texto', translations: { va: '02 · Escriure i llegir text' } },
+                { slug: '12-ficheros-regex/03-try-with-resources', label: '03 · try-with-resources', translations: { va: '03 · try-with-resources' } },
+                { slug: '12-ficheros-regex/04-printwriter-scanner-file', label: '04 · PrintWriter y Scanner + File', translations: { va: '04 · PrintWriter i Scanner + File' } },
+                { slug: '12-ficheros-regex/05-nio-files-paths', label: '05 · NIO: Files y Paths', translations: { va: '05 · NIO: Files i Paths' } },
+                { slug: '12-ficheros-regex/06-serializacion', label: '06 · Serialización', translations: { va: '06 · Serialització' } },
+                { slug: '12-ficheros-regex/07-regex-basica', label: '07 · Expresiones regulares: Pattern y Matcher', translations: { va: '07 · Expressions regulars: Pattern i Matcher' } },
+                { slug: '12-ficheros-regex/08-regex-aplicaciones', label: '08 · Regex en acción', translations: { va: '08 · Regex en acció' } },
+                { slug: '12-ficheros-regex/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+              ],
+            },
+            {
+              label: '🗄️ 13. Conexión a BD con JDBC',
+              translations: { va: '🗄️ 13. Connexió a BD amb JDBC' },
+              items: [
+                { slug: '13-conexion-bases-datos', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '13-conexion-bases-datos/01-que-es-jdbc', label: '01 · Qué es JDBC', translations: { va: '01 · Què és JDBC' } },
+                { slug: '13-conexion-bases-datos/02-conexion', label: '02 · Conexión a SQLite', translations: { va: '02 · Connexió a SQLite' } },
+                { slug: '13-conexion-bases-datos/03-statement-resultset', label: '03 · Statement y ResultSet', translations: { va: '03 · Statement i ResultSet' } },
+                { slug: '13-conexion-bases-datos/04-crud', label: '04 · CRUD completo', translations: { va: '04 · CRUD complet' } },
+                { slug: '13-conexion-bases-datos/05-preparedstatement', label: '05 · PreparedStatement y SQL injection', translations: { va: '05 · PreparedStatement i SQL injection' } },
+                { slug: '13-conexion-bases-datos/06-pattern-dao', label: '06 · El patrón DAO', translations: { va: '06 · El patró DAO' } },
+                { slug: '13-conexion-bases-datos/07-transacciones', label: '07 · Transacciones', translations: { va: '07 · Transaccions' } },
+                { slug: '13-conexion-bases-datos/08-buenas-practicas', label: '08 · Buenas prácticas', translations: { va: '08 · Bones pràctiques' } },
+                { slug: '13-conexion-bases-datos/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+              ],
+            },
+            {
+              label: '🌐 14. Servir y Consumir APIs con Web',
+              translations: { va: '🌐 14. Servir i Consumir APIs amb Web' },
+              items: [
+                { slug: '14-apis-web', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '14-apis-web/01-protocolo-http', label: '01 · El protocolo HTTP', translations: { va: '01 · El protocol HTTP' } },
+                { slug: '14-apis-web/02-servidor-minimo', label: '02 · Servidor web mínimo', translations: { va: '02 · Servidor web mínim' } },
+                { slug: '14-apis-web/03-sirviendo-html', label: '03 · Sirviendo HTML', translations: { va: '03 · Servint HTML' } },
+                { slug: '14-apis-web/04-get-post', label: '04 · Parámetros GET y POST', translations: { va: '04 · Paràmetres GET i POST' } },
+                { slug: '14-apis-web/05-devolviendo-json', label: '05 · Devolviendo JSON', translations: { va: '05 · Tornant JSON' } },
+                { slug: '14-apis-web/06-proyecto-rest', label: '06 · Mini proyecto: API REST', translations: { va: '06 · Mini projecte: API REST' } },
+                { slug: '14-apis-web/07-httpclient', label: '07 · HttpClient: consumir APIs', translations: { va: '07 · HttpClient: consumir APIs' } },
+                { slug: '14-apis-web/08-httpclient-avanzado', label: '08 · HttpClient avanzado', translations: { va: '08 · HttpClient avançat' } },
+                { slug: '14-apis-web/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+              ],
+            },
 
           ],
         },
@@ -211,30 +271,16 @@ export default defineConfig({
           items:
             ['🚀','🔤','🔀','🅿️','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','📁','🗄️','🌐'].flatMap((emoji, i) => {
               const n = i + 1;
-              if (n <= 10) {
-                const nn = String(n).padStart(2,'0');
-                return [{
-                  label: `${emoji} Boletín Unidad ${nn}`,
-                  translations: { va: `${emoji} Butlletí Unitat ${nn}` },
-                  items: [
-                    { slug: `boletines/boletin-u${nn}-inicial-resuelto`, label: '✅ Inicial resuelto', translations: { va: '✅ Inicial resolt' } },
-                    { slug: `boletines/boletin-u${nn}-inicial`, label: '🟢 Inicial por resolver', translations: { va: '🟢 Inicial per resoldre' } },
-                    { slug: `boletines/boletin-u${nn}-avanzado-resuelto`, label: '💪 Avanzado resuelto', translations: { va: '💪 Avançat resolt' } },
-                    { slug: `boletines/boletin-u${nn}-avanzado`, label: '⭐ Avanzado por resolver', translations: { va: '⭐ Avançat per resoldre' } },
-                    { slug: `boletines/boletin-u${nn}-extras`, label: '🔥 Extras', translations: { va: '🔥 Extres' } },
-                  ],
-                }];
-              }
               const nn = String(n).padStart(2,'0');
               return [{
                 label: `${emoji} Boletín Unidad ${nn}`,
                 translations: { va: `${emoji} Butlletí Unitat ${nn}` },
                 items: [
-                  { slug: `boletin-${nn}-inicial-resuelto`, label: '✅ Inicial resuelto', translations: { va: '✅ Inicial resolt' } },
-                  { slug: `boletin-${nn}-inicial`, label: '🟢 Inicial por resolver', translations: { va: '🟢 Inicial per resoldre' } },
-                  { slug: `boletin-${nn}-intermedio-resuelto`, label: '💪 Intermedio resuelto', translations: { va: '💪 Intermedi resolt' } },
-                  { slug: `boletin-${nn}-intermedio`, label: '📝 Intermedio por resolver', translations: { va: '📝 Intermedi per resoldre' } },
-                  { slug: `boletin-${nn}-extras`, label: '⭐ Extras', translations: { va: '⭐ Extres' } },
+                  { slug: `boletines/boletin-u${nn}-inicial-resuelto`, label: '✅ Inicial resuelto', translations: { va: '✅ Inicial resolt' } },
+                  { slug: `boletines/boletin-u${nn}-inicial`, label: '🟢 Inicial por resolver', translations: { va: '🟢 Inicial per resoldre' } },
+                  { slug: `boletines/boletin-u${nn}-avanzado-resuelto`, label: '💪 Avanzado resuelto', translations: { va: '💪 Avançat resolt' } },
+                  { slug: `boletines/boletin-u${nn}-avanzado`, label: '⭐ Avanzado por resolver', translations: { va: '⭐ Avançat per resoldre' } },
+                  { slug: `boletines/boletin-u${nn}-extras`, label: '🔥 Extras', translations: { va: '🔥 Extres' } },
                 ],
               }];
             }),
