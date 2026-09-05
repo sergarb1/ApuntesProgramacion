@@ -149,8 +149,38 @@ export default defineConfig({
                 { slug: '07-visibilidad-encapsulacion-static/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
               ],
             },
-            { slug: '08-herencia-polimorfismo-interfaces', label: '🧬 8. Herencia, Polimorfismo e Interfaces', translations: { va: '🧬 8. Herència, Polimorfisme i Interfícies' } },
-            { slug: '09-arrays-colecciones', label: '📚 9. Arrays y Colecciones', translations: { va: '📚 9. Arrays i Col·leccions' } },
+            {
+              label: '🧬 8. Herencia, Polimorfismo e Interfaces',
+              translations: { va: '🧬 8. Herència, Polimorfisme i Interfícies' },
+              items: [
+                { slug: '08-herencia-polimorfismo-interfaces', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '08-herencia-polimorfismo-interfaces/01-herencia', label: '01 · Herencia: cuando tus hijos siguen tus pasos', translations: { va: '01 · Herència: quan els teus fills seguixen els teus passos' } },
+                { slug: '08-herencia-polimorfismo-interfaces/02-super-override', label: '02 · super y @Override', translations: { va: '02 · super i @Override' } },
+                { slug: '08-herencia-polimorfismo-interfaces/03-protected-jerarquias', label: '03 · protected y jerarquías de clases', translations: { va: '03 · protected i jerarquies de classes' } },
+                { slug: '08-herencia-polimorfismo-interfaces/04-polimorfismo', label: '04 · Polimorfismo: el camaleón de la POO', translations: { va: '04 · Polimorfisme: el camaleó de la POO' } },
+                { slug: '08-herencia-polimorfismo-interfaces/05-instanceof-downcasting', label: '05 · instanceof y downcasting', translations: { va: '05 · instanceof i downcasting' } },
+                { slug: '08-herencia-polimorfismo-interfaces/06-clase-object', label: '06 · La clase Object: el tatarabuelo', translations: { va: '06 · La classe Object: el besavi de tot' } },
+                { slug: '08-herencia-polimorfismo-interfaces/07-clases-abstractas', label: '07 · Clases abstractas', translations: { va: '07 · Classes abstractes' } },
+                { slug: '08-herencia-polimorfismo-interfaces/08-interfaces', label: '08 · Interfaces: el contrato que firmas', translations: { va: '08 · Interfícies: el contracte que signes' } },
+                { slug: '08-herencia-polimorfismo-interfaces/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+              ],
+            },
+            {
+              label: '📚 9. Arrays y Colecciones',
+              translations: { va: '📚 9. Arrays i Col·leccions' },
+              items: [
+                { slug: '09-arrays-colecciones', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '09-arrays-colecciones/01-arrays-basicos', label: '01 · Arrays: el aparcamiento de datos', translations: { va: '01 · Arrays: l\'aparcament de dades' } },
+                { slug: '09-arrays-colecciones/02-recorrer-arrays', label: '02 · Recorrer arrays: for y for-each', translations: { va: '02 · Recórrer arrays: for i for-each' } },
+                { slug: '09-arrays-colecciones/03-arrays-multidimensionales', label: '03 · Arrays multidimensionales', translations: { va: '03 · Arrays multidimensionals' } },
+                { slug: '09-arrays-colecciones/04-clase-arrays', label: '04 · La clase Arrays', translations: { va: '04 · La classe Arrays' } },
+                { slug: '09-arrays-colecciones/05-arrays-metodos', label: '05 · Arrays y métodos', translations: { va: '05 · Arrays i mètodes' } },
+                { slug: '09-arrays-colecciones/06-arraylist-jcf', label: '06 · ArrayList y el JCF', translations: { va: '06 · ArrayList i el JCF' } },
+                { slug: '09-arrays-colecciones/07-linkedlist-hashset', label: '07 · LinkedList, HashSet y TreeSet', translations: { va: '07 · LinkedList, HashSet i TreeSet' } },
+                { slug: '09-arrays-colecciones/08-iterator-collections', label: '08 · Iterator y la clase Collections', translations: { va: '08 · Iterator i la classe Collections' } },
+                { slug: '09-arrays-colecciones/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+              ],
+            },
             { slug: '10-genericos-mapas', label: '🗺️ 10. Genéricos y Mapas', translations: { va: '🗺️ 10. Genèrics i Mapes' } },
             { slug: '11-consola-ficheros-regex', label: '📁 11. Consola, Ficheros y Regex', translations: { va: '📁 11. Consola, Fitxers i Expressions Regulars' } },
             { slug: '12-conexion-bases-datos', label: '🗄️ 12. Conexión a BD con JDBC', translations: { va: '🗄️ 12. Connexió a BD amb JDBC' } },
@@ -164,7 +194,7 @@ export default defineConfig({
           items:
             ['🚀','🔤','🔀','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','📁','🗄️','🌐'].flatMap((emoji, i) => {
               const n = i + 1;
-              if (n <= 7) {
+              if (n <= 9) {
                 const nn = String(n).padStart(2,'0');
                 return [{
                   label: `${emoji} Boletín Unidad ${nn}`,
