@@ -84,7 +84,7 @@ En acabar, seràs capaç de:
 | RA4 f) | S'han utilitzat mecanismes per a controlar la visibilitat de les classes i dels seus membres. | ✅ Punts 1 i 2 |
 | RA4 h) | S'han creat i utilitzat mètodes estàtics. | ✅ Punts 5, 6 i 7 |
 
-> 📌 L'herència (RA4 g) i les interfícies (RA4 i) tenen el seu capítol propi en la **U08**. Els conjunts i llibreries de classes (RA4 j) floreixen en la **U09** i la **U10**. Ací ens quedem amb visibilitat, encapsulació i static, que són els fonaments de tot lo demés.
+> 📌 L'herència (RA4 g) i les interfícies (RA4 i) tenen el seu capítol propi en la **U08**. Els conjunts i llibreries de classes (RA4 j) floreixen en la **U09** i la **U10**. Ací ens quedem amb visibilitat, encapsulació i static, que són els fonaments de tot el demés.
 
 ---
 

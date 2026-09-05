@@ -26,7 +26,7 @@ public class Config {
     public static final String NOMBRE_APP = "Gestión DAM";
     public static final String VERSION = "2.1.0";
     public static final int MAX_USUARIOS = 100;
-    public static final double IVA = 0,21;
+    public static final double IVA = 0.21;
 }
 ```
 
@@ -37,7 +37,7 @@ double precioConIva = precio * Config.IVA;
 System.out.println("Bienvenido a " + Config.NOMBRE_APP);
 ```
 
-¿Y si alguien intenta hacer `Config.IVA = 0,5`? **El compilador te lo prohíbe.** Es más firme que tus propósitos de Año Nuevo.
+¿Y si alguien intenta hacer `Config.IVA = 0.5`? **El compilador te lo prohíbe.** Es más firme que tus propósitos de Año Nuevo.
 
 > 💡 **Detalle práctico:** junta las constantes en una clase dedicada (`Config`, `Constantes`, `Valores`) y tendrás un único sitio donde cambiar, por ejemplo, el IVA cuando toque. Ni un "número mágico" suelto por el código.
 
