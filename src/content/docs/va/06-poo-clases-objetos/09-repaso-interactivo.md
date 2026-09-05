@@ -161,7 +161,7 @@ public class Coche
     }
 
     void acelerar(int inc) {
-        velocidad += inc;
+        velocidad -= inc;
     }
 
     void mostrar() {
@@ -186,8 +186,16 @@ public class Coche
    <details><summary>I si encara estic atascat?</summary>Comprova també les claus `{}`: la classe necessita la seua obertura.</details>
 2. Compila ja? *no → mira el missatge d'error i els arguments del constructor.*
    <details><summary>I si encara estic atascat?</summary>`new Coche()` no existix: l'únic constructor demana `(String, int)`. És l'error "el buit va desaparéixer".</details>
-3. Executa però el resultat és rar? *És l'error de lògica: fixa't en el que rep el cotxe en nàixer.*
+3. Executa però la velocitat ix rara? *És l'error de lògica: el signe del mètode.*
    <details><summary>Solució final</summary>
+
+Els **3 errors de compilació**:
+
+1. Falta la `{` d'obertura de la classe després de `Coche`.
+2. `new Coche()` no coincidix amb el constructor: l'únic és `Coche(String, int)`. En escriure un constructor amb paràmetres, el buit desapareix.
+3. Falta el `;` al final de `c.mostrar()`.
+
+L'**error de lògica**: `velocidad -= inc` **resta** en lloc de sumar. Compila i executa perfectament, però el cotxe accelera "cap arrere": amb la velocitat inicial a 0 i accelerar 50, imprimix `Seat va a -50` en lloc de `Seat va a 50`. Un signe separava el teu cotxe de la veritat.
 
 ```java
 public class Coche {
@@ -215,7 +223,7 @@ public class Coche {
 }
 ```
 
-Eixida correcta: `Seat va a 50`. L'error de lògica: `new Coche()` sense arguments era alhora error de compilació i de lògica. La fallada intencionada: el `mostrar()` sense `;` final i la classe sense `{` d'obertura es veuen "quasi bé".
+Eixida correcta: `Seat va a 50`. Amb la versió trencada, una vegada arreglats els altres errors, la velocitat eixia `-50`: el signe era la pista de l'error de lògica.
 
 </details>
 

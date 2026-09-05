@@ -161,7 +161,7 @@ public class Coche
     }
 
     void acelerar(int inc) {
-        velocidad += inc;
+        velocidad -= inc;
     }
 
     void mostrar() {
@@ -186,8 +186,16 @@ public class Coche
    <details><summary>¿Y si sigo atascado?</summary>Comprueba también las llaves `{}`: la clase necesita su apertura.</details>
 2. ¿Compila ya? *no → mira el mensaje de error y los argumentos del constructor.*
    <details><summary>¿Y si sigo atascado?</summary>`new Coche()` no existe: el único constructor pide `(String, int)`. Es el error "el vacío desapareció".</details>
-3. ¿Ejecuta pero el resultado es raro? *Es el error de lógica: fíjate en lo que recibe el coche al nacer.*
+3. ¿Ejecuta pero la velocidad sale rara? *Es el error de lógica: el signo del método.*
    <details><summary>Solución final</summary>
+
+Los **3 errores de compilación**:
+
+1. Falta la `{` de apertura de la clase después de `Coche`.
+2. `new Coche()` no coincide con el constructor: el único es `Coche(String, int)`. Al escribir un constructor con parámetros, el vacío desaparece.
+3. Falta el `;` al final de `c.mostrar()`.
+
+El **error de lógica**: `velocidad -= inc` **resta** en vez de sumar. Compila y ejecuta perfectamente, pero el coche acelera "hacia atrás": con la velocidad inicial a 0 y acelerar 50, imprime `Seat va a -50` en vez de `Seat va a 50`. Un signo separaba tu coche de la verdad.
 
 ```java
 public class Coche {
@@ -215,7 +223,7 @@ public class Coche {
 }
 ```
 
-Salida correcta: `Seat va a 50`. El error de lógica: `new Coche()` sin argumentos era a la vez error de compilación y de lógica. El fallo intencionado: el `mostrar()` sin `;` final y la clase sin `{` de apertura se ven "casi bien".
+Salida correcta: `Seat va a 50`. Con la versión rota, una vez arreglados los otros errores, la velocidad salía `-50`: el signo era la pista del error de lógica.
 
 </details>
 

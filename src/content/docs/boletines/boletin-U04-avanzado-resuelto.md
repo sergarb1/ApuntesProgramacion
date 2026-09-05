@@ -244,6 +244,12 @@ public class Kaprekar {
         int numero = sc.nextInt();
 
         while (numero != 0) {
+            if (esRepdigit(numero)) {
+                System.out.println(8);
+                numero = sc.nextInt();
+                continue;
+            }
+
             int iteraciones = 0;
 
             while (numero != 6174) {
@@ -280,9 +286,18 @@ public class Kaprekar {
         }
         sc.close();
     }
+
+    static boolean esRepdigit(int n) {
+        String s = String.format("%04d", n);
+        char primera = s.charAt(0);
+        for (char c : s.toCharArray()) {
+            if (c != primera) return false;
+        }
+        return true;
+    }
 }
 ```
 
-Los números con menos de 4 cifras se completan con ceros porque extraemos con `% 10` y `/ 10` sobre un array de 4 posiciones: el 21 se convierte en `{0, 0, 2, 1}`. El algoritmo de Kaprekar termina siempre (máximo unas pocas iteraciones): para 1111, la diferencia da 0 y el `while (numero != 6174)` acaba en `0`. La bombolla del punto 4, reutilizada dentro del propio Kaprekar: el código de la U04 resolviendo problemas reales.
+Los números con menos de 4 cifras se completan con ceros porque extraemos con `% 10` y `/ 10` sobre un array de 4 posiciones: el 21 se convierte en `{0, 0, 2, 1}`. El algoritmo de Kaprekar termina siempre (máximo unas pocas iteraciones) y llega a 6174... **excepto los repdigits** (1111, 5555...): la primera resta da 0 y, si entraras en el `while (numero != 6174)`, te quedarías dando vueltas con 0 para siempre. Por eso el problema oficial de AceptaElReto pide que los repdigits impriman `8`, y lo detectamos antes con `esRepdigit`. La bombolla del punto 4, reutilizada dentro del propio Kaprekar: el código de la U04 resolviendo problemas reales.
 
 </details>

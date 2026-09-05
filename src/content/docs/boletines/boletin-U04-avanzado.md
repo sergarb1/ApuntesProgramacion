@@ -158,7 +158,7 @@ Resuelve el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](htt
 
 El algoritmo de Kaprekar: dado un número de 4 cifras, ordena sus dígitos de mayor a menor y de menor a mayor, resta ambos, y repite con el resultado. Al final siempre se llega a **6174** (o al propio 6174) y, si el número tiene todas las cifras iguales (como 1111), la diferencia da 0.
 
-La entrada trae varios números (pueden tener menos de 4 cifras: hay que completar con ceros a la izquierda). Para cada uno, muestra **cuántas iteraciones** se necesitan para alcanzar 6174 (u 0 para los de cifras iguales). El 6174 necesita 0 iteraciones. El 0 de entrada termina el programa.
+La entrada trae varios números (pueden tener menos de 4 cifras: hay que completar con ceros a la izquierda). Para cada uno, muestra **cuántas iteraciones** se necesitan para alcanzar 6174. El 6174 necesita 0 iteraciones. **Cuidado con los repdigits** (1111, 5555...): la primera resta da 0 y el bucle nunca llegaría a 6174; el problema oficial pide **8** para ellos. El 0 de entrada termina el programa.
 
 **Pista:** para ordenar los dígitos, extráelos en un `int[]` de 4 posiciones con `% 10` y `/ 10`, ordénalo con bombolla (¡reutiliza la U04!), y reconstruye el número mayor (dígitos en orden descendente) y el menor (ascendente). Cuenta las iteraciones con un contador.
 

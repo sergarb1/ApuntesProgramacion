@@ -266,7 +266,7 @@ Dos ideas de la U04 trabajando a la vez: la **bombolla** para ordenar (adaptada 
 
 Aplicando el algoritmo de Kaprekar (ordenar los dígitos de mayor a menor, restar el ordenado de menor a mayor, y repetir), todo número de 4 cifras (con ceros a la izquierda si hace falta) termina en **6174**. Cuenta cuántas iteraciones necesita cada número de la entrada.
 
-**Entrada:** varios números, uno por línea, hasta un `0` final. El `6174` necesita `0` iteraciones. Los números con todas las cifras iguales (1111, 5555...) dan 0 en la primera resta y se detienen.
+**Entrada:** varios números, uno por línea, hasta un `0` final. El `6174` necesita `0` iteraciones. Los números con todas las cifras iguales (1111, 5555...) son el caso especial del problema: la respuesta oficial es **8**.
 
 **Ejemplo:**
 
@@ -282,7 +282,7 @@ Aplicando el algoritmo de Kaprekar (ordenar los dígitos de mayor a menor, resta
 ```
 0
 3
-0
+8
 ```
 
 - [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=100)
@@ -302,6 +302,12 @@ public class Kaprekar {
         int numero = sc.nextInt();
 
         while (numero != 0) {
+            if (esRepdigit(numero)) {
+                System.out.println(8);
+                numero = sc.nextInt();
+                continue;
+            }
+
             int iteraciones = 0;
 
             while (numero != 6174) {
@@ -338,10 +344,19 @@ public class Kaprekar {
         }
         sc.close();
     }
+
+    static boolean esRepdigit(int n) {
+        String s = String.format("%04d", n);
+        char primera = s.charAt(0);
+        for (char c : s.toCharArray()) {
+            if (c != primera) return false;
+        }
+        return true;
+    }
 }
 ```
 
-El mismo algoritmo del boletín avanzado, ahora en su formato AceptaElReto (varios casos hasta el 0). Para `3524`: dígitos {3,5,2,4}, ordenados {2,3,4,5} → ascendente 2345, descendente 5432, resta 3087 (iteración 1); luego {3,0,8,7} → 8730 − 0378 = 8352 (2); luego 8532 − 2358 = 6174 (3). Los de cifras iguales caen a 0 en la primera resta y el bucle interior acaba. La bombolla, otra vez, protagonista.
+El mismo algoritmo del boletín avanzado, ahora en su formato AceptaElReto (varios casos hasta el 0). Para `3524`: dígitos {3,5,2,4}, ordenados {2,3,4,5} → ascendente 2345, descendente 5432, resta 3087 (iteración 1); luego {3,0,8,7} → 8730 − 0378 = 8352 (2); luego 8532 − 2358 = 6174 (3). Los repdigits (1111, 5555...) se detectan antes de entrar en el bucle: la primera resta da 0 y, sin `esRepdigit`, el `while (numero != 6174)` se quedaría dando vueltas para siempre. El problema pide `8` para ellos. La bombolla, otra vez, protagonista.
 
 </details>
 

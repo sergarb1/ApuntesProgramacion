@@ -158,7 +158,7 @@ Resol el problema **100 — Constant de Kaprekar** en [AceptaElReto.com](https:/
 
 L'algoritme de Kaprekar: donat un nombre de 4 xifres, ordena els seus dígits de major a menor i de menor a major, resta tots dos, i repetix amb el resultat. Al final sempre s'arriba a **6174** (o al propi 6174) i, si el nombre té totes les xifres iguals (com 1111), la diferència dóna 0.
 
-L'entrada du diversos nombres (poden tindre menys de 4 xifres: cal completar amb zeros a l'esquerra). Per a cada un, mostra **quantes iteracions** calen per a arribar a 6174 (o 0 per als de xifres iguals). El 6174 necessita 0 iteracions. L'0 d'entrada acaba el programa.
+L'entrada du diversos nombres (poden tindre menys de 4 xifres: cal completar amb zeros a l'esquerra). Per a cada un, mostra **quantes iteracions** calen per a arribar a 6174. El 6174 necessita 0 iteracions. **Compte amb els repdigits** (1111, 5555...): la primera resta dóna 0 i el bucle mai no arribaria a 6174; el problema oficial demana **8** per a ells. L'0 d'entrada acaba el programa.
 
 **Pista:** per a ordenar els dígits, extrau-los en un `int[]` de 4 posicions amb `% 10` i `/ 10`, ordena'l amb bombolla (¡reutilitza la U04!), i reconstrueix el nombre major (dígits en ordre descendent) i el menor (ascendent). Compta les iteracions amb un comptador.
 

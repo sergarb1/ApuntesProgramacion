@@ -74,7 +74,7 @@ public class Taller {
     public static void main(String[] args) {
         Coche c1 = new Coche("Seat", 120);
         Coche c2 = new Coche("Ford", 90);
-        c1.acelelar(30);
+        c1.acelerar(30);
         c1.mostrar();
         c2.mostrar();
     }
@@ -89,7 +89,7 @@ class Coche {
         this.velocidad = velocidad;
     }
 
-    void acelelar(int inc) {
+    void acelerar(int inc) {
         velocidad += inc;
     }
 

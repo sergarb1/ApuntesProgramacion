@@ -284,7 +284,7 @@ Seat va a 150 km/h
 Ford va a 90 km/h
 ```
 
-Hay **dos** objetos (`c1` y `c2`), cada uno con su propia `velocidad`. `c1.acelelar(30)` suma 30 a la velocidad de `c1` (120 + 30 = 150) pero no toca la de `c2`. Cuando `c2.mostrar()` se ejecuta, su velocidad sigue siendo 90. Los atributos de un objeto son privados de ese objeto.
+Hay **dos** objetos (`c1` y `c2`), cada uno con su propia `velocidad`. `c1.acelerar(30)` suma 30 a la velocidad de `c1` (120 + 30 = 150) pero no toca la de `c2`. Cuando `c2.mostrar()` se ejecuta, su velocidad sigue siendo 90. Los atributos de un objeto son privados de ese objeto.
 
 </details>
 
