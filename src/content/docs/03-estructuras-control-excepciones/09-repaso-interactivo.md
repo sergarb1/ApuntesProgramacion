@@ -145,11 +145,11 @@ Elige la respuesta correcta para cada decisión (respuestas al final):
 
 ```java
 public class Tortura
-    public static void main(String[] args) {
+    public static void main(string[] args) {
         int suma = 0;
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             if (i % 2 == 0) continue;
-            suma = suma + i;
+            suma = suma - i;
         }
         System.out.println("La suma de los impares es: " + suma)
         System.out.println("El número de impares es: " + 5);
@@ -165,10 +165,18 @@ public class Tortura
 
 1. ¿Hay algún `;` que falte? *no → sigue buscando.*
    <details><summary>¿Y si sigo atascado?</summary>Comprueba también las llaves `{}`: la clase necesita su apertura.</details>
-2. ¿Compila ya? *no → mira el mensaje de error y la sintaxis del bucle.*
-   <details><summary>¿Y si sigo atascado?</summary>El `for` y el `if` de una línea siguen necesitando llaves bien puestas: mira si falta la `{` de apertura de la clase.</details>
-3. ¿Ejecuta pero la suma sale rara? *Es el error de lógica: el bucle se queda corto.*
+2. ¿Compila ya? *no → mira el mensaje de error y las mayúsculas.*
+   <details><summary>¿Y si sigo atascado?</summary>Son dos cosas: `string` debe ser `String` (la clase con mayúscula) y falta el `;` al final de la primera línea del `println`.</details>
+3. ¿Ejecuta pero la suma sale rara? *Es el error de lógica: el signo.*
    <details><summary>Solución final</summary>
+
+Los **3 errores de compilación**:
+
+1. Falta la `{` que abre el cuerpo de la clase después de `Tortura`.
+2. `string[] args` → `String[] args` (la clase `String` con mayúscula).
+3. Falta el `;` al final de `System.out.println("La suma de los impares es: " + suma)`.
+
+El **error de lógica**: `suma = suma - i;` resta en vez de sumar. Compila perfectamente, pero con los impares 1, 3, 5, 7 y 9 la suma sale **-25** en vez de 25. Un signo es lo único que separa a tu programa de la verdad.
 
 ```java
 public class Tortura {
@@ -179,11 +187,12 @@ public class Tortura {
             suma = suma + i;
         }
         System.out.println("La suma de los impares es: " + suma);
+        System.out.println("El número de impares es: " + 5);
     }
 }
 ```
 
-Salida correcta: `La suma de los impares es: 25` (1 + 3 + 5 + 7 + 9). El error de lógica: `i < 10` se queda en 9 y se pierde el 9... espera, no: 1+3+5+7+9 = 25. ¡Correcto! El segundo `println` del enunciado sobraba y mentía (decía 5 impares cuando hay 5). El auténtico fallo de lógica es que con `i < 10` la suma da 25 y está bien; el error del enunciado estaba en el `println` "El número de impares es: 5", que es texto fijo sin calcular. Para el laboratorio, borra esa línea y deja solo la suma real.
+Salida correcta: `La suma de los impares es: 25` y `El número de impares es: 5` (los impares del 1 al 10 son 1, 3, 5, 7 y 9: cinco). Con la versión rota, la suma salía `-25`, y eso era la pista del signo.
 
 </details>
 

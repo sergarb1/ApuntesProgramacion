@@ -44,7 +44,7 @@ switch (dia) {
 
 ## 🧱 Las piezas del puzzle
 
-- **`switch (variable)`**: la variable que se examina. Antes solo admitía `int`, `char` y `String` (a partir de Java 7 también `String`).
+- **`switch (variable)`**: la variable que se examina. Admite tipos enteros, `char` y `enum`; a partir de Java 7 también `String`.
 - **`case valor:`**: cada opción posible. Si la variable coincide, se ejecuta ese bloque.
 - **`break;`**: "hasta aquí he llegado, salgo del switch". Sin él, todo se desborda hacia abajo.
 - **`default:`**: el comodín, el "ninguno de los anteriores". Es opcional, como el `else`.

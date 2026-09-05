@@ -145,11 +145,11 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 
 ```java
 public class Tortura
-    public static void main(String[] args) {
+    public static void main(string[] args) {
         int suma = 0;
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             if (i % 2 == 0) continue;
-            suma = suma + i;
+            suma = suma - i;
         }
         System.out.println("La suma dels senars és: " + suma)
         System.out.println("El nombre de senars és: " + 5);
@@ -165,10 +165,18 @@ public class Tortura
 
 1. Hi ha algun `;` que falte? *no → seguix buscant.*
    <details><summary>I si encara estic atascat?</summary>Comprova també les claus `{}`: la classe necessita la seua obertura.</details>
-2. Compila ja? *no → mira el missatge d'error i la sintaxi del bucle.*
-   <details><summary>I si encara estic atascat?</summary>El `for` i l'`if` d'una línia continuen necessitant claus ben posades: mira si falta la `{` d'obertura de la classe.</details>
-3. Executa però la suma eix rara? *És l'error de lògica: el bucle es queda curt.*
+2. Compila ja? *no → mira el missatge d'error i les majúscules.*
+   <details><summary>I si encara estic atascat?</summary>Són dos coses: `string` ha de ser `String` (la classe amb majúscula) i falta el `;` al final de la primera línia del `println`.</details>
+3. Executa però la suma ix rara? *És l'error de lògica: el signe.*
    <details><summary>Solució final</summary>
+
+Els **3 errors de compilació**:
+
+1. Falta la `{` que obri el cos de la classe després de `Tortura`.
+2. `string[] args` → `String[] args` (la classe `String` amb majúscula).
+3. Falta el `;` al final de `System.out.println("La suma dels senars és: " + suma)`.
+
+L'**error de lògica**: `suma = suma - i;` resta en lloc de sumar. Compila perfectament, però amb els senars 1, 3, 5, 7 i 9 la suma ix **-25** en lloc de 25. Un signe és l'únic que separa el teu programa de la veritat.
 
 ```java
 public class Tortura {
@@ -179,11 +187,12 @@ public class Tortura {
             suma = suma + i;
         }
         System.out.println("La suma dels senars és: " + suma);
+        System.out.println("El nombre de senars és: " + 5);
     }
 }
 ```
 
-Eixida correcta: `La suma dels senars és: 25` (1 + 3 + 5 + 7 + 9). El segon `println` de l'enunciat sobrava i mentia (deia 5 senars quan n'hi ha 5). L'autèntic error de lògica: el `println` "El nombre de senars és: 5" és text fix sense calcular. Per al laboratori, esborra eixa línia i deixa només la suma real.
+Eixida correcta: `La suma dels senars és: 25` i `El nombre de senars és: 5` (els senars de l'1 al 10 són 1, 3, 5, 7 i 9: cinc). Amb la versió trencada, la suma eixia `-25`, i això era la pista del signe.
 
 </details>
 

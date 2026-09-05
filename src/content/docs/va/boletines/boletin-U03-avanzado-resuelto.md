@@ -139,14 +139,10 @@ Taula de parells, en ordre d'execució:
 | 2 | 3 | `2*3=6 < 8` | `23` |
 | 3 | 1 | `3*1=3 < 8` | `31` |
 | 3 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | res |
-| 3 | 3 | no arriba (el continue saltà a la següent i) | res |
 | 4 | 1 | `4*1=4 < 8` | `41` |
 | 4 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | res |
-| 4 | 3 | no arriba | res |
 
-La salida real és: `11 12 13 21 22 23 31 41`.
-
-> 💡 **Correcció honesta:** la resposta correcta és `11 12 13 21 22 23 31 41`. El `continue exterior` salta la fila abans d'arribar al `j==3` amb `i>=3`, i el `break exterior` mai no s'aconseguix perquè amb `i=1,2` el producte no arriba a 8 i amb `i>=3` sempre salta pel `continue` abans. La lliçó: l'etiqueta `continue` és esquiva; no assumixques què passa, executa-ho mentalment parell a parell.
+Fixat que el `break exterior` **mai no es dispara**: amb `i=1` i `i=2` el producte `i*j` no arriba a 8, i amb `i>=3` sempre salta abans pel `continue exterior` (en `j=2`), així que mai no s'avalua el `j=3` on `3*3=9` hauria superat 8. La lliçó: amb les etiquetes, no assumixques què passa — executa-ho mentalment parell a parell.
 
 </details>
 

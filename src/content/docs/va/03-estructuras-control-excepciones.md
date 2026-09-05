@@ -83,7 +83,7 @@ En acabar, seràs capaç de:
 | RA3 c) | S'han reconegut les possibilitats de les sentències de salt. | ✅ Punt 5 |
 | RA3 d) | S'ha escrit codi utilitzant control d'excepcions. | ✅ Punts 6, 7 i 8 |
 | RA3 e) | S'han creat programes executables utilitzant diferents estructures de control. | ✅ Tots |
-| RA3 f) | S'han provat i depurat els programes. | ✅ Tots, amb molta chicha extra en els butlletins |
+| RA3 f) | S'han provat i depurat els programes. | ✅ Tots, amb molta cosa extra en els butlletins |
 | RA3 g) | S'ha comentat i documentat el codi. | ✅ Tots |
 
 > 📌 Els bucles que veus ací són el múscul de tot el que ve: els recorreguts d'arrays i col·leccions (U09) i els algoritmes d'ordenació i cerca (U05) no serien res sense `for` i `while`.

@@ -128,34 +128,25 @@ El interior imprime del 1 al número de fila con `print` (sin salto de línea); 
 <summary>🔄 Solución</summary>
 
 ```
-11 12 21 22 31 32
+11 12 13 21 22 23 31 41
 ```
 
 Tabla de pares, en orden de ejecución:
 
 | i | j | ¿Qué pasa? | ¿Imprime? |
 |---|---|---|---|
-| 1 | 1 | `1*1=1 < 8` | `11` |
+| 1 | 1 | `1*1=1 < 8`, no hay `continue` | `11` |
 | 1 | 2 | `j==2 && i>=3` → no; `1*2=2 < 8` | `12` |
 | 1 | 3 | `1*3=3 < 8` | `13` |
 | 2 | 1 | `2*1=2 < 8` | `21` |
-| 2 | 2 | `2*2=4 < 8` | `22` |
+| 2 | 2 | `j==2 && i>=3` → no (i=2); `2*2=4 < 8` | `22` |
 | 2 | 3 | `2*3=6 < 8` | `23` |
 | 3 | 1 | `3*1=3 < 8` | `31` |
 | 3 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | nada |
-| 3 | 3 | `3*3=9 >= 8` → `break exterior` | nada |
-
-Espera, revisemos: con `i=3, j=2` el `continue exterior` salta a `i=4`. Entonces:
-
-| i | j | ¿Qué pasa? | ¿Imprime? |
-|---|---|---|---|
 | 4 | 1 | `4*1=4 < 8` | `41` |
-| 4 | 2 | `j==2 && i>=3` → sí → `continue exterior` | nada |
-| 4 | 3 | no llega (el continue saltó a la siguiente i=5) | nada |
+| 4 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | nada |
 
-Entonces la salida real es: `11 12 13 21 22 23 31 41`. 
-
-> 💡 **Corrección honesta:** la respuesta correcta es `11 12 13 21 22 23 31 41`. El `continue exterior` salta la fila antes de llegar al `j==3` con `i>=3`, y el `break exterior` nunca se alcanza porque con `i=1,2` el producto nunca llega a 8 y con `i>=3` siempre salta por el `continue` antes. La lección: la etiqueta `continue` es esquiva; no asumas qué pasa, ejecútalo mentalmente par a par.
+Observa que el `break exterior` **nunca se dispara**: con `i=1` y `i=2` el producto `i*j` no llega a 8, y con `i>=3` siempre salta antes por el `continue exterior` (en `j=2`), así que nunca se evalúa el `j=3` donde `3*3=9` habría superado 8. La lección: con las etiquetas, no asumas qué pasa — ejecútalo mentalmente par a par.
 
 </details>
 
