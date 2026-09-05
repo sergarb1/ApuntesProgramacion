@@ -86,7 +86,7 @@ public class ValidadorRegex {
     }
 
     public static boolean esDNIValido(String dni) {
-        return PATRON_DNI.matcher(dni.toUpperCase()).matches();
+        return PATRON_DNI.matcher(dni).matches();
     }
 
     public static boolean esTelefonoValido(String telefono) {

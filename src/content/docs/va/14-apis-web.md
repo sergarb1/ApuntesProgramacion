@@ -82,7 +82,7 @@ En acabar, seràs capaç de:
 | RA5 g) | S'han programat controladors d'esdeveniments. | ✅ Punt 6 |
 | RA5 h) | S'han escrit programes que utilitzen interfícies gràfiques per a l'entrada i eixida d'informació. | ✅ Punts 5 i 6 |
 
-> 📌 La **RA5** es completa amb la **U11** (consola i formats, CEs a i b) i la **U12** (fitxers i accés a arxius, CEs d i e). Esta unitat cobrix la cara web de l'entrada/eixida: HTTP com a protocol, HTML i JSON com a formats, i les llibreries `HttpServer` i `HttpClient` com a procediments del llenguatge.
+> 📌 La **RA5** es completa amb la **U02** (consola i formats, CEs a i b) i la **U12** (fitxers i accés a arxius, CEs c, d i e). Esta unitat cobrix la cara web de l'entrada/eixida: HTTP com a protocol, HTML i JSON com a formats, i les llibreries `HttpServer` i `HttpClient` com a procediments del llenguatge.
 
 ---
 

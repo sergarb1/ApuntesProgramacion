@@ -82,7 +82,7 @@ Al terminar, serás capaz de:
 | RA5 g) | Se han programado controladores de eventos. | ✅ Punto 6 |
 | RA5 h) | Se han escrito programas que utilicen interfaces gráficos para la entrada y salida de información. | ✅ Puntos 5 y 6 |
 
-> 📌 La **RA5** se completa con la **U11** (consola y formatos, CEs a y b) y la **U12** (ficheros y acceso a archivos, CEs d y e). Esta unidad cubre la cara web de la entrada/salida: HTTP como protocolo, HTML y JSON como formatos, y las librerías `HttpServer` y `HttpClient` como procedimientos del lenguaje.
+> 📌 La **RA5** se completa con la **U02** (consola y formatos, CEs a y b) y la **U12** (ficheros y acceso a archivos, CEs c, d y e). Esta unidad cubre la cara web de la entrada/salida: HTTP como protocolo, HTML y JSON como formatos, y las librerías `HttpServer` y `HttpClient` como procedimientos del lenguaje.
 
 ---
 
