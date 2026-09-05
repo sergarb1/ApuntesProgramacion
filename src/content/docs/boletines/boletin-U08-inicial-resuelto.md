@@ -135,11 +135,11 @@ Imprime:
 
 ```
 Y
-C
-C
+Z
+Z
 ```
 
-El tipo de la **referencia** (X, X, Y) no importa. Lo que importa es el tipo **real** del objeto (Y, C, C). Java siempre ejecuta el método más específico del objeto real. Es como llevar la chaqueta de tu padre: por fuera pareces tu padre (la referencia), pero por dentro eres tú (el objeto). Cuando hablas, se oye tu voz, no la de tu padre. Dynamic binding en todo su esplendor.
+El tipo de la **referencia** (X, X, Y) no importa. Lo que importa es el tipo **real** del objeto (Y, Z, Z). Java siempre ejecuta el método más específico del objeto real. Es como llevar la chaqueta de tu padre: por fuera pareces tu padre (la referencia), pero por dentro eres tú (el objeto). Cuando hablas, se oye tu voz, no la de tu padre. Dynamic binding en todo su esplendor.
 
 </details>
 

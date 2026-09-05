@@ -97,7 +97,7 @@ Al terminar, serás capaz de:
 | RA7 f) | Se han probado y depurado las jerarquías de clases. | ✅ Punto 9 |
 | RA7 g) | Se han realizado programas que implementen y utilicen jerarquías de clases. | ✅ Puntos 4, 8 y 9 |
 
-> 📌 El resultado de aprendizaje **RA4** se apoya en la U06 (definir clases) y la U07 (visibilidad), y culmina aquí con herencia e interfaces. La **RA7** se cierra con esta unidad: hierarquías, sobrescritura y contratos. Las colecciones (RA6) llegan en la **U09**.
+> 📌 El resultado de aprendizaje **RA4** se apoya en la U06 (definir clases) y la U07 (visibilidad), y culmina aquí con herencia e interfaces. La **RA7** se cierra con esta unidad: jerarquías, sobrescritura y contratos. Las colecciones (RA6) llegan en la **U09**.
 
 ---
 

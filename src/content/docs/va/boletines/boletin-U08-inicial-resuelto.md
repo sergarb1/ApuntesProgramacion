@@ -135,11 +135,11 @@ Imprimeix:
 
 ```
 Y
-C
-C
+Z
+Z
 ```
 
-El tipus de la **referència** (X, X, Y) no importa. El que importa és el tipus **real** de l'objecte (Y, C, C). Java sempre executa el mètode més específic de l'objecte real. És com portar la jaqueta del teu pare: per fora pareixes el teu pare (la referència), però per dins ets tu (l'objecte). Quan parles, se sent la teua veu, no la del teu pare. Dynamic binding en tot el seu esplendor.
+El tipus de la **referència** (X, X, Y) no importa. El que importa és el tipus **real** de l'objecte (Y, Z, Z). Java sempre executa el mètode més específic de l'objecte real. És com portar la jaqueta del teu pare: per fora pareixes el teu pare (la referència), però per dins ets tu (l'objecte). Quan parles, se sent la teua veu, no la del teu pare. Dynamic binding en tot el seu esplendor.
 
 </details>
 

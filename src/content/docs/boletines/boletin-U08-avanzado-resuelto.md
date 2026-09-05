@@ -641,7 +641,7 @@ El esqueleto (`preparar()`) es `final`: nadie puede reordenar los pasos. Las sub
 ```java
 import java.util.ArrayList;
 
-public abstract class Vehiculo {
+abstract class Vehiculo {
     protected String matricula;
     protected int combustible;
 
@@ -650,7 +650,7 @@ public abstract class Vehiculo {
         this.combustible = combustible;
     }
 
-    public abstract void mover();
+    public abstract boolean mover();
 }
 
 class Coche extends Vehiculo {
@@ -661,12 +661,14 @@ class Coche extends Vehiculo {
     }
 
     @Override
-    public void mover() {
+    public boolean mover() {
         if (combustible >= GASTO) {
             combustible -= GASTO;
             System.out.println("Coche " + matricula + " avanza (combustible: " + combustible + ")");
+            return true;
         } else {
             System.out.println("Sin combustible");
+            return false;
         }
     }
 }
@@ -679,12 +681,14 @@ class Moto extends Vehiculo {
     }
 
     @Override
-    public void mover() {
+    public boolean mover() {
         if (combustible >= GASTO) {
             combustible -= GASTO;
             System.out.println("Moto " + matricula + " avanza (combustible: " + combustible + ")");
+            return true;
         } else {
             System.out.println("Sin combustible");
+            return false;
         }
     }
 }
@@ -699,13 +703,15 @@ class Camion extends Vehiculo {
     }
 
     @Override
-    public void mover() {
+    public boolean mover() {
         if (combustible >= GASTO) {
             combustible -= GASTO;
             System.out.println("Camión " + matricula + " con carga " + carga
                     + " avanza (combustible: " + combustible + ")");
+            return true;
         } else {
             System.out.println("Sin combustible");
+            return false;
         }
     }
 }
@@ -719,8 +725,7 @@ public class Circuito {
 
         for (Vehiculo v : vehiculos) {
             int movimientos = 0;
-            while (v.combustible > 0) {
-                v.mover();
+            while (v.mover()) {
                 movimientos++;
             }
             System.out.println("Movimientos: " + movimientos);
@@ -729,6 +734,6 @@ public class Circuito {
 }
 ```
 
-Cada subclase define su gasto con una constante y su `mover()`. El `main` usa solo `Vehiculo`: el `while` pregunta por el atributo `protected` y el polimorfismo hace el resto. Si mañana llega una `Bicicleta` (gasto 0), entra sin tocar el circuito. La abstracción paga la casa.
+Cada subclase define su gasto con una constante y su `mover()`, que devuelve `true` solo si pudo moverse. El `main` usa solo `Vehiculo`: el `while (v.mover())` pregunta al propio vehículo y el polimorfismo hace el resto. Esa forma de escribir el bucle evita el problema de comprobar el combustible desde fuera (que dejaría un bucle infinito cuando el vehículo no puede moverse pero aún le queda combustible). Si mañana llega una `Bicicleta` (gasto 0), entra sin tocar el circuito. La abstracción paga la casa.
 
 </details>

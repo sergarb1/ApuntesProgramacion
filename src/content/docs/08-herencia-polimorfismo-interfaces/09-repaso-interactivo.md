@@ -299,7 +299,7 @@ Horizontal:
 1. La palabra que establece la herencia (7 letras)
 3. La anotación que verifica que sobrescribes (8 letras)
 5. El contrato que firmas con implements (10 letras)
-6. Excepción al convertir un Gato en Perro (16 letras)
+6. Excepción al convertir un Gato en Perro (18 letras)
 
 Vertical:
 2. La clase de la que todos heredan (6 letras)

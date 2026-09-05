@@ -641,7 +641,7 @@ L'esquelet (`preparar()`) és `final`: ningú no pot reordenar els passos. Les s
 ```java
 import java.util.ArrayList;
 
-public abstract class Vehicle {
+abstract class Vehicle {
     protected String matricula;
     protected int combustible;
 
@@ -650,7 +650,7 @@ public abstract class Vehicle {
         this.combustible = combustible;
     }
 
-    public abstract void moure();
+    public abstract boolean moure();
 }
 
 class Cotxe extends Vehicle {
@@ -661,12 +661,14 @@ class Cotxe extends Vehicle {
     }
 
     @Override
-    public void moure() {
+    public boolean moure() {
         if (combustible >= DESPESA) {
             combustible -= DESPESA;
             System.out.println("Cotxe " + matricula + " avança (combustible: " + combustible + ")");
+            return true;
         } else {
             System.out.println("Sense combustible");
+            return false;
         }
     }
 }
@@ -679,12 +681,14 @@ class Moto extends Vehicle {
     }
 
     @Override
-    public void moure() {
+    public boolean moure() {
         if (combustible >= DESPESA) {
             combustible -= DESPESA;
             System.out.println("Moto " + matricula + " avança (combustible: " + combustible + ")");
+            return true;
         } else {
             System.out.println("Sense combustible");
+            return false;
         }
     }
 }
@@ -699,13 +703,15 @@ class Camio extends Vehicle {
     }
 
     @Override
-    public void moure() {
+    public boolean moure() {
         if (combustible >= DESPESA) {
             combustible -= DESPESA;
             System.out.println("Camió " + matricula + " amb càrrega " + càrrega
                     + " avança (combustible: " + combustible + ")");
+            return true;
         } else {
             System.out.println("Sense combustible");
+            return false;
         }
     }
 }
@@ -719,8 +725,7 @@ public class Circuit {
 
         for (Vehicle v : vehicles) {
             int moviments = 0;
-            while (v.combustible > 0) {
-                v.moure();
+            while (v.moure()) {
                 moviments++;
             }
             System.out.println("Moviments: " + moviments);
@@ -729,6 +734,6 @@ public class Circuit {
 }
 ```
 
-Cada subclasse definix la seua despesa amb una constant i el seu `moure()`. El `main` usa només `Vehicle`: el `while` pregunta per l'atribut `protected` i el polimorfisme fa la resta. Si demà arriba una `Bicicleta` (despesa 0), entra sense tocar el circuit. L'abstracció paga la casa.
+Cada subclasse definix la seua despesa amb una constant i el seu `moure()`, que torna `true` només si va poder moure's. El `main` usa només `Vehicle`: el `while (v.moure())` pregunta al mateix vehicle i el polimorfisme fa la resta. Aquesta manera d'escriure el bucle evita el problema de comprovar el combustible des de fora (que deixaria un bucle infinit quan el vehicle no pot moure's però encara li queda combustible). Si demà arriba una `Bicicleta` (despesa 0), entra sense tocar el circuit. L'abstracció paga la casa.
 
 </details>

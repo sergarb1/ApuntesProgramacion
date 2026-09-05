@@ -215,13 +215,13 @@ Implementa `Te` (bosseta de te + llima) i `Cafe` (cafè mòlt + sucre). En el `m
 
 Crea una jerarquia de vehicles:
 
-- `Vehicle` (abstracta): `String matricula`, `int combustible`, `abstract void moure()`
+- `Vehicle` (abstracta): `String matricula`, `int combustible`, `abstract boolean moure()`
 - `Cotxe`: gasta 5 de combustible per moviment
 - `Moto`: gasta 3 de combustible per moviment
 - `Camio`: gasta 10 de combustible per moviment, però pot portar `int càrrega`
 
-Cada vehicle té un `moure()` que reduïx el combustible. Si no n'hi ha prou, imprimeix "Sense combustible".
+Cada vehicle té un `moure()` que reduïx el combustible i torna `true` si va poder moure's. Si no n'hi ha prou, imprimeix "Sense combustible" i torna `false`.
 
-En `main()`, crea un `ArrayList<Vehicle>` amb diversos vehicles. Cada vehicle es mou repetidament fins a quedar-se sense combustible i compta quants moviments va fer.
+En `main()`, crea un `ArrayList<Vehicle>` amb diversos vehicles. Cada vehicle es mou repetidament mentre puga i compta quants moviments va fer.
 
-**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ... } else { System.out.println("Sense combustible"); }`. El bucle del `main` usa polimorfisme: `v.moure()` funciona per a tots.
+**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ...; return true; } else { System.out.println("Sense combustible"); return false; }`. El bucle del `main` usa el valor de retorn: `while (v.moure()) { moviments++; }`. Així no es queda mai en un bucle infinit quan el combustible no arriba per a moure's.

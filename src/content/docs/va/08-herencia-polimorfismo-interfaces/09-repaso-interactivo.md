@@ -299,7 +299,7 @@ Horitzontal:
 1. La paraula que establix l'herència (7 lletres)
 3. L'anotació que verifica que sobreescrius (8 lletres)
 5. El contracte que signes amb implements (10 lletres)
-6. Excepció en convertir un Gat en Gos (16 lletres)
+6. Excepció en convertir un Gat en Gos (18 lletres)
 
 Vertical:
 2. La classe de la qual tots hereden (6 lletres)

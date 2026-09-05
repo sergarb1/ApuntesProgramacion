@@ -215,13 +215,13 @@ Implementa `Te` (bolsita de té + limón) y `Cafe` (café molido + azúcar). En 
 
 Crea una jerarquía de vehículos:
 
-- `Vehiculo` (abstracta): `String matricula`, `int combustible`, `abstract void mover()`
+- `Vehiculo` (abstracta): `String matricula`, `int combustible`, `abstract boolean mover()`
 - `Coche`: gasta 5 de combustible por movimiento
 - `Moto`: gasta 3 de combustible por movimiento
 - `Camion`: gasta 10 de combustible por movimiento, pero puede llevar `int carga`
 
-Cada vehículo tiene un `mover()` que reduce el combustible. Si no hay suficiente, imprime "Sin combustible".
+Cada vehículo tiene un `mover()` que reduce el combustible y devuelve `true` si pudo moverse. Si no hay suficiente, imprime "Sin combustible" y devuelve `false`.
 
-En `main()`, crea un `ArrayList<Vehiculo>` con varios vehículos. Cada vehículo se mueve repetidamente hasta quedarse sin combustible y cuenta cuántos movimientos hizo.
+En `main()`, crea un `ArrayList<Vehiculo>` con varios vehículos. Cada vehículo se mueve repetidamente mientras pueda y cuenta cuántos movimientos hizo.
 
-**Pista:** da a cada subclase una constante `private static final int GASTO` con lo que consume por movimiento. En `mover()`: `if (combustible >= GASTO) { combustible -= GASTO; ... } else { System.out.println("Sin combustible"); }`. El bucle del `main` usa polimorfismo: `v.mover()` funciona para todos.
+**Pista:** da a cada subclase una constante `private static final int GASTO` con lo que consume por movimiento. En `mover()`: `if (combustible >= GASTO) { combustible -= GASTO; ...; return true; } else { System.out.println("Sin combustible"); return false; }`. El bucle del `main` usa el valor de retorno: `while (v.mover()) { movimientos++; }`. Así nunca se queda en un bucle infinito cuando el combustible no llega para moverse.
