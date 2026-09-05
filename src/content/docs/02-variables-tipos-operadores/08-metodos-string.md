@@ -24,15 +24,15 @@ Aquí está el arsenal completo. Fíjate en cómo se llama un método de objeto:
 ```java
 String texto = "  Programación DAM  ";
 
-texto.length();               // 18 — cuántos caracteres hay (espacios incluidos)
+texto.length();               // 20 — cuántos caracteres hay (espacios incluidos)
 texto.trim();                 // "Programación DAM" — sin espacios a los lados
 texto.toUpperCase();          // "  PROGRAMACIÓN DAM  "
 texto.toLowerCase();          // "  programación dam  "
 texto.contains("DAM");        // true — ¿contiene ese texto?
 texto.startsWith("  ");       // true — ¿empieza por...?
 texto.endsWith("AM  ");       // true — ¿termina por...?
-texto.indexOf("DAM");         // 14 — ¿en qué posición empieza "DAM"?
-texto.substring(2, 13);       // "Programación" — recorta del carácter 2 al 13
+texto.indexOf("DAM");         // 15 — ¿en qué posición empieza "DAM"?
+texto.substring(2, 14);       // "Programación" — recorta del carácter 2 al 13
 texto.replace("DAM", "DAW");  // "  Programación DAW  " — sustituye texto
 ```
 

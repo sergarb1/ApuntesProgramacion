@@ -83,7 +83,7 @@ IVA = 0.10;  // ERROR de compilación: ¡no puedes reasignar una constante!
 
 Por convención, las constantes se escriben **EN_MAYÚSCULAS_CON_GUIONES_BAJOS**, como si estuvieran gritando "¡SOY INMUTABLE!". Esto le dice a cualquier programador (incluido tu yo del futuro) que ese valor no se debe tocar.
 
-> 💡 **Detalle práctico:** ¿por qué usar constantes y no escribir el número directamente? Porque si el IVA cambia de 0.21 a 0.21 para siempre... no, en serio: si cambia mañana, solo editas **una línea**, no las 50 donde usaste el 0.21. Eso es lo que se llama *mantener el código*.
+> 💡 **Detalle práctico:** ¿por qué usar constantes y no escribir el número directamente? Porque si el IVA cambia de 0.21 a 0.20 mañana, solo editas **una línea**, no las 50 donde usaste el 0.21. Eso es lo que se llama *mantener el código*.
 
 ---
 

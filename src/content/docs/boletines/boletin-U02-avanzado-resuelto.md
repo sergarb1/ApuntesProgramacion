@@ -62,7 +62,7 @@ Salida:
 
 ```
 100.0$ son 92.0€
-50.0€ son 54.34782608695652$
+50.0€ son 54.347826086956516$
 ```
 
 Para pasar de dólares a euros multiplicas por la tasa; al revés, divides. El `final` garantiza que nadie (ni tú) toque la tasa de cambio sin querer.
@@ -121,6 +121,8 @@ public class InteresCompuesto {
 
 `Math.pow(1 + TASA, i)` calcula `(1.05)^i`. Con tres variables distintas evitas el bucle... que llegará en la U03. Fíjate en que `Math.pow` devuelve un `double`.
 
+> 💡 **Detalle de precisión:** en el año 3 tu programa puede imprimir `1157.6250000000002` en vez de `1157.625`. Es la coma flotante binaria del punto "Atrévete a pensar" (los decimales no siempre se representan exactos). No es un error: es así como funcionan los `double`.
+
 </details>
 
 ---
@@ -133,28 +135,18 @@ public class InteresCompuesto {
 El programa imprime:
 
 ```
-x = 5
-y = 4
-z = 6
+x = 6
+y = 6
+z = 19
 ```
 
-Paso a paso, con una tabla:
+Paso a paso:
 
-| Línea | Operación | x | y | Valor usado |
-|---|---|---|---|---|
-| `x = 3` | | 3 | — | |
-| `y = x++ + ++x` | `x++` usa 3, x → 4; `++x` x → 5, usa 5 | 5 | — | 3 + 5 |
-| | y = 8 | 5 | 8 | |
-| `z = --y + y-- + x++` | `--y` y → 7, usa 7; `y--` usa 7, y → 6; `x++` usa 5, x → 6 | 6 | 6 | 7 + 7 + 5 |
-| | z = 19 | 6 | 6 | 19 |
+- `int x = 3;` → x = 3.
+- `int y = x++ + ++x;` → `x++` usa 3 y deja x = 4; `++x` sube x a 5 y usa 5. `y = 3 + 5 = 8`. Ahora x = 5, y = 8.
+- `int z = --y + y-- + x++;` → `--y` baja y a 7 y usa 7; `y--` usa 7 y baja y a 6; `x++` usa 5 y sube x a 6. `z = 7 + 7 + 5 = 19`. Final: x = 6, y = 6, z = 19.
 
-Espera... ¡revisemos! La tabla final:
-
-- `z = --y + y-- + x++`: `--y` baja y a 7 y usa 7. `y--` usa 7 y baja y a 6. `x++` usa 5 y sube x a 6. `z = 7 + 7 + 5 = 19`.
-
-Pero imprime `x = 5`? No: `x` terminó en **6**. Las variables finales son `x = 6`, `y = 6`, `z = 19`.
-
-> 💡 **Corrección honesta:** el valor real del programa es `x = 6, y = 6, z = 19`. Si al hacerlo te salió otro número, bienvenido al club: este ejercicio existe precisamente para que sufras una vez en clase y no veinte veces en el examen. La lección del punto 3: los `++` y `--` se usan solos, en su propia línea.
+> 💡 **Confesión honesta:** si al hacerlo te salió otro número, bienvenido al club: este ejercicio existe precisamente para que sufras una vez en clase y no veinte en el examen. La lección del punto 3: los `++` y `--` se usan solos, en su propia línea.
 
 </details>
 

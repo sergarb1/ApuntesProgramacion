@@ -19,7 +19,7 @@ Esta unitat té dues mitats que al final ballen juntes:
 
 Pel camí descobriràs per què `main` és `static` encara que no hauria de ser-ho, com es construïx una classe utilitària com `Math` (que ningú pot instanciar), i per què els experts diuen que els atributs `public` són com portar la cartera oberta al metro.
 
-Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a machacar tot el que has après.
+Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
 
 ---
 

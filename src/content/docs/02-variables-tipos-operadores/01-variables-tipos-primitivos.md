@@ -42,7 +42,7 @@ boolean hambre = true;      // Caja de verdadero/falso (ahora mismo: true)
 
 Java es tiquismiquis con los nombres de las cajas. Estas son las reglas de oro:
 
-- Pueden llevar letras, números, `_` y `$`. **Nada de espacios** ni de caracteres raros como `ñ` o `ç`.
+- Pueden llevar letras, números, `_` y `$`. **Nada de espacios**. (Java admite muchos caracteres Unicode, pero por convención y para evitar líos se usan letras ASCII: evita `ñ`, `ç` o acentos en los nombres.)
 - **No pueden empezar con número.** `1numero` es ilegal; `numero1` es legal. Como las matrículas de los coches.
 - **Las mayúsculas importan**: `edad`, `Edad` y `EDAD` son tres cajas distintas. Como etiquetar "Zapatos", "zapatos" y "ZAPATOS".
 - **No uses palabras reservadas**: `int`, `class`, `if`, `while`... son de Java, no tuyas.
@@ -70,7 +70,7 @@ Java tiene **8 tipos primitivos**. Piensa en ellos como cajas de distintos tama�
 | `byte` | 8 bits | -128 a 127 | Caja de cerillas |
 | `short` | 16 bits | -32.768 a 32.767 | Caja de zapatos |
 | `int` | 32 bits | -2.147M a 2.147M | Caja de mudanza (la que más usarás) |
-| `long` | 64 bits | -9 cuatrillones a +9 cuatrillones | Contenedor de barco |
+| `long` | 64 bits | -9 trillones a +9 trillones | Contenedor de barco |
 | `float` | 32 bits | Decimales de precisión simple | Vaso de agua |
 | `double` | 64 bits | Decimales de precisión doble | Cubo de agua |
 | `char` | 16 bits | Un solo carácter Unicode | Una letra en una caja de zapatos |

@@ -15,7 +15,7 @@ Imagina que la memÃ²ria del teu ordinador Ã©s un **magatzem gegant** ple de 
 
 En esta unitat aprendrÃ s a declarar variables dels **8 tipus primitius**, a guardar text amb `String`, a fer immutables algunes caixes amb `final`, a manipular-les amb operadors aritmÃ¨tics, relacionals i lÃ²gics, a convertir-les entre tipus amb **casting**, i a fer que el teu programa **escolte el teclat** amb `Scanner` i jugue a la loteria amb `Math.random()`.
 
-Esta unitat es llig com un **llibre de 9 capÃ­tols**: els 8 primers punts sÃ³n teoria en progressiÃ³ i el 9 Ã©s un aterratge prÃ ctic per a machacar tot el que has aprÃ¨s.
+Esta unitat es llig com un **llibre de 9 capÃ­tols**: els 8 primers punts sÃ³n teoria en progressiÃ³ i el 9 Ã©s un aterratge prÃ ctic per a deixar-ho tot ben lligat.
 
 ---
 

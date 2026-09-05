@@ -24,15 +24,15 @@ Ací està l'arsenal complet. Fixa't en com es crida un mètode d'objecte: `text
 ```java
 String texto = "  Programación DAM  ";
 
-texto.length();               // 18 — quants caràcters hi ha (espais inclosos)
+texto.length();               // 20 — quants caràcters hi ha (espais inclosos)
 texto.trim();                 // "Programación DAM" — sense espais als costats
 texto.toUpperCase();          // "  PROGRAMACIÓN DAM  "
 texto.toLowerCase();          // "  programación dam  "
 texto.contains("DAM");        // true — conté eixe text?
 texto.startsWith("  ");       // true — comença per...?
 texto.endsWith("AM  ");       // true — acaba per...?
-texto.indexOf("DAM");         // 14 — en quina posició comença "DAM"?
-texto.substring(2, 13);       // "Programación" — retalla del caràcter 2 al 13
+texto.indexOf("DAM");         // 15 — en quina posició comença "DAM"?
+texto.substring(2, 14);       // "Programación" — retalla del caràcter 2 al 13
 texto.replace("DAM", "DAW");  // "  Programación DAW  " — substitueix text
 ```
 

@@ -42,7 +42,7 @@ boolean hambre = true;      // Caixa de vertader/fals (ara mateix: true)
 
 Java és tiquismiquis amb els noms de les caixes. Estes són les regles d'or:
 
-- Poden portar lletres, números, `_` i `$`. **Res d'espais** ni de caràcters rars com `ñ` o `ç`.
+- Poden portar lletres, números, `_` i `$`. **Res d'espais**. (Java admet molts caràcters Unicode, però per convenció i per a evitar embolics s'usen lletres ASCII: evita `ñ`, `ç` o accents en els noms.)
 - **No poden començar amb número.** `1numero` és il·legal; `numero1` és legal. Com les matrícules dels cotxes.
 - **Les majúscules importen**: `edad`, `Edad` i `EDAD` són tres caixes distintes. Com etiquetar "Zapatos", "zapatos" i "ZAPATOS".
 - **No uses paraules reservades**: `int`, `class`, `if`, `while`... són de Java, no teues.
@@ -70,7 +70,7 @@ Java té **8 tipus primitius**. Pensa en ells com caixes de distints tamanys al 
 | `byte` | 8 bits | -128 a 127 | Caixa de llumins |
 | `short` | 16 bits | -32.768 a 32.767 | Caixa de sabates |
 | `int` | 32 bits | -2.147M a 2.147M | Caixa de mudança (la que més usaràs) |
-| `long` | 64 bits | -9 quatrilions a +9 quatrilions | Contenidor de vaixell |
+| `long` | 64 bits | -9 trilions a +9 trilions | Contenidor de vaixell |
 | `float` | 32 bits | Decimals de precisió simple | Got d'aigua |
 | `double` | 64 bits | Decimals de precisió doble | Cubell d'aigua |
 | `char` | 16 bits | Un sol caràcter Unicode | Una lletra en una caixa de sabates |

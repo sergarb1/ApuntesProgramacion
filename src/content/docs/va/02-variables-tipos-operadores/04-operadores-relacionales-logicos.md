@@ -50,6 +50,7 @@ Els operadors lògics combinen booleans per a prendre decisions compostes. Són 
 - **`!` (NOT)**: **NO** tens menys de 18? Niega la condició.
 
 ```java
+int edad = 18;
 boolean mayorEdad = true;
 boolean tieneEntrada = false;
 

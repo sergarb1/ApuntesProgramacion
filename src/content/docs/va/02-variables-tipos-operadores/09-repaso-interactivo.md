@@ -116,11 +116,11 @@ Endevina quin concepte de la unitat sóc:
 import java.util.Scanner;
 
 public class Tortura {
-    public static void main(String[] args) {
+    public static void main(string[] args)
         Scanner sc = new Scanner(System.in);
         System.out.print("Cantidad a retirar: ");
         int cantidad = sc.nextInt()
-        int billetes5 = cantidad / 5.0;
+        double billetes5 = cantidad / 5.0;
         System.out.println("Te dan " + billetes5 + " billetes de 5");
         sc.close();
     }
@@ -136,11 +136,17 @@ public class Tortura {
 1. Hi ha algun `;` que falte? *no → seguix buscant.*
    <details><summary>I si encara estic atascat?</summary>La línia del `nextInt()` acaba sense punt i coma. El `;` existix perquè Java sàpia on acaba cada ordre.</details>
 2. Ja compila? *no → mira el missatge d'error i les majúscules.*
-   <details><summary>I si encara estic atascat?</summary>Has recordat el `import java.util.Scanner;` al principi? Sense ell, `Scanner` no existix per al compilador.</details>
-3. Executa però el número de bitllets ix amb decimals o rar? *És l'error de lògica: mescla de tipus.*
+   <details><summary>I si encara estic atascat?</summary>Són dos coses: `string` ha de ser `String` (la classe amb majúscula) i falta la `{` que obri el cos del `main`.</details>
+3. Executa però el número de bitllets ix amb decimals? *És l'error de lògica: mescla de tipus.*
    <details><summary>Solució final</summary>
 
-L'error de lògica: `cantidad / 5.0` dividix un `int` entre un `double`, així que `billetes5` hauria de ser `double`... però el vas declarar `int`. El resultat es trunca malament. La solució és dividir **entre enters** perquè la divisió entera faça el seu treball net:
+Els **3 errors de compilació**:
+
+1. `string[] args` → `String[] args` (la classe `String` amb majúscula).
+2. Falta la `{` que obri el cos del `main` després de `main(string[] args)`.
+3. Falta el `;` al final de `int cantidad = sc.nextInt()`.
+
+L'**error de lògica**: `double billetes5 = cantidad / 5.0;` compila, però amb `cantidad = 17` imprimix **3.4** bitllets... i un caixer no et pot donar 3.4 bitllets. La solució és usar **divisió entera**: `int billetes5 = cantidad / 5;`
 
 ```java
 import java.util.Scanner;
@@ -157,7 +163,7 @@ public class Tortura {
 }
 ```
 
-Per a `cantidad = 17`: `17 / 5` amb enters dona **3** bitllets (i sobren 2 €). Amb la versió trencada, `17 / 5.0 = 3.4` que en truncar a `int` també dona 3, però si `cantidad` fóra, per exemple, 20, la versió amb `5.0` donaria `4.0`... que tampoc revienta. El vertader problema apareix al revés: intenta compilar `int billetes5 = cantidad / 5.0;` al cap. Si Java es queixa o no, eixe era l'enigma.
+Per a `cantidad = 17`: `17 / 5` amb enters dona **3** bitllets (i sobren 2 €). Amb la versió trencada, `cantidad / 5.0` donava 3.4, que com a `double` sí que s'imprimix tal qual: el caixer "et donava 3.4 bitllets". La divisió entera és la que fa el treball net.
 
 </details>
 

@@ -20,7 +20,7 @@ Fins ara, el teu codi corria en línia recta, de dalt a baix, com un soldadet ob
 
 I, de regal, aprendràs a escapar-te d'un bucle amb `break`, a saltar-te una volta amb `continue` i a inventar-te les teues pròpies excepcions. Sí, com en la vida real: et queixes d'alguna cosa, i de pas construïxes el teu propi defecte.
 
-Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a machacar tot el que has aprés.
+Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
 
 ---
 

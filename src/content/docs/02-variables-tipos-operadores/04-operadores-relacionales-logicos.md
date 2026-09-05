@@ -50,6 +50,7 @@ Los operadores lógicos combinan booleanos para tomar decisiones compuestas. Son
 - **`!` (NOT)**: ¿**NO** tienes menos de 18? Niega la condición.
 
 ```java
+int edad = 18;
 boolean mayorEdad = true;
 boolean tieneEntrada = false;
 

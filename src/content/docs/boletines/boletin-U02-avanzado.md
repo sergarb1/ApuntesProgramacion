@@ -30,7 +30,7 @@ Muestra:
 
 ```
 100.0$ son 92.0€
-50.0€ son 54.34782608695652$
+50.0€ son 54.347826086956516$
 ```
 
 **Pista:** para pasar de euros a dólares divides entre la tasa: `euros / TASA_CAMBIO`.
@@ -79,6 +79,8 @@ Año 1: 1050.0€
 Año 2: 1102.5€
 Año 3: 1157.625€
 ```
+
+> 💡 **Ojo con la precisión:** en el año 3 tu programa puede imprimir `1157.6250000000002` en vez de `1157.625` por la coma flotante binaria de los `double` (lo veremos en «Atrévete a pensar»). No es un error de tu código.
 
 **Pista:** para mostrar cada año sin bucle, crea tres variables distintas (`capital1`, `capital2`, `capital3`) y usa `Math.pow(1 + TASA, i)` con `i` valiendo 1, 2 y 3.
 

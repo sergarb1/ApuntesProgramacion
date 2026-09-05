@@ -62,7 +62,7 @@ Eixida:
 
 ```
 100.0$ són 92.0€
-50.0€ són 54.34782608695652$
+50.0€ són 54.347826086956516$
 ```
 
 Per a passar de dòlars a euros multipliques per la taxa; al revés, dividixes. El `final` garantix que ningú (ni tu) toque la taxa de canvi sense voler.
@@ -119,7 +119,9 @@ public class InteresCompost {
 }
 ```
 
-`Math.pow(1 + TAXA, i)` calcula `(1.05)^i`. Amb tres variables distintes evites el bucle... que arribarà en la U03. Fixat que `Math.pow` retorna un `double`.
+`Math.pow(1 + TAXA, i)` calcula `(1.05)^i`. Amb tres variables distintes evites el bucle... que arribarà en la U03. Fixa’t que `Math.pow` retorna un `double`.
+
+> 💡 **Detall de precisió:** en l'any 3 el teu programa pot imprimir `1157.6250000000002` en lloc de `1157.625`. És la coma flotant binària del punt "Atreveix-te a pensar" (els decimals no sempre es representen exactes). No és un error: és així com funcionen els `double`.
 
 </details>
 
@@ -224,7 +226,7 @@ public class SuperCalculadora {
 }
 ```
 
-La lògica del ternari encadenat: primer comprova si l'operador és `/` i a més `b` no és 0; si l'operador és `/` però `b` és 0, cau en el missatge d'error. Fixat en `op.equals("/")`: els `String` sempre es comparen amb `.equals()`. Els operadors lògics i relacionals unixen totes les condicions.
+La lògica del ternari encadenat: primer comprova si l'operador és `/` i a més `b` no és 0; si l'operador és `/` però `b` és 0, cau en el missatge d'error. Fixa’t en `op.equals("/")`: els `String` sempre es comparen amb `.equals()`. Els operadors lògics i relacionals unixen totes les condicions.
 
 </details>
 

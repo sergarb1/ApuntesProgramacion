@@ -16,7 +16,7 @@ La **Programació Orientada a Objectes (POO)** és exactament això: escriure co
 
 Esta unitat és el **punt d'inflexió del curs**: el que aprengues ací, ho usaràs en totes les unitats que queden. La POO no és un tema més: és el tema que fa que tots els altres tinguen sentit.
 
-Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a machacar tot el que has aprés.
+Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
 
 ---
 

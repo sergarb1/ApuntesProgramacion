@@ -30,7 +30,7 @@ Mostra:
 
 ```
 100.0$ són 92.0€
-50.0€ són 54.34782608695652$
+50.0€ són 54.347826086956516$
 ```
 
 **Pista:** per a passar d'euros a dòlars dividixes entre la taxa: `euros / TAXA_CANVI`.
@@ -79,6 +79,8 @@ Any 1: 1050.0€
 Any 2: 1102.5€
 Any 3: 1157.625€
 ```
+
+> 💡 **Compte amb la precisió:** en l'any 3 el teu programa pot imprimir `1157.6250000000002` en lloc de `1157.625` per la coma flotant binària dels `double` (ho veurem a «Atreveix-te a pensar»). No és un error del teu codi.
 
 **Pista:** per a mostrar cada any sense bucle, crea tres variables distintes (`capital1`, `capital2`, `capital3`) i usa `Math.pow(1 + TAXA, i)` amb `i` valent 1, 2 i 3.
 

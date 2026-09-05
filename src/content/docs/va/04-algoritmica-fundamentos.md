@@ -16,7 +16,7 @@ Pensa en el que fas cada dia sense adonar-te'n. Busques la paraula "berenar" en 
 
 I, com sempre, CONRAD el compilador serà per ací per a recordar-te que un algoritme mal pensat és com una truita sense sal: es pot menjar, però no hauries.
 
-Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a machacar tot el que has aprés.
+Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
 
 ---
 
