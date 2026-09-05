@@ -108,11 +108,11 @@ public class BombollaRecuento {
 Salida:
 
 ```
-Intercambios: 6
+Intercambios: 7
 1 3 5 7 9
 ```
 
-Sobre `{9, 3, 7, 1, 5}` son 6 intercambios. El flag hace que, en cuanto una pasada no mueve nada, el `break` corta: no merece la pena seguir. Compara con el boletín inicial, donde el flag no existía y siempre se hacían todas las pasadas.
+Sobre `{9, 3, 7, 1, 5}` son 7 intercambios. El flag hace que, en cuanto una pasada no mueve nada, el `break` corta: no merece la pena seguir. Compara con el boletín inicial, donde el flag no existía y siempre se hacían todas las pasadas.
 
 </details>
 

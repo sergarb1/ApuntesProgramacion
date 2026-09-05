@@ -78,14 +78,14 @@ En acabar, seràs capaç de:
 | RA2 f) | S'han utilitzat paràmetres en la crida a mètodes. | ✅ Punts 2, 3, 4 i 5 |
 | RA6 a) | S'han escrit programes que utilitzen arrays. | ✅ Tots |
 
-> 📌 Esta unitat és el germen de la U05: els bucles que machaques ací (`for`, `while`), les cerques i les ordenacions es convertixen en QuickSort, MergeSort i recursivitat. I els arrays que recorres hui són la base de les col·leccions de la U09.
+> 📌 Esta unitat és el germen de la U05: els bucles que domines ací (`for`, `while`), les cerques i les ordenacions es convertixen en QuickSort, MergeSort i recursivitat. I els arrays que recorres hui són la base de les col·leccions de la U09.
 
 ---
 
 ## 🚪 Per on comence?
 
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/04-algoritmica-fundamentos/01-que-es-algoritmo). Només necessites variables, bucles i arrays bàsics de la U03.
-- Ja saps què és un algoritme i vols molta chicha? → Salta a la [cerca binària](/ApuntesProgramacion/va/04-algoritmica-fundamentos/03-busqueda-binaria) o a l'[ordenació per inserció](/ApuntesProgramacion/va/04-algoritmica-fundamentos/05-ordenacion-insercion).
+- Ja saps què és un algoritme i vols molta cosa? → Salta a la [cerca binària](/ApuntesProgramacion/va/04-algoritmica-fundamentos/03-busqueda-binaria) o a l'[ordenació per inserció](/ApuntesProgramacion/va/04-algoritmica-fundamentos/05-ordenacion-insercion).
 - Només vols saber quin algoritme triar? → Llig [Big O](/ApuntesProgramacion/va/04-algoritmica-fundamentos/06-complejidad-big-o) i [Triar l'algoritme adequat](/ApuntesProgramacion/va/04-algoritmica-fundamentos/07-elegir-algoritmo).
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/04-algoritmica-fundamentos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u04-inicial).
 

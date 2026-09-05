@@ -48,14 +48,14 @@ public class Misteri {
 
 **Què imprimixes per pantalla? Tria saviament:**
 
-1. **`Trobat en 3 amb 1 passos.`** → ✅ Correcte! Amb 6 elements, `mig` és `0 + (5-0)/2 = 2` → `dades[2] = 30`, que és menor que 40, així que `esquerra = 3`. Segona volta: `mig = 3 + (5-3)/2 = 4` → `dades[4] = 50`, que és major, així que `dreta = 3`. Tercera volta: `mig = 3 + (3-3)/2 = 3` → `dades[3] = 40`. Bingo en 3 passos! Amb `return` (estem en `main`) el programa acaba ací.
-2. **`Trobat en 3 amb 3 passos.`** → Confons el nombre de passos amb la posició. ❌
+1. **`Trobat en 3 amb 1 passos.`** → Confons el nombre de passos amb la posició: la cerca no arriba en una sola volta. ❌
+2. **`Trobat en 3 amb 3 passos.`** → ✅ Correcte! Amb 6 elements, `mig` és `0 + (5-0)/2 = 2` → `dades[2] = 30`, que és menor que 40, així que `esquerra = 3`. Segona volta: `mig = 3 + (5-3)/2 = 4` → `dades[4] = 50`, que és major, així que `dreta = 3`. Tercera volta: `mig = 3 + (3-3)/2 = 3` → `dades[3] = 40`. Bingo en 3 passos! Amb `return` (estem en `main`) el programa acaba ací.
 3. **`No hi és. Passos: 4.`** → El 40 és en l'array, només que la cerca binària no el caça a la primera. ❌
 
 > <details>
 > <summary>🔄 Solució</summary>
 >
-> L'opció **1**. Traça: `mig=2 (30<40) → esq=3`, `mig=4 (50>40) → der=3`, `mig=3 → 40!`. Són **3 passos** en la posició **3**. El `return` dins de `main` acaba el programa sense arribar a la línia del "No hi és".
+> L'opció **2**. Traça: `mig=2 (30<40) → esq=3`, `mig=4 (50>40) → der=3`, `mig=3 → 40!`. Són **3 passos** en la posició **3**. El `return` dins de `main` acaba el programa sense arribar a la línia del "No hi és".
 >
 > </details>
 
@@ -160,7 +160,7 @@ public class Tortura
         int[] dades = {3, 1, 4, 2};
         for (int i = 0; i < dades.length; i++) {
             for (int j = 0; j < dades.length; j++) {
-                if (dades[j] > dades[j + 1]) {
+                if (dades[j] < dades[j + 1]) {
                     int temp = dades[j];
                     dades[j] = dades[j + 1];
                     dades[j + 1] = temp;
@@ -184,8 +184,16 @@ public class Tortura
    <details><summary>I si encara estic atascat?</summary>La classe `Tortura` necessita `{` d'obertura.</details>
 3. Compila però explota en executar? *És l'error d'índexs: el bucle interior arriba massa lluny.*
    <details><summary>I si encara estic atascat?</summary>`j < dades.length` accedix a `dades[j + 1]` fora de l'array. Ha de ser `j < dades.length - 1 - i` (i l'exterior `i < dades.length - 1`).</details>
-4. Executa i imprimix `1 2 3 4`? Llavors ja està! Si imprimix alguna cosa rara, revisa l'ordre dels bucles.
+4. Executa i imprimix `4 3 2 1`? *És l'error de lògica: el signe de la comparació ordena al revés.*
    <details><summary>Solució final</summary>
+
+Els **3 errors** que impedixen compilar o executar:
+
+1. Falta la `{` d'obertura de la classe després de `Tortura`.
+2. Falta el `;` al final de `System.out.print(n + " ")`.
+3. `j < dades.length` accedix a `dades[j + 1]` fora de l'array: `ArrayIndexOutOfBoundsException`. Ha de ser `j < dades.length - 1 - i`.
+
+L'**error de lògica**: `dades[j] < dades[j + 1]` ordena **de major a menor**. Compila i executa perfectament, però imprimix `4 3 2 1` en lloc de `1 2 3 4`. La bombolla puja el major cap al final comparant amb `>`, no amb `<`.
 
 ```java
 public class Tortura {
@@ -205,7 +213,7 @@ public class Tortura {
 }
 ```
 
-Eixida correcta: `1 2 3 4`. Els tres errors eren: falta de `{` de la classe, falta de `;` en l'últim `for`, i el `j < dades.length` (error d'índexs). L'error de lògica "invisible" era el mateix bucle interior: sense el `- 1 - i`, a més d'explotar, no aprofitaria les passades per a ordenar bé en tots els casos.
+Eixida correcta: `1 2 3 4`. Amb la versió trencada, una vegada arreglats els altres errors, la comparació `<` donava `4 3 2 1`: el signe era la pista de l'error de lògica.
 
 </details>
 

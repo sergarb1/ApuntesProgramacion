@@ -77,7 +77,7 @@ La regla del pulgar: **un bucle solo → O(n). Un bucle dentro de otro → O(n²
 
 ---
 
-## 📏 las reglas prácticas de Big O
+## 📏 Las reglas prácticas de Big O
 
 1. **Ignora las constantes**: O(2n) es lo mismo que O(n). El 2 no importa cuando `n` tiende a infinito.
 2. **Quédate con el término dominante**: O(n² + n) → O(n²). El `n²` se come al `n` cuando `n` crece.

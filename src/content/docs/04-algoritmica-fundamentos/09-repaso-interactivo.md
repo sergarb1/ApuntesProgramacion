@@ -48,14 +48,14 @@ public class Misterio {
 
 **¿Qué imprime por pantalla? Elige sabiamente:**
 
-1. **`Encontrado en 3 con 1 pasos.`** → ✅ ¡Correcto! Con 6 elementos, `medio` es `0 + (5-0)/2 = 2` → `datos[2] = 30`, que es menor que 40, así que `izquierda = 3`. Segunda vuelta: `medio = 3 + (5-3)/2 = 4` → `datos[4] = 50`, que es mayor, así que `derecha = 3`. Tercera vuelta: `medio = 3 + (3-3)/2 = 3` → `datos[3] = 40`. ¡Bingo en 3 pasos! Con `return` (estamos en `main`) el programa termina ahí.
-2. **`Encontrado en 3 con 3 pasos.`** → Confundes el número de pasos con la posición. ❌
+1. **`Encontrado en 3 con 1 pasos.`** → Confundes el número de pasos con la posición: la búsqueda no llega en una sola vuelta. ❌
+2. **`Encontrado en 3 con 3 pasos.`** → ✅ ¡Correcto! Con 6 elementos, `medio` es `0 + (5-0)/2 = 2` → `datos[2] = 30`, que es menor que 40, así que `izquierda = 3`. Segunda vuelta: `medio = 3 + (5-3)/2 = 4` → `datos[4] = 50`, que es mayor, así que `derecha = 3`. Tercera vuelta: `medio = 3 + (3-3)/2 = 3` → `datos[3] = 40`. ¡Bingo en 3 pasos! Con `return` (estamos en `main`) el programa termina ahí.
 3. **`No está. Pasos: 4.`** → El 40 está en el array, solo que la búsqueda binaria no lo caza a la primera. ❌
 
 > <details>
 > <summary>🔄 Solución</summary>
 >
-> La opción **1**. Traza: `medio=2 (30<40) → izq=3`, `medio=4 (50>40) → der=3`, `medio=3 → ¡40!`. Son **3 pasos** en la posición **3**. El `return` dentro de `main` termina el programa sin llegar a la línea del "No está".
+> La opción **2**. Traza: `medio=2 (30<40) → izq=3`, `medio=4 (50>40) → der=3`, `medio=3 → ¡40!`. Son **3 pasos** en la posición **3**. El `return` dentro de `main` termina el programa sin llegar a la línea del "No está".
 >
 > </details>
 
@@ -160,7 +160,7 @@ public class Tortura
         int[] datos = {3, 1, 4, 2};
         for (int i = 0; i < datos.length; i++) {
             for (int j = 0; j < datos.length; j++) {
-                if (datos[j] > datos[j + 1]) {
+                if (datos[j] < datos[j + 1]) {
                     int temp = datos[j];
                     datos[j] = datos[j + 1];
                     datos[j + 1] = temp;
@@ -184,8 +184,16 @@ public class Tortura
    <details><summary>¿Y si sigo atascado?</summary>La clase `Tortura` necesita `{` de apertura.</details>
 3. ¿Compila pero explota al ejecutar? *Es el error de índices: el bucle interior llega demasiado lejos.*
    <details><summary>¿Y si sigo atascado?</summary>`j < datos.length` accede a `datos[j + 1]` fuera del array. Debe ser `j < datos.length - 1 - i` (y el exterior `i < datos.length - 1`).</details>
-4. ¿Ejecuta e imprime `1 2 3 4`? ¡Entonces ya está! Si imprime algo raro, revisa el orden de los bucles.
+4. ¿Ejecuta e imprime `4 3 2 1`? *Es el error de lógica: el signo de la comparación ordena al revés.*
    <details><summary>Solución final</summary>
+
+Los **3 errores** que impiden compilar o ejecutar:
+
+1. Falta la `{` de apertura de la clase después de `Tortura`.
+2. Falta el `;` al final de `System.out.print(n + " ")`.
+3. `j < datos.length` accede a `datos[j + 1]` fuera del array: `ArrayIndexOutOfBoundsException`. Debe ser `j < datos.length - 1 - i`.
+
+El **error de lógica**: `datos[j] < datos[j + 1]` ordena **de mayor a menor**. Compila y ejecuta perfectamente, pero imprime `4 3 2 1` en vez de `1 2 3 4`. La burbuja sube el mayor hacia el final comparando con `>`, no con `<`.
 
 ```java
 public class Tortura {
@@ -205,7 +213,7 @@ public class Tortura {
 }
 ```
 
-Salida correcta: `1 2 3 4`. Los tres errores eran: falta de `{` de la clase, falta de `;` en el último `for`, y el `j < datos.length` (error de índices). El error de lógica "invisible" era el mismo bucle interior: sin el `- 1 - i`, además de explotar, no aprovecharía las pasadas para ordenar bien en todos los casos.
+Salida correcta: `1 2 3 4`. Con la versión rota, una vez arreglados los otros errores, la comparación `<` daba `4 3 2 1`: el signo era la pista del error de lógica.
 
 </details>
 

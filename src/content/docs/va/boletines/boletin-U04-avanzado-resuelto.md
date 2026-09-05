@@ -108,11 +108,11 @@ public class BombollaRecompte {
 Eixida:
 
 ```
-Intercanvis: 6
+Intercanvis: 7
 1 3 5 7 9
 ```
 
-Sobre `{9, 3, 7, 1, 5}` són 6 intercanvis. El flag fa que, tan bon punt una passada no mou res, el `break` talla: no mereix la pena seguir. Compara amb el butlletí inicial, on el flag no existia i sempre es feien totes les passades.
+Sobre `{9, 3, 7, 1, 5}` són 7 intercanvis. El flag fa que, tan bon punt una passada no mou res, el `break` talla: no mereix la pena seguir. Compara amb el butlletí inicial, on el flag no existia i sempre es feien totes les passades.
 
 </details>
 
