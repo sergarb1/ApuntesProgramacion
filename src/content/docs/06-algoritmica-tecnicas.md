@@ -6,7 +6,7 @@ emoji: ⚡
 
 <p><small>Recursividad, divide y vencerás, Quicksort y Mergesort: las técnicas que hacen que tu código piense ⚡</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → **⚡ AQUÍ ESTÁS (U06)** → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → **⚡ AQUÍ ESTÁS (U06)** → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -52,13 +52,13 @@ Al terminar, serás capaz de:
 
 ## 📝 Boletines de la unidad
 
-> Practica con los pares del curso: empieza siempre por el resuelto para ver el estilo y luego intenta el por-resolver.
+> Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u06-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u06-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-u06-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u06-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u06-extras" class="elink">🔥 Extras</a>
 </div>
 

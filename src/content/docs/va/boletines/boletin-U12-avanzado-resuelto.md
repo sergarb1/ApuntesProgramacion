@@ -9,410 +9,293 @@ description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 
 ---
 
-## ⭐ Exercici 1: Buscador de fitxers per extensió
+## ⭐⭐ Exercici 1: Ordenar amb referències a mètode
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.File;
+import java.util.*;
+import java.util.stream.*;
 
-public class Buscador {
-    public static void buscar(File carpeta, String extension) {
-        File[] contenidos = carpeta.listFiles();
-        if (contenidos == null) return;
+public class Orden {
+    public static void main(String[] args) {
+        List<String> nombres = List.of("Carlos", "Ana", "David", "Bob");
 
-        for (File item : contenidos) {
-            if (item.isDirectory()) {
-                buscar(item, extension);        // recursió: dins de la carpeta
-            } else if (item.getName().endsWith(extension)) {
-                System.out.println(item.getAbsolutePath());
-            }
-        }
+        List<String> porLongitud = nombres.stream()
+            .sorted(Comparator.comparing(String::length))
+            .toList();
+
+        System.out.println(porLongitud);   // [Ana, Bob, Carlos, David]
+
+        List<String> inverso = nombres.stream()
+            .sorted(Comparator.comparing(String::length).reversed())
+            .toList();
+        System.out.println(inverso);   // [Carlos, David, Ana, Bob]
+    }
+}
+```
+
+`Comparator.comparing(String::length)` construïx un comparador que usa la referència a mètode `String::length` com a "clau d'ordenació". `sorted` no modifica la llista original: torna un stream ordenat. Amb `.reversed()` inverteixes el criteri (els més llargs primer; els empats mantenen l'ordre d'arribada).
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 2: Agrupar paraules per la seua primera lletra
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Grupos {
+    public static void main(String[] args) {
+        List<String> palabras = List.of("hola", "adios", "mar", "mundo", "luna");
+
+        Map<Character, List<String>> porLetra = palabras.stream()
+            .collect(Collectors.groupingBy(p -> p.charAt(0)));
+
+        System.out.println(porLetra);
+        // {a=[adios], h=[hola], l=[luna], m=[mar, mundo]}
+
+        Map<Character, Long> conteo = palabras.stream()
+            .collect(Collectors.groupingBy(p -> p.charAt(0), Collectors.counting()));
+
+        System.out.println(conteo);
+        // {a=1, h=1, l=1, m=2}
+    }
+}
+```
+
+`groupingBy(p -> p.charAt(0))` agrupa les paraules per la seua primera lletra: cada lletra és una clau i la seua llista de paraules el valor. Amb `Collectors.counting()` com a segon argument (el "collector aigües avall"), el valor passa de `List<String>` a `Long`: quantes paraules cauen en cada grup. És el comptador de freqüències per categoria en una línia.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 3: Optional — el que no es deixa enganyar
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Maximo {
+    public static int maximoSeguro(List<Integer> numeros) {
+        return numeros.stream()
+            .max(Integer::compareTo)
+            .orElse(-1);
     }
 
     public static void main(String[] args) {
-        File carpeta = new File("src");
-        buscar(carpeta, ".java");
+        System.out.println(maximoSeguro(List.of(4, 9, 2, 7)));   // 9
+        System.out.println(maximoSeguro(List.of()));             // -1
     }
 }
 ```
 
-La recursió és el cor: si el fitxer és una carpeta, el mètode es crida a si mateix amb eixa carpeta; si és un fitxer, comprova l'extensió. L'`if (contenidos == null)` evita el `NullPointerException` si no hi ha permís de lectura. Així es recorre un arbre complet sense bucles niats infinits.
+`max(Integer::compareTo)` torna un `Optional<Integer>`: si la llista està buida, la capsa està buida. `orElse(-1)` aterra amb seguretat: torna el màxim si hi ha valor i `-1` si no. Usar `get()` ací hauria llançat `NoSuchElementException` amb la llista buida: l'`orElse` és la xarxa que convertix una excepció en una dada controlada.
 
 </details>
 
 ---
 
-## ⭐ Exercici 2: Lector de CSV amb Scanner
+## ⭐⭐⭐ Exercici 4: El pipeline complet
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.File;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.*;
 
-public class LeeCSV {
-    public static void main(String[] args) throws Exception {
-        try (Scanner sc = new Scanner(new File("datos.csv"))) {
-            sc.useDelimiter(";|\\R");
-            System.out.printf("%-8s %3s %s%n", "Nombre", "Edad", "Ciclo");
-            while (sc.hasNext()) {
-                String nombre = sc.next();
-                int edad = sc.nextInt();
-                String ciclo = sc.next();
-                System.out.printf("%-8s %3d %s%n", nombre, edad, ciclo);
-            }
-        }
-    }
-}
-```
-
-`useDelimiter(";|\\R")` talla per `;` o per qualsevol salt de línia: els camps eixen nets, un darrere de l'altre. `printf` amb `%-8s` alinea a l'esquerra i `%3d` reserva 3 posicions per a l'edat. Eixida:
-
-```
-Nombre   Edad Ciclo
-Ana        25 DAM
-Bob        22 DAW
-Carlos     30 DAM
-```
-
-</details>
-
----
-
-## ⭐⭐ Exercici 3: Filtre de línies per paraula clau
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.FileWriter;
-import java.util.Scanner;
-
-public class Filtro {
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Palabra clave: ");
-        String clave = sc.nextLine();
-
-        int coinciden = 0, descartadas = 0;
-
-        try (BufferedReader br = new BufferedReader(new FileReader("origen.txt"));
-             PrintWriter pw = new PrintWriter(new FileWriter("destino.txt"))) {
-
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                if (linea.contains(clave)) {
-                    pw.println(linea);
-                    coinciden++;
-                } else {
-                    descartadas++;
-                }
-            }
-        }
-
-        System.out.println("Coinciden: " + coinciden);
-        System.out.println("Descartadas: " + descartadas);
-        sc.close();
-    }
-}
-```
-
-`linea.contains(clave)` busca la paraula dins de la línia (sense regex, que ací no cal). Els dos `PrintWriter`/`BufferedReader` van en el mateix `try-with-resources` i Java tanca tots dos en eixir. Els comptadors donen el resum final.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 4: Separador de línies parells i senars
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.FileWriter;
-
-public class Separador {
-    public static void main(String[] args) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader("entrada.txt"));
-             PrintWriter pares = new PrintWriter(new FileWriter("pares.txt"));
-             PrintWriter impares = new PrintWriter(new FileWriter("impares.txt"))) {
-
-            String linea;
-            int numLinea = 0;
-            while ((linea = br.readLine()) != null) {
-                if (numLinea % 2 == 0) {
-                    pares.println(linea);
-                } else {
-                    impares.println(linea);
-                }
-                numLinea++;
-            }
-        }
-        System.out.println("Separados.");
-    }
-}
-```
-
-Tres recursos en el mateix `try-with-resources`, separats per `;`. El `numLinea` compta des de 0, així que la primera línia (posició 0, parell) va a `pares.txt`. En acabar, Java tanca els tres fitxers en ordre invers.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 5: Split amb regex — analitzador de frases
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class Analizador {
+public class Pipeline {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Frase: ");
-        String frase = sc.nextLine();
+        List<Integer> numeros = List.of(12, 5, 8, 3, 9, 5, 12, 7);
 
-        String[] palabras = frase.split("[^a-zA-ZáéíóúüñÑ]+");
+        List<Integer> resultado = numeros.stream()
+            .filter(n -> n >= 5)                     // 12, 5, 8, 9, 5, 12, 7
+            .map(n -> n * n)                         // 144, 25, 64, 81, 25, 144, 49
+            .distinct()                              // 144, 25, 64, 81, 49
+            .sorted(Comparator.reverseOrder())       // 144, 81, 64, 49, 25
+            .limit(3)                                // 144, 81, 64
+            .toList();
 
-        System.out.println("Palabras: " + palabras.length);
-
-        String masLarga = "";
-        for (String p : palabras) {
-            if (p.length() > masLarga.length()) {
-                masLarga = p;
-            }
-        }
-        System.out.println("Más larga: \"" + masLarga + "\"");
-
-        System.out.print("Empiezan por vocal: [");
-        boolean primera = true;
-        for (String p : palabras) {
-            if (!p.isEmpty() && p.toLowerCase().charAt(0) == 'a' ||
-                p.toLowerCase().charAt(0) == 'e' ||
-                p.toLowerCase().charAt(0) == 'i' ||
-                p.toLowerCase().charAt(0) == 'o' ||
-                p.toLowerCase().charAt(0) == 'u') {
-                if (!primera) System.out.print(", ");
-                System.out.print("\"" + p + "\"");
-                primera = false;
-            }
-        }
-        System.out.println("]");
-        sc.close();
+        System.out.println(resultado);   // [144, 81, 64]
     }
 }
 ```
 
-El patró `[^a-zA-ZáéíóúüñÑ]+` talla per tot el que NO siga lletra: espais, comes, punts i signes desapareixen com a separadors. La condició de les vocals usa `charAt(0)` sobre la paraula en minúscules (amb el `!p.isEmpty()` per a no esclatar amb cadenes buides). Eixida per a l'exemple:
-
-```
-Palabras: 6
-Más larga: "mundo"
-Empiezan por vocal: ["Esto"]
-```
+El pipeline complet de la unitat: filtrar (el 3 es queda fora), transformar al quadrat, llevar duplicats (el 12 i el 5 repetits desapareixen), ordenar de major a menor amb `Comparator.reverseOrder()` i tallar en 3 amb `limit`. L'ordre importa: `distinct` abans de `sorted` significa que la llista a ordenar ja no té repetits.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 6 (ProgramaMe): Validador de dades amb regex
+## ⭐⭐ Exercici 5: De llista a mapa amb `toMap`
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.util.regex.Pattern;
+import java.util.*;
+import java.util.stream.*;
 
-public class ValidadorDatos {
-    private static final Pattern PATRON_EMAIL =
-        Pattern.compile("[\\w.]+@[\\w.]+\\.[a-z]{2,}");
-    private static final Pattern PATRON_DNI =
-        Pattern.compile("\\d{8}[A-Z]");
-    private static final Pattern PATRON_TELEFONO =
-        Pattern.compile("(\\+34\\s?)?[679]\\d{8}");
+class Alumno {
+    private String nombre;
+    private int nota;
 
-    public static boolean valida(String dato, String tipo) {
-        switch (tipo) {
-            case "email":    return PATRON_EMAIL.matcher(dato).matches();
-            case "dni":      return PATRON_DNI.matcher(dato.toUpperCase()).matches();
-            case "telefono": return PATRON_TELEFONO.matcher(dato).matches();
-            default:         return false;
-        }
+    public Alumno(String nombre, int nota) {
+        this.nombre = nombre;
+        this.nota = nota;
     }
 
-    public static void main(String[] args) throws Exception {
-        int validos = 0, invalidos = 0;
+    public String getNombre() { return nombre; }
+    public int getNota() { return nota; }
+}
 
-        try (BufferedReader br = new BufferedReader(new FileReader("datos.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(";");
-                boolean ok = valida(partes[0], partes[1]);
-                if (ok) {
-                    validos++;
-                } else {
-                    invalidos++;
-                    System.out.println("Inválido: " + linea);
-                }
-            }
-        }
+public class Mapa {
+    public static void main(String[] args) {
+        List<Alumno> alumnos = List.of(
+            new Alumno("Ana", 8),
+            new Alumno("Bob", 6),
+            new Alumno("Carla", 9),
+            new Alumno("David", 7),
+            new Alumno("Eva", 5)
+        );
 
-        System.out.println("Válidos: " + validos);
-        System.out.println("Inválidos: " + invalidos);
+        Map<String, Integer> porNombre = alumnos.stream()
+            .collect(Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a));
+
+        System.out.println(porNombre);   // {Eva=5, Ana=8, Bob=6, Carla=9, David=7}
     }
 }
 ```
 
-Cada línia es troceja per `;` en dada i tipus, i un `switch` tria el patró. El telèfon `(\\+34\\s?)?` admet el prefix `+34` opcional (amb o sense espai) seguit de 9 dígits que comencen per 6, 7 o 9. El DNI es passa a majúscules per a acceptar la lletra en minúscula. Les regex validen el format: per al DNI de veritat caldria l'algoritme mòdul 23, que ací es dona per bo.
+`Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)` usa referències a mètode per a traure clau (nom) i valor (nota). La funció de fusió `(a, b) -> a` és l'assegurança: si un nom es repetira, dos elements voldrien la mateixa clau i sense fusió Java llançaria `IllegalStateException`. Amb `(a, b) -> a` es queda amb el primer.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 7: Xifrat Cèsar amb fitxers
+## ⭐⭐⭐ Exercici 6: El màxim amb `reduce` i comparador
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.PrintWriter;
-import java.io.FileWriter;
+import java.util.*;
+import java.util.stream.*;
 
-public class CifradoCesar {
-    public static char desplaza(char c, int n) {
-        if (c >= 'a' && c <= 'z') {
-            return (char) ('a' + (c - 'a' + n) % 26);
-        }
-        if (c >= 'A' && c <= 'Z') {
-            return (char) ('A' + (c - 'A' + n) % 26);
-        }
-        return c;   // no és lletra: es queda igual
-    }
+public class Maximo {
+    public static void main(String[] args) {
+        List<Integer> numeros = List.of(4, 9, 2, 9, 7);
 
-    public static void procesar(String origen, String destino, int n) throws Exception {
-        try (BufferedReader br = new BufferedReader(new FileReader(origen));
-             PrintWriter pw = new PrintWriter(new FileWriter(destino))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                StringBuilder sb = new StringBuilder();
-                for (char c : linea.toCharArray()) {
-                    sb.append(desplaza(c, n));
-                }
-                pw.println(sb);
-            }
-        }
-    }
+        int conReduce = numeros.stream()
+            .reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b);
+        System.out.println(conReduce);   // 9
 
-    public static void main(String[] args) throws Exception {
-        procesar("mensaje.txt", "mensaje_cifrado.txt", 3);   // xifrar
-        procesar("mensaje_cifrado.txt", "descifrado.txt", -3); // descifrar
+        Optional<Integer> conMax = numeros.stream().max(Integer::compareTo);
+        System.out.println(conMax.orElse(-1));   // 9
     }
 }
 ```
 
-El truc del `% 26`: cada lletra es convertix a la seua posició en l'alfabet (`c - 'a'`), es desplaça `n` i es fa mòdul 26 perquè la `z` torne a la `a`. Descifrar és el mateix amb `n = -3`. Els caràcters que no són lletres (espais, signes) es queden intactes, que és el que fa un Cèsar clàssic.
+- Amb `reduce`, la identitat `Integer.MIN_VALUE` garantix que el primer element sempre guanye la comparació (qualsevol `int` és major que el mínim possible). L'acumulador va guardant el major vist.
+- Amb `max(Integer::compareTo)` no hi ha identitat: torna un `Optional<Integer>` perquè una llista buida no té màxim. S'aterra amb `orElse(-1)`.
+
+La diferència clau: `reduce` amb identitat torna el valor directe; `max` torna `Optional` i t'obliga a gestionar l'absència.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 8: Serialització d'estudiants
+## ⭐⭐ Exercici 7: Freqüències amb `groupingBy`
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.*;
 
-class Estudiante implements Serializable {
-    private static final long serialVersionUID = 1L;
-    String nombre;
-    int edad;
-    double notaMedia;
+public class Frecuencias {
+    public static void main(String[] args) {
+        String[] palabras = {"hola", "adios", "hola", "java", "hola", "adios"};
 
-    Estudiante(String n, int e, double m) {
-        this.nombre = n;
-        this.edad = e;
-        this.notaMedia = m;
-    }
-}
+        Map<String, Long> frec = Arrays.stream(palabras)
+            .collect(Collectors.groupingBy(p -> p, Collectors.counting()));
 
-public class GuardaEstudiantes {
-    public static void main(String[] args) throws Exception {
-        List<Estudiante> equipo = new ArrayList<>();
-        equipo.add(new Estudiante("Ana", 20, 8.5));
-        equipo.add(new Estudiante("Bob", 22, 6.0));
-        equipo.add(new Estudiante("Carla", 19, 9.2));
+        System.out.println(frec);   // {adios=2, hola=3, java=1}
 
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("estudiantes.dat"))) {
-            oos.writeObject(equipo);
-        }
+        Map.Entry<String, Long> campeona = frec.entrySet().stream()
+            .max(Map.Entry.comparingByValue())
+            .orElse(null);
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("estudiantes.dat"))) {
-            List<Estudiante> recuperados = (List<Estudiante>) ois.readObject();
-            for (Estudiante e : recuperados) {
-                System.out.printf("%-6s %2d años - nota: %.1f%n", e.nombre, e.edad, e.notaMedia);
-            }
-        }
+        System.out.println("Más repetida: " + campeona.getKey() + " (" + campeona.getValue() + ")");
     }
 }
 ```
 
-La classe `Estudiante` implementa `Serializable` amb el seu `serialVersionUID` fix perquè els fitxers sobrevisquen a xicotets canvis. El `writeObject` guarda la llista sencera d'una vegada i `readObject` la reconstruïx amb un casting a `List<Estudiante>`. Com que `ArrayList` i `Estudiante` són serialitzables, tot el paquet es congela i descongela en dos línies.
+Dos nivells de streams: el primer convertix l'array en flux i agrupa per la paraula mateixa (`p -> p`), comptant amb `counting()`: `hola`=3, `adios`=2, `java`=1. El segon recorre les entrades del mapa (`entrySet()`) i busca el màxim valor amb `max(Map.Entry.comparingByValue())`, que torna `Optional<Map.Entry>` (aterrat amb `orElse(null)`). És l'`entrySet` de la U11 + el `max` dels streams.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 9: El comptador de línies, paraules i caràcters
+## ⭐⭐⭐ Exercici 8: Optional i streams, la parella
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.util.*;
+import java.util.stream.*;
 
-public class Contador {
-    public static void main(String[] args) throws Exception {
-        int lineas = 0, palabras = 0, caracteres = 0;
+public class Busqueda {
+    public static void buscarJ(List<String> nombres) {
+        nombres.stream()
+            .filter(n -> n.startsWith("J"))
+            .findFirst()
+            .ifPresentOrElse(
+                System.out::println,
+                () -> System.out.println("no hay nadie")
+            );
+    }
 
-        try (BufferedReader br = new BufferedReader(new FileReader("texto.txt"))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                lineas++;
-                caracteres += linea.length();
-                if (!linea.trim().isEmpty()) {
-                    palabras += linea.split("\\s+").length;
-                }
-            }
-        }
-
-        System.out.println("Líneas: " + lineas);
-        System.out.println("Palabras: " + palabras);
-        System.out.println("Caracteres: " + caracteres);
+    public static void main(String[] args) {
+        buscarJ(List.of("Ana", "Juan", "Carla"));    // Juan
+        buscarJ(List.of("Ana", "Carla"));            // no hay nadie
     }
 }
 ```
 
-Cada línia suma 1 a les línies i el seu `length()` als caràcters. Per a les paraules, `split("\\s+")` troceja pels espais; la comprovació `!linea.trim().isEmpty()` evita que una línia en blanc es compte com una "paraula buida".
+`filter(n -> n.startsWith("J")).findFirst()` torna `Optional<String>`: la capsa està plena si algú complix i buida si no. `ifPresentOrElse` és el mètode que junta els dos camins: el primer argument és el `Consumer` per a quan hi ha valor (`System.out::println`), el segon un `Runnable` per a quan no n'hi ha. També ho podries fer amb `ifPresent` + `orElse`, però `ifPresentOrElse` fa la parella en una sola crida.
 
-Amb NIO seria encara més curt: `Files.readAllLines(ruta)` i un `for` sobre la llista, sense `close()` manual. Compara-ho amb el punt 5 del temari: menys codi, mateixa lògica.
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 9: el stream que es nega a morir
+
+<details>
+<summary>🔄 Solució</summary>
+
+1. **Sí, compila** (l'error és d'execució, no de sintaxi).
+2. En executar, la segona crida `flujo.count()` llança **`IllegalStateException: stream has already been operated upon or closed`**. El primer `count()` ja va consumir el stream: no es pot reutilitzar.
+3. Creant un stream nou per a cada comptada:
+
+```java
+long a = List.of(1, 2, 3).stream().count();
+long b = List.of(1, 2, 3).stream().count();
+System.out.println(a + " " + b);   // 3 3
+```
+
+La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no servix.
 
 </details>

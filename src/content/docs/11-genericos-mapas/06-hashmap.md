@@ -157,7 +157,7 @@ public class BeTheFrequency {
 <details>
 <summary>🔄 Solución</summary>
 
-La **B**. En "banana", la 'a' aparece 3 veces y la 'n' aparece 2... espera, ¡revisa! "b-a-n-a-n-a": b=1, a=3, n=2. Entonces `frec.get('a')` = 3 y `frec.get('n')` = 2 → la opción correcta sería **C** (3 2). El truco de `getOrDefault(c, 0) + 1` es el héroe: si la letra no estaba, devuelve 0 y empieza en 1; si estaba, suma uno al contador. Este patrón es EL patrón de los mapas: lo verás en la U12 con ficheros y en media carrera de programación.
+La **B**. En "banana", la 'a' aparece 3 veces y la 'n' aparece 2... espera, ¡revisa! "b-a-n-a-n-a": b=1, a=3, n=2. Entonces `frec.get('a')` = 3 y `frec.get('n')` = 2 → la opción correcta sería **C** (3 2). El truco de `getOrDefault(c, 0) + 1` es el héroe: si la letra no estaba, devuelve 0 y empieza en 1; si estaba, suma uno al contador. Este patrón es EL patrón de los mapas: lo verás en la U13 con ficheros y en media carrera de programación.
 
 </details>
 

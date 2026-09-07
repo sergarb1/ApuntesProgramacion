@@ -1,6 +1,6 @@
 ---
 title: "Butlletí U13 — Extres"
-description: "CodeWars i AceptaElReto per a anar més enllà del JDBC: SQL de veritat i algoritmes amb dades"
+description: "CodeWars i AceptaElReto per a anar més enllà dels fitxers i les expressions regulars"
 ---
 
 # 📝 Butlletí U13 — Extres
@@ -11,122 +11,164 @@ description: "CodeWars i AceptaElReto per a anar més enllà del JDBC: SQL de ve
 
 ## CodeWars
 
-### 1. SQL Basics: Simple JOIN
+### 1. Regex validate PIN code
 
-Crea una consulta `SELECT` que torne tots els productes juntament amb l'empresa que els fabrica. Hauràs de relacionar les taules `products` i `companies` mitjançant la clau forana `company_id`.
+Crea una funció que valide un PIN: un `String` que és vàlid només si té **4 o 6 dígits exactes**.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5802e32dd8c944e562000020)
-- Dificultat: 6 kyu
+**Exemple:** `"1234"` → `true`, `"12345"` → `false`, `"a234"` → `false`, `"123456"` → `true`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132)
+- Dificultat: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Un `INNER JOIN` sobre la clau forana: `products.company_id = companies.id`. Selecciona les columnes que et demane el problema i cuida els àlies.
+És la kata més regex de la unitat: un sol `matches()` amb el patró `\\d{4}|\\d{6}` ho resol. Recorda: `matches()` exigix que tot el string complica amb el patró, que és just el que demana un PIN.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```sql
-SELECT p.name, c.name AS company_name
-FROM products p
-INNER JOIN companies c ON p.company_id = c.id;
+```java
+public class Kata {
+    public static boolean validatePin(String pin) {
+        return pin.matches("\\d{4}|\\d{6}");
+    }
+}
 ```
 
-El `JOIN` relaciona les dues taules per la clau forana i, en una sola consulta, tens producte i empresa. És el mateix concepte del punt 8 de la unitat: una consulta amb `JOIN` on no caben consultes en bucle.
+`\\d{4}` és "exactament 4 dígits" i `\\d{6}` "exactament 6". El `|` els uneix: o 4 o 6. `matches()` comprova el string sencer, així que `"12345a"` no passa encara que tinga 5 dígits: hi ha una lletra al final.
 
 </details>
 
 ---
 
-### 2. SQL with Street Fighter: Total Wins
+### 2. Two to One
 
-És hora de decidir quins lluitadors passen a les semifinals del campionat mundial de Street Fighter. Cada combat registra si el lluitador va guanyar (1) o va perdre (0), i el moviment amb què va acabar. Com que els atacs ki han sigut prohibits, **no es compten** els combats acabats amb Hadoken, Shouoken o Kikoken. Torna `name`, `won` i `lost` sumant les victòries i derrotes, ordena de més a menys victòries i torna els 6 millors.
+Et donen dos strings en minúscules amb lletres de la `a` a la `z`. Torna un únic string amb les lletres **distintes de tots dos, ordenades alfabèticament**.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5ab7a736edbcfc8e62000007)
-- Dificultat: 6 kyu
+**Exemple:** `"xyaabbbccccdefww"` i `"xxxxyyyyabklmopq"` → `"abcdefklmopqwxy"`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5656b6906de340bd1b0000ac)
+- Dificultat: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-`GROUP BY` el nom del lluitador amb `SUM(won)` i `SUM(lost)`. Exclou els moviments prohibits amb `NOT IN ('Hadoken', 'Shouoken', 'Kikoken')` i ordena amb `ORDER BY won DESC LIMIT 6`.
+Concatena els dos strings en un. Després recorre les lletres de la `a` a la `z` i, si el string concatenat conté eixa lletra (`indexOf`), afegix-la al resultat. L'ordre alfabètic eix gratis perquè recorres l'alfabet en ordre.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```sql
-SELECT f.name, SUM(f.won) AS won, SUM(f.lost) AS lost
-FROM fighters f
-LEFT JOIN winning_moves m ON f.move_id = m.id
-WHERE m.move NOT IN ('Hadoken', 'Shouoken', 'Kikoken')
-GROUP BY f.name
-ORDER BY won DESC
-LIMIT 6;
+```java
+public class Kata {
+    public static String longest(String s1, String s2) {
+        String unidos = s1 + s2;
+        StringBuilder resultado = new StringBuilder();
+
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (unidos.indexOf(c) != -1) {
+                resultado.append(c);
+            }
+        }
+        return resultado.toString();
+    }
+}
 ```
 
-`GROUP BY` agrupa els combats de cada lluitador, `SUM` acumula victòries i derrotes, i el `WHERE` descarta els atacs prohibits abans d'agrupar. És exactament el tipus de consulta que podries llançar amb un `PreparedStatement` contra la taula `fighters`.
+La clau és invertir la pregunta: en comptes de filtrar els caràcters dels strings, recorres l'alfabet i preguntes "està esta lletra en la unió?". Amb `indexOf(c) != -1` saps si apareix. El `StringBuilder` acumula el resultat i l'ordre alfabètic és automàtic perquè la `a` es processa abans que la `b`.
 
 </details>
 
 ---
 
-### 3. SQL Basics: Simple HAVING
+### 3. Categorize New Member
 
-Tens una taula `people` amb `id`, `name` i `age`. Compta quantes persones tenen la mateixa edat i torna **només els grups d'edat amb 10 o més persones**.
+El club de tenis classifica els seus nous socis. Un soci és **"Senior"** si té 55 anys o més **i** un hándicap major que 7; si no, és **"Open"**. Et donen un array de parells `[edat, hándicap]` i has de tornar un array amb la categoria de cadascun.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/58164ddf890632fa0f00011a)
-- Dificultat: 6 kyu
+**Exemple:** `[[45, 12], [55, 21], [19, -2], [104, 20]]` → `["Open", "Senior", "Open", "Senior"]`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5502c9e7b3216ec63c000020)
+- Dificultat: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-`GROUP BY` la columna `age` i compta amb `COUNT(*)`. `WHERE` no val per a filtrar grups: necessites `HAVING COUNT(*) >= 10`, que s'aplica després del agrupament.
+Simple lògica booleana: `edad >= 55 && hándicap > 7`. Recorre l'array de parells i munta el resultat amb un ternari.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```sql
-SELECT age, COUNT(id) AS total_people
-FROM people
-GROUP BY age
-HAVING COUNT(id) >= 10;
+```java
+public class Kata {
+    public static String[] openOrSenior(int[][] data) {
+        String[] resultado = new String[data.length];
+
+        for (int i = 0; i < data.length; i++) {
+            resultado[i] = (data[i][0] >= 55 && data[i][1] > 7)
+                ? "Senior" : "Open";
+        }
+        return resultado;
+    }
+}
 ```
 
-`GROUP BY age` crea un grup per cada edat, `COUNT(id)` compta els seus integrants, i `HAVING` filtra els grups que no arriben a 10 persones. La diferència amb `WHERE`: `WHERE` filtra files abans d'agrupar, `HAVING` filtra grups després.
+Cada parell `data[i]` té l'edat en `[0]` i l'hándicap en `[1]`. El ternari decidix la categoria en una línia i guarda el resultat en la seua posició. És la lògica booleana pura de l'enunciat: les dues condicions amb `&&`.
 
 </details>
 
 ---
 
-### 4. SQL Basics: Group By Day
+### 4. Primes in numbers
 
-Tens una taula `orders` amb `id`, `datetime` i `amount`. Compta quants pedidos hi ha **per dia**, extraient la data del camp `datetime`.
+Donat un número positiu `n`, torna la seua descomposició en factors primers amb el format `"(p1**exp1)(p2**exp2)"`. Si l'exponent és 1, s'escriu només `"(p)"`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5811597e9d278beb04000038)
+**Exemple:** `86240` → `"(2**5)(5)(7**2)(11)"`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/54d512e62a5e54c96200002e)
 - Dificultat: 5 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Extrau el dia amb la funció `DATE(datetime)` i agrupa'l amb `GROUP BY`. Compta amb `COUNT(*)`. És el `GROUP BY` de sempre, però sobre una columna calculada.
+Dividix per 2, després pels senars des de 3 fins a l'arrel quadrada de `n` (que es va reduint en dividir). Compta quantes voltes dividix cada divisor (l'exponent) i munta el string amb un `StringBuilder`.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```sql
-SELECT DATE(datetime) AS day, COUNT(*) AS total
-FROM orders
-GROUP BY DATE(datetime);
+```java
+public class Kata {
+    public static String factors(int n) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 2; i * i <= n; i++) {
+            int veces = 0;
+            while (n % i == 0) {
+                n /= i;
+                veces++;
+            }
+            if (veces == 1) {
+                sb.append("(").append(i).append(")");
+            } else if (veces > 1) {
+                sb.append("(").append(i).append("**").append(veces).append(")");
+            }
+        }
+        if (n > 1) {
+            sb.append("(").append(n).append(")");
+        }
+        return sb.toString();
+    }
+}
 ```
 
-`DATE(datetime)` retalla el `datetime` fins a només la data, i `GROUP BY` agrupa tots els pedidos d'eixe dia. Una columna calculada com a àlies: el mateix mecanisme que usaríes amb `ResultSetMetaData` per a llegir-la després des de Java.
+El `while` intern dividix mentre el divisor encaixe i compta les repeticions: eixe és l'exponent. El bucle només arriba a l'arrel de `n` (i `n` es va reduint), així que l'`if (n > 1)` final arreplega l'últim factor primer que queda. El `StringBuilder` evita concatenar cadenes en cada volta, que seria lent.
 
 </details>
 
@@ -134,61 +176,19 @@ GROUP BY DATE(datetime);
 
 ## AceptaElReto
 
-### 5. 245 — Qui guanya la partida?
+### 5. 108 — Formigues
 
-Un grup de jugadors participa en un joc per torns amb números. Cada ronda, el jugador que encerta es descarta i el que falla passa al **final de la cua** per a tornar-ho a intentar. Simula les rondes i determina qui guanya la partida.
+Sobre una barra de longitud `L` cm hi ha `n` formigues. Cada formiga es mou a 1 cm/s cap a l'extrem que li toque (l'enunciat et dona les posicions). Quan dues formigues es creuen, totes dues canvien de sentit. Calcula, per a cada cas de prova, el **temps mínim** i el **temps màxim** que tarden a caure totes de la barra.
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=245)
-- Dificultat: ⭐⭐⭐
+**Entrada:** diversos casos de prova. Cada cas comença amb `L` i `n`, seguit de les `n` posicions de les formigues.
 
-<details>
-<summary>💡 Pista</summary>
-
-Simula els torns amb una `Queue<Integer>`: cada ronda, trau el primer amb `poll()`, i si falla el tornes a ficar amb `offer()`. El que encerta ix per sempre. La cua encaixa perfectament amb l'estructura "qui falla, torna al final".
-
-</details>
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.*;
-
-public class QuiGuanya {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // Llegir participants i dades del joc segons l'enunciat
-        Queue<Integer> cua = new LinkedList<>();
-        // ... omplir la cua amb els jugadors ...
-
-        // while (cua.size() > 1) {
-        //     int jugador = cua.poll();
-        //     if (falla(jugador)) {
-        //         cua.offer(jugador);   // torna al final
-        //     }
-        // }
-        // System.out.println(cua.peek());
-    }
-}
-```
-
-La `LinkedList` com a `Queue` és la protagonista: `poll()` trau el primer i `offer()` el torna al final si falla. Els jugadors que encerten ixen per sempre, i l'últim que queda és el guanyador. Estructura de dades (U10) al servei del problema de torns.
-
-</details>
-
----
-
-### 6. 424 — Bitllets d'autobús
-
-Hi ha diverses rutes d'autobús entre dues ciutats, cadascuna amb la seua hora d'eixida i d'arribada. Vols agafar **el màxim nombre d'autobusos possible** sense que se superposen (agafar-ne un, baixar-te, i poder pujar a un altre que isca després d'arribar).
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=424)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=108)
 - Dificultat: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Algoritme voraç: ordena les rutes per **hora d'arribada** i tria sempre la següent ruta que acabe abans i que no se superpose amb l'última triada. És el clàssic problema de "selecció d'activitats".
+Quan dues formigues es creuen i canvien de sentit, és **com si s'ignoraren**: la posició de les formigues és indistinguible. Així que cada formiga cau en `min(pos, L - pos)` o `max(pos, L - pos)`. El temps mínim és el major dels mínims; el màxim, el major dels màxims.
 
 </details>
 
@@ -196,38 +196,85 @@ Algoritme voraç: ordena les rutes per **hora d'arribada** i tria sempre la seg�
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
+import java.util.Scanner;
 
-public class Bitllets {
-    static class Ruta implements Comparable<Ruta> {
-        int eixida, arribada;
-        Ruta(int e, int a) { eixida = e; arribada = a; }
-
-        public int compareTo(Ruta o) {
-            return Integer.compare(arribada, o.arribada); // ordena per arribada
-        }
-    }
-
+public class Hormigas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // Llegir rutes, ordenar-les i aplicar el voraç:
-        // Collections.sort(rutes);
-        // int ultima = Integer.MIN_VALUE, comptador = 0;
-        // for (Ruta r : rutes) {
-        //     if (r.eixida >= ultima) {
-        //         comptador++;
-        //         ultima = r.arribada;
-        //     }
-        // }
-        // System.out.println(comptador);
+
+        while (sc.hasNextInt()) {
+            int L = sc.nextInt();
+            int n = sc.nextInt();
+            int minTiempo = 0, maxTiempo = 0;
+
+            for (int i = 0; i < n; i++) {
+                int pos = sc.nextInt();
+                int haciaIzq = pos;
+                int haciaDer = L - pos;
+                minTiempo = Math.max(minTiempo, Math.min(haciaIzq, haciaDer));
+                maxTiempo = Math.max(maxTiempo, Math.max(haciaIzq, haciaDer));
+            }
+
+            System.out.println(minTiempo + " " + maxTiempo);
+        }
+        sc.close();
     }
 }
 ```
 
-El truc voraç: ordenar per hora d'arribada garantix que sempre tries la ruta que llibera el dia abans, deixant buit per a més autobusos. Una sola passada amb un comptador i una variable `ultima`. Clàssic d'AceptaElReto: les dades s'ordenen i la solució ix sola.
+El truc conceptual: quan dues formigues es creuen, totes dues giren, però com que són indistinguibles, l'efecte és el mateix que si passaren de llarg. Cada formiga tarda `pos` o `L - pos` segons el costat cap on vaja. Per al mínim total, cada formiga tria el seu costat més pròxim i el temps és el major d'eixos mínims; per al màxim, el pitjor cas.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines el JDBC, torna als problemes d'AceptaElReto d'unitats anteriors i reescriu-los guardant les dades d'entrada en una taula SQLite amb `PreparedStatement`: et sorprendrà el natural que resulta que els teus algoritmes parlen amb una base de dades. El material no es perd: es reutilitza.
+### 6. 140 — Suma de dígits
+
+Donat un número positiu, calcula la suma dels seus dígits. L'entrada és una seqüència de números que acaba amb `-1`.
+
+**Exemple:** `123` → `123: 6`, `55` → `55: 10`, `1000` → `1000: 1`.
+
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=140)
+- Dificultat: ⭐
+
+<details>
+<summary>💡 Pista</summary>
+
+Pots extraure els dígits amb `% 10` i `/ 10` en un bucle mentre el número siga major que 0. O, més en l'esperit d'esta unitat, convertir el número a `String` i recórrer-lo amb un `charAt`, sumant `c - '0'`.
+
+</details>
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class SumaDigitos {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            int n = sc.nextInt();
+            if (n == -1) break;
+
+            int suma = 0;
+            String texto = String.valueOf(n);
+            for (int i = 0; i < texto.length(); i++) {
+                suma += texto.charAt(i) - '0';
+            }
+
+            System.out.println(n + ": " + suma);
+        }
+        sc.close();
+    }
+}
+```
+
+Convertir el número a `String` permet tractar els dígits com a caràcters: `charAt(i) - '0'` convertix el caràcter `'3'` en el número `3` (perquè els codis ASCII dels dígits són consecutius). Sense operacions aritmètiques de `%` i `/`: la versió "d'unitat de regex" d'un clàssic.
+
+</details>
+
+---
+
+> 🧭 **I si et quedes amb ganes?** Quan domines els fitxers i les regex, torna als problemes d'unitats anteriors i resol-los llegint les dades des d'un fitxer en comptes de demanar-les pel teclat, o validant l'entrada amb un `matches()`. El material no es perd: es reutilitza.

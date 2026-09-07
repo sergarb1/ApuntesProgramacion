@@ -1,124 +1,127 @@
 ---
 title: "Butlletí U12 — Avançat"
-description: "Exercicis de dificultat progressiva per a exprimir fitxers i expressions regulars"
+description: "Exercicis de dificultat progressiva per a esprémer reduce, groupingBy, Optional i les referències a mètodes"
 ---
 
 # 📝 Butlletí U12 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resistix a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: Buscador de fitxers per extensió
+## ⭐⭐ Exercici 1: Ordenar amb referències a mètode
 
-Crea un programa que demane una ruta de directori i una extensió (ex: `.txt`, `.java`) i llixe **recursivament** tots els fitxers amb eixa extensió. Usa la classe `File` i el seu mètode `listFiles()`.
+Tens una llista de noms. Ordena la llista **per longitud** (de menor a major) amb un stream usant `sorted()` i la referència `String::length` combinada amb `Comparator.comparing`. Després mostra-la.
 
-**Pista:** si el fitxer és un directori, crida el mètode de nou (recursió). Recorda comprovar `isDirectory()` abans de `listFiles()`.
-
----
-
-## ⭐ Exercici 2: Lector de CSV amb Scanner
-
-Donat un fitxer `datos.csv` amb el següent format (sense capçalera):
-
-```
-Ana;25;DAM
-Bob;22;DAW
-Carlos;30;DAM
-```
-
-Usa `Scanner` amb `useDelimiter()` per a llegir el fitxer i mostrar les dades en format de taula alineada amb `printf()`.
-
-**Pista:** `useDelimiter(";|\\R")` talla per `;` o per salt de línia. Repassa els formats de `printf` en la U02, punt 7.
+**Pista:** `sorted(Comparator.comparing(String::length))` ordena per longitud sense tocar la llista original. Si vols l'ordre invers, usa `reversed()`.
 
 ---
 
-## ⭐⭐ Exercici 3: Filtre de línies per paraula clau
+## ⭐⭐ Exercici 2: Agrupar paraules per la seua primera lletra
 
-Crea un programa que llig un fitxer de text (`origen.txt`) i escriga en `destino.txt` només les línies que contenen una paraula clau (demanada a l'usuari). Usa `BufferedReader` i `PrintWriter`. Mostra al final quantes línies van coincidir i quantes es van descartar.
+Tens una llista de paraules. Usa `groupingBy` per a agrupar-les per la seua **primera lletra** i mostra el mapa resultant. Després, amb `groupingBy(p -> p.charAt(0), Collectors.counting())`, compta quantes paraules hi ha en cada grup.
 
-**Pista:** la comprovació és `linea.contains(palabraClave)`. Porta dos comptadors.
-
----
-
-## ⭐⭐ Exercici 4: Separador de línies parells i senars
-
-Crea un programa que llig un fitxer `entrada.txt` i genere dos fitxers:
-
-- `pares.txt` → conté les línies en posició parell (0, 2, 4...).
-- `impares.txt` → conté les línies en posició senar (1, 3, 5...).
-
-Usa `try-with-resources` amb **tres** recursos (un `BufferedReader` i dos `PrintWriter`).
-
-**Pista:** els tres recursos van entre els parèntesis del `try`, separats per `;`. Usa `% 2` sobre el número de línia.
+**Pista:** `groupingBy` torna `Map<Character, List<String>>`. El segon argument `counting()` canvia el valor del mapa a `Long`.
 
 ---
 
-## ⭐⭐ Exercici 5: Split amb regex — analitzador de frases
+## ⭐⭐ Exercici 3: Optional — el que no es deixa enganyar
 
-Escriu un programa que llig una frase de l'usuari i use `split()` amb una expressió regular per a:
+Implementa un mètode que reba una `List<Integer>` i torne el **màxim** usant `max(Integer::compareTo)`, gestionant el resultat amb `orElse` perquè torne `-1` si la llista està buida. Prova amb una llista buida i amb una de plena.
 
-1. Separar les paraules (ignorant espais, comes, punts i signes).
-2. Mostrar quantes paraules hi ha.
-3. Mostrar la paraula més llarga.
-4. Mostrar les paraules que comencen per vocal.
+**Pista:** `max` torna `Optional<Integer>`. No uses `get()` a cegues: `orElse(-1)` aterra amb seguretat.
 
-Exemple: `"Hola, mundo. Esto es Java: ¿mola?"` →
+---
 
-```
-Palabras: 6
-Más larga: "mundo"
-Empiezan por vocal: ["Esto"]
+## ⭐⭐⭐ Exercici 4: El pipeline complet
+
+Tens esta llista de números:
+
+```java
+List<Integer> numeros = List.of(12, 5, 8, 3, 9, 5, 12, 7);
 ```
 
-**Pista:** el separador que ignora tot el que no siga lletra és `"[^a-zA-ZáéíóúüñÑ]+"`. Per a les vocals, comprova la primera lletra amb `matches("[aeiouAEIOUáéíóú]")` o amb un `indexOf` sobre una cadena de vocals.
+Construïx un pipeline que: filtre els **majors o iguals a 5**, els **eleve al quadrat** (`n * n`), **elimine els duplicats**, els **ordene de major a menor** i es quede amb els **3 primers**. Arreplega el resultat en una llista amb `toList()`.
+
+**Pista:** per a ordenar de major a menor: `sorted(Comparator.reverseOrder())`. Recorda que l'ordre de les estacions importa: `distinct` abans de `sorted` canvia la comptada.
 
 ---
 
-## ⭐⭐⭐ Exercici 6: Validador de dades amb regex
+## ⭐⭐ Exercici 5: De llista a mapa amb `toMap`
 
-Crea un programa que llig un fitxer `datos.txt` on cada línia conté una dada i el seu tipus (separats per `;`):
+Crea una classe senzilla `Alumno` amb `nombre` i `nota`. Amb una llista de 5 alumnes, usa `Collectors.toMap` per a obtenir un `Map<String, Integer>` on la clau siga el nom i el valor la nota. Com que els noms són únics, usa una funció de fusió per si de cas.
 
+**Pista:** `Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)`. La fusió `(a, b) -> a` evita la `IllegalStateException` si es repetix una clau.
+
+---
+
+## ⭐⭐⭐ Exercici 6: El màxim amb `reduce` i comparador
+
+Implementa el màxim d'una `List<Integer>` de dues formes: amb `reduce` i un acumulador que vaja guardant el major (sense usar `Math::max`), i amb `max`. Què torna cada una? Quina necessita una identitat?
+
+**Pista:** `reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b)` usa `Integer.MIN_VALUE` com a identitat. `max(Integer::compareTo)` torna un `Optional`.
+
+---
+
+## ⭐⭐ Exercici 7: Freqüències amb `groupingBy`
+
+Tens un array de paraules amb repetides:
+
+```java
+String[] palabras = {"hola", "adios", "hola", "java", "hola", "adios"};
 ```
-ana@email.com;email
-12345678Z;dni
-+34 612345678;telefono
-91 123 45 67;telefono
-esto-no-es-email;email
+
+Usa `Arrays.stream` i `groupingBy(p -> p, Collectors.counting())` per a comptar quantes vegades apareix cada paraula. Mostra el mapa i, després, la paraula que més vegades apareix.
+
+**Pista:** el mapa és `Map<String, Long>`. Per a la paraula més repetida, recorre `entrySet()` comparant valors, o usa streams de nou amb `max(Map.Entry.comparingByValue())`.
+
+---
+
+## ⭐⭐⭐ Exercici 8: Optional i streams, la parella
+
+Tens una llista de noms. Busca, amb streams, el **primer nom que comence per "J"** usant `filter(...).findFirst()`. Gestiona el `Optional` resultant amb `ifPresent` per a imprimir-lo i amb `orElse` per a mostrar "no hay nadie" si no existix. Prova amb una llista que tinga "J" i amb una altra que no.
+
+**Pista:** `findFirst()` torna `Optional<String>`. Amb `ifPresent(System.out::println)` imprimixes només si hi ha valor; `orElse("no hay nadie")` cobrix l'absència.
+
+---
+
+## ⭐⭐⭐ Exercici 9: el stream que es nega a morir
+
+Observa este codi i respon **sense executar-lo**:
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Stream<Integer> flujo = List.of(1, 2, 3).stream();
+        long a = flujo.count();
+        long b = flujo.count();
+        System.out.println(a + " " + b);
+    }
+}
 ```
 
-Valida cada línia segons el tipus usant expressions regulars:
+1. Compila?
+2. Què ocorre en executar-lo?
+3. Com l'arreglaries?
 
-- **Correu:** format bàsic `xxx@xxx.xxx`.
-- **DNI:** 8 dígits + lletra majúscula (la lletra ha de ser vàlida segons l'algoritme mòdul 23).
-- **Telèfon:** opcional `+34` seguit de 9 dígits, amb o sense espais.
+**Pista:** un stream és d'un sol ús. La primera operació terminal el consumeix. Si vols comptar dos vegades, crea dos streams (`List.of(1, 2, 3).stream()` dos vegades).
 
-Mostra un resum: quants de vàlids, quants d'invàlids, i llixa els invàlids.
+<details>
+<summary>🔄 Solució</summary>
 
-**Pista:** per a cada línia, fes `linea.split(";")`, mira el tipus amb `equals` i aplica el patró corresponent amb `matches()`.
+1. **Sí, compila** (l'error és d'execució, no de sintaxi).
+2. En executar, la segona crida `flujo.count()` llança **`IllegalStateException: stream has already been operated upon or closed`**. El primer `count()` ja va consumir el stream: no es pot reutilitzar.
+3. Creant un stream nou per a cada comptada:
 
----
+```java
+long a = List.of(1, 2, 3).stream().count();
+long b = List.of(1, 2, 3).stream().count();
+System.out.println(a + " " + b);   // 3 3
+```
 
-## ⭐⭐⭐ Exercici 7: Xifrat Cèsar amb fitxers
+La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no servix.
 
-Crea un programa que llig un fitxer `mensaje.txt`, desplace cada caràcter **3 posicions** en l'alfabet (xifrat Cèsar) i escriga el resultat en `mensaje_cifrado.txt`. Després, un altre programa (o el mateix amb una opció) que el descifre. Usa `try-with-resources` i `BufferedReader`/`PrintWriter`.
-
-**Pista:** per cada `char`, si és lletra fes `(char) (c + 3)` i compte amb els extrems (la `z` ha de tornar a la `a`: usa `% 26` sobre la posició en l'alfabet).
-
----
-
-## ⭐⭐⭐ Exercici 8: Serialització d'estudiants
-
-Crea una classe `Estudiante` que implemente `Serializable` amb `String nombre`, `int edad` i `double notaMedia`. Crea un programa que guarde un `ArrayList<Estudiante>` en un fitxer `estudiantes.dat` usant `ObjectOutputStream`. Després, un altre programa (o el mateix amb una opció) que el llig amb `ObjectInputStream` i mostre les dades formatades.
-
-**Pista:** recorda el `serialVersionUID`. El `readObject()` torna `Object`: fes el casting a `List<Estudiante>` amb calma i comprova que no siga `null`.
-
----
-
-## ⭐⭐ Exercici 9: El comptador de línies, paraules i caràcters
-
-Crea un programa que llig un fitxer de text i mostre quantes línies, paraules i caràcters té. Usa `BufferedReader` per a llegir.
-
-**Pista:** cada línia suma 1 al comptador de línies i `linea.length()` al de caràcters; per a les paraules, `linea.split("\\s+").length` (amb compte amb les línies buides).
-
-**Repte extra:** resol-lo també amb NIO (`Files.readAllLines`) i compara la diferència.
+</details>

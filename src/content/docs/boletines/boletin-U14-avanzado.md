@@ -1,6 +1,6 @@
 ---
 title: "Boletín U14 — Avanzado"
-description: "Ejercicios de dificultad progresiva para dominar JSON, formularios POST y HttpClient"
+description: "Ejercicios de dificultad progresiva para exprimir el JDBC: PreparedStatement, DAO, transacciones y más"
 ---
 
 # 📝 Boletín U14 — Avanzado
@@ -9,197 +9,124 @@ description: "Ejercicios de dificultad progresiva para dominar JSON, formularios
 
 ---
 
-## ⭐ Ejercicio 1: API de frases motivacionales
+## ⭐ Ejercicio 1: Conexión desde archivo de propiedades
 
-Crea un endpoint `GET /api/frase` que devuelva un JSON con una frase aleatoria de un array precargado y su autor.
+Crea un archivo `db.properties` con los datos de conexión:
 
-```json
-{"frase": "El código limpio es como un buen chiste: si tienes que explicarlo, es malo", "autor": "Alguien que sabe"}
+```properties
+url=jdbc:sqlite:instituto.db
 ```
 
-El frontend es un HTML con un botón "Nueva frase" que al hacer clic hace `fetch('/api/frase')` y muestra la frase en pantalla.
+Escribe un programa que lea este archivo usando la clase `Properties` y establezca la conexión. Si el archivo no existe o falta la propiedad `url`, muestra un mensaje de error claro.
 
-**Pista:** usa `Math.random()` para elegir un índice aleatorio del array, o `Random.nextInt(longitud)`.
+**Pista:** carga el archivo con `props.load(Files.newInputStream(Path.of("db.properties")))` y usa `props.getProperty("url")`. `load` lanza una `IOException` (la viste en la U13 con los ficheros) además de la `SQLException`.
 
 ---
 
-## ⭐ Ejercicio 2: Formulario de contacto con POST
+## ⭐ Ejercicio 2: INSERT con clave autogenerada
 
-Crea una ruta `/contacto` que sirva un formulario HTML (GET) con campos `nombre` y `mensaje`, y una ruta `/enviar` que reciba los datos por POST y los muestre en una página de confirmación.
+Inserta un nuevo alumno en la tabla `alumnos` y **recupera el ID** que la base de datos le ha asignado automáticamente (es un `AUTOINCREMENT`). Usa `PreparedStatement` con `Statement.RETURN_GENERATED_KEYS` y el método `getGeneratedKeys()`.
 
-**Pista:** en el handler de `/enviar` comprueba `"POST".equals(e.getRequestMethod())` y lee el cuerpo con `e.getRequestBody().readAllBytes()`. El formato del cuerpo es `nombre=Ana&mensaje=Hola`.
-
----
-
-## ⭐ Ejercicio 3: Piedra, papel, tijera online
-
-Endpoint `POST /api/jugar` que recibe:
-
-```json
-{"jugada": "piedra"}
-```
-
-Y devuelve:
-
-```json
-{"jugadaPC": "tijera", "resultado": "ganaste"}
-```
-
-Reglas clásicas: piedra > tijera, tijera > papel, papel > piedra.
-
-Frontend: tres botones con emojis 🪨📄✂️. Al hacer clic, envía la jugada y muestra el resultado.
-
-**Pista:** la jugada del PC se elige con `Random`. Las reglas se pueden implementar con un `Map<String, String>` donde la clave vence al valor: `{"piedra": "tijera", "tijera": "papel", "papel": "piedra"}`.
-
----
-
-## ⭐⭐ Ejercicio 4: El tiempo que NO hace
-
-Crea `GET /api/clima?ciudad=Madrid` que devuelva un JSON con datos meteorológicos **aleatorios** (generados cada vez):
-
-```json
-{"ciudad": "Madrid", "temperatura": 28, "humedad": 45, "estado": "soleado"}
-```
-
-Estados posibles: `"soleado"`, `"nublado"`, `"lluvia"`, `"tormenta"`. Frontend con emojis y temperaturas de colores.
-
-**Pista:** usa `String[] estados = {...}` y elige aleatoriamente. La temperatura puede ser `random.nextInt(40) - 5`.
-
----
-
-## ⭐⭐ Ejercicio 5: Traductor chungo (pero funcional)
-
-Implementa un endpoint `POST /api/traducir` que reciba:
-
-```json
-{"texto": "hola", "idioma": "en"}
-```
-
-Y devuelva:
-
-```json
-{"traduccion": "hello"}
-```
-
-Usa un `HashMap<String, HashMap<String, String>>` como diccionario. Mete al menos 10 palabras en español traducidas a inglés y francés.
-
-**Pista:** inicializa el diccionario con bloques `static`. `diccionario.get("hola").get("en")` te da `"hello"`. Los mapas los viste en la U11.
-
----
-
-## ⭐⭐ Ejercicio 6: API REST de tareas con prioridad
-
-Implementa un CRUD completo de tareas donde cada tarea tiene: `id`, `titulo`, `prioridad` (`"ALTA"`, `"MEDIA"`, `"BAJA"`).
-
-| Método | Ruta | Descripción |
-|--------|------|-------------|
-| GET | `/api/tareas` | Lista todas |
-| POST | `/api/tareas` | Crea una (JSON: `{"titulo": "...", "prioridad": "ALTA"}`) |
-| PUT | `/api/tareas/{id}` | Cambia prioridad (JSON: `{"prioridad": "BAJA"}`) |
-| DELETE | `/api/tareas/{id}` | Borra una |
-
-Frontend: tabla con colores de fondo según prioridad (rojo ALTA, amarillo MEDIA, verde BAJA). Botones para crear, cambiar prioridad y borrar.
-
-**Pista:** guarda las tareas en un `ConcurrentHashMap<Integer, Tarea>` con un `AtomicInteger` para los IDs. Para el path param, parsea la ruta con `substring`.
-
----
-
-## ⭐⭐ Ejercicio 7: Cliente GET — los repos de GitHub
-
-Usa `HttpClient` para consultar la API de GitHub (`https://api.github.com/users/{usuario}/repos`) y mostrar solo el **nombre** y el **lenguaje** de cada repositorio de un usuario (que se pide por teclado). Luego guarda los resultados en un archivo `repos.txt`.
-
-**Pista:** parsea la respuesta con Gson (`JsonArray`), recórrela, y escribe con `Files.writeString` (los ficheros los viste en la U12). Recuerda la cabecera `User-Agent`, que GitHub exige.
-
----
-
-## ⭐⭐ Ejercicio 8: Cliente POST — crear una publicación en jsonplaceholder
-
-Usa `HttpClient` para hacer un `POST` a `https://jsonplaceholder.typicode.com/posts` con un cuerpo JSON:
-
-```json
-{"title": "Mi primera API", "body": "Consumida desde Java", "userId": 1}
-```
-
-Muestra el código de estado y el cuerpo de la respuesta. Comprueba que la cabecera `Content-Type: application/json` está puesta.
-
-**Pista:** `HttpRequest.newBuilder().uri(...).header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(json)).build()`.
-
----
-
-## ⭐⭐⭐ Ejercicio 9: Middleware de logging
-
-Crea una clase `LoggerMiddleware` que envuelva cualquier `HttpHandler` y registre en consola:
-
-```
-[2026-06-21 14:30:01] GET /api/peliculas → 200 (15ms)
-[2026-06-21 14:30:05] POST /api/tareas → 201 (3ms)
-```
-
-Debe poder aplicarse a cualquier handler así:
+**Pista:**
 
 ```java
-server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
-```
-
-**Pista:** guarda `System.currentTimeMillis()` antes y después de llamar al handler original. Usa `e.getRequestMethod()`, `e.getRequestURI()` y `e.getResponseCode()` (tras enviar cabeceras)
-
----
-
-## ⭐⭐⭐ Ejercicio 10: la petición asíncrona con sendAsync
-
-Usa `HttpClient` para pedir datos a la API pública de GitHub **sin bloquear el hilo principal** con `sendAsync()`. Descarga los repos de un usuario y, cuando la respuesta llegue, imprime el número de repos y el código de estado.
-
-```java
-// Esqueleto para completar
-HttpClient cliente = HttpClient.newHttpClient();
-HttpRequest peticion = HttpRequest.newBuilder()
-        .uri(URI.create("https://api.github.com/users/google/repos"))
-        .GET()
-        .build();
-```
-
-Completa el programa para que:
-- Use `sendAsync(peticion, HttpResponse.BodyHandlers.ofString())`.
-- Encadene `.thenAccept(...)` para procesar la respuesta cuando llegue (imprime `statusCode()` y, si es 200, cuenta las apariciones de `"full_name"` en el JSON con `split`).
-- Añada un `System.out.println("Petición lanzada, seguimos trabajando...");` ANTES de que llegue la respuesta, para demostrar que el hilo no se bloqueó.
-
-**Pista:** `sendAsync` devuelve un `CompletableFuture<HttpResponse<String>>`. El `thenAccept` recibe la respuesta cuando esté lista, pero el `main` sigue corriendo mientras tanto. Para que el programa no termine antes de que llegue la respuesta, espera al final con `.join()` sobre el `CompletableFuture`. Sin el `join()`, el `main` se acaba y la petición se pierde.
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class ReposAsync {
-    public static void main(String[] args) {
-        HttpClient cliente = HttpClient.newHttpClient();
-
-        HttpRequest peticion = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.github.com/users/google/repos"))
-                .GET()
-                .build();
-
-        System.out.println("Petición lanzada, seguimos trabajando...");
-
-        cliente.sendAsync(peticion, HttpResponse.BodyHandlers.ofString())
-                .thenAccept(respuesta -> {
-                    System.out.println("Respuesta recibida: código " + respuesta.statusCode());
-                    if (respuesta.statusCode() == 200) {
-                        int repos = respuesta.body().split("\"full_name\"").length - 1;
-                        System.out.println("Repos de google: " + repos);
-                    } else {
-                        System.out.println("Algo falló (¿límite de la API?): " + respuesta.body().substring(0, 80));
-                    }
-                })
-                .join();  // espera a que termine antes de acabar el main
-    }
+PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+pstmt.executeUpdate();
+ResultSet claves = pstmt.getGeneratedKeys();
+if (claves.next()) {
+    int id = claves.getInt(1);
 }
 ```
 
-La magia está en el orden de las salidas: "Petición lanzada" se imprime **antes** de "Respuesta recibida", aunque la petición se lanzó antes. Eso es `sendAsync`: el hilo principal no se detiene esperando la red; el `thenAccept` se ejecuta cuando la respuesta llega. El `join()` al final es imprescindible: sin él, el `main` terminaría y la JVM se cerraría antes de que llegara la respuesta. El conteo de repos con `split("\"full_name\"")` es un truco rápido de JSON sin librería: cada repo aparece como un `"full_name"` en la lista.
+El `getGeneratedKeys()` devuelve un `ResultSet` con la clave que acaba de generar la base de datos. Se lee con `next()` y `getInt(1)`.
 
-</details>.
+---
+
+## ⭐ Ejercicio 3: UPDATE condicional
+
+Actualiza el curso de todos los alumnos que tengan una edad superior a un valor dado. Por ejemplo:
+
+```
+¿Edad mínima? 25
+¿Nuevo curso? DAM2
+```
+
+Todos los alumnos mayores de 25 años pasan al curso «DAM2». Muestra cuántas filas se actualizaron.
+
+**Pista:** `UPDATE alumnos SET curso = ? WHERE edad > ?` con `setInt` y `setString`. `executeUpdate()` te devuelve el número de filas afectadas: es tu mejor amigo para confirmar que algo cambió.
+
+---
+
+## ⭐⭐ Ejercicio 4: INNER JOIN con PreparedStatement
+
+Dada una tabla `matriculas` con `id_alumno`, `asignatura`, `nota`, escribe un programa que reciba un nombre de alumno y muestre todas sus asignaturas y notas. Usa un `INNER JOIN` entre `alumnos` y `matriculas`.
+
+Ejemplo de salida:
+
+```
+Alumno: Ana García
+  Matemáticas: 8.5
+  Programación: 9.0
+  Bases de Datos: 7.5
+```
+
+**Pista:** el `?` va en la parte del nombre: `SELECT a.nombre, m.asignatura, m.nota FROM alumnos a INNER JOIN matriculas m ON m.id_alumno = a.id WHERE a.nombre = ?`. El `JOIN` relaciona las dos tablas en una sola consulta: ni un bucle, ni consultas dentro de bucles.
+
+---
+
+## ⭐⭐ Ejercicio 5: Búsqueda con LIKE
+
+Implementa una búsqueda de alumnos por nombre usando `LIKE` y `PreparedStatement`. El usuario escribe una parte del nombre y se muestran todos los que coinciden. Si no hay resultados, muestra «Sin resultados».
+
+**Pista:** `SELECT * FROM alumnos WHERE nombre LIKE ?` con `pstmt.setString(1, "%" + texto + "%")`. Los `%` son comodines y van dentro del **valor**, no en el SQL. El `%texto%` busca el texto en cualquier posición.
+
+---
+
+## ⭐⭐ Ejercicio 6: Fechas en JDBC
+
+Añade una columna `fecha_nacimiento DATE` a la tabla `alumnos` (asume que ya existe). Crea un programa que:
+
+1. Pida nombre, edad, curso y fecha de nacimiento (formato `YYYY-MM-DD`).
+2. Inserte el alumno usando `PreparedStatement` con `java.sql.Date.valueOf()`.
+3. Liste todos los alumnos mostrando también su fecha de nacimiento.
+
+**Pista:** `Date.valueOf("2000-03-15")` convierte el texto en `java.sql.Date` (¡ojo: es `java.sql.Date`, no `java.util.Date`!). Para leerla, `rs.getDate("fecha_nacimiento")`. Recuerda comprobar el valor que devuelve `executeUpdate()`.
+
+---
+
+## ⭐⭐ Ejercicio 7: Batch INSERT — 100 alumnos de prueba
+
+Crea un programa que inserte **100 alumnos de prueba** en la tabla `alumnos` usando lotes (batch). Los nombres pueden ser genéricos: `Alumno1`, `Alumno2`, etc.
+
+Usa `addBatch()` y `executeBatch()` de `PreparedStatement`. Mide el tiempo que tarda con `System.currentTimeMillis()`.
+
+**Pista:** en el bucle, haces `addBatch()` en cada vuelta y una sola `executeBatch()` al final (o cada 50). Para medir: `long inicio = System.currentTimeMillis();` ... `long fin = System.currentTimeMillis();` y restas. Compara mentalmente con 100 `executeUpdate()` sueltos.
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: El patrón DAO
+
+Implementa el patrón **Data Access Object (DAO)** para la tabla `alumnos`. Crea las siguientes clases:
+
+1. `Alumno` — clase modelo con `id`, `nombre`, `edad`, `curso`.
+2. `AlumnoDAO` — interfaz con métodos: `listar()`, `buscarPorId(int id)`, `buscarPorNombre(String nombre)`, `insertar(Alumno a)`, `actualizar(Alumno a)`, `eliminar(int id)`.
+3. `AlumnoDAOImpl` — implementación concreta con JDBC y SQLite.
+4. `Main` — programa con menú que use el DAO.
+
+**Pista:** la URL (`jdbc:sqlite:instituto.db`) es una constante privada de la implementación. Cada método abre su propia conexión con `try-with-resources`. El `Main` solo habla con la interfaz `AlumnoDAO`; el SQL no le importa.
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: Transacción bancaria atómica
+
+Simula una transferencia entre dos cuentas en una tabla `cuentas(id, titular, saldo)`. La transferencia debe ser **atómica**: quita 100 € de una cuenta, ponlos en la otra, y si falla cualquier paso, haz `rollback()` para que no quede el sistema a medias.
+
+Ejemplo de salida:
+
+```
+Saldo antes: Ana 500, Luis 300
+Transferencia OK
+Saldo después: Ana 400, Luis 400
+```
+
+**Pista:** `con.setAutoCommit(false)`, después las dos operaciones con `PreparedStatement`, y al final `con.commit()`. El `rollback()` va en el `catch (SQLException e)` interno. Prueba a forzar el fallo (por ejemplo, una cuenta inexistente) y comprueba que el saldo de Ana no cambia.

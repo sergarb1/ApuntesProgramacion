@@ -1,210 +1,132 @@
 ---
 title: "Butlletí U14 — Extres"
-description: "CodeWars i AceptaElReto per a anar més enllà de les APIs web"
+description: "CodeWars i AceptaElReto per a anar més enllà del JDBC: SQL de veritat i algoritmes amb dades"
 ---
 
 # 📝 Butlletí U14 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes i solucions. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
+> Exercicis de CodeWars i AceptaElReto amb pistes. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
 
 ---
 
 ## CodeWars
 
-### 1. IP Validation
+### 1. SQL Basics: Simple JOIN
 
-Et donen una cadena que diu ser una adreça IPv4. Escriu una funció que torne `true` només si és una IP vàlida: quatre parts, cada una un número entre 0 i 255, sense zeros a l'esquerra i sense caràcters estranys.
+Crea una consulta `SELECT` que torne tots els productes juntament amb l'empresa que els fabrica. Hauràs de relacionar les taules `products` i `companies` mitjançant la clau forana `company_id`.
 
-**Exemples:** `"1.2.3.4"` → `true`, `"123.045.067.089"` → `false` (zeros a l'esquerra), `"12.34.56"` → `false` (falten parts), `"a.b.c.d"` → `false`.
-
-- [Enunciat a CodeWars](https://www.codewars.com/kata/515decfd9dcfc23bb6000006)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5802e32dd8c944e562000020)
 - Dificultat: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Dividix per `.` amb `split("\\.", -1)` — compte: el `.` és un comodí en regex, per això s'escapa. Han de ser exactament 4 parts, cada una entre 0 i 255, sense zeros a l'esquerra i amb tots els caràcters dígits.
+Un `INNER JOIN` sobre la clau forana: `products.company_id = companies.id`. Selecciona les columnes que et demane el problema i cuida els àlies.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-public class Kata {
-    public static boolean isValidIP(String ip) {
-        String[] partes = ip.split("\\.", -1);
-        if (partes.length != 4) return false;
-
-        for (String p : partes) {
-            if (p.isEmpty() || p.length() > 3) return false;
-            if (p.length() > 1 && p.charAt(0) == '0') return false;
-            for (char c : p.toCharArray()) {
-                if (!Character.isDigit(c)) return false;
-            }
-            int n = Integer.parseInt(p);
-            if (n < 0 || n > 255) return false;
-        }
-        return true;
-    }
-}
+```sql
+SELECT p.name, c.name AS company_name
+FROM products p
+INNER JOIN companies c ON p.company_id = c.id;
 ```
 
-Tres trampes típiques: el `.` en regex (cal escapar-lo), el `-1` en `split` (per a no descartar parts buides finals) i els zeros a l'esquerra (`"045"` no és vàlid encara que valga 45). És un exercici de validació de format, com validar una URL o un JSON.
+El `JOIN` relaciona les dues taules per la clau forana i, en una sola consulta, tens producte i empresa. És el mateix concepte del punt 8 de la unitat: una consulta amb `JOIN` on no caben consultes en bucle.
 
 </details>
 
 ---
 
-### 2. Simple URL parser
+### 2. SQL with Street Fighter: Total Wins
 
-Et donen una URL com `"http://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7?page=1"`. Escriu una funció que la dividisca en **protocol**, **domini** i **ruta**.
+És hora de decidir quins lluitadors passen a les semifinals del campionat mundial de Street Fighter. Cada combat registra si el lluitador va guanyar (1) o va perdre (0), i el moviment amb què va acabar. Com que els atacs ki han sigut prohibits, **no es compten** els combats acabats amb Hadoken, Shouoken o Kikoken. Torna `name`, `won` i `lost` sumant les victòries i derrotes, ordena de més a menys victòries i torna els 6 millors.
 
-**Exemples:** `"http://www.codewars.com/path"` → protocol `http`, domini `www.codewars.com`, ruta `/path`. `"https://example.com"` → protocol `https`, domini `example.com`, ruta buida.
-
-- [Enunciat a CodeWars](https://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5ab7a736edbcfc8e62000007)
 - Dificultat: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Busca primer `://` (dividix protocol de la resta). Després busca la primera `/` (dividix domini de ruta). Si alguna cosa no està, eixe camp queda buit. Usa `indexOf` i `substring`.
+`GROUP BY` el nom del lluitador amb `SUM(won)` i `SUM(lost)`. Exclou els moviments prohibits amb `NOT IN ('Hadoken', 'Shouoken', 'Kikoken')` i ordena amb `ORDER BY won DESC LIMIT 6`.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-record UrlParts(String protocolo, String dominio, String ruta) {}
-
-public class Kata {
-    public static UrlParts parsear(String url) {
-        String restante = url;
-        String protocolo = "";
-
-        int dosPuntos = restante.indexOf("://");
-        if (dosPuntos >= 0) {
-            protocolo = restante.substring(0, dosPuntos);
-            restante = restante.substring(dosPuntos + 3);
-        }
-
-        String dominio;
-        String ruta = "";
-        int barra = restante.indexOf('/');
-        if (barra >= 0) {
-            dominio = restante.substring(0, barra);
-            ruta = restante.substring(barra);
-        } else {
-            dominio = restante;
-        }
-
-        return new UrlParts(protocolo, dominio, ruta);
-    }
-}
+```sql
+SELECT f.name, SUM(f.won) AS won, SUM(f.lost) AS lost
+FROM fighters f
+LEFT JOIN winning_moves m ON f.move_id = m.id
+WHERE m.move NOT IN ('Hadoken', 'Shouoken', 'Kikoken')
+GROUP BY f.name
+ORDER BY won DESC
+LIMIT 6;
 ```
 
-És la mateixa anatomia de URL del punt 1, portada a codi: el protocol acaba en `://`, el domini acaba en `/`. `indexOf` localitza els separadors i `substring` talla. Un `record` (U11) és la forma neta de tornar tres dades alhora.
+`GROUP BY` agrupa els combats de cada lluitador, `SUM` acumula victòries i derrotes, i el `WHERE` descarta els atacs prohibits abans d'agrupar. És exactament el tipus de consulta que podries llançar amb un `PreparedStatement` contra la taula `fighters`.
 
 </details>
 
 ---
 
-### 3. Extract the domain name from a URL
+### 3. SQL Basics: Simple HAVING
 
-Et donen una URL completa i has de tornar només el **nom de domini** (sense protocol, sense `www.`, sense extensió).
+Tens una taula `people` amb `id`, `name` i `age`. Compta quantes persones tenen la mateixa edat i torna **només els grups d'edat amb 10 o més persones**.
 
-**Exemples:** `"http://github.com/carbonfive/raygun"` → `"github"`, `"http://www.zombie-bites.com"` → `"zombie-bites"`, `"https://www.cnet.com"` → `"cnet"`.
+- [Enunciat en CodeWars](https://www.codewars.com/kata/58164ddf890632fa0f00011a)
+- Dificultat: 6 kyu
 
-- [Enunciat a CodeWars](https://www.codewars.com/kata/514a024011ea54fbca000077)
+<details>
+<summary>💡 Pista</summary>
+
+`GROUP BY` la columna `age` i compta amb `COUNT(*)`. `WHERE` no val per a filtrar grups: necessites `HAVING COUNT(*) >= 10`, que s'aplica després del agrupament.
+
+</details>
+
+<details>
+<summary>🔄 Solució</summary>
+
+```sql
+SELECT age, COUNT(id) AS total_people
+FROM people
+GROUP BY age
+HAVING COUNT(id) >= 10;
+```
+
+`GROUP BY age` crea un grup per cada edat, `COUNT(id)` compta els seus integrants, i `HAVING` filtra els grups que no arriben a 10 persones. La diferència amb `WHERE`: `WHERE` filtra files abans d'agrupar, `HAVING` filtra grups després.
+
+</details>
+
+---
+
+### 4. SQL Basics: Group By Day
+
+Tens una taula `orders` amb `id`, `datetime` i `amount`. Compta quants pedidos hi ha **per dia**, extraient la data del camp `datetime`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5811597e9d278beb04000038)
 - Dificultat: 5 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Treu primer el protocol (`http://`, `https://`), després el `www.` si està, i finalment talla pel primer `.`. L'ordre de les operacions importa.
+Extrau el dia amb la funció `DATE(datetime)` i agrupa'l amb `GROUP BY`. Compta amb `COUNT(*)`. És el `GROUP BY` de sempre, però sobre una columna calculada.
 
 </details>
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-public class Kata {
-    public static String domainName(String url) {
-        String s = url;
-        s = s.replace("http://", "").replace("https://", "");
-        if (s.startsWith("www.")) {
-            s = s.substring(4);
-        }
-        int punto = s.indexOf('.');
-        return punto >= 0 ? s.substring(0, punto) : s;
-    }
-}
+```sql
+SELECT DATE(datetime) AS day, COUNT(*) AS total
+FROM orders
+GROUP BY DATE(datetime);
 ```
 
-El truc és l'ordre: sense protocol primer, `www.zombie-bites.com` començaria per `www.` i el tallaries malament. `replace` neteja el protocol, `startsWith` detecta el `www.` i `indexOf('.')` troba on acaba el nom. Menut, però amb trampes.
-
-</details>
-
----
-
-### 4. Decode the Morse code
-
-Et donen un missatge en codi Morse (lletres separades per un espai, paraules per tres espais). Escriu-lo en text llegible.
-
-**Exemple:** `"... --- ..."` → `"SOS"`, `".... . -.--   .--- ..- -.. ."` → `"HEY JUDE"`.
-
-- [Enunciat a CodeWars](https://www.codewars.com/kata/54b724efac3d5402db00065e)
-- Dificultat: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Crea un `Map` amb cada símbol Morse → lletra (els mapes, de la U11). Separa paraules per tres espais i lletres per un. No oblides `trim()` els extrems.
-
-</details>
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-public class MorseDecoder {
-
-    static final Map<String, String> MORSE = new HashMap<>();
-    static {
-        MORSE.put(".-", "A"); MORSE.put("-...", "B"); MORSE.put("-.-.", "C");
-        MORSE.put("-..", "D"); MORSE.put(".", "E"); MORSE.put("..-.", "F");
-        MORSE.put("--.", "G"); MORSE.put("....", "H"); MORSE.put("..", "I");
-        MORSE.put(".---", "J"); MORSE.put("-.-", "K"); MORSE.put(".-..", "L");
-        MORSE.put("--", "M"); MORSE.put("-.", "N"); MORSE.put("---", "O");
-        MORSE.put(".--.", "P"); MORSE.put("--.-", "Q"); MORSE.put(".-.", "R");
-        MORSE.put("...", "S"); MORSE.put("-", "T"); MORSE.put("..-", "U");
-        MORSE.put("...-", "V"); MORSE.put(".--", "W"); MORSE.put("-..-", "X");
-        MORSE.put("-.--", "Y"); MORSE.put("--..", "Z");
-        MORSE.put("-----", "0"); MORSE.put(".----", "1"); MORSE.put("..---", "2");
-        MORSE.put("...--", "3"); MORSE.put("....-", "4"); MORSE.put(".....", "5");
-        MORSE.put("-....", "6"); MORSE.put("--...", "7"); MORSE.put("---..", "8");
-        MORSE.put("----.", "9");
-    }
-
-    public static String decode(String morseCode) {
-        StringBuilder resultado = new StringBuilder();
-        for (String palabra : morseCode.trim().split(" {3}")) {
-            for (String letra : palabra.split(" ")) {
-                resultado.append(MORSE.getOrDefault(letra, ""));
-            }
-            resultado.append(" ");
-        }
-        return resultado.toString().trim();
-    }
-}
-```
-
-El `Map` associa cada símbol amb la seua lletra (U11), `split(" {3}")` separa paraules per tres espais i `split(" ")` separa lletres per un. `getOrDefault` torna `""` si el símbol és rar, i `trim()` trau els espais dels extrems. És un problema de parseig: separar, consultar, recompondre.
+`DATE(datetime)` retalla el `datetime` fins a només la data, i `GROUP BY` agrupa tots els pedidos d'eixe dia. Una columna calculada com a àlies: el mateix mecanisme que usaríes amb `ResultSetMetaData` per a llegir-la després des de Java.
 
 </details>
 
@@ -212,19 +134,17 @@ El `Map` associa cada símbol amb la seua lletra (U11), `split(" {3}")` separa p
 
 ## AceptaElReto
 
-### 5. 396 — Quants dies falten?
+### 5. 245 — Qui guanya la partida?
 
-Es donen dues dates i cal dir **quants dies hi ha entre elles** (els dies que falten per a la segona des de la primera).
+Un grup de jugadors participa en un joc per torns amb números. Cada ronda, el jugador que encerta es descarta i el que falla passa al **final de la cua** per a tornar-ho a intentar. Simula les rondes i determina qui guanya la partida.
 
-**Entrada:** diversos casos de prova. Cada cas porta dues dates amb el format dia, mes i any. L'entrada acaba quan no queden dades.
-
-- [Enunciat a AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=396)
-- Dificultat: ⭐⭐
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=245)
+- Dificultat: ⭐⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Convertix cada data a dia de l'any (nombre de dies des de l'1 de gener) i resta. O, més directe amb Java modern: `ChronoUnit.DAYS.between(fecha1, fecha2)` amb `LocalDate`.
+Simula els torns amb una `Queue<Integer>`: cada ronda, trau el primer amb `poll()`, i si falla el tornes a ficar amb `offer()`. El que encerta ix per sempre. La cua encaixa perfectament amb l'estructura "qui falla, torna al final".
 
 </details>
 
@@ -232,48 +152,43 @@ Convertix cada data a dia de l'any (nombre de dies des de l'1 de gener) i resta.
 <summary>🔄 Solució</summary>
 
 ```java
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
+import java.util.*;
 
-public class CuantosDiasFaltan {
+public class QuiGuanya {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // Llegir participants i dades del joc segons l'enunciat
+        Queue<Integer> cua = new LinkedList<>();
+        // ... omplir la cua amb els jugadors ...
 
-        while (sc.hasNextInt()) {
-            int d1 = sc.nextInt(), m1 = sc.nextInt(), a1 = sc.nextInt();
-            int d2 = sc.nextInt(), m2 = sc.nextInt(), a2 = sc.nextInt();
-
-            LocalDate f1 = LocalDate.of(a1, m1, d1);
-            LocalDate f2 = LocalDate.of(a2, m2, d2);
-
-            long dias = ChronoUnit.DAYS.between(f1, f2);
-            System.out.println(dias);
-        }
-        sc.close();
+        // while (cua.size() > 1) {
+        //     int jugador = cua.poll();
+        //     if (falla(jugador)) {
+        //         cua.offer(jugador);   // torna al final
+        //     }
+        // }
+        // System.out.println(cua.peek());
     }
 }
 ```
 
-`LocalDate` et llibera dels càlculs manuals (mesos de 30 i 31, anys bixests...). `ChronoUnit.DAYS.between` torna els dies entre dues dates, siga el desfasament positiu o negatiu. L'alternativa "clàssica" era convertir cada data a dia de l'any i restar, però Java modern ho fa en una línia.
+La `LinkedList` com a `Queue` és la protagonista: `poll()` trau el primer i `offer()` el torna al final si falla. Els jugadors que encerten ixen per sempre, i l'últim que queda és el guanyador. Estructura de dades (U10) al servei del problema de torns.
 
 </details>
 
 ---
 
-### 6. 462 — Dia de la setmana
+### 6. 424 — Bitllets d'autobús
 
-Et donen una data (dia, mes i any) i has de dir **quin dia de la setmana és**.
+Hi ha diverses rutes d'autobús entre dues ciutats, cadascuna amb la seua hora d'eixida i d'arribada. Vols agafar **el màxim nombre d'autobusos possible** sense que se superposen (agafar-ne un, baixar-te, i poder pujar a un altre que isca després d'arribar).
 
-**Entrada:** diversos casos. Cada cas: una data en una línia amb dia, mes i any. L'entrada acaba amb `0 0 0`.
-
-- [Enunciat a AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=462)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=424)
 - Dificultat: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Usa la congruència de Zeller o un dia de referència conegut per a calcular el residu. En Java modern, `LocalDate.of(a, m, d).getDayOfWeek()` et dona el dia directament.
+Algoritme voraç: ordena les rutes per **hora d'arribada** i tria sempre la següent ruta que acabe abans i que no se superpose amb l'última triada. És el clàssic problema de "selecció d'activitats".
 
 </details>
 
@@ -281,34 +196,38 @@ Usa la congruència de Zeller o un dia de referència conegut per a calcular el 
 <summary>🔄 Solució</summary>
 
 ```java
-import java.time.LocalDate;
-import java.util.Scanner;
+import java.util.*;
 
-public class DiaSemana {
+public class Bitllets {
+    static class Ruta implements Comparable<Ruta> {
+        int eixida, arribada;
+        Ruta(int e, int a) { eixida = e; arribada = a; }
 
-    static final String[] DIAS = {"LUNES", "MARTES", "MIÉRCOLES",
-        "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"};
+        public int compareTo(Ruta o) {
+            return Integer.compare(arribada, o.arribada); // ordena per arribada
+        }
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        while (sc.hasNextInt()) {
-            int d = sc.nextInt(), m = sc.nextInt(), a = sc.nextInt();
-            if (d == 0 && m == 0 && a == 0) break;
-
-            LocalDate fecha = LocalDate.of(a, m, d);
-            // getDayOfWeek().getValue(): 1=DILLUNS ... 7=DIUMENGE
-            System.out.println(DIAS[fecha.getDayOfWeek().getValue() - 1]);
-        }
-        sc.close();
+        // Llegir rutes, ordenar-les i aplicar el voraç:
+        // Collections.sort(rutes);
+        // int ultima = Integer.MIN_VALUE, comptador = 0;
+        // for (Ruta r : rutes) {
+        //     if (r.eixida >= ultima) {
+        //         comptador++;
+        //         ultima = r.arribada;
+        //     }
+        // }
+        // System.out.println(comptador);
     }
 }
 ```
 
-`getDayOfWeek().getValue()` torna 1 per al dilluns i 7 per al diumenge; restant 1 tens l'índex de l'array. La "manera de concurs" era la congruència de Zeller (una fórmula que calcula el dia sense calendari), però `LocalDate` fa el mateix per dins: mateix resultat, menys codi.
+El truc voraç: ordenar per hora d'arribada garantix que sempre tries la ruta que llibera el dia abans, deixant buit per a més autobusos. Una sola passada amb un comptador i una variable `ultima`. Clàssic d'AceptaElReto: les dades s'ordenen i la solució ix sola.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines servidors i clients HTTP, torna als problemes d'unitats anteriors i planteja'ls com a APIs: un problema que tornava text per consola pot tornar JSON per HTTP. El material no es perd: es reutilitza.
+> 🧭 **I si et quedes amb ganes?** Quan domines el JDBC, torna als problemes d'AceptaElReto d'unitats anteriors i reescriu-los guardant les dades d'entrada en una taula SQLite amb `PreparedStatement`: et sorprendrà el natural que resulta que els teus algoritmes parlen amb una base de dades. El material no es perd: es reutilitza.

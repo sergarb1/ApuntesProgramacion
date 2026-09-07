@@ -6,7 +6,7 @@ emoji: 🔀
 
 <p><small>El semàfor, la cinta de córrer i l'assegurança de vida que fan decidir i repetir als teus programes 🔀</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → **🔀 ACÍ ETS (U03)** → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → **🔀 ACÍ ETS (U03)** → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -60,13 +60,13 @@ En acabar, seràs capaç de:
 
 ## 📝 Butlletins de la unitat
 
-> Practica amb els parells del curs: comença sempre pel resolt per a vore l'estil i després intenta el per-resoldre.
+> Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u03-extras" class="elink">🔥 Extres</a>
 </div>
 

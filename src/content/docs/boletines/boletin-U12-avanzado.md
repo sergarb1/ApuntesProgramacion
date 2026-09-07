@@ -1,6 +1,6 @@
 ---
 title: "Boletín U12 — Avanzado"
-description: "Ejercicios de dificultad progresiva para exprimir ficheros y expresiones regulares"
+description: "Ejercicios de dificultad progresiva para exprimir reduce, groupingBy, Optional y las referencias a métodos"
 ---
 
 # 📝 Boletín U12 — Avanzado
@@ -9,116 +9,119 @@ description: "Ejercicios de dificultad progresiva para exprimir ficheros y expre
 
 ---
 
-## ⭐ Ejercicio 1: Buscador de archivos por extensión
+## ⭐⭐ Ejercicio 1: Ordenar con referencias a método
 
-Crea un programa que pida una ruta de directorio y una extensión (ej: `.txt`, `.java`) y liste **recursivamente** todos los archivos con esa extensión. Usa la clase `File` y su método `listFiles()`.
+Tienes una lista de nombres. Ordena la lista **por longitud** (de menor a mayor) con un stream usando `sorted()` y la referencia `String::length` combinada con `Comparator.comparing`. Después muéstrala.
 
-**Pista:** si el archivo es un directorio, llama al método de nuevo (recursión). Recuerda comprobar `isDirectory()` antes de `listFiles()`.
-
----
-
-## ⭐ Ejercicio 2: Lector de CSV con Scanner
-
-Dado un archivo `datos.csv` con el siguiente formato (sin cabecera):
-
-```
-Ana;25;DAM
-Bob;22;DAW
-Carlos;30;DAM
-```
-
-Usa `Scanner` con `useDelimiter()` para leer el archivo y mostrar los datos en formato de tabla alineada con `printf()`.
-
-**Pista:** `useDelimiter(";|\\R")` corta por `;` o por salto de línea. Repasa los formatos de `printf` en la U02, punto 7.
+**Pista:** `sorted(Comparator.comparing(String::length))` ordena por longitud sin tocar la lista original. Si quieres el orden inverso, usa `reversed()`.
 
 ---
 
-## ⭐⭐ Ejercicio 3: Filtro de líneas por palabra clave
+## ⭐⭐ Ejercicio 2: Agrupar palabras por su primera letra
 
-Crea un programa que lea un archivo de texto (`origen.txt`) y escriba en `destino.txt` solo las líneas que contienen una palabra clave (pedida al usuario). Usa `BufferedReader` y `PrintWriter`. Muestra al final cuántas líneas coincidieron y cuántas se descartaron.
+Tienes una lista de palabras. Usa `groupingBy` para agruparlas por su **primera letra** y muestra el mapa resultante. Después, con `groupingBy(p -> p.charAt(0), Collectors.counting())`, cuenta cuántas palabras hay en cada grupo.
 
-**Pista:** la comprobación es `linea.contains(palabraClave)`. Lleva dos contadores.
-
----
-
-## ⭐⭐ Ejercicio 4: Separador de líneas pares e impares
-
-Crea un programa que lea un archivo `entrada.txt` y genere dos archivos:
-
-- `pares.txt` → contiene las líneas en posición par (0, 2, 4...).
-- `impares.txt` → contiene las líneas en posición impar (1, 3, 5...).
-
-Usa `try-with-resources` con **tres** recursos (un `BufferedReader` y dos `PrintWriter`).
-
-**Pista:** los tres recursos van entre los paréntesis del `try`, separados por `;`. Usa `% 2` sobre el número de línea.
+**Pista:** `groupingBy` devuelve `Map<Character, List<String>>`. El segundo argumento `counting()` cambia el valor del mapa a `Long`.
 
 ---
 
-## ⭐⭐ Ejercicio 5: Split con regex — analizador de frases
+## ⭐⭐ Ejercicio 3: Optional — el que no se deja engañar
 
-Escribe un programa que lea una frase del usuario y use `split()` con una expresión regular para:
+Implementa un método que reciba una `List<Integer>` y devuelva el **máximo** usando `max(Integer::compareTo)`, gestionando el resultado con `orElse` para que devuelva `-1` si la lista está vacía. Prueba con una lista vacía y con una llena.
 
-1. Separar las palabras (ignorando espacios, comas, puntos y signos).
-2. Mostrar cuántas palabras hay.
-3. Mostrar la palabra más larga.
-4. Mostrar las palabras que empiezan por vocal.
+**Pista:** `max` devuelve `Optional<Integer>`. No uses `get()` a ciegas: `orElse(-1)` aterriza con seguridad.
 
-Ejemplo: `"Hola, mundo. Esto es Java: ¿mola?"` →
+---
 
-```
-Palabras: 6
-Más larga: "mundo"
-Empiezan por vocal: ["Esto"]
+## ⭐⭐⭐ Ejercicio 4: El pipeline completo
+
+Tienes esta lista de números:
+
+```java
+List<Integer> numeros = List.of(12, 5, 8, 3, 9, 5, 12, 7);
 ```
 
-**Pista:** el separador que ignora todo lo que no sea letra es `"[^a-zA-ZáéíóúüñÑ]+"`. Para las vocales, comprueba la primera letra con `matches("[aeiouAEIOUáéíóú]")` o con un `indexOf` sobre una cadena de vocales.
+Construye un pipeline que: filtre los **mayores o iguales a 5**, los **eleve al cuadrado** (`n * n`), **elimine los duplicados**, los **ordene de mayor a menor** y se quede con los **3 primeros**. Recoge el resultado en una lista con `toList()`.
+
+**Pista:** para ordenar de mayor a menor: `sorted(Comparator.reverseOrder())`. Recuerda que el orden de las estaciones importa: `distinct` antes de `sorted` cambia la cuenta.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 6: Validador de datos con regex
+## ⭐⭐ Ejercicio 5: De lista a mapa con `toMap`
 
-Crea un programa que lea un archivo `datos.txt` donde cada línea contiene un dato y su tipo (separados por `;`):
+Crea una clase sencilla `Alumno` con `nombre` y `nota`. Con una lista de 5 alumnos, usa `Collectors.toMap` para obtener un `Map<String, Integer>` donde la clave sea el nombre y el valor la nota. Como los nombres son únicos, usa una función de fusión por si acaso.
 
+**Pista:** `Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)`. La fusión `(a, b) -> a` evita la `IllegalStateException` si se repite una clave.
+
+---
+
+## ⭐⭐⭐ Ejercicio 6: El máximo con `reduce` y comparador
+
+Implementa el máximo de una `List<Integer>` de dos formas: con `reduce` y un acumulador que vaya guardando el mayor (sin usar `Math::max`), y con `max`. ¿Qué devuelve cada una? ¿Cuál necesitas una identidad?
+
+**Pista:** `reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b)` usa `Integer.MIN_VALUE` como identidad. `max(Integer::compareTo)` devuelve un `Optional`.
+
+---
+
+## ⭐⭐ Ejercicio 7: Frecuencias con `groupingBy`
+
+Tienes un array de palabras con repetidas:
+
+```java
+String[] palabras = {"hola", "adios", "hola", "java", "hola", "adios"};
 ```
-ana@email.com;email
-12345678Z;dni
-+34 612345678;telefono
-91 123 45 67;telefono
-esto-no-es-email;email
+
+Usa `Arrays.stream` y `groupingBy(p -> p, Collectors.counting())` para contar cuántas veces aparece cada palabra. Muestra el mapa y, después, la palabra que más veces aparece.
+
+**Pista:** el mapa es `Map<String, Long>`. Para la palabra más repetida, recorre `entrySet()` comparando valores, o usa streams de nuevo con `max(Map.Entry.comparingByValue())`.
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: Optional y streams, la pareja
+
+Tienes una lista de nombres. Busca, con streams, el **primer nombre que empiece por "J"** usando `filter(...).findFirst()`. Gestiona el `Optional` resultante con `ifPresent` para imprimirlo y con `orElse` para mostrar "no hay nadie" si no existe. Prueba con una lista que tenga "J" y con otra que no.
+
+**Pista:** `findFirst()` devuelve `Optional<String>`. Con `ifPresent(System.out::println)` imprimes solo si hay valor; `orElse("no hay nadie")` cubre la ausencia.
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: el stream que se niega a morir
+
+Observa este código y responde **sin ejecutarlo**:
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Test {
+    public static void main(String[] args) {
+        Stream<Integer> flujo = List.of(1, 2, 3).stream();
+        long a = flujo.count();
+        long b = flujo.count();
+        System.out.println(a + " " + b);
+    }
+}
 ```
 
-Valida cada línea según el tipo usando expresiones regulares:
+1. ¿Compila?
+2. ¿Qué ocurre al ejecutarlo?
+3. ¿Cómo lo arreglarías?
 
-- **Correo:** formato básico `xxx@xxx.xxx`.
-- **DNI:** 8 dígitos + letra mayúscula (la letra debe ser válida según el algoritmo módulo 23).
-- **Teléfono:** opcional `+34` seguido de 9 dígitos, con o sin espacios.
+**Pista:** un stream es de un solo uso. La primera operación terminal lo consume. Si quieres contar dos veces, crea dos streams (`List.of(1, 2, 3).stream()` dos veces).
 
-Muestra un resumen: cuántos válidos, cuántos inválidos, y lista los inválidos.
+<details>
+<summary>🔄 Solución</summary>
 
-**Pista:** para cada línea, haz `linea.split(";")`, mira el tipo con `equals` y aplica el patrón correspondiente con `matches()`.
+1. **Sí, compila** (el error es de ejecución, no de sintaxis).
+2. Al ejecutar, la segunda llamada `flujo.count()` lanza **`IllegalStateException: stream has already been operated upon or closed`**. El primer `count()` ya consumió el stream: no se puede reutilizar.
+3. Creando un stream nuevo para cada cuenta:
 
----
+```java
+long a = List.of(1, 2, 3).stream().count();
+long b = List.of(1, 2, 3).stream().count();
+System.out.println(a + " " + b);   // 3 3
+```
 
-## ⭐⭐⭐ Ejercicio 7: Cifrado César con archivos
+La regla de oro: un stream es como un billete de autobús de un solo viaje. Tras bajarte, el billete no sirve.
 
-Crea un programa que lea un archivo `mensaje.txt`, desplace cada carácter **3 posiciones** en el alfabeto (cifrado César) y escriba el resultado en `mensaje_cifrado.txt`. Luego, otro programa (o el mismo con una opción) que lo descifre. Usa `try-with-resources` y `BufferedReader`/`PrintWriter`.
-
-**Pista:** por cada `char`, si es letra haz `(char) (c + 3)` y cuidado con los extremos (la `z` debe volver a la `a`: usa `% 26` sobre la posición en el alfabeto).
-
----
-
-## ⭐⭐⭐ Ejercicio 8: Serialización de estudiantes
-
-Crea una clase `Estudiante` que implemente `Serializable` con `String nombre`, `int edad` y `double notaMedia`. Crea un programa que guarde un `ArrayList<Estudiante>` en un archivo `estudiantes.dat` usando `ObjectOutputStream`. Luego, otro programa (o el mismo con una opción) que lo lea con `ObjectInputStream` y muestre los datos formateados.
-
-**Pista:** acuérdate del `serialVersionUID`. El `readObject()` devuelve `Object`: haz el casting a `List<Estudiante>` con calma y comprueba que no sea `null`.
-
----
-
-## ⭐⭐ Ejercicio 9: El contador de líneas, palabras y caracteres
-
-Crea un programa que lea un archivo de texto y muestre cuántas líneas, palabras y caracteres tiene. Usa `BufferedReader` para leer.
-
-**Pista:** cada línea suma 1 al contador de líneas y `linea.length()` al de caracteres; para las palabras, `linea.split("\\s+").length` (con cuidado con las líneas vacías).
-
-**Reto extra:** resuélvelo también con NIO (`Files.readAllLines`) y compara la diferencia.
+</details>

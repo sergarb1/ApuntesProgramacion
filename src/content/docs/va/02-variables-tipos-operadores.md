@@ -56,13 +56,13 @@ En acabar, seràs capaç de:
 
 ## 📝 Butlletins de la unitat
 
-> Practica amb els parells del curs: comença sempre pel resolt per a vore l'estil i després intenta el per-resoldre.
+> Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u02-extras" class="elink">🔥 Extres</a>
 </div>
 
@@ -88,7 +88,7 @@ En acabar, seràs capaç de:
 | RA2 g) | S'han incorporat i utilitzat llibreries d'objectes. | ✅ Punt 6 |
 | RA2 h) | S'han utilitzat constructors. | ✅ Punts 2 i 6 |
 
-> 📌 El `Scanner` del punt 6, l'eixida amb format del punt 7 i els mètodes de `String` del punt 9 planten la llavor del RA5 (entrada i eixida d'informació), que floreix en la U12.
+> 📌 El `Scanner` del punt 6, l'eixida amb format del punt 7 i els mètodes de `String` del punt 9 planten la llavor del RA5 (entrada i eixida d'informació), que floreix en la U13.
 
 ---
 

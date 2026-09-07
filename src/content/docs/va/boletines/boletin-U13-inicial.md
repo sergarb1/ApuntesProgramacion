@@ -1,157 +1,150 @@
 ---
 title: "Butlletí U13 — Inicial"
-description: "Exercicis bàsics de JDBC: connectar-se a SQLite, consultar amb Statement i ResultSet i inserir amb PreparedStatement"
+description: "Exercicis bàsics de Fitxers i Regex: File, FileWriter, BufferedReader, try-with-resources i les primeres expressions regulars"
 ---
 
 # 📝 Butlletí U13 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, afig la dependència de SQLite i fes que el teu primer `SELECT` deixe de semblar màgia. Connectar és el 90% de la batalla; la resta és qüestió de pràctica. Comença suaument, que les bases de dades mosseguen a poc a poc.
+> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer fitxer amb `FileWriter` i fes que `readLine()` deixe de semblar màgia. El disc és teu i les dades esperen. Comença suaument, que els fitxers mosseguen a poc a poc.
 
 ---
 
-## Exercici 1: Què necessites per a usar JDBC?
-
-Respon breument:
-
-1. Quina dependència Maven (grup i artefacte) necessites per a connectar Java amb SQLite?
-2. Quina classe de Java proporciona el mètode `getConnection()`?
-3. Quina interfície representa la connexió oberta a la base de dades?
-4. Quina excepció *checked* has de gestionar sempre en treballar amb JDBC?
-
----
-
-## Exercici 2: Completa el codi — la connexió
-
-Completa els tipus que falten:
+## Exercici 1: Troba l'error — IOException sense capturar
 
 ```java
-String url = "jdbc:sqlite:instituto.db";
+import java.io.*;
 
-String sql = "SELECT * FROM alumnos";
-
-try (______ con = DriverManager.getConnection(url);
-     ______ stmt = con.createStatement();
-     ______ rs = stmt.executeQuery(sql)) {
-
-    while (rs.next()) {
-        System.out.println(rs.getString("nombre"));
-    }
-
-} catch (______ e) {  // quina excepció?
-    System.err.println("Error: " + e.getMessage());
-}
-```
-
-Quines tres interfícies van en els buits? I l'excepció?
-
----
-
-## Exercici 3: Què imprimeix? — ResultSet buit
-
-```java
-try (Connection con = DriverManager.getConnection(url);
-     Statement stmt = con.createStatement();
-     ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos WHERE id = 9999")) {
-
-    if (rs.next()) {
-        System.out.println("Encontrado: " + rs.getString("nombre"));
-    } else {
-        System.out.println("No encontrado");
-    }
-}
-```
-
-Si no hi ha cap alumne amb `id = 9999`, què imprimeix? Què torna `rs.next()` la primera vegada que es crida?
-
----
-
-## Exercici 4: Troba l'error — SQLException sense gestionar
-
-```java
 public class Test {
     public static void main(String[] args) {
-        Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos");
-        while (rs.next()) {
-            System.out.println(rs.getString("nombre"));
+        FileWriter writer = new FileWriter("salida.txt");
+        writer.write("Hola mundo");
+        writer.close();
+    }
+}
+```
+
+Este codi **no compila**. Per què? Quines dues formes hi ha de solucionar-ho?
+
+---
+
+## Exercici 2: Completa el codi — try-with-resources
+
+Completa el següent programa perquè llig un fitxer i mostre el seu contingut:
+
+```java
+import java.io.*;
+import java.nio.file.*;
+
+public class Lector {
+    public static void main(String[] args) {
+        Path ruta = Paths.get("datos.txt");
+
+        try (______ reader = Files.newBufferedReader(ruta)) {  // quin tipus?
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                System.out.println(______);  // què va ací?
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
 ```
 
-Este codi **no compila**. Per què? Quines dues coses falten perquè funcione?
+---
+
+## Exercici 3: Escriu este programa — guardar ciutats en un fitxer
+
+Crea un array de cadenes amb 5 noms de ciutats. Escriu cada nom en una línia d'un fitxer anomenat `ciudades.txt`, usant `BufferedWriter` i `try-with-resources`. No oblides el salt de línia.
+
+Pista: `BufferedWriter` té `write(...)` i `newLine()`.
 
 ---
 
-## Exercici 5: Escriu este programa — la primera connexió
-
-Crea una classe `TestConnexio` que:
-
-1. Es connecte a una base de dades SQLite `test.db`.
-2. Cree una taula `alumnes(id INTEGER PRIMARY KEY, nom TEXT, nota REAL)`.
-3. Inserisca 3 alumnes.
-4. Mostre «Connexió i taula creades» si tot ha anat bé.
-
-Pista: usa `try-with-resources`, un `Statement` per al `CREATE TABLE` i `executeUpdate()` per a inserir. SQLite crea el fitxer sol.
-
----
-
-## Exercici 6: Què imprimeix? — executeQuery en UPDATE
+## Exercici 4: Troba l'error — File.createNewFile sense comprovar
 
 ```java
-Statement stmt = con.createStatement();
-ResultSet rs = stmt.executeQuery("UPDATE alumnos SET nota = 10 WHERE id = 1");
+File f = new File("documento.txt");
+f.createNewFile();
+FileWriter w = new FileWriter(f);
+w.write("Contenido importante");
+w.close();
 ```
 
-Què passa en executar esta línia? Per què no has d'usar `executeQuery()` per a un `UPDATE`?
+Què passa si el fitxer `documento.txt` ja existix? Què torna `createNewFile()`?
 
 ---
 
-## Exercici 7: Completa el codi — INSERT amb PreparedStatement
-
-Completa els buits per a inserir un alumne de forma segura:
+## Exercici 5: Què imprimeix? — el comptador de línies
 
 ```java
-String sql = "INSERT INTO alumnos (nombre, nota) VALUES (?, ?)";
+import java.io.*;
 
-try (Connection con = DriverManager.getConnection(url);
-     PreparedStatement pstmt = con.prepareStatement(sql)) {
+public class Test {
+    public static void main(String[] args) throws IOException {
+        File f = new File("datos.txt");
+        FileWriter w = new FileWriter(f);
+        w.write("linea1\nlinea2\nlinea3\n");
+        w.close();
 
-    pstmt.______(1, "Ana");
-    pstmt.______(2, 8.5);
-
-    int filas = pstmt.______();
-    System.out.println("Inserides " + filas + " fila/es");
+        BufferedReader r = new BufferedReader(new FileReader(f));
+        int contador = 0;
+        while (r.readLine() != null) {
+            contador++;
+        }
+        r.close();
+        System.out.println(contador);
+    }
 }
 ```
 
-Quins mètodes van en els buits? En quin número comencen els índexs dels `?`?
+Què imprimeix? L'últim `\n` compta com una línia més?
 
 ---
 
-## Exercici 8: Escriu este programa — llistar amb try-with-resources
+## Exercici 6: Escriu este programa — el diari personal
 
-Escriu un mètode `llistarAlumnes()` que:
+Escriu un programa que afegisca una línia a `diario.txt` amb la data de hui i el text que l'usuari introduïsca pel teclat. Cada execució ha d'**afegir al final sense esborrar** l'anterior.
 
-1. Es connecte a la base de dades amb `try-with-resources`.
-2. Execute `SELECT * FROM alumnos`.
-3. Mostre cada alumne amb `printf("%d - %s (%.2f)", id, nombre, nota)`.
-4. Gestione `SQLException` mostrant `e.getMessage()`.
-
-Pista: `Connection`, `Statement` i `ResultSet` es tanquen sols dins del `try`. Recorre amb `while (rs.next())`.
+Pista: `new FileWriter("diario.txt", true)` i per a la data `java.time.LocalDate.now()`.
 
 ---
 
-## Exercici 9: Troba l'error — índexs del PreparedStatement
+## Exercici 7: Què imprimeix? — matches() vs find()
 
 ```java
-String sql = "INSERT INTO alumnos (nombre, nota, curso) VALUES (?, ?, ?)";
-PreparedStatement pstmt = con.prepareStatement(sql);
-pstmt.setString(0, "Ana");    // índex correcte?
-pstmt.setDouble(1, 8.5);      // índex correcte?
-pstmt.setString(2, "DAM");    // índex correcte?
-pstmt.executeUpdate();
+import java.util.regex.*;
+
+public class Test {
+    public static void main(String[] args) {
+        String texto = "abc123";
+
+        System.out.println(texto.matches("\\d+"));
+        System.out.println(texto.matches("\\w+"));
+
+        Pattern p = Pattern.compile("\\d+");
+        Matcher m = p.matcher(texto);
+        while (m.find()) {
+            System.out.println("Número: " + m.group());
+        }
+    }
+}
 ```
 
-Quins índexs són correctes per als `?` d'un `PreparedStatement`? En quin número comencen i què passa si uses `0`?
+Què imprimeix cada línia? Per què `matches("\\d+")` dona `false` però `find()` sí que troba alguna cosa?
+
+---
+
+## Exercici 8: Escriu este programa — comptar paraules amb split
+
+Demana a l'usuari una frase pel teclat i mostra quantes paraules té, ignorant els espais dobles.
+
+Pista: `frase.split("\\s+")` troceja per "un o més espais". Compte amb el `.trim()`.
+
+---
+
+## Exercici 9: Escriu este programa — comptar dígits amb Matcher
+
+Escriu un programa que compte quants **dígits** hi ha en una frase. Per exemple, `"En 2026 hay 12 unidades"` → `6` dígits (`2`, `0`, `2`, `6`, `1` i `2`).
+
+Pista: compila `Pattern.compile("\\d")`, usa `matcher.find()` en un bucle i porta un comptador.

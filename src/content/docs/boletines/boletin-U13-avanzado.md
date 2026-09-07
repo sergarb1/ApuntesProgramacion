@@ -1,6 +1,6 @@
 ---
 title: "Boletín U13 — Avanzado"
-description: "Ejercicios de dificultad progresiva para exprimir el JDBC: PreparedStatement, DAO, transacciones y más"
+description: "Ejercicios de dificultad progresiva para exprimir ficheros y expresiones regulares"
 ---
 
 # 📝 Boletín U13 — Avanzado
@@ -9,124 +9,116 @@ description: "Ejercicios de dificultad progresiva para exprimir el JDBC: Prepare
 
 ---
 
-## ⭐ Ejercicio 1: Conexión desde archivo de propiedades
+## ⭐ Ejercicio 1: Buscador de archivos por extensión
 
-Crea un archivo `db.properties` con los datos de conexión:
+Crea un programa que pida una ruta de directorio y una extensión (ej: `.txt`, `.java`) y liste **recursivamente** todos los archivos con esa extensión. Usa la clase `File` y su método `listFiles()`.
 
-```properties
-url=jdbc:sqlite:instituto.db
-```
-
-Escribe un programa que lea este archivo usando la clase `Properties` y establezca la conexión. Si el archivo no existe o falta la propiedad `url`, muestra un mensaje de error claro.
-
-**Pista:** carga el archivo con `props.load(Files.newInputStream(Path.of("db.properties")))` y usa `props.getProperty("url")`. `load` lanza una `IOException` (la viste en la U12 con los ficheros) además de la `SQLException`.
+**Pista:** si el archivo es un directorio, llama al método de nuevo (recursión). Recuerda comprobar `isDirectory()` antes de `listFiles()`.
 
 ---
 
-## ⭐ Ejercicio 2: INSERT con clave autogenerada
+## ⭐ Ejercicio 2: Lector de CSV con Scanner
 
-Inserta un nuevo alumno en la tabla `alumnos` y **recupera el ID** que la base de datos le ha asignado automáticamente (es un `AUTOINCREMENT`). Usa `PreparedStatement` con `Statement.RETURN_GENERATED_KEYS` y el método `getGeneratedKeys()`.
+Dado un archivo `datos.csv` con el siguiente formato (sin cabecera):
 
-**Pista:**
-
-```java
-PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-pstmt.executeUpdate();
-ResultSet claves = pstmt.getGeneratedKeys();
-if (claves.next()) {
-    int id = claves.getInt(1);
-}
+```
+Ana;25;DAM
+Bob;22;DAW
+Carlos;30;DAM
 ```
 
-El `getGeneratedKeys()` devuelve un `ResultSet` con la clave que acaba de generar la base de datos. Se lee con `next()` y `getInt(1)`.
+Usa `Scanner` con `useDelimiter()` para leer el archivo y mostrar los datos en formato de tabla alineada con `printf()`.
+
+**Pista:** `useDelimiter(";|\\R")` corta por `;` o por salto de línea. Repasa los formatos de `printf` en la U02, punto 7.
 
 ---
 
-## ⭐ Ejercicio 3: UPDATE condicional
+## ⭐⭐ Ejercicio 3: Filtro de líneas por palabra clave
 
-Actualiza el curso de todos los alumnos que tengan una edad superior a un valor dado. Por ejemplo:
+Crea un programa que lea un archivo de texto (`origen.txt`) y escriba en `destino.txt` solo las líneas que contienen una palabra clave (pedida al usuario). Usa `BufferedReader` y `PrintWriter`. Muestra al final cuántas líneas coincidieron y cuántas se descartaron.
 
-```
-¿Edad mínima? 25
-¿Nuevo curso? DAM2
-```
-
-Todos los alumnos mayores de 25 años pasan al curso «DAM2». Muestra cuántas filas se actualizaron.
-
-**Pista:** `UPDATE alumnos SET curso = ? WHERE edad > ?` con `setInt` y `setString`. `executeUpdate()` te devuelve el número de filas afectadas: es tu mejor amigo para confirmar que algo cambió.
+**Pista:** la comprobación es `linea.contains(palabraClave)`. Lleva dos contadores.
 
 ---
 
-## ⭐⭐ Ejercicio 4: INNER JOIN con PreparedStatement
+## ⭐⭐ Ejercicio 4: Separador de líneas pares e impares
 
-Dada una tabla `matriculas` con `id_alumno`, `asignatura`, `nota`, escribe un programa que reciba un nombre de alumno y muestre todas sus asignaturas y notas. Usa un `INNER JOIN` entre `alumnos` y `matriculas`.
+Crea un programa que lea un archivo `entrada.txt` y genere dos archivos:
 
-Ejemplo de salida:
+- `pares.txt` → contiene las líneas en posición par (0, 2, 4...).
+- `impares.txt` → contiene las líneas en posición impar (1, 3, 5...).
+
+Usa `try-with-resources` con **tres** recursos (un `BufferedReader` y dos `PrintWriter`).
+
+**Pista:** los tres recursos van entre los paréntesis del `try`, separados por `;`. Usa `% 2` sobre el número de línea.
+
+---
+
+## ⭐⭐ Ejercicio 5: Split con regex — analizador de frases
+
+Escribe un programa que lea una frase del usuario y use `split()` con una expresión regular para:
+
+1. Separar las palabras (ignorando espacios, comas, puntos y signos).
+2. Mostrar cuántas palabras hay.
+3. Mostrar la palabra más larga.
+4. Mostrar las palabras que empiezan por vocal.
+
+Ejemplo: `"Hola, mundo. Esto es Java: ¿mola?"` →
 
 ```
-Alumno: Ana García
-  Matemáticas: 8.5
-  Programación: 9.0
-  Bases de Datos: 7.5
+Palabras: 6
+Más larga: "mundo"
+Empiezan por vocal: ["Esto"]
 ```
 
-**Pista:** el `?` va en la parte del nombre: `SELECT a.nombre, m.asignatura, m.nota FROM alumnos a INNER JOIN matriculas m ON m.id_alumno = a.id WHERE a.nombre = ?`. El `JOIN` relaciona las dos tablas en una sola consulta: ni un bucle, ni consultas dentro de bucles.
+**Pista:** el separador que ignora todo lo que no sea letra es `"[^a-zA-ZáéíóúüñÑ]+"`. Para las vocales, comprueba la primera letra con `matches("[aeiouAEIOUáéíóú]")` o con un `indexOf` sobre una cadena de vocales.
 
 ---
 
-## ⭐⭐ Ejercicio 5: Búsqueda con LIKE
+## ⭐⭐⭐ Ejercicio 6: Validador de datos con regex
 
-Implementa una búsqueda de alumnos por nombre usando `LIKE` y `PreparedStatement`. El usuario escribe una parte del nombre y se muestran todos los que coinciden. Si no hay resultados, muestra «Sin resultados».
-
-**Pista:** `SELECT * FROM alumnos WHERE nombre LIKE ?` con `pstmt.setString(1, "%" + texto + "%")`. Los `%` son comodines y van dentro del **valor**, no en el SQL. El `%texto%` busca el texto en cualquier posición.
-
----
-
-## ⭐⭐ Ejercicio 6: Fechas en JDBC
-
-Añade una columna `fecha_nacimiento DATE` a la tabla `alumnos` (asume que ya existe). Crea un programa que:
-
-1. Pida nombre, edad, curso y fecha de nacimiento (formato `YYYY-MM-DD`).
-2. Inserte el alumno usando `PreparedStatement` con `java.sql.Date.valueOf()`.
-3. Liste todos los alumnos mostrando también su fecha de nacimiento.
-
-**Pista:** `Date.valueOf("2000-03-15")` convierte el texto en `java.sql.Date` (¡ojo: es `java.sql.Date`, no `java.util.Date`!). Para leerla, `rs.getDate("fecha_nacimiento")`. Recuerda comprobar el valor que devuelve `executeUpdate()`.
-
----
-
-## ⭐⭐ Ejercicio 7: Batch INSERT — 100 alumnos de prueba
-
-Crea un programa que inserte **100 alumnos de prueba** en la tabla `alumnos` usando lotes (batch). Los nombres pueden ser genéricos: `Alumno1`, `Alumno2`, etc.
-
-Usa `addBatch()` y `executeBatch()` de `PreparedStatement`. Mide el tiempo que tarda con `System.currentTimeMillis()`.
-
-**Pista:** en el bucle, haces `addBatch()` en cada vuelta y una sola `executeBatch()` al final (o cada 50). Para medir: `long inicio = System.currentTimeMillis();` ... `long fin = System.currentTimeMillis();` y restas. Compara mentalmente con 100 `executeUpdate()` sueltos.
-
----
-
-## ⭐⭐⭐ Ejercicio 8: El patrón DAO
-
-Implementa el patrón **Data Access Object (DAO)** para la tabla `alumnos`. Crea las siguientes clases:
-
-1. `Alumno` — clase modelo con `id`, `nombre`, `edad`, `curso`.
-2. `AlumnoDAO` — interfaz con métodos: `listar()`, `buscarPorId(int id)`, `buscarPorNombre(String nombre)`, `insertar(Alumno a)`, `actualizar(Alumno a)`, `eliminar(int id)`.
-3. `AlumnoDAOImpl` — implementación concreta con JDBC y SQLite.
-4. `Main` — programa con menú que use el DAO.
-
-**Pista:** la URL (`jdbc:sqlite:instituto.db`) es una constante privada de la implementación. Cada método abre su propia conexión con `try-with-resources`. El `Main` solo habla con la interfaz `AlumnoDAO`; el SQL no le importa.
-
----
-
-## ⭐⭐⭐ Ejercicio 9: Transacción bancaria atómica
-
-Simula una transferencia entre dos cuentas en una tabla `cuentas(id, titular, saldo)`. La transferencia debe ser **atómica**: quita 100 € de una cuenta, ponlos en la otra, y si falla cualquier paso, haz `rollback()` para que no quede el sistema a medias.
-
-Ejemplo de salida:
+Crea un programa que lea un archivo `datos.txt` donde cada línea contiene un dato y su tipo (separados por `;`):
 
 ```
-Saldo antes: Ana 500, Luis 300
-Transferencia OK
-Saldo después: Ana 400, Luis 400
+ana@email.com;email
+12345678Z;dni
++34 612345678;telefono
+91 123 45 67;telefono
+esto-no-es-email;email
 ```
 
-**Pista:** `con.setAutoCommit(false)`, después las dos operaciones con `PreparedStatement`, y al final `con.commit()`. El `rollback()` va en el `catch (SQLException e)` interno. Prueba a forzar el fallo (por ejemplo, una cuenta inexistente) y comprueba que el saldo de Ana no cambia.
+Valida cada línea según el tipo usando expresiones regulares:
+
+- **Correo:** formato básico `xxx@xxx.xxx`.
+- **DNI:** 8 dígitos + letra mayúscula (la letra debe ser válida según el algoritmo módulo 23).
+- **Teléfono:** opcional `+34` seguido de 9 dígitos, con o sin espacios.
+
+Muestra un resumen: cuántos válidos, cuántos inválidos, y lista los inválidos.
+
+**Pista:** para cada línea, haz `linea.split(";")`, mira el tipo con `equals` y aplica el patrón correspondiente con `matches()`.
+
+---
+
+## ⭐⭐⭐ Ejercicio 7: Cifrado César con archivos
+
+Crea un programa que lea un archivo `mensaje.txt`, desplace cada carácter **3 posiciones** en el alfabeto (cifrado César) y escriba el resultado en `mensaje_cifrado.txt`. Luego, otro programa (o el mismo con una opción) que lo descifre. Usa `try-with-resources` y `BufferedReader`/`PrintWriter`.
+
+**Pista:** por cada `char`, si es letra haz `(char) (c + 3)` y cuidado con los extremos (la `z` debe volver a la `a`: usa `% 26` sobre la posición en el alfabeto).
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: Serialización de estudiantes
+
+Crea una clase `Estudiante` que implemente `Serializable` con `String nombre`, `int edad` y `double notaMedia`. Crea un programa que guarde un `ArrayList<Estudiante>` en un archivo `estudiantes.dat` usando `ObjectOutputStream`. Luego, otro programa (o el mismo con una opción) que lo lea con `ObjectInputStream` y muestre los datos formateados.
+
+**Pista:** acuérdate del `serialVersionUID`. El `readObject()` devuelve `Object`: haz el casting a `List<Estudiante>` con calma y comprueba que no sea `null`.
+
+---
+
+## ⭐⭐ Ejercicio 9: El contador de líneas, palabras y caracteres
+
+Crea un programa que lea un archivo de texto y muestre cuántas líneas, palabras y caracteres tiene. Usa `BufferedReader` para leer.
+
+**Pista:** cada línea suma 1 al contador de líneas y `linea.length()` al de caracteres; para las palabras, `linea.split("\\s+").length` (con cuidado con las líneas vacías).
+
+**Reto extra:** resuélvelo también con NIO (`Files.readAllLines`) y compara la diferencia.

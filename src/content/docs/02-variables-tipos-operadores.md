@@ -5,7 +5,7 @@ description: Las cajas del almacén de la memoria y las máquinas del gimnasio d
 
 <p><small>Las cajas del almacén de la memoria y las máquinas del gimnasio de datos 🔤</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → **🔤 AQUÍ ESTÁS (U02)** → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → **🔤 AQUÍ ESTÁS (U02)** → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -56,13 +56,13 @@ Al terminar, serás capaz de:
 
 ## 📝 Boletines de la unidad
 
-> Practica con los pares del curso: empezar siempre el resuelto para ver el estilo y luego intentar el por-resolver.
+> Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u02-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u02-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-u02-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u02-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u02-extras" class="elink">🔥 Extras</a>
 </div>
 
@@ -88,7 +88,7 @@ Al terminar, serás capaz de:
 | RA2 g) | Se han incorporado y utilizado librerías de objetos. | ✅ Punto 6 |
 | RA2 h) | Se han utilizado constructores. | ✅ Puntos 2 y 6 |
 
-> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U12.
+> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U13.
 
 ---
 

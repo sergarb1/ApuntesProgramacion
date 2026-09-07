@@ -1,6 +1,6 @@
 ---
 title: "Boletín U13 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá del JDBC: SQL de verdad y algoritmos con datos"
+description: "CodeWars y AceptaElReto para ir más allá de los ficheros y las expresiones regulares"
 ---
 
 # 📝 Boletín U13 — Extras
@@ -11,122 +11,164 @@ description: "CodeWars y AceptaElReto para ir más allá del JDBC: SQL de verdad
 
 ## CodeWars
 
-### 1. SQL Basics: Simple JOIN
+### 1. Regex validate PIN code
 
-Crea una consulta `SELECT` que devuelva todos los productos junto con la empresa que los fabrica. Tendrás que relacionar las tablas `products` y `companies` mediante la clave foránea `company_id`.
+Crea una función que valide un PIN: un `String` que es válido solo si tiene **4 o 6 dígitos exactos**.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5802e32dd8c944e562000020)
-- Dificultad: 6 kyu
+**Ejemplo:** `"1234"` → `true`, `"12345"` → `false`, `"a234"` → `false`, `"123456"` → `true`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132)
+- Dificultad: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Un `INNER JOIN` sobre la clave foránea: `products.company_id = companies.id`. Selecciona las columnas que te pida el problema y cuida los alias.
+Es la kata más regex de la unidad: un solo `matches()` con el patrón `\\d{4}|\\d{6}` lo resuelve. Recuerda: `matches()` exige que todo el string cumpla el patrón, que es justo lo que pide un PIN.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```sql
-SELECT p.name, c.name AS company_name
-FROM products p
-INNER JOIN companies c ON p.company_id = c.id;
+```java
+public class Kata {
+    public static boolean validatePin(String pin) {
+        return pin.matches("\\d{4}|\\d{6}");
+    }
+}
 ```
 
-El `JOIN` relaciona las dos tablas por la clave foránea y, en una sola consulta, tienes producto y empresa. Es el mismo concepto del punto 8 de la unidad: una consulta con `JOIN` donde no caben consultas en bucle.
+`\\d{4}` es "exactamente 4 dígitos" y `\\d{6}` "exactamente 6". El `|` los une: o 4 o 6. `matches()` comprueba el string entero, así que `"12345a"` no pasa aunque tenga 5 dígitos: hay una letra al final.
 
 </details>
 
 ---
 
-### 2. SQL with Street Fighter: Total Wins
+### 2. Two to One
 
-Es hora de decidir qué luchadores pasan a las semifinales del campeonato mundial de Street Fighter. Cada combate registra si el luchador ganó (1) o perdió (0), y el movimiento con el que terminó. Como los ataques ki han sido prohibidos, **no se cuentan** los combates terminados con Hadoken, Shouoken o Kikoken. Devuelve `name`, `won` y `lost` sumando las victorias y derrotas, ordena de más a menos victorias y devuelve los 6 mejores.
+Te dan dos strings en minúsculas con letras de la `a` a la `z`. Devuelve un único string con las letras **distintas de ambos, ordenadas alfabéticamente**.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5ab7a736edbcfc8e62000007)
-- Dificultad: 6 kyu
+**Ejemplo:** `"xyaabbbccccdefww"` y `"xxxxyyyyabklmopq"` → `"abcdefklmopqwxy"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5656b6906de340bd1b0000ac)
+- Dificultad: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-`GROUP BY` el nombre del luchador con `SUM(won)` y `SUM(lost)`. Excluye los movimientos prohibidos con `NOT IN ('Hadoken', 'Shouoken', 'Kikoken')` y ordena con `ORDER BY won DESC LIMIT 6`.
+Concatena los dos strings en uno. Luego recorre las letras de la `a` a la `z` y, si el string concatenado contiene esa letra (`indexOf`), añádela al resultado. El orden alfabético sale gratis porque recorres el alfabeto en orden.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```sql
-SELECT f.name, SUM(f.won) AS won, SUM(f.lost) AS lost
-FROM fighters f
-LEFT JOIN winning_moves m ON f.move_id = m.id
-WHERE m.move NOT IN ('Hadoken', 'Shouoken', 'Kikoken')
-GROUP BY f.name
-ORDER BY won DESC
-LIMIT 6;
+```java
+public class Kata {
+    public static String longest(String s1, String s2) {
+        String unidos = s1 + s2;
+        StringBuilder resultado = new StringBuilder();
+
+        for (char c = 'a'; c <= 'z'; c++) {
+            if (unidos.indexOf(c) != -1) {
+                resultado.append(c);
+            }
+        }
+        return resultado.toString();
+    }
+}
 ```
 
-`GROUP BY` agrupa los combates de cada luchador, `SUM` acumula victorias y derrotas, y el `WHERE` descarta los ataques prohibidos antes de agrupar. Es exactamente el tipo de consulta que podrías lanzar con un `PreparedStatement` contra la tabla `fighters`.
+La clave es invertir la pregunta: en vez de filtrar los caracteres de los strings, recorres el alfabeto y preguntas "¿está esta letra en la unión?". Con `indexOf(c) != -1` sabes si aparece. El `StringBuilder` acumula el resultado y el orden alfabético es automático porque la `a` se procesa antes que la `b`.
 
 </details>
 
 ---
 
-### 3. SQL Basics: Simple HAVING
+### 3. Categorize New Member
 
-Tienes una tabla `people` con `id`, `name` y `age`. Cuenta cuántas personas tienen la misma edad y devuelve **solo los grupos de edad con 10 o más personas**.
+El club de tenis clasifica a sus nuevos socios. Un socio es **"Senior"** si tiene 55 años o más **y** un hándicap mayor que 7; si no, es **"Open"**. Te dan un array de pares `[edad, hándicap]` y debes devolver un array con la categoría de cada uno.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/58164ddf890632fa0f00011a)
-- Dificultad: 6 kyu
+**Ejemplo:** `[[45, 12], [55, 21], [19, -2], [104, 20]]` → `["Open", "Senior", "Open", "Senior"]`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5502c9e7b3216ec63c000020)
+- Dificultad: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-`GROUP BY` la columna `age` y cuenta con `COUNT(*)`. `WHERE` no vale para filtrar grupos: necesitas `HAVING COUNT(*) >= 10`, que se aplica después del agrupado.
+Simple lógica booleana: `edad >= 55 && hándicap > 7`. Recorre el array de pares y monta el resultado con un ternario.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```sql
-SELECT age, COUNT(id) AS total_people
-FROM people
-GROUP BY age
-HAVING COUNT(id) >= 10;
+```java
+public class Kata {
+    public static String[] openOrSenior(int[][] data) {
+        String[] resultado = new String[data.length];
+
+        for (int i = 0; i < data.length; i++) {
+            resultado[i] = (data[i][0] >= 55 && data[i][1] > 7)
+                ? "Senior" : "Open";
+        }
+        return resultado;
+    }
+}
 ```
 
-`GROUP BY age` crea un grupo por cada edad, `COUNT(id)` cuenta sus integrantes, y `HAVING` filtra los grupos que no alcanzan 10 personas. La diferencia con `WHERE`: `WHERE` filtra filas antes de agrupar, `HAVING` filtra grupos después.
+Cada par `data[i]` tiene la edad en `[0]` y el hándicap en `[1]`. El ternario decide la categoría en una línea y guarda el resultado en su posición. Es la lógica booleana pura del enunciado: las dos condiciones con `&&`.
 
 </details>
 
 ---
 
-### 4. SQL Basics: Group By Day
+### 4. Primes in numbers
 
-Tienes una tabla `orders` con `id`, `datetime` y `amount`. Cuenta cuántos pedidos hay **por día**, extrayendo la fecha del campo `datetime`.
+Dado un número positivo `n`, devuelve su descomposición en factores primos con el formato `"(p1**exp1)(p2**exp2)"`. Si el exponente es 1, se escribe solo `"(p)"`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5811597e9d278beb04000038)
+**Ejemplo:** `86240` → `"(2**5)(5)(7**2)(11)"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/54d512e62a5e54c96200002e)
 - Dificultad: 5 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Extrae el día con la función `DATE(datetime)` y agrúpalo con `GROUP BY`. Cuenta con `COUNT(*)`. Es el `GROUP BY` de siempre, pero sobre una columna calculada.
+Divide por 2, luego por los impares desde 3 hasta la raíz cuadrada de `n` (que se va reduciendo al dividir). Cuenta cuántas veces divide cada divisor (el exponente) y monta el string con un `StringBuilder`.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```sql
-SELECT DATE(datetime) AS day, COUNT(*) AS total
-FROM orders
-GROUP BY DATE(datetime);
+```java
+public class Kata {
+    public static String factors(int n) {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 2; i * i <= n; i++) {
+            int veces = 0;
+            while (n % i == 0) {
+                n /= i;
+                veces++;
+            }
+            if (veces == 1) {
+                sb.append("(").append(i).append(")");
+            } else if (veces > 1) {
+                sb.append("(").append(i).append("**").append(veces).append(")");
+            }
+        }
+        if (n > 1) {
+            sb.append("(").append(n).append(")");
+        }
+        return sb.toString();
+    }
+}
 ```
 
-`DATE(datetime)` recorta el `datetime` a solo la fecha, y `GROUP BY` agrupa todos los pedidos de ese día. Una columna calculada como alias: el mismo mecanismo que usarías con `ResultSetMetaData` para leerla después desde Java.
+El `while` interno divide mientras el divisor encaje y cuenta las repeticiones: ese es el exponente. El bucle solo llega a la raíz de `n` (y `n` se va reduciendo), así que el `if (n > 1)` final recoge el último factor primo que queda. El `StringBuilder` evita concatenar cadenas en cada vuelta, que sería lento.
 
 </details>
 
@@ -134,61 +176,19 @@ GROUP BY DATE(datetime);
 
 ## AceptaElReto
 
-### 5. 245 — ¿Quién gana la partida?
+### 5. 108 — Hormigas
 
-Un grupo de jugadores participa en un juego por turnos con números. Cada ronda, el jugador que acierta se descarta y el que falla pasa al **final de la cola** para volver a intentarlo. Simula las rondas y determina quién gana la partida.
+Sobre una barra de longitud `L` cm hay `n` hormigas. Cada hormiga se mueve a 1 cm/s hacia el extremo que le toque (el enunciado te da las posiciones). Cuando dos hormigas se cruzan, ambas cambian de sentido. Calcula, para cada caso de prueba, el **tiempo mínimo** y el **tiempo máximo** que tardan en caerse todas de la barra.
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=245)
-- Dificultad: ⭐⭐⭐
+**Entrada:** varios casos de prueba. Cada caso empieza con `L` y `n`, seguido de las `n` posiciones de las hormigas.
 
-<details>
-<summary>💡 Pista</summary>
-
-Simula los turnos con una `Queue<Integer>`: cada ronda, saca al primero con `poll()`, y si falla lo vuelves a meter con `offer()`. El que acierta sale para siempre. La cola encaja perfectamente con la estructura "quien falla, vuelve al final".
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.*;
-
-public class QuienGana {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // Leer participantes y datos del juego según el enunciado
-        Queue<Integer> cola = new LinkedList<>();
-        // ... rellenar la cola con los jugadores ...
-
-        // while (cola.size() > 1) {
-        //     int jugador = cola.poll();
-        //     if (falla(jugador)) {
-        //         cola.offer(jugador);   // vuelve al final
-        //     }
-        // }
-        // System.out.println(cola.peek());
-    }
-}
-```
-
-La `LinkedList` como `Queue` es la protagonista: `poll()` saca al primero y `offer()` lo devuelve al final si falla. Los jugadores que aciertan salen para siempre, y el último que queda es el ganador. Estructura de datos (U10) al servicio del problema de turnos.
-
-</details>
-
----
-
-### 6. 424 — Billetes de autobús
-
-Hay varias rutas de autobús entre dos ciudades, cada una con su hora de salida y de llegada. Quieres coger **el máximo número de autobuses posible** sin que se solapen (coger uno, bajarte, y poder subir a otro que salga después de llegar).
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=424)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=108)
 - Dificultad: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Algoritmo voraz: ordena las rutas por **hora de llegada** y elige siempre la siguiente ruta que termine antes y que no se solape con la última elegida. Es el clásico problema de "selección de actividades".
+Cuando dos hormigas se cruzan y cambian de sentido, es **como si se ignoraran**: la posición de las hormigas es indistinguible. Así que cada hormiga cae en `min(pos, L - pos)` o `max(pos, L - pos)`. El mínimo tiempo es el mayor de los mínimos; el máximo, el mayor de los máximos.
 
 </details>
 
@@ -196,38 +196,85 @@ Algoritmo voraz: ordena las rutas por **hora de llegada** y elige siempre la sig
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
+import java.util.Scanner;
 
-public class Billetes {
-    static class Ruta implements Comparable<Ruta> {
-        int salida, llegada;
-        Ruta(int s, int l) { salida = s; llegada = l; }
-
-        public int compareTo(Ruta o) {
-            return Integer.compare(llegada, o.llegada); // ordena por llegada
-        }
-    }
-
+public class Hormigas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        // Leer rutas, ordenarlas y aplicar el voraz:
-        // Collections.sort(rutas);
-        // int ultima = Integer.MIN_VALUE, contador = 0;
-        // for (Ruta r : rutas) {
-        //     if (r.salida >= ultima) {
-        //         contador++;
-        //         ultima = r.llegada;
-        //     }
-        // }
-        // System.out.println(contador);
+
+        while (sc.hasNextInt()) {
+            int L = sc.nextInt();
+            int n = sc.nextInt();
+            int minTiempo = 0, maxTiempo = 0;
+
+            for (int i = 0; i < n; i++) {
+                int pos = sc.nextInt();
+                int haciaIzq = pos;
+                int haciaDer = L - pos;
+                minTiempo = Math.max(minTiempo, Math.min(haciaIzq, haciaDer));
+                maxTiempo = Math.max(maxTiempo, Math.max(haciaIzq, haciaDer));
+            }
+
+            System.out.println(minTiempo + " " + maxTiempo);
+        }
+        sc.close();
     }
 }
 ```
 
-El truco voraz: ordenar por hora de llegada garantiza que siempre eliges la ruta que libera el día antes, dejando hueco para más autobuses. Una sola pasada con un contador y una variable `ultima`. Clásico de AceptaElReto: los datos se ordenan y la solución sale sola.
+El truco conceptual: cuando dos hormigas se cruzan, ambas dan la vuelta, pero como son indistinguibles, el efecto es el mismo que si pasaran de largo. Cada hormiga tarda `pos` o `L - pos` en caer según el lado al que vaya. Para el mínimo total, cada hormiga elige su lado más cercano y el tiempo es el mayor de esos mínimos; para el máximo, el peor caso.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines el JDBC, vuelve a los problemas de AceptaElReto de unidades anteriores y reescríbelos guardando los datos de entrada en una tabla SQLite con `PreparedStatement`: te sorprenderá lo natural que resulta que tus algoritmos hablen con una base de datos. El material no se pierde: se reutiliza.
+### 6. 140 — Suma de dígitos
+
+Dado un número positivo, calcula la suma de sus dígitos. La entrada es una secuencia de números que termina con `-1`.
+
+**Ejemplo:** `123` → `123: 6`, `55` → `55: 10`, `1000` → `1000: 1`.
+
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=140)
+- Dificultad: ⭐
+
+<details>
+<summary>💡 Pista</summary>
+
+Puedes extraer los dígitos con `% 10` y `/ 10` en un bucle mientras el número sea mayor que 0. O, más en el espíritu de esta unidad, convertir el número a `String` y recorrerlo con un `charAt`, sumando `c - '0'`.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class SumaDigitos {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            int n = sc.nextInt();
+            if (n == -1) break;
+
+            int suma = 0;
+            String texto = String.valueOf(n);
+            for (int i = 0; i < texto.length(); i++) {
+                suma += texto.charAt(i) - '0';
+            }
+
+            System.out.println(n + ": " + suma);
+        }
+        sc.close();
+    }
+}
+```
+
+Convertir el número a `String` permite tratar los dígitos como caracteres: `charAt(i) - '0'` convierte el carácter `'3'` en el número `3` (porque los códigos ASCII de los dígitos son consecutivos). Sin operaciones aritméticas de `%` y `/`: la versión "de unidad de regex" de un clásico.
+
+</details>
+
+---
+
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines los ficheros y las regex, vuelve a los problemas de unidades anteriores y resuélvelos leyendo los datos desde un archivo en vez de pedirlos por teclado, o validando la entrada con un `matches()`. El material no se pierde: se reutiliza.

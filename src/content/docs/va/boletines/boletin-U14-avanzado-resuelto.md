@@ -1,6 +1,6 @@
 ---
 title: "Butlletí U14 — Avançat Resolt"
-description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
+description: "Els mateixos exercicis que el butlletí avançat, amb solucions completes"
 ---
 
 # 📝 Butlletí U14 — Avançat (Resolt)
@@ -9,499 +9,593 @@ description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 
 ---
 
-## ⭐ Exercici 1: API de frases motivacionals
+## ⭐ Exercici 1: Connexió des de fitxer de propietats
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-import com.sun.net.httpserver.HttpServer;
-import java.net.InetSocketAddress;
-import java.util.Random;
+`db.properties`:
 
-public class ApiFrases {
-
-    static String[] frases = {
-        "El código limpio es como un buen chiste: si tienes que explicarlo, es malo",
-        "La mejor forma de predecir el futuro es implementarlo",
-        "Primero resuelve el problema, luego escribe el código"
-    };
-    static String[] autores = {"Alguien que sabe", "Alan Kay", "John Johnson"};
-
-    public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        Random r = new Random();
-
-        server.createContext("/api/frase", e -> {
-            int i = r.nextInt(frases.length);
-            String json = "{\"frase\":\"" + frases[i] + "\",\"autor\":\"" + autores[i] + "\"}";
-            e.getResponseHeaders().set("Content-Type", "application/json");
-            e.sendResponseHeaders(200, json.getBytes().length);
-            e.getResponseBody().write(json.getBytes());
-            e.getResponseBody().close();
-        });
-
-        server.setExecutor(null);
-        server.start();
-        System.out.println("Servidor en http://localhost:8080");
-    }
-}
+```properties
+url=jdbc:sqlite:instituto.db
 ```
 
-`Random.nextInt(longitud)` tria un índex aleatori de l'array de frases. El `Content-Type: application/json` convertix la resposta en una API que el `fetch` del frontend pot llegir amb `r.json()`.
-
-</details>
-
----
-
-## ⭐ Exercici 2: Formulari de contacte amb POST
-
-<details>
-<summary>🔄 Solució</summary>
-
 ```java
-server.createContext("/contacto", e -> {
-    String html = """
-        <form action="/enviar" method="POST">
-          <input name="nombre" placeholder="Tu nombre"><br>
-          <textarea name="mensaje" placeholder="Tu mensaje"></textarea><br>
-          <button>Enviar</button>
-        </form>
-        """;
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
-
-server.createContext("/enviar", e -> {
-    if ("POST".equals(e.getRequestMethod())) {
-        String datos = new String(e.getRequestBody().readAllBytes());
-        // datos = "nombre=Ana&mensaje=Hola"
-        String nombre = extraer(datos, "nombre");
-        String mensaje = extraer(datos, "mensaje");
-        String html = "<h1>Gràcies, " + nombre + "!</h1><p>" + mensaje + "</p>";
-        e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-        e.sendResponseHeaders(200, html.getBytes().length);
-        e.getResponseBody().write(html.getBytes());
-        e.getResponseBody().close();
-    } else {
-        e.sendResponseHeaders(405, -1);  // Method Not Allowed
-        e.close();
-    }
-});
-
-static String extraer(String datos, String clave) {
-    for (String par : datos.split("&")) {
-        String[] t = par.split("=");
-        if (t.length == 2 && t[0].equals(clave)) return t[1];
-    }
-    return "?";
-}
-```
-
-GET servix el formulari, POST rep les dades del cos i les torna en una pàgina de confirmació. El `405` per a mètodes que no siguen POST és la guinda professional: l'API no es calla, respon "mètode no permés".
-
-</details>
-
----
-
-## ⭐ Exercici 3: Pedra, paper, tisora online
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Map;
-import java.util.Random;
-
-static Map<String, String> regles = Map.of(
-    "piedra", "tijera", "tijera", "papel", "papel", "piedra"
-);
-
-server.createContext("/api/jugar", e -> {
-    if ("POST".equals(e.getRequestMethod())) {
-        String body = new String(e.getRequestBody().readAllBytes());
-        // body = {"jugada": "piedra"}
-        String jugada = body.split("\"jugada\":\"")[1].split("\"")[0];
-        String pc = new String[]{"piedra", "papel", "tijera"}[new Random().nextInt(3)];
-
-        String resultado;
-        if (jugada.equals(pc)) {
-            resultado = "empate";
-        } else if (regles.get(jugada) != null && regles.get(jugada).equals(pc)) {
-            resultado = "ganaste";
-        } else {
-            resultado = "perdiste";
-        }
-
-        String json = "{\"jugadaPC\":\"" + pc + "\",\"resultado\":\"" + resultado + "\"}";
-        e.getResponseHeaders().set("Content-Type", "application/json");
-        e.sendResponseHeaders(200, json.getBytes().length);
-        e.getResponseBody().write(json.getBytes());
-        e.getResponseBody().close();
-    }
-});
-```
-
-El `Map` `regles` codifica "qui venç a qui": si `regles.get(jugada).equals(pc)`, guanyes. El `Random` tria la jugada del PC entre tres opcions. L'extracció de la jugada del JSON es fa amb `split` (didàctic); en producció, Gson.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 4: El temps que NO fa
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-server.createContext("/api/clima", e -> {
-    String query = e.getRequestURI().getQuery();
-    String ciudad = "Madrid";
-    if (query != null && query.startsWith("ciudad=")) {
-        ciudad = query.split("=")[1];
-    }
-
-    Random r = new Random();
-    String[] estados = {"soleado", "nublado", "lluvia", "tormenta"};
-    int temperatura = r.nextInt(40) - 5;   // de -5 a 34
-    int humedad = r.nextInt(101);          // de 0 a 100
-    String estado = estados[r.nextInt(estados.length)];
-
-    String json = "{\"ciudad\":\"" + ciudad + "\",\"temperatura\":" + temperatura
-        + ",\"humedad\":" + humedad + ",\"estado\":\"" + estado + "\"}";
-    e.getResponseHeaders().set("Content-Type", "application/json");
-    e.sendResponseHeaders(200, json.getBytes().length);
-    e.getResponseBody().write(json.getBytes());
-    e.getResponseBody().close();
-});
-```
-
-El rang de temperatura ix de `nextInt(40) - 5` (desplaçar el rang de 0-39 a -5 a 34). Cada recàrrega genera dades diferents: un "clima" fals, però el patró d'una API amb query param i resposta JSON és exactament el de les de veritat.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 5: Traductor xungo (però funcional)
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-static Map<String, Map<String, String>> diccionario = new HashMap<>();
-static {
-    Map<String, String> hola = new HashMap<>();
-    hola.put("en", "hello");
-    hola.put("fr", "bonjour");
-    diccionario.put("hola", hola);
-
-    Map<String, String> adios = new HashMap<>();
-    adios.put("en", "goodbye");
-    adios.put("fr", "au revoir");
-    diccionario.put("adios", adios);
-
-    Map<String, String> gracias = new HashMap<>();
-    gracias.put("en", "thank you");
-    gracias.put("fr", "merci");
-    diccionario.put("gracias", gracias);
-    // ... afig almenys 7 més
-}
-
-server.createContext("/api/traducir", e -> {
-    if ("POST".equals(e.getRequestMethod())) {
-        String body = new String(e.getRequestBody().readAllBytes());
-        // body = {"texto": "hola", "idioma": "en"}
-        String texto = body.split("\"texto\":\"")[1].split("\"")[0];
-        String idioma = body.split("\"idioma\":\"")[1].split("\"")[0];
-
-        String traduccion = diccionario.getOrDefault(texto, Map.of())
-            .getOrDefault(idioma, "¿?");
-        String json = "{\"traduccion\":\"" + traduccion + "\"}";
-        e.getResponseHeaders().set("Content-Type", "application/json");
-        e.sendResponseHeaders(200, json.getBytes().length);
-        e.getResponseBody().write(json.getBytes());
-        e.getResponseBody().close();
-    }
-});
-```
-
-Un mapa dins d'un altre: la paraula en espanyol és la clau de l'exterior, i el mapa interior associa idioma amb traducció. `getOrDefault` evita el `NullPointerException` quan la paraula o l'idioma no existixen. Els mapes, com a la U11.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 6: API REST de tasques amb prioritat
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-
-record Tarea(int id, String titulo, String prioridad) {}
-
-static ConcurrentHashMap<Integer, Tarea> tareas = new ConcurrentHashMap<>();
-static AtomicInteger contador = new AtomicInteger(1);
-
-// Llistar
-server.createContext("/api/tareas", e -> {
-    if ("GET".equals(e.getRequestMethod())) {
-        StringBuilder sb = new StringBuilder("[");
-        boolean primero = true;
-        for (Tarea t : tareas.values()) {
-            if (!primero) sb.append(",");
-            sb.append("{\"id\":").append(t.id())
-              .append(",\"titulo\":\"").append(t.titulo())
-              .append("\",\"prioridad\":\"").append(t.prioridad()).append("\"}");
-            primero = false;
-        }
-        sb.append("]");
-        e.getResponseHeaders().set("Content-Type", "application/json");
-        e.sendResponseHeaders(200, sb.toString().getBytes().length);
-        e.getResponseBody().write(sb.toString().getBytes());
-        e.getResponseBody().close();
-    } else if ("POST".equals(e.getRequestMethod())) {
-        String body = new String(e.getRequestBody().readAllBytes());
-        String titulo = body.split("\"titulo\":\"")[1].split("\"")[0];
-        String prioridad = body.split("\"prioridad\":\"")[1].split("\"")[0];
-        Tarea nueva = new Tarea(contador.getAndIncrement(), titulo, prioridad);
-        tareas.put(nueva.id(), nueva);
-        String json = "{\"id\":" + nueva.id() + "}";
-        e.getResponseHeaders().set("Content-Type", "application/json");
-        e.sendResponseHeaders(201, json.getBytes().length);
-        e.getResponseBody().write(json.getBytes());
-        e.getResponseBody().close();
-    }
-});
-
-// Actualitzar i esborrar per ID
-server.createContext("/api/tareas/", e -> {
-    String ruta = e.getRequestURI().getPath();
-    int id = Integer.parseInt(ruta.substring("/api/tareas/".length()));
-    Tarea t = tareas.get(id);
-    if (t == null) {
-        e.getResponseHeaders().set("Content-Type", "application/json");
-        String err = "{\"error\":\"no encontrada\"}";
-        e.sendResponseHeaders(404, err.getBytes().length);
-        e.getResponseBody().write(err.getBytes());
-        e.getResponseBody().close();
-        return;
-    }
-    if ("PUT".equals(e.getRequestMethod())) {
-        String body = new String(e.getRequestBody().readAllBytes());
-        String prioridad = body.split("\"prioridad\":\"")[1].split("\"")[0];
-        tareas.put(id, new Tarea(id, t.titulo(), prioridad));
-        e.sendResponseHeaders(200, -1);
-        e.close();
-    } else if ("DELETE".equals(e.getRequestMethod())) {
-        tareas.remove(id);
-        e.sendResponseHeaders(204, -1);
-        e.close();
-    }
-});
-```
-
-`ConcurrentHashMap` + `AtomicInteger` aguanten peticions simultànies sense corrompre's. El `404` quan l'ID no existix és el comportament correcte d'una API REST que es respecta. El `201` en crear i el `204` en esborrar arredonixen la bona conducta.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 7: Client GET — els repos de GitHub
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Scanner;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Properties;
 
-public class GitHubCliente {
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Usuari de GitHub: ");
-        String usuario = sc.nextLine();
-        sc.close();
+public class ConexioProperties {
+    public static void main(String[] args) {
+        Properties props = new Properties();
+        try (InputStream in = Files.newInputStream(Path.of("db.properties"))) {
+            props.load(in);
+        } catch (IOException e) {
+            System.err.println("No es va poder llegir db.properties: " + e.getMessage());
+            return;
+        }
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.github.com/users/" + usuario + "/repos"))
-            .header("User-Agent", "ClienteJava/1.0")
-            .GET()
-            .build();
+        String url = props.getProperty("url");
+        if (url == null) {
+            System.err.println("Falta la propietat 'url' a db.properties");
+            return;
+        }
 
-        HttpResponse<String> response = client.send(request,
-            HttpResponse.BodyHandlers.ofString());
-
-        if (response.statusCode() == 200) {
-            JsonArray repos = new Gson().fromJson(response.body(), JsonArray.class);
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < repos.size(); i++) {
-                JsonObject repo = repos.get(i).getAsJsonObject();
-                String nombre = repo.get("name").getAsString();
-                String lenguaje = repo.has("language") && !repo.get("language").isJsonNull()
-                    ? repo.get("language").getAsString() : "?";
-                sb.append(nombre).append(" (").append(lenguaje).append(")\n");
-                System.out.println("⭐ " + nombre + " (" + lenguaje + ")");
-            }
-            Files.writeString(Path.of("repos.txt"), sb.toString());
-            System.out.println("Guardado en repos.txt");
-        } else {
-            System.out.println("Error " + response.statusCode() + " — existeix l'usuari?");
+        try (Connection con = DriverManager.getConnection(url)) {
+            System.out.println("Connectat a: " + url);
+        } catch (SQLException e) {
+            System.err.println("Error BD: " + e.getMessage());
         }
     }
 }
 ```
 
-`HttpClient` demana, Gson parseja i `Files.writeString` guarda: el trio complet del costat client. La capçalera `User-Agent` és obligatòria a GitHub (sense ella, rebutja la petició). El `has(...)` evita el drama quan el camp `language` no existix o és `null`.
+`Properties` carrega el parell clau-valor i `getProperty("url")` el recupera. Dues excepcions conviuen ací: la `IOException` de llegir el fitxer (U13) i la `SQLException` de connectar. I les credencials no viatgen en el codi: és el manament 6 del decàleg.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 8: Client POST — crear una publicació a jsonplaceholder
+## ⭐ Exercici 2: INSERT amb clau autogenerada
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.sql.*;
 
-public class ClientePOST {
-    public static void main(String[] args) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
+public class InserirAmbId {
+    public static void main(String[] args) {
+        String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
 
-        String json = """
-            {"title": "Mi primera API",
-             "body": "Consumida desde Java",
-             "userId": 1}
-            """;
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("https://jsonplaceholder.typicode.com/posts"))
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(json))
-            .build();
+            pstmt.setString(1, "María");
+            pstmt.setInt(2, 22);
+            pstmt.setString(3, "DAM");
+            pstmt.executeUpdate();
 
-        HttpResponse<String> response = client.send(request,
-            HttpResponse.BodyHandlers.ofString());
+            try (ResultSet claus = pstmt.getGeneratedKeys()) {
+                if (claus.next()) {
+                    System.out.println("Nou id: " + claus.getInt(1));
+                }
+            }
 
-        System.out.println("Código: " + response.statusCode());
-        System.out.println("Respuesta: " + response.body());
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 }
 ```
 
-jsonplaceholder et torna el recurs creat amb el seu nou ID: `201` (Created). El `Content-Type: application/json` és el que li diu al servidor que el cos és JSON. Sense ell, jsonplaceholder respon `415` (Unsupported Media Type).
+La clau està en `Statement.RETURN_GENERATED_KEYS`: li dius a la base de dades que vols saber el id que acaba de generar. Després, `getGeneratedKeys()` torna un `ResultSet` amb eixa clau i es llig amb `next()` + `getInt(1)`. Sense eixa opció, hauríes de fer una consulta extra o endevinar.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 9: Middleware de logging
+## ⭐ Exercici 3: UPDATE condicional
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.sql.*;
+import java.util.Scanner;
 
-public class LoggerMiddleware implements HttpHandler {
+public class ActualitzarCurs {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Quina edat mínima? ");
+        int edat = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Quin nou curs? ");
+        String curs = sc.nextLine();
 
-    private final HttpHandler original;
+        String sql = "UPDATE alumnos SET curso = ? WHERE edad > ?";
 
-    public LoggerMiddleware(HttpHandler original) {
-        this.original = original;
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, curs);
+            pstmt.setInt(2, edat);
+
+            int files = pstmt.executeUpdate();
+            System.out.println("Actualitzats " + files + " alumne/s");
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+El `WHERE edad > ?` limita l'actualització als alumnes majors d'eixa edat. `executeUpdate()` torna el nombre de files afectades: si imprimeix `0`, és que no hi havia ningú major de 25 (o tots ja estaven en eixe curs). Sense el `WHERE`, hauríes actualitzat tota la taula. Comprova sempre les files.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 4: INNER JOIN amb PreparedStatement
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.sql.*;
+import java.util.Scanner;
+
+public class JoinAlumne {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nom de l'alumne: ");
+        String nom = sc.nextLine();
+
+        String sql = "SELECT a.nombre, m.asignatura, m.nota " +
+                     "FROM alumnos a " +
+                     "INNER JOIN matriculas m ON m.id_alumno = a.id " +
+                     "WHERE a.nombre = ?";
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, nom);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                System.out.println("Alumne: " + nom);
+                boolean trobat = false;
+                while (rs.next()) {
+                    System.out.printf("  %s: %.1f%n",
+                        rs.getString("asignatura"),
+                        rs.getDouble("nota"));
+                    trobat = true;
+                }
+                if (!trobat) System.out.println("  Sense matrícules");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+L'`INNER JOIN` relaciona `alumnos` i `matriculas` per la clau forana `id_alumno`, i el `WHERE` filtra pel nom. Una sola consulta, un sol viatge a la base de dades: és l'antídot del patró N+1 (manament 8). Els àlies `a` i `m` fan l'SQL més curt.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 5: Cerca amb LIKE
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.sql.*;
+import java.util.Scanner;
+
+public class CercarAlumnes {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Part del nom: ");
+        String text = sc.nextLine();
+
+        String sql = "SELECT * FROM alumnos WHERE nombre LIKE ?";
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            pstmt.setString(1, "%" + text + "%");
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                boolean trobat = false;
+                while (rs.next()) {
+                    System.out.printf("%d - %s (%d)%n",
+                        rs.getInt("id"),
+                        rs.getString("nombre"),
+                        rs.getInt("edad"));
+                    trobat = true;
+                }
+                if (!trobat) System.out.println("Sense resultats");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+`LIKE ?` amb `setString(1, "%" + text + "%")`: els `%` són comodins que permeten coincidència en qualsevol posició. La concatenació ací és segura perquè els `%` formen part del **valor**, no de l'SQL. El `ResultSet` anidat en el seu propi `try-with-resources` es tanca sol.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 6: Dates en JDBC
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.sql.*;
+import java.util.Scanner;
+
+public class DatesJDBC {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nom: ");
+        String nom = sc.nextLine();
+        System.out.print("Edat: ");
+        int edat = sc.nextInt();
+        sc.nextLine();
+        System.out.print("Curs: ");
+        String curs = sc.nextLine();
+        System.out.print("Data de naixement (YYYY-MM-DD): ");
+        String dataText = sc.nextLine();
+
+        String inserir = "INSERT INTO alumnos (nombre, edad, curso, fecha_nacimiento) VALUES (?, ?, ?, ?)";
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             PreparedStatement pstmt = con.prepareStatement(inserir)) {
+
+            pstmt.setString(1, nom);
+            pstmt.setInt(2, edat);
+            pstmt.setString(3, curs);
+            pstmt.setDate(4, Date.valueOf(dataText));
+
+            int files = pstmt.executeUpdate();
+            System.out.println("Inserits " + files + " alumne/s");
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        String llistar = "SELECT nombre, fecha_nacimiento FROM alumnos";
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(llistar)) {
+            while (rs.next()) {
+                System.out.printf("%s - %s%n",
+                    rs.getString("nombre"),
+                    rs.getDate("fecha_nacimiento"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+`java.sql.Date.valueOf("2000-03-15")` convertix el text en una data que JDBC entén, i `setDate(4, ...)` la inserix. Per a llegir-la, `rs.getDate(...)`. Alerta amb el tipus: és `java.sql.Date`, no `java.util.Date` (són diferents). El `String` de la data ha d'anar en el format exacte `YYYY-MM-DD`.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 7: Batch INSERT — 100 alumnes de prova
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.sql.*;
+
+public class BatchAlumnes {
+    public static void main(String[] args) {
+        String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
+
+        long inicio = System.currentTimeMillis();
+
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+            for (int i = 1; i <= 100; i++) {
+                pstmt.setString(1, "Alumno" + i);
+                pstmt.setInt(2, 18 + (i % 10));
+                pstmt.setString(3, "DAM");
+                pstmt.addBatch();
+            }
+
+            int[] resultats = pstmt.executeBatch();
+
+            long fin = System.currentTimeMillis();
+            System.out.println("Inserits " + resultats.length + " alumnes en " + (fin - inicio) + " ms");
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+    }
+}
+```
+
+`addBatch()` acumula les sentències sense enviar-les, i `executeBatch()` les mana **totes de cop** en un sol viatge a la base de dades. `resultats` conté les files afectades per cada lot. Comparat amb 100 `executeUpdate()` solts (100 viatges), el batch és moltíssim més ràpid: una sola operació de xarxa en comptes de cent.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 8: El patró DAO
+
+<details>
+<summary>🔄 Solució</summary>
+
+**1. El model:**
+
+```java
+public class Alumno {
+    private int id;
+    private String nombre;
+    private int edad;
+    private String curso;
+
+    public Alumno() {}
+    public Alumno(String nombre, int edad, String curso) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.curso = curso;
+    }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { this.edad = edad; }
+    public String getCurso() { return curso; }
+    public void setCurso(String curso) { this.curso = curso; }
+
+    @Override
+    public String toString() {
+        return id + " - " + nombre + " (" + edad + ") " + curso;
+    }
+}
+```
+
+**2. La interfície (el contracte):**
+
+```java
+import java.util.List;
+
+public interface AlumnoDAO {
+    List<Alumno> listar();
+    Alumno buscarPorId(int id);
+    List<Alumno> buscarPorNombre(String nombre);
+    boolean insertar(Alumno a);
+    boolean actualizar(Alumno a);
+    boolean eliminar(int id);
+}
+```
+
+**3. La implementació (l'SQL):**
+
+```java
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AlumnoDAOImpl implements AlumnoDAO {
+    private static final String URL = "jdbc:sqlite:instituto.db";
+
+    @Override
+    public List<Alumno> listar() {
+        List<Alumno> alumnes = new ArrayList<>();
+        String sql = "SELECT * FROM alumnos ORDER BY nombre";
+        try (Connection con = DriverManager.getConnection(URL);
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                Alumno a = new Alumno(
+                    rs.getString("nombre"),
+                    rs.getInt("edad"),
+                    rs.getString("curso"));
+                a.setId(rs.getInt("id"));
+                alumnes.add(a);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en llistar: " + e.getMessage());
+        }
+        return alumnes;
     }
 
     @Override
-    public void handle(HttpExchange e) throws IOException {
-        long inicio = System.currentTimeMillis();
-        try {
-            original.handle(e);
-        } finally {
-            long duracion = System.currentTimeMillis() - inicio;
-            String fecha = LocalDateTime.now().format(
-                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
-            System.out.printf("[%s] %s %s → %d (%dms)%n",
-                fecha, e.getRequestMethod(), e.getRequestURI(),
-                e.getResponseCode(), duracion);
+    public Alumno buscarPorId(int id) {
+        String sql = "SELECT * FROM alumnos WHERE id = ?";
+        try (Connection con = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    Alumno a = new Alumno(
+                        rs.getString("nombre"),
+                        rs.getInt("edad"),
+                        rs.getString("curso"));
+                    a.setId(rs.getInt("id"));
+                    return a;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en cercar: " + e.getMessage());
+        }
+        return null;
+    }
+
+    @Override
+    public List<Alumno> buscarPorNombre(String nombre) {
+        List<Alumno> alumnes = new ArrayList<>();
+        String sql = "SELECT * FROM alumnos WHERE nombre LIKE ?";
+        try (Connection con = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, "%" + nombre + "%");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Alumno a = new Alumno(
+                        rs.getString("nombre"),
+                        rs.getInt("edad"),
+                        rs.getString("curso"));
+                    a.setId(rs.getInt("id"));
+                    alumnes.add(a);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error en cercar: " + e.getMessage());
+        }
+        return alumnes;
+    }
+
+    @Override
+    public boolean insertar(Alumno a) {
+        String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
+        try (Connection con = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, a.getNombre());
+            pstmt.setInt(2, a.getEdad());
+            pstmt.setString(3, a.getCurso());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error en inserir: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean actualizar(Alumno a) {
+        String sql = "UPDATE alumnos SET nombre = ?, edad = ?, curso = ? WHERE id = ?";
+        try (Connection con = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setString(1, a.getNombre());
+            pstmt.setInt(2, a.getEdad());
+            pstmt.setString(3, a.getCurso());
+            pstmt.setInt(4, a.getId());
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error en actualitzar: " + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean eliminar(int id) {
+        String sql = "DELETE FROM alumnos WHERE id = ?";
+        try (Connection con = DriverManager.getConnection(URL);
+             PreparedStatement pstmt = con.prepareStatement(sql)) {
+            pstmt.setInt(1, id);
+            return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("Error en eliminar: " + e.getMessage());
+            return false;
         }
     }
 }
 ```
 
-I s'usa així, embolicant qualsevol handler:
+**4. El Main (programa contra la interfície):**
 
 ```java
-server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) {
+        AlumnoDAO dao = new AlumnoDAOImpl();
+
+        dao.insertar(new Alumno("Nova Alumna", 21, "DAM"));
+        System.out.println("--- Alumnes ---");
+        for (Alumno a : dao.listar()) {
+            System.out.println(a);
+        }
+
+        System.out.println("--- Cercar per nom ('María') ---");
+        for (Alumno a : dao.buscarPorNombre("María")) {
+            System.out.println(a);
+        }
+    }
+}
 ```
 
-El truc: `LoggerMiddleware` **implementa el mateix contracte** (`HttpHandler`) i embolica l'original. El `try/finally` garantix que el log s'imprimeix encara que el handler falle. `getResponseCode()` només val després d'enviar capçaleres, per això es llig al final. A això se li diu *decorator* o middleware: emboliques un handler amb un altre que afig comportament.
+El `Main` només coneix la interfície `AlumnoDAO`: si demà canvies SQLite per MySQL, només canvia `AlumnoDAOImpl`, i el `Main` no se n'assabenta. Eixa és la màgia del DAO.
 
-</details
+</details>
 
 ---
 
-## ⭐⭐⭐ Exercici 10: la petició asíncrona amb sendAsync
+## ⭐⭐⭐ Exercici 9: Transacció bancària atòmica
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.sql.*;
 
-public class ReposAsync {
+public class Transferencia {
+    private static final String URL = "jdbc:sqlite:instituto.db";
+
+    public static void transferir(int idOrigen, int idDesti, double quantitat) {
+        String treure = "UPDATE cuentas SET saldo = saldo - ? WHERE id = ?";
+        String posar  = "UPDATE cuentas SET saldo = saldo + ? WHERE id = ?";
+
+        try (Connection con = DriverManager.getConnection(URL)) {
+            con.setAutoCommit(false);  // obrim la transacció
+
+            try (PreparedStatement q = con.prepareStatement(treure);
+                 PreparedStatement p = con.prepareStatement(posar)) {
+
+                q.setDouble(1, quantitat);
+                q.setInt(2, idOrigen);
+                q.executeUpdate();
+
+                if (idOrigen == idDesti) {
+                    throw new SQLException("Destí invàlid: mateix compte");
+                }
+
+                p.setDouble(1, quantitat);
+                p.setInt(2, idDesti);
+                p.executeUpdate();
+
+                con.commit();
+                System.out.println("Transferència OK");
+            } catch (SQLException e) {
+                con.rollback();
+                System.err.println("Va fallar, tot desfet: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Error de connexió: " + e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest peticio = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.github.com/users/google/repos"))
-                .GET()
-                .build();
-
-        System.out.println("Petició llançada, seguim treballant...");
-
-        client.sendAsync(peticio, HttpResponse.BodyHandlers.ofString())
-                .thenAccept(resposta -> {
-                    System.out.println("Resposta rebuda: codi " + resposta.statusCode());
-                    if (resposta.statusCode() == 200) {
-                        int repos = resposta.body().split("\"full_name\"").length - 1;
-                        System.out.println("Repos de google: " + repos);
-                    } else {
-                        System.out.println("Alguna cosa ha fallat (límit de l'API?): " + resposta.body().substring(0, 80));
-                    }
-                })
-                .join();  // espera que acabe abans de finalitzar el main
+        transferir(1, 2, 100);
+        // Per a provar el rollback, crida transferir(1, 1, 100): mateix compte
     }
 }
 ```
 
-La màgia està en l'ordre de les eixides: "Petició llançada" s'imprimeix **abans** de "Resposta rebuda", encara que la petició es va llançar abans. Això és `sendAsync`: el fil principal no es deté esperant la xarxa; el `thenAccept` s'executa quan arribe la resposta. El `join()` al final és imprescindible: sense ell, el `main` acabaria i la JVM es tancaria abans que arribara la resposta. El comptatge de repos amb `split("\"full_name\"")` és un truc ràpid de JSON sense llibreria: cada repo apareix com un `"full_name"` en la llista.
+`setAutoCommit(false)` obri la transacció: les dues operacions s'executen sense confirmar-se. Si tot va bé, `commit()` les guarda juntes. Si alguna cosa falla (ací, forçat amb `throw new SQLException`), `rollback()` desfà la primera operació perquè el sistema no quede a mitges. És la definició d'atòmic: tot o res. Sense això, una transferència a mitges deixaria diners flotant al limbe.
 
-</details>>
+</details>

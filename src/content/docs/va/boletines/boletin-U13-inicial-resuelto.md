@@ -9,236 +9,261 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 
 ---
 
-## Exercici 1: Què necessites per a usar JDBC?
+## Exercici 1: Troba l'error — IOException sense capturar
 
 <details>
 <summary>🔄 Solució</summary>
 
-1. La dependència **`org.xerial:sqlite-jdbc`**. Al `pom.xml`:
+`FileWriter` llança `IOException` (per exemple, si no hi ha permís d'escriptura o la carpeta no existix). El `main` no la declara amb `throws` ni la captura amb `try-catch`, així que el compilador es queixa.
 
-   ```xml
-   <dependency>
-       <groupId>org.xerial</groupId>
-       <artifactId>sqlite-jdbc</artifactId>
-       <version>3.45.1.0</version>
-   </dependency>
-   ```
+Les **dues formes** de solucionar-ho:
 
-2. **`DriverManager`** — el seu mètode estàtic `getConnection()` establix la connexió.
-3. **`Connection`** — la interfície del paquet `java.sql` que representa la connexió oberta.
-4. **`SQLException`** — és *checked*: el compilador t'obliga a capturar-la o declarar-la.
-
-</details>
-
----
-
-## Exercici 2: Completa el codi — la connexió
-
-<details>
-<summary>🔄 Solució</summary>
-
+1. Declarar l'excepció en la signatura:
 ```java
-String url = "jdbc:sqlite:instituto.db";
-
-String sql = "SELECT * FROM alumnos";
-
-try (Connection con = DriverManager.getConnection(url);
-     Statement stmt = con.createStatement();
-     ResultSet rs = stmt.executeQuery(sql)) {
-
-    while (rs.next()) {
-        System.out.println(rs.getString("nombre"));
-    }
-
-} catch (SQLException e) {
-    System.err.println("Error: " + e.getMessage());
+public static void main(String[] args) throws IOException {
+    FileWriter writer = new FileWriter("salida.txt");
+    writer.write("Hola mundo");
+    writer.close();
 }
 ```
 
-Els tres tipus són **`Connection`**, **`Statement`** i **`ResultSet`**, tots del paquet `java.sql`. L'excepció és **`SQLException`**. Fixa't en l'ordre d'obertura: Connection → Statement → ResultSet; `try-with-resources` els tanca en ordre invers.
+2. Capturar-la amb `try-catch`:
+```java
+public static void main(String[] args) {
+    try (FileWriter writer = new FileWriter("salida.txt")) {
+        writer.write("Hola mundo");
+    } catch (IOException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
+}
+```
+
+La versió amb `try-with-resources` és la moderna: tanca el fitxer sol i captura l'error. Les excepcions comprovades de `java.io` no es poden ignorar: o les declares o les captures.
 
 </details>
 
 ---
 
-## Exercici 3: Què imprimeix? — ResultSet buit
+## Exercici 2: Completa el codi — try-with-resources
 
 <details>
 <summary>🔄 Solució</summary>
-
-Imprimeix **`No encontrado`**.
-
-`rs.next()` torna **`false`** la primera vegada si no hi ha files. El cursor del `ResultSet` comença *abans* de la primera fila, així que amb una consulta sense resultats, el primer `next()` ja es troba amb el buit i torna `false`, saltant a l'`else`. No és un error: una consulta sense resultats torna un `ResultSet` buit, no una excepció.
-
-</details>
-
----
-
-## Exercici 4: Troba l'error — SQLException sense gestionar
-
-<details>
-<summary>🔄 Solució</summary>
-
-No compila perquè **`SQLException` és checked**: `DriverManager.getConnection()`, `con.createStatement()` i `stmt.executeQuery()` la llancen, i el codi no la captura ni la declara.
-
-Falten dues coses:
-
-1. Embolcar el codi en un `try { ... } catch (SQLException e) { ... }`.
-2. Tancar els recursos (millor, amb `try-with-resources`).
 
 ```java
-public class Test {
+import java.io.*;
+import java.nio.file.*;
+
+public class Lector {
     public static void main(String[] args) {
-        String sql = "SELECT * FROM alumnos";
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                System.out.println(rs.getString("nombre"));
+        Path ruta = Paths.get("datos.txt");
+
+        try (BufferedReader reader = Files.newBufferedReader(ruta)) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                System.out.println(linea);
             }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 }
 ```
 
+Els buits: `BufferedReader` i `linea`. `Files.newBufferedReader(Path)` et torna directament un `BufferedReader` sense passar per `FileReader` (la forma NIO del punt 5). El bucle llig línia a línia fins que `readLine()` torna `null`, i el `try-with-resources` tanca el fitxer en eixir.
+
 </details>
 
 ---
 
-## Exercici 5: Escriu este programa — la primera connexió
+## Exercici 3: Escriu este programa — guardar ciutats en un fitxer
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.sql.*;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-public class TestConnexio {
+public class Ciudades {
     public static void main(String[] args) {
-        String url = "jdbc:sqlite:test.db";
+        String[] ciudades = {"Valencia", "Madrid", "Barcelona", "Sevilla", "Bilbao"};
 
-        String crearTaula = "CREATE TABLE IF NOT EXISTS alumnos (" +
-            "id INTEGER PRIMARY KEY, nombre TEXT, nota REAL)";
-
-        try (Connection con = DriverManager.getConnection(url);
-             Statement stmt = con.createStatement()) {
-
-            stmt.executeUpdate(crearTaula);
-            stmt.executeUpdate("INSERT INTO alumnos (nombre, nota) VALUES ('Ana', 7.5)");
-            stmt.executeUpdate("INSERT INTO alumnos (nombre, nota) VALUES ('Luis', 9.0)");
-            stmt.executeUpdate("INSERT INTO alumnos (nombre, nota) VALUES ('Sara', 6.5)");
-
-            System.out.println("Connexió i taula creades");
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-
-`CREATE TABLE` i `INSERT` són operacions que no tornen files, així que s'executen amb `executeUpdate()`. L'`IF NOT EXISTS` evita errors si tornesses a executar el programa. I sí: `test.db` es crea sol amb la primera connexió.
-
-</details>
-
----
-
-## Exercici 6: Què imprimeix? — executeQuery en UPDATE
-
-<details>
-<summary>🔄 Solució</summary>
-
-Llança una **`SQLException`**.
-
-`executeQuery()` és només per a consultes que **tornen files** (SELECT). Un `UPDATE` no torna un `ResultSet`; torna el nombre de files afectades, i això és feina de `executeUpdate()`. Barrejar-los dona `SQLException` sempre. És com ficar una forqueta al microones: no hi ha volta enrere.
-
-Regla mnemotècnica: **esperes dades de tornada? → `executeQuery()`. Només vols saber quantes files s'han modificat? → `executeUpdate()`.**
-
-</details>
-
----
-
-## Exercici 7: Completa el codi — INSERT amb PreparedStatement
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-String sql = "INSERT INTO alumnos (nombre, nota) VALUES (?, ?)";
-
-try (Connection con = DriverManager.getConnection(url);
-     PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-    pstmt.setString(1, "Ana");
-    pstmt.setDouble(2, 8.5);
-
-    int filas = pstmt.executeUpdate();
-    System.out.println("Inserides " + filas + " fila/es");
-}
-```
-
-Els buits: **`setString`**, **`setDouble`** i **`executeUpdate`**. Els índexs dels `?` comencen en **1** (no en 0, com els arrays). `setString(1, ...)` ompli el primer `?`, `setDouble(2, ...)` el segon. `executeUpdate()` torna les files afectades: si és `1`, tot bé.
-
-</details>
-
----
-
-## Exercici 8: Escriu este programa — llistar amb try-with-resources
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.sql.*;
-
-public class LlistarAlumnes {
-    public static void llistarAlumnes() {
-        String url = "jdbc:sqlite:instituto.db";
-        String sql = "SELECT * FROM alumnos";
-
-        try (Connection con = DriverManager.getConnection(url);
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            while (rs.next()) {
-                System.out.printf("%d - %s (%.2f)%n",
-                    rs.getInt("id"),
-                    rs.getString("nombre"),
-                    rs.getDouble("nota"));
+        try (BufferedWriter bw = Files.newBufferedWriter(Paths.get("ciudades.txt"))) {
+            for (String ciudad : ciudades) {
+                bw.write(ciudad);
+                bw.newLine();
             }
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.out.println("Ciudades guardadas.");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
         }
-    }
-
-    public static void main(String[] args) {
-        llistarAlumnes();
     }
 }
 ```
 
-`try-with-resources` tanca `Connection`, `Statement` i `ResultSet` automàticament en ordre invers. El `printf` formata l'eixida en columnes, i `getInt`/`getString`/`getDouble` llig cada columna per nom. La `SQLException` es captura i mostra el seu missatge.
+`Files.newBufferedWriter(Path)` et dona un `BufferedWriter` llest per a usar (la forma NIO del punt 5). Es recorre l'array i cada ciutat s'escriu amb el seu `newLine()`. El `try-with-resources` tanca el fitxer sol.
 
 </details>
 
 ---
 
-## Exercici 9: Troba l'error — índexs del PreparedStatement
+## Exercici 4: Troba l'error — File.createNewFile sense comprovar
 
 <details>
 <summary>🔄 Solució</summary>
 
-Els índexs dels `?` comencen en **1**:
+Si `documento.txt` **ja existix**, `createNewFile()` torna `false` (no crea res de nou, no llança error) i el `FileWriter` **sobreescriu** el contingut igualment. El codi funciona, però sense que t'assabentes de si el fitxer ja estava.
+
+`createNewFile()` torna:
+- `true` si ha creat el fitxer.
+- `false` si ja existia.
+
+El patró professional és comprovar-ho:
 
 ```java
-pstmt.setString(1, "Ana");    // primer ?
-pstmt.setDouble(2, 8.5);      // segon ?
-pstmt.setString(3, "DAM");    // tercer ?
+File f = new File("documento.txt");
+if (f.createNewFile()) {
+    System.out.println("Archivo creado.");
+} else {
+    System.out.println("El archivo ya existía.");
+}
 ```
 
-`setString(0, "Ana")` és **incorrecte**: llança una `SQLException` perquè no existix cap `?` amb índex 0. Els placeholders són posicionals i el primer és l'1. És la trampa clàssica de qui ve dels arrays, on els índexs comencen en 0.
+Si la carpeta no existix, `createNewFile()` llança `IOException`, així que també va amb `try-catch` o `throws`.
+
+</details>
+
+---
+
+## Exercici 5: Què imprimeix? — el comptador de línies
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix **`3`**.
+
+El fitxer té tres línies: "linea1", "linea2" i "linea3". L'últim `\n` **no** crea una quarta línia: quan `readLine()` no troba més text, torna `null` (no una línia buida) i el `while` acaba. El comptador s'incrementa 3 vegades.
+
+Detall: el codi del `while` descarta la línia (`r.readLine()` a seques) perquè només vol comptar. Si a més volgueres el contingut, hauríes de guardar-la en una variable.
+
+</details>
+
+---
+
+## Exercici 6: Escriu este programa — el diari personal
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class Diario {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("¿Qué has aprendido hoy? ");
+        String entrada = sc.nextLine();
+
+        try (FileWriter fw = new FileWriter("diario.txt", true)) {
+            fw.write(LocalDate.now() + ": " + entrada + "\n");
+            System.out.println("Anotado en el diario.");
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+        sc.close();
+    }
+}
+```
+
+El segon argument `true` del `FileWriter` activa el mode *append*: afig al final sense esborrar l'anterior. `LocalDate.now()` dona la data actual del sistema. Cada execució suma una entrada nova al diari.
+
+</details>
+
+---
+
+## Exercici 7: Què imprimeix? — matches() vs find()
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+false
+true
+Número: 123
+```
+
+- `"abc123".matches("\\d+")` → **`false`**: `matches()` exigix que **tot** el string siguen dígits, i hi ha lletres pel mig.
+- `"abc123".matches("\\w+")` → **`true`**: lletres i dígits són `\w`, i tot el string ho complix.
+- El `Matcher` amb `find()` busca **subcadenes**: troba "123" dins del text i ho imprimeix.
+
+La diferència clau: `matches()` = patró complet; `find()` = buscar dins. És l'error més repetit de la unitat.
+
+</details>
+
+---
+
+## Exercici 8: Escriu este programa — comptar paraules amb split
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class ContarPalabras {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Escribe una frase: ");
+        String frase = sc.nextLine().trim();
+
+        String[] palabras = frase.split("\\s+");
+        System.out.println("La frase tiene " + palabras.length + " palabras.");
+        sc.close();
+    }
+}
+```
+
+`split("\\s+")` troceja per "un o més espais", així que els espais dobles no conten com a separadors buits. El `.trim()` lleva els espais dels extrems abans de trocejar (si no, una frase que comence amb espai generaria una paraula buida al principi).
+
+</details>
+
+---
+
+## Exercici 9: Escriu este programa — comptar dígits amb Matcher
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class ContarDigitos {
+    public static void main(String[] args) {
+        String frase = "En 2026 hay 12 unidades";
+
+        Pattern patron = Pattern.compile("\\d");
+        Matcher matcher = patron.matcher(frase);
+
+        int contador = 0;
+        while (matcher.find()) {
+            contador++;
+        }
+        System.out.println("Dígitos: " + contador);
+    }
+}
+```
+
+Eixida: `Dígitos: 6` — el `2026` aporta 4 dígits i el `12` altres 2: `4 + 2 = 6`.
+
+El patró `\\d` troba cada dígit individual i `find()` avança d'un en un mentre hi haja coincidències. El comptador suma cada troballa. Amb la frase de l'enunciat, `"En 2026 hay 12 unidades"`, el resultat és exactament `6`.
 
 </details>

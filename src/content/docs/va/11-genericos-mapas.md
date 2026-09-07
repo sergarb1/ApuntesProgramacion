@@ -6,7 +6,7 @@ emoji: 🗺️
 
 <p><small>El <T> que ho va canviar tot i la guia telefònica que ho associa tot: genèrics, type erasure, wildcards, HashMap, TreeMap i triar estructura 🗺️</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → **🗺️ ACÍ ETS (U11)** → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → **🗺️ ACÍ ETS (U11)** → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -57,13 +57,13 @@ En acabar, seràs capaç de:
 
 ## 📝 Butlletins de la unitat
 
-> Practica amb els parells del curs: comença sempre pel resolt per a vore l'estil i després intenta el per-resoldre.
+> Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u11-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u11-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u11-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u11-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u11-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u11-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u11-extras" class="elink">🔥 Extres</a>
 </div>
 
@@ -79,7 +79,7 @@ En acabar, seràs capaç de:
 | RA6 e) | S'han reconegut les característiques i avantatges de cadascuna de les col·leccions de dades disponibles. | ✅ Punt 8 |
 | RA6 f) | S'han creat classes i mètodes genèrics. | ✅ Punts 1, 2, 3, 4 i 5 |
 
-> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U10** (col·leccions, CEs c, d i e) i la **U12** (regex i XML, CEs g, h i i). Esta unitat cobrix els genèrics (CE f) i els mapes del paquet `java.util`.
+> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U10** (col·leccions, CEs c, d i e) i la **U13** (regex i XML, CEs g, h i i). Esta unitat cobrix els genèrics (CE f) i els mapes del paquet `java.util`.
 
 ---
 
@@ -91,4 +91,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/11-genericos-mapas/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u11-inicial).
 
 **📍 Primer punt:** [01 · Genèrics: el `<T>` que ho va canviar tot](/ApuntesProgramacion/va/11-genericos-mapas/01-que-son-genericos)  
-**⏭️ En acabar la unitat, continua en [U12 · Fitxers i Regex](/ApuntesProgramacion/va/12-ficheros-regex).**
+**⏭️ En acabar la unitat, continua en [U12 · Programació Funcional](/ApuntesProgramacion/va/12-programacion-funcional).**

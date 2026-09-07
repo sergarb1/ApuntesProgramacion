@@ -1,150 +1,151 @@
 ---
 title: "Boletín U12 — Inicial"
-description: "Ejercicios básicos de Ficheros y Regex: File, FileWriter, BufferedReader, try-with-resources y las primeras expresiones regulares"
+description: "Ejercicios básicos de Programación Funcional: lambdas, Predicate, map y filter sobre streams"
 ---
 
 # 📝 Boletín U12 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, crea tu primer archivo con `FileWriter` y haz que `readLine()` deje de parecer magia. El disco es tuyo y los datos esperan. Empieza suave, que los ficheros muerden poco a poco.
+> Sin soluciones. Sin prisas. Abre el IDE, escribe tu primera `->` y haz que la cinta transportadora del stream deje de parecer magia. Las funciones viajan solas, pero el que programa eres tú. Empieza suave, que la flecha no muerde.
 
 ---
 
-## Ejercicio 1: Encuentra el error — IOException sin capturar
+## Ejercicio 1: Completa el código — tu primera lambda
+
+Completa las lambdas para que hagan lo que dice el comentario:
 
 ```java
-import java.io.*;
+Predicate<Integer> esMayorDeEdad = ______;      // edad >= 18
+Function<Integer, Integer> doble = ______;      // x * 2
+Consumer<String> imprimir = ______;             // System.out.println(s)
+Supplier<String> saludar = ______;              // "¡Hola!"
+```
+
+¿Qué tipo necesita la variable para que la lambda compile en cada caso?
+
+---
+
+## Ejercicio 2: ¿Qué imprime? — el orden de la flecha
+
+```java
+import java.util.function.Function;
 
 public class Test {
     public static void main(String[] args) {
-        FileWriter writer = new FileWriter("salida.txt");
-        writer.write("Hola mundo");
-        writer.close();
+        Function<Integer, Integer> operacion = x -> x * x + 1;
+        System.out.println(operacion.apply(5));
+        System.out.println(operacion.apply(0));
     }
 }
 ```
 
-Este código **no compila**. ¿Por qué? ¿Qué dos formas hay de solucionarlo?
+¿Qué imprime? ¿Por qué el cuerpo `x * x + 1` no necesita `return` ni llaves?
 
 ---
 
-## Ejercicio 2: Completa el código — try-with-resources
-
-Completa el siguiente programa para que lea un archivo y muestre su contenido:
+## Ejercicio 3: Encuentra el error — la lambda mal vestida
 
 ```java
-import java.io.*;
-import java.nio.file.*;
+import java.util.function.Predicate;
 
-public class Lector {
+public class Error {
     public static void main(String[] args) {
-        Path ruta = Paths.get("datos.txt");
-
-        try (______ reader = Files.newBufferedReader(ruta)) {  // ¿qué tipo?
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                System.out.println(______);  // ¿qué va aquí?
-            }
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
+        Predicate<Integer> esPositivo = x -> x > 0;
+        System.out.println(esPositivo.test(-3));
+        System.out.println(esPositivo.accept(5));   // ¿Qué ocurre aquí?
     }
 }
 ```
 
----
-
-## Ejercicio 3: Escribe este programa — guardar ciudades en un archivo
-
-Crea un array de cadenas con 5 nombres de ciudades. Escribe cada nombre en una línea de un archivo llamado `ciudades.txt`, usando `BufferedWriter` y `try-with-resources`. No olvides el salto de línea.
-
-Pista: `BufferedWriter` tiene `write(...)` y `newLine()`.
+Este código **no compila**. ¿Por qué? ¿Qué método deberías llamar en vez de `accept`?
 
 ---
 
-## Ejercicio 4: Encuentra el error — File.createNewFile sin comprobar
+## Ejercicio 4: Escribe este programa — filtrar pares con streams
+
+Crea un programa que tenga esta lista:
 
 ```java
-File f = new File("documento.txt");
-f.createNewFile();
-FileWriter w = new FileWriter(f);
-w.write("Contenido importante");
-w.close();
+List<Integer> numeros = List.of(10, 15, 22, 33, 40, 55);
 ```
 
-¿Qué pasa si el archivo `documento.txt` ya existe? ¿Qué devuelve `createNewFile()`?
+Usa un stream para **filtrar los pares**, recogerlos en una lista con `toList()` y mostrarla. ¿Cuántos pares hay?
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — el contador de líneas
+## Ejercicio 5: ¿Qué imprime? — el pipeline básico
 
 ```java
-import java.io.*;
-
-public class Test {
-    public static void main(String[] args) throws IOException {
-        File f = new File("datos.txt");
-        FileWriter w = new FileWriter(f);
-        w.write("linea1\nlinea2\nlinea3\n");
-        w.close();
-
-        BufferedReader r = new BufferedReader(new FileReader(f));
-        int contador = 0;
-        while (r.readLine() != null) {
-            contador++;
-        }
-        r.close();
-        System.out.println(contador);
-    }
-}
-```
-
-¿Qué imprime? ¿El último `\n` cuenta como una línea más?
-
----
-
-## Ejercicio 6: Escribe este programa — el diario personal
-
-Escribe un programa que añada una línea a `diario.txt` con la fecha de hoy y el texto que el usuario introduzca por teclado. Cada ejecución debe **añadir al final sin borrar** lo anterior.
-
-Pista: `new FileWriter("diario.txt", true)` y para la fecha `java.time.LocalDate.now()`.
-
----
-
-## Ejercicio 7: ¿Qué imprime? — matches() vs find()
-
-```java
-import java.util.regex.*;
+import java.util.*;
+import java.util.stream.*;
 
 public class Test {
     public static void main(String[] args) {
-        String texto = "abc123";
-
-        System.out.println(texto.matches("\\d+"));
-        System.out.println(texto.matches("\\w+"));
-
-        Pattern p = Pattern.compile("\\d+");
-        Matcher m = p.matcher(texto);
-        while (m.find()) {
-            System.out.println("Número: " + m.group());
-        }
+        List<String> palabras = List.of("sol", "luna", "mar", "cielo", "sol");
+        long largas = palabras.stream()
+            .filter(p -> p.length() >= 4)
+            .distinct()
+            .count();
+        System.out.println(largas);
     }
 }
 ```
 
-¿Qué imprime cada línea? ¿Por qué `matches("\\d+")` da `false` pero `find()` sí encuentra algo?
+¿Qué imprime? ¿Por qué `distinct()` cambia el resultado frente a no usarlo?
 
 ---
 
-## Ejercicio 8: Escribe este programa — contar palabras con split
+## Ejercicio 6: Completa el código — mayúsculas con map
 
-Pide al usuario una frase por teclado y muestra cuántas palabras tiene, ignorando los espacios dobles.
+Completa el pipeline para que transforme cada palabra a mayúsculas y las recoja en una lista:
 
-Pista: `frase.split("\\s+")` trocea por "uno o más espacios". Cuidado con el `.trim()`.
+```java
+List<String> palabras = List.of("hola", "java", "mundo");
+
+List<String> mayusculas = palabras.stream()
+    .______(String::toUpperCase)
+    .______();
+```
+
+¿Qué operación intermedia y qué terminal necesitas? ¿Y si usaras `Collectors.toList()` en vez de `toList()`?
 
 ---
 
-## Ejercicio 9: Escribe este programa — contar dígitos con Matcher
+## Ejercicio 7: Escribe este programa — longitud de cada palabra
 
-Escribe un programa que cuente cuántos **dígitos** hay en una frase. Por ejemplo, `"En 2026 hay 12 unidades"` → `6` dígitos (`2`, `0`, `2`, `6`, `1` y `2`).
+Crea un programa que tenga un array de nombres y use un stream con `map` para calcular la **longitud de cada nombre**, recogiéndolo en una `List<Integer>`. Después muestra el resultado con `forEach(System.out::println)`.
 
-Pista: compila `Pattern.compile("\\d")`, usa `matcher.find()` en un bucle y lleva un contador.
+---
+
+## Ejercicio 8: Encuentra el error — la cinta que nunca arranca
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Error {
+    public static void main(String[] args) {
+        List<Integer> numeros = List.of(1, 2, 3, 4, 5);
+        Stream<Integer> flujo = numeros.stream()
+            .filter(n -> n % 2 == 1)
+            .map(n -> n * 10);
+        System.out.println("Preparado");
+    }
+}
+```
+
+Este programa **compila y ejecuta**, pero no imprime ningún número transformado. ¿Por qué? ¿Qué le falta al pipeline?
+
+---
+
+## Ejercicio 9: Completa el código — un Consumer para imprimir
+
+Tienes una lista de Strings y quieres imprimir cada uno entre paréntesis, por ejemplo `(hola)`. Completa el `forEach`:
+
+```java
+List<String> palabras = List.of("hola", "java");
+
+palabras.stream()
+    .forEach(p -> System.out.______("(" + p + ")"));
+```
+
+¿Qué método de `System.out` imprime sin salto de línea? ¿Y cuál añade el salto?

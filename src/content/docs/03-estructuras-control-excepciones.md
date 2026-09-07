@@ -6,7 +6,7 @@ emoji: 🔀
 
 <p><small>El semáforo, la cinta de correr y el seguro de vida que hacen decidir y repetir a tus programas 🔀</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → **🔀 AQUÍ ESTÁS (U03)** → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → **🔀 AQUÍ ESTÁS (U03)** → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -60,13 +60,13 @@ Al terminar, serás capaz de:
 
 ## 📝 Boletines de la unidad
 
-> Practica con los pares del curso: empezar siempre el resuelto para ver el estilo y luego intentar el por-resolver.
+> Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u03-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u03-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-u03-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u03-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u03-extras" class="elink">🔥 Extras</a>
 </div>
 

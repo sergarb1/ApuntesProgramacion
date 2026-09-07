@@ -5,32 +5,37 @@
 ## Descripción
 Curso completo de Programación en Java para DAM/DAW (o cualquier persona que quiera iniciarse), organizado en 15 unidades didácticas en Markdown. Cada unidad indica al final qué RAs oficiales del BOE cubre. Publicado como web estática con **Astro + Starlight** + GitHub Pages.
 
-## Unidades (14)
+## Unidades (15)
 ```
 01-introduccion.md                    → RA1
-02-variables-tipos-operadores.md      → RA2
+02-variables-tipos-operadores.md      → RA2        (10 puntos: incluye consola)
 03-estructuras-control-excepciones.md → RA3
-04-algoritmica-fundamentos.md         → RA2, RA6
-05-algoritmica-tecnicas.md            → RA2, RA6
-06-poo-clases-objetos.md              → RA2, RA4
-07-visibilidad-encapsulacion-static.md → RA4
-08-herencia-polimorfismo-interfaces.md → RA4, RA7
-09-arrays-colecciones.md              → RA6
-10-genericos-mapas.md                 → RA6
-11-consola-ficheros-regex.md          → RA5
-12-conexion-bases-datos.md            → RA9
-13-apis-web.md                        → RA5
-14-proyecto-final.md                  → RA5, RA6, RA9
+04-arrays.md                          → RA6        (🅿️ nueva: arrays antes de algorítmica)
+05-algoritmica-fundamentos.md         → RA2, RA6
+06-algoritmica-tecnicas.md            → RA2, RA6
+07-poo-clases-objetos.md              → RA2, RA4
+08-visibilidad-encapsulacion-static.md → RA4
+09-herencia-polimorfismo-interfaces.md → RA4, RA7
+10-colecciones.md                     → RA6        (📚 nueva: colecciones tras herencia)
+11-genericos-mapas.md                 → RA6
+12-programacion-funcional.md          → RA6, RA7   (🎯 nueva: lambdas, streams, Optional)
+13-ficheros-regex.md                  → RA5, RA6   (sin sección de consola; la consola está en U02)
+14-conexion-bases-datos.md            → RA9
+15-apis-web.md                        → RA5
 ```
+
+Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U02 tiene 10 puntos porque incluye el punto extra de consola (salida formateada).
 
 ## Boletines (5 por unidad)
 ```
-boletin-XX-inicial.md             → Propuestos fáciles (ejercicios diferentes del resuelto)
-boletin-XX-inicial-resuelto.md    → Mismos ejercicios que inicial.md con soluciones.
-boletin-XX-intermedio.md          → Propuestos intermedios (ejercicios diferentes del resuelto)
-boletin-XX-intermedio-resuelto.md → Mismos ejercicios que intermedio.md con soluciones.
-boletin-XX-extras.md              → CodeWars + AceptaElReto con pistas.
+boletin-U0N-inicial.md             → Propuestos fáciles (ejercicios diferentes del resuelto)
+boletin-U0N-inicial-resuelto.md    → Mismos ejercicios que inicial.md con soluciones.
+boletin-U0N-avanzado.md            → Propuestos intermedios (ejercicios diferentes del resuelto)
+boletin-U0N-avanzado-resuelto.md   → Mismos ejercicios que avanzado.md con soluciones.
+boletin-U0N-extras.md              → CodeWars + AceptaElReto con pistas (incluye las soluciones en <details>).
 ```
+
+Los boletines viven en `src/content/docs/boletines/` (ES) y `src/content/docs/va/boletines/` (VA). Las **URLs SIEMPRE en minúsculas** (`/ApuntesProgramacion/boletines/boletin-u0N-*`) aunque el archivo en disco use `boletin-U0N-*.md`. En la web, en el sidebar, las landings y los índices de unidad, el **orden de los boletines** es siempre: `inicial → inicial-resuelto → avanzado → avanzado-resuelto → extras` (por-resolver primero, luego su resuelto).
 
 ## Estilo
 Humor, secciones "⭐ Be the Code", "¡No hay preguntas tontas!", [NOTE]/[WARNING]/[TIP] en blockquotes, lenguaje conversacional en castellano y valenciano. Formato Markdown compatible con Google Docs (importación directa).
@@ -155,11 +160,10 @@ npm run epub:all  # Generar EPUB ambos idiomas
 ```
 
 ## Notas
-- Extras (CodeWars + AceptaElReto): solo desde unidad 3 (las dos primeras no tienen contenido relacionado)
 - Los .md en `va/` deben mantenerse siempre sincronizados con los de castellano
 - `starlight-llm-actions` eliminado por incompatibilidad; PDF por página con Ctrl+P del navegador
 - `ca/` renombrado a `va/` para usar el código ISO correcto del valenciano
-- Las unidades en el sidebar llevan emojis temáticos (🚀, 🔤, 🔀, 🧩, ⚡, 🏗️, 🔒, 🧬, 📚, 🗺️, 📁, 🗄️, 🌐)
+- Las unidades en el sidebar llevan emojis temáticos (🚀, 🔤, 🔀, 🅿️, 🧩, ⚡, 🏗️, 🔒, 🧬, 📚, 🗺️, 🎯, 📁, 🗄️, 🌐)
 - El layout de la web usa las 3 columnas por defecto de Starlight (sidebar, contenido, TOC derecho)
 - `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web como hero de la landing (castellano)
 - `portada_val.png` es la portada en valenciano para web, PDF y EPUB
@@ -168,3 +172,4 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - `Ver unidad` en las cards es un botón verde degradado (`.unit-link` en `custom.css`)
 - PDF generado con `--preceding-html scripts/pdf-cover.html` (portada castellano) o `scripts/pdf-cover-va.html` (portada valenciano), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
 - **13 · Lingüística:** todo contenido en castellano cumple el «Requisito lingüístico (es-ES)» de la sección Estilo (vocabulario peninsular, mayúsculas oracionales, formato numérico español); revisión obligatoria antes de cerrar cualquier unidad o boletín.
+- **14 · Reordenamiento:** el curso pasó de 13 a 15 unidades. Arrays (U04) y Colecciones (U10) se separaron de la antigua "Arrays y Colecciones"; la consola vive en U02 (punto 7); Programación Funcional es la U12; Ficheros (sin consola) U13, JDBC U14, APIs U15. Los informes de revisión están en `openspec/reviews/unidad-0X.md` (U01-U15).

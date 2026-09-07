@@ -9,185 +9,25 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 
 ---
 
-## Exercici 1: Troba l'error — IOException sense capturar
-
-<details>
-<summary>🔄 Solució</summary>
-
-`FileWriter` llança `IOException` (per exemple, si no hi ha permís d'escriptura o la carpeta no existix). El `main` no la declara amb `throws` ni la captura amb `try-catch`, així que el compilador es queixa.
-
-Les **dues formes** de solucionar-ho:
-
-1. Declarar l'excepció en la signatura:
-```java
-public static void main(String[] args) throws IOException {
-    FileWriter writer = new FileWriter("salida.txt");
-    writer.write("Hola mundo");
-    writer.close();
-}
-```
-
-2. Capturar-la amb `try-catch`:
-```java
-public static void main(String[] args) {
-    try (FileWriter writer = new FileWriter("salida.txt")) {
-        writer.write("Hola mundo");
-    } catch (IOException e) {
-        System.out.println("Error: " + e.getMessage());
-    }
-}
-```
-
-La versió amb `try-with-resources` és la moderna: tanca el fitxer sol i captura l'error. Les excepcions comprovades de `java.io` no es poden ignorar: o les declares o les captures.
-
-</details>
-
----
-
-## Exercici 2: Completa el codi — try-with-resources
+## Exercici 1: Completa el codi — la teua primera lambda
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.io.*;
-import java.nio.file.*;
-
-public class Lector {
-    public static void main(String[] args) {
-        Path ruta = Paths.get("datos.txt");
-
-        try (BufferedReader reader = Files.newBufferedReader(ruta)) {
-            String linea;
-            while ((linea = reader.readLine()) != null) {
-                System.out.println(linea);
-            }
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-}
+Predicate<Integer> esMayorDeEdad = edad -> edad >= 18;
+Function<Integer, Integer> doble = x -> x * 2;
+Consumer<String> imprimir = s -> System.out.println(s);
+Supplier<String> saludar = () -> "¡Hola!";
 ```
 
-Els buits: `BufferedReader` i `linea`. `Files.newBufferedReader(Path)` et torna directament un `BufferedReader` sense passar per `FileReader` (la forma NIO del punt 5). El bucle llig línia a línia fins que `readLine()` torna `null`, i el `try-with-resources` tanca el fitxer en eixir.
+La variable ha de ser de tipus **interfície funcional**: la lambda només compila si la seua firma encaixa amb el mètode abstracte de la interfície. `Predicate` espera `boolean test(Integer)`, `Function` espera `R apply(T)`, `Consumer` espera `void accept(T)` i `Supplier` espera `T get()`. Fixa't en el `Supplier`: sense paràmetres, els parèntesis buits `()` són obligatoris.
 
 </details>
 
 ---
 
-## Exercici 3: Escriu este programa — guardar ciutats en un fitxer
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-public class Ciudades {
-    public static void main(String[] args) {
-        String[] ciudades = {"Valencia", "Madrid", "Barcelona", "Sevilla", "Bilbao"};
-
-        try (BufferedWriter bw = Files.newBufferedWriter(Paths.get("ciudades.txt"))) {
-            for (String ciudad : ciudades) {
-                bw.write(ciudad);
-                bw.newLine();
-            }
-            System.out.println("Ciudades guardadas.");
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-
-`Files.newBufferedWriter(Path)` et dona un `BufferedWriter` llest per a usar (la forma NIO del punt 5). Es recorre l'array i cada ciutat s'escriu amb el seu `newLine()`. El `try-with-resources` tanca el fitxer sol.
-
-</details>
-
----
-
-## Exercici 4: Troba l'error — File.createNewFile sense comprovar
-
-<details>
-<summary>🔄 Solució</summary>
-
-Si `documento.txt` **ja existix**, `createNewFile()` torna `false` (no crea res de nou, no llança error) i el `FileWriter` **sobreescriu** el contingut igualment. El codi funciona, però sense que t'assabentes de si el fitxer ja estava.
-
-`createNewFile()` torna:
-- `true` si ha creat el fitxer.
-- `false` si ja existia.
-
-El patró professional és comprovar-ho:
-
-```java
-File f = new File("documento.txt");
-if (f.createNewFile()) {
-    System.out.println("Archivo creado.");
-} else {
-    System.out.println("El archivo ya existía.");
-}
-```
-
-Si la carpeta no existix, `createNewFile()` llança `IOException`, així que també va amb `try-catch` o `throws`.
-
-</details>
-
----
-
-## Exercici 5: Què imprimeix? — el comptador de línies
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`3`**.
-
-El fitxer té tres línies: "linea1", "linea2" i "linea3". L'últim `\n` **no** crea una quarta línia: quan `readLine()` no troba més text, torna `null` (no una línia buida) i el `while` acaba. El comptador s'incrementa 3 vegades.
-
-Detall: el codi del `while` descarta la línia (`r.readLine()` a seques) perquè només vol comptar. Si a més volgueres el contingut, hauríes de guardar-la en una variable.
-
-</details>
-
----
-
-## Exercici 6: Escriu este programa — el diari personal
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Scanner;
-
-public class Diario {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("¿Qué has aprendido hoy? ");
-        String entrada = sc.nextLine();
-
-        try (FileWriter fw = new FileWriter("diario.txt", true)) {
-            fw.write(LocalDate.now() + ": " + entrada + "\n");
-            System.out.println("Anotado en el diario.");
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        sc.close();
-    }
-}
-```
-
-El segon argument `true` del `FileWriter` activa el mode *append*: afig al final sense esborrar l'anterior. `LocalDate.now()` dona la data actual del sistema. Cada execució suma una entrada nova al diari.
-
-</details>
-
----
-
-## Exercici 7: Què imprimeix? — matches() vs find()
+## Exercici 2: Què imprimeix? — l'ordre de la fletxa
 
 <details>
 <summary>🔄 Solució</summary>
@@ -195,75 +35,165 @@ El segon argument `true` del `FileWriter` activa el mode *append*: afig al final
 Imprimeix:
 
 ```
-false
-true
-Número: 123
+26
+1
 ```
 
-- `"abc123".matches("\\d+")` → **`false`**: `matches()` exigix que **tot** el string siguen dígits, i hi ha lletres pel mig.
-- `"abc123".matches("\\w+")` → **`true`**: lletres i dígits són `\w`, i tot el string ho complix.
-- El `Matcher` amb `find()` busca **subcadenes**: troba "123" dins del text i ho imprimeix.
+- `operacion.apply(5)` → `5 * 5 + 1` = 26.
+- `operacion.apply(0)` → `0 * 0 + 1` = 1.
 
-La diferència clau: `matches()` = patró complet; `find()` = buscar dins. És l'error més repetit de la unitat.
+El cos `x * x + 1` és una **sola expressió**: en les lambdes, un cos d'una expressió torna el seu resultat sense necessitat de `return` ni claus. Les claus i el `return` només calen quan el cos té diverses sentències.
 
 </details>
 
 ---
 
-## Exercici 8: Escriu este programa — comptar paraules amb split
+## Exercici 3: Troba l'error — la lambda mal vestida
 
 <details>
 <summary>🔄 Solució</summary>
 
+L'error està en la línia `esPositivo.accept(5)`: `Predicate` no té un mètode `accept`. El seu mètode abstracte és `test(T)`. `accept` pertany a `Consumer`. La línia correcta és:
+
 ```java
-import java.util.Scanner;
-
-public class ContarPalabras {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Escribe una frase: ");
-        String frase = sc.nextLine().trim();
-
-        String[] palabras = frase.split("\\s+");
-        System.out.println("La frase tiene " + palabras.length + " palabras.");
-        sc.close();
-    }
-}
+System.out.println(esPositivo.test(5));   // true
 ```
 
-`split("\\s+")` troceja per "un o més espais", així que els espais dobles no conten com a separadors buits. El `.trim()` lleva els espais dels extrems abans de trocejar (si no, una frase que comence amb espai generaria una paraula buida al principi).
+Cada interfície funcional té EL SEU mètode: `Predicate` usa `test`, `Function` usa `apply`, `Consumer` usa `accept` i `Supplier` usa `get`. Confondre'ls és com demanar una pizza a la peixateria: no és que la pizza no existisca, és que no està allà.
 
 </details>
 
 ---
 
-## Exercici 9: Escriu este programa — comptar dígits amb Matcher
+## Exercici 4: Escriu este programa — filtrar parells amb streams
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.*;
+import java.util.stream.*;
 
-public class ContarDigitos {
+public class Pares {
     public static void main(String[] args) {
-        String frase = "En 2026 hay 12 unidades";
+        List<Integer> numeros = List.of(10, 15, 22, 33, 40, 55);
 
-        Pattern patron = Pattern.compile("\\d");
-        Matcher matcher = patron.matcher(frase);
+        List<Integer> pares = numeros.stream()
+            .filter(n -> n % 2 == 0)
+            .toList();
 
-        int contador = 0;
-        while (matcher.find()) {
-            contador++;
-        }
-        System.out.println("Dígitos: " + contador);
+        System.out.println(pares);   // [10, 22, 40]
     }
 }
 ```
 
-Eixida: `Dígitos: 6` — el `2026` aporta 4 dígits i el `12` altres 2: `4 + 2 = 6`.
+El `filter` amb `n -> n % 2 == 0` (un `Predicate<Integer>`) deixa passar només els parells: 10, 22 i 40. `toList()` arreplega el resultat. Hi ha 3 parells. Fixa't que la llista original no es toca: el stream crea una llista nova.
 
-El patró `\\d` troba cada dígit individual i `find()` avança d'un en un mentre hi haja coincidències. El comptador suma cada troballa. Amb la frase de l'enunciat, `"En 2026 hay 12 unidades"`, el resultat és exactament `6`.
+</details>
+
+---
+
+## Exercici 5: Què imprimeix? — el pipeline bàsic
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix **`2`**.
+
+- `filter(p -> p.length() >= 4)` deixa passar: `luna` (4) i `cielo` (5). Les dos `sol` tenen 3 lletres i `mar` també (3): es queden fora.
+- `distinct()` no canvia res ací (ja no hi ha repetits entre els que passen).
+- `count()` → 2.
+
+Sense `distinct()`, el resultat seria el mateix en este cas (2), perquè `sol` ja va ser eliminada pel `filter`. `distinct()` hauria importat si el `filter` deixara passar dos iguals.
+
+</details>
+
+---
+
+## Exercici 6: Completa el codi — majúscules amb map
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+List<String> mayusculas = palabras.stream()
+    .map(String::toUpperCase)
+    .toList();
+```
+
+- La intermèdia és **`map`** amb la referència a mètode `String::toUpperCase` (equival a `p -> p.toUpperCase()`).
+- La terminal és **`toList()`** (Java 16+).
+
+Amb `Collectors.toList()` seria exactament igual però tornant un `ArrayList` modificable: `palabras.stream().map(String::toUpperCase).collect(Collectors.toList())`. `toList()` torna una llista immutable; per al resultat seria `["HOLA", "JAVA", "MUNDO"]`.
+
+</details>
+
+---
+
+## Exercici 7: Escriu este programa — longitud de cada paraula
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Longitudes {
+    public static void main(String[] args) {
+        String[] nombres = {"Ana", "Bob", "Carla", "David"};
+
+        List<Integer> longitudes = Arrays.stream(nombres)
+            .map(String::length)
+            .collect(Collectors.toList());
+
+        longitudes.forEach(System.out::println);   // 3, 3, 5, 5
+    }
+}
+```
+
+Dos trucs nous: `Arrays.stream(nombres)` convertix l'array (de la U04) en stream, i `map(String::length)` transforma cada `String` en la seua longitud, canviant el tipus del flux a `Stream<Integer>`. El `forEach` amb `System.out::println` és la terminal que imprimeix cada element.
+
+</details>
+
+---
+
+## Exercici 8: Troba l'error — la cinta que mai no arranca
+
+<details>
+<summary>🔄 Solució</summary>
+
+El pipeline no té **operació terminal**: `filter` i `map` són intermèdies (peresoses) i no executen res fins que arriba un `collect`, `count`, `forEach` o similar. El stream es prepara, però la cinta mai no arranca.
+
+Per a veure els números transformats cal tancar l'aixeta. Per exemple:
+
+```java
+List<Integer> imparesDoblados = numeros.stream()
+    .filter(n -> n % 2 == 1)
+    .map(n -> n * 10)
+    .toList();
+System.out.println(imparesDoblados);   // [10, 30, 50]
+```
+
+És l'error més típic de la unitat: muntar la ruta i oblidar que l'autobús necessita arrancar.
+
+</details>
+
+---
+
+## Exercici 9: Completa el codi — un Consumer per a imprimir
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+palabras.stream()
+    .forEach(p -> System.out.print("(" + p + ")"));
+```
+
+- `System.out.print(...)` imprimeix **sense salt de línia**: l'eixida seria `(hola)(java)`.
+- `System.out.println(...)` afig el salt de línia al final: `(hola)` i `(java)` en línies separades.
+
+El `forEach` rep un `Consumer<String>`; la lambda `p -> System.out.print("(" + p + ")")` es pot reescriure amb una referència a mètode, encara que ací el cos ja no és una única crida, així que la lambda és l'opció natural.
 
 </details>

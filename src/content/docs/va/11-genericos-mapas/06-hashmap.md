@@ -157,7 +157,7 @@ public class BeTheFrequency {
 <details>
 <summary>🔄 Solució</summary>
 
-La **C**. En "banana", "b-a-n-a-n-a": b=1, a=3, n=2. Així que `frec.get('a')` = 3 i `frec.get('n')` = 2 → **3 2**. El truc de `getOrDefault(c, 0) + 1` és l'heroi: si la lletra no estava, torna 0 i comença en 1; si estava, suma un al comptador. Este patró és EL patró dels mapes: el veuràs en la U12 amb fitxers i en mitja carrera de programació.
+La **C**. En "banana", "b-a-n-a-n-a": b=1, a=3, n=2. Així que `frec.get('a')` = 3 i `frec.get('n')` = 2 → **3 2**. El truc de `getOrDefault(c, 0) + 1` és l'heroi: si la lletra no estava, torna 0 i comença en 1; si estava, suma un al comptador. Este patró és EL patró dels mapes: el veuràs en la U13 amb fitxers i en mitja carrera de programació.
 
 </details>
 

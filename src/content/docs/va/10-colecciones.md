@@ -6,7 +6,7 @@ emoji: 📚
 
 <p><small>L'aparcament que creix, la conga que encadena, el porter sense duplicats i el cambrer que ho recorre tot: ArrayList, LinkedList, Set, Iterator i Collections 📚</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → **📚 ACÍ ETS (U10)** → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → **📚 ACÍ ETS (U10)** → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -59,13 +59,13 @@ En acabar, seràs capaç de:
 
 ## 📝 Butlletins de la unitat
 
-> Practica amb els parells del curs: comença sempre pel resolt per a vore l'estil i després intenta el per-resoldre.
+> Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
   <a href="/ApuntesProgramacion/va/boletines/boletin-u10-extras" class="elink">🔥 Extres</a>
 </div>
 
@@ -82,7 +82,7 @@ En acabar, seràs capaç de:
 | RA6 d) | S'han utilitzat iteradors per a recórrer els elements de les llistes. | ✅ Punts 5 i 9 |
 | RA6 e) | S'han reconegut les característiques i avantatges de cadascuna de les col·leccions de dades disponibles. | ✅ Punts 3, 4 i 7 |
 
-> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U11** (genèrics i mapes, CE f) i la **U12** (regex i XML, CEs g, h i i). Esta unitat cobrix el cor de les col·leccions: llistes, conjunts, iteradors i la llibreria `java.util`.
+> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U11** (genèrics i mapes, CE f) i la **U13** (regex i XML, CEs g, h i i). Esta unitat cobrix el cor de les col·leccions: llistes, conjunts, iteradors i la llibreria `java.util`.
 
 ---
 

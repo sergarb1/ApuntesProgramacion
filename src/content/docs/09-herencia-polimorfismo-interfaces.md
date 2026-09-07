@@ -6,7 +6,7 @@ emoji: 🧬
 
 <p><small>Cuando tus clases heredan, se disfrazan y firman contratos: extends, super, override, abstract e interfaces 🧬</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → **🧬 AQUÍ ESTÁS (U09)** → 📚 U10 → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → **🧬 AQUÍ ESTÁS (U09)** → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -60,13 +60,13 @@ Al terminar, serás capaz de:
 
 ## 📝 Boletines de la unidad
 
-> Practica con los pares del curso: empieza siempre por el resuelto para ver el estilo y luego intenta el por-resolver.
+> Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u09-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u09-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-u09-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u09-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u09-extras" class="elink">🔥 Extras</a>
 </div>
 

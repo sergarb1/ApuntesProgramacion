@@ -1,122 +1,157 @@
 ---
 title: "Butlletí U14 — Inicial"
-description: "Exercicis bàsics d'APIs web: HttpServer, servir HTML, paràmetres GET i primers JSON"
+description: "Exercicis bàsics de JDBC: connectar-se a SQLite, consultar amb Statement i ResultSet i inserir amb PreparedStatement"
 ---
 
 # 📝 Butlletí U14 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer `HttpServer` i fes que el navegador et parle de tu a tu. Promet que cap bit eixirà ferit. Comença suaument, que la web mossega a poc a poc.
+> Sense solucions. Sense presses. Obri l'IDE, afig la dependència de SQLite i fes que el teu primer `SELECT` deixe de semblar màgia. Connectar és el 90% de la batalla; la resta és qüestió de pràctica. Comença suaument, que les bases de dades mosseguen a poc a poc.
 
 ---
 
-## Exercici 1: Escriu este programa — Hola, món web
+## Exercici 1: Què necessites per a usar JDBC?
 
-Crea un servidor HTTP al port 8080 amb una ruta `/` que torne el text `Hola, mundo web!`. Obri `http://localhost:8080` en el teu navegador i comprova que ho veus.
+Respon breument:
 
-Pista: `HttpServer.create(new InetSocketAddress(8080), 0)`, després `createContext("/", ...)` i `sendResponseHeaders(200, ...)`. No oblides tancar el cos de la resposta.
+1. Quina dependència Maven (grup i artefacte) necessites per a connectar Java amb SQLite?
+2. Quina classe de Java proporciona el mètode `getConnection()`?
+3. Quina interfície representa la connexió oberta a la base de dades?
+4. Quina excepció *checked* has de gestionar sempre en treballar amb JDBC?
 
 ---
 
-## Exercici 2: Escriu este programa — servidor de l'hora
+## Exercici 2: Completa el codi — la connexió
 
-Afig al teu servidor una ruta `/hora` que torne l'hora actual en text pla amb format `HH:mm:ss`.
-
-Cada vegada que recarregues el navegador, l'hora canvia. Màgia negra amb `LocalTime.now()`.
+Completa els tipus que falten:
 
 ```java
-// Pista:
-String hora = java.time.LocalTime.now().format(
-    java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
-);
-```
+String url = "jdbc:sqlite:instituto.db";
 
----
+String sql = "SELECT * FROM alumnos";
 
-## Exercici 3: Escriu este programa — pàgina que diu el teu nom
+try (______ con = DriverManager.getConnection(url);
+     ______ stmt = con.createStatement();
+     ______ rs = stmt.executeQuery(sql)) {
 
-Afig una ruta `/saludo?nombre=Pepe` que torne una pàgina HTML amb `<h1>¡Hola, Pepe!</h1>`.
+    while (rs.next()) {
+        System.out.println(rs.getString("nombre"));
+    }
 
-Si no es passa nom, que diga `¡Hola, desconocido!`.
-
-Pista: `e.getRequestURI().getQuery()` et dona `nombre=Pepe`. Dividix per `=` i llest.
-
----
-
-## Exercici 4: Escriu este programa — comptador de visites global
-
-Usa una variable `static int visites = 0`. Cada vegada que algú visita `/`, incrementa el comptador i mostra:
-
-```
-Eres el visitante número 47
-```
-
-Què passa si dos persones recarreguen alhora? (spoiler: problemes — però de moment no et preocupes).
-
----
-
-## Exercici 5: Escriu este programa — generador d'excuses per a lliuraments tardans
-
-Crea una ruta `/excusa` que torne una excusa generada aleatòriament combinant elements de tres arrays:
-
-```java
-String[] subjectes = {"El meu gos", "GitHub", "El plugin d'IntelliJ", "La connexió"};
-String[] verbs     = {"es va menjar", "va esborrar", "va corrompre", "va perdre"};
-String[] objectes  = {"l'examen", "la pràctica", "els apunts", "la meua paciència"};
-```
-
-Exemple: *"GitHub va esborrar la pràctica"*. Torna-ho en HTML amb bona lletra.
-
----
-
-## Exercici 6: Escriu este programa — taula de multiplicar personalitzada
-
-Ruta `/tabla?num=7` que genere una taula HTML completa amb la taula de multiplicar del 7 (del 7×1 al 7×10).
-
-Si no es passa número, usa el 5 per defecte. Formata la taula amb `border=1` i colors alterns en les files.
-
----
-
-## Exercici 7: Escriu este programa — convertidor d'euros a pessetes (sí, pessetes)
-
-Ruta `/conversor?euros=50` que torne HTML amb el resultat: "50 euros son 8319.3 pesetas".
-
-1 € = 166.386 pts. Mostra dos decimals.
-
-Pista: `String.format("%.2f", valor)` per als decimals. Sí, pessetes. Si eres jove, pregunta-li a un vell què era això.
-
----
-
-## Exercici 8: Escriu este programa — pàgina d'estat del servidor
-
-Ruta `/estado` que torne un JSON amb esta pinta:
-
-```json
-{
-    "servidor": "ok",
-    "hora": "14:30:01",
-    "visites": 47,
-    "versio": "1.0",
-    "autor": "El teu nom ací"
+} catch (______ e) {  // quina excepció?
+    System.err.println("Error: " + e.getMessage());
 }
 ```
 
-No oblides el `Content-Type: application/json` o el navegador es tornarà tonto.
+Quines tres interfícies van en els buits? I l'excepció?
 
 ---
 
-## Exercici 9: Troba l'error — el Content-Type oblidat
-
-Un company t'ensenya este handler i jura que torna JSON:
+## Exercici 3: Què imprimeix? — ResultSet buit
 
 ```java
-server.createContext("/api/frase", intercambio -> {
-    String json = """
-        {"frase": "El código limpio es como un buen chiste"}
-        """;
-    intercambio.sendResponseHeaders(200, json.getBytes().length);
-    intercambio.getResponseBody().write(json.getBytes());
-    intercambio.getResponseBody().close();
-});
+try (Connection con = DriverManager.getConnection(url);
+     Statement stmt = con.createStatement();
+     ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos WHERE id = 9999")) {
+
+    if (rs.next()) {
+        System.out.println("Encontrado: " + rs.getString("nombre"));
+    } else {
+        System.out.println("No encontrado");
+    }
+}
 ```
 
-El navegador mostra el text, però el `fetch` que el consumix es queixa: `r.json()` peta. Què falta i per què és tan important?
+Si no hi ha cap alumne amb `id = 9999`, què imprimeix? Què torna `rs.next()` la primera vegada que es crida?
+
+---
+
+## Exercici 4: Troba l'error — SQLException sense gestionar
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM alumnos");
+        while (rs.next()) {
+            System.out.println(rs.getString("nombre"));
+        }
+    }
+}
+```
+
+Este codi **no compila**. Per què? Quines dues coses falten perquè funcione?
+
+---
+
+## Exercici 5: Escriu este programa — la primera connexió
+
+Crea una classe `TestConnexio` que:
+
+1. Es connecte a una base de dades SQLite `test.db`.
+2. Cree una taula `alumnes(id INTEGER PRIMARY KEY, nom TEXT, nota REAL)`.
+3. Inserisca 3 alumnes.
+4. Mostre «Connexió i taula creades» si tot ha anat bé.
+
+Pista: usa `try-with-resources`, un `Statement` per al `CREATE TABLE` i `executeUpdate()` per a inserir. SQLite crea el fitxer sol.
+
+---
+
+## Exercici 6: Què imprimeix? — executeQuery en UPDATE
+
+```java
+Statement stmt = con.createStatement();
+ResultSet rs = stmt.executeQuery("UPDATE alumnos SET nota = 10 WHERE id = 1");
+```
+
+Què passa en executar esta línia? Per què no has d'usar `executeQuery()` per a un `UPDATE`?
+
+---
+
+## Exercici 7: Completa el codi — INSERT amb PreparedStatement
+
+Completa els buits per a inserir un alumne de forma segura:
+
+```java
+String sql = "INSERT INTO alumnos (nombre, nota) VALUES (?, ?)";
+
+try (Connection con = DriverManager.getConnection(url);
+     PreparedStatement pstmt = con.prepareStatement(sql)) {
+
+    pstmt.______(1, "Ana");
+    pstmt.______(2, 8.5);
+
+    int filas = pstmt.______();
+    System.out.println("Inserides " + filas + " fila/es");
+}
+```
+
+Quins mètodes van en els buits? En quin número comencen els índexs dels `?`?
+
+---
+
+## Exercici 8: Escriu este programa — llistar amb try-with-resources
+
+Escriu un mètode `llistarAlumnes()` que:
+
+1. Es connecte a la base de dades amb `try-with-resources`.
+2. Execute `SELECT * FROM alumnos`.
+3. Mostre cada alumne amb `printf("%d - %s (%.2f)", id, nombre, nota)`.
+4. Gestione `SQLException` mostrant `e.getMessage()`.
+
+Pista: `Connection`, `Statement` i `ResultSet` es tanquen sols dins del `try`. Recorre amb `while (rs.next())`.
+
+---
+
+## Exercici 9: Troba l'error — índexs del PreparedStatement
+
+```java
+String sql = "INSERT INTO alumnos (nombre, nota, curso) VALUES (?, ?, ?)";
+PreparedStatement pstmt = con.prepareStatement(sql);
+pstmt.setString(0, "Ana");    // índex correcte?
+pstmt.setDouble(1, 8.5);      // índex correcte?
+pstmt.setString(2, "DAM");    // índex correcte?
+pstmt.executeUpdate();
+```
+
+Quins índexs són correctes per als `?` d'un `PreparedStatement`? En quin número comencen i què passa si uses `0`?

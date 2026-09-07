@@ -9,257 +9,236 @@ description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 
 ---
 
-## Ejercicio 1: Escribe este programa — Hola, mundo web
+## Ejercicio 1: ¿Qué necesitas para usar JDBC?
+
+<details>
+<summary>🔄 Solución</summary>
+
+1. La dependencia **`org.xerial:sqlite-jdbc`**. En el `pom.xml`:
+
+   ```xml
+   <dependency>
+       <groupId>org.xerial</groupId>
+       <artifactId>sqlite-jdbc</artifactId>
+       <version>3.45.1.0</version>
+   </dependency>
+   ```
+
+2. **`DriverManager`** — su método estático `getConnection()` establece la conexión.
+3. **`Connection`** — la interfaz del paquete `java.sql` que representa la conexión abierta.
+4. **`SQLException`** — es *checked*: el compilador te obliga a capturarla o declararla.
+
+</details>
+
+---
+
+## Ejercicio 2: Completa el código — la conexión
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import com.sun.net.httpserver.HttpServer;
-import java.io.OutputStream;
-import java.net.InetSocketAddress;
+String url = "jdbc:sqlite:instituto.db";
 
-public class HolaMundoWeb {
-    public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/", e -> {
-            String resp = "Hola, mundo web!";
-            e.sendResponseHeaders(200, resp.getBytes().length);
-            OutputStream os = e.getResponseBody();
-            os.write(resp.getBytes());
-            os.close();
-        });
-        server.setExecutor(null);
-        server.start();
-        System.out.println("Servidor en http://localhost:8080");
+String sql = "SELECT * FROM alumnos";
+
+try (Connection con = DriverManager.getConnection(url);
+     Statement stmt = con.createStatement();
+     ResultSet rs = stmt.executeQuery(sql)) {
+
+    while (rs.next()) {
+        System.out.println(rs.getString("nombre"));
+    }
+
+} catch (SQLException e) {
+    System.err.println("Error: " + e.getMessage());
+}
+```
+
+Los tres tipos son **`Connection`**, **`Statement`** y **`ResultSet`**, todos del paquete `java.sql`. La excepción es **`SQLException`**. Fíjate en el orden de apertura: Connection → Statement → ResultSet; `try-with-resources` los cierra en orden inverso.
+
+</details>
+
+---
+
+## Ejercicio 3: ¿Qué imprime? — ResultSet vacío
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`No encontrado`**.
+
+`rs.next()` devuelve **`false`** la primera vez si no hay filas. El cursor del `ResultSet` empieza *antes* de la primera fila, así que con una consulta sin resultados, el primer `next()` ya se encuentra con el vacío y devuelve `false`, saltando al `else`. No es un error: una consulta sin resultados devuelve un `ResultSet` vacío, no una excepción.
+
+</details>
+
+---
+
+## Ejercicio 4: Encuentra el error — SQLException sin manejo
+
+<details>
+<summary>🔄 Solución</summary>
+
+No compila porque **`SQLException` es checked**: `DriverManager.getConnection()`, `con.createStatement()` y `stmt.executeQuery()` la lanzan, y el código no la captura ni la declara.
+
+Faltan dos cosas:
+
+1. Envolver el código en un `try { ... } catch (SQLException e) { ... }`.
+2. Cerrar los recursos (mejor, con `try-with-resources`).
+
+```java
+public class Test {
+    public static void main(String[] args) {
+        String sql = "SELECT * FROM alumnos";
+        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                System.out.println(rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 }
 ```
 
-`createContext` registra la ruta `/` con su handler; `sendResponseHeaders(200, tamaño)` envía el código y el tamaño del cuerpo (en bytes); `getResponseBody()` escribe el texto y se cierra. El servidor se queda escuchando hasta que lo detengas.
-
 </details>
 
 ---
 
-## Ejercicio 2: Escribe este programa — servidor de la hora
+## Ejercicio 5: Escribe este programa — la primera conexión
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-server.createContext("/hora", e -> {
-    String hora = java.time.LocalTime.now().format(
-        java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
-    );
-    String resp = "Hora actual: " + hora;
-    e.getResponseHeaders().set("Content-Type", "text/plain; charset=UTF-8");
-    e.sendResponseHeaders(200, resp.getBytes().length);
-    e.getResponseBody().write(resp.getBytes());
-    e.getResponseBody().close();
-});
-```
+import java.sql.*;
 
-`LocalTime.now()` se evalúa en cada petición, por eso la hora cambia al recargar. Un servidor sin estado: no recuerda nada entre peticiones.
+public class TestConexion {
+    public static void main(String[] args) {
+        String url = "jdbc:sqlite:test.db";
 
-</details>
+        String crearTabla = "CREATE TABLE IF NOT EXISTS alumnos (" +
+            "id INTEGER PRIMARY KEY, nombre TEXT, nota REAL)";
 
----
+        try (Connection con = DriverManager.getConnection(url);
+             Statement stmt = con.createStatement()) {
 
-## Ejercicio 3: Escribe este programa — página que dice tu nombre
+            stmt.executeUpdate(crearTabla);
+            stmt.executeUpdate("INSERT INTO alumnos (nombre, nota) VALUES ('Ana', 7.5)");
+            stmt.executeUpdate("INSERT INTO alumnos (nombre, nota) VALUES ('Luis', 9.0)");
+            stmt.executeUpdate("INSERT INTO alumnos (nombre, nota) VALUES ('Sara', 6.5)");
 
-<details>
-<summary>🔄 Solución</summary>
+            System.out.println("Conexión y tabla creadas");
 
-```java
-server.createContext("/saludo", e -> {
-    String query = e.getRequestURI().getQuery();
-    String nombre = "desconocido";
-    if (query != null && query.startsWith("nombre=")) {
-        nombre = java.net.URLDecoder.decode(query.split("=")[1], "UTF-8");
-    }
-    String html = "<h1>¡Hola, " + nombre + "!</h1>";
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
-```
-
-La query string llega como `nombre=Pepe` y se divide por `=`. El `URLDecoder` convierte cosas como `%20` en espacios (si el nombre fuera "Ana M."). Si no hay query, el valor por defecto es `desconocido`.
-
-</details>
-
----
-
-## Ejercicio 4: Escribe este programa — contador de visitas global
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import com.sun.net.httpserver.HttpServer;
-import java.net.InetSocketAddress;
-
-public class ContadorVisitas {
-    static int visitas = 0;
-
-    public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-        server.createContext("/", e -> {
-            visitas++;
-            String resp = "Eres el visitante número " + visitas;
-            e.sendResponseHeaders(200, resp.getBytes().length);
-            e.getResponseBody().write(resp.getBytes());
-            e.getResponseBody().close();
-        });
-        server.setExecutor(null);
-        server.start();
-        System.out.println("Servidor en http://localhost:8080");
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 }
 ```
 
-`static int visitas` vive en la clase, no en ninguna petición, así que sobrevive entre visitas. Si dos personas recargan a la vez, ambas podrían leer el mismo valor antes de incrementar (problema de concurrencia). Para aprender, vale; para producción, `AtomicInteger`.
+`CREATE TABLE` y `INSERT` son operaciones que no devuelven filas, así que se ejecutan con `executeUpdate()`. El `IF NOT EXISTS` evita errores si vuelves a ejecutar el programa. Y sí: `test.db` se crea solo con la primera conexión.
 
 </details>
 
 ---
 
-## Ejercicio 5: Escribe este programa — generador de excusas para entregas tarde
+## Ejercicio 6: ¿Qué imprime? — executeQuery en UPDATE
+
+<details>
+<summary>🔄 Solución</summary>
+
+Lanza una **`SQLException`**.
+
+`executeQuery()` es solo para consultas que **devuelven filas** (SELECT). Un `UPDATE` no devuelve un `ResultSet`; devuelve el número de filas afectadas, y eso es trabajo de `executeUpdate()`. Mezclarlos da `SQLException` siempre. Es como meter un tenedor en el microondas: no hay vuelta atrás.
+
+Regla mnemotécnica: **¿esperas datos de vuelta? → `executeQuery()`. ¿Solo quieres saber cuántas filas se modificaron? → `executeUpdate()`.**
+
+</details>
+
+---
+
+## Ejercicio 7: Completa el código — INSERT con PreparedStatement
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-server.createContext("/excusa", e -> {
-    String[] sujetos = {"Mi perro", "GitHub", "El plugin de IntelliJ", "La conexión"};
-    String[] verbos  = {"se comió", "borró", "corrompió", "perdió"};
-    String[] objetos = {"el examen", "la práctica", "los apuntes", "mi paciencia"};
+String sql = "INSERT INTO alumnos (nombre, nota) VALUES (?, ?)";
 
-    java.util.Random r = new java.util.Random();
-    String excusa = sujetos[r.nextInt(sujetos.length)] + " "
-        + verbos[r.nextInt(verbos.length)] + " "
-        + objetos[r.nextInt(objetos.length)];
+try (Connection con = DriverManager.getConnection(url);
+     PreparedStatement pstmt = con.prepareStatement(sql)) {
 
-    String html = "<h1>Tu excusa para hoy</h1><p><em>" + excusa + "</em></p>";
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
+    pstmt.setString(1, "Ana");
+    pstmt.setDouble(2, 8.5);
+
+    int filas = pstmt.executeUpdate();
+    System.out.println("Insertadas " + filas + " fila(s)");
+}
 ```
 
-`Random.nextInt(longitud)` elige un índice aleatorio de cada array sin pasarse. Tres decisiones aleatorias = una excusa nueva en cada recarga. Recuerda: `nextInt(n)` va de 0 a `n-1`.
+Los huecos: **`setString`**, **`setDouble`** y **`executeUpdate`**. Los índices de los `?` empiezan en **1** (no en 0, como los arrays). `setString(1, ...)` rellena el primer `?`, `setDouble(2, ...)` el segundo. `executeUpdate()` devuelve las filas afectadas: si es `1`, todo bien.
 
 </details>
 
 ---
 
-## Ejercicio 6: Escribe este programa — tabla de multiplicar personalizada
+## Ejercicio 8: Escribe este programa — listar con try-with-resources
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-server.createContext("/tabla", e -> {
-    String query = e.getRequestURI().getQuery();
-    int num = 5;
-    if (query != null && query.startsWith("num=")) {
-        num = Integer.parseInt(query.split("=")[1]);
+import java.sql.*;
+
+public class ListarAlumnos {
+    public static void listarAlumnos() {
+        String url = "jdbc:sqlite:instituto.db";
+        String sql = "SELECT * FROM alumnos";
+
+        try (Connection con = DriverManager.getConnection(url);
+             Statement stmt = con.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                System.out.printf("%d - %s (%.2f)%n",
+                    rs.getInt("id"),
+                    rs.getString("nombre"),
+                    rs.getDouble("nota"));
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
     }
 
-    StringBuilder sb = new StringBuilder("<table border=1>");
-    sb.append("<tr><th>").append(num).append(" × n</th><th>Resultado</th></tr>");
-    for (int i = 1; i <= 10; i++) {
-        String color = (i % 2 == 0) ? "#e0f7e0" : "#ffffff";
-        sb.append("<tr style=\"background:").append(color).append("\">")
-          .append("<td>").append(num).append(" × ").append(i).append("</td>")
-          .append("<td>").append(num * i).append("</td></tr>");
+    public static void main(String[] args) {
+        listarAlumnos();
     }
-    sb.append("</table>");
-
-    String html = "<html><body>" + sb + "</body></html>";
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
+}
 ```
 
-El `StringBuilder` monta el HTML de la tabla fila a fila (es más eficiente que concatenar con `+` en un bucle). Las filas pares llevan un fondo verde claro para alternar colores. Si no hay `num=`, se usa el 5.
+`try-with-resources` cierra `Connection`, `Statement` y `ResultSet` automáticamente en orden inverso. El `printf` formatea la salida en columnas, y `getInt`/`getString`/`getDouble` leen cada columna por nombre. La `SQLException` se captura y muestra su mensaje.
 
 </details>
 
 ---
 
-## Ejercicio 7: Escribe este programa — conversor de euros a pesetas
+## Ejercicio 9: Encuentra el error — índices del PreparedStatement
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-server.createContext("/conversor", e -> {
-    String query = e.getRequestURI().getQuery();
-    double euros = 50;
-    if (query != null && query.startsWith("euros=")) {
-        euros = Double.parseDouble(query.split("=")[1]);
-    }
-    double pesetas = euros * 166.386;
-    String html = "<h1>" + String.format("%.2f", euros) + " euros son "
-        + String.format("%.2f", pesetas) + " pesetas</h1>";
-    e.getResponseHeaders().set("Content-Type", "text/html; charset=UTF-8");
-    e.sendResponseHeaders(200, html.getBytes().length);
-    e.getResponseBody().write(html.getBytes());
-    e.getResponseBody().close();
-});
-```
-
-`String.format("%.2f", valor)` redondea a dos decimales. Se multiplica por 166.386 (el cambio oficial). Un ejercicio clásico de GET: la entrada viaja en la URL y la salida es HTML.
-
-</details>
-
----
-
-## Ejercicio 8: Escribe este programa — página de estado del servidor
-
-<details>
-<summary>🔄 Solución</summary>
+Los índices de los `?` empiezan en **1**:
 
 ```java
-server.createContext("/estado", e -> {
-    String json = "{\"servidor\":\"ok\","
-        + "\"hora\":\"" + java.time.LocalTime.now().format(
-            java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")) + "\","
-        + "\"visitas\":" + visitas + ","
-        + "\"version\":\"1.0\","
-        + "\"autor\":\"Tu nombre aquí\"}";
-    e.getResponseHeaders().set("Content-Type", "application/json");
-    e.sendResponseHeaders(200, json.getBytes().length);
-    e.getResponseBody().write(json.getBytes());
-    e.getResponseBody().close();
-});
+pstmt.setString(1, "Ana");    // primer ?
+pstmt.setDouble(2, 8.5);      // segundo ?
+pstmt.setString(3, "DAM");    // tercer ?
 ```
 
-La cabecera `Content-Type: application/json` es lo que convierte esto en una API: sin ella, el navegador y `fetch` tratarían el texto como HTML o texto plano. Fíjate en cómo se escapan las comillas del JSON dentro del código Java.
-
-</details>
-
----
-
-## Ejercicio 9: Encuentra el error — el Content-Type olvidado
-
-<details>
-<summary>🔄 Solución</summary>
-
-Falta **`Content-Type: application/json`**. Sin esa cabecera, `fetch` no sabe que la respuesta es JSON y `r.json()` falla (o devuelve basura). El texto llega, pero el navegador lo interpreta como texto plano.
-
-La solución es añadir una línea antes de enviar las cabeceras:
-
-```java
-intercambio.getResponseHeaders().set("Content-Type", "application/json");
-```
-
-Esta es la lección que se repite en toda la unidad: **la cabecera correcta es la diferencia entre "funciona" y "funciona en mi máquina pero el frontend se queja"**.
+`setString(0, "Ana")` es **incorrecto**: lanza una `SQLException` porque no existe ningún `?` con índice 0. Los placeholders son posicionales y el primero es el 1. Es la trampa clásica de quien viene de los arrays, donde los índices empiezan en 0.
 
 </details>

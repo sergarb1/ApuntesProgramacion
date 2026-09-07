@@ -70,7 +70,7 @@ for (int i = 0; i < vocales.length; i++) {
 | Es pot modificar una lletra? | No (en crees una altra) | Sí: `vocales[0] = 'A';` |
 | Passar a mètode | Es comporta com immutable | Es compartix com qualsevol objecte |
 
-> 💡 **Consell:** si necessites "canviar una lletra", amb `String` no pots. Una opció és passar-la a `char[]`, modificar-la i tornar a construir la `String`. En la U12 (fitxers i regex) esta idea eixirà diverses voltes.
+> 💡 **Consell:** si necessites "canviar una lletra", amb `String` no pots. Una opció és passar-la a `char[]`, modificar-la i tornar a construir la `String`. En la U13 (fitxers i regex) esta idea eixirà diverses voltes.
 
 ---
 

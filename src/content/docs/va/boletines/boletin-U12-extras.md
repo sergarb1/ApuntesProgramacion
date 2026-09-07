@@ -1,6 +1,6 @@
 ---
 title: "Butlletí U12 — Extres"
-description: "CodeWars i AceptaElReto per a anar més enllà dels fitxers i les expressions regulars"
+description: "CodeWars i AceptaElReto per a anar més enllà de la programació funcional"
 ---
 
 # 📝 Butlletí U12 — Extres
@@ -11,19 +11,19 @@ description: "CodeWars i AceptaElReto per a anar més enllà dels fitxers i les 
 
 ## CodeWars
 
-### 1. Regex validate PIN code
+### 1. Enumerable Magic #1 - True for All?
 
-Crea una funció que valide un PIN: un `String` que és vàlid només si té **4 o 6 dígits exactes**.
+Implementa la funció `all`: rep una llista i un `Predicate`, i torna `true` si el predicat és verdader per a **tots** els elements. Si la llista està buida, torna `true` (res no ha fallat la prova).
 
-**Exemple:** `"1234"` → `true`, `"12345"` → `false`, `"a234"` → `false`, `"123456"` → `true`.
+**Exemple:** `all([1, 2, 3, 4, 5], x -> x < 9)` → `true`, i `all([1, 2, 3, 4, 5], x -> x > 9)` → `false`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/55f8a9c06c018a0d6e000132)
-- Dificultat: 7 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/54598d1fcbae2ae05200112c)
+- Dificultat: 8 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-És la kata més regex de la unitat: un sol `matches()` amb el patró `\\d{4}|\\d{6}` ho resol. Recorda: `matches()` exigix que tot el string complica amb el patró, que és just el que demana un PIN.
+Un `Stream` té l'operació terminal `allMatch(Predicate)` que fa exactament això: torna `true` si tots els elements complixen el predicat. I amb la llista buida ja torna `true` per si sola. Una sola línia de stream.
 
 </details>
 
@@ -31,32 +31,35 @@ Crea una funció que valide un PIN: un `String` que és vàlid només si té **4
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static boolean validatePin(String pin) {
-        return pin.matches("\\d{4}|\\d{6}");
+import java.util.List;
+import java.util.function.Predicate;
+
+public class Solution {
+    public static boolean all(List<Integer> list, Predicate<Integer> predicate) {
+        return list.stream().allMatch(predicate);
     }
 }
 ```
 
-`\\d{4}` és "exactament 4 dígits" i `\\d{6}` "exactament 6". El `|` els uneix: o 4 o 6. `matches()` comprova el string sencer, així que `"12345a"` no passa encara que tinga 5 dígits: hi ha una lletra al final.
+`allMatch` és la terminal dels quantificadors: comprova si tots els elements complixen el predicat (l'`all` que demana la kata). El `Stream` fa el recorregut per tu, i el cas de la llista buida està resolt per disseny: si no hi ha elements, tècnicament cap no falla, així que torna `true`. És la versió funcional del "recorre i comprova".
 
 </details>
 
 ---
 
-### 2. Two to One
+### 2. Sorted? yes? no? how?
 
-Et donen dos strings en minúscules amb lletres de la `a` a la `z`. Torna un únic string amb les lletres **distintes de tots dos, ordenades alfabèticament**.
+Reps un array de números. Torna `"yes, ascending"` si està ordenat de menor a major, `"yes, descending"` si està de major a menor, i `"no"` si no està ordenat.
 
-**Exemple:** `"xyaabbbccccdefww"` i `"xxxxyyyyabklmopq"` → `"abcdefklmopqwxy"`.
+**Exemple:** `[1, 2]` → `"yes, ascending"`, `[15, 7, 3]` → `"yes, descending"`, `[4, 2, 30]` → `"no"`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5656b6906de340bd1b0000ac)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/580a4734d6df748060000045)
 - Dificultat: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Concatena els dos strings en un. Després recorre les lletres de la `a` a la `z` i, si el string concatenat conté eixa lletra (`indexOf`), afegix-la al resultat. L'ordre alfabètic eix gratis perquè recorres l'alfabet en ordre.
+Un array ordenat de menor a major complix que cada element és menor o igual que el següent. Això és un `allMatch` sobre les parelles consecutives: `IntStream.range(0, array.length - 1).allMatch(i -> array[i] <= array[i + 1])`. Fes el mateix per a l'ordre descendent.
 
 </details>
 
@@ -64,40 +67,49 @@ Concatena els dos strings en un. Després recorre les lletres de la `a` a la `z`
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String longest(String s1, String s2) {
-        String unidos = s1 + s2;
-        StringBuilder resultado = new StringBuilder();
+import java.util.stream.IntStream;
 
-        for (char c = 'a'; c <= 'z'; c++) {
-            if (unidos.indexOf(c) != -1) {
-                resultado.append(c);
-            }
-        }
-        return resultado.toString();
+public class Kata {
+    public static String isSortedAndHow(int[] array) {
+        boolean ascendente = IntStream.range(0, array.length - 1)
+            .allMatch(i -> array[i] <= array[i + 1]);
+        boolean descendente = IntStream.range(0, array.length - 1)
+            .allMatch(i -> array[i] >= array[i + 1]);
+
+        if (ascendente) return "yes, ascending";
+        if (descendente) return "yes, descending";
+        return "no";
     }
 }
 ```
 
-La clau és invertir la pregunta: en comptes de filtrar els caràcters dels strings, recorres l'alfabet i preguntes "està esta lletra en la unió?". Amb `indexOf(c) != -1` saps si apareix. El `StringBuilder` acumula el resultat i l'ordre alfabètic és automàtic perquè la `a` es processa abans que la `b`.
+`IntStream.range(0, array.length - 1)` genera els índexs de 0 a n-2: cada un apunta a l'inici d'una parella `(array[i], array[i + 1])`. `allMatch` comprova que totes les parelles respecten l'ordre. És "ordenat" si totes les parelles van en la mateixa direcció. Un array d'un sol element complix les dos condicions alhora (no hi ha parelles), i l'`if` ascendent guanya: és correcte, un element està "ascendent".
 
 </details>
 
 ---
 
-### 3. Categorize New Member
+### 3. Sum of odd numbers
 
-El club de tenis classifica els seus nous socis. Un soci és **"Senior"** si té 55 anys o més **i** un hándicap major que 7; si no, és **"Open"**. Et donen un array de parells `[edat, hándicap]` i has de tornar un array amb la categoria de cadascun.
+Donat el triangle de números imparells consecutius:
 
-**Exemple:** `[[45, 12], [55, 21], [19, -2], [104, 20]]` → `["Open", "Senior", "Open", "Senior"]`.
+```
+             1
+          3     5
+       7     9    11
+   13    15    17    19
+21    23    25    27    29
+```
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5502c9e7b3216ec63c000020)
+Torna la suma de la fila `n` (començant per 1). **Exemple:** `n=1` → `1`, `n=2` → `8`, `n=3` → `27`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/55fd2d567d94ac3bc9000064)
 - Dificultat: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Simple lògica booleana: `edad >= 55 && hándicap > 7`. Recorre l'array de parells i munta el resultat amb un ternari.
+El primer número de la fila `n` és `n * n - n + 1` (fila 3: 9 - 3 + 1 = 7). Després hi ha `n` imparells consecutius, separats de 2 en 2. Genera la fila amb `IntStream.range(0, n).map(i -> primer + 2 * i)` i suma-los amb `.sum()`.
 
 </details>
 
@@ -105,38 +117,37 @@ Simple lògica booleana: `edad >= 55 && hándicap > 7`. Recorre l'array de parel
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String[] openOrSenior(int[][] data) {
-        String[] resultado = new String[data.length];
+import java.util.stream.IntStream;
 
-        for (int i = 0; i < data.length; i++) {
-            resultado[i] = (data[i][0] >= 55 && data[i][1] > 7)
-                ? "Senior" : "Open";
-        }
-        return resultado;
+public class Kata {
+    public static int rowSumOddNumbers(int n) {
+        int primerImpar = n * n - n + 1;
+        return IntStream.range(0, n)
+            .map(i -> primerImpar + 2 * i)
+            .sum();
     }
 }
 ```
 
-Cada parell `data[i]` té l'edat en `[0]` i l'hándicap en `[1]`. El ternari decidix la categoria en una línia i guarda el resultat en la seua posició. És la lògica booleana pura de l'enunciat: les dues condicions amb `&&`.
+`IntStream.range(0, n)` genera els `n` números de la fila i `map` els convertix en imparells consecutius des de `primerImpar` (fila 3: 7, 9, 11). `.sum()` és la terminal que suma un `IntStream`. El resultat coincidix amb `n * n * n` (¡la suma de la fila n és sempre el cub de n!), però esta versió t'entrena a construir i sumar streams, que és el que toca la unitat.
 
 </details>
 
 ---
 
-### 4. Primes in numbers
+### 4. Two Oldest Ages
 
-Donat un número positiu `n`, torna la seua descomposició en factors primers amb el format `"(p1**exp1)(p2**exp2)"`. Si l'exponent és 1, s'escriu només `"(p)"`.
+Implementa `twoOldestAges`: rep un array d'edats (sempre amb almenys 2 elements) i torna un array amb les **dos edats més altes**, en el format `[segona més alta, la més alta]`.
 
-**Exemple:** `86240` → `"(2**5)(5)(7**2)(11)"`.
+**Exemple:** `[1, 2, 10, 8]` → `[8, 10]`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/54d512e62a5e54c96200002e)
-- Dificultat: 5 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/511f11d355fe575d2c000001)
+- Dificultat: 7 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Dividix per 2, després pels senars des de 3 fins a l'arrel quadrada de `n` (que es va reduint en dividir). Compta quantes voltes dividix cada divisor (l'exponent) i munta el string amb un `StringBuilder`.
+Ordena l'array de menor a major amb `Arrays.stream(ages).sorted()` i salta't tots menys els dos últims: `skip(ages.length - 2)`. El stream resultant té exactament les dos edats més altes en l'ordre demanat. Recull amb `.toArray()`.
 
 </details>
 
@@ -144,31 +155,19 @@ Dividix per 2, després pels senars des de 3 fins a l'arrel quadrada de `n` (que
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String factors(int n) {
-        StringBuilder sb = new StringBuilder();
+import java.util.Arrays;
 
-        for (int i = 2; i * i <= n; i++) {
-            int veces = 0;
-            while (n % i == 0) {
-                n /= i;
-                veces++;
-            }
-            if (veces == 1) {
-                sb.append("(").append(i).append(")");
-            } else if (veces > 1) {
-                sb.append("(").append(i).append("**").append(veces).append(")");
-            }
-        }
-        if (n > 1) {
-            sb.append("(").append(n).append(")");
-        }
-        return sb.toString();
+public class Kata {
+    public static int[] twoOldestAges(int[] ages) {
+        return Arrays.stream(ages)
+            .sorted()
+            .skip(ages.length - 2)
+            .toArray();
     }
 }
 ```
 
-El `while` intern dividix mentre el divisor encaixe i compta les repeticions: eixe és l'exponent. El bucle només arriba a l'arrel de `n` (i `n` es va reduint), així que l'`if (n > 1)` final arreplega l'últim factor primer que queda. El `StringBuilder` evita concatenar cadenes en cada volta, que seria lent.
+`Arrays.stream(ages)` convertix l'array en un `IntStream`, `sorted()` l'ordena de menor a major, i `skip(ages.length - 2)` se salta tots els elements menys els dos últims. En estar ordenats, eixos dos últims són la segona més alta i la més alta, en eixe ordre. `.toArray()` recull el flux de tornada en un array. Quatre operacions per a un problema que a mà demanaria dos variables i un bucle.
 
 </details>
 
@@ -176,71 +175,23 @@ El `while` intern dividix mentre el divisor encaixe i compta les repeticions: ei
 
 ## AceptaElReto
 
-### 5. 108 — Formigues
+### 5. 219 — La loteria de la penya Atlètica
 
-Sobre una barra de longitud `L` cm hi ha `n` formigues. Cada formiga es mou a 1 cm/s cap a l'extrem que li toque (l'enunciat et dona les posicions). Quan dues formigues es creuen, totes dues canvien de sentit. Calcula, per a cada cas de prova, el **temps mínim** i el **temps màxim** que tarden a caure totes de la barra.
+La penya atlètica només compra dècims amb **números parells**. Et donen una llista de dècims de cada administració i has de dir quants en pot comprar.
 
-**Entrada:** diversos casos de prova. Cada cas comença amb `L` i `n`, seguit de les `n` posicions de les formigues.
+**Entrada:** el primer número indica quants casos de prova hi ha. Cada cas són dos línies: el número de dècims `n` i la llista de `n` números (entre 0 i 99.999).
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=108)
-- Dificultat: ⭐⭐
+**Eixida:** per a cada cas, quants dècims són parells.
 
-<details>
-<summary>💡 Pista</summary>
+**Exemple:** `10` i `1 2 3 4 5 6 7 8 9 10` → `5`.
 
-Quan dues formigues es creuen i canvien de sentit, és **com si s'ignoraren**: la posició de les formigues és indistinguible. Així que cada formiga cau en `min(pos, L - pos)` o `max(pos, L - pos)`. El temps mínim és el major dels mínims; el màxim, el major dels màxims.
-
-</details>
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class Hormigas {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        while (sc.hasNextInt()) {
-            int L = sc.nextInt();
-            int n = sc.nextInt();
-            int minTiempo = 0, maxTiempo = 0;
-
-            for (int i = 0; i < n; i++) {
-                int pos = sc.nextInt();
-                int haciaIzq = pos;
-                int haciaDer = L - pos;
-                minTiempo = Math.max(minTiempo, Math.min(haciaIzq, haciaDer));
-                maxTiempo = Math.max(maxTiempo, Math.max(haciaIzq, haciaDer));
-            }
-
-            System.out.println(minTiempo + " " + maxTiempo);
-        }
-        sc.close();
-    }
-}
-```
-
-El truc conceptual: quan dues formigues es creuen, totes dues giren, però com que són indistinguibles, l'efecte és el mateix que si passaren de llarg. Cada formiga tarda `pos` o `L - pos` segons el costat cap on vaja. Per al mínim total, cada formiga tria el seu costat més pròxim i el temps és el major d'eixos mínims; per al màxim, el pitjor cas.
-
-</details>
-
----
-
-### 6. 140 — Suma de dígits
-
-Donat un número positiu, calcula la suma dels seus dígits. L'entrada és una seqüència de números que acaba amb `-1`.
-
-**Exemple:** `123` → `123: 6`, `55` → `55: 10`, `1000` → `1000: 1`.
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=140)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=219)
 - Dificultat: ⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Pots extraure els dígits amb `% 10` i `/ 10` en un bucle mentre el número siga major que 0. O, més en l'esperit d'esta unitat, convertir el número a `String` i recórrer-lo amb un `charAt`, sumant `c - '0'`.
+Llig els `n` números en un array i compta els parells amb un stream: `Arrays.stream(decimos).filter(d -> d % 2 == 0).count()`. El `filter` amb un `Predicate` i la terminal `count` és la plantilla de "quants complixen".
 
 </details>
 
@@ -248,33 +199,108 @@ Pots extraure els dígits amb `% 10` i `/ 10` en un bucle mentre el número siga
 <summary>🔄 Solució</summary>
 
 ```java
+import java.util.Arrays;
 import java.util.Scanner;
 
-public class SumaDigitos {
+public class Loteria {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int casos = sc.nextInt();
 
-        while (true) {
+        while (casos-- > 0) {
             int n = sc.nextInt();
-            if (n == -1) break;
-
-            int suma = 0;
-            String texto = String.valueOf(n);
-            for (int i = 0; i < texto.length(); i++) {
-                suma += texto.charAt(i) - '0';
+            int[] decimos = new int[n];
+            for (int i = 0; i < n; i++) {
+                decimos[i] = sc.nextInt();
             }
 
-            System.out.println(n + ": " + suma);
+            long comprables = Arrays.stream(decimos)
+                .filter(d -> d % 2 == 0)
+                .count();
+
+            System.out.println(comprables);
         }
         sc.close();
     }
 }
 ```
 
-Convertir el número a `String` permet tractar els dígits com a caràcters: `charAt(i) - '0'` convertix el caràcter `'3'` en el número `3` (perquè els codis ASCII dels dígits són consecutius). Sense operacions aritmètiques de `%` i `/`: la versió "d'unitat de regex" d'un clàssic.
+L'entrada es llig en un array (llegir dins d'una lambda seria un efecte secundari lleig) i el stream fa el treball: `filter(d -> d % 2 == 0)` deixa passar els parells i `count()` els compta. Fixa't que `count()` torna `long`: el problema accepta l'eixida encara que la variable siga `long`. És el mateix patró que `filter(...).count()` de la unitat, aplicat a un problema de concurs real.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines els fitxers i les regex, torna als problemes d'unitats anteriors i resol-los llegint les dades des d'un fitxer en comptes de demanar-les pel teclat, o validant l'entrada amb un `matches()`. El material no es perd: es reutilitza.
+### 6. 105 — Vendes
+
+El bar de Javier obri tots els dies menys els dilluns. Apunta la caixa de cada dia de la setmana (dimarts, dimecres, dijous, divendres, dissabte i diumenge). Ha de dir: el **dia de més vendes**, el **dia de menys vendes** (o `EMPATE` si hi ha empat en el màxim o el mínim), i si les **vendes del diumenge superen la mitjana setmanal** (`SI` o `NO`).
+
+**Entrada:** diversos casos de prova. Cada cas són 6 números (les vendes de dimarts a diumenge). El programa acaba quan el primer número del cas és `-1`.
+
+**Eixida:** per a cada cas, `DIA_MAX DIA_MIN SI/NO`.
+
+**Exemple:** `185.50 250.36 163.45 535.20 950.22 450.38` → `SABADO JUEVES SI`.
+
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=105)
+- Dificultat: ⭐⭐
+
+<details>
+<summary>💡 Pista</summary>
+
+Guarda els 6 valors en un `double[]`. Amb streams: `Arrays.stream(ventas).max()`, `.min()` i `.average()` et donen les tres dades (totes tornen `OptionalDouble`, aterra amb `orElse(0)`). Per a saber el dia, busca l'índex del màxim/mínim; i compta quants valors coincidixen amb el màxim/mínim: si n'hi ha més d'un, és `EMPATE`.
+
+</details>
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.*;
+import java.util.stream.*;
+
+public class Ventas {
+    static final String[] DIAS = {"MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
+
+    static int indiceDe(double[] ventas, double valor) {
+        return IntStream.range(0, ventas.length)
+            .filter(i -> ventas[i] == valor)
+            .findFirst()
+            .orElse(-1);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            double[] ventas = new double[6];
+            ventas[0] = sc.nextDouble();
+            if (ventas[0] == -1) break;
+            for (int i = 1; i < 6; i++) {
+                ventas[i] = sc.nextDouble();
+            }
+
+            double max = Arrays.stream(ventas).max().orElse(0);
+            double min = Arrays.stream(ventas).min().orElse(0);
+            double media = Arrays.stream(ventas).average().orElse(0);
+
+            long vecesMax = Arrays.stream(ventas).filter(v -> v == max).count();
+            long vecesMin = Arrays.stream(ventas).filter(v -> v == min).count();
+
+            String diaMax = vecesMax > 1 ? "EMPATE" : DIAS[indiceDe(ventas, max)];
+            String diaMin = vecesMin > 1 ? "EMPATE" : DIAS[indiceDe(ventas, min)];
+            String domingo = ventas[5] > media ? "SI" : "NO";
+
+            System.out.println(diaMax + " " + diaMin + " " + domingo);
+        }
+        sc.close();
+    }
+}
+```
+
+El problema sencer és un desfilament de streams: `max()` i `min()` per als extrems, `average()` per a la mitjana (els tres tornen `OptionalDouble` perquè l'array podria estar buit; `orElse(0)` aterra). El `filter(...).count()` compta quants dies empaten amb el màxim/mínim, i `indiceDe` usa `IntStream.range` + `findFirst` per a localitzar el dia exacte. La mitjana es compara amb les vendes del diumenge (`ventas[5]`, l'últim índex). El `EMPATE` de l'enunciat ix de `vecesMax > 1` / `vecesMin > 1`. Este és el problema de la unitat: quasi tot, amb streams.
+
+</details>
+
+---
+
+> 🧭 **¿I si et quedes amb ganes?** Quan domines lambdes i streams, torna als problemes d'unitats anteriors i reescriu-los amb pipelines: el comptador de freqüències de la U11 amb `groupingBy`, els bucles de la U05 amb `filter` + `reduce`, l'agenda de la U11 amb `Collectors.toMap`... Tot el que abans era un bucle ara és una declaració. El material no es perd: es reutilitza.

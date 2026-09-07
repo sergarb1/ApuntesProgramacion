@@ -119,7 +119,7 @@ public class Tarjeta {
 
 > ❓ **¿Por qué tanto rollo con los nombres? ¿No puedo llamar a mis métodos `leerEdad()` y `ponerEdad()`?**
 
-Puedes, y funcionarían. Pero la convención `getX()` / `setX()` es lo que esperan los frameworks (y, de paso, los examinadores). Cuando en la U14 veas cómo se serializan objetos a JSON, entenderás por qué llamarse de la forma estándar ahorra dolores de cabeza.
+Puedes, y funcionarían. Pero la convención `getX()` / `setX()` es lo que esperan los frameworks (y, de paso, los examinadores). Cuando en la U15 veas cómo se serializan objetos a JSON, entenderás por qué llamarse de la forma estándar ahorra dolores de cabeza.
 
 > ❓ **¿El setter siempre tiene que validar con `println`?**
 

@@ -119,7 +119,7 @@ public class Tarjeta {
 
 > ❓ **Per què tant de rotllo amb els noms? No puc dir als meus mètodes `leerEdad()` i `ponerEdad()`?**
 
-Pots, i funcionarien. Però la convenció `getX()` / `setX()` és la que esperen els frameworks (i, de pas, els examinadors). Quan en la U14 veges com es serialitzen objectes a JSON, entendràs per què dir-se de la manera estàndard estalvia maldecaps.
+Pots, i funcionarien. Però la convenció `getX()` / `setX()` és la que esperen els frameworks (i, de pas, els examinadors). Quan en la U15 veges com es serialitzen objectes a JSON, entendràs per què dir-se de la manera estàndard estalvia maldecaps.
 
 > ❓ **El setter sempre ha de validar amb `println`?**
 

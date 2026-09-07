@@ -1,205 +1,132 @@
 ---
 title: "Butlletí U14 — Avançat"
-description: "Exercicis de dificultat progressiva per a dominar JSON, formularis POST i HttpClient"
+description: "Exercicis de dificultat progressiva per a exprimir el JDBC: PreparedStatement, DAO, transaccions i més"
 ---
 
 # 📝 Butlletí U14 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resistix a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: API de frases motivacionals
+## ⭐ Exercici 1: Connexió des de fitxer de propietats
 
-Crea un endpoint `GET /api/frase` que torne un JSON amb una frase aleatòria d'un array precarregat i el seu autor.
+Crea un fitxer `db.properties` amb les dades de connexió:
 
-```json
-{"frase": "El código limpio es como un buen chiste: si tienes que explicarlo, es malo", "autor": "Alguien que sabe"}
+```properties
+url=jdbc:sqlite:instituto.db
 ```
 
-El frontend és un HTML amb un botó "Nova frase" que al fer clic fa `fetch('/api/frase')` i mostra la frase en pantalla.
+Escriu un programa que llegisca este fitxer usant la classe `Properties` i establisca la connexió. Si el fitxer no existix o falta la propietat `url`, mostra un missatge d'error clar.
 
-**Pista:** usa `Math.random()` per a triar un índex aleatori de l'array, o `Random.nextInt(longitud)`.
+**Pista:** carrega el fitxer amb `props.load(Files.newInputStream(Path.of("db.properties")))` i usa `props.getProperty("url")`. `load` llança una `IOException` (la vas vore a la U13 amb els fitxers) a més de la `SQLException`.
 
 ---
 
-## ⭐ Exercici 2: Formulari de contacte amb POST
+## ⭐ Exercici 2: INSERT amb clau autogenerada
 
-Crea una ruta `/contacto` que servisca un formulari HTML (GET) amb camps `nombre` i `mensaje`, i una ruta `/enviar` que reba les dades per POST i les mostre en una pàgina de confirmació.
+Insereix un nou alumne a la taula `alumnos` i **recupera l'ID** que la base de dades li ha assignat automàticament (és un `AUTOINCREMENT`). Usa `PreparedStatement` amb `Statement.RETURN_GENERATED_KEYS` i el mètode `getGeneratedKeys()`.
 
-**Pista:** en el handler de `/enviar` comprova `"POST".equals(e.getRequestMethod())` i llig el cos amb `e.getRequestBody().readAllBytes()`. El format del cos és `nombre=Ana&mensaje=Hola`.
-
----
-
-## ⭐ Exercici 3: Pedra, paper, tisora online
-
-Endpoint `POST /api/jugar` que rep:
-
-```json
-{"jugada": "piedra"}
-```
-
-I torna:
-
-```json
-{"jugadaPC": "tijera", "resultado": "ganaste"}
-```
-
-Regles clàssiques: pedra > tisora, tisora > paper, paper > pedra.
-
-Frontend: tres botons amb emojis 🪨📄✂️. Al fer clic, envia la jugada i mostra el resultat.
-
-**Pista:** la jugada del PC es tria amb `Random`. Les regles es poden implementar amb un `Map<String, String>` on la clau venç el valor: `{"piedra": "tijera", "tijera": "papel", "papel": "piedra"}`.
-
----
-
-## ⭐⭐ Exercici 4: El temps que NO fa
-
-Crea `GET /api/clima?ciudad=Madrid` que torne un JSON amb dades meteorològiques **aleatòries** (generades cada vegada):
-
-```json
-{"ciudad": "Madrid", "temperatura": 28, "humedad": 45, "estado": "soleado"}
-```
-
-Estats possibles: `"soleado"`, `"nublado"`, `"lluvia"`, `"tormenta"`. Frontend amb emojis i temperatures de colors.
-
-**Pista:** usa `String[] estados = {...}` i tria aleatòriament. La temperatura pot ser `random.nextInt(40) - 5`.
-
----
-
-## ⭐⭐ Exercici 5: Traductor xungo (però funcional)
-
-Implementa un endpoint `POST /api/traducir` que reba:
-
-```json
-{"texto": "hola", "idioma": "en"}
-```
-
-I torne:
-
-```json
-{"traduccion": "hello"}
-```
-
-Usa un `HashMap<String, HashMap<String, String>>` com a diccionari. Fica almenys 10 paraules en espanyol traduïdes a anglés i francés.
-
-**Pista:** inicialitza el diccionari amb blocs `static`. `diccionario.get("hola").get("en")` et dona `"hello"`. Els mapes els vas vore a la U11.
-
----
-
-## ⭐⭐ Exercici 6: API REST de tasques amb prioritat
-
-Implementa un CRUD complet de tasques on cada tasca té: `id`, `titol`, `prioritat` (`"ALTA"`, `"MITJA"`, `"BAIXA"`).
-
-| Mètode | Ruta | Descripció |
-|--------|------|-------------|
-| GET | `/api/tareas` | Llista totes |
-| POST | `/api/tareas` | Crea una (JSON: `{"titulo": "...", "prioridad": "ALTA"}`) |
-| PUT | `/api/tareas/{id}` | Canvia prioritat (JSON: `{"prioridad": "BAJA"}`) |
-| DELETE | `/api/tareas/{id}` | Borra una |
-
-Frontend: taula amb colors de fons segons prioritat (roig ALTA, groc MITJA, verd BAIXA). Botons per a crear, canviar prioritat i borrar.
-
-**Pista:** guarda les tasques en un `ConcurrentHashMap<Integer, Tarea>` amb un `AtomicInteger` per als IDs. Per al path param, parseja la ruta amb `substring`.
-
----
-
-## ⭐⭐ Exercici 7: Client GET — els repos de GitHub
-
-Usa `HttpClient` per a consultar l'API de GitHub (`https://api.github.com/users/{usuario}/repos`) i mostrar només el **nom** i el **llenguatge** de cada repositori d'un usuari (que es demana pel teclat). Després guarda els resultats en un fitxer `repos.txt`.
-
-**Pista:** parseja la resposta amb Gson (`JsonArray`), recórre-la, i escriu amb `Files.writeString` (els fitxers els vas vore a la U12). Recorda la capçalera `User-Agent`, que GitHub exigix.
-
----
-
-## ⭐⭐ Exercici 8: Client POST — crear una publicació a jsonplaceholder
-
-Usa `HttpClient` per a fer un `POST` a `https://jsonplaceholder.typicode.com/posts` amb un cos JSON:
-
-```json
-{"title": "Mi primera API", "body": "Consumida desde Java", "userId": 1}
-```
-
-Mostra el codi d'estat i el cos de la resposta. Comprova que la capçalera `Content-Type: application/json` està posada.
-
-**Pista:** `HttpRequest.newBuilder().uri(...).header("Content-Type", "application/json").POST(HttpRequest.BodyPublishers.ofString(json)).build()`.
-
----
-
-## ⭐⭐⭐ Exercici 9: Middleware de logging
-
-Crea una classe `LoggerMiddleware` que embolique qualsevol `HttpHandler` i registre en consola:
-
-```
-[2026-06-21 14:30:01] GET /api/peliculas → 200 (15ms)
-[2026-06-21 14:30:05] POST /api/tareas → 201 (3ms)
-```
-
-Ha de poder aplicar-se a qualsevol handler així:
+**Pista:**
 
 ```java
-server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
-```
-
-**Pista:** guarda `System.currentTimeMillis()` abans i després de cridar el handler original. Usa `e.getRequestMethod()`, `e.getRequestURI()` i `e.getResponseCode()` (després d'enviar capçaleres)
-
----
-
-## ⭐⭐⭐ Exercici 10: la petició asíncrona amb sendAsync
-
-Usa `HttpClient` per a demanar dades a l'API pública de GitHub **sense bloquejar el fil principal** amb `sendAsync()`. Descarrega els repos d'un usuari i, quan arribe la resposta, imprimeix el nombre de repos i el codi d'estat.
-
-```java
-// Esquelet per a completar
-HttpClient client = HttpClient.newHttpClient();
-HttpRequest peticio = HttpRequest.newBuilder()
-        .uri(URI.create("https://api.github.com/users/google/repos"))
-        .GET()
-        .build();
-```
-
-Completa el programa perquè:
-- Use `sendAsync(peticio, HttpResponse.BodyHandlers.ofString())`.
-- Encadene `.thenAccept(...)` per a processar la resposta quan arribe (imprimeix `statusCode()` i, si és 200, compta les aparicions de `"full_name"` en el JSON amb `split`).
-- Afig un `System.out.println("Petició llançada, seguim treballant...");` ABANS que arribe la resposta, per a demostrar que el fil no es va bloquejar.
-
-**Pista:** `sendAsync` torna un `CompletableFuture<HttpResponse<String>>`. El `thenAccept` rep la resposta quan estiga llesta, però el `main` continua corrent mentrestant. Perquè el programa no acabe abans que arribe la resposta, espera al final amb `.join()` sobre el `CompletableFuture`. Sense el `join()`, el `main` s'acaba i la petició es perd.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-
-public class ReposAsync {
-    public static void main(String[] args) {
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest peticio = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.github.com/users/google/repos"))
-                .GET()
-                .build();
-
-        System.out.println("Petició llançada, seguim treballant...");
-
-        client.sendAsync(peticio, HttpResponse.BodyHandlers.ofString())
-                .thenAccept(resposta -> {
-                    System.out.println("Resposta rebuda: codi " + resposta.statusCode());
-                    if (resposta.statusCode() == 200) {
-                        int repos = resposta.body().split("\"full_name\"").length - 1;
-                        System.out.println("Repos de google: " + repos);
-                    } else {
-                        System.out.println("Alguna cosa ha fallat (límit de l'API?): " + resposta.body().substring(0, 80));
-                    }
-                })
-                .join();  // espera que acabe abans de finalitzar el main
-    }
+PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+pstmt.executeUpdate();
+ResultSet claus = pstmt.getGeneratedKeys();
+if (claus.next()) {
+    int id = claus.getInt(1);
 }
 ```
 
-La màgia està en l'ordre de les eixides: "Petició llançada" s'imprimeix **abans** de "Resposta rebuda", encara que la petició es va llançar abans. Això és `sendAsync`: el fil principal no es deté esperant la xarxa; el `thenAccept` s'executa quan arribe la resposta. El `join()` al final és imprescindible: sense ell, el `main` acabaria i la JVM es tancaria abans que arribara la resposta. El comptatge de repos amb `split("\"full_name\"")` és un truc ràpid de JSON sense llibreria: cada repo apareix com un `"full_name"` en la llista.
+El `getGeneratedKeys()` torna un `ResultSet` amb la clau que acaba de generar la base de dades. Es llig amb `next()` i `getInt(1)`.
 
-</details>.
+---
+
+## ⭐ Exercici 3: UPDATE condicional
+
+Actualitza el curs de tots els alumnes que tinguen una edat superior a un valor donat. Per exemple:
+
+```
+Quina edat mínima? 25
+Quin nou curs? DAM2
+```
+
+Tots els alumnes majors de 25 anys passen al curs «DAM2». Mostra quantes files s'han actualitzat.
+
+**Pista:** `UPDATE alumnos SET curso = ? WHERE edad > ?` amb `setInt` i `setString`. `executeUpdate()` et torna el nombre de files afectades: és el teu millor amic per a confirmar que alguna cosa ha canviat.
+
+---
+
+## ⭐⭐ Exercici 4: INNER JOIN amb PreparedStatement
+
+Donada una taula `matriculas` amb `id_alumno`, `asignatura`, `nota`, escriu un programa que reba un nom d'alumne i mostre totes les seues assignatures i notes. Usa un `INNER JOIN` entre `alumnos` i `matriculas`.
+
+Exemple d'eixida:
+
+```
+Alumne: Ana García
+  Matemàtiques: 8.5
+  Programació: 9.0
+  Bases de Dades: 7.5
+```
+
+**Pista:** el `?` va a la part del nom: `SELECT a.nombre, m.asignatura, m.nota FROM alumnos a INNER JOIN matriculas m ON m.id_alumno = a.id WHERE a.nombre = ?`. El `JOIN` relaciona les dues taules en una sola consulta: ni un bucle, ni consultes dins de bucles.
+
+---
+
+## ⭐⭐ Exercici 5: Cerca amb LIKE
+
+Implementa una cerca d'alumnes per nom usant `LIKE` i `PreparedStatement`. L'usuari escriu una part del nom i es mostren tots els que coincidisquen. Si no hi ha resultats, mostra «Sense resultats».
+
+**Pista:** `SELECT * FROM alumnos WHERE nombre LIKE ?` amb `pstmt.setString(1, "%" + text + "%")`. Els `%` són comodins i van dins del **valor**, no en l'SQL. El `%text%` busca el text en qualsevol posició.
+
+---
+
+## ⭐⭐ Exercici 6: Dates en JDBC
+
+Afig una columna `fecha_nacimiento DATE` a la taula `alumnos` (assumix que ja existix). Crea un programa que:
+
+1. Demane nom, edat, curs i data de naixement (format `YYYY-MM-DD`).
+2. Inserisca l'alumne usant `PreparedStatement` amb `java.sql.Date.valueOf()`.
+3. Lliste tots els alumnes mostrant també la seua data de naixement.
+
+**Pista:** `Date.valueOf("2000-03-15")` convertix el text en `java.sql.Date` (alerta: és `java.sql.Date`, no `java.util.Date`!). Per a llegir-la, `rs.getDate("fecha_nacimiento")`. Recorda comprovar el valor que torna `executeUpdate()`.
+
+---
+
+## ⭐⭐ Exercici 7: Batch INSERT — 100 alumnes de prova
+
+Crea un programa que inserisca **100 alumnes de prova** a la taula `alumnos` usant lots (batch). Els noms poden ser genèrics: `Alumno1`, `Alumno2`, etc.
+
+Usa `addBatch()` i `executeBatch()` de `PreparedStatement`. Mesura el temps que tarda amb `System.currentTimeMillis()`.
+
+**Pista:** al bucle, fas `addBatch()` a cada volta i un sol `executeBatch()` al final (o cada 50). Per a mesurar: `long inicio = System.currentTimeMillis();` ... `long fin = System.currentTimeMillis();` i restes. Compara mentalment amb 100 `executeUpdate()` solts.
+
+---
+
+## ⭐⭐⭐ Exercici 8: El patró DAO
+
+Implementa el patró **Data Access Object (DAO)** per a la taula `alumnos`. Crea les següents classes:
+
+1. `Alumno` — classe model amb `id`, `nombre`, `edad`, `curso`.
+2. `AlumnoDAO` — interfície amb mètodes: `listar()`, `buscarPorId(int id)`, `buscarPorNombre(String nombre)`, `insertar(Alumno a)`, `actualizar(Alumno a)`, `eliminar(int id)`.
+3. `AlumnoDAOImpl` — implementació concreta amb JDBC i SQLite.
+4. `Main` — programa amb menú que use el DAO.
+
+**Pista:** la URL (`jdbc:sqlite:instituto.db`) és una constant privada de la implementació. Cada mètode obri la seua pròpia connexió amb `try-with-resources`. El `Main` només parla amb la interfície `AlumnoDAO`; l'SQL no li importa.
+
+---
+
+## ⭐⭐⭐ Exercici 9: Transacció bancària atòmica
+
+Simula una transferència entre dos comptes en una taula `cuentas(id, titular, saldo)`. La transferència ha de ser **atòmica**: trau 100 € d'un compte, posa'ls en l'altre, i si falla qualsevol pas, fes `rollback()` perquè el sistema no quede a mitges.
+
+Exemple d'eixida:
+
+```
+Saldo abans: Ana 500, Luis 300
+Transferència OK
+Saldo després: Ana 400, Luis 400
+```
+
+**Pista:** `con.setAutoCommit(false)`, després les dues operacions amb `PreparedStatement`, i al final `con.commit()`. El `rollback()` va al `catch (SQLException e)` intern. Prova a forçar la fallada (per exemple, un compte inexistent) i comprova que el saldo d'Ana no canvia.

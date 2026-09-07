@@ -1,132 +1,124 @@
 ---
 title: "Butlletí U13 — Avançat"
-description: "Exercicis de dificultat progressiva per a exprimir el JDBC: PreparedStatement, DAO, transaccions i més"
+description: "Exercicis de dificultat progressiva per a exprimir fitxers i expressions regulars"
 ---
 
 # 📝 Butlletí U13 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resistix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: Connexió des de fitxer de propietats
+## ⭐ Exercici 1: Buscador de fitxers per extensió
 
-Crea un fitxer `db.properties` amb les dades de connexió:
+Crea un programa que demane una ruta de directori i una extensió (ex: `.txt`, `.java`) i llixe **recursivament** tots els fitxers amb eixa extensió. Usa la classe `File` i el seu mètode `listFiles()`.
 
-```properties
-url=jdbc:sqlite:instituto.db
-```
-
-Escriu un programa que llegisca este fitxer usant la classe `Properties` i establisca la connexió. Si el fitxer no existix o falta la propietat `url`, mostra un missatge d'error clar.
-
-**Pista:** carrega el fitxer amb `props.load(Files.newInputStream(Path.of("db.properties")))` i usa `props.getProperty("url")`. `load` llança una `IOException` (la vas vore a la U12 amb els fitxers) a més de la `SQLException`.
+**Pista:** si el fitxer és un directori, crida el mètode de nou (recursió). Recorda comprovar `isDirectory()` abans de `listFiles()`.
 
 ---
 
-## ⭐ Exercici 2: INSERT amb clau autogenerada
+## ⭐ Exercici 2: Lector de CSV amb Scanner
 
-Insereix un nou alumne a la taula `alumnos` i **recupera l'ID** que la base de dades li ha assignat automàticament (és un `AUTOINCREMENT`). Usa `PreparedStatement` amb `Statement.RETURN_GENERATED_KEYS` i el mètode `getGeneratedKeys()`.
-
-**Pista:**
-
-```java
-PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-pstmt.executeUpdate();
-ResultSet claus = pstmt.getGeneratedKeys();
-if (claus.next()) {
-    int id = claus.getInt(1);
-}
-```
-
-El `getGeneratedKeys()` torna un `ResultSet` amb la clau que acaba de generar la base de dades. Es llig amb `next()` i `getInt(1)`.
-
----
-
-## ⭐ Exercici 3: UPDATE condicional
-
-Actualitza el curs de tots els alumnes que tinguen una edat superior a un valor donat. Per exemple:
+Donat un fitxer `datos.csv` amb el següent format (sense capçalera):
 
 ```
-Quina edat mínima? 25
-Quin nou curs? DAM2
+Ana;25;DAM
+Bob;22;DAW
+Carlos;30;DAM
 ```
 
-Tots els alumnes majors de 25 anys passen al curs «DAM2». Mostra quantes files s'han actualitzat.
+Usa `Scanner` amb `useDelimiter()` per a llegir el fitxer i mostrar les dades en format de taula alineada amb `printf()`.
 
-**Pista:** `UPDATE alumnos SET curso = ? WHERE edad > ?` amb `setInt` i `setString`. `executeUpdate()` et torna el nombre de files afectades: és el teu millor amic per a confirmar que alguna cosa ha canviat.
+**Pista:** `useDelimiter(";|\\R")` talla per `;` o per salt de línia. Repassa els formats de `printf` en la U02, punt 7.
 
 ---
 
-## ⭐⭐ Exercici 4: INNER JOIN amb PreparedStatement
+## ⭐⭐ Exercici 3: Filtre de línies per paraula clau
 
-Donada una taula `matriculas` amb `id_alumno`, `asignatura`, `nota`, escriu un programa que reba un nom d'alumne i mostre totes les seues assignatures i notes. Usa un `INNER JOIN` entre `alumnos` i `matriculas`.
+Crea un programa que llig un fitxer de text (`origen.txt`) i escriga en `destino.txt` només les línies que contenen una paraula clau (demanada a l'usuari). Usa `BufferedReader` i `PrintWriter`. Mostra al final quantes línies van coincidir i quantes es van descartar.
 
-Exemple d'eixida:
+**Pista:** la comprovació és `linea.contains(palabraClave)`. Porta dos comptadors.
+
+---
+
+## ⭐⭐ Exercici 4: Separador de línies parells i senars
+
+Crea un programa que llig un fitxer `entrada.txt` i genere dos fitxers:
+
+- `pares.txt` → conté les línies en posició parell (0, 2, 4...).
+- `impares.txt` → conté les línies en posició senar (1, 3, 5...).
+
+Usa `try-with-resources` amb **tres** recursos (un `BufferedReader` i dos `PrintWriter`).
+
+**Pista:** els tres recursos van entre els parèntesis del `try`, separats per `;`. Usa `% 2` sobre el número de línia.
+
+---
+
+## ⭐⭐ Exercici 5: Split amb regex — analitzador de frases
+
+Escriu un programa que llig una frase de l'usuari i use `split()` amb una expressió regular per a:
+
+1. Separar les paraules (ignorant espais, comes, punts i signes).
+2. Mostrar quantes paraules hi ha.
+3. Mostrar la paraula més llarga.
+4. Mostrar les paraules que comencen per vocal.
+
+Exemple: `"Hola, mundo. Esto es Java: ¿mola?"` →
 
 ```
-Alumne: Ana García
-  Matemàtiques: 8.5
-  Programació: 9.0
-  Bases de Dades: 7.5
+Palabras: 6
+Más larga: "mundo"
+Empiezan por vocal: ["Esto"]
 ```
 
-**Pista:** el `?` va a la part del nom: `SELECT a.nombre, m.asignatura, m.nota FROM alumnos a INNER JOIN matriculas m ON m.id_alumno = a.id WHERE a.nombre = ?`. El `JOIN` relaciona les dues taules en una sola consulta: ni un bucle, ni consultes dins de bucles.
+**Pista:** el separador que ignora tot el que no siga lletra és `"[^a-zA-ZáéíóúüñÑ]+"`. Per a les vocals, comprova la primera lletra amb `matches("[aeiouAEIOUáéíóú]")` o amb un `indexOf` sobre una cadena de vocals.
 
 ---
 
-## ⭐⭐ Exercici 5: Cerca amb LIKE
+## ⭐⭐⭐ Exercici 6: Validador de dades amb regex
 
-Implementa una cerca d'alumnes per nom usant `LIKE` i `PreparedStatement`. L'usuari escriu una part del nom i es mostren tots els que coincidisquen. Si no hi ha resultats, mostra «Sense resultats».
-
-**Pista:** `SELECT * FROM alumnos WHERE nombre LIKE ?` amb `pstmt.setString(1, "%" + text + "%")`. Els `%` són comodins i van dins del **valor**, no en l'SQL. El `%text%` busca el text en qualsevol posició.
-
----
-
-## ⭐⭐ Exercici 6: Dates en JDBC
-
-Afig una columna `fecha_nacimiento DATE` a la taula `alumnos` (assumix que ja existix). Crea un programa que:
-
-1. Demane nom, edat, curs i data de naixement (format `YYYY-MM-DD`).
-2. Inserisca l'alumne usant `PreparedStatement` amb `java.sql.Date.valueOf()`.
-3. Lliste tots els alumnes mostrant també la seua data de naixement.
-
-**Pista:** `Date.valueOf("2000-03-15")` convertix el text en `java.sql.Date` (alerta: és `java.sql.Date`, no `java.util.Date`!). Per a llegir-la, `rs.getDate("fecha_nacimiento")`. Recorda comprovar el valor que torna `executeUpdate()`.
-
----
-
-## ⭐⭐ Exercici 7: Batch INSERT — 100 alumnes de prova
-
-Crea un programa que inserisca **100 alumnes de prova** a la taula `alumnos` usant lots (batch). Els noms poden ser genèrics: `Alumno1`, `Alumno2`, etc.
-
-Usa `addBatch()` i `executeBatch()` de `PreparedStatement`. Mesura el temps que tarda amb `System.currentTimeMillis()`.
-
-**Pista:** al bucle, fas `addBatch()` a cada volta i un sol `executeBatch()` al final (o cada 50). Per a mesurar: `long inicio = System.currentTimeMillis();` ... `long fin = System.currentTimeMillis();` i restes. Compara mentalment amb 100 `executeUpdate()` solts.
-
----
-
-## ⭐⭐⭐ Exercici 8: El patró DAO
-
-Implementa el patró **Data Access Object (DAO)** per a la taula `alumnos`. Crea les següents classes:
-
-1. `Alumno` — classe model amb `id`, `nombre`, `edad`, `curso`.
-2. `AlumnoDAO` — interfície amb mètodes: `listar()`, `buscarPorId(int id)`, `buscarPorNombre(String nombre)`, `insertar(Alumno a)`, `actualizar(Alumno a)`, `eliminar(int id)`.
-3. `AlumnoDAOImpl` — implementació concreta amb JDBC i SQLite.
-4. `Main` — programa amb menú que use el DAO.
-
-**Pista:** la URL (`jdbc:sqlite:instituto.db`) és una constant privada de la implementació. Cada mètode obri la seua pròpia connexió amb `try-with-resources`. El `Main` només parla amb la interfície `AlumnoDAO`; l'SQL no li importa.
-
----
-
-## ⭐⭐⭐ Exercici 9: Transacció bancària atòmica
-
-Simula una transferència entre dos comptes en una taula `cuentas(id, titular, saldo)`. La transferència ha de ser **atòmica**: trau 100 € d'un compte, posa'ls en l'altre, i si falla qualsevol pas, fes `rollback()` perquè el sistema no quede a mitges.
-
-Exemple d'eixida:
+Crea un programa que llig un fitxer `datos.txt` on cada línia conté una dada i el seu tipus (separats per `;`):
 
 ```
-Saldo abans: Ana 500, Luis 300
-Transferència OK
-Saldo després: Ana 400, Luis 400
+ana@email.com;email
+12345678Z;dni
++34 612345678;telefono
+91 123 45 67;telefono
+esto-no-es-email;email
 ```
 
-**Pista:** `con.setAutoCommit(false)`, després les dues operacions amb `PreparedStatement`, i al final `con.commit()`. El `rollback()` va al `catch (SQLException e)` intern. Prova a forçar la fallada (per exemple, un compte inexistent) i comprova que el saldo d'Ana no canvia.
+Valida cada línia segons el tipus usant expressions regulars:
+
+- **Correu:** format bàsic `xxx@xxx.xxx`.
+- **DNI:** 8 dígits + lletra majúscula (la lletra ha de ser vàlida segons l'algoritme mòdul 23).
+- **Telèfon:** opcional `+34` seguit de 9 dígits, amb o sense espais.
+
+Mostra un resum: quants de vàlids, quants d'invàlids, i llixa els invàlids.
+
+**Pista:** per a cada línia, fes `linea.split(";")`, mira el tipus amb `equals` i aplica el patró corresponent amb `matches()`.
+
+---
+
+## ⭐⭐⭐ Exercici 7: Xifrat Cèsar amb fitxers
+
+Crea un programa que llig un fitxer `mensaje.txt`, desplace cada caràcter **3 posicions** en l'alfabet (xifrat Cèsar) i escriga el resultat en `mensaje_cifrado.txt`. Després, un altre programa (o el mateix amb una opció) que el descifre. Usa `try-with-resources` i `BufferedReader`/`PrintWriter`.
+
+**Pista:** per cada `char`, si és lletra fes `(char) (c + 3)` i compte amb els extrems (la `z` ha de tornar a la `a`: usa `% 26` sobre la posició en l'alfabet).
+
+---
+
+## ⭐⭐⭐ Exercici 8: Serialització d'estudiants
+
+Crea una classe `Estudiante` que implemente `Serializable` amb `String nombre`, `int edad` i `double notaMedia`. Crea un programa que guarde un `ArrayList<Estudiante>` en un fitxer `estudiantes.dat` usant `ObjectOutputStream`. Després, un altre programa (o el mateix amb una opció) que el llig amb `ObjectInputStream` i mostre les dades formatades.
+
+**Pista:** recorda el `serialVersionUID`. El `readObject()` torna `Object`: fes el casting a `List<Estudiante>` amb calma i comprova que no siga `null`.
+
+---
+
+## ⭐⭐ Exercici 9: El comptador de línies, paraules i caràcters
+
+Crea un programa que llig un fitxer de text i mostre quantes línies, paraules i caràcters té. Usa `BufferedReader` per a llegir.
+
+**Pista:** cada línia suma 1 al comptador de línies i `linea.length()` al de caràcters; per a les paraules, `linea.split("\\s+").length` (amb compte amb les línies buides).
+
+**Repte extra:** resol-lo també amb NIO (`Files.readAllLines`) i compara la diferència.

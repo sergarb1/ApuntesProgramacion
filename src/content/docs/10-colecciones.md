@@ -6,7 +6,7 @@ emoji: 📚
 
 <p><small>El parking que crece, la conga que encadena, el portero sin duplicados y el camarero que lo recorre todo: ArrayList, LinkedList, Set, Iterator y Collections 📚</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → **📚 AQUÍ ESTÁS (U10)** → 🗺️ U11 → 📁 U12 → 🗄️ U13 → 🌐 U14
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → ☕ U01 → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → **📚 AQUÍ ESTÁS (U10)** → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -59,13 +59,13 @@ Al terminar, serás capaz de:
 
 ## 📝 Boletines de la unidad
 
-> Practica con los pares del curso: empieza siempre por el resuelto para ver el estilo y luego intenta el por-resolver.
+> Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u10-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u10-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
   <a href="/ApuntesProgramacion/boletines/boletin-u10-extras" class="elink">🔥 Extras</a>
 </div>
 
@@ -82,7 +82,7 @@ Al terminar, serás capaz de:
 | RA6 d) | Se han utilizado iteradores para recorrer los elementos de las listas. | ✅ Puntos 5 y 9 |
 | RA6 e) | Se han reconocido las características y ventajas de cada una de las colecciones de datos disponibles. | ✅ Puntos 3, 4 y 7 |
 
-> 📌 La **RA6** se completa con la **U04** (arrays, CE a), la **U11** (genéricos y mapas, CE f) y la **U12** (regex y XML, CEs g, h e i). Esta unidad cubre el corazón de las colecciones: listas, conjuntos, iteradores y la librería `java.util`.
+> 📌 La **RA6** se completa con la **U04** (arrays, CE a), la **U11** (genéricos y mapas, CE f) y la **U13** (regex y XML, CEs g, h e i). Esta unidad cubre el corazón de las colecciones: listas, conjuntos, iteradores y la librería `java.util`.
 
 ---
 

@@ -2,9 +2,10 @@ param($Lang = "es", $OutDir = "public/epub")
 
 $ErrorActionPreference = "Stop"
 
-$units = "01-introduccion","02-variables-tipos-operadores","03-estructuras-control-excepciones","04-algoritmica-fundamentos","05-algoritmica-tecnicas","06-poo-clases-objetos","07-visibilidad-encapsulacion-static","08-herencia-polimorfismo-interfaces","09-arrays-colecciones","10-genericos-mapas","11-consola-ficheros-regex","12-conexion-bases-datos","13-apis-web"
+$units = "01-introduccion","02-variables-tipos-operadores","03-estructuras-control-excepciones","04-arrays","05-algoritmica-fundamentos","06-algoritmica-tecnicas","07-poo-clases-objetos","08-visibilidad-encapsulacion-static","09-herencia-polimorfismo-interfaces","10-colecciones","11-genericos-mapas","12-programacion-funcional","13-ficheros-regex","14-conexion-bases-datos","15-apis-web"
 
-$boletinTypes = @("inicial", "intermedio", "extras")
+# Orden de los boletines: por-resolver primero, luego su resuelto, y extras al final.
+$boletinTypes = @("inicial", "inicial-resuelto", "avanzado", "avanzado-resuelto", "extras")
 
 if ($Lang -eq "va") {
   $prefix = "va/"
@@ -63,10 +64,10 @@ foreach ($u in $units) {
     }
   }
 
-  # --- Boletines ---
+  # --- Boletines (en src/content/docs/boletines/) ---
   $unitNum = $u -replace '^(\d+).*', '$1'
   foreach ($bt in $boletinTypes) {
-    $boletinFile = "$srcDir/boletin-$unitNum-$bt.md"
+    $boletinFile = "$srcDir/boletines/boletin-U$unitNum-$bt.md"
     if (Test-Path $boletinFile) {
       $bContent = Get-Content $boletinFile -Raw -Encoding UTF8
 

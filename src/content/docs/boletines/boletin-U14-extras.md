@@ -1,210 +1,132 @@
 ---
 title: "Boletín U14 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá de las APIs web"
+description: "CodeWars y AceptaElReto para ir más allá del JDBC: SQL de verdad y algoritmos con datos"
 ---
 
 # 📝 Boletín U14 — Extras
 
-> Ejercicios de CodeWars y AceptaElReto con pistas y soluciones. Las soluciones están ocultas: agota tu pista antes de mirarlas.
+> Ejercicios de CodeWars y AceptaElReto con pistas. Las soluciones están ocultas: agota tu pista antes de mirarlas.
 
 ---
 
 ## CodeWars
 
-### 1. IP Validation
+### 1. SQL Basics: Simple JOIN
 
-Te dan una cadena que dice ser una dirección IPv4. Escribe una función que devuelva `true` solo si es una IP válida: cuatro partes, cada una un número entre 0 y 255, sin ceros a la izquierda y sin caracteres extraños.
+Crea una consulta `SELECT` que devuelva todos los productos junto con la empresa que los fabrica. Tendrás que relacionar las tablas `products` y `companies` mediante la clave foránea `company_id`.
 
-**Ejemplos:** `"1.2.3.4"` → `true`, `"123.045.067.089"` → `false` (ceros a la izquierda), `"12.34.56"` → `false` (faltan partes), `"a.b.c.d"` → `false`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/515decfd9dcfc23bb6000006)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5802e32dd8c944e562000020)
 - Dificultad: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Divide por `.` con `split("\\.", -1)` — ojo: el `.` es un comodín en regex, por eso se escapa. Deben ser exactamente 4 partes, cada una entre 0 y 255, sin ceros a la izquierda y con todos los caracteres dígitos.
+Un `INNER JOIN` sobre la clave foránea: `products.company_id = companies.id`. Selecciona las columnas que te pida el problema y cuida los alias.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-public class Kata {
-    public static boolean isValidIP(String ip) {
-        String[] partes = ip.split("\\.", -1);
-        if (partes.length != 4) return false;
-
-        for (String p : partes) {
-            if (p.isEmpty() || p.length() > 3) return false;
-            if (p.length() > 1 && p.charAt(0) == '0') return false;
-            for (char c : p.toCharArray()) {
-                if (!Character.isDigit(c)) return false;
-            }
-            int n = Integer.parseInt(p);
-            if (n < 0 || n > 255) return false;
-        }
-        return true;
-    }
-}
+```sql
+SELECT p.name, c.name AS company_name
+FROM products p
+INNER JOIN companies c ON p.company_id = c.id;
 ```
 
-Tres trampas típicas: el `.` en regex (hay que escaparlo), el `-1` en `split` (para no descartar partes vacías finales) y los ceros a la izquierda (`"045"` no es válido aunque valga 45). Es un ejercicio de validación de formato, como validar una URL o un JSON.
+El `JOIN` relaciona las dos tablas por la clave foránea y, en una sola consulta, tienes producto y empresa. Es el mismo concepto del punto 8 de la unidad: una consulta con `JOIN` donde no caben consultas en bucle.
 
 </details>
 
 ---
 
-### 2. Simple URL parser
+### 2. SQL with Street Fighter: Total Wins
 
-Te dan una URL como `"http://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7?page=1"`. Escribe una función que la divida en **protocolo**, **dominio** y **ruta**.
+Es hora de decidir qué luchadores pasan a las semifinales del campeonato mundial de Street Fighter. Cada combate registra si el luchador ganó (1) o perdió (0), y el movimiento con el que terminó. Como los ataques ki han sido prohibidos, **no se cuentan** los combates terminados con Hadoken, Shouoken o Kikoken. Devuelve `name`, `won` y `lost` sumando las victorias y derrotas, ordena de más a menos victorias y devuelve los 6 mejores.
 
-**Ejemplos:** `"http://www.codewars.com/path"` → protocolo `http`, dominio `www.codewars.com`, ruta `/path`. `"https://example.com"` → protocolo `https`, dominio `example.com`, ruta vacía.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5ab7a736edbcfc8e62000007)
 - Dificultad: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Busca primero `://` (divide protocolo del resto). Luego busca la primera `/` (divide dominio de ruta). Si algo no está, ese campo queda vacío. Usa `indexOf` y `substring`.
+`GROUP BY` el nombre del luchador con `SUM(won)` y `SUM(lost)`. Excluye los movimientos prohibidos con `NOT IN ('Hadoken', 'Shouoken', 'Kikoken')` y ordena con `ORDER BY won DESC LIMIT 6`.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-record UrlParts(String protocolo, String dominio, String ruta) {}
-
-public class Kata {
-    public static UrlParts parsear(String url) {
-        String restante = url;
-        String protocolo = "";
-
-        int dosPuntos = restante.indexOf("://");
-        if (dosPuntos >= 0) {
-            protocolo = restante.substring(0, dosPuntos);
-            restante = restante.substring(dosPuntos + 3);
-        }
-
-        String dominio;
-        String ruta = "";
-        int barra = restante.indexOf('/');
-        if (barra >= 0) {
-            dominio = restante.substring(0, barra);
-            ruta = restante.substring(barra);
-        } else {
-            dominio = restante;
-        }
-
-        return new UrlParts(protocolo, dominio, ruta);
-    }
-}
+```sql
+SELECT f.name, SUM(f.won) AS won, SUM(f.lost) AS lost
+FROM fighters f
+LEFT JOIN winning_moves m ON f.move_id = m.id
+WHERE m.move NOT IN ('Hadoken', 'Shouoken', 'Kikoken')
+GROUP BY f.name
+ORDER BY won DESC
+LIMIT 6;
 ```
 
-Es la misma anatomía de URL del punto 1, llevada a código: el protocolo termina en `://`, el dominio termina en `/`. `indexOf` localiza los separadores y `substring` corta. Un `record` (U11) es la forma limpia de devolver tres datos a la vez.
+`GROUP BY` agrupa los combates de cada luchador, `SUM` acumula victorias y derrotas, y el `WHERE` descarta los ataques prohibidos antes de agrupar. Es exactamente el tipo de consulta que podrías lanzar con un `PreparedStatement` contra la tabla `fighters`.
 
 </details>
 
 ---
 
-### 3. Extract the domain name from a URL
+### 3. SQL Basics: Simple HAVING
 
-Te dan una URL completa y tienes que devolver solo el **nombre de dominio** (sin protocolo, sin `www.`, sin extensión).
+Tienes una tabla `people` con `id`, `name` y `age`. Cuenta cuántas personas tienen la misma edad y devuelve **solo los grupos de edad con 10 o más personas**.
 
-**Ejemplos:** `"http://github.com/carbonfive/raygun"` → `"github"`, `"http://www.zombie-bites.com"` → `"zombie-bites"`, `"https://www.cnet.com"` → `"cnet"`.
+- [Enunciado en CodeWars](https://www.codewars.com/kata/58164ddf890632fa0f00011a)
+- Dificultad: 6 kyu
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/514a024011ea54fbca000077)
+<details>
+<summary>💡 Pista</summary>
+
+`GROUP BY` la columna `age` y cuenta con `COUNT(*)`. `WHERE` no vale para filtrar grupos: necesitas `HAVING COUNT(*) >= 10`, que se aplica después del agrupado.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```sql
+SELECT age, COUNT(id) AS total_people
+FROM people
+GROUP BY age
+HAVING COUNT(id) >= 10;
+```
+
+`GROUP BY age` crea un grupo por cada edad, `COUNT(id)` cuenta sus integrantes, y `HAVING` filtra los grupos que no alcanzan 10 personas. La diferencia con `WHERE`: `WHERE` filtra filas antes de agrupar, `HAVING` filtra grupos después.
+
+</details>
+
+---
+
+### 4. SQL Basics: Group By Day
+
+Tienes una tabla `orders` con `id`, `datetime` y `amount`. Cuenta cuántos pedidos hay **por día**, extrayendo la fecha del campo `datetime`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5811597e9d278beb04000038)
 - Dificultad: 5 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Quita primero el protocolo (`http://`, `https://`), luego el `www.` si está, y finalmente corta por el primer `.`. Orden de operaciones importa.
+Extrae el día con la función `DATE(datetime)` y agrúpalo con `GROUP BY`. Cuenta con `COUNT(*)`. Es el `GROUP BY` de siempre, pero sobre una columna calculada.
 
 </details>
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-public class Kata {
-    public static String domainName(String url) {
-        String s = url;
-        s = s.replace("http://", "").replace("https://", "");
-        if (s.startsWith("www.")) {
-            s = s.substring(4);
-        }
-        int punto = s.indexOf('.');
-        return punto >= 0 ? s.substring(0, punto) : s;
-    }
-}
+```sql
+SELECT DATE(datetime) AS day, COUNT(*) AS total
+FROM orders
+GROUP BY DATE(datetime);
 ```
 
-El truco es el orden: sin protocolo primero, `www.zombie-bites.com` empezaría por `www.` y lo cortarías mal. `replace` limpia el protocolo, `startsWith` detecta el `www.` y `indexOf('.')` encuentra dónde termina el nombre. Pequeño, pero con trampas.
-
-</details>
-
----
-
-### 4. Decode the Morse code
-
-Te dan un mensaje en código Morse (letras separadas por un espacio, palabras por tres espacios). Escríbelo en texto legible.
-
-**Ejemplo:** `"... --- ..."` → `"SOS"`, `".... . -.--   .--- ..- -.. ."` → `"HEY JUDE"`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54b724efac3d5402db00065e)
-- Dificultad: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Crea un `Map` con cada símbolo Morse → letra (los mapas, de la U11). Separa palabras por tres espacios y letras por uno. No olvides `trim()` los extremos.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-public class MorseDecoder {
-
-    static final Map<String, String> MORSE = new HashMap<>();
-    static {
-        MORSE.put(".-", "A"); MORSE.put("-...", "B"); MORSE.put("-.-.", "C");
-        MORSE.put("-..", "D"); MORSE.put(".", "E"); MORSE.put("..-.", "F");
-        MORSE.put("--.", "G"); MORSE.put("....", "H"); MORSE.put("..", "I");
-        MORSE.put(".---", "J"); MORSE.put("-.-", "K"); MORSE.put(".-..", "L");
-        MORSE.put("--", "M"); MORSE.put("-.", "N"); MORSE.put("---", "O");
-        MORSE.put(".--.", "P"); MORSE.put("--.-", "Q"); MORSE.put(".-.", "R");
-        MORSE.put("...", "S"); MORSE.put("-", "T"); MORSE.put("..-", "U");
-        MORSE.put("...-", "V"); MORSE.put(".--", "W"); MORSE.put("-..-", "X");
-        MORSE.put("-.--", "Y"); MORSE.put("--..", "Z");
-        MORSE.put("-----", "0"); MORSE.put(".----", "1"); MORSE.put("..---", "2");
-        MORSE.put("...--", "3"); MORSE.put("....-", "4"); MORSE.put(".....", "5");
-        MORSE.put("-....", "6"); MORSE.put("--...", "7"); MORSE.put("---..", "8");
-        MORSE.put("----.", "9");
-    }
-
-    public static String decode(String morseCode) {
-        StringBuilder resultado = new StringBuilder();
-        for (String palabra : morseCode.trim().split(" {3}")) {
-            for (String letra : palabra.split(" ")) {
-                resultado.append(MORSE.getOrDefault(letra, ""));
-            }
-            resultado.append(" ");
-        }
-        return resultado.toString().trim();
-    }
-}
-```
-
-El `Map` asocia cada símbolo con su letra (U11), `split(" {3}")` separa palabras por tres espacios y `split(" ")` separa letras por uno. `getOrDefault` devuelve `""` si el símbolo es raro, y `trim()` quita los espacios de los extremos. Es un problema de parseo: separar, consultar, recomponer.
+`DATE(datetime)` recorta el `datetime` a solo la fecha, y `GROUP BY` agrupa todos los pedidos de ese día. Una columna calculada como alias: el mismo mecanismo que usarías con `ResultSetMetaData` para leerla después desde Java.
 
 </details>
 
@@ -212,19 +134,17 @@ El `Map` asocia cada símbolo con su letra (U11), `split(" {3}")` separa palabra
 
 ## AceptaElReto
 
-### 5. 396 — ¿Cuántos días faltan?
+### 5. 245 — ¿Quién gana la partida?
 
-Se dan dos fechas y hay que decir **cuántos días hay entre ellas** (los días que faltan para la segunda desde la primera).
+Un grupo de jugadores participa en un juego por turnos con números. Cada ronda, el jugador que acierta se descarta y el que falla pasa al **final de la cola** para volver a intentarlo. Simula las rondas y determina quién gana la partida.
 
-**Entrada:** varios casos de prueba. Cada caso trae dos fechas con el formato día, mes y año. La entrada termina cuando no quedan datos.
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=396)
-- Dificultad: ⭐⭐
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=245)
+- Dificultad: ⭐⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Convierte cada fecha a día del año (número de días desde el 1 de enero) y resta. O, más directo con Java moderno: `ChronoUnit.DAYS.between(fecha1, fecha2)` con `LocalDate`.
+Simula los turnos con una `Queue<Integer>`: cada ronda, saca al primero con `poll()`, y si falla lo vuelves a meter con `offer()`. El que acierta sale para siempre. La cola encaja perfectamente con la estructura "quien falla, vuelve al final".
 
 </details>
 
@@ -232,48 +152,43 @@ Convierte cada fecha a día del año (número de días desde el 1 de enero) y re
 <summary>🔄 Solución</summary>
 
 ```java
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Scanner;
+import java.util.*;
 
-public class CuantosDiasFaltan {
+public class QuienGana {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        // Leer participantes y datos del juego según el enunciado
+        Queue<Integer> cola = new LinkedList<>();
+        // ... rellenar la cola con los jugadores ...
 
-        while (sc.hasNextInt()) {
-            int d1 = sc.nextInt(), m1 = sc.nextInt(), a1 = sc.nextInt();
-            int d2 = sc.nextInt(), m2 = sc.nextInt(), a2 = sc.nextInt();
-
-            LocalDate f1 = LocalDate.of(a1, m1, d1);
-            LocalDate f2 = LocalDate.of(a2, m2, d2);
-
-            long dias = ChronoUnit.DAYS.between(f1, f2);
-            System.out.println(dias);
-        }
-        sc.close();
+        // while (cola.size() > 1) {
+        //     int jugador = cola.poll();
+        //     if (falla(jugador)) {
+        //         cola.offer(jugador);   // vuelve al final
+        //     }
+        // }
+        // System.out.println(cola.peek());
     }
 }
 ```
 
-`LocalDate` te libera de los cálculos manuales (meses de 30 y 31, años bisiestos...). `ChronoUnit.DAYS.between` devuelve los días entre dos fechas, sea el desfase positivo o negativo. La alternativa "clásica" era convertir cada fecha a día del año y restar, pero Java moderno lo hace en una línea.
+La `LinkedList` como `Queue` es la protagonista: `poll()` saca al primero y `offer()` lo devuelve al final si falla. Los jugadores que aciertan salen para siempre, y el último que queda es el ganador. Estructura de datos (U10) al servicio del problema de turnos.
 
 </details>
 
 ---
 
-### 6. 462 — Día de la semana
+### 6. 424 — Billetes de autobús
 
-Te dan una fecha (día, mes y año) y tienes que decir **qué día de la semana es**.
+Hay varias rutas de autobús entre dos ciudades, cada una con su hora de salida y de llegada. Quieres coger **el máximo número de autobuses posible** sin que se solapen (coger uno, bajarte, y poder subir a otro que salga después de llegar).
 
-**Entrada:** varios casos. Cada caso: una fecha en una línea con día, mes y año. La entrada termina con `0 0 0`.
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=462)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=424)
 - Dificultad: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Usa la congruencia de Zeller o un día de referencia conocido para calcular el residuo. En Java moderno, `LocalDate.of(a, m, d).getDayOfWeek()` te da el día directamente.
+Algoritmo voraz: ordena las rutas por **hora de llegada** y elige siempre la siguiente ruta que termine antes y que no se solape con la última elegida. Es el clásico problema de "selección de actividades".
 
 </details>
 
@@ -281,34 +196,38 @@ Usa la congruencia de Zeller o un día de referencia conocido para calcular el r
 <summary>🔄 Solución</summary>
 
 ```java
-import java.time.LocalDate;
-import java.util.Scanner;
+import java.util.*;
 
-public class DiaSemana {
+public class Billetes {
+    static class Ruta implements Comparable<Ruta> {
+        int salida, llegada;
+        Ruta(int s, int l) { salida = s; llegada = l; }
 
-    static final String[] DIAS = {"LUNES", "MARTES", "MIÉRCOLES",
-        "JUEVES", "VIERNES", "SÁBADO", "DOMINGO"};
+        public int compareTo(Ruta o) {
+            return Integer.compare(llegada, o.llegada); // ordena por llegada
+        }
+    }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        while (sc.hasNextInt()) {
-            int d = sc.nextInt(), m = sc.nextInt(), a = sc.nextInt();
-            if (d == 0 && m == 0 && a == 0) break;
-
-            LocalDate fecha = LocalDate.of(a, m, d);
-            // getDayOfWeek().getValue(): 1=LUNES ... 7=DOMINGO
-            System.out.println(DIAS[fecha.getDayOfWeek().getValue() - 1]);
-        }
-        sc.close();
+        // Leer rutas, ordenarlas y aplicar el voraz:
+        // Collections.sort(rutas);
+        // int ultima = Integer.MIN_VALUE, contador = 0;
+        // for (Ruta r : rutas) {
+        //     if (r.salida >= ultima) {
+        //         contador++;
+        //         ultima = r.llegada;
+        //     }
+        // }
+        // System.out.println(contador);
     }
 }
 ```
 
-`getDayOfWeek().getValue()` devuelve 1 para el lunes y 7 para el domingo; restando 1 tienes el índice del array. La "manera de concurso" era la congruencia de Zeller (una fórmula que calcula el día sin calendario), pero `LocalDate` hace lo mismo por dentro: mismo resultado, menos código.
+El truco voraz: ordenar por hora de llegada garantiza que siempre eliges la ruta que libera el día antes, dejando hueco para más autobuses. Una sola pasada con un contador y una variable `ultima`. Clásico de AceptaElReto: los datos se ordenan y la solución sale sola.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines servidores y clientes HTTP, vuelve a los problemas de unidades anteriores y plantéalos como APIs: un problema que devolvía texto por consola puede devolver JSON por HTTP. El material no se pierde: se reutiliza.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines el JDBC, vuelve a los problemas de AceptaElReto de unidades anteriores y reescríbelos guardando los datos de entrada en una tabla SQLite con `PreparedStatement`: te sorprenderá lo natural que resulta que tus algoritmos hablen con una base de datos. El material no se pierde: se reutiliza.

@@ -70,7 +70,7 @@ for (int i = 0; i < vocales.length; i++) {
 | ¿Se puede modificar una letra? | No (creas otra) | Sí: `vocales[0] = 'A';` |
 | Pasar a método | Se comporta como inmutable | Se comparte como cualquier objeto |
 
-> 💡 **Consejo:** si necesitas "cambiar una letra", con `String` no puedes. Una opción es pasarla a `char[]`, modificarla y volver a construir la `String`. En la U12 (ficheros y regex) esta idea te va a salir varias veces.
+> 💡 **Consejo:** si necesitas "cambiar una letra", con `String` no puedes. Una opción es pasarla a `char[]`, modificarla y volver a construir la `String`. En la U13 (ficheros y regex) esta idea te va a salir varias veces.
 
 ---
 

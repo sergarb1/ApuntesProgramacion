@@ -1,6 +1,6 @@
 ---
 title: "Boletín U13 — Avanzado Resuelto"
-description: "Los mismos ejercicios que el boletín avanzado, con soluciones completas"
+description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 ---
 
 # 📝 Boletín U13 — Avanzado (Resuelto)
@@ -9,595 +9,410 @@ description: "Los mismos ejercicios que el boletín avanzado, con soluciones com
 
 ---
 
-## ⭐ Ejercicio 1: Conexión desde archivo de propiedades
+## ⭐ Ejercicio 1: Buscador de archivos por extensión
 
 <details>
 <summary>🔄 Solución</summary>
 
-`db.properties`:
-
-```properties
-url=jdbc:sqlite:instituto.db
-```
-
 ```java
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
+import java.io.File;
 
-public class ConexionProperties {
+public class Buscador {
+    public static void buscar(File carpeta, String extension) {
+        File[] contenidos = carpeta.listFiles();
+        if (contenidos == null) return;
+
+        for (File item : contenidos) {
+            if (item.isDirectory()) {
+                buscar(item, extension);        // recursión: dentro de la carpeta
+            } else if (item.getName().endsWith(extension)) {
+                System.out.println(item.getAbsolutePath());
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        Properties props = new Properties();
-        try (InputStream in = Files.newInputStream(Path.of("db.properties"))) {
-            props.load(in);
-        } catch (IOException e) {
-            System.err.println("No se pudo leer db.properties: " + e.getMessage());
-            return;
-        }
-
-        String url = props.getProperty("url");
-        if (url == null) {
-            System.err.println("Falta la propiedad 'url' en db.properties");
-            return;
-        }
-
-        try (Connection con = DriverManager.getConnection(url)) {
-            System.out.println("Conectado a: " + url);
-        } catch (SQLException e) {
-            System.err.println("Error BD: " + e.getMessage());
-        }
+        File carpeta = new File("src");
+        buscar(carpeta, ".java");
     }
 }
 ```
 
-`Properties` carga el par clave-valor y `getProperty("url")` lo recupera. Dos excepciones conviven aquí: la `IOException` de leer el fichero (U12) y la `SQLException` de conectar. Y las credenciales no viajan en el código: es el mandamiento 6 del decálogo.
+La recursión es el corazón: si el archivo es una carpeta, el método se llama a sí mismo con esa carpeta; si es un archivo, comprueba la extensión. El `if (contenidos == null)` evita el `NullPointerException` si no hay permiso de lectura. Así se recorre un árbol completo sin bucles anidados infinitos.
 
 </details>
 
 ---
 
-## ⭐ Ejercicio 2: INSERT con clave autogenerada
+## ⭐ Ejercicio 2: Lector de CSV con Scanner
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.sql.*;
+import java.io.File;
+import java.util.Scanner;
 
-public class InsertarConId {
-    public static void main(String[] args) {
-        String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
+public class LeeCSV {
+    public static void main(String[] args) throws Exception {
+        try (Scanner sc = new Scanner(new File("datos.csv"))) {
+            sc.useDelimiter(";|\\R");
+            System.out.printf("%-8s %3s %s%n", "Nombre", "Edad", "Ciclo");
+            while (sc.hasNext()) {
+                String nombre = sc.next();
+                int edad = sc.nextInt();
+                String ciclo = sc.next();
+                System.out.printf("%-8s %3d %s%n", nombre, edad, ciclo);
+            }
+        }
+    }
+}
+```
 
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             PreparedStatement pstmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+`useDelimiter(";|\\R")` corta por `;` o por cualquier salto de línea: los campos salen limpios, uno detrás de otro. `printf` con `%-8s` alinea a la izquierda y `%3d` reserva 3 posiciones para la edad. Salida:
 
-            pstmt.setString(1, "María");
-            pstmt.setInt(2, 22);
-            pstmt.setString(3, "DAM");
-            pstmt.executeUpdate();
+```
+Nombre   Edad Ciclo
+Ana        25 DAM
+Bob        22 DAW
+Carlos     30 DAM
+```
 
-            try (ResultSet claves = pstmt.getGeneratedKeys()) {
-                if (claves.next()) {
-                    System.out.println("Nuevo id: " + claves.getInt(1));
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 3: Filtro de líneas por palabra clave
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.util.Scanner;
+
+public class Filtro {
+    public static void main(String[] args) throws Exception {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Palabra clave: ");
+        String clave = sc.nextLine();
+
+        int coinciden = 0, descartadas = 0;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("origen.txt"));
+             PrintWriter pw = new PrintWriter(new FileWriter("destino.txt"))) {
+
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(clave)) {
+                    pw.println(linea);
+                    coinciden++;
+                } else {
+                    descartadas++;
                 }
             }
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
         }
+
+        System.out.println("Coinciden: " + coinciden);
+        System.out.println("Descartadas: " + descartadas);
+        sc.close();
     }
 }
 ```
 
-La clave está en `Statement.RETURN_GENERATED_KEYS`: le dices a la base de datos que quieres saber el id que acaba de generar. Después, `getGeneratedKeys()` devuelve un `ResultSet` con esa clave y se lee con `next()` + `getInt(1)`. Sin esa opción, tendrías que hacer una consulta extra o adivinar.
+`linea.contains(clave)` busca la palabra dentro de la línea (sin regex, que aquí no hace falta). Los dos `PrintWriter`/`BufferedReader` van en el mismo `try-with-resources` y Java cierra ambos al salir. Los contadores dan el resumen final.
 
 </details>
 
 ---
 
-## ⭐ Ejercicio 3: UPDATE condicional
+## ⭐⭐ Ejercicio 4: Separador de líneas pares e impares
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.sql.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 
-public class ActualizarCurso {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("¿Edad mínima? ");
-        int edad = sc.nextInt();
-        sc.nextLine();
-        System.out.print("¿Nuevo curso? ");
-        String curso = sc.nextLine();
+public class Separador {
+    public static void main(String[] args) throws Exception {
+        try (BufferedReader br = new BufferedReader(new FileReader("entrada.txt"));
+             PrintWriter pares = new PrintWriter(new FileWriter("pares.txt"));
+             PrintWriter impares = new PrintWriter(new FileWriter("impares.txt"))) {
 
-        String sql = "UPDATE alumnos SET curso = ? WHERE edad > ?";
-
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            pstmt.setString(1, curso);
-            pstmt.setInt(2, edad);
-
-            int filas = pstmt.executeUpdate();
-            System.out.println("Actualizados " + filas + " alumno(s)");
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-
-El `WHERE edad > ?` limita la actualización a los alumnos mayores de esa edad. `executeUpdate()` devuelve el número de filas afectadas: si imprime `0`, es que no había nadie mayor de 25 (o todos ya estaban en ese curso). Sin el `WHERE`, habrías actualizado a toda la tabla. Siempre comprueba las filas.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 4: INNER JOIN con PreparedStatement
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.sql.*;
-import java.util.Scanner;
-
-public class JoinAlumno {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre del alumno: ");
-        String nombre = sc.nextLine();
-
-        String sql = "SELECT a.nombre, m.asignatura, m.nota " +
-                     "FROM alumnos a " +
-                     "INNER JOIN matriculas m ON m.id_alumno = a.id " +
-                     "WHERE a.nombre = ?";
-
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            pstmt.setString(1, nombre);
-
-            try (ResultSet rs = pstmt.executeQuery()) {
-                System.out.println("Alumno: " + nombre);
-                boolean encontrado = false;
-                while (rs.next()) {
-                    System.out.printf("  %s: %.1f%n",
-                        rs.getString("asignatura"),
-                        rs.getDouble("nota"));
-                    encontrado = true;
+            String linea;
+            int numLinea = 0;
+            while ((linea = br.readLine()) != null) {
+                if (numLinea % 2 == 0) {
+                    pares.println(linea);
+                } else {
+                    impares.println(linea);
                 }
-                if (!encontrado) System.out.println("  Sin matrículas");
+                numLinea++;
             }
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
         }
+        System.out.println("Separados.");
     }
 }
 ```
 
-El `INNER JOIN` relaciona `alumnos` y `matriculas` por la clave foránea `id_alumno`, y el `WHERE` filtra por el nombre. Una sola consulta, un solo viaje a la base de datos: es el antídoto del patrón N+1 (mandamiento 8). Los alias `a` y `m` hacen el SQL más corto.
+Tres recursos en el mismo `try-with-resources`, separados por `;`. El `numLinea` cuenta desde 0, así que la primera línea (posición 0, par) va a `pares.txt`. Al terminar, Java cierra los tres archivos en orden inverso.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 5: Búsqueda con LIKE
+## ⭐⭐ Ejercicio 5: Split con regex — analizador de frases
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.sql.*;
 import java.util.Scanner;
 
-public class BuscarAlumnos {
+public class Analizador {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Parte del nombre: ");
-        String texto = sc.nextLine();
+        System.out.print("Frase: ");
+        String frase = sc.nextLine();
 
-        String sql = "SELECT * FROM alumnos WHERE nombre LIKE ?";
+        String[] palabras = frase.split("[^a-zA-ZáéíóúüñÑ]+");
 
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
+        System.out.println("Palabras: " + palabras.length);
 
-            pstmt.setString(1, "%" + texto + "%");
+        String masLarga = "";
+        for (String p : palabras) {
+            if (p.length() > masLarga.length()) {
+                masLarga = p;
+            }
+        }
+        System.out.println("Más larga: \"" + masLarga + "\"");
 
-            try (ResultSet rs = pstmt.executeQuery()) {
-                boolean encontrado = false;
-                while (rs.next()) {
-                    System.out.printf("%d - %s (%d)%n",
-                        rs.getInt("id"),
-                        rs.getString("nombre"),
-                        rs.getInt("edad"));
-                    encontrado = true;
+        System.out.print("Empiezan por vocal: [");
+        boolean primera = true;
+        for (String p : palabras) {
+            if (!p.isEmpty() && p.toLowerCase().charAt(0) == 'a' ||
+                p.toLowerCase().charAt(0) == 'e' ||
+                p.toLowerCase().charAt(0) == 'i' ||
+                p.toLowerCase().charAt(0) == 'o' ||
+                p.toLowerCase().charAt(0) == 'u') {
+                if (!primera) System.out.print(", ");
+                System.out.print("\"" + p + "\"");
+                primera = false;
+            }
+        }
+        System.out.println("]");
+        sc.close();
+    }
+}
+```
+
+El patrón `[^a-zA-ZáéíóúüñÑ]+` corta por todo lo que NO sea letra: espacios, comas, puntos y signos desaparecen como separadores. La condición de las vocales usa `charAt(0)` sobre la palabra en minúsculas (con el `!p.isEmpty()` para no reventar con cadenas vacías). Salida para el ejemplo:
+
+```
+Palabras: 6
+Más larga: "mundo"
+Empiezan por vocal: ["Esto"]
+```
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 6 (ProgramaMe): Validador de datos con regex
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.regex.Pattern;
+
+public class ValidadorDatos {
+    private static final Pattern PATRON_EMAIL =
+        Pattern.compile("[\\w.]+@[\\w.]+\\.[a-z]{2,}");
+    private static final Pattern PATRON_DNI =
+        Pattern.compile("\\d{8}[A-Z]");
+    private static final Pattern PATRON_TELEFONO =
+        Pattern.compile("(\\+34\\s?)?[679]\\d{8}");
+
+    public static boolean valida(String dato, String tipo) {
+        switch (tipo) {
+            case "email":    return PATRON_EMAIL.matcher(dato).matches();
+            case "dni":      return PATRON_DNI.matcher(dato.toUpperCase()).matches();
+            case "telefono": return PATRON_TELEFONO.matcher(dato).matches();
+            default:         return false;
+        }
+    }
+
+    public static void main(String[] args) throws Exception {
+        int validos = 0, invalidos = 0;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("datos.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] partes = linea.split(";");
+                boolean ok = valida(partes[0], partes[1]);
+                if (ok) {
+                    validos++;
+                } else {
+                    invalidos++;
+                    System.out.println("Inválido: " + linea);
                 }
-                if (!encontrado) System.out.println("Sin resultados");
             }
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
         }
+
+        System.out.println("Válidos: " + validos);
+        System.out.println("Inválidos: " + invalidos);
     }
 }
 ```
 
-`LIKE ?` con `setString(1, "%" + texto + "%")`: los `%` son comodines que permiten coincidencia en cualquier posición. La concatenación aquí es segura porque los `%` forman parte del **valor**, no del SQL. El `ResultSet` anidado en su propio `try-with-resources` se cierra solo.
+Cada línea se trocea por `;` en dato y tipo, y un `switch` elige el patrón. El teléfono `(\\+34\\s?)?` admite el prefijo `+34` opcional (con o sin espacio) seguido de 9 dígitos que empiezan por 6, 7 o 9. El DNI se pasa a mayúsculas para aceptar la letra en minúscula. Las regex validan el formato: para el DNI de verdad haría falta el algoritmo módulo 23, que aquí se da por bueno.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 6: Fechas en JDBC
+## ⭐⭐⭐ Ejercicio 7: Cifrado César con archivos
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.sql.*;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.FileWriter;
 
-public class FechasJDBC {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nombre: ");
-        String nombre = sc.nextLine();
-        System.out.print("Edad: ");
-        int edad = sc.nextInt();
-        sc.nextLine();
-        System.out.print("Curso: ");
-        String curso = sc.nextLine();
-        System.out.print("Fecha de nacimiento (YYYY-MM-DD): ");
-        String fechaTexto = sc.nextLine();
-
-        String insertar = "INSERT INTO alumnos (nombre, edad, curso, fecha_nacimiento) VALUES (?, ?, ?, ?)";
-
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             PreparedStatement pstmt = con.prepareStatement(insertar)) {
-
-            pstmt.setString(1, nombre);
-            pstmt.setInt(2, edad);
-            pstmt.setString(3, curso);
-            pstmt.setDate(4, Date.valueOf(fechaTexto));
-
-            int filas = pstmt.executeUpdate();
-            System.out.println("Insertados " + filas + " alumno(s)");
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+public class CifradoCesar {
+    public static char desplaza(char c, int n) {
+        if (c >= 'a' && c <= 'z') {
+            return (char) ('a' + (c - 'a' + n) % 26);
         }
+        if (c >= 'A' && c <= 'Z') {
+            return (char) ('A' + (c - 'A' + n) % 26);
+        }
+        return c;   // no es letra: se queda igual
+    }
 
-        String listar = "SELECT nombre, fecha_nacimiento FROM alumnos";
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(listar)) {
-            while (rs.next()) {
-                System.out.printf("%s - %s%n",
-                    rs.getString("nombre"),
-                    rs.getDate("fecha_nacimiento"));
+    public static void procesar(String origen, String destino, int n) throws Exception {
+        try (BufferedReader br = new BufferedReader(new FileReader(origen));
+             PrintWriter pw = new PrintWriter(new FileWriter(destino))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                StringBuilder sb = new StringBuilder();
+                for (char c : linea.toCharArray()) {
+                    sb.append(desplaza(c, n));
+                }
+                pw.println(sb);
             }
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        procesar("mensaje.txt", "mensaje_cifrado.txt", 3);   // cifrar
+        procesar("mensaje_cifrado.txt", "descifrado.txt", -3); // descifrar
     }
 }
 ```
 
-`java.sql.Date.valueOf("2000-03-15")` convierte el texto en una fecha que JDBC entiende, y `setDate(4, ...)` la inserta. Para leerla, `rs.getDate(...)`. Cuidado con el tipo: es `java.sql.Date`, no `java.util.Date` (son distintas). El `String` de fecha debe ir en el formato exacto `YYYY-MM-DD`.
+El truco del `% 26`: cada letra se convierte a su posición en el alfabeto (`c - 'a'`), se desplaza `n` y se hace módulo 26 para que la `z` vuelva a la `a`. Descifrar es lo mismo con `n = -3`. Los caracteres que no son letras (espacios, signos) se quedan intactos, que es lo que hace un César clásico.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 7: Batch INSERT — 100 alumnos de prueba
+## ⭐⭐⭐ Ejercicio 8: Serialización de estudiantes
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.sql.*;
-
-public class BatchAlumnos {
-    public static void main(String[] args) {
-        String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
-
-        long inicio = System.currentTimeMillis();
-
-        try (Connection con = DriverManager.getConnection("jdbc:sqlite:instituto.db");
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-
-            for (int i = 1; i <= 100; i++) {
-                pstmt.setString(1, "Alumno" + i);
-                pstmt.setInt(2, 18 + (i % 10));
-                pstmt.setString(3, "DAM");
-                pstmt.addBatch();
-            }
-
-            int[] resultados = pstmt.executeBatch();
-
-            long fin = System.currentTimeMillis();
-            System.out.println("Insertados " + resultados.length + " alumnos en " + (fin - inicio) + " ms");
-
-        } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
-        }
-    }
-}
-```
-
-`addBatch()` acumula las sentencias sin enviarlas, y `executeBatch()` las manda **todas de golpe** en un solo viaje a la base de datos. `resultados` contiene las filas afectadas por cada lote. Comparado con 100 `executeUpdate()` sueltos (100 viajes), el batch es muchísimo más rápido: una sola operación de red en vez de cien.
-
-</details>
-
----
-
-## ⭐⭐⭐ Ejercicio 8: El patrón DAO
-
-<details>
-<summary>🔄 Solución</summary>
-
-**1. El modelo:**
-
-```java
-public class Alumno {
-    private int id;
-    private String nombre;
-    private int edad;
-    private String curso;
-
-    public Alumno() {}
-    public Alumno(String nombre, int edad, String curso) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.curso = curso;
-    }
-
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public int getEdad() { return edad; }
-    public void setEdad(int edad) { this.edad = edad; }
-    public String getCurso() { return curso; }
-    public void setCurso(String curso) { this.curso = curso; }
-
-    @Override
-    public String toString() {
-        return id + " - " + nombre + " (" + edad + ") " + curso;
-    }
-}
-```
-
-**2. La interfaz (el contrato):**
-
-```java
-import java.util.List;
-
-public interface AlumnoDAO {
-    List<Alumno> listar();
-    Alumno buscarPorId(int id);
-    List<Alumno> buscarPorNombre(String nombre);
-    boolean insertar(Alumno a);
-    boolean actualizar(Alumno a);
-    boolean eliminar(int id);
-}
-```
-
-**3. La implementación (el SQL):**
-
-```java
-import java.sql.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlumnoDAOImpl implements AlumnoDAO {
-    private static final String URL = "jdbc:sqlite:instituto.db";
+class Estudiante implements Serializable {
+    private static final long serialVersionUID = 1L;
+    String nombre;
+    int edad;
+    double notaMedia;
 
-    @Override
-    public List<Alumno> listar() {
-        List<Alumno> alumnos = new ArrayList<>();
-        String sql = "SELECT * FROM alumnos ORDER BY nombre";
-        try (Connection con = DriverManager.getConnection(URL);
-             Statement stmt = con.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                Alumno a = new Alumno(
-                    rs.getString("nombre"),
-                    rs.getInt("edad"),
-                    rs.getString("curso"));
-                a.setId(rs.getInt("id"));
-                alumnos.add(a);
+    Estudiante(String n, int e, double m) {
+        this.nombre = n;
+        this.edad = e;
+        this.notaMedia = m;
+    }
+}
+
+public class GuardaEstudiantes {
+    public static void main(String[] args) throws Exception {
+        List<Estudiante> equipo = new ArrayList<>();
+        equipo.add(new Estudiante("Ana", 20, 8.5));
+        equipo.add(new Estudiante("Bob", 22, 6.0));
+        equipo.add(new Estudiante("Carla", 19, 9.2));
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("estudiantes.dat"))) {
+            oos.writeObject(equipo);
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("estudiantes.dat"))) {
+            List<Estudiante> recuperados = (List<Estudiante>) ois.readObject();
+            for (Estudiante e : recuperados) {
+                System.out.printf("%-6s %2d años - nota: %.1f%n", e.nombre, e.edad, e.notaMedia);
             }
-        } catch (SQLException e) {
-            System.err.println("Error al listar: " + e.getMessage());
-        }
-        return alumnos;
-    }
-
-    @Override
-    public Alumno buscarPorId(int id) {
-        String sql = "SELECT * FROM alumnos WHERE id = ?";
-        try (Connection con = DriverManager.getConnection(URL);
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    Alumno a = new Alumno(
-                        rs.getString("nombre"),
-                        rs.getInt("edad"),
-                        rs.getString("curso"));
-                    a.setId(rs.getInt("id"));
-                    return a;
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error al buscar: " + e.getMessage());
-        }
-        return null;
-    }
-
-    @Override
-    public List<Alumno> buscarPorNombre(String nombre) {
-        List<Alumno> alumnos = new ArrayList<>();
-        String sql = "SELECT * FROM alumnos WHERE nombre LIKE ?";
-        try (Connection con = DriverManager.getConnection(URL);
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setString(1, "%" + nombre + "%");
-            try (ResultSet rs = pstmt.executeQuery()) {
-                while (rs.next()) {
-                    Alumno a = new Alumno(
-                        rs.getString("nombre"),
-                        rs.getInt("edad"),
-                        rs.getString("curso"));
-                    a.setId(rs.getInt("id"));
-                    alumnos.add(a);
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Error al buscar: " + e.getMessage());
-        }
-        return alumnos;
-    }
-
-    @Override
-    public boolean insertar(Alumno a) {
-        String sql = "INSERT INTO alumnos (nombre, edad, curso) VALUES (?, ?, ?)";
-        try (Connection con = DriverManager.getConnection(URL);
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setString(1, a.getNombre());
-            pstmt.setInt(2, a.getEdad());
-            pstmt.setString(3, a.getCurso());
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Error al insertar: " + e.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public boolean actualizar(Alumno a) {
-        String sql = "UPDATE alumnos SET nombre = ?, edad = ?, curso = ? WHERE id = ?";
-        try (Connection con = DriverManager.getConnection(URL);
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setString(1, a.getNombre());
-            pstmt.setInt(2, a.getEdad());
-            pstmt.setString(3, a.getCurso());
-            pstmt.setInt(4, a.getId());
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Error al actualizar: " + e.getMessage());
-            return false;
-        }
-    }
-
-    @Override
-    public boolean eliminar(int id) {
-        String sql = "DELETE FROM alumnos WHERE id = ?";
-        try (Connection con = DriverManager.getConnection(URL);
-             PreparedStatement pstmt = con.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            return pstmt.executeUpdate() > 0;
-        } catch (SQLException e) {
-            System.err.println("Error al eliminar: " + e.getMessage());
-            return false;
         }
     }
 }
 ```
 
-**4. El Main (programa contra la interfaz):**
-
-```java
-import java.util.List;
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        AlumnoDAO dao = new AlumnoDAOImpl();
-        Scanner sc = new Scanner(System.in);
-
-        dao.insertar(new Alumno("Nueva Alumna", 21, "DAM"));
-        System.out.println("--- Alumnos ---");
-        for (Alumno a : dao.listar()) {
-            System.out.println(a);
-        }
-
-        System.out.println("--- Buscar por nombre ('María') ---");
-        for (Alumno a : dao.buscarPorNombre("María")) {
-            System.out.println(a);
-        }
-    }
-}
-```
-
-El `Main` solo conoce la interfaz `AlumnoDAO`: si mañana cambias SQLite por MySQL, solo cambia `AlumnoDAOImpl`, y el `Main` no se entera. Esa es la magia del DAO.
+La clase `Estudiante` implementa `Serializable` con su `serialVersionUID` fijo para que los archivos sobrevivan a pequeños cambios. El `writeObject` guarda la lista entera de una vez y `readObject` la reconstruye con un casting a `List<Estudiante>`. Como `ArrayList` y `Estudiante` son serializables, todo el paquete se congela y descongela en dos líneas.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: Transacción bancaria atómica
+## ⭐⭐ Ejercicio 9: El contador de líneas, palabras y caracteres
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.sql.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
-public class Transferencia {
-    private static final String URL = "jdbc:sqlite:instituto.db";
+public class Contador {
+    public static void main(String[] args) throws Exception {
+        int lineas = 0, palabras = 0, caracteres = 0;
 
-    public static void transferir(int idOrigen, int idDestino, double cantidad) {
-        String quitar = "UPDATE cuentas SET saldo = saldo - ? WHERE id = ?";
-        String poner  = "UPDATE cuentas SET saldo = saldo + ? WHERE id = ?";
-
-        try (Connection con = DriverManager.getConnection(URL)) {
-            con.setAutoCommit(false);  // abrimos la transacción
-
-            try (PreparedStatement q = con.prepareStatement(quitar);
-                 PreparedStatement p = con.prepareStatement(poner)) {
-
-                q.setDouble(1, cantidad);
-                q.setInt(2, idOrigen);
-                q.executeUpdate();
-
-                if (idOrigen == idDestino) {
-                    throw new SQLException("Destino inválido: misma cuenta");
+        try (BufferedReader br = new BufferedReader(new FileReader("texto.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                lineas++;
+                caracteres += linea.length();
+                if (!linea.trim().isEmpty()) {
+                    palabras += linea.split("\\s+").length;
                 }
-
-                p.setDouble(1, cantidad);
-                p.setInt(2, idDestino);
-                p.executeUpdate();
-
-                con.commit();
-                System.out.println("Transferencia OK");
-            } catch (SQLException e) {
-                con.rollback();
-                System.err.println("Falló, todo deshecho: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Error de conexión: " + e.getMessage());
         }
-    }
 
-    public static void main(String[] args) {
-        transferir(1, 2, 100);
-        // Para probar el rollback, llama a transferir(1, 1, 100): misma cuenta
+        System.out.println("Líneas: " + lineas);
+        System.out.println("Palabras: " + palabras);
+        System.out.println("Caracteres: " + caracteres);
     }
 }
 ```
 
-`setAutoCommit(false)` abre la transacción: las dos operaciones se ejecutan sin confirmarse. Si todo va bien, `commit()` las guarda juntas. Si algo falla (aquí, forzado con `throw new SQLException`), `rollback()` deshace la primera operación para que el sistema no quede a medias. Es la definición de atómico: todo o nada. Sin esto, una transferencia a medias dejaría dinero flotando en el limbo.
+Cada línea suma 1 a las líneas y su `length()` a los caracteres. Para las palabras, `split("\\s+")` trocea por los espacios; la comprobación `!linea.trim().isEmpty()` evita que una línea en blanco se cuente como una "palabra vacía". 
+
+Con NIO sería aún más corto: `Files.readAllLines(ruta)` y un `for` sobre la lista, sin `close()` manual. Compáralo con el punto 5 del temario: menos código, misma lógica.
 
 </details>
