@@ -5,139 +5,177 @@ description: CodeWars i AceptaElReto per a anar més enllà de la unitat
 
 # 📝 Butlletí U08 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix fins a esgotar la teua pista.
+> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista. Els `private`, els getters i el `static` són ací els protagonistes: encapsula, protegeix i compartix sense por.
 
 ---
 
 ## CodeWars
 
-### 1. Remove String Spaces
+### 1. Playing with cubes II
 
-Et donen una cadena i has de llevar-li tots els espais en blanc.
+Et donen un motle de classe `Cube` amb un atribut privat `side`. El teu treball: construir-la amb getter i setter, i dos constructors (un buit que inicialitza `side` a 0, i un altre que rep el costat).
 
-**Exemples:** `"8 j 8   mBliB8g  imjB8B8  jl  B"` → `"8j8mBliB8gimjB8B8jlB"`, `"8aaaaa dddd r     "` → `"8aaaaaddddr"`.
+**Exemple d'ús:**
+```java
+Cube c = new Cube(3);
+c.getSide();  // 3
+c.setSide(7);
+c.getSide();  // 7
+```
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/57eae20f5500ad98e50002c5)
+- [Enunciat a CodeWars](https://www.codewars.com/kata/55c0ac142326fdf18d0000af)
 - Dificultat: 8 kyu
 
-**Pista:** el mètode `String.replace(" ", "")` canvia totes les aparicions d'un text per un altre. Llevar els espais és reemplaçar-los per "res".
+**Pista:** `side` ha de ser `private` (ningú el toca des de fora) i els únics portals són `getSide()` i `setSide()`. El constructor sense paràmetres posa `this.side = 0;`. Exactament el que has vist en la unitat: encapsulació pura.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String noSpace(final String x) {
-        return x.replace(" ", "");
+public class Cube {
+    private int side;
+
+    public Cube() {
+        this.side = 0;
+    }
+
+    public Cube(int side) {
+        this.side = side;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    public void setSide(int side) {
+        this.side = side;
     }
 }
 ```
 
-`replace(" ", "")` recorre tota la cadena i substituïx cada espai per la cadena buida. Sense bucles, sense condicions: un sol mètode estàtic resolt amb el material de cadenes de la U02.
+L'atribut `side` és `private`: ningú pot fer `c.side = 9` des de fora. Els dos constructors donen dues maneres de nàixer (amb o sense valor), i el getter/setter són les úniques portes. El `this` del setter desambigua el paràmetre de l'atribut, com has vist en la unitat.
 
 </details>
 
 ---
 
-### 2. String repeat
+### 2. Classy Extentions
 
-Et donen un número `repeat` i una cadena `string`. Retorna la cadena repetida eixe número de vegades.
+Crea la classe `Pet` amb un atribut privat `name` (String) i un mètode `speak()` que torne el nom de l'animal. Després crea la classe `Cat` que **hereta** de `Pet` i sobreescriu `speak()` perquè torne `"[name] meows."`.
 
-**Exemples:** `repeatStr(6, "I")` → `"IIIIII"`, `repeatStr(5, "Hello")` → `"HelloHelloHelloHelloHello"`.
+**Exemples:**
+```java
+new Cat("Milo").speak();  // "Milo meows."
+new Cat("Garfield").speak();  // "Garfield meows."
+```
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/57a0e5c372292dd76d000d7e)
+- [Enunciat a CodeWars](https://www.codewars.com/kata/55a14aa4817efe41c20000bc)
 - Dificultat: 8 kyu
 
-**Pista:** un `for` que vaja sumant la cadena a un acumulador tantes vegades com indique `repeat`. (O el mètode `string.repeat(repeat)`, si t'agrada l'atall.)
+**Pista:** `name` és privat, així que `Cat` no pot llegir-lo directament: necessita un getter `getName()` en `Pet` (recorda: els privats no s'hereten, però existixen dins de l'objecte). `Cat extends Pet` i usa `super(nombre)` per a construir la part del pare.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String repeatStr(final int repeat, final String string) {
-        return string.repeat(repeat);
+public class Pet {
+    private String name;
+
+    public Pet(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String speak() {
+        return name;
+    }
+}
+
+public class Cat extends Pet {
+    public Cat(String name) {
+        super(name);
+    }
+
+    @Override
+    public String speak() {
+        return getName() + " meows.";
     }
 }
 ```
 
-O, a l'antiga:
-
-```java
-public class Kata {
-    public static String repeatStr(final int repeat, final String string) {
-        StringBuilder resultat = new StringBuilder();
-        for (int i = 0; i < repeat; i++) {
-            resultat.append(string);
-        }
-        return resultat.toString();
-    }
-}
-```
-
-`String.repeat(repeat)` és el mètode modern, directe i sense bucles. Si prefereixes entendre la mecànica, el `for` amb `StringBuilder` (vist en la U02) fa exactament el mateix: acumular la cadena `repeat` vegades.
+Fixa't: `Cat` no toca `name` directament (és privat en `Pet`), usa `getName()`. Això és el triangle perfecte: **encapsulació** (privat + getter) + **herència** (`extends`) + **sobreescriptura** (`@Override`). L'herència la aprofundeixes en la U09, però ací ja la veus en acció.
 
 </details>
 
 ---
 
-### 3. Convert boolean values to strings 'Yes' or 'No'
+### 3. Sleigh Authentication
 
-Completa el mètode `boolToWord(boolean b)` perquè retorne `"Yes"` si és `true` i `"No"` si és `false`.
+Pare Noel té un mètode `authenticate(name, password)` i només admet dues credencials: el nom ha de ser `"Santa Claus"` i la contrasenya `"Ho Ho Ho!"`. Torna `true` només si totes dues coincideixen.
 
-**Exemples:** `boolToWord(true)` → `"Yes"`, `boolToWord(false)` → `"No"`.
+**Exemples:** `authenticate("Santa Claus", "Ho Ho Ho!")` → `true`, `authenticate("Santa", "Ho Ho Ho!")` → `false`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/53369039d7ab3ac506000467)
+- [Enunciat a CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
 - Dificultat: 8 kyu
 
-**Pista:** un `if`/`else` que retorne una cadena o l'altra, o l'operador ternari vist en la U03: `return b ? "Yes" : "No";`.
+**Pista:** els dos valors són constants: `private static final String NOM_VALID = "Santa Claus";`. Compara amb `.equals()`, mai amb `==`. I nota el `static`: el mètode no necessita objecte, és pura lògica de classe.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String boolToWord(boolean b) {
-        return b ? "Yes" : "No";
+public class Sleigh {
+    private static final String NOM_VALID = "Santa Claus";
+    private static final String PASSWORD_VALID = "Ho Ho Ho!";
+
+    public boolean authenticate(String name, String password) {
+        return NOM_VALID.equals(name) && PASSWORD_VALID.equals(password);
     }
 }
 ```
 
-Un ternari en una sola línia: si `b` és `true` retorna `"Yes"`, si no `"No"`. Decidir amb elegància, just l'esperit de les estructures de control de la U03 aplicat a un mètode estàtic.
+Les constants `static final` són el secret de la casa: `static` (una sola còpia per a tota la classe, la vas vore en el punt 7) i `final` (ningú pot reassignar-les). El `authenticate` combina les dos comprovacions amb `&&`. El `.equals()` es crida sobre la constant, no sobre el paràmetre: així `null` mai trenca el mètode.
 
 </details>
 
 ---
 
-### 4. Find the smallest integer in the array
+### 4. Object Oriented Piracy
 
-Et donen un array d'enters. Retorna el número més xicotet.
+Crea la classe `Ship` que rep un `draft` (calat) i un `crew` (tripulants). Implementa `isWorthIt()`: torna `true` si el calat total menys `1.5` per cada tripulant supera 20.
 
-**Exemple:** `[34, 15, 88, 2]` → `2`, `[34, -345, -1, 100]` → `-345`.
+**Exemple:** `new Ship(15, 10).isWorthIt()` → `false` (`15 - 1.5*10 = 0`).
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2)
+- [Enunciat a CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add)
 - Dificultat: 8 kyu
 
-**Pista:** recorre l'array i ves guardant en una variable el mínim trobat fins ara. Comença amb `args[0]` com a primer candidat.
+**Pista:** guarda `draft` i `crew` en atributs `private final` (es fixen en el constructor i ja no canvien). El mètode combina tots dos: `return draft - 1.5 * crew > 20;`. El `1.5` mereix ser una constant amb nom.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static int findSmallestInt(int[] args) {
-        int minim = args[0];
-        for (int i = 1; i < args.length; i++) {
-            if (args[i] < minim) {
-                minim = args[i];
-            }
-        }
-        return minim;
+public class Ship {
+    private static final double PES_TRIPULANT = 1.5;
+
+    private final double draft;
+    private final int crew;
+
+    public Ship(double draft, int crew) {
+        this.draft = draft;
+        this.crew = crew;
+    }
+
+    public boolean isWorthIt() {
+        return draft - PES_TRIPULANT * crew > 20;
     }
 }
 ```
 
-La idea del "mínim acumulat": comences assumint que el primer és el menor i, si apareix un de més xicotet, actualitzes. És el mateix raonament que el `Validador` del butlletí avançat, ara aplicat a números. `Math.min` seria l'atall, però este `for` ensenya la mecànica.
+La classe és immutable: els atributs `final` es fixen en nàixer i ningú pot canviar-los (ni tan sols amb un setter, que ací no existix). La constant `static final` documenta el `1.5`. El vaixell "sap" si mereix la pena saquejar-lo sense que ningú llig les seues tripes: encapsulació i responsabilitat única.
 
 </details>
 
@@ -145,102 +183,29 @@ La idea del "mínim acumulat": comences assumint que el primer és el menor i, s
 
 ## AceptaElReto
 
-### 5. 155 — Perímetre d'un rectangle
+### 5. 117 — La festa avorrida
 
-Diversos rectangles es col·loquen un a continuació de l'altre, tots recolzats sobre la mateixa base horitzontal. Donat el número de rectangles i l'ample i l'alt de cada un, calcula el **perímetre** de la figura resultant.
+Tinín odia les festes, i cada persona que se li acosta es presenta amb el format `"Soc Lotari"`. Ajuda'l a respondre `"Hola, [nom]."` a cadascun. L'entrada comença amb un nombre que indica quantes persones hi ha, seguit d'una línia per persona. Escriu la solució amb una classe `Persona` que guarde el nom i un mètode `saludar()`.
 
-**Entrada:** diversos casos de prova. Cada cas és una línia amb un número N (el número de rectangles) seguit de N parelles `ample alt`. L'entrada acaba amb `0`.
-
-**Exemple:**
-
-```
-2 2 2 1
-3 1 1 1 1 1 1
-0
-```
-
-**Eixida:**
-
-```
-12
-8
-```
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=155)
-- Dificultat: Fàcil
-
-**Pista:** el perímetre de la figura és `2 * (sumaAmples + sumaAlts) - 2 * suma(altCompartit entre rectangles veïns)`, on l'alt compartit entre dos veïns és el **menor** dels seus alts (`Math.min`). Els costats interns es resten perquè no formen part del perímetre exterior.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class PerimetreRectangle {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            int n = sc.nextInt();
-            if (n == 0) break;
-
-            int sumaAmples = 0;
-            int sumaAlts = 0;
-            int[] alts = new int[n];
-            int compartit = 0;
-
-            for (int i = 0; i < n; i++) {
-                int ample = sc.nextInt();
-                int alt = sc.nextInt();
-                sumaAmples += ample;
-                sumaAlts += alt;
-                alts[i] = alt;
-            }
-
-            for (int i = 0; i < n - 1; i++) {
-                compartit += Math.min(alts[i], alts[i + 1]);
-            }
-
-            System.out.println(2 * (sumaAmples + sumaAlts) - 2 * compartit);
-        }
-        sc.close();
-    }
-}
-```
-
-Primer acumulem amples i alts i guardem els alts en un array. Després, per cada parella de veïns restem el doble del seu alt compartit (`Math.min`): eixa paret queda dins de la figura i no compta en el perímetre. Verifica-ho amb `2 2 2 1`: `2 * (4 + 3) - 2 * 1 = 14 - 2 = 12`.
-
-</details>
-
----
-
-### 6. 171 — Abadies de pedra
-
-Als Picos de Europa hi ha muntanyes en fila, i una **abadia** (construïda al cim d'una muntanya) només pot veure el mar si **no hi ha cap muntanya a la seua dreta que siga més alta o igual**. Donat el número de muntanyes i les seues altures, compta quantes abadies veuen el mar.
-
-**Entrada:** diversos casos de prova. Cada cas: una línia amb N (número de muntanyes) seguida d'una altra línia amb les N altures. L'entrada acaba amb `0`.
-
-**Exemple:**
-
+**Entrada d'exemple:**
 ```
 3
-3 1 2
-0
+Soc Lotari
+Soc Aldonça
+Soc Ender
 ```
 
-**Eixida:**
-
+**Eixida d'exemple:**
 ```
-2
+Hola, Lotari.
+Hola, Aldonça.
+Hola, Ender.
 ```
 
-(La d'altura 3 veu el mar: a la seua dreta hi ha 1 i 2, totes dues més baixes. La d'altura 1 no: la tapa la de 2. L'última, d'altura 2, sempre veu el mar.)
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=171)
+- [Enunciat a AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
 - Dificultat: Fàcil
 
-**Pista:** recorre les muntanyes **de dreta a esquerra** portant l'altura màxima vista fins ara. Una muntanya veu el mar si la seua altura és **major** que eixe màxim; llavors la comptes i actualitzes el màxim. L'última muntanya sempre veu el mar.
+**Pista:** llig la línia, trau el `"Soc "` inicial (`linea.substring(4)` o `split(" ")[1]`), crea la `Persona` amb eixe nom i crida el seu `saludar()`. És una excusa perfecta per a una classe amb un atribut i un mètode, en comptes d'un main que ho fa tot.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -248,40 +213,101 @@ Als Picos de Europa hi ha muntanyes en fila, i una **abadia** (construïda al ci
 ```java
 import java.util.Scanner;
 
-public class AbadiesPedra {
+public class Persona {
+    private String nom;
+
+    public Persona(String nom) {
+        this.nom = nom;
+    }
+
+    public void saludar() {
+        System.out.println("Hola, " + nom + ".");
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();  // consumix el salt de línia
 
-        while (true) {
-            int n = sc.nextInt();
-            if (n == 0) break;
-
-            int[] altures = new int[n];
-            for (int i = 0; i < n; i++) {
-                altures[i] = sc.nextInt();
-            }
-
-            int maxVist = 0;
-            int abadies = 0;
-
-            for (int i = n - 1; i >= 0; i--) {
-                if (altures[i] > maxVist) {
-                    abadies++;
-                    maxVist = altures[i];
-                }
-            }
-
-            System.out.println(abadies);
+        for (int i = 0; i < n; i++) {
+            String linea = sc.nextLine();
+            String nom = linea.substring(4);  // trau "Soc "
+            Persona p = new Persona(nom);
+            p.saludar();
         }
         sc.close();
     }
 }
 ```
 
-La clau és anar **de dreta a esquerra**: la muntanya més a la dreta no té res davant i sempre compta. Després, cada muntanya veu el mar només si supera tot el que ja hem vist per la seua dreta (`maxVist`). Per a `3 1 2`: la 2 compta (màx. 2), la 1 no, la 3 sí (3 > 2) → `2`. Arrays + el patró del màxim, en una sola passada.
+`Persona` encapsula el seu nom: `private` + constructor + un mètode que sap saludar. El `main` només s'encarrega de llegir i crear objectes. `linea.substring(4)` es salta els 4 primers caràcters (`"Soc "`). El `sc.nextLine()` extra després del `nextInt()` consumix l'Enter, el clàssic del Scanner que vas vore en la U02.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines l'encapsulació podràs tornar als problemes de les unitats anteriors (com San Fermines o la suma sentinella) i reescriure les seues solucions amb classes ben blindades i mètodes `static` utilitaris. El material no es perd: es reutilitza.
+### 6. 117 bis — La festa avorrida amb comptador estàtic
+
+Repte extra amb `static`: usa la classe `Persona` de l'exercici 5, però afig un atribut `private static int totalSaluts` que compte quantes persones ha saludat Tinín en total. Després de cada salut, mostra el total acumulat.
+
+**Entrada d'exemple:**
+```
+2
+Soc Lotari
+Soc Ender
+```
+
+**Eixida d'exemple:**
+```
+Hola, Lotari. (saluts: 1)
+Hola, Ender. (saluts: 2)
+```
+
+**Pista:** `static` significa "de la classe, no de l'objecte": tots els `Persona` compartixen `totalSaluts`. Instrumenta-ho dins de `saludar()` amb `totalSaluts++`. Així practiques que el comptador puja per a tots els objectes, com el `Contador` del butlletí inicial.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class Persona {
+    private static int totalSaluts = 0;
+
+    private String nom;
+
+    public Persona(String nom) {
+        this.nom = nom;
+    }
+
+    public void saludar() {
+        totalSaluts++;
+        System.out.println("Hola, " + nom + ". (saluts: " + totalSaluts + ")");
+    }
+
+    public static int getTotalSaluts() {
+        return totalSaluts;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            String linea = sc.nextLine();
+            Persona p = new Persona(linea.substring(4));
+            p.saludar();
+        }
+        sc.close();
+    }
+}
+```
+
+`totalSaluts` és `static`: hi ha una única còpia compartida per tota la classe, no una per objecte. Cada `saludar()` l'incrementa i, com que tots compartixen la mateixa variable, el comptador acumula de veritat. `getTotalSaluts()` és `static` perquè la pregunta "quants saluts en total?" se li fa a la classe, no a una persona concreta.
+
+</details>
+
+---
+
+> 🧭 **I si et quedes amb ganes?** Quan domines l'encapsulació, torna als problemes d'unitats anteriors i reescriu-los amb classes ben blindades: un `Rectangle` amb la seua àrea com a mètode, un `Numero` amb la seua anàlisi com a mètode... El `private`, els getters i el `static` transformen un script solt en un disseny. El material no es perd: es reutilitza.

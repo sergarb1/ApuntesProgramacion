@@ -410,72 +410,38 @@ Los getters devuelven cada atributo, y los dos métodos calculados combinan los 
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
+## ⭐⭐⭐ Ejercicio 9: CodeWars — Object Oriented Piracy
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Arrays;
-import java.util.Scanner;
+public class Ship {
+    private static final double PESO_TRIPULANTE = 1.5;
 
-public class Kaprekar {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int casos = sc.nextInt();
+    private final double draft;
+    private final int crew;
 
-        for (int i = 0; i < casos; i++) {
-            int numero = sc.nextInt();
-            System.out.println(iteraciones(numero));
-        }
-        sc.close();
+    public Ship(double draft, int crew) {
+        this.draft = draft;
+        this.crew = crew;
     }
 
-    static int iteraciones(int numero) {
-        if (numero == 6174) {
-            return 0;
-        }
-        if (esRepdigit(numero)) {
-            return 8;
-        }
-
-        int vueltas = 0;
-        int actual = numero;
-        while (actual != 6174) {
-            actual = pasoKaprekar(actual);
-            vueltas++;
-        }
-        return vueltas;
+    public double getDraft() {
+        return draft;
     }
 
-    static boolean esRepdigit(int numero) {
-        String s = String.format("%04d", numero);
-        char primera = s.charAt(0);
-        for (char c : s.toCharArray()) {
-            if (c != primera) {
-                return false;
-            }
-        }
-        return true;
+    public int getCrew() {
+        return crew;
     }
 
-    static int pasoKaprekar(int numero) {
-        String s = String.format("%04d", numero);
-        char[] asc = s.toCharArray();
-        Arrays.sort(asc);
-        char[] desc = new char[4];
-        for (int i = 0; i < 4; i++) {
-            desc[i] = asc[3 - i];
-        }
-
-        int mayor = Integer.parseInt(new String(desc));
-        int menor = Integer.parseInt(new String(asc));
-        return mayor - menor;
+    public boolean isWorthIt() {
+        return draft - PESO_TRIPULANTE * crew > 20;
     }
 }
 ```
 
-Para 3524, el `while` da: 3524 → 3087 → 8352 → 6174, tres vueltas. `%04d` rellena con ceros a la izquierda (necesario para números como 3087). `esRepdigit` devuelve `false` en cuanto encuentra un dígito distinto. Este es un problema estupendo para probar tu clase `Numero` con métodos separados.
+`draft` y `crew` son `final`: se fijan en el constructor y no cambian (barco inmutable). Los getters devuelven el atributo tal cual. `isWorthIt()` aplica la fórmula con la constante `PESO_TRIPULANTE`: cada tripulante aporta 1.5 al calado, y solo merece la pena si lo que queda supera 20. Para `new Ship(15, 10)`: `15 - 1.5*10 = 0` → `false`.
 
 </details>
 

@@ -11,122 +11,113 @@ description: CodeWars y AceptaElReto para ir más allá de la unidad
 
 ## CodeWars
 
-### 1. Convert string to camel case
+### 1. Thinkful — Object Drills: Quarks
 
-Te dan una cadena con guiones o guiones bajos separando palabras. Devuelve la versión en **camelCase**: cada palabra empieza en mayúscula excepto la primera.
+Crea la clase `Quark` con tres propiedades: `color` (String), `flavor` (String) y `baryon_number` (siempre `1.0`). Además:
+- Constructor que recibe `color` y `flavor`.
+- `interact(otro)` → intercambia los colores de los dos quarks.
 
-**Ejemplos:** `"the-stealth-warrior"` → `"theStealthWarrior"`, `"The_Stealth_Warrior"` → `"TheStealthWarrior"`.
+**Ejemplo:**
+```java
+Quark q1 = new Quark("red", "up");
+Quark q2 = new Quark("blue", "strange");
+q1.interact(q2);
+q1.color;  // "blue"
+q2.color;  // "red"
+q1.baryon_number;  // 1.0
+```
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/517abf86da9663f1d2000003)
-- Dificultad: 6 kyu
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5882b052bdeafec15e0000e6)
+- Dificultad: 7 kyu
 
-**Pista:** recorre los caracteres con un `for` y lleva una variable `boolean` que recuerde si el carácter anterior era un separador (`-` o `_`). Si lo era, el siguiente carácter va en mayúscula.
+**Pista:** `baryon_number` es una constante que todos los quarks comparten: `public final double baryon_number = 1.0;`. `interact()` usa una variable temporal para intercambiar: `String temp = this.color; this.color = otro.color; otro.color = temp;`. El `this` desambigua quién es quién en el intercambio.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Kata {
-    public static String toCamelCase(String s) {
-        StringBuilder resultado = new StringBuilder();
-        boolean capitalizar = false;
+public class Quark {
+    public String color;
+    public String flavor;
+    public final double baryon_number = 1.0;
 
-        for (char c : s.toCharArray()) {
-            if (c == '-' || c == '_') {
-                capitalizar = true;
-            } else if (capitalizar) {
-                resultado.append(Character.toUpperCase(c));
-                capitalizar = false;
-            } else {
-                resultado.append(c);
-            }
-        }
-        return resultado.toString();
+    public Quark(String color, String flavor) {
+        this.color = color;
+        this.flavor = flavor;
+    }
+
+    public void interact(Quark otro) {
+        String temporal = this.color;
+        this.color = otro.color;
+        otro.color = temporal;
     }
 }
 ```
 
-La bandera `capitalizar` se activa al ver un separador y se consume al transformar la siguiente letra. Un solo bucle, sin `split`: recorrer y recordar es suficiente.
+La física de quarks aplicada: `baryon_number` es `final` porque ningún quark cambia su número bariónico (es una constante universal). `interact()` intercambia los colores con una variable temporal; sin ella, uno de los dos colores se perdería. Este es el clásico "swap" que ya viste con variables, ahora entre dos objetos.
 
 </details>
 
 ---
 
-### 2. Counting Duplicates
+### 2. Building blocks
 
-Cuenta cuántos caracteres aparecen **más de una vez** en una cadena, sin distinguir mayúsculas de minúsculas.
+Crea la clase `Block` que recibe las tres dimensiones (como `int[]` de 3 o como 3 enteros) y los métodos:
+- `int getWidth()`, `int getLength()`, `int getHeight()`
+- `int getVolume()` → `width * length * height`
+- `int getSurfaceArea()` → `2 * (w*l + w*h + l*h)`
 
-**Ejemplos:** `"abcde"` → `0`, `"aabBcde"` → `2` (la `a` y la `b`), `"indivisibility"` → `1` (la `i`).
+**Ejemplo:** `new Block(new int[]{2, 4, 6})` → volumen 48, superficie `2*(2*4 + 2*6 + 4*6) = 88`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1)
-- Dificultad: 6 kyu
+- [Enunciado en CodeWars](https://www.codewars.com/kata/55b75fcf67e558d3750000a3)
+- Dificultad: 7 kyu
 
-**Pista:** convierte a minúsculas y cuenta frecuencias con un `Map<Character, Integer>`; al final, cuenta cuántas entradas tienen frecuencia mayor que 1. (El `Map` se estudia a fondo en la U11, pero puedes usarlo ya.)
+**Pista:** guarda las tres dimensiones en atributos privados en el constructor, y deja que los getters las devuelvan. Para la superficie, la fórmula es la suma de las tres caras por dos. El polimorfismo no aparece aquí, pero el objeto con estado y comportamiento sí: la excusa perfecta para repasar la U07 mientras piensas en la herencia.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+public class Block {
+    private final int width;
+    private final int length;
+    private final int height;
 
-public class Kata {
-    public static int duplicateCount(String text) {
-        Map<Character, Integer> frecuencias = new HashMap<>();
+    public Block(int[] dimensiones) {
+        this.width = dimensiones[0];
+        this.length = dimensiones[1];
+        this.height = dimensiones[2];
+    }
 
-        for (char c : text.toLowerCase().toCharArray()) {
-            frecuencias.put(c, frecuencias.getOrDefault(c, 0) + 1);
-        }
+    public int getWidth() {
+        return width;
+    }
 
-        int repetidos = 0;
-        for (int frecuencia : frecuencias.values()) {
-            if (frecuencia > 1) {
-                repetidos++;
-            }
-        }
-        return repetidos;
+    public int getLength() {
+        return length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getVolume() {
+        return width * length * height;
+    }
+
+    public int getSurfaceArea() {
+        return 2 * (width * length + width * height + length * height);
     }
 }
 ```
 
-El `Map` guarda cuántas veces aparece cada carácter. `getOrDefault(c, 0)` devuelve la frecuencia actual o 0 si el carácter aún no estaba. Después, basta con contar las que superan 1: `"aabBcde"` → la `a` (2) y la `b` (2) → `2`.
+El objeto `Block` guarda su estado y lo expone con getters. Los atributos `final` se fijan en el constructor (un bloque no cambia de forma). El volumen y la superficie son métodos que calculan a partir del estado. Es un objeto con responsabilidad única: sabe sus dimensiones y cómo medirse. La herencia del curso llegará cuando quieras especializarlo en `Cubo` o `Caja` sin duplicar código.
 
 </details>
 
 ---
 
-### 3. Human Readable Time
-
-Te dan un número de **segundos** (máximo 359999). Devuélvelo con formato `HH:MM:SS` con ceros a la izquierda.
-
-**Ejemplos:** `makeReadable(0)` → `"00:00:00"`, `makeReadable(5)` → `"00:00:05"`, `makeReadable(86399)` → `"23:59:59"`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/52685f7382004e774f0001f7)
-- Dificultad: 5 kyu
-
-**Pista:** división entera y módulo: horas = `segundos / 3600`, minutos = `(segundos % 3600) / 60`, segundos = `segundos % 60`. Formatea con `String.format("%02d:%02d:%02d")`.
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Kata {
-    public static String makeReadable(int seconds) {
-        int horas = seconds / 3600;
-        int minutos = (seconds % 3600) / 60;
-        int segundos = seconds % 60;
-        return String.format("%02d:%02d:%02d", horas, minutos, segundos);
-    }
-}
-```
-
-El `%02d` rellena con ceros a la izquierda hasta dos dígitos. Para `86399`: `23`, `59`, `59` → `"23:59:59"`. Es el mismo razonamiento de unidades, decenas y centenas que ya usas al dividir.
-
-</details>
-
----
-
-### 4. Basic subclasses — Adam and Eve
+### 3. Basic subclasses — Adam and Eve
 
 Según el mito, Adam y Eva fueron los primeros humanos. Tu trabajo es "hacer el trabajo de Dios": crear un método estático `create()` que devuelva un array de `Human` con dos objetos: el primero un `Man` y el segundo una `Woman`. Ambas clases heredan de `Human`, y cada humano tiene `name`, `sex` y la propiedad `species` con valor `"Human"`.
 
@@ -187,128 +178,69 @@ public class God {
 
 ---
 
-## AceptaElReto
+### 4. Object Oriented Piracy
 
-### 5. 100 — Constante de Kaprekar
+Crea la clase `Ship` que recibe un `draft` (calado) y un `crew` (tripulantes). Implementa `isWorthIt()`: devuelve `true` si el calado total menos `1.5` por cada tripulante supera 20.
 
-El matemático Kaprekar descubrió que, aplicando a cualquier número de 4 dígitos (con al menos dos distintos) la rutina *ordena los dígitos de mayor a menor, réstale el ordenado de menor a mayor*, siempre se llega al número **6174** en 7 vueltas como mucho. Por ejemplo, `3524`: `5432 - 2345 = 3087`, `8730 - 0378 = 8352`, `8532 - 2358 = 6174` (3 vueltas).
+**Ejemplo:** `new Ship(15, 10).isWorthIt()` → `false` (`15 - 1.5*10 = 0`).
 
-**Entrada:** la primera línea es el número de casos de prueba. Cada caso es un número de 4 dígitos.
+- [Enunciado en CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add)
+- Dificultad: 8 kyu
 
-**Salida:** para cada caso, las vueltas hasta alcanzar 6174. Para los *repdigits* (las 4 cifras iguales, como `1111`) escribe `8`. Para el propio `6174`, escribe `0`.
-
-**Entrada de ejemplo:**
-
-```
-5
-3524
-1111
-1121
-6174
-1893
-```
-
-**Salida de ejemplo:**
-
-```
-3
-8
-5
-0
-7
-```
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=100)
-- Dificultad: Fácil/Media
-
-**Pista:** pasa el número a cadena con `String.format("%04d", n)` para mantener los 4 dígitos con ceros. Ordena los caracteres con `Arrays.sort` para obtener el menor; el mayor es el mismo array recorrido al revés. Repite hasta llegar a 6174.
+**Pista:** guarda `draft` y `crew` en atributos `private final`. El método combina ambos: `return draft - 1.5 * crew > 20;`. Es la clase de objeto simple que ya manejas: una excusa para repasar que el estado vive en el objeto, no en el main.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Arrays;
-import java.util.Scanner;
+public class Ship {
+    private static final double PESO_TRIPULANTE = 1.5;
 
-public class Kaprekar {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int casos = sc.nextInt();
+    private final double draft;
+    private final int crew;
 
-        for (int i = 0; i < casos; i++) {
-            int n = sc.nextInt();
-            System.out.println(vueltasKaprekar(n));
-        }
-        sc.close();
+    public Ship(double draft, int crew) {
+        this.draft = draft;
+        this.crew = crew;
     }
 
-    static int vueltasKaprekar(int n) {
-        if (n == 6174) {
-            return 0;
-        }
-
-        String s = String.format("%04d", n);
-        if (s.charAt(0) == s.charAt(1)
-                && s.charAt(1) == s.charAt(2)
-                && s.charAt(2) == s.charAt(3)) {
-            return 8;
-        }
-
-        int vueltas = 0;
-        while (n != 6174) {
-            char[] asc = String.format("%04d", n).toCharArray();
-            Arrays.sort(asc);
-            int menor = Integer.parseInt(new String(asc));
-
-            char[] desc = new char[4];
-            for (int j = 0; j < 4; j++) {
-                desc[j] = asc[3 - j];
-            }
-            int mayor = Integer.parseInt(new String(desc));
-
-            n = mayor - menor;
-            vueltas++;
-        }
-        return vueltas;
+    public boolean isWorthIt() {
+        return draft - PESO_TRIPULANTE * crew > 20;
     }
 }
 ```
 
-Para `3524`: los dígitos ordenados dan `2345` (menor) y `5432` (mayor), se restan y se repite hasta alcanzar `6174`. El `String.format("%04d", ...)` conserva los ceros iniciales (el `0378` del ejemplo). Verifícalo con `1121`: `5` vueltas, tal y como promete el enunciado.
+Cada `Ship` guarda su propio estado (`draft` y `crew`) y decide por sí mismo si merece la pena. Los atributos `final` hacen el objeto inmutable: se fijan al nacer. La constante `static final` documenta el `1.5`. Es el mismo patrón de objeto con comportamiento que has practicado toda la unidad.
 
 </details>
 
 ---
 
-### 6. 369 — Contando en la arena
+## AceptaElReto
 
-Mucho antes de la base 2 y de los números romanos, los primeros humanos contaban haciendo surcos en la arena. Te piden la "base 1": representar cada número como tantos **unos** como valga.
+### 5. 117 — La fiesta aburrida
 
-**Entrada:** varios números mayores que 0 y nunca mayores que 1.000, cada uno en una línea. La entrada termina con un `0`, que no debe procesarse.
-
-**Salida:** para cada número, su codificación en base 1 (esa cantidad de `1` seguidos).
+Tinín odia las fiestas, y cada persona que se le acerca se presenta con el formato `"Soy Lotario"`. Ayúdale a responder `"Hola, [nombre]."` a cada uno. La entrada empieza con un número que indica cuántas personas hay, seguido de una línea por persona. Resuélvelo con una clase `Persona` que encapsule el nombre y un método `saludar()`.
 
 **Entrada de ejemplo:**
-
 ```
-1
-4
-6
-0
+3
+Soy Lotario
+Soy Aldonza
+Soy Ender
 ```
 
 **Salida de ejemplo:**
-
 ```
-1
-1111
-111111
+Hola, Lotario.
+Hola, Aldonza.
+Hola, Ender.
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=369)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
 - Dificultad: Fácil
 
-**Pista:** un `StringBuilder` y un bucle que añada `'1'` tantas veces como el número. El patrón de lectura "leer hasta 0" es el centinela que ya conoces de los boletines anteriores.
+**Pista:** lee la línea y quita el `"Soy "` inicial con `linea.substring(4)` o `split(" ")[1]`. Crea la `Persona` con ese nombre y llama a `saludar()`. Es la excusa perfecta para ver que un objeto con un método puede sustituir a un main que hace de todo.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -316,28 +248,106 @@ Mucho antes de la base 2 y de los números romanos, los primeros humanos contaba
 ```java
 import java.util.Scanner;
 
-public class ContandoArena {
+public class Persona {
+    private String nombre;
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void saludar() {
+        System.out.println("Hola, " + nombre + ".");
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();  // consume el salto de línea
 
-        while (true) {
-            int n = sc.nextInt();
-            if (n == 0) {
-                break;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < n; i++) {
-                sb.append('1');
-            }
-            System.out.println(sb);
+        for (int i = 0; i < n; i++) {
+            String linea = sc.nextLine();
+            Persona p = new Persona(linea.substring(4));
+            p.saludar();
         }
         sc.close();
     }
 }
 ```
 
-El bucle exterior lee hasta que llega el `0` centinela. Por cada número, el bucle interior fabrica una cadena de `n` unos. `StringBuilder` evita crear cadenas nuevas en cada concatenación: es el patrón eficiente para acumular caracteres.
+`Persona` encapsula su nombre y sabe saludar: el `main` solo lee y crea objetos. `linea.substring(4)` se salta `"Soy "`. Es la forma "orientada a objetos" de resolver un problema que también podrías hacer con un `String` suelto: aquí el estado (el nombre) y el comportamiento (`saludar()`) viven juntos en la clase.
+
+</details>
+
+---
+
+### 6. 119 — Escudos del ejército romano
+
+Un general divide sus legionarios en formaciones **cuadradas** (lo más grande posible), repitiendo con los que queden libres hasta agotarlos. Cada cuadrado de lado `n` necesita escudos según el perímetro más la cobertura: los legionarios del borde llevan más escudos que los del interior. Para un cuadrado de `n × n`, los escudos son `n² + 4n` (una base por soldado más el perímetro exterior). Dado el número de legionarios, calcula el mínimo de escudos necesarios.
+
+**Entrada:** varios casos de prueba, cada uno con el número de legionarios. Termina con `0`.
+
+**Entrada de ejemplo:**
+```
+35
+20
+10
+0
+```
+
+**Salida de ejemplo:**
+```
+71
+44
+26
+```
+
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=119)
+- Dificultad: Fácil/Media
+
+**Pista:** mientras queden legionarios, encuentra el mayor cuadrado `n` tal que `n² <= restantes` (prueba `n` creciente o usa `Math.sqrt`). Suma los escudos de ese cuadrado y resta `n²` de los restantes. Encapsula la lógica en una clase `Formacion` con métodos como `mayorCuadrado()` y `calcularEscudos()`.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class Formacion {
+    public static int escudosDeCuadrado(int lado) {
+        return lado * lado + 4 * lado;
+    }
+
+    public static int mayorCuadrado(int restantes) {
+        int n = (int) Math.sqrt(restantes);
+        return n * n;  // el mayor cuadrado perfecto <= restantes
+    }
+
+    public static int resolver(int legionarios) {
+        int escudos = 0;
+        int restantes = legionarios;
+
+        while (restantes > 0) {
+            int cuadrado = mayorCuadrado(restantes);
+            int lado = (int) Math.sqrt(cuadrado);
+            escudos += escudosDeCuadrado(lado);
+            restantes -= cuadrado;
+        }
+        return escudos;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        while (n != 0) {
+            System.out.println(resolver(n));
+            n = sc.nextInt();
+        }
+        sc.close();
+    }
+}
+```
+
+Verifícalo con 35: el mayor cuadrado es 25 (lado 5) → `25 + 20 = 45` escudos; quedan 10, mayor cuadrado 9 (lado 3) → `9 + 12 = 21`; queda 1 (lado 1) → `1 + 4 = 5`. Total `45 + 21 + 5 = 71` ✓. `Math.sqrt` te da la raíz; al truncar obtienes el lado del mayor cuadrado que cabe. La clase agrupa los tres cálculos como métodos estáticos: pura lógica bien empaquetada.
 
 </details>
 

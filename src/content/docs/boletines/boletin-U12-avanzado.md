@@ -75,7 +75,7 @@ Empiezan por vocal: ["Esto"]
 
 ---
 
-## ⭐⭐⭐ Ejercicio 6 (ProgramaMe): Validador de datos con regex
+## ⭐⭐⭐ Ejercicio 6: Validador de datos con regex
 
 Crea un programa que lea un archivo `datos.txt` donde cada línea contiene un dato y su tipo (separados por `;`):
 

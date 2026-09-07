@@ -141,4 +141,65 @@ Ha de poder aplicar-se a qualsevol handler així:
 server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
 ```
 
-**Pista:** guarda `System.currentTimeMillis()` abans i després de cridar el handler original. Usa `e.getRequestMethod()`, `e.getRequestURI()` i `e.getResponseCode()` (després d'enviar capçaleres).
+**Pista:** guarda `System.currentTimeMillis()` abans i després de cridar el handler original. Usa `e.getRequestMethod()`, `e.getRequestURI()` i `e.getResponseCode()` (després d'enviar capçaleres)
+
+---
+
+## ⭐⭐⭐ Exercici 10: la petició asíncrona amb sendAsync
+
+Usa `HttpClient` per a demanar dades a l'API pública de GitHub **sense bloquejar el fil principal** amb `sendAsync()`. Descarrega els repos d'un usuari i, quan arribe la resposta, imprimeix el nombre de repos i el codi d'estat.
+
+```java
+// Esquelet per a completar
+HttpClient client = HttpClient.newHttpClient();
+HttpRequest peticio = HttpRequest.newBuilder()
+        .uri(URI.create("https://api.github.com/users/google/repos"))
+        .GET()
+        .build();
+```
+
+Completa el programa perquè:
+- Use `sendAsync(peticio, HttpResponse.BodyHandlers.ofString())`.
+- Encadene `.thenAccept(...)` per a processar la resposta quan arribe (imprimeix `statusCode()` i, si és 200, compta les aparicions de `"full_name"` en el JSON amb `split`).
+- Afig un `System.out.println("Petició llançada, seguim treballant...");` ABANS que arribe la resposta, per a demostrar que el fil no es va bloquejar.
+
+**Pista:** `sendAsync` torna un `CompletableFuture<HttpResponse<String>>`. El `thenAccept` rep la resposta quan estiga llesta, però el `main` continua corrent mentrestant. Perquè el programa no acabe abans que arribe la resposta, espera al final amb `.join()` sobre el `CompletableFuture`. Sense el `join()`, el `main` s'acaba i la petició es perd.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class ReposAsync {
+    public static void main(String[] args) {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest peticio = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.github.com/users/google/repos"))
+                .GET()
+                .build();
+
+        System.out.println("Petició llançada, seguim treballant...");
+
+        client.sendAsync(peticio, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(resposta -> {
+                    System.out.println("Resposta rebuda: codi " + resposta.statusCode());
+                    if (resposta.statusCode() == 200) {
+                        int repos = resposta.body().split("\"full_name\"").length - 1;
+                        System.out.println("Repos de google: " + repos);
+                    } else {
+                        System.out.println("Alguna cosa ha fallat (límit de l'API?): " + resposta.body().substring(0, 80));
+                    }
+                })
+                .join();  // espera que acabe abans de finalitzar el main
+    }
+}
+```
+
+La màgia està en l'ordre de les eixides: "Petició llançada" s'imprimeix **abans** de "Resposta rebuda", encara que la petició es va llançar abans. Això és `sendAsync`: el fil principal no es deté esperant la xarxa; el `thenAccept` s'executa quan arribe la resposta. El `join()` al final és imprescindible: sense ell, el `main` acabaria i la JVM es tancaria abans que arribara la resposta. El comptatge de repos amb `split("\"full_name\"")` és un truc ràpid de JSON sense llibreria: cada repo apareix com un `"full_name"` en la llista.
+
+</details>.

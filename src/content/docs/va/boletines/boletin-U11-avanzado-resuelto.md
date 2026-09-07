@@ -400,4 +400,32 @@ public class Pareja<T, U> {
 
 La classe té dos paràmetres de tipus `<T, U>`. `intercambiar()` crea una `Pareja<U, T>` (fixa't en l'ordre invertit dels paràmetres) passant el segon com a primer i el primer com a segon. El compilador comprova que `original.intercambiar()` torne exactament `Pareja<Integer, String>`: no hi ha manera d'equivocar-se de tipus sense que et pille.
 
-</details>
+</details
+
+---
+
+## ⭐⭐⭐ Exercici 10: el type erasure al descobert
+
+<details>
+<summary>🔄 Solució</summary>
+
+1. **És la mateixa classe.** `Caja<String>` i `Caja<Integer>` no generen dos classes en el bytecode: el compilador esborra el paràmetre de tipus i deixa una única `Caja` amb `Object`. Per això no hi ha cap guany de rendiment per "especialitzar": erasure significa que no es duplica codi.
+2. **`Object`.** `getValor()` en el bytecode torna `Object`. El compilador inserix el cast a `String` en el punt d'ús (quan assignes a `String s = caja.getValor();`).
+3. La comprovació amb `getClass()`:
+
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Caja<String> cajaTexto = new Caja<>("hola");
+        Caja<Integer> cajaNumero = new Caja<>(42);
+
+        System.out.println(cajaTexto.getClass());
+        System.out.println(cajaNumero.getClass());
+        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+    }
+}
+```
+
+Totes dues imprimixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
+
+</details>>

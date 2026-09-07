@@ -262,33 +262,35 @@ Dos ideas de la U05 trabajando a la vez: la **bombolla** para ordenar (adaptada 
 
 ---
 
-### 6. 100 — Constante de Kaprekar
+### 6. 342 — ¡No lo puedes saber!
 
-Aplicando el algoritmo de Kaprekar (ordenar los dígitos de mayor a menor, restar el ordenado de menor a mayor, y repetir), todo número de 4 cifras (con ceros a la izquierda si hace falta) termina en **6174**. Cuenta cuántas iteraciones necesita cada número de la entrada.
+Un jugador piensa un número oculto en un rango `[ini, fin]` y un segundo jugador hace preguntas ("¿El 500?") recibiendo respuestas **"menor"** o **"mayor o igual"**. Dado el rango, el número oculto y la lista de preguntas realizadas, di si el segundo jugador puede **saber con certeza** cuál es el número.
 
-**Entrada:** varios números, uno por línea, hasta un `0` final. El `6174` necesita `0` iteraciones. Los números con todas las cifras iguales (1111, 5555...) son el caso especial del problema: la respuesta oficial es **8**.
+**Entrada:** varios casos. Cada caso: una línea con `ini`, `fin` y `n` (el número oculto). La siguiente línea tiene `k` (nº de preguntas) y las `k` hipótesis. Termina con `0 0 0`.
 
 **Ejemplo:**
 
 ```
-6174
-3524
-1111
-0
+1 10 1
+2 1 2
+1 1000 450
+2 400 500
+0 0 0
 ```
 
 **Salida:**
 
 ```
-0
-3
-8
+LO SABE
+NO LO SABE
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=100)
-- Dificultad: Fácil
+En el primer caso, el jugador pregunta por 1 y 2: responde "mayor o igual" (1) y "menor" (2), así que solo queda el 1 → LO SABE. En el segundo, con preguntas 400 y 500 solo acota a 450, 451... 500 → aún quedan varios → NO LO SABE.
 
-**Pista:** usa tu bombolla para ordenar los dígitos extraídos con `% 10` y `/ 10` en un `int[]` de 4 posiciones. Reconstruye el descendente (dígitos de mayor a menor) y el ascendente, réstalos y cuenta con un contador hasta llegar a 6174. El problema completo, en el boletín avanzado.
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=342)
+- Dificultad: Media
+
+**Pista:** es la **búsqueda binaria** del punto 3 al revés: cada pregunta divide el rango posible en dos según la respuesta. Lleva `min` y `max` (los límites posibles). Si la hipótesis es menor que el oculto, `min` sube a hipótesis + 1; si es mayor o igual, `max` baja a la hipótesis. Al final, LO SABE si `min == max == n`.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -296,67 +298,37 @@ Aplicando el algoritmo de Kaprekar (ordenar los dígitos de mayor a menor, resta
 ```java
 import java.util.Scanner;
 
-public class Kaprekar {
+public class NoLoPuedesSaber {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int numero = sc.nextInt();
 
-        while (numero != 0) {
-            if (esRepdigit(numero)) {
-                System.out.println(8);
-                numero = sc.nextInt();
-                continue;
+        while (true) {
+            int ini = sc.nextInt();
+            int fin = sc.nextInt();
+            int n = sc.nextInt();
+            if (ini == 0 && fin == 0 && n == 0) break;
+
+            int min = ini;
+            int max = fin;
+            int k = sc.nextInt();
+
+            for (int i = 0; i < k; i++) {
+                int hipotesis = sc.nextInt();
+                if (hipotesis < n) {
+                    min = Math.max(min, hipotesis + 1);
+                } else {
+                    max = Math.min(max, hipotesis);
+                }
             }
 
-            int iteraciones = 0;
-
-            while (numero != 6174) {
-                int[] digitos = new int[4];
-
-                for (int i = 3; i >= 0; i--) {
-                    digitos[i] = numero % 10;
-                    numero /= 10;
-                }
-
-                for (int i = 0; i < digitos.length - 1; i++) {
-                    for (int j = 0; j < digitos.length - 1 - i; j++) {
-                        if (digitos[j] > digitos[j + 1]) {
-                            int temp = digitos[j];
-                            digitos[j] = digitos[j + 1];
-                            digitos[j + 1] = temp;
-                        }
-                    }
-                }
-
-                int ascendente = 0;
-                int descendente = 0;
-                for (int i = 0; i < 4; i++) {
-                    ascendente = ascendente * 10 + digitos[i];
-                    descendente = descendente * 10 + digitos[3 - i];
-                }
-
-                numero = descendente - ascendente;
-                iteraciones++;
-            }
-
-            System.out.println(iteraciones);
-            numero = sc.nextInt();
+            System.out.println((min == max && min == n) ? "LO SABE" : "NO LO SABE");
         }
         sc.close();
-    }
-
-    static boolean esRepdigit(int n) {
-        String s = String.format("%04d", n);
-        char primera = s.charAt(0);
-        for (char c : s.toCharArray()) {
-            if (c != primera) return false;
-        }
-        return true;
     }
 }
 ```
 
-El mismo algoritmo del boletín avanzado, ahora en su formato AceptaElReto (varios casos hasta el 0). Para `3524`: dígitos {3,5,2,4}, ordenados {2,3,4,5} → ascendente 2345, descendente 5432, resta 3087 (iteración 1); luego {3,0,8,7} → 8730 − 0378 = 8352 (2); luego 8532 − 2358 = 6174 (3). Los repdigits (1111, 5555...) se detectan antes de entrar en el bucle: la primera resta da 0 y, sin `esRepdigit`, el `while (numero != 6174)` se quedaría dando vueltas para siempre. El problema pide `8` para ellos. La bombolla, otra vez, protagonista.
+Cada respuesta estrecha el intervalo: si la hipótesis es menor que el oculto, el número no puede estar en `[ini, hipotesis]`, así que `min` sube a `hipótesis + 1`. Si es mayor o igual, `max` baja a la hipótesis. Es el mismo razonamiento de la búsqueda binaria del punto 3: partir el rango por la mitad (o por donde toque) y descartar. Al final, el jugador "lo sabe" solo si el intervalo se ha cerrado por completo sobre el número oculto. La comparación con `n` usa el dato que nosotros sí conocemos, pero el programa simula lo que el jugador va descubriendo.
 
 </details>
 

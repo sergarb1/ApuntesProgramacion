@@ -398,4 +398,32 @@ public class Pareja<T, U> {
 }
 ```
 
-La clase tiene dos parámetros de tipo `<T, U>`. `intercambiar()` crea una `Pareja<U, T>` (fíjate en el orden invertido de los parámetros) pasando el segundo como primero y el primero como segundo. El compilador comprueba que `original.intercambiar()` devuelva exactamente `Pareja<Integer, String>`: no hay forma de equivocarse de tipo sin que te pille.
+La clase tiene dos parámetros de tipo `<T, U>`. `intercambiar()` crea una `Pareja<U, T>` (fíjate en el orden invertido de los parámetros) pasando el segundo como primero y el primero como segundo. El compilador comprueba que `original.intercambiar()` devuelva exactamente `Pareja<Integer, String>`: no hay forma de equivocarse de tipo sin que te pille
+
+---
+
+## ⭐⭐⭐ Ejercicio 10: el type erasure al descubierto
+
+<details>
+<summary>🔄 Solución</summary>
+
+1. **Es la misma clase.** `Caja<String>` y `Caja<Integer>` no generan dos clases en el bytecode: el compilador borra el parámetro de tipo y deja una única `Caja` con `Object`. Por eso no hay ninguna ganancia de rendimiento por "especializar": erasure significa que no se duplica código.
+2. **`Object`.** `getValor()` en el bytecode devuelve `Object`. El compilador inserta el cast a `String` en el punto de uso (cuando asignas a `String s = caja.getValor();`).
+3. La comprobación con `getClass()`:
+
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Caja<String> cajaTexto = new Caja<>("hola");
+        Caja<Integer> cajaNumero = new Caja<>(42);
+
+        System.out.println(cajaTexto.getClass());
+        System.out.println(cajaNumero.getClass());
+        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+    }
+}
+```
+
+Ambas imprimen `class Caja` y la comparación con `==` da `true`: es la MISMA clase en runtime. El `<String>` y el `<Integer>` solo existen en tiempo de compilación. Ese es el type erasure: el mago que borra los tipos cuando compilas.
+
+</details>.

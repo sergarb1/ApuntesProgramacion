@@ -136,21 +136,20 @@ Crea la clase `Block` con un constructor que reciba las tres dimensiones (como `
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 100 Constante de Kaprekar
+## ⭐⭐⭐ Ejercicio 9: CodeWars — Object Oriented Piracy
 
-Resuelve el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
+Resuelve la kata **"Object Oriented Piracy"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add).
 
-La entrada empieza con un número de casos. Para cada caso de prueba (un número de 4 cifras), aplica la rutina de Kaprekar: ordena sus dígitos de mayor a menor y de menor a mayor, resta, y repite hasta llegar a 6174. Imprime el número de iteraciones necesarias. Para los repdigits (1111, 2222...) imprime `8`. Para 6174 imprime `0`.
+Crea la clase `Ship` que recibe un `draft` (calado en unidades) y un `crew` (tripulantes). Implementa:
+- `getDraft()` y `getCrew()` → los getters de siempre.
+- `isWorthIt()` → devuelve `true` si el barco merece la pena saquearlo: el calado total menos `1.5` por cada tripulante debe superar 20.
 
-**Ejemplo:**
-
+```java
+Ship titanic = new Ship(15, 10);
+titanic.isWorthIt(); // false: 15 - 1.5*10 = 0, no merece la pena
 ```
-3524 → 5432 - 2345 = 3087 → 8730 - 0378 = 8352 → 8532 - 2358 = 6174
-```
 
-Resultado: **3** iteraciones.
-
-**Pista:** pasa el número a `String`, usa `Arrays.sort` sobre el array de caracteres para ordenarlos, y construye el mayor y el menor. Un `while (n != 6174)` cuenta las vueltas. Esta es la oportunidad perfecta para practicar una clase `Numero` con métodos como `ordenarDigitos()`.
+**Pista:** un getter devuelve el atributo tal cual; `isWorthIt()` combina ambos: `return draft - 1.5 * crew > 20;`. El `1.5` es una constante con nombre, mejor que un número suelto.
 
 ---
 
@@ -158,7 +157,6 @@ Resultado: **3** iteraciones.
 
 | Plataforma | Problema | Dificultad |
 |---|---|---|
-| AceptaElReto | 100 — Constante de Kaprekar | Medio |
 | AceptaElReto | 148 — Nochevieja | Fácil |
 | CodeWars | Object Oriented Piracy (8 kyu) | Principiante |
 | CodeWars | Building blocks (7 kyu) | Aficionado |

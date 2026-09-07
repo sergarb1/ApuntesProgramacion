@@ -136,21 +136,20 @@ Crea la classe `Block` amb un constructor que reba les tres dimensions (com `int
 
 ---
 
-## ⭐⭐⭐ Exercici 9: AceptaElReto — 100 Constante de Kaprekar
+## ⭐⭐⭐ Exercici 9: CodeWars — Object Oriented Piracy
 
-Resol el problema **100 — Constante de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
+Resol la kata **"Object Oriented Piracy"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add).
 
-L'entrada comença amb un nombre de casos. Per a cada cas de prova (un nombre de 4 xifres), aplica la rutina de Kaprekar: ordena les seues xifres de major a menor i de menor a major, resta, i repetix fins a arribar a 6174. Imprimix el nombre d'iteracions necessàries. Per als repdigits (1111, 2222...) imprimix `8`. Per a 6174 imprimix `0`.
+Crea la classe `Ship` que rep un `draft` (calat en unitats) i un `crew` (tripulants). Implementa:
+- `getDraft()` i `getCrew()` → els getters de sempre.
+- `isWorthIt()` → torna `true` si el vaixell mereix la pena saquejar-lo: el calat total menys `1.5` per cada tripulant ha de superar 20.
 
-**Exemple:**
-
+```java
+Ship titanic = new Ship(15, 10);
+titanic.isWorthIt(); // false: 15 - 1.5*10 = 0, no mereix la pena
 ```
-3524 → 5432 - 2345 = 3087 → 8730 - 0378 = 8352 → 8532 - 2358 = 6174
-```
 
-Resultat: **3** iteracions.
-
-**Pista:** passa el nombre a `String`, usa `Arrays.sort` sobre l'array de caràcters per a ordenar-los, i construïx el major i el menor. Un `while (n != 6174)` compta les voltes. Esta és l'oportunitat perfecta per a practicar una classe `Numero` amb mètodes com `ordenarDigits()`.
+**Pista:** un getter torna l'atribut tal qual; `isWorthIt()` combina tots dos: `return draft - 1.5 * crew > 20;`. El `1.5` és una constant amb nom, millor que un número solt.
 
 ---
 

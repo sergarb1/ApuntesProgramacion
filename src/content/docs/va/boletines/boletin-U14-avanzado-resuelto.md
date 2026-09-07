@@ -461,4 +461,47 @@ server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
 
 El truc: `LoggerMiddleware` **implementa el mateix contracte** (`HttpHandler`) i embolica l'original. El `try/finally` garantix que el log s'imprimeix encara que el handler falle. `getResponseCode()` només val després d'enviar capçaleres, per això es llig al final. A això se li diu *decorator* o middleware: emboliques un handler amb un altre que afig comportament.
 
-</details>
+</details
+
+---
+
+## ⭐⭐⭐ Exercici 10: la petició asíncrona amb sendAsync
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
+public class ReposAsync {
+    public static void main(String[] args) {
+        HttpClient client = HttpClient.newHttpClient();
+
+        HttpRequest peticio = HttpRequest.newBuilder()
+                .uri(URI.create("https://api.github.com/users/google/repos"))
+                .GET()
+                .build();
+
+        System.out.println("Petició llançada, seguim treballant...");
+
+        client.sendAsync(peticio, HttpResponse.BodyHandlers.ofString())
+                .thenAccept(resposta -> {
+                    System.out.println("Resposta rebuda: codi " + resposta.statusCode());
+                    if (resposta.statusCode() == 200) {
+                        int repos = resposta.body().split("\"full_name\"").length - 1;
+                        System.out.println("Repos de google: " + repos);
+                    } else {
+                        System.out.println("Alguna cosa ha fallat (límit de l'API?): " + resposta.body().substring(0, 80));
+                    }
+                })
+                .join();  // espera que acabe abans de finalitzar el main
+    }
+}
+```
+
+La màgia està en l'ordre de les eixides: "Petició llançada" s'imprimeix **abans** de "Resposta rebuda", encara que la petició es va llançar abans. Això és `sendAsync`: el fil principal no es deté esperant la xarxa; el `thenAccept` s'executa quan arribe la resposta. El `join()` al final és imprescindible: sense ell, el `main` acabaria i la JVM es tancaria abans que arribara la resposta. El comptatge de repos amb `split("\"full_name\"")` és un truc ràpid de JSON sense llibreria: cada repo apareix com un `"full_name"` en la llista.
+
+</details>>

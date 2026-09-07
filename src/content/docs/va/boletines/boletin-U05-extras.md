@@ -262,33 +262,35 @@ Dues idees de la U05 treballant alhora: la **bombolla** per a ordenar (adaptada 
 
 ---
 
-### 6. 100 — Constant de Kaprekar
+### 6. 342 — No ho pots saber!
 
-Aplicant l'algoritme de Kaprekar (ordenar els dígits de major a menor, restar l'ordenat de menor a major, i repetir), tot nombre de 4 xifres (amb zeros a l'esquerra si cal) acaba en **6174**. Compta quantes iteracions necessita cada nombre de l'entrada.
+Un jugador pensa un nombre ocult en un rang `[ini, fin]` i un segon jugador fa preguntes ("El 500?") rebent respostes **"menor"** o **"major o igual"**. Donats el rang, el nombre ocult i la llista de preguntes realitzades, digues si el segon jugador pot **saber amb certesa** quin és el nombre.
 
-**Entrada:** diversos nombres, un per línia, fins a un `0` final. El `6174` necessita `0` iteracions. Els nombres amb totes les xifres iguals (1111, 5555...) són el cas especial del problema: la resposta oficial és **8**.
+**Entrada:** diversos casos. Cada cas: una línia amb `ini`, `fin` i `n` (el nombre ocult). La línia següent té `k` (nre. de preguntes) i les `k` hipòtesis. Termina amb `0 0 0`.
 
 **Exemple:**
 
 ```
-6174
-3524
-1111
-0
+1 10 1
+2 1 2
+1 1000 450
+2 400 500
+0 0 0
 ```
 
 **Eixida:**
 
 ```
-0
-3
-8
+HO SAP
+NO HO SAP
 ```
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=100)
-- Dificultat: Fàcil
+En el primer cas, el jugador pregunta per 1 i 2: respon "major o igual" (1) i "menor" (2), així que només queda l'1 → HO SAP. En el segon, amb les preguntes 400 i 500 només acota a 450, 451... 500 → encara queden diversos → NO HO SAP.
 
-**Pista:** usa la teua bombolla per a ordenar els dígits extraïts amb `% 10` i `/ 10` en un `int[]` de 4 posicions. Reconstruïx el descendent (dígits de major a menor) i l'ascendent, resta'ls i compta amb un comptador fins a arribar a 6174. El problema complet, en el butlletí avançat.
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=342)
+- Dificultat: Mitjana
+
+**Pista:** és la **cerca binària** del punt 3 al revés: cada pregunta dividix el rang possible en dos segons la resposta. Porta `min` i `max` (els límits possibles). Si la hipòtesi és menor que l'ocult, `min` puja a hipòtesi + 1; si és major o igual, `max` baixa a la hipòtesi. Al final, HO SAP si `min == max == n`.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -296,67 +298,37 @@ Aplicant l'algoritme de Kaprekar (ordenar els dígits de major a menor, restar l
 ```java
 import java.util.Scanner;
 
-public class Kaprekar {
+public class NoHoPotsSaber {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int numero = sc.nextInt();
 
-        while (numero != 0) {
-            if (esRepdigit(numero)) {
-                System.out.println(8);
-                numero = sc.nextInt();
-                continue;
+        while (true) {
+            int ini = sc.nextInt();
+            int fin = sc.nextInt();
+            int n = sc.nextInt();
+            if (ini == 0 && fin == 0 && n == 0) break;
+
+            int min = ini;
+            int max = fin;
+            int k = sc.nextInt();
+
+            for (int i = 0; i < k; i++) {
+                int hipotesi = sc.nextInt();
+                if (hipotesi < n) {
+                    min = Math.max(min, hipotesi + 1);
+                } else {
+                    max = Math.min(max, hipotesi);
+                }
             }
 
-            int iteracions = 0;
-
-            while (numero != 6174) {
-                int[] digits = new int[4];
-
-                for (int i = 3; i >= 0; i--) {
-                    digits[i] = numero % 10;
-                    numero /= 10;
-                }
-
-                for (int i = 0; i < digits.length - 1; i++) {
-                    for (int j = 0; j < digits.length - 1 - i; j++) {
-                        if (digits[j] > digits[j + 1]) {
-                            int temp = digits[j];
-                            digits[j] = digits[j + 1];
-                            digits[j + 1] = temp;
-                        }
-                    }
-                }
-
-                int ascendent = 0;
-                int descendent = 0;
-                for (int i = 0; i < 4; i++) {
-                    ascendent = ascendent * 10 + digits[i];
-                    descendent = descendent * 10 + digits[3 - i];
-                }
-
-                numero = descendent - ascendent;
-                iteracions++;
-            }
-
-            System.out.println(iteracions);
-            numero = sc.nextInt();
+            System.out.println((min == max && min == n) ? "HO SAP" : "NO HO SAP");
         }
         sc.close();
-    }
-
-    static boolean esRepdigit(int n) {
-        String s = String.format("%04d", n);
-        char primera = s.charAt(0);
-        for (char c : s.toCharArray()) {
-            if (c != primera) return false;
-        }
-        return true;
     }
 }
 ```
 
-El mateix algoritme del butlletí avançat, ara en el seu format AceptaElReto (diversos casos fins al 0). Per a `3524`: dígits {3,5,2,4}, ordenats {2,3,4,5} → ascendent 2345, descendent 5432, resta 3087 (iteració 1); després {3,0,8,7} → 8730 − 0378 = 8352 (2); després 8532 − 2358 = 6174 (3). Els repdigits (1111, 5555...) es detecten abans d'entrar al bucle: la primera resta dóna 0 i, sense `esRepdigit`, el `while (numero != 6174)` es quedaria donant voltes per sempre. El problema demana `8` per a ells. La bombolla, una altra vegada, protagonista.
+Cada resposta estreny l'interval: si la hipòtesi és menor que l'ocult, el nombre no pot estar en `[ini, hipotesi]`, així que `min` puja a `hipòtesi + 1`. Si és major o igual, `max` baixa a la hipòtesi. És el mateix raonament de la cerca binària del punt 3: partir el rang per la meitat (o per on toque) i descartar. Al final, el jugador "ho sap" només si l'interval s'ha tancat per complet sobre el nombre ocult. La comparació amb `n` usa la dada que nosaltres sí coneixem, però el programa simula el que el jugador va descobrint.
 
 </details>
 

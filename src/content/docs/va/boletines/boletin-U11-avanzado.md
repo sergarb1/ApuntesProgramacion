@@ -136,4 +136,56 @@ Que torne la clau amb més vots. Prova-ho amb un `HashMap<String, Integer>` i un
 
 Crea una classe genèrica `Pareja<T, U>` que emmagatzeme dos objectes de tipus possiblement distints. Inclou mètodes `getPrimero()`, `getSegundo()`, `setPrimero(T)`, `setSegundo(U)` i un mètode `intercambiar()` que torne una nova `Pareja<U, T>` amb els valors intercanviats.
 
-**Pista:** `intercambiar()` crea i torna `new Pareja<>(this.segundo, this.primero)`. L'ordre dels paràmetres de tipus canvia: `Pareja<U, T>`.
+**Pista:** `intercambiar()` crea i torna `new Pareja<>(this.segundo, this.primero)`. L'ordre dels paràmetres de tipus canvia: `Pareja<U, T>`
+
+---
+
+## ⭐⭐⭐ Exercici 10: el type erasure al descobert
+
+La classe `Caja<T>` guarda un valor i el torna amb `getValor()`. Escriu un programa que demostre el **type erasure** en acció:
+
+```java
+public class Caja<T> {
+    private T valor;
+
+    public Caja(T valor) {
+        this.valor = valor;
+    }
+
+    public T getValor() {
+        return valor;
+    }
+}
+```
+
+Sense executar, respon:
+
+1. Què es compila més ràpid: `Caja<String>` o `Caja<Integer>`? Són classes distintes en temps d'execució?
+2. Quin tipus té realment `caja.getValor()` dins del bytecode si el compiles com a `Caja<String>`?
+3. Escriu un `main` que cree `Caja<String>` i `Caja<Integer>` i comprove amb `getClass()` que totes dues són instàncies de la mateixa classe `Caja` (el erasure: `<T>` desapareix en el bytecode).
+
+**Pista:** el type erasure convertix `Caja<T>` en `Caja` a secas (amb `Object` on estava `T`). Per això `caja.getClass()` torna el mateix per a `Caja<String>` i `Caja<Integer>`: en runtime no hi ha dos classes, només una `Caja`. El cast de `getValor()` l'afig el compilador, no el teu codi.
+
+<details>
+<summary>🔄 Solució</summary>
+
+1. **És la mateixa classe.** `Caja<String>` i `Caja<Integer>` no generen dos classes en el bytecode: el compilador esborra el paràmetre de tipus i deixa una única `Caja` amb `Object`. Per això no hi ha cap guany de rendiment per "especialitzar": erasure significa que no es duplica codi.
+2. **`Object`.** `getValor()` en el bytecode torna `Object`. El compilador inserix el cast a `String` en el punt d'ús (quan assignes a `String s = caja.getValor();`).
+3. La comprovació amb `getClass()`:
+
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Caja<String> cajaTexto = new Caja<>("hola");
+        Caja<Integer> cajaNumero = new Caja<>(42);
+
+        System.out.println(cajaTexto.getClass());
+        System.out.println(cajaNumero.getClass());
+        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+    }
+}
+```
+
+Totes dues imprimixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
+
+</details>.
