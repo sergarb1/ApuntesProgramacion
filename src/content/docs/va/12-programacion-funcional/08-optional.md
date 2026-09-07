@@ -5,7 +5,7 @@ description: "Embolicar el `null` per a no ensopegar-hi: `Optional.of`, `orElse`
 
 <p><small>Embolicar el `null` per a no ensopegar-hi: `Optional.of`, `orElse`, `isPresent` i `ifPresent` 🎁</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 08 · Optional: el que accepta l'absència
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 08 · Optional: el que accepta l'absència
 
 ---
 

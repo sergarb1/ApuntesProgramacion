@@ -5,7 +5,7 @@ description: "Reciclar mètodes ja escrits com si foren lambdes amb l'operador `
 
 <p><small>Reciclar mètodes ja escrits com si foren lambdes amb l'operador `::` 🩹</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 03 · Referències a mètodes: la drecera `::`
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 03 · Referències a mètodes: la drecera `::`
 
 ---
 

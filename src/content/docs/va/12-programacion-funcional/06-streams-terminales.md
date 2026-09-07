@@ -5,7 +5,7 @@ description: "L'aixeta que fa que l'aigua fluesca de veritat: `collect`, `reduce
 
 <p><small>L'aixeta que fa que l'aigua fluesca de veritat: `collect`, `reduce`, `count` i `forEach` 🚰</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 06 · Operacions terminals: collect, reduce, count, forEach
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 06 · Operacions terminals: collect, reduce, count, forEach
 
 ---
 

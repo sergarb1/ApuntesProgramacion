@@ -225,7 +225,7 @@ Empiezan por vocal: ["Esto"]
 
 ---
 
-## ⭐⭐⭐ Exercici 6 (ProgramaMe): Validador de dades amb regex
+## ⭐⭐⭐ Exercici 6: Validador de dades amb regex
 
 <details>
 <summary>🔄 Solució</summary>

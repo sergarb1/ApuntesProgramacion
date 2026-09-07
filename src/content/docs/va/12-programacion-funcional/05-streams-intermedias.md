@@ -5,7 +5,7 @@ description: "La cinta que filtra, transforma, lleva repetits, ordena i limita e
 
 <p><small>La cinta que filtra, transforma, lleva repetits, ordena i limita el flux 🌀</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 05 · Operacions intermèdies: filter, map, distinct, sorted, limit
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 05 · Operacions intermèdies: filter, map, distinct, sorted, limit
 
 ---
 

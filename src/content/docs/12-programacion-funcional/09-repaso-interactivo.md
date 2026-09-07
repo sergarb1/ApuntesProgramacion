@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad, con un pipeline que parece magia
 
 <p><small>El cierre práctico de la unidad, con un pipeline que parece magia y un Optional que esconde un susto 🎯</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 09 · Repaso interactivo
 
 ---
 

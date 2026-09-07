@@ -5,7 +5,7 @@ description: "La flecha `->`, la sintaxis de las lambdas y la primera vez que gu
 
 <p><small>La flecha `->`, la sintaxis de las lambdas y la primera vez que guardas una función en una variable 🏹</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 01 · Lambdas: funciones que viajan solas
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 01 · Lambdas: funciones que viajan solas
 
 ---
 

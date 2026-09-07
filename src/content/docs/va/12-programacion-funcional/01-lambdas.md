@@ -5,7 +5,7 @@ description: "La fletxa `->`, la sintaxi de les lambdes i la primera vegada que 
 
 <p><small>La fletxa `->`, la sintaxi de les lambdes i la primera vegada que guardes una funció en una variable 🏹</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 01 · Lambdes: funcions que viatgen soles
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 01 · Lambdes: funcions que viatgen soles
 
 ---
 

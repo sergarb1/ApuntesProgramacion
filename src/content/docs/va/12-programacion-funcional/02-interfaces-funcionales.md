@@ -5,7 +5,7 @@ description: "Els quatre vestits oficials de tota lambda: què espera cada un i 
 
 <p><small>Els quatre vestits oficials de tota lambda: què espera cada un i com llegir la seua firma 🎭</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 02 · Interfícies funcionals: Predicate, Function, Consumer, Supplier
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 02 · Interfícies funcionals: Predicate, Function, Consumer, Supplier
 
 ---
 

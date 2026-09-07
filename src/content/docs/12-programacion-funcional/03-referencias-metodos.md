@@ -5,7 +5,7 @@ description: "Reciclar métodos ya escritos como si fueran lambdas con el operad
 
 <p><small>Reciclar métodos ya escritos como si fueran lambdas con el operador `::` 🩹</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 03 · Referencias a métodos: el atajo `::`
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 03 · Referencias a métodos: el atajo `::`
 
 ---
 

@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat, amb un pipeline que sembla mà
 
 <p><small>El tancament pràctic de la unitat, amb un pipeline que sembla màgia i un Optional que amaga un ensurt 🎯</small></p>
 
-> 🗺️ **Estàs en:** 🗺️ **U12 · Programació Funcional** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 09 · Repàs interactiu
 
 ---
 

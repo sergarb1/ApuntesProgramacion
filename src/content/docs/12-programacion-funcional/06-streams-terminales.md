@@ -5,7 +5,7 @@ description: "El grifo que hace que el agua fluya de verdad: `collect`, `reduce`
 
 <p><small>El grifo que hace que el agua fluya de verdad: `collect`, `reduce`, `count` y `forEach` 🚰</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 06 · Operaciones terminales: collect, reduce, count, forEach
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 06 · Operaciones terminales: collect, reduce, count, forEach
 
 ---
 

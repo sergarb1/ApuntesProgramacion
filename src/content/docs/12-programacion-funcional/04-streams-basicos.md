@@ -5,7 +5,7 @@ description: "La cinta transportadora de Java: crear un `Stream`, el pipeline y 
 
 <p><small>La cinta transportadora de Java: crear un `Stream`, el pipeline y por qué no guarda nada 📦</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 04 · Streams: el flujo de datos
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 04 · Streams: el flujo de datos
 
 ---
 

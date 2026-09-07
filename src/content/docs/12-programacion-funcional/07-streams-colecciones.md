@@ -5,7 +5,7 @@ description: "`toList()`, `Collectors.toMap` y `groupingBy`: del flujo a listas,
 
 <p><small>`toList()`, `Collectors.toMap` y `groupingBy`: del flujo a listas, conjuntos y mapas 🗂️</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 07 · Del stream a la colección: toList, Collectors, groupingBy
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 07 · Del stream a la colección: toList, Collectors, groupingBy
 
 ---
 

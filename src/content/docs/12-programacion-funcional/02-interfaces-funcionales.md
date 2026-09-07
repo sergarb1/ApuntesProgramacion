@@ -5,7 +5,7 @@ description: "Los cuatro trajes oficiales de toda lambda: qué espera cada uno y
 
 <p><small>Los cuatro trajes oficiales de toda lambda: qué espera cada uno y cómo leer su firma 🎭</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 02 · Interfaces funcionales: Predicate, Function, Consumer, Supplier
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 02 · Interfaces funcionales: Predicate, Function, Consumer, Supplier
 
 ---
 

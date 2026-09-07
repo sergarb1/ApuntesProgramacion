@@ -5,7 +5,7 @@ description: "La cinta que filtra, transforma, quita repetidos, ordena y limita 
 
 <p><small>La cinta que filtra, transforma, quita repetidos, ordena y limita el flujo 🌀</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 05 · Operaciones intermedias: filter, map, distinct, sorted, limit
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 05 · Operaciones intermedias: filter, map, distinct, sorted, limit
 
 ---
 

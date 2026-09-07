@@ -5,7 +5,7 @@ description: "Envolver el `null` para no tropezarte: `Optional.of`, `orElse`, `i
 
 <p><small>Envolver el `null` para no tropezarte: `Optional.of`, `orElse`, `isPresent` e `ifPresent` 🎁</small></p>
 
-> 🗺️ **Estás en:** 🗺️ **U12 · Programación Funcional** → 08 · Optional: el que acepta la ausencia
+> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 08 · Optional: el que acepta la ausencia
 
 ---
 
