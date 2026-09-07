@@ -1,17 +1,25 @@
-# Revisión Unidad 13 — Conexión a Bases de Datos con JDBC
+﻿# Revisión Unidad 13 — Ficheros y Expresiones Regulares
 
 **Fecha:** 28/08/2026 · **Estado:** ✅ revisada (expandida al estándar)
 **Alcance:** índice + 9 puntos + 5 boletines, en castellano y valenciano (30 archivos).
 
+> 🔄 **Nota (07/09/2026):** tras insertar la nueva U12 (Programación Funcional), esta unidad pasó de U12 a **U13**. El contenido no cambió; solo se actualizaron la numeración, los enlaces y las referencias cruzadas.
+
+## Contexto
+
+La antigua U11 "Consola, Ficheros y Regex" perdió la sección de consola (movida a U02 punto 7) y ahora es SOLO **Ficheros y Expresiones Regulares**. Emoji 📁. Cubre RA5 (c, d, e) y RA6 (g).
+
 ## Verificación realizada
 
-- **Estructura**: 9 puntos (01-que-es-jdbc, 02-conexion, 03-statement-resultset, 04-crud, 05-preparedstatement, 06-pattern-dao, 07-transacciones, 08-buenas-practicas, 09-repaso-interactivo), índice con RA9 (a-g), 5 boletines `boletin-u13-*`.
-- **Punto 05 (PreparedStatement y SQL injection)**: revisado en detalle — concatenación vulnerable, historia de Bobby Tables, placeholders desde índice 1, `setXxx`, limitación (no `?` para identificadores). Técnicamente correcto.
-- **1:1 ES/VA**: nombres idénticos, ejercicios 1:1 (inicial 9, avanzado 9, extras 6 con katas SQL y AER 245/424).
-- **Referencias a unidades**: correctas (excepciones→U03, POJO/DAO→U07/U08, try-with-resources→U12, cierre→U14).
+- **Estructura**: 9 puntos (01-clase-file, 02-escribir-leer-texto, 03-try-with-resources, 04-printwriter-scanner-file, 05-nio-files-paths, 06-serializacion, 07-regex-basica, 08-regex-aplicaciones, 09-repaso-interactivo).
+- **Compilación**: validador de correo/DNI/teléfono con regex verificado. **Error real encontrado y corregido** (ver abajo).
+- **1:1 ES/VA**: nombres idénticos, ejercicios 1:1 (inicial 9, avanzado 9, extras 6 con katas y AER 108/140).
+- **Referencias a consola**: apuntan a U02 punto 7 (nota en el índice), correcto.
 
 ## Hallazgos
 
-- 🟢 Los bloques de JDBC requieren SQLite/Maven para ejecutarse; la revisión se hizo por análisis de sintaxis y coherencia (patrón estándar JDBC). No se ejecutaron contra una BD real (requiere dependencia), pero el código sigue el patrón correcto.
+### 🟡 Medio — corregido ✅
 
-**Resultado: ✅ pasada** (build 425 páginas).
+1. **Punto 08 · ValidadorRegex (ES y VA)**: `esDNIValido` hacía `dni.toUpperCase()` antes de matchear, pero el ejemplo esperaba `false` para `"12345678z"` (minúscula). Con `toUpperCase()` daba `true`, contradiciendo la explicación. Corregido quitando el `toUpperCase()`: ahora `"12345678z"` → `false` como indica el texto. Verificado por compilación y ejecución: `true, false, true, false, true, false`.
+
+**Resultado: ✅ pasada** (build 455 páginas).
