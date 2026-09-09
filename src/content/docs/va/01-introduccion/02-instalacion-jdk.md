@@ -51,22 +51,22 @@ OpenJDK 64-Bit Server VM (build 21+35, mixed mode)
 javac 21
 ```
 
-Si veus alguna cosa pareguda, enhorabona! Tens poders de compilació. Si en canvi et diu `'java' no es reconeix com un comandament intern o extern`, significa que el `PATH` no està ben configurat: busca en el menú de Windows "Editar les variables d'entorn del sistema" i afegix la carpeta `bin` del JDK a la variable `Path`.
+Si veus alguna cosa pareguda, enhorabona! Tens poders de compilació. Si en canvi et diu `'java' no es reconeix com un comandament intern o extern`, significa que el `PATH` no està ben configurat: busca en el menú de Windows "Editar les variables d'entorn del sistema" i afegeix la carpeta `bin` del JDK a la variable `Path`.
 
-> 💡 **Què és el PATH?** És la llista de carpetes on Windows busca els comandaments que escrius. Si la carpeta `...\jdk-21\bin` està en el `PATH`, en escriure `java` Windows la troba. Sense ella, Windows s'encongix d'espatles.
+> 💡 **Què és el PATH?** És la llista de carpetes on Windows busca els comandaments que escrius. Si la carpeta `...\jdk-21\bin` està en el `PATH`, en escriure `java` Windows la troba. Sense ella, Windows s'encongeix d'espatles.
 
 ### Pas 3: per què hi ha dos comandaments?
 
 - `java`: **executa** programes (arranca la JVM amb el teu bytecode).
 - `javac`: **compila** codi font `.java` a bytecode `.class`.
 
-Es necessiten els dos: `javac` convertix el teu codi i `java` el posa en marxa. Els veuràs junts tot el curs.
+Es necessiten els dos: `javac` converteix el teu codi i `java` el posa en marxa. Els veuràs junts tot el curs.
 
 ---
 
 ## 🛠️ L'IDE: la teua navalla suïssa
 
-El JDK és el motor, però la major part del temps no escriuràs codi en un bloc de notes: usaràs un **IDE** (Entorn de Desenrotllament Integrat). L'IDE reunix en una sola aplicació:
+El JDK és el motor, però la major part del temps no escriuràs codi en un bloc de notes: usaràs un **IDE** (Entorn de Desenrotllament Integrat). L'IDE reuneix en una sola aplicació:
 
 - **Editor de codi** amb colors, autocompletat i ressaltat d'errors mentre escrius.
 - **Compilador i executor** amb un botó: ja no necessites teclejar `javac` i `java` a mà (encara que és bo saber-ho).
@@ -101,11 +101,11 @@ public class HolaMundo {
 }
 ```
 
-5. Polsa **F5** (o el botó ▶ verd dalt a la dreta) i selecciona **Run Java**. Mirada a la consola.
+5. Polsa **F5** (o el botó ▶ verd dalt a la dreta) i selecciona **Run Java**. Mira la consola.
 
 Si veus el missatge en la consola, el teu xiringuito està muntat: JDK + VS Code + primer programa. Estàs oficialment dins.
 
-> ⚠️ **Advertència:** no confongues la consola de l'IDE amb la terminal del sistema. La consola de l'IDE és on s'imprimixen els `System.out.println` en executar. Si no veus eixida, busca la pestanya "Console" / "Eixida".
+> ⚠️ **Advertència:** no confongues la consola de l'IDE amb la terminal del sistema. La consola de l'IDE és on s'imprimeixen els `System.out.println` en executar. Si no veus eixida, busca la pestanya "Console" / "Eixida".
 
 ---
 
@@ -130,7 +130,7 @@ Si veus el missatge en la consola, el teu xiringuito està muntat: JDK + VS Code
 
 1. Instal·la **Eclipse Temurin** (un JDK lliure) i verifica amb `java -version` i `javac -version`.
 2. `javac` compila, `java` executa, i el `PATH` és l'adreça postal que el sistema necessita per a trobar-los.
-3. **Visual Studio Code** amb Extension Pack for Java reunix editor, compilador i depurador: és la teua navalla suïssa.
+3. **Visual Studio Code** amb Extension Pack for Java reuneix editor, compilador i depurador: és la teua navalla suïssa.
 
 > 🐛 **Vocabulari ràpid**
 >

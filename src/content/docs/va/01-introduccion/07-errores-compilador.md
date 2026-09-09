@@ -55,7 +55,7 @@ Public class Calculadora
 
 1. `Public` hauria de ser **`public`** (minúscula). Java és sensible a les majúscules.
 2. Falta **`{`** després de `Calculadora`. La classe necessita la seua clau d'obertura.
-3. `string[] args` hauria de ser **`String[] args`** (la S majúscula importa: `String` és una classe, no existix `string`).
+3. `string[] args` hauria de ser **`String[] args`** (la S majúscula importa: `String` és una classe, no existeix `string`).
 4. Falta el **`;`** al final de la primera línia del `println`.
 
 Java és molt puntillós, com un professor de llengua amb les comes: `public`, `String` i `System` comencen en majúscula o majúscules concretes, i cada frase acaba en `;`.
@@ -93,7 +93,7 @@ Tres dades clau:
 | Falta `;` | `';' expected` | Cada instrucció acaba en `;` |
 | Falta `{` o `}` | `reached end of file while parsing` o `class, interface...` | Compta les claus d'obertura i tancament |
 | `string` en lloc de `String` | `cannot find symbol` | `String` és una classe amb S majúscula |
-| La classe no coincidix amb l'archiu | `class X is public, should be declared in a file named X.java` | La classe `public` es diu igual que l'archiu |
+| La classe no coincideix amb l'archiu | `class X is public, should be declared in a file named X.java` | La classe `public` es diu igual que l'archiu |
 | `System.out.println` sense les S majúscules | `cannot find symbol: variable system` | `System`, `out` en minúscula i `println` |
 
 > 🧠 **Truc de memòria:** els noms de les *classes* (String, System, Scanner...) comencen en majúscula; els noms de *variables i mètodes* (out, println, main) en minúscula. Quan dubtes, mira com ho va escriure Java.
@@ -146,7 +146,7 @@ La classe és el contenidor, el `main` és la porta d'entrada, les instruccions 
 
 1. Que en l'archiu `Calculadora.java`, en la línia 3, javac esperava un `;` i no el va trobar (mira la `^`).
 2. Perquè Java és sensible a les majúscules: la paraula reservada és `public`, en minúscula exacta.
-3. El de compilació impedix generar el `.class` (ho detecta javac). El de lògica compila i executa, però el resultat és incorrecte: ningú t'avisa, només el depurador (o el sentit comú).
+3. El de compilació impedeix generar el `.class` (ho detecta javac). El de lògica compila i executa, però el resultat és incorrecte: ningú t'avisa, només el depurador (o el sentit comú).
 
 </details>
 

@@ -85,7 +85,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="ra">RA2, RA6</span>
   </div>
   <a href="/ApuntesProgramacion/va/05-algoritmica-fundamentos" class="title-link">Algorítmica I: Fonaments</a>
-  <p class="desc">Aprén a pensar com un programador: dividix problemes en parts, usa pseudocodi, diagrames de flux i crea funcions reutilitzables.</p>
+  <p class="desc">Aprén a pensar com un programador: divideix problemes en parts, usa pseudocodi, diagrames de flux i crea funcions reutilitzables.</p>
   <a href="/ApuntesProgramacion/va/05-algoritmica-fundamentos" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>
@@ -96,7 +96,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="ra">RA2, RA6</span>
   </div>
   <a href="/ApuntesProgramacion/va/06-algoritmica-tecnicas" class="title-link">Algorítmica II: Tècniques Avançades</a>
-  <p class="desc">Algoritmes d'ordenació, cerca binària, recursivitat i tècniques dividix i venceràs per a resoldre problemes més complexos.</p>
+  <p class="desc">Algoritmes d'ordenació, cerca binària, recursivitat i tècniques divideix i venceràs per a resoldre problemes més complexos.</p>
   <a href="/ApuntesProgramacion/va/06-algoritmica-tecnicas" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>
@@ -107,7 +107,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="ra">RA2, RA4</span>
   </div>
   <a href="/ApuntesProgramacion/va/07-poo-clases-objetos" class="title-link">POO: Classes i Objectes</a>
-  <p class="desc">Programació Orientada a Objectes: crea classes, instància objectes, definix atributs i mètodes, i entén la màgia dels constructors.</p>
+  <p class="desc">Programació Orientada a Objectes: crea classes, instància objectes, defineix atributs i mètodes, i entén la màgia dels constructors.</p>
   <a href="/ApuntesProgramacion/va/07-poo-clases-objetos" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>
@@ -195,7 +195,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="ra">RA5</span>
   </div>
   <a href="/ApuntesProgramacion/va/15-apis-web" class="title-link">Servir i Consumir APIs amb Web</a>
-  <p class="desc">Crea un servidor HTTP amb Java <code>HttpServer</code>, servix pàgines HTML/JS, gestiona peticions JSON, implementa una API REST completa des de zero.</p>
+  <p class="desc">Crea un servidor HTTP amb Java <code>HttpServer</code>, serveix pàgines HTML/JS, gestiona peticions JSON, implementa una API REST completa des de zero.</p>
   <a href="/ApuntesProgramacion/va/15-apis-web" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>

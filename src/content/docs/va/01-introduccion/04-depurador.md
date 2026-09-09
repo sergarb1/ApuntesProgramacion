@@ -28,7 +28,7 @@ Depurar (debug) és **traure-li els bitxos** (bugs) al programa. I el secret del
 
 És com vore una sèrie de crims en càmera lenta: pots pausar, rebobinar (no del tot), i observar qui fa què.
 
-> 💡 **Detall pràctic:** els errors es dividixen en dos famílies. Els de *compilació* els atrapa `javac` i et diu la línia (punt 7). Els de *lògica* compilen perfecte però fan el que no han de fer: per a eixos no hi ha millor arma que el depurador.
+> 💡 **Detall pràctic:** els errors es divideixen en dos famílies. Els de *compilació* els atrapa `javac` i et diu la línia (punt 7). Els de *lògica* compilen perfecte però fan el que no han de fer: per a eixos no hi ha millor arma que el depurador.
 
 ---
 
@@ -37,7 +37,7 @@ Depurar (debug) és **traure-li els bitxos** (bugs) al programa. I el secret del
 | Ferramenta | Drecera (VS Code) | Què fa |
 |---|---|---|
 | **Breakpoint** (punt de ruptura) | clic en el marge | Li dius a Java "para ACÍ, vull vore què passa" |
-| **Step Over** | F10 | "Executa esta línia però no em conten els detalls interns" |
+| **Step Over** | F10 | "Executa esta línia però no me'n conta els detalls interns" |
 | **Step Into** | F11 | "Executa esta línia I porta'm dins d'eixa crida, vull espiar" |
 | **Watch / Variables** | panell lateral | "Ensenya'm el valor de la variable ARA MATEIX" |
 
@@ -66,7 +66,7 @@ public class DetectivesDeCodigo {
 }
 ```
 
-El bucle `for` el veuràs a fons en la U03, però ho pots intuir: repetix la línia de dins mentre `i` siga menor que 10, amb `i` valent 0, 1, 2... La línia clau és `sospechoso += i` (que és el mateix que `sospechoso = sospechoso + i`).
+El bucle `for` el veuràs a fons en la U03, però ho pots intuir: repeteix la línia de dins mentre `i` siga menor que 10, amb `i` valent 0, 1, 2... La línia clau és `sospechoso += i` (que és el mateix que `sospechoso = sospechoso + i`).
 
 **L'exercici de detectiu:**
 
@@ -78,7 +78,7 @@ El bucle `for` el veuràs a fons en la U03, però ho pots intuir: repetix la lí
 <details>
 <summary>🔄 Què hauries de vore</summary>
 
-Valors de `sospechoso` en cada parada: 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 i, en acabar el bucle, **55**. El valor final imprés és "El culpable es: 55". Si en el teu depurador el valor no coincidix, tens al davant un bug real per a diagnosticar. Això és depurar.
+Valors de `sospechoso` en cada parada: 0, 1, 3, 6, 10, 15, 21, 28, 36, 45 i, en acabar el bucle, **55**. El valor final imprés és "El culpable es: 55". Si en el teu depurador el valor no coincideix, tens al davant un bug real per a diagnosticar. Això és depurar.
 
 </details>
 
@@ -93,7 +93,7 @@ Quan alguna cosa falla, **no endevines: observa**. El procés és sempre el mate
 3. **Avança** amb F10 i **observa** variables fins a localitzar la línia on el valor es torç.
 4. En vore on es desvia el valor, hauràs trobat el bug.
 
-> 💡 **Consell:** si el programa s'executa fins al final sense detindre's, és que el breakpoint està en una línia que **mai s'aconseguix** (per exemple, dins d'un mètode que ningú crida, com el `saludo()` del punt 3). El breakpoint no es dispara: una altra pista de detectiu.
+> 💡 **Consell:** si el programa s'executa fins al final sense detindre's, és que el breakpoint està en una línia que **mai s'aconsegueix** (per exemple, dins d'un mètode que ningú crida, com el `saludo()` del punt 3). El breakpoint no es dispara: una altra pista de detectiu.
 
 ---
 
@@ -107,7 +107,7 @@ Quan alguna cosa falla, **no endevines: observa**. El procés és sempre el mate
 <summary>🔄 Respostes</summary>
 
 1. **Step Over** executa la línia sencera sense entrar en els mètodes que crida; **Step Into** entra dins del mètode per a vore les seues línies una a una.
-2. Que el breakpoint està en una línia que **mai s'executa** (codi mort, mètode no cridat, condició que no es complix).
+2. Que el breakpoint està en una línia que **mai s'executa** (codi mort, mètode no cridat, condició que no es compleix).
 3. En **mode depuració** (el botó del bitxo 🐞), no en el mode execució normal (▶).
 
 </details>

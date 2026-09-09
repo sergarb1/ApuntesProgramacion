@@ -45,7 +45,7 @@ Java té tres formes d'escriure comentaris, cada una amb el seu ús:
  */
 ```
 
-> 💡 **Detall pràctic:** els comentaris poden anar enmig d'una línia sense problema. `System.out.println(/* "Cuatro" */ "Cinco")` imprimix `Cinco`: el comentari s'ignora i la resta de la línia seguix viva.
+> 💡 **Detall pràctic:** els comentaris poden anar enmig d'una línia sense problema. `System.out.println(/* "Cuatro" */ "Cinco")` imprimeix `Cinco`: el comentari s'ignora i la resta de la línia seguix viva.
 
 ---
 
@@ -58,7 +58,7 @@ int i = 0; // Declare i amb valor 0   ← MAL: el codi ja ho diu
 int i = 0; // Comencem des de 0 perquè l'usuari no ha polsat res   ← BÉ
 ```
 
-Escriure `// Declare i amb valor 0` és com posar "Obro la porta" en una porta. El codi ja diu això. El comentari útil afegix informació que **el codi no pot expressar**: el context, la intenció, la decisió de disseny.
+Escriure `// Declare i amb valor 0` és com posar "Obro la porta" en una porta. El codi ja diu això. El comentari útil afegeix informació que **el codi no pot expressar**: el context, la intenció, la decisió de disseny.
 
 - ❌ `int temperatura = 30; // temperatura val 30`
 - ✅ `int temperatura = 30; // Refresca per davall de 25 segons el cap`
@@ -69,7 +69,7 @@ Escriure `// Declare i amb valor 0` és com posar "Obro la porta" en una porta. 
 
 ## 📖 Javadoc: documentació que es genera sola
 
-**Javadoc** és un comentari especial (`/** ... */`) que col·loques **just abans** d'una classe o d'un mètode. La ferramenta `javadoc` (inclosa en el JDK) ho convertix en pàgines de documentació automàtiques, iguals a les oficials de Java.
+**Javadoc** és un comentari especial (`/** ... */`) que col·loques **just abans** d'una classe o d'un mètode. La ferramenta `javadoc` (inclosa en el JDK) ho converteix en pàgines de documentació automàtiques, iguals a les oficials de Java.
 
 ```java
 /**
@@ -120,7 +120,7 @@ Anem a aplicar-ho tot a un programa real:
 public class Saludo {
 
     /**
-     * Mètode principal: imprimix els dos missatges de la classe.
+     * Mètode principal: imprimeix els dos missatges de la classe.
      *
      * @param args arguments de línia de comandes (no usats ací)
      */
@@ -135,14 +135,14 @@ public class Saludo {
 }
 ```
 
-Fixa't que cada comentari aporta alguna cosa: el Javadoc documenta l'API, el `//` explica la intenció i el `/* */` justifica una decisió de format. Cap no repetix el que el codi ja diu.
+Fixa't que cada comentari aporta alguna cosa: el Javadoc documenta l'API, el `//` explica la intenció i el `/* */` justifica una decisió de format. Cap no repeteix el que el codi ja diu.
 
 ---
 
 ## 🎯 Mini-chequeig
 
 1. Quina diferència hi ha entre `//`, `/* */` i `/** */`?
-2. Què imprimix este programa?
+2. Què imprimeix este programa?
 
 ```java
 public class Comentarios {
@@ -160,8 +160,8 @@ public class Comentarios {
 <details>
 <summary>🔄 Respostes</summary>
 
-1. `//` és d'una línia; `/* */` és de bloc (diverses línies); `/** */` és Javadoc, que la ferramenta `javadoc` convertix en documentació automàtica.
-2. Imprimix `Dos` i `Cinco`. La línia amb `//` i la del bloc `/* */` s'ignoren, i en l'última el comentari intern s'elimina però `"Cinco"` seguix sent l'argument del `println`.
+1. `//` és d'una línia; `/* */` és de bloc (diverses línies); `/** */` és Javadoc, que la ferramenta `javadoc` converteix en documentació automàtica.
+2. Imprimeix `Dos` i `Cinco`. La línia amb `//` i la del bloc `/* */` s'ignoren, i en l'última el comentari intern s'elimina però `"Cinco"` seguix sent l'argument del `println`.
 3. No: el codi ja mostra que `x` val 10. Comenta el **per què**, no el què.
 
 </details>

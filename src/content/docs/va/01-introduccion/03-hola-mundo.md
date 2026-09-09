@@ -43,7 +43,7 @@ Anem a diseccionar això com si fóra una granota en biologia:
 
 - `public class HolaMundo`: declares una classe. Pensa que li dius a Java: "Escolta, vaig a crear una cosa que es diu `HolaMundo`". `public` significa que és accessible des de fora i la classe ha de dir-se igual que l'archiu.
 - `public static void main(String[] args)`: este és el **botó d'inici**. Quan executes el programa, Java busca esta línia i diu "per ací es comença!".
-- `System.out.println(...)`: és **la veu** del programa. Li dius que cride alguna cosa per la consola. `print` imprimix sense salt de línia; `println` imprimix i salta de línia.
+- `System.out.println(...)`: és **la veu** del programa. Li dius que cride alguna cosa per la consola. `print` imprimeix sense salt de línia; `println` imprimeix i salta de línia.
 
 ```java
 public class MiPrimerPrograma {
@@ -92,7 +92,7 @@ public class Saludos {
 }
 ```
 
-S'executarà correctament? **Sí**, però només imprimix la primera línia. El mètode `saludo()` existix, però com mai el crides des de `main`, es queda ahí fent el vague. Java només executa el que està dins del `main` (a no ser que explícitament crides altres mètodes). El mètode `saludo()` és com un actor que té el guió après però mai ix a l'escenari.
+S'executarà correctament? **Sí**, però només imprimeix la primera línia. El mètode `saludo()` existeix, però com mai el crides des de `main`, es queda ahí fent el vague. Java només executa el que està dins del `main` (a no ser que explícitament crides altres mètodes). El mètode `saludo()` és com un actor que té el guió après però mai ix a l'escenari.
 
 > 🧠 **Truc de memòria:** `main` és la porta d'entrada de la casa. Pot haver-hi moltes habitacions (mètodes), però ningú entra per la finestra. Si no crides a la porta, les habitacions es queden buides.
 
@@ -140,7 +140,7 @@ Si la teua resposta va ser diferent, torna a començar: l'ordinador no interpret
 ## 🎯 Mini-chequeig
 
 1. Què passa si reanomene `main` a `inicio`?
-2. Imprimix el mateix `System.out.print("Hola")` que `System.out.println("Hola")`?
+2. Imprimeix el mateix `System.out.print("Hola")` que `System.out.println("Hola")`?
 3. Per què falta un `;` en el codi de baix? Assenyala l'error:
 
 ```java
@@ -175,7 +175,7 @@ public class Erroneo {
 > | Classe | El contenidor del codi (una "cosa" en Java) |
 > | Mètode | Un bloc d'ordres amb nom |
 > | main | El mètode que Java executa en arrancar |
-> | println | Imprimix text i salta de línia |
-> | Consola | La finestra de text on s'imprimix l'eixida |
+> | println | Imprimeix text i salta de línia |
+> | Consola | La finestra de text on s'imprimeix l'eixida |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [02 · Instal·lació del JDK](/ApuntesProgramacion/va/01-introduccion/02-instalacion-jdk) · **Següent:** [04 · El depurador](/ApuntesProgramacion/va/01-introduccion/04-depurador)

@@ -74,7 +74,7 @@ En Java, les llistes comencen a comptar en **0**, com quasi tot en programació:
 
 ---
 
-## 🧠 Per a què servix passar arguments?
+## 🧠 Per a què serveix passar arguments?
 
 Passar arguments per línia de comandes és la forma més antiga i directa de "configurar" un programa sense tocar el codi:
 
@@ -119,7 +119,7 @@ Si executes `java SaludoPersonal Sergi`, saluda a Sergi. Si executes `java Salud
 <summary>🔄 Respostes</summary>
 
 1. `args.length` val **3** i `args[2]` conté `"tres"` (els índexs comencen en 0).
-2. Reventarà amb `ArrayIndexOutOfBoundsException`: estàs demanant un element que no existix.
+2. Reventarà amb `ArrayIndexOutOfBoundsException`: estàs demanant un element que no existeix.
 3. Amb `args[0]`, per exemple: `System.out.println("Hola, " + args[0]);`.
 
 </details>

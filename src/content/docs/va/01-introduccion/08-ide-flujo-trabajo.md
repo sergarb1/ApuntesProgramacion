@@ -135,6 +135,6 @@ Si has arribat al pas 4 sense pànic, el teu flux de treball està muntat. A par
 > | Projecte | La carpeta que agrupa el teu codi i configuracions |
 > | src | Carpeta de codi font |
 > | Refactoritzar | Canviar codi mantenint el seu comportament |
-> | Consola de l'IDE | On s'imprimix l'eixida dels teus programes |
+> | Consola de l'IDE | On s'imprimeix l'eixida dels teus programes |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [07 · El compilador i els seus errors](/ApuntesProgramacion/va/01-introduccion/07-errores-compilador) · **Següent:** [09 · Repàs interactiu](/ApuntesProgramacion/va/01-introduccion/09-repaso-interactivo)

@@ -28,11 +28,11 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria sàviament:**
+**Què imprimeixes per pantalla? Tria sàviament:**
 
 1. **`Café 3` i `Café 3`** → La JVM sempre suma els números, ocórrega el que ocórrega. ❌
 2. **`Café 12` i `Café 3`** → ✅ Correcte! En la primera línia, en vore text abans del `+`, Java concaten: `"Café " + 1` és `"Café 1"` i després `+ 2` dona `"Café 12"`. En la segona, els parèntesis forcen la suma primer: `Café 3`.
-3. **`Café 1 2` i `Café 12`** → Els parèntesis no existixen per a la JVM. ❌
+3. **`Café 1 2` i `Café 12`** → Els parèntesis no existeixen per a la JVM. ❌
 
 > <details>
 > <summary>🔄 Solució</summary>
@@ -45,7 +45,7 @@ public class Misterio {
 
 ## 🔥 Fireside Chat: JDK vs JRE
 
-> *Dos veterans del cafè discutixen al costat de la tassa humejant.*
+> *Dos veterans del cafè discuteixen al costat de la tassa humejant.*
 
 **JRE:** — Mira, jo sóc l'entorn d'execució. Porte la JVM, les llibreries, tot el necessari per a *executar* Java. Sense mi, el teu `.class` no corre ni de broma.
 
@@ -92,9 +92,9 @@ Endevina quin concepte de la unitat sóc:
 
 **CONRAD:** — ALTRA VEGADA! Ve un alumne i em diu: *CONRAD, no compila*. I jo: val, què diu l'error? *Pues no ho sé, no l'he llegit.* Ai, mare meua! Et done la línia exacta, el motiu i fins i tot la fletxeta `^` assenyalant el lloc, i no el lligues? És com queixar-se que la sopa està freda sense mirar-la.
 
-*I després està el clàssic:* `Public` amb majúscula. PER QUÈ? La paraula és `public`. En minúscula. Així, xicoteta. Porte 25 anys compilant i encara veig `Public`, `String` sense la S... I les classes que no coincidixen amb el nom de l'archiu! Si ho demana el propi archiu!
+*I després està el clàssic:* `Public` amb majúscula. PER QUÈ? La paraula és `public`. En minúscula. Així, xicoteta. Porte 25 anys compilant i encara veig `Public`, `String` sense la S... I les classes que no coincideixen amb el nom de l'archiu! Si ho demana el propi archiu!
 
-**La lliçó:** abans de plorar sobre el teclat, **llegix el missatge d'error**. Archiu, línia, motiu. El 90% dels errors del novat s'arreglen sols amb eixa informació. El compilador no t'odia: t'està passant les respostes de l'examen.
+**La lliçó:** abans de plorar sobre el teclat, **llegeix el missatge d'error**. Archiu, línia, motiu. El 90% dels errors del novat s'arreglen sols amb eixa informació. El compilador no t'odia: t'està passant les respostes de l'examen.
 
 ---
 
@@ -103,7 +103,7 @@ Endevina quin concepte de la unitat sóc:
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un archiu nou
 
-**L'escenari:** copia este programa en el teu IDE i fes que funcione. Té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan l'arregles.
+**L'escenari:** copia este programa en el teu IDE i fes que funcione. Té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan l'arregles.
 
 ```java
 public class Tortura
@@ -160,7 +160,7 @@ Eixida correcta: `La suma es: 7` i `El producto es: 12`.
 
 ## 🧠 Atreveix-te a pensar
 
-1. **Sense executar:** què imprimix este programa?
+1. **Sense executar:** què imprimeix este programa?
 
 ```java
 public class Misterio2 {
@@ -173,7 +173,7 @@ public class Misterio2 {
 ```
 
 2. **El saludo que no saluda:** en l'exemple `Saludos` del punt 3, com faries perquè `saludo()` també s'executara, sense canviar el mètode en si?
-3. **El detectiu de l'IDE:** el teu programa "funciona" però imprimix `La suma es: 34` en lloc de `7`. Quina ferramenta uses i quines línies examines primer?
+3. **El detectiu de l'IDE:** el teu programa "funciona" però imprimeix `La suma es: 34` en lloc de `7`. Quina ferramenta uses i quines línies examines primer?
 4. **Vertader o fals:** "`javac` i `java` fan el mateix: el primer és per a Windows i el segon per a Linux."
 
 <details>
@@ -182,7 +182,7 @@ public class Misterio2 {
 1. `Uno Dos` en una línia i `Tres` en la següent (sense salt després de "Tres"). `print` no salta de línia, `println` sí.
 2. Afegint la crida dins del `main`: `saludo();` després del primer `println`. Només s'executa el que es crida des de `main`.
 3. El **depurador**: posa un breakpoint en la línia de la suma i observa amb Step Over com es concaten `"La suma es: " + 3` → `"La suma es: 3"` i després `+ 4` → `"La suma es: 34"`. La solució és `(a + b)`.
-4. **Fals.** `javac` compila (`.java` → `.class`) i `java` executa (la JVM corre el `.class`). Tots dos servixen en qualsevol sistema.
+4. **Fals.** `javac` compila (`.java` → `.class`) i `java` executa (la JVM corre el `.class`). Tots dos serveixen en qualsevol sistema.
 
 </details>
 
@@ -199,7 +199,7 @@ Horitzontal:
 
 Vertical:
 2. Màquina virtual que executa el bytecode (3 lletres)
-4. Imprimix text sense saltar de línia (5 lletres)
+4. Imprimeix text sense saltar de línia (5 lletres)
 ```
 
 <details>
@@ -219,7 +219,7 @@ Vertical:
 1. **"Explica'm, com si jo fora la teua iaia, la diferència entre JDK, JRE i JVM."**
 2. **"Què és el mètode `main` i per què té eixa firma exacta?"**
 3. **"Un programa compila però fa el que no ha de fer. Quin és el teu procés per a arreglar-lo?"**
-4. **"Què és un array i què passa si accedeixes a un índex que no existix?"**
+4. **"Què és un array i què passa si accedeixes a un índex que no existeix?"**
 5. **"Com li passes dades a un programa Java sense que et les demane per teclat?"**
 
 ---
@@ -248,7 +248,7 @@ No, ni tan sols són del mateix planeta. Java és a JavaScript com un gos és a 
 
 El programador novat acaba el seu primer programa, el compila i l'executa. Tot perfecte. Llavors s'acosta CONRAD, el compilador cascarrabias, amb cara de pocs amics i una tassa humejant a la mà.
 
-**CONRAD:** — Molt bonic l'Hola Món. I ara què? Vas a imprimir text tota la vida? Els programes de veritat *guarden* dades, *calculem* i *decidixen*. Sense variables, sense tipus, sense operadors... això és un triler de cartes.
+**CONRAD:** — Molt bonic l'Hola Món. I ara què? Vas a imprimir text tota la vida? Els programes de veritat *guarden* dades, *calculem* i *decideixen*. Sense variables, sense tipus, sense operadors... això és un triler de cartes.
 
 **Novat:** — I això quan s'aprén?
 
