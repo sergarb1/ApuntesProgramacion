@@ -260,4 +260,4 @@ El novato guarda su proyecto, cierra el IDE y siente que esto solo acaba de empe
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [08 · El IDE y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo) · **Siguiente:** **[U02 · Variables, Tipos y Operadores](/ApuntesProgramacion/02-variables-tipos-operadores)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [08 · VS Code y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo) · **Siguiente:** **[U02 · Variables, Tipos y Operadores](/ApuntesProgramacion/02-variables-tipos-operadores)**

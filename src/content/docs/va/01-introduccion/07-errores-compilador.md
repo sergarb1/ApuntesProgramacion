@@ -168,4 +168,4 @@ La classe és el contenidor, el `main` és la porta d'entrada, les instruccions 
 > | Error de lògica | Compila, però el resultat és incorrecte |
 > | Sensible a les majúscules | `Public` ≠ `public` |
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [06 · Arguments de línia de comandes](/ApuntesProgramacion/va/01-introduccion/06-argumentos) · **Següent:** [08 · L'IDE i el teu flux de treball](/ApuntesProgramacion/va/01-introduccion/08-ide-flujo-trabajo)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [06 · Arguments de línia de comandes](/ApuntesProgramacion/va/01-introduccion/06-argumentos) · **Següent:** [08 · VS Code i el teu flux de treball](/ApuntesProgramacion/va/01-introduccion/08-ide-flujo-trabajo)

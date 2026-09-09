@@ -75,11 +75,12 @@ El JDK es el motor, pero la mayor parte del tiempo no escribirás código en un 
 
 | IDE | Puntos fuertes |
 |---|---|
+| **Visual Studio Code** + Extension Pack for Java | Ligero, multiplataforma, gratuito. La extensión de Java te da autocompletado, depurador y gestión de proyectos. Es el que usaremos en el curso |
 | **IntelliJ IDEA** (Community) | El favorito del sector; autocompletado bestial. Algo más pesado al arrancar |
 | **NetBeans** | Simple, oficial de Oracle, perfecto para empezar |
 | **Eclipse** | Clásico, muy usado en empresas, un pelín más denso |
 
-> 💡 **Recomendación para el curso:** IntelliJ IDEA Community Edition si tu ordenador lo soporta; NetBeans si quieres algo más ligero. Los tres valen: el IDE es una herramienta, no el objetivo.
+> 💡 **Recomendación para el curso:** Visual Studio Code con la extensión [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack). Es gratuito, ligero y multiplataforma. Si ya usas otro IDE (IntelliJ, NetBeans), perfecto: el IDE es una herramienta, no el objetivo.
 
 ---
 
@@ -87,11 +88,10 @@ El JDK es el motor, pero la mayor parte del tiempo no escribirás código en un 
 
 Vamos a dejar todo montado antes de escribir código:
 
-1. Abre tu IDE y elige **New Project**.
-2. Selecciona **Java** y asegúrate de que apunta al JDK que instalaste (el IDE lo detecta solo).
-3. Dale un nombre al proyecto (por ejemplo, `MiPrimerCurso`).
-4. El IDE te crea una estructura de carpetas (la verás en el punto 8).
-5. Crea una clase nueva llamada `HolaMundo` y escribe dentro:
+1. Abre **Visual Studio Code** y ve a **Archivo → Abrir carpeta...**. Crea una carpeta nueva (por ejemplo, `MiPrimerCurso`) y ábrela.
+2. Si no tienes la extensión de Java, instálala: ve a la pestaña **Extensiones** (icono de cuadrados en la barra lateral), busca **Extension Pack for Java** y pulsa **Install**.
+3. Crea un archivo nuevo: clic derecho en la carpeta del proyecto → **New File...** → nómbralo `HolaMundo.java`.
+4. Escribe dentro:
 
 ```java
 public class HolaMundo {
@@ -101,9 +101,9 @@ public class HolaMundo {
 }
 ```
 
-6. Pulsa el botón **Run** (el triángulo verde ▶) y mira la consola.
+5. Pulsa **F5** (o el botón ▶ verde arriba a la derecha) y selecciona **Run Java**. Mira la consola.
 
-Si ves el mensaje en la consola, tu chiringuito está montado: JDK + IDE + primer programa. Estás oficialmente dentro.
+Si ves el mensaje en la consola, tu chiringuito está montado: JDK + VS Code + primer programa. Estás oficialmente dentro.
 
 > ⚠️ **Advertencia:** no confundas la consola del IDE con la terminal del sistema. La consola del IDE es donde se imprimen los `System.out.println` al ejecutar. Si no ves salida, busca la pestaña "Console" / "Salida".
 
@@ -130,7 +130,7 @@ Si ves el mensaje en la consola, tu chiringuito está montado: JDK + IDE + prime
 
 1. Instala **Eclipse Temurin** (un JDK libre) y verifica con `java -version` y `javac -version`.
 2. `javac` compila, `java` ejecuta, y el `PATH` es la dirección postal que el sistema necesita para encontrarlos.
-3. Un **IDE** (IntelliJ, NetBeans o Eclipse) reúne editor, compilador y depurador: es tu navaja suiza.
+3. **Visual Studio Code** con Extension Pack for Java reúne editor, compilador y depurador: es tu navaja suiza.
 
 > 🐛 **Vocabulario rápido**
 >

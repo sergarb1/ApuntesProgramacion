@@ -29,7 +29,7 @@ Al terminar, serás capaz de:
 - Escribir comentarios de una línea, de bloque y **Javadoc**.
 - Manejar los **argumentos de línea de comandos** con `args`.
 - Reconocer y corregir los errores de compilación más típicos del novato.
-- Trabajar con un **IDE** y conocer tu flujo de trabajo diario.
+- Trabajar con **Visual Studio Code** (o tu IDE favorito) y conocer tu flujo de trabajo diario.
 
 ---
 
@@ -38,13 +38,13 @@ Al terminar, serás capaz de:
 | Punto | Qué aprenderás | Nivel |
 |---|---|---|
 | [01 · ¿Qué es Java?](/ApuntesProgramacion/01-introduccion/01-que-es-java) | Historia, bytecode, la trilogía JVM/JRE/JDK | Todos |
-| [02 · Instalación del JDK](/ApuntesProgramacion/01-introduccion/02-instalacion-jdk) | Eclipse Temurin, `java -version`, PATH, IDE | Todos |
+| [02 · Instalación del JDK](/ApuntesProgramacion/01-introduccion/02-instalacion-jdk) | Eclipse Temurin, VS Code, Extension Pack, `java -version`, PATH | Todos |
 | [03 · Tu primer programa](/ApuntesProgramacion/01-introduccion/03-hola-mundo) | Hola Mundo, estructura, el método `main` | Todos |
 | [04 · El depurador](/ApuntesProgramacion/01-introduccion/04-depurador) | Breakpoints, step over/into, watch | Todos |
 | [05 · Comentarios y documentación](/ApuntesProgramacion/01-introduccion/05-comentarios) | `//`, `/* */`, `/** */` y Javadoc | Todos |
 | [06 · Argumentos de línea de comandos](/ApuntesProgramacion/01-introduccion/06-argumentos) | El array `args`, cómo leerlo y usarlo | Todos |
 | [07 · El compilador y sus errores](/ApuntesProgramacion/01-introduccion/07-errores-compilador) | Compilar vs ejecutar, errores típicos del novato | Todos |
-| [08 · El IDE y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo) | Proyectos, atajos, crear/ejecutar/depurar | Todos |
+| [08 · VS Code y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo) | Proyectos, atajos, crear/ejecutar/depurar | Todos |
 | [09 · Repaso interactivo](/ApuntesProgramacion/01-introduccion/09-repaso-interactivo) | Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… | Todos |
 
 > 📖 **Flujo de lectura:** los 8 primeros puntos son teoría en progresión. El 9º es el aterrizaje práctico: léelo justo después del 8º y antes de abrir los boletines.

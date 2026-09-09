@@ -105,7 +105,7 @@ public class SaludoPersonal {
 
 Si ejecutas `java SaludoPersonal Sergi`, saluda a Sergi. Si ejecutas `java SaludoPersonal`, te recuerda que no pasaste argumentos. El `if` aquí es un aperitivo de las estructuras de control de la U03.
 
-> 💡 **Detalle práctico:** cuando ejecutas desde el IDE (botón ▶), puedes configurar los argumentos en el menú *Run → Edit Configurations → Program arguments*. Escribe ahí `Sergi 20` y pulsa Run: tu programa los recibirá igual que si los teclearas en la terminal.
+> 💡 **Detalle práctico:** cuando ejecutas desde VS Code, puedes configurar los argumentos en el archivo `launch.json` (dentro de `"args"`). También puedes pasar argumentos directamente en la terminal: `java SaludoPersonal Sergi 20`.
 
 ---
 

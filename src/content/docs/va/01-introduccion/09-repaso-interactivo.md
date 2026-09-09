@@ -260,4 +260,4 @@ El novat guarda el seu projecte, tanca l'IDE i sent que això només acaba de co
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [08 · L'IDE i el teu flux de treball](/ApuntesProgramacion/va/01-introduccion/08-ide-flujo-trabajo) · **Següent:** **[U02 · Variables, Tipus i Operadors](/ApuntesProgramacion/va/02-variables-tipos-operadores)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [08 · VS Code i el teu flux de treball](/ApuntesProgramacion/va/01-introduccion/08-ide-flujo-trabajo) · **Següent:** **[U02 · Variables, Tipus i Operadors](/ApuntesProgramacion/va/02-variables-tipos-operadores)**

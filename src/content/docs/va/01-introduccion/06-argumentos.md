@@ -105,7 +105,7 @@ public class SaludoPersonal {
 
 Si executes `java SaludoPersonal Sergi`, saluda a Sergi. Si executes `java SaludoPersonal`, et recorda que no vas passar arguments. El `if` ací és un aperitiu de les estructures de control de la U03.
 
-> 💡 **Detall pràctic:** quan executes des de l'IDE (botó ▶), pots configurar els arguments en el menú *Run → Edit Configurations → Program arguments*. Escriu ahí `Sergi 20` i polsa Run: el teu programa els rebrà igual que si els teclejaren en la terminal.
+> 💡 **Detall pràctic:** quan executes des de VS Code, pots configurar els arguments en l'arxiu `launch.json` (dins de `"args"`). També pots passar arguments directament en la terminal: `java SaludoPersonal Sergi 20`.
 
 ---
 

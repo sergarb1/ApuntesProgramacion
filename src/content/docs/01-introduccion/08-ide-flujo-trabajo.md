@@ -1,11 +1,11 @@
 ---
-title: 08 — El IDE y tu flujo de trabajo
+title: 08 — VS Code y tu flujo de trabajo
 description: Tu navaja suiza para no vivir en la terminal 🗡️
 ---
 
 <p><small>Tu navaja suiza para no vivir en la terminal 🗡️</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U01 · Introducción a Java** → 08 · El IDE y tu flujo de trabajo
+> 🗺️ **Estás en:** 🚀 **U01 · Introducción a Java** → 08 · VS Code y tu flujo de trabajo
 
 ---
 
@@ -49,26 +49,26 @@ Programar es un bucle de cuatro pasos que repetirás millones de veces:
 Editar → Compilar → Ejecutar → Depurar → (volver a Editar)
 ```
 
-> ⚠️ **Advertencia:** el botón ▶ (Run) y el 🐞 (Debug) NO son lo mismo. Run ejecuta sin breakpoints; Debug los respeta. Si pones un breakpoint y pulsas ▶, el programa no se detendrá y pensarás que el depurador está roto.
+> ⚠️ **Advertencia:** el botón ▶ (Run) y el 🐞 (Debug) NO son lo mismo. En VS Code, ambos usan F5 pero con configuraciones distintas: Run ejecuta sin breakpoints; Debug los respeta. Si pones un breakpoint y ejecutas sin modo depuración, el programa no se detendrá y pensarás que el depurador está roto.
 
 ---
 
 ## ⌨️ Los atajos que te harán parecer un pro
 
-Deja el ratón en paz. Estos son los atajos esenciales (valen para IntelliJ y similares):
+Deja el ratón en paz. Estos son los atajos esenciales en VS Code:
 
-| Atajo (Windows) | Acción |
-|---|---|
-| `psvm` + Tab | Escribe el esqueleto `public static void main(String[] args) {}` |
-| `sout` + Tab | Escribe `System.out.println()` |
-| `Shift + F10` | Ejecutar (Run) |
-| `Shift + F9` | Ejecutar en modo depuración (Debug) |
-| `F8` / `F7` | Step Over / Step Into (depurador) |
-| `Ctrl + /` | Comentar / descomentar la línea |
-| `Ctrl + D` | Duplicar la línea |
-| `Ctrl + B` | Ir a la definición (navegar) |
+| Atajo (Windows/Linux) | Atajo (macOS) | Acción |
+|---|---|---|
+| `main` + Tab | `main` + Tab | Escribe el esqueleto `public static void main(String[] args) {}` (con la extensión de Java) |
+| `sout` + Tab | `sout` + Tab | Escribe `System.out.println()` (con la extensión de Java) |
+| `F5` | `⌘F5` | Ejecutar (Run) |
+| `F5` con launch.json o `Ctrl+F5` | `⌘F5` con launch.json | Ejecutar en modo depuración (Debug) |
+| `F10` / `F11` | `F10` / `F11` | Step Over / Step Into (depurador) |
+| `Ctrl + /` | `⌘ + /` | Comentar / descomentar la línea |
+| `Shift + Alt + ↓` | `Shift + ⌘ + ↓` | Duplicar la línea |
+| `F12` | `F12` | Ir a la definición (navegar) |
 
-> 🧠 **Truco de memoria:** `psvm` = *public static void main* y `sout` = *System.out*. Son los dos fragmentos que más escribirás en el curso. Aprende los atajos y el IDE te los rellena solo.
+> 🧠 **Truco de memoria:** `main` + Tab y `sout` + Tab son los dos fragmentos que más escribirás en el curso (funcionan con la Extension Pack for Java instalada). Aprende los atajos y VS Code los rellena solo.
 
 ---
 
@@ -80,15 +80,14 @@ El IDE mientras escribes te sugiere, resalta errores en rojo antes de compilar y
 - Escribes una línea sin `;` y la bombilla te ofrece "Insert semicolon".
 - Renombras una variable y el IDE actualiza todas sus apariciones: es *refactorizar*.
 
-El autocompletado no es trampa: es la razón por la que la gente usa IDE en lugar de un bloc de notas. Tu código sale con menos errores tontos porque el IDE te corrige mientras piensas.
+El autocompletado no es trampa: es la razón por la que la gente usa VS Code en lugar de un bloc de notas. Tu código sale con menos errores tontos porque el editor te corrige mientras piensas.
 
 ---
 
 ## 🏫 Ejemplo guiado: de cero a ejecutar en 60 segundos
 
-1. **Nuevo proyecto**: File → New → Project → Java. Nómbralo `MiPrimerCurso`.
-2. **Nueva clase**: clic derecho en `src` → New → Java Class. Nómbrala `HolaMundo`.
-3. Escribe `psvm` y pulsa Tab: aparece el `main`. Dentro, escribe `sout` + Tab y escribe tu mensaje:
+1. **Abrir carpeta**: File → Open Folder → selecciona (o crea) la carpeta de tu proyecto.
+2. **Nueva clase**: clic derecho en la carpeta → New File → nómbrala `HolaMundo.java`. Escribe `main` + Tab y dentro `sout` + Tab para el mensaje:
 
 ```java
 public class HolaMundo {
@@ -98,10 +97,10 @@ public class HolaMundo {
 }
 ```
 
-4. Pulsa **Shift + F10** (Run). Mira la consola del IDE.
-5. Pon un breakpoint en el `println`, pulsa **Shift + F9** (Debug) y observa el panel de variables.
+3. Pulsa **F5** (Run) y selecciona **Run Java**. Mira la consola.
+4. Pon un breakpoint en el `println` (clic en el margen izquierdo), pulsa **F5** de nuevo y selecciona **Debug Java**. Observa el panel de variables.
 
-Si has llegado al paso 5 sin pánico, tu flujo de trabajo está montado. A partir de aquí, el curso entero es llenar este esqueleto de contenido.
+Si has llegado al paso 4 sin pánico, tu flujo de trabajo está montado. A partir de aquí, el curso entero es llenar este esqueleto de contenido.
 
 ---
 
@@ -109,7 +108,7 @@ Si has llegado al paso 5 sin pánico, tu flujo de trabajo está montado. A parti
 
 1. ¿Dónde viven tus archivos `.java` y dónde los `.class`?
 2. ¿Qué diferencia hay entre los botones ▶ (Run) y 🐞 (Debug)?
-3. ¿Qué escribe `psvm` + Tab?
+3. ¿Qué escribe `main` + Tab con la extensión de Java?
 
 <details>
 <summary>🔄 Respuestas</summary>
@@ -124,9 +123,9 @@ Si has llegado al paso 5 sin pánico, tu flujo de trabajo está montado. A parti
 
 ## ✅ Resumen en 3 frases
 
-1. Un proyecto tiene `src` (tu código) y `out` (bytecode): el IDE compila por ti.
-2. Tu bucle diario es **editar → compilar → ejecutar → depurar**, y Run y Debug no son lo mismo.
-3. Los atajos (`psvm`, `sout`, F8/F7) y el autocompletado te hacen más rápido y con menos errores tontos.
+1. Un proyecto tiene `src` (tu código) y `out` (bytecode): VS Code compila por ti.
+2. Tu bucle diario es **editar → compilar → ejecutar → depurar**, y Run (F5) y Debug (F5 con launch.json) no son lo mismo.
+3. Los atajos (`main`+Tab, `sout`+Tab, F10/F11) y el autocompletado te hacen más rápido y con menos errores tontos.
 
 > 🐛 **Vocabulario rápido**
 >

@@ -34,19 +34,19 @@ Es como ver una serie de crímenes en cámara lenta: puedes pausar, rebobinar (n
 
 ## 🛠️ Las cuatro herramientas del detective
 
-| Herramienta | Atajo (IntelliJ/VS Code) | Qué hace |
+| Herramienta | Atajo (VS Code) | Qué hace |
 |---|---|---|
 | **Breakpoint** (punto de ruptura) | clic en el margen | Le dices a Java "para AQUÍ, quiero ver qué pasa" |
-| **Step Over** | F8 | "Ejecuta esta línea pero no me cuentes los detalles internos" |
-| **Step Into** | F7 | "Ejecuta esta línea Y llévame dentro de esa llamada, quiero espiar" |
+| **Step Over** | F10 | "Ejecuta esta línea pero no me cuentes los detalles internos" |
+| **Step Into** | F11 | "Ejecuta esta línea Y llévame dentro de esa llamada, quiero espiar" |
 | **Watch / Variables** | panel lateral | "Enséñame el valor de la variable AHORA MISMO" |
 
 - **Breakpoint**: marca una línea. El programa se detiene justo antes de ejecutarla y espera tus órdenes.
-- **Step Over (F8)**: ejecuta la línea completa de golpe, sin entrar en los métodos que llame.
-- **Step Into (F7)**: entra *dentro* del método llamado para ver sus líneas una a una.
+- **Step Over (F10)**: ejecuta la línea completa de golpe, sin entrar en los métodos que llame.
+- **Step Into (F11)**: entra *dentro* del método llamado para ver sus líneas una a una.
 - **Watch**: el panel que muestra las variables vivas y sus valores actuales. También puedes escribir una expresión y ver qué devuelve.
 
-> ⚠️ **Advertencia:** si te pierdes dentro de un método ajeno con Step Into, usa **Step Out** (Shift+F8 en IntelliJ): sale del método y vuelve al punto donde lo llamaste. Es el botón "he entrado sin querer, sacadme de aquí".
+> ⚠️ **Advertencia:** si te pierdes dentro de un método ajeno con Step Into, usa **Step Out** (Shift+F11): sale del método y vuelve al punto donde lo llamaste. Es el botón "he entrado sin querer, sacadme de aquí".
 
 ---
 
@@ -73,7 +73,7 @@ El bucle `for` lo verás a fondo en la U03, pero puedes intuirlo: repite la lín
 1. Pon un **breakpoint** en la línea de `sospechoso += i` (clic en el margen, aparece un punto rojo).
 2. Ejecuta en **modo depuración** (el botón del bichito 🐞, no el de ▶).
 3. El programa se detiene. Mira el panel **Variables**: `sospechoso` vale 0 y `i` vale 0.
-4. Pulsa **Step Over (F8)** varias veces y observa cómo cambian `sospechoso` e `i` en cada vuelta.
+4. Pulsa **Step Over (F10)** varias veces y observa cómo cambian `sospechoso` e `i` en cada vuelta.
 
 <details>
 <summary>🔄 Qué deberías ver</summary>
@@ -90,7 +90,7 @@ Cuando algo falla, **no adivines: observa**. El proceso es siempre el mismo:
 
 1. **Reproduce** el fallo (que ocurra siempre que puedas).
 2. Pon un breakpoint **antes** de la zona sospechosa.
-3. **Avanza** con F8 y **observa** variables hasta localizar la línea donde el valor se tuerce.
+3. **Avanza** con F10 y **observa** variables hasta localizar la línea donde el valor se tuerce.
 4. En cuanto veas dónde se desvía el valor, habrás encontrado el bug.
 
 > 💡 **Consejo:** si el programa se ejecuta hasta el final sin detenerse, es que el breakpoint está en una línea que **nunca se alcanza** (por ejemplo, dentro de un método que nadie llama, como el `saludo()` del punto 3). El breakpoint no se dispara: otra pista de detective.

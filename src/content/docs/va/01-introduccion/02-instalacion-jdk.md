@@ -75,11 +75,12 @@ El JDK és el motor, però la major part del temps no escriuràs codi en un bloc
 
 | IDE | Punts forts |
 |---|---|
+| **Visual Studio Code** + Extension Pack for Java | Lleuger, multiplataforma, gratuït. L'extensió de Java et dona autocompletat, depurador i gestió de projectes. És el que farem servir en el curs |
 | **IntelliJ IDEA** (Community) | El favorit del sector; autocompletat bestial. Una mica més pesat en arrancar |
 | **NetBeans** | Simple, oficial d'Oracle, perfecte per a començar |
 | **Eclipse** | Clàssic, molt usat en empreses, un pèl més dens |
 
-> 💡 **Recomanació per al curs:** IntelliJ IDEA Community Edition si el teu ordinador ho suporta; NetBeans si vols alguna cosa més lleugera. Els tres valen: l'IDE és una ferramenta, no l'objectiu.
+> 💡 **Recomanació per al curs:** Visual Studio Code amb l'extensió [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack). És gratuït, lleuger i multiplataforma. Si ja fas servir un altre IDE (IntelliJ, NetBeans), perfecte: l'IDE és una ferramenta, no l'objectiu.
 
 ---
 
@@ -87,11 +88,10 @@ El JDK és el motor, però la major part del temps no escriuràs codi en un bloc
 
 Anem a deixar-ho tot muntat abans d'escriure codi:
 
-1. Obre el teu IDE i tria **New Project**.
-2. Selecciona **Java** i assegura't que apunta al JDK que vas instal·lar (l'IDE el detecta sol).
-3. Dona un nom al projecte (per exemple, `MiPrimerCurso`).
-4. L'IDE et crea una estructura de carpetes (la veuràs en el punt 8).
-5. Crea una classe nova anomenada `HolaMundo` i escriu dins:
+1. Obre **Visual Studio Code** i ves a **Arxiu → Obrir carpeta...**. Crea una carpeta nova (per exemple, `MiPrimerCurso`) i obri-la.
+2. Si no tens l'extensió de Java, instal·la-la: ves a la pestanya **Extensions** (icona de quadrats a la barra lateral), busca **Extension Pack for Java** i polsa **Install**.
+3. Crea un arxiu nou: clic dret en la carpeta del projecte → **New File...** → noménalo `HolaMundo.java`.
+4. Escriu dins:
 
 ```java
 public class HolaMundo {
@@ -101,9 +101,9 @@ public class HolaMundo {
 }
 ```
 
-6. Polsa el botó **Run** (el triangle verd ▶) i mira la consola.
+5. Polsa **F5** (o el botó ▶ verd dalt a la dreta) i selecciona **Run Java**. Mirada a la consola.
 
-Si veus el missatge en la consola, el teu xiringuito està muntat: JDK + IDE + primer programa. Estàs oficialment dins.
+Si veus el missatge en la consola, el teu xiringuito està muntat: JDK + VS Code + primer programa. Estàs oficialment dins.
 
 > ⚠️ **Advertència:** no confongues la consola de l'IDE amb la terminal del sistema. La consola de l'IDE és on s'imprimixen els `System.out.println` en executar. Si no veus eixida, busca la pestanya "Console" / "Eixida".
 
@@ -130,7 +130,7 @@ Si veus el missatge en la consola, el teu xiringuito està muntat: JDK + IDE + p
 
 1. Instal·la **Eclipse Temurin** (un JDK lliure) i verifica amb `java -version` i `javac -version`.
 2. `javac` compila, `java` executa, i el `PATH` és l'adreça postal que el sistema necessita per a trobar-los.
-3. Un **IDE** (IntelliJ, NetBeans o Eclipse) reunix editor, compilador i depurador: és la teua navalla suïssa.
+3. **Visual Studio Code** amb Extension Pack for Java reunix editor, compilador i depurador: és la teua navalla suïssa.
 
 > 🐛 **Vocabulari ràpid**
 >

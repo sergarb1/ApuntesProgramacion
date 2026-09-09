@@ -168,4 +168,4 @@ La clase es el contenedor, el `main` es la puerta de entrada, las instrucciones 
 > | Error de lógica | Compila, pero el resultado es incorrecto |
 > | Sensible a mayúsculas | `Public` ≠ `public` |
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [06 · Argumentos de línea de comandos](/ApuntesProgramacion/01-introduccion/06-argumentos) · **Siguiente:** [08 · El IDE y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo)
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [06 · Argumentos de línea de comandos](/ApuntesProgramacion/01-introduccion/06-argumentos) · **Siguiente:** [08 · VS Code y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo)

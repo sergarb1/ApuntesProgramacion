@@ -34,19 +34,19 @@ Depurar (debug) és **traure-li els bitxos** (bugs) al programa. I el secret del
 
 ## 🛠️ Les quatre ferramentes del detectiu
 
-| Ferramenta | Drecera (IntelliJ/VS Code) | Què fa |
+| Ferramenta | Drecera (VS Code) | Què fa |
 |---|---|---|
 | **Breakpoint** (punt de ruptura) | clic en el marge | Li dius a Java "para ACÍ, vull vore què passa" |
-| **Step Over** | F8 | "Executa esta línia però no em conten els detalls interns" |
-| **Step Into** | F7 | "Executa esta línia I porta'm dins d'eixa crida, vull espiar" |
+| **Step Over** | F10 | "Executa esta línia però no em conten els detalls interns" |
+| **Step Into** | F11 | "Executa esta línia I porta'm dins d'eixa crida, vull espiar" |
 | **Watch / Variables** | panell lateral | "Ensenya'm el valor de la variable ARA MATEIX" |
 
 - **Breakpoint**: marca una línia. El programa es deté just abans d'executar-la i espera les teues ordres.
-- **Step Over (F8)**: executa la línia completa de colp, sense entrar en els mètodes que crida.
-- **Step Into (F7)**: entra *dins* del mètode cridat per a vore les seues línies una a una.
+- **Step Over (F10)**: executa la línia completa de colp, sense entrar en els mètodes que crida.
+- **Step Into (F11)**: entra *dins* del mètode cridat per a vore les seues línies una a una.
 - **Watch**: el panell que mostra les variables vives i els seus valors actuals. També pots escriure una expressió i vore què torna.
 
-> ⚠️ **Advertència:** si et perds dins d'un mètode alié amb Step Into, usa **Step Out** (Shift+F8 en IntelliJ): ix del mètode i torna al punt on el vas cridar. És el botó "he entrat sense voler, traieu-me d'ací".
+> ⚠️ **Advertència:** si et perds dins d'un mètode alié amb Step Into, usa **Step Out** (Shift+F11): ix del mètode i torna al punt on el vas cridar. És el botó "he entrat sense voler, traieu-me d'ací".
 
 ---
 
@@ -73,7 +73,7 @@ El bucle `for` el veuràs a fons en la U03, però ho pots intuir: repetix la lí
 1. Posa un **breakpoint** en la línia de `sospechoso += i` (clic en el marge, apareix un punt roig).
 2. Executa en **mode depuració** (el botó del bitxo 🐞, no el de ▶).
 3. El programa es deté. Mira el panell **Variables**: `sospechoso` val 0 i `i` val 0.
-4. Polsa **Step Over (F8)** diverses vegades i observa com canvien `sospechoso` i `i` en cada volta.
+4. Polsa **Step Over (F10)** diverses vegades i observa com canvien `sospechoso` i `i` en cada volta.
 
 <details>
 <summary>🔄 Què hauries de vore</summary>
@@ -90,7 +90,7 @@ Quan alguna cosa falla, **no endevines: observa**. El procés és sempre el mate
 
 1. **Reproduïx** la fallada (que ocórrega sempre que pugues).
 2. Posa un breakpoint **abans** de la zona sospitosa.
-3. **Avança** amb F8 i **observa** variables fins a localitzar la línia on el valor es torç.
+3. **Avança** amb F10 i **observa** variables fins a localitzar la línia on el valor es torç.
 4. En vore on es desvia el valor, hauràs trobat el bug.
 
 > 💡 **Consell:** si el programa s'executa fins al final sense detindre's, és que el breakpoint està en una línia que **mai s'aconseguix** (per exemple, dins d'un mètode que ningú crida, com el `saludo()` del punt 3). El breakpoint no es dispara: una altra pista de detectiu.
