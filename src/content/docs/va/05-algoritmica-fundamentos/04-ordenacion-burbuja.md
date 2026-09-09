@@ -92,7 +92,7 @@ Dos bucles anidats. Per a un array de `n` elements:
 
 Fixa't en la variable `hiHaIntercanvi`. Si en una passada completa no intercanviem res, és que l'array ja està ordenat i podem parar: `break`. Sense este flag, la bombolla faria totes les passades encara que l'array arribara ordenat en la primera.
 
-Esta optimització **no millora el pitjor cas** (array invertit: cal intercanviar-ho tot), però convertix el millor cas (array ja ordenat) en O(n): una sola passada de comprovació i llest.
+Esta optimització **no millora el pitjor cas** (array invertit: cal intercanviar-ho tot), però converteix el millor cas (array ja ordenat) en O(n): una sola passada de comprovació i llest.
 
 > 💡 **Detall pràctic:** el patró del flag ("marca si ha passat alguna cosa; si no, para") apareix en moltíssims algoritmes reals. És una d'eixes idees que et faran semblar programador sènior encara que només portes quatre unitats.
 
@@ -131,7 +131,7 @@ public class BombollaCurta {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`1 2 3`**.
+Imprimeix **`1 2 3`**.
 
 Traça sense el flag (este programa no té `hiHaIntercanvi`):
 

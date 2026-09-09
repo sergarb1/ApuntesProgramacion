@@ -70,7 +70,7 @@ Detalls del mètode `buscar`:
 
 En el **millor cas**, l'element és en la primera posició → 1 pas.
 
-En el **pitjor cas**, l'element és al final, o no existix → recorres els `n` elements sencers.
+En el **pitjor cas**, l'element és al final, o no existeix → recorres els `n` elements sencers.
 
 Diem que la seua complexitat és **O(n)**, lineal. Si l'array té 10 elements, tardes ~10 passos; si en té 10.000, tardes ~10.000. Creix al mateix ritme que les dades.
 
@@ -84,7 +84,7 @@ Diem que la seua complexitat és **O(n)**, lineal. Si l'array té 10 elements, t
 
 **Exercici: el cercador que es perd**
 
-Sense executar, calcula quantes comparacions fa este programa i què imprimix:
+Sense executar, calcula quantes comparacions fa este programa i què imprimeix:
 
 ```java
 public class Cerca2 {
@@ -112,7 +112,7 @@ public class Cerca2 {
 <details>
 <summary>🔄 Solució</summary>
 
-El 9 és en la posició 3 (índex 3, el quart element). El bucle compara: `3` (pas 1), `8` (pas 2), `1` (pas 3), `9` (pas 4) → el troba. Imprimix:
+El 9 és en la posició 3 (índex 3, el quart element). El bucle compara: `3` (pas 1), `8` (pas 2), `1` (pas 3), `9` (pas 4) → el troba. Imprimeix:
 
 ```
 He necessitat 4 passos.
@@ -138,7 +138,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 <summary>🔄 Respostes</summary>
 
 1. Retorna `-1`, la senyal clàssica de "no trobat".
-2. **Sí.** Eixa és la seua gran avantatge: no exigix cap ordre previ.
+2. **Sí.** Eixa és la seua gran avantatge: no exigeix cap ordre previ.
 3. Perquè en el pitjor cas recorre els `n` elements de l'array: el temps creix en proporció directa amb les dades.
 4. Retorna la posició **0** (el primer `5`), perquè el `return` talla tan bon punt troba el primer. La posició 0 és vàlida i diferent de "no trobat".
 
@@ -149,7 +149,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. La cerca lineal recorre l'array **element per element** fins a trobar l'objectiu o esgotar la llista.
-2. Retorna l'**índex** de l'element, o `-1` si no existix, i funciona amb dades **desordenades**.
+2. Retorna l'**índex** de l'element, o `-1` si no existeix, i funciona amb dades **desordenades**.
 3. La seua complexitat és **O(n)**: perfecta per a arrays xicotets, lenta per als grans.
 
 > 🐛 **Vocabulari ràpid**

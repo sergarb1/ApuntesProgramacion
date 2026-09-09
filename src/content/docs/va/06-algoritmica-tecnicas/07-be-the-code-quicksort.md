@@ -1,9 +1,9 @@
 ---
 title: "07 — Be the Code: quicksort des de zero"
-description: Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu sol (o patix amb honor) 🕶️
+description: Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu sol (o pateix amb honor) 🕶️
 ---
 
-<p><small>Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu sol (o patix amb honor) 🕶️</small></p>
+<p><small>Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu sol (o pateix amb honor) 🕶️</small></p>
 
 > 🗺️ **Estàs en:** ⚡ **U06 · Algorítmica II: Tècniques** → 07 · Be the Code: quicksort des de zero
 
@@ -13,7 +13,7 @@ description: Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu s
 
 > **Ja has vist el codi: ara toca esborrar-lo de la memòria i escriure'l tu sol, pas a pas, perquè un algorisme només s'entén de veritat quan et dol implementar-lo.**
 
-> 🕶️ **Don Tip:** Divide i venceràs: tria un pivot, partix l'array en menors i majors, i repetix recursivament. Si domines eixe patró, Quicksort és teu.
+> 🕶️ **Don Tip:** Divide i venceràs: tria un pivot, partix l'array en menors i majors, i repeteix recursivament. Si domines eixe patró, Quicksort és teu.
 
 ---
 

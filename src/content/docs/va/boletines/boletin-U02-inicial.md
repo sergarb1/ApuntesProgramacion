@@ -68,9 +68,9 @@ Indica quin tipus de dada primitiu (`int`, `double`, `boolean`, `char`, `long`) 
 
 ## Exercici 5: El casting assassí
 
-Declara `double preu = 9.99;`. Convertix-lo a `int` amb un casting explícit. Imprimix tots dos valors. Què es perd pel camí?
+Declara `double preu = 9.99;`. Convertix-lo a `int` amb un casting explícit. Imprimeix tots dos valors. Què es perd pel camí?
 
-Després, declara `int gran = 300;` i convertix-lo a `byte`. Imprimix el resultat. T'esperaves eixe nombre? (Pista: en un `byte` només caben de -128 a 127.)
+Després, declara `int gran = 300;` i converteix-lo a `byte`. Imprimeix el resultat. T'esperaves eixe nombre? (Pista: en un `byte` només caben de -128 a 127.)
 
 ---
 
@@ -95,8 +95,8 @@ Escriu un programa anomenat `NomEnAccio` que, amb la variable `String nom = "  a
 
 Escriu un programa anomenat `SalutacioScanner` que:
 
-1. Pregunte "Com et dius?" i llegixca el nom amb `nextLine()`
-2. Pregunte "Quants anys tens?" i llegixca l'edat amb `nextInt()`
+1. Pregunte "Com et dius?" i llegeixca el nom amb `nextLine()`
+2. Pregunte "Quants anys tens?" i llegeixca l'edat amb `nextInt()`
 3. Mostre: "Hola, [nom]. [edat] anys, benvingut."
 
 Recorda l'`import java.util.Scanner;` i el `sc.close()`.
@@ -157,4 +157,4 @@ Propina (15%): 6.82 €
 Total a pagar: 52.33 €
 ```
 
-**Pista:** `%.2f` controla els decimals. Multiplica primer (`total * percentatge`) i dividix després amb `100.0`, o `percentatge / 100` donarà 0.
+**Pista:** `%.2f` controla els decimals. Multiplica primer (`total * percentatge`) i divideix després amb `100.0`, o `percentatge / 100` donarà 0.

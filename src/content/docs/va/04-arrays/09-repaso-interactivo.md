@@ -68,7 +68,7 @@ public class Misterio {
 
 **For-each:** — Tracte. Però que sàpies que en el bucle de la mitjana et guanye fins i tot amb els ulls tancats.
 
-> La lliçó: **for-each** si només lliges i no t'importa la posició; **for amb índex** si modifiques, busques posicions o recorres de forma especial. El context decidix, no la moda.
+> La lliçó: **for-each** si només lliges i no t'importa la posició; **for amb índex** si modifiques, busques posicions o recorres de forma especial. El context decideix, no la moda.
 
 ---
 
@@ -144,7 +144,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un arxiu nou
 
-**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedixen que compile o que falle en execució, i 1 error de lògica que fa que el resultat siga incorrecte quan els arregles.
+**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedeixen que compile o que falle en execució, i 1 error de lògica que fa que el resultat siga incorrecte quan els arregles.
 
 ```java
 public class Tortura
@@ -177,13 +177,13 @@ public class Tortura
 4. Executa i imprimeix `Media: 7.0`? *És l'error de lògica: la divisió entera.*
    <details><summary>Solució final</summary>
 
-Els **3 errors** que impedixen compilar o executar:
+Els **3 errors** que impedeixen compilar o executar:
 
 1. Falta la `{` d'apertura de la classe després de `Tortura`.
 2. Falta el `;` al final de `System.out.println("Media: " + media)`.
 3. `i <= notas.length` accedix a `notas[4]` fora de l'array: `ArrayIndexOutOfBoundsException`. Ha de ser `i < notas.length`.
 
-L'**error de lògica**: `suma / notas.length` dividix enters. `30 / 4 = 7` (es trunca), no `7.5`. Perquè la mitjana isca amb decimals cal convertir abans: `(double) suma / notas.length`.
+L'**error de lògica**: `suma / notas.length` divideix enters. `30 / 4 = 7` (es trunca), no `7.5`. Perquè la mitjana isca amb decimals cal convertir abans: `(double) suma / notas.length`.
 
 ```java
 public class Tortura {
@@ -308,7 +308,7 @@ En els teus programes reals, sí: són ràpids i provats, i els veuràs per tot 
 
 > ❓ **Un array pot canviar de grandària?**
 
-No. És **grandària fixa** per sempre. Quan necessites "més places", es crea un array nou i es copia (`Arrays.copyOf`). Si això et sembla un incordi, tens raó: per això existixen les col·leccions (`ArrayList` i companyia), que creixen soles. Les veuràs en la U10, i les abraçaràs.
+No. És **grandària fixa** per sempre. Quan necessites "més places", es crea un array nou i es copia (`Arrays.copyOf`). Si això et sembla un incordi, tens raó: per això existeixen les col·leccions (`ArrayList` i companyia), que creixen soles. Les veuràs en la U10, i les abraçaràs.
 
 ---
 

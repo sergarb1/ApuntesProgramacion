@@ -59,7 +59,7 @@ irregular[1] = new int[5];
 irregular[2] = new int[3];
 ```
 
-La fila 0 té 2 columnes, la fila 1 en té 5 i la fila 2 en té 3. Per a què servix? Triangles, piràmides o simplement dades que no formen un rectangle perfecte (per exemple, els dies de cada mes: febrer en té menys).
+La fila 0 té 2 columnes, la fila 1 en té 5 i la fila 2 en té 3. Per a què serveix? Triangles, piràmides o simplement dades que no formen un rectangle perfecte (per exemple, els dies de cada mes: febrer en té menys).
 
 ```java
 int[][] diasPorMes = {
@@ -112,7 +112,7 @@ Cada `fila` és un `int[]`, i sobre ell tornes a usar for-each. Arrays de arrays
 
 ---
 
-## 🧮 Per a què servix de veritat
+## 🧮 Per a què serveix de veritat
 
 Els arrays 2D no són un caprici acadèmic. Són la forma natural de representar:
 
@@ -130,7 +130,7 @@ boolean[][] minas = new boolean[5][5];
 minas[2][3] = true;  // hi ha una mina en fila 2, columna 3
 ```
 
-I per a saber si una posició existix, sempre preguntes abans de tocar: l'índex de fila va de `0` a `length - 1` i el de columna de `0` a `matriz[fila].length - 1`. Eixir-te d'allí torna a ser `ArrayIndexOutOfBoundsException`, però ara amb dues coordenades.
+I per a saber si una posició existeix, sempre preguntes abans de tocar: l'índex de fila va de `0` a `length - 1` i el de columna de `0` a `matriz[fila].length - 1`. Eixir-te d'allí torna a ser `ArrayIndexOutOfBoundsException`, però ara amb dues coordenades.
 
 > ⚠️ **Advertència:** `matriz.length` i `matriz[0].length` NO són el mateix. El primer són les files; el segon, les columnes de la fila 0. Confondre'ls és l'error clàssic dels principiants amb matrius.
 
@@ -191,7 +191,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. 3 files i 4 columnes.
 2. `a[2][1]`. Recorda: primer la fila, després la columna, tots dos començant en 0.
 3. `a.length` és el nombre de files; `a[0].length`, el nombre de columnes de la primera fila.
-4. Perquè cada fila pot tindre una grandària diferent. Usar `a[i].length` garantix que recorres exactament les columnes d'eixa fila, ni més ni menys.
+4. Perquè cada fila pot tindre una grandària diferent. Usar `a[i].length` garanteix que recorres exactament les columnes d'eixa fila, ni més ni menys.
 
 </details>
 

@@ -47,7 +47,7 @@ C:\carpeta\archivo.java
 Línia a línia:
 
 - `"Java\n\tmola\n\"mucho\""` → `Java`, salt de línia, tabulador + `mola`, salt de línia, cometa + `mucho` + cometa.
-- `"C:\\carpeta\\archivo.java"` → `C:\carpeta\archivo.java` (la `\\` es convertix en una sola barra).
+- `"C:\\carpeta\\archivo.java"` → `C:\carpeta\archivo.java` (la `\\` es converteix en una sola barra).
 
 </details>
 
@@ -126,7 +126,7 @@ public class EdadCosmica {
 }
 ```
 
-`final` convertix la variable en constant: no podràs canviar el seu valor després. La divisió de dos `double` dona un `double`, així que `edadMercurio` és un número amb decimals.
+`final` converteix la variable en constant: no podràs canviar el seu valor després. La divisió de dos `double` dona un `double`, així que `edadMercurio` és un número amb decimals.
 
 </details>
 
@@ -193,7 +193,7 @@ public class Futbolistas {
 
 Pas a pas:
 
-- `while (sc.hasNextInt())` repetix per cada cas de prova.
+- `while (sc.hasNextInt())` repeteix per cada cas de prova.
 - El `while` intern llig minuts fins a trobar el `-1` que marca el fi.
 - `totalMinutos / 90` és la divisió entera: quants partits complets ha jugat.
 
@@ -218,12 +218,12 @@ El `Scanner` (llegir de teclat) el veuràs a fons en la U02, però ací ja l'use
 public class SobreMi {
 
     /**
-     * Punt d'entrada: imprimix la motivació i el nombre d'arguments.
+     * Punt d'entrada: imprimeix la motivació i el nombre d'arguments.
      *
      * @param args arguments rebuts des de la línia de comandes
      */
     public static void main(String[] args) {
-        // Imprimixc primer el nom perquè el missatge tinga context
+        // Imprimeixc primer el nom perquè el missatge tinga context
         System.out.println("Me llamo Sergi");
 
         /*

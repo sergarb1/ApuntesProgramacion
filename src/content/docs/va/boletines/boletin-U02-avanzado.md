@@ -18,7 +18,7 @@ Escriu un programa que calcule quant deixar de propina en un restaurant. Declara
 
 Calcula la propina (`totalCompte * percentatgePropina / 100`) i el total final (`totalCompte + propina`). Mostra els tres valors.
 
-**Pista:** compte amb la divisió: `percentatgePropina / 100` amb enters dona 0. Multiplica primer i dividix després, o usa `100.0`.
+**Pista:** compte amb la divisió: `percentatgePropina / 100` amb enters dona 0. Multiplica primer i divideix després, o usa `100.0`.
 
 ---
 
@@ -33,7 +33,7 @@ Mostra:
 50.0€ són 54.347826086956516$
 ```
 
-**Pista:** per a passar d'euros a dòlars dividixes entre la taxa: `euros / TAXA_CANVI`.
+**Pista:** per a passar d'euros a dòlars divideixes entre la taxa: `euros / TAXA_CANVI`.
 
 ---
 
@@ -122,7 +122,7 @@ Guanya la màquina.
 
 ## ⭐⭐ Exercici 7: Supercalculadora amb lògica
 
-Escriu un programa que llegixca dos nombres amb `Scanner` (`double`) i un caràcter d'operació (`+`, `-`, `*`, `/`) amb `next()`.
+Escriu un programa que llegeixca dos nombres amb `Scanner` (`double`) i un caràcter d'operació (`+`, `-`, `*`, `/`) amb `next()`.
 
 Segons l'operador, mostra el resultat. Si l'operador és `/` i el segon nombre és 0, mostra "Error: no es pot dividir entre 0". Per a qualsevol altre caràcter, mostra "Operador desconegut".
 
@@ -174,7 +174,7 @@ Requisits: alinear els noms a l'esquerra, dos decimals en els preus i formatar t
 
 ## ⭐⭐⭐ Exercici 11: l'edat a prova de bombes
 
-Escriu un programa anomenat `EdatSegura` que demane l'edat pel teclat amb `Scanner` i **la repetixca fins que l'usuari escriga un nombre enter**. Si l'usuari escriu lletres o un decimal, el programa ha d'avisar amb "Això no és un nombre enter." i tornar a preguntar sense trencar-se (res d'`InputMismatchException`).
+Escriu un programa anomenat `EdatSegura` que demane l'edat pel teclat amb `Scanner` i **la repeteixca fins que l'usuari escriga un nombre enter**. Si l'usuari escriu lletres o un decimal, el programa ha d'avisar amb "Això no és un nombre enter." i tornar a preguntar sense trencar-se (res d'`InputMismatchException`).
 
 Quan per fi aconseguisca un enter, mostra amb `printf`:
 
@@ -182,7 +182,7 @@ Quan per fi aconseguisca un enter, mostra amb `printf`:
 Genial, 20 anys i llest per a programar.
 ```
 
-**Pista:** abans de cada `nextInt()`, pregunta amb `sc.hasNextInt()`. Si retorna `false`, descarta la brossa amb `sc.next()` i repetix. Recorda: `hasNextInt()` **mira** la següent dada sense consumir-la; si no la descartes, es quedarà ací per sempre.
+**Pista:** abans de cada `nextInt()`, pregunta amb `sc.hasNextInt()`. Si retorna `false`, descarta la brossa amb `sc.next()` i repeteix. Recorda: `hasNextInt()` **mira** la següent dada sense consumir-la; si no la descartes, es quedarà ací per sempre.
 
 ---
 

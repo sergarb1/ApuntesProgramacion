@@ -13,7 +13,7 @@ description: "El que pertany a la classe i no a l'objecte: el grup de WhatsApp e
 
 > **Un atribut `static` és de la classe, no de l'objecte: només hi ha una còpia per a tots, com el grup de WhatsApp de la classe, mentres que els atributs normals són els missatges privats de cada un.**
 
-Fins ara, cada objecte que creaves amb `new` tenia els seus propis atributs. Si creaves dos `Estudiante`, cada un tenia el seu `nombre`. Però hi ha dades que no tenen sentit "per objecte": el nombre total d'estudiants creats, per exemple. Això no és d'un estudiant concret: és de **la classe**. I per a això existix `static`.
+Fins ara, cada objecte que creaves amb `new` tenia els seus propis atributs. Si creaves dos `Estudiante`, cada un tenia el seu `nombre`. Però hi ha dades que no tenen sentit "per objecte": el nombre total d'estudiants creats, per exemple. Això no és d'un estudiant concret: és de **la classe**. I per a això existeix `static`.
 
 ---
 
@@ -69,7 +69,7 @@ Cada `Estudiante` té el seu propi `nombre` i `id`, però tots compartixen `tota
   └─────────┘      └─────────┘      └─────────┘
 ```
 
-El comptador viu en "la classe" (un espai que existix una sola vegada), mentres que cada objecte té el seu nom i el seu id en el seu propi calaix.
+El comptador viu en "la classe" (un espai que existeix una sola vegada), mentres que cada objecte té el seu nom i el seu id en el seu propi calaix.
 
 ---
 
@@ -134,9 +134,9 @@ public class Gato {
 
 Posat a prova en 30 segons (les respostes estan amagades):
 
-1. Quantes còpies existix d'un atribut `static`?
+1. Quantes còpies existeix d'un atribut `static`?
 2. Com s'accedeix a un atribut estàtic des de fora?
-3. Per a què servix un comptador `static` amb un `id` autoincremental?
+3. Per a què serveix un comptador `static` amb un `id` autoincremental?
 4. Pot un mètode estàtic llegir un atribut d'instància directament?
 
 <details>

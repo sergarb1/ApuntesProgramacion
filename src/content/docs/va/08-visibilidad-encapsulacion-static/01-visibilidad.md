@@ -37,11 +37,11 @@ El teu objecte queda fet un desastre. Ningú no ha comès un error greu: el prob
 
 Val, i per què no ho deixem tot `public` i tan contents? Per tres motius que en el món laboral són or pur:
 
-1. **Control:** decidixes què pot llegir-se, què pot modificar-se i què ni es toca. Res d'edats negatives ni saldos impossibles.
+1. **Control:** decideixes què pot llegir-se, què pot modificar-se i què ni es toca. Res d'edats negatives ni saldos impossibles.
 2. **Seguretat:** ningú no pot deixar el teu objecte en un estat inconsistent (per exemple, un compte amb saldo negatiu).
 3. **Mantenibilitat:** si canvies per dins com es calcula alguna cosa, el codi de fora no s'assabenta. Els canvis interns no trenquen els teus usuaris.
 
-En els pròxims punts veuràs les ferramentes exactes (modificadors, getters i setters, `static`). Però primer necessites el concepte: **la teua classe és una caixa, i tu decidixes qui té la clau**.
+En els pròxims punts veuràs les ferramentes exactes (modificadors, getters i setters, `static`). Però primer necessites el concepte: **la teua classe és una caixa, i tu decideixes qui té la clau**.
 
 ---
 
@@ -110,7 +110,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. La **visibilitat** decidix quines parts de la teua classe pot veure i usar la resta del món.
+1. La **visibilitat** decideix quines parts de la teua classe pot veure i usar la resta del món.
 2. Amb tot `public`, qualsevol codi pot trencar els teus objectes amb valors impossibles.
 3. Amagar dades et dona **control, seguretat i mantenibilitat**: els tres superpoders del programador que no plora debuggejant.
 

@@ -29,7 +29,7 @@ Has de usar exactament **5 línies de codi** (una per cada fila), combinant `pri
 
 ## ⭐ Exercici 2: Sense executar — seqüències d'escapament
 
-Què imprimix exactament este programa? Escriu l'eixida caràcter per caràcter.
+Què imprimeix exactament este programa? Escriu l'eixida caràcter per caràcter.
 
 ```java
 public class EscapeRoom {
@@ -40,7 +40,7 @@ public class EscapeRoom {
 }
 ```
 
-**Pista:** `\n` salta de línia, `\t` tabula, `\"` imprimix una cometa i `\\` imprimix una barra invertida. Compta cada caràcter del text entre cometes com el llegiria la màquina, no com l'escrius.
+**Pista:** `\n` salta de línia, `\t` tabula, `\"` imprimeix una cometa i `\\` imprimeix una barra invertida. Compta cada caràcter del text entre cometes com el llegiria la màquina, no com l'escrius.
 
 ---
 
@@ -62,8 +62,8 @@ public class EscapeRoom {
 Escriu un programa anomenat `ContadorArgs` que reba arguments des de la línia de comandes i mostre:
 
 - Quants arguments es van rebre
-- El primer argument (si existix)
-- L'últim argument (si existix)
+- El primer argument (si existeix)
+- L'últim argument (si existeix)
 
 Si no es reben arguments, ha de mostrar: "No se recibieron argumentos. Programa cancelado por falta de datos."
 
@@ -87,7 +87,7 @@ La Terra tarda 365.25 dies a orbitar el Sol. Mercuri tarda 87.97 dies. Escriu un
 1. Declare `final double DIAS_TIERRA = 365.25;`
 2. Declare `final double DIAS_MERCURIO = 87.97;`
 3. Emmagatzeme en una variable `int edadTerrestre = 20` (la teua edat en anys terrestres)
-4. Calcule els anys que tindries en Mercuri (dividix els dies terrestres viscuts entre els dies de Mercuri)
+4. Calcule els anys que tindries en Mercuri (divideix els dies terrestres viscuts entre els dies de Mercuri)
 5. Mostre: "En la Tierra tengo X años. En Mercurio tendría Y años."
 
 Per a calcular els dies viscuts en la Terra: `diasVividos = edadTerrestre * DIAS_TIERRA`.
@@ -122,9 +122,9 @@ Escriu una classe `SobreMi` totalment documentada:
 
 1. Classe amb Javadoc (`@author`, `@version`).
 2. Mètode `main` amb Javadoc (`@param args`).
-3. Dins del `main`, un comentari d'una línia que explique *per què* (no *què*) imprimixes la teua motivació.
+3. Dins del `main`, un comentari d'una línia que explique *per què* (no *què*) imprimeixes la teua motivació.
 4. Un comentari de bloc que explique què fa el teu programa a grans trets.
-5. Imprimix el teu nom, la teua motivació i quants arguments vas rebre.
+5. Imprimeix el teu nom, la teua motivació i quants arguments vas rebre.
 
 **Pista:** recorda que els comentaris Javadoc van just **abans** de la classe i del mètode. Genera la documentació amb `javadoc SobreMi.java` i obri els `.html` que es generen.
 

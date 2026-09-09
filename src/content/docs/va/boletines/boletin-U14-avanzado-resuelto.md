@@ -294,7 +294,7 @@ public class DatesJDBC {
 }
 ```
 
-`java.sql.Date.valueOf("2000-03-15")` convertix el text en una data que JDBC entén, i `setDate(4, ...)` la inserix. Per a llegir-la, `rs.getDate(...)`. Alerta amb el tipus: és `java.sql.Date`, no `java.util.Date` (són diferents). El `String` de la data ha d'anar en el format exacte `YYYY-MM-DD`.
+`java.sql.Date.valueOf("2000-03-15")` converteix el text en una data que JDBC entén, i `setDate(4, ...)` la inserix. Per a llegir-la, `rs.getDate(...)`. Alerta amb el tipus: és `java.sql.Date`, no `java.util.Date` (són diferents). El `String` de la data ha d'anar en el format exacte `YYYY-MM-DD`.
 
 </details>
 

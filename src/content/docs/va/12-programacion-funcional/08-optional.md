@@ -13,7 +13,7 @@ description: "Embolicar el `null` per a no ensopegar-hi: `Optional.of`, `orElse`
 
 > **`Optional<T>` és una capsa que conté un valor o està buida. En comptes de tornar un `null` a seques (que ningú sap si era una dada real o un oblit), tornes la capsa i obligues a qui la rep a preguntar: hi ha valor dins, o no?**
 
-Portes tota la unitat processant dades com un cap. Però hi ha un moment en què tot es torç: quan un mètode no troba el que busca i torna `null`. I tu, innocent, crides a `.length()` o a `.get()` sobre eixe `null`... i la `NullPointerException` et saluda a tota la cara. `Optional` existix perquè l'absència siga **explícita** i **gestionable**, no un accident.
+Portes tota la unitat processant dades com un cap. Però hi ha un moment en què tot es torç: quan un mètode no troba el que busca i torna `null`. I tu, innocent, crides a `.length()` o a `.get()` sobre eixe `null`... i la `NullPointerException` et saluda a tota la cara. `Optional` existeix perquè l'absència siga **explícita** i **gestionable**, no un accident.
 
 ---
 
@@ -98,7 +98,7 @@ public class Pareja {
 }
 ```
 
-Si el `filter` no deixa passar a ningú, `findFirst` torna una capsa buida... i tu, amb `orElse` o `ifPresent`, decidixes l'aterratge. Això sí: **no uses `get()` a la boja**: si la capsa està buida, `get()` llança `NoSuchElementException`. Pregunta (`isPresent`) o aterra (`orElse`) abans d'obrir.
+Si el `filter` no deixa passar a ningú, `findFirst` torna una capsa buida... i tu, amb `orElse` o `ifPresent`, decideixes l'aterratge. Això sí: **no uses `get()` a la boja**: si la capsa està buida, `get()` llança `NoSuchElementException`. Pregunta (`isPresent`) o aterra (`orElse`) abans d'obrir.
 
 ---
 

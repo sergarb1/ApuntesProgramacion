@@ -13,7 +13,7 @@ description: "El membre que només veu la família, arbres de classes i el peril
 
 > **`protected` és la visibilitat de la família: el membre el veuen les subclasses (i el mateix paquet). I les jerarquies de classes ben dissenyades són arbres, no boscos embullats.**
 
-En la U08 vas vore els quatre nivells de visibilitat. Ací descobrixes el matís que només cobra sentit amb herència: `protected`.
+En la U08 vas vore els quatre nivells de visibilitat. Ací descobreixes el matís que només cobra sentit amb herència: `protected`.
 
 ---
 

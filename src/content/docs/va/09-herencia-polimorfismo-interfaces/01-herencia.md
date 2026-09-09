@@ -44,7 +44,7 @@ public class Perro extends Animal {
 
 `Perro` ara té `nombre`, `edad`, `hacerSonido()` (millorat) i `moverCola()`. Cortesia de l'herència.
 
-> 💡 **Consell:** codi reutilitzat, neurones estalviades. L'herència existix perquè NO hages de copiar i enganxar el mateix codi en 15 classes.
+> 💡 **Consell:** codi reutilitzat, neurones estalviades. L'herència existeix perquè NO hages de copiar i enganxar el mateix codi en 15 classes.
 
 ---
 
@@ -69,11 +69,11 @@ No tot viatja de pares a fills. Esta taula t'ho aclarix:
 | `public` | ✅ Sí |
 | `protected` | ✅ Sí |
 | package-private (sense modificador) | ✅ Sí, si és al mateix paquet |
-| `private` | ❌ No (però existix dins de l'objecte) |
+| `private` | ❌ No (però existeix dins de l'objecte) |
 | Constructors | ❌ No (s'invoquen amb `super()`, punt 2) |
 | Mètodes `final` | ❌ No es poden sobreescriure |
 
-> ⚠️ **Advertència:** els membres `private` no s'hereden, però continuen ahí, dins de l'objecte. La filla no pot tocar-los directament, però el pare els usa. És com els diners al compte dels teus pares: existixen, però no els toques.
+> ⚠️ **Advertència:** els membres `private` no s'hereden, però continuen ahí, dins de l'objecte. La filla no pot tocar-los directament, però el pare els usa. És com els diners al compte dels teus pares: existeixen, però no els toques.
 
 ---
 

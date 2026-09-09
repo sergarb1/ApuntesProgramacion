@@ -17,7 +17,7 @@ Crea un fitxer `db.properties` amb les dades de connexió:
 url=jdbc:sqlite:instituto.db
 ```
 
-Escriu un programa que llegisca este fitxer usant la classe `Properties` i establisca la connexió. Si el fitxer no existix o falta la propietat `url`, mostra un missatge d'error clar.
+Escriu un programa que llegisca este fitxer usant la classe `Properties` i establisca la connexió. Si el fitxer no existeix o falta la propietat `url`, mostra un missatge d'error clar.
 
 **Pista:** carrega el fitxer amb `props.load(Files.newInputStream(Path.of("db.properties")))` i usa `props.getProperty("url")`. `load` llança una `IOException` (la vas vore a la U13 amb els fitxers) a més de la `SQLException`.
 
@@ -84,13 +84,13 @@ Implementa una cerca d'alumnes per nom usant `LIKE` i `PreparedStatement`. L'usu
 
 ## ⭐⭐ Exercici 6: Dates en JDBC
 
-Afig una columna `fecha_nacimiento DATE` a la taula `alumnos` (assumix que ja existix). Crea un programa que:
+Afig una columna `fecha_nacimiento DATE` a la taula `alumnos` (assumix que ja existeix). Crea un programa que:
 
 1. Demane nom, edat, curs i data de naixement (format `YYYY-MM-DD`).
 2. Inserisca l'alumne usant `PreparedStatement` amb `java.sql.Date.valueOf()`.
 3. Lliste tots els alumnes mostrant també la seua data de naixement.
 
-**Pista:** `Date.valueOf("2000-03-15")` convertix el text en `java.sql.Date` (alerta: és `java.sql.Date`, no `java.util.Date`!). Per a llegir-la, `rs.getDate("fecha_nacimiento")`. Recorda comprovar el valor que torna `executeUpdate()`.
+**Pista:** `Date.valueOf("2000-03-15")` converteix el text en `java.sql.Date` (alerta: és `java.sql.Date`, no `java.util.Date`!). Per a llegir-la, `rs.getDate("fecha_nacimiento")`. Recorda comprovar el valor que torna `executeUpdate()`.
 
 ---
 

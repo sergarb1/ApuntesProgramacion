@@ -11,7 +11,7 @@ description: "El <T> abans del tipus de retorn, la inferència automàtica i els
 
 ## 📬 La idea en una frase
 
-> **Un mètode genèric declara el seu propi `<T>` abans del tipus de retorn i funciona per a qualsevol tipus, deduint-lo dels arguments. Amb un límit (`T extends Comparable<T>`) li exigixes a `T` que sàpia comparar-se.**
+> **Un mètode genèric declara el seu propi `<T>` abans del tipus de retorn i funciona per a qualsevol tipus, deduint-lo dels arguments. Amb un límit (`T extends Comparable<T>`) li exigeixes a `T` que sàpia comparar-se.**
 
 En el punt 2 la classe era genèrica. Però hi ha un cas encara més flexible: un mètode genèric **dins d'una classe que no és genèrica**. El `<T>` del mètode viu sol en ell, com un paràmetre més, i el compilador el deduïx de la crida. És la ferramenta perfecta per a les classes d'utilitats.
 
@@ -64,7 +64,7 @@ No especifiques el tipus en cap crida: el compilador mira els arguments i deduï
 
 ## 🚧 Els límits: `T extends Comparable<T>`
 
-I si el mètode necessita que `T` tinga un superpoder? Per exemple, comparar elements per a trobar el màxim. Ací entra el **límit (bound)**: li exigixes a `T` que implemente `Comparable`:
+I si el mètode necessita que `T` tinga un superpoder? Per exemple, comparar elements per a trobar el màxim. Ací entra el **límit (bound)**: li exigeixes a `T` que implemente `Comparable`:
 
 ```java
 public class Utilidades {
@@ -80,7 +80,7 @@ System.out.println(Utilidades.maximo(5, 8));            // 8
 System.out.println(Utilidades.maximo("gato", "perro")); // "perro"
 ```
 
-`String` i `Integer` implementen `Comparable`, així que funcionen. Si intentares passar una classe teua sense `Comparable`, el compilador t'ho diria: no pot garantir que el teu tipus sàpia comparar-se. El límit convertix la promesa genèrica en un contracte.
+`String` i `Integer` implementen `Comparable`, així que funcionen. Si intentares passar una classe teua sense `Comparable`, el compilador t'ho diria: no pot garantir que el teu tipus sàpia comparar-se. El límit converteix la promesa genèrica en un contracte.
 
 > 💡 **Consell:** `extends` en genèrics no significa herència de classe: significa "és o hereta de / implementa". `T extends Comparable<T>` es llig com "T implementa Comparable<T>". Ho veuràs a fons en el punt 5 amb els wildcards.
 
@@ -88,7 +88,7 @@ System.out.println(Utilidades.maximo("gato", "perro")); // "perro"
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** pots invocar un mètode genèric especificant el tipus explícitament: `Classe.<Tipus>metode(...)`. És rar, però existix, i sol eixir en exàmens.
+> 🕶️ **Don Tip:** pots invocar un mètode genèric especificant el tipus explícitament: `Classe.<Tipus>metode(...)`. És rar, però existeix, i sol eixir en exàmens.
 
 **Exercici: el mètode que es crida amb ulleres**
 
@@ -141,7 +141,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. Un **mètode genèric** declara `<T>` abans del tipus de retorn i el compilador deduïx `T` dels arguments.
-2. Amb un **límit** (`T extends Comparable<T>`) exigixes que `T` sàpia comparar-se, i el compilador ho verifica.
+2. Amb un **límit** (`T extends Comparable<T>`) exigeixes que `T` sàpia comparar-se, i el compilador ho verifica.
 3. La sintaxi `Classe.<Tipus>metode(...)` permet especificar el tipus a mà, encara que quasi mai la necessites.
 
 > 🐛 **Vocabulari ràpid**

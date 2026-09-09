@@ -51,7 +51,7 @@ Construïx un pipeline que: filtre els **majors o iguals a 5**, els **eleve al q
 
 Crea una classe senzilla `Alumno` amb `nombre` i `nota`. Amb una llista de 5 alumnes, usa `Collectors.toMap` per a obtenir un `Map<String, Integer>` on la clau siga el nom i el valor la nota. Com que els noms són únics, usa una funció de fusió per si de cas.
 
-**Pista:** `Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)`. La fusió `(a, b) -> a` evita la `IllegalStateException` si es repetix una clau.
+**Pista:** `Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)`. La fusió `(a, b) -> a` evita la `IllegalStateException` si es repeteix una clau.
 
 ---
 
@@ -79,9 +79,9 @@ Usa `Arrays.stream` i `groupingBy(p -> p, Collectors.counting())` per a comptar 
 
 ## ⭐⭐⭐ Exercici 8: Optional i streams, la parella
 
-Tens una llista de noms. Busca, amb streams, el **primer nom que comence per "J"** usant `filter(...).findFirst()`. Gestiona el `Optional` resultant amb `ifPresent` per a imprimir-lo i amb `orElse` per a mostrar "no hay nadie" si no existix. Prova amb una llista que tinga "J" i amb una altra que no.
+Tens una llista de noms. Busca, amb streams, el **primer nom que comence per "J"** usant `filter(...).findFirst()`. Gestiona el `Optional` resultant amb `ifPresent` per a imprimir-lo i amb `orElse` per a mostrar "no hay nadie" si no existeix. Prova amb una llista que tinga "J" i amb una altra que no.
 
-**Pista:** `findFirst()` torna `Optional<String>`. Amb `ifPresent(System.out::println)` imprimixes només si hi ha valor; `orElse("no hay nadie")` cobrix l'absència.
+**Pista:** `findFirst()` torna `Optional<String>`. Amb `ifPresent(System.out::println)` imprimeixes només si hi ha valor; `orElse("no hay nadie")` cobreix l'absència.
 
 ---
 
@@ -122,6 +122,6 @@ long b = List.of(1, 2, 3).stream().count();
 System.out.println(a + " " + b);   // 3 3
 ```
 
-La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no servix.
+La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no serveix.
 
 </details>

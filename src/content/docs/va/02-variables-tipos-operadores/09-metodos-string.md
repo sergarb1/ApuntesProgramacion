@@ -116,7 +116,7 @@ Fixa't en l'última lletra: `enMayusculas.length() - 1` és l'última posició, 
 
 **Exercici: la inicial d'una reina**
 
-Sense executar, digues què imprimix este codi:
+Sense executar, digues què imprimeix este codi:
 
 ```java
 String nombre = "  merida  ";
@@ -128,7 +128,7 @@ System.out.println(inicial + ". " + resto);
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix `M. erida`.
+Imprimeix `M. erida`.
 
 - `nombre.trim()` → `"merida"` (fora espais).
 - `.toUpperCase()` → `"MERIDA"`.
@@ -163,7 +163,7 @@ Imprimix `M. erida`.
 ## ✅ Resum en 3 frases
 
 1. Els mètodes de `String` es criden sobre la variable (`texto.metodo()`) i transformen el text en alguna cosa nova.
-2. `length()`, `trim()`, `toUpperCase()`, `contains()`, `indexOf()`, `substring()` i `replace()` cobrixen el 90% del que faràs amb text.
+2. `length()`, `trim()`, `toUpperCase()`, `contains()`, `indexOf()`, `substring()` i `replace()` cobreixen el 90% del que faràs amb text.
 3. En `substring(inicio, fin)` el fin no s'inclou, i `indexOf()` retorna `-1` quan no troba res.
 
 > 🐛 **Vocabulari ràpid**

@@ -160,7 +160,7 @@ anana -> true
 a -> true
 ```
 
-La idea és elegant: compares la primera i l'última lletra; si no coincideixen, no és palíndrom; si coincideixen, repetixes amb les lletres de dins. Com a pelar una ceba, però de lletres.
+La idea és elegant: compares la primera i l'última lletra; si no coincideixen, no és palíndrom; si coincideixen, repeteixes amb les lletres de dins. Com a pelar una ceba, però de lletres.
 
 ---
 
@@ -230,7 +230,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. El **factorial** (O(n)) i els **palíndroms** són els exemples "lineals": recorren el problema cap al cas base sense sorpreses.
-2. El **Fibonacci ingenu** és O(2ⁿ): els números exploten perquè repetix càlculs; la **memoització** el deixa en O(n).
+2. El **Fibonacci ingenu** és O(2ⁿ): els números exploten perquè repeteix càlculs; la **memoització** el deixa en O(n).
 3. Les **torres de Hanoi** demostren que la recursió expressa en poques línies problemes que iterativament són un infern.
 
 > 🐛 **Vocabulari ràpid**

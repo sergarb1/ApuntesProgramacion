@@ -13,7 +13,7 @@ description: Triar entre moltes opcions sense omplir el codi de semàfors 🍽�
 
 > **`switch` és la carta d'un restaurant: mires el valor d'una variable i executes el `case` que coincidisca, sense encadenar vint `if`.**
 
-Quan has de triar entre moltes opcions amb un sol valor (dia de la setmana, talla, menú), una cadena d'`else if` funciona però és lletja. `switch` existix per a això.
+Quan has de triar entre moltes opcions amb un sol valor (dia de la setmana, talla, menú), una cadena d'`else if` funciona però és lletja. `switch` existeix per a això.
 
 ---
 
@@ -45,7 +45,7 @@ switch (dia) {
 ## 🧱 Les peces del puzle
 
 - **`switch (variable)`**: la variable que s'examina. Admet tipus enters, `char` i `enum`; a partir de Java 7 també `String`.
-- **`case valor:`**: cada opció possible. Si la variable coincidix, s'executa eixe bloc.
+- **`case valor:`**: cada opció possible. Si la variable coincideix, s'executa eixe bloc.
 - **`break;`**: "fins ací he arribat, ix del switch". Sense ell, tot es desborda cap avall.
 - **`default:`**: el comodí, el "cap dels anteriors". És opcional, com l'`else`.
 
@@ -77,7 +77,7 @@ switch (talla) {
 El famós "caure a través" ocorre quan oblides el `break`. En la majoria dels casos és un bug:
 
 ```java
-// ⚠️ Fall-through ACCIDENTAL: imprimix els tres plats
+// ⚠️ Fall-through ACCIDENTAL: imprimeix els tres plats
 int plat = 1;
 
 switch (plat) {
@@ -123,7 +123,7 @@ Ací, si `lletra` és qualsevol vocal, executa el bloc compartit. Elegant i comp
 | Combinar diverses variables | `if`/`else if` |
 | Comprovar `null` | `if` |
 
-> 💡 **Nota de futur:** en Java 14+ existix el `switch` amb fletxes (`->`) que no necessita `break` i retorna valors. Ho veuràs com a curiositat avançada; ací aprenem el clàssic, que és el de tots els exàmens.
+> 💡 **Nota de futur:** en Java 14+ existeix el `switch` amb fletxes (`->`) que no necessita `break` i retorna valors. Ho veuràs com a curiositat avançada; ací aprenem el clàssic, que és el de tots els exàmens.
 
 ---
 
@@ -170,11 +170,11 @@ Macarrons
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** quan veges un `switch`, compta els `break`: **n'hi ha d'haver un per cada `case` no compartit**. Si en falta algun, el teu programa es convertix en un tobogan.
+> 🕶️ **Don Tip:** quan veges un `switch`, compta els `break`: **n'hi ha d'haver un per cada `case` no compartit**. Si en falta algun, el teu programa es converteix en un tobogan.
 
 **Exercici: el switch oblidadís**
 
-Sense executar, calcula què imprimix este programa:
+Sense executar, calcula què imprimeix este programa:
 
 ```java
 public class Tobogan {
@@ -200,14 +200,14 @@ public class Tobogan {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix:
+Imprimeix:
 
 ```
 Dos
 Tres
 ```
 
-El `case 2` no té `break`, així que després d'imprimir "Dos" es cau al `case 3` ("Tres") i allà sí que troba el `break` i es deté. Fixa't: el `case 1` no imprimix res perquè `numero` no val 1. Un sol `break` oblidat convertix el switch en un tobogan.
+El `case 2` no té `break`, així que després d'imprimir "Dos" es cau al `case 3` ("Tres") i allà sí que troba el `break` i es deté. Fixa't: el `case 1` no imprimeix res perquè `numero` no val 1. Un sol `break` oblidat converteix el switch en un tobogan.
 
 </details>
 
@@ -224,7 +224,7 @@ El `case 2` no té `break`, així que després d'imprimir "Dos" es cau al `case 
 <summary>🔄 Respostes</summary>
 
 1. Es produïx el **fall-through**: el codi seguix executant els `case` següents fins a trobar un `break`.
-2. És el comodí: s'executa si **cap** `case` coincidix. És opcional.
+2. És el comodí: s'executa si **cap** `case` coincideix. És opcional.
 3. Quan compares **un valor amb moltes opcions concretes** (nombres, `char`, `String`).
 4. Escrivint els `case` seguits sense `break` entre ells i un sol bloc al final.
 

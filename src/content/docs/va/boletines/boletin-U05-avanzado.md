@@ -38,7 +38,7 @@ public class BinariaHistorial {
 }
 ```
 
-**Pista:** escriu en una taula cada volta amb els seus `esquerra`, `dreta`, `mig` i què decidix. Només són 3 o 4 línies de traça.
+**Pista:** escriu en una taula cada volta amb els seus `esquerra`, `dreta`, `mig` i què decideix. Només són 3 o 4 línies de traça.
 
 ---
 
@@ -119,7 +119,7 @@ public class Analista {
 
 ## ⭐⭐ Exercici 6: El caçador de parelles
 
-Escriu un mètode `public static boolean existeixParella(int[] dades, int sumaObjectiu)` que retorne `true` si existixen **dos elements distints** de l'array la suma dels quals siga `sumaObjectiu`.
+Escriu un mètode `public static boolean existeixParella(int[] dades, int sumaObjectiu)` que retorne `true` si existeixen **dos elements distints** de l'array la suma dels quals siga `sumaObjectiu`.
 
 Prova amb `int[] preus = {10, 3, 7, 5, 12}`:
 
@@ -156,7 +156,7 @@ Et donen un array d'enters (només 0 i 1) que representa un nombre en binari. Re
 
 Resol el problema **100 — Constant de Kaprekar** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=100).
 
-L'algoritme de Kaprekar: donat un nombre de 4 xifres, ordena els seus dígits de major a menor i de menor a major, resta tots dos, i repetix amb el resultat. Al final sempre s'arriba a **6174** (o al propi 6174) i, si el nombre té totes les xifres iguals (com 1111), la diferència dóna 0.
+L'algoritme de Kaprekar: donat un nombre de 4 xifres, ordena els seus dígits de major a menor i de menor a major, resta tots dos, i repeteix amb el resultat. Al final sempre s'arriba a **6174** (o al propi 6174) i, si el nombre té totes les xifres iguals (com 1111), la diferència dóna 0.
 
 L'entrada du diversos nombres (poden tindre menys de 4 xifres: cal completar amb zeros a l'esquerra). Per a cada un, mostra **quantes iteracions** calen per a arribar a 6174. El 6174 necessita 0 iteracions. **Compte amb els repdigits** (1111, 5555...): la primera resta dóna 0 i el bucle mai no arribaria a 6174; el problema oficial demana **8** per a ells. L'0 d'entrada acaba el programa.
 

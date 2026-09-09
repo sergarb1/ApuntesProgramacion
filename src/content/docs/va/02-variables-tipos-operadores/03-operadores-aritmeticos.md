@@ -13,7 +13,7 @@ description: Les màquines de pesos del gimnàs de dades ➕
 
 > **Els operadors aritmètics (`+`, `-`, `*`, `/`, `%`) són les màquines de pesos del gimnàs de dades: transformen les teues variables, i la divisió entera i la precedència són les trampes que separen els que saben dels que improvisen.**
 
-Tindre variables està molt bé, però no servixen de res si no fas coses amb elles. Benvingut al gimnàs: suaràs amb els cinc exercicis bàsics i descobriràs per què `10 / 3` no és el que tu creus.
+Tindre variables està molt bé, però no serveixen de res si no fas coses amb elles. Benvingut al gimnàs: suaràs amb els cinc exercicis bàsics i descobriràs per què `10 / 3` no és el que tu creus.
 
 ---
 
@@ -44,7 +44,7 @@ System.out.println((double) a / b);   // 3.333... (obligues decimal)
 
 ## ⚠️ La divisió entera mata
 
-**Si dividixes dos enters, Java et retorna un enter.** Punt. Els decimals es truncaren sense pietat:
+**Si divideixes dos enters, Java et retorna un enter.** Punt. Els decimals es truncaren sense pietat:
 
 ```java
 int alumnos = 17;
@@ -60,7 +60,7 @@ Per a Java, 17 dividit entre 5 són **3**. Ni 3.4 ni 3.5: 3. Si vols decimals, a
 
 ## 🎭 Precedència: la llei del menjador
 
-Qui se servix primer en el menjador de les expressions? Hi ha un ordre estricte:
+Qui se serveix primer en el menjador de les expressions? Hi ha un ordre estricte:
 
 ```java
 int resultado = 2 + 3 * 4;        // 14 — la multiplicació es cola abans
@@ -72,7 +72,7 @@ int conParentesis = (2 + 3) * 4;  // 20 — els parèntesis tenen passe VIP
 2. **Multiplicació, divisió i mòdul `* / %`** — els populars.
 3. **Suma i resta `+ -`** — els normals, els últims.
 
-> 📝 **Nota:** i quan dubtes, **posa parèntesis**. `(a + b) * (c - d)` és molt més llegible que confiar en la teua memòria de la precedència. Els parèntesis no dolen i el que llegix el teu codi (el teu jo del futur) t'ho agrairà.
+> 📝 **Nota:** i quan dubtes, **posa parèntesis**. `(a + b) * (c - d)` és molt més llegible que confiar en la teua memòria de la precedència. Els parèntesis no dolen i el que llegeix el teu codi (el teu jo del futur) t'ho agrairà.
 
 ---
 
@@ -125,7 +125,7 @@ System.out.println("x = " + x + ", y = " + y);
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix `x = 5, y = 8`. Pas a pas:
+Imprimeix `x = 5, y = 8`. Pas a pas:
 
 1. `x = 3`.
 2. `x++` — POST: usa `x` (3), després incrementa `x` a 4. El valor de `x++` és **3**.
@@ -142,7 +142,7 @@ Als programadors professionals també els costa. Per això quasi ningú escriu a
 ## 🎯 Mini-chequeig
 
 1. Quant val `int r = 10 / 3`? I `double r = 10 / 3`?
-2. Què fa l'operador `%` i per a què servix saber si `n % 2 == 0`?
+2. Què fa l'operador `%` i per a què serveix saber si `n % 2 == 0`?
 3. Quin és el resultat de `2 + 3 * 4 - 1`?
 4. Diferència entre `a++` i `++a` en una frase.
 

@@ -47,7 +47,7 @@ public class Misteri {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`3` i `3`** → ✅ Correcte! Cada `new` incrementa el `static total`, i el tercer estudiant s'emporta l'`id = 3`. A més, `total` (estàtic, de la classe) també val 3: una sola còpia per a tots.
 2. **`1` i `3`** → El `static` seria "de cada objecte", però no: `total` és de la classe, una sola còpia. ❌
@@ -80,7 +80,7 @@ public class Misteri {
 
 **Classe:** — *suspira* Per això el `main` és `static`: perquè jo puga arrancar la festa sense que arribe cap objecte primer.
 
-> La lliçó: la **classe** definix l'estructura i posseïx el que és `static` (comptadors, constants); l'**objecte** guarda la informació de cada cosa (atributs d'instància). Es necessiten mútuament, però cada un al seu terreny.
+> La lliçó: la **classe** defineix l'estructura i posseïx el que és `static` (comptadors, constants); l'**objecte** guarda la informació de cada cosa (atributs d'instància). Es necessiten mútuament, però cada un al seu terreny.
 
 ---
 
@@ -99,7 +99,7 @@ Endevina quin concepte de la unitat soc:
 <summary>🔄 Respostes</summary>
 
 1. **`private`** — només la pròpia classe.
-2. **El getter/setter** — llegixen i modifiquen atributs privats amb convenció `getX()`/`setX()`.
+2. **El getter/setter** — llegeixen i modifiquen atributs privats amb convenció `getX()`/`setX()`.
 3. **Un mètode estàtic** — `Clase.metodo()`, sense `new`.
 4. **Un atribut `static`** — una còpia compartida per tots els objectes.
 5. **Una constant** — `static final`, escrita en MAJÚSCULES amb `_`.
@@ -327,7 +327,7 @@ public class Contador {
 <details>
 <summary>💡 Solucions</summary>
 
-1. Imprimix **`2 1 2`**: `a.m` puja dos voltes (2), `b.m` una (1), i `n` (estàtic) puja dos voltes (2). El `m` és de cada objecte; el `n` és compartit.
+1. Imprimeix **`2 1 2`**: `a.m` puja dos voltes (2), `b.m` una (1), i `n` (estàtic) puja dos voltes (2). El `m` és de cada objecte; el `n` és compartit.
 2. Declarant `saldo` com a `private` i creant només mètodes `ingresar(double)` i `retirar(double)` que validen. Sense setter públic per al saldo: només operacions de negoci.
 3. La **encapsulació**: `private int edad` + `setEdad(int)` que valide `edad >= 0`. L'error es detecta a la frontera, no a quilòmetres.
 4. **Fals.** Un atribut `static` té **una sola còpia** compartida per tots els objectes.

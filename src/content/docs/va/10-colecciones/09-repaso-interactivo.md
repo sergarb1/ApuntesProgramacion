@@ -40,7 +40,7 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`1 3 4 10`** → El `remove(1)` esborra el 2, i després el `add(2, 10)` fica el 10 al final. ❌
 2. **`1 2 3 10`** → El `remove(1)` esborra el 2, i el `add(2, 10)` inserix el 10 a la posició 2. ❌
@@ -104,9 +104,9 @@ Endevina quin concepte de la unitat soc:
 
 > *CONRAD, el nostre compilador cascarrabutxes, opina sobre els clàssics del novell.*
 
-**CONRAD:** — UNA ALTRA VEGADA! Ve un alumne i em diu: *CONRAD, el meu programa es cau*. I jo: val, quin error? *Pues una cosa de "ConcurrentModificationException".* AI, MARE MEUA! Estaves esborrant amb `lista.remove(...)` dins d'un `for-each`. El bucle està recorrent la llista mentre tu la canvies per darrere! Usa `iterator.remove()`, que per a això existix.
+**CONRAD:** — UNA ALTRA VEGADA! Ve un alumne i em diu: *CONRAD, el meu programa es cau*. I jo: val, quin error? *Pues una cosa de "ConcurrentModificationException".* AI, MARE MEUA! Estaves esborrant amb `lista.remove(...)` dins d'un `for-each`. El bucle està recorrent la llista mentre tu la canvies per darrere! Usa `iterator.remove()`, que per a això existeix.
 
-*I després està el del `remove` amb números.* Escriu `numeros.remove(1)` creient que esborra el número 1. Però si `1` és un `int`! Ho interpreta com a **índex**. Per a esborrar el número 1 necessites `remove(Integer.valueOf(1))`. Índex o valor: decidix què vols esborrar.
+*I després està el del `remove` amb números.* Escriu `numeros.remove(1)` creient que esborra el número 1. Però si `1` és un `int`! Ho interpreta com a **índex**. Per a esborrar el número 1 necessites `remove(Integer.valueOf(1))`. Índex o valor: decideix què vols esborrar.
 
 *I el colmo dels colmos:* confon `HashSet` amb `TreeSet`. Es queixa que "el seu HashSet no ordena". I tant que no! Un `HashSet` és un porter, no un organitzador. Si vols ordre, `TreeSet` (ordre natural) o `LinkedHashSet` (ordre d'arribada). I no li fiques `null` a un `TreeSet`, que no sap comparar-lo amb res.
 
@@ -147,7 +147,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
+**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
 
 ```java
 import java.util.ArrayList;
@@ -194,7 +194,7 @@ Els **errors de compilació**:
 1. Falta el `;` al final de `max = notas.get(i)`.
 2. Falta el `;` al final de `System.out.println(...)`.
 
-L'**error de lògica**: no existix. La condició `notas.get(i) > max` és correcta i torna el major (9). Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat. El resultat correcte és `La mayor es: 9`.
+L'**error de lògica**: no existeix. La condició `notas.get(i) > max` és correcta i torna el major (9). Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat. El resultat correcte és `La mayor es: 9`.
 
 ```java
 import java.util.ArrayList;
@@ -340,7 +340,7 @@ Quasi. El `for-each` usa un `Iterator` per darrere. La diferència: amb l'`Itera
 
 ## 🎬 Post-Crèdits
 
-La programadora acaba el seu gestor de reserves d'un aparcament virtual: un `ArrayList` de matrícules que creix amb cada cotxe que arriba, un `HashSet` per a no deixar entrar matrícules repetides i un `Iterator` que trau els cotxes sense trencar la llista. Funciona. Fins que intenta ordenar les matrícules i descobrix que un `HashSet` no ordena res.
+La programadora acaba el seu gestor de reserves d'un aparcament virtual: un `ArrayList` de matrícules que creix amb cada cotxe que arriba, un `HashSet` per a no deixar entrar matrícules repetides i un `Iterator` que trau els cotxes sense trencar la llista. Funciona. Fins que intenta ordenar les matrícules i descobreix que un `HashSet` no ordena res.
 
 S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 

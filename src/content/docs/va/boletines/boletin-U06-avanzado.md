@@ -118,7 +118,7 @@ static int moviments;
 static void hanoi(int n, char origen, char destino, char auxiliar)
 ```
 
-Cada vegada que es mova un disc, imprimix `"Mueve disco X de ORIGEN a DESTINO"` i suma 1 al comptador. Al final, imprimix el total. Prova'l amb 3, 4 i 8 discos.
+Cada vegada que es mova un disc, imprimeix `"Mueve disco X de ORIGEN a DESTINO"` i suma 1 al comptador. Al final, imprimeix el total. Prova'l amb 3, 4 i 8 discos.
 
 **Pista:** amb `n` discos el mínim de moviments és `2^n - 1`. Si el teu comptador amb 8 discos no dona 255, alguna cosa estàs movent de més.
 

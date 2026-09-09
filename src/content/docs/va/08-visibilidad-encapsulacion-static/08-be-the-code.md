@@ -1,9 +1,9 @@
 ---
 title: "08 — Be the Code: encapsula la teua classe"
-description: "El repte guiat: convertix una classe sense blindar en una ben encapsulada amb getters i setters 🔨"
+description: "El repte guiat: converteix una classe sense blindar en una ben encapsulada amb getters i setters 🔨"
 ---
 
-<p><small>El repte guiat: convertix una classe sense blindar en una ben encapsulada amb getters i setters 🔨</small></p>
+<p><small>El repte guiat: converteix una classe sense blindar en una ben encapsulada amb getters i setters 🔨</small></p>
 
 > 🗺️ **Estàs en:** 🔒 **U08 · Visibilitat, Encapsulació i Static** → 08 · Be the Code: encapsula la teua classe
 
@@ -208,7 +208,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. Per què `numeroIngresos` no té setter?
 2. Què fa `setTitular()` si li passes un text buit?
 3. Quants passos cal seguir per a blindar la classe?
-4. Per a què servix la constant `MAX_INGRESOS_DIA`?
+4. Per a què serveix la constant `MAX_INGRESOS_DIA`?
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -225,7 +225,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. Encapsular una classe és un **procés en passos**: `private`, getters, setters, validació i constants.
-2. Cada setter i cada mètode són una **frontera** que decidix què entra i què ix de l'objecte.
+2. Cada setter i cada mètode són una **frontera** que decideix què entra i què ix de l'objecte.
 3. Al final tens una classe que **es protegeix sola**: l'error del món exterior no pot trencar-la.
 
 > 🐛 **Vocabulari ràpid**
@@ -236,6 +236,6 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Blindar | Convertir atributs `public` en `private` amb control d'accés |
 > | Frontera | Mètode públic que valida el que entra |
 > | Només lectura | Getter sense setter: es llig però no s'escriu |
-> | Número màgic | Literal sense nom: es convertix en constant |
+> | Número màgic | Literal sense nom: es converteix en constant |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/08-visibilidad-encapsulacion-static) · **Anterior:** [07 · Constants de classe: static final](/ApuntesProgramacion/va/08-visibilidad-encapsulacion-static/07-constantes-static-final) · **Següent:** [09 · Repàs interactiu](/ApuntesProgramacion/va/08-visibilidad-encapsulacion-static/09-repaso-interactivo)

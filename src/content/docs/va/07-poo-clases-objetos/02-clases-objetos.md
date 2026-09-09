@@ -19,7 +19,7 @@ En el punt 1 vas vore que una classe és un disseny. Ara toca la pregunta del mi
 
 ## 🍪 El tallagalletas i la galeta
 
-Imagina la cuina de la teua àvia. Té un tallagalletas amb forma d'estrela. Eixe tallagalletas és **la classe**: definix la forma de totes les galetes, però ell mateix no és una galeta. Pots usar-lo mil vegades i cada galeta serà distinta: unes amb pepitas de xocolate, altres de vainilla, altres que la teua cosina es menja a mig fer.
+Imagina la cuina de la teua àvia. Té un tallagalletas amb forma d'estrela. Eixe tallagalletas és **la classe**: defineix la forma de totes les galetes, però ell mateix no és una galeta. Pots usar-lo mil vegades i cada galeta serà distinta: unes amb pepitas de xocolate, altres de vainilla, altres que la teua cosina es menja a mig fer.
 
 En programació:
 
@@ -45,7 +45,7 @@ public class Galleta {
 }
 ```
 
-Això només definix el motle. Per ara, **no existix cap galeta en memòria**. És un fitxer al disc esperant que algú l'use.
+Això només defineix el motle. Per ara, **no existeix cap galeta en memòria**. És un fitxer al disc esperant que algú l'use.
 
 > 📝 **Nota:** la classe porta `public class Galleta` i el fitxer es diu `Galleta.java`. El nom de la classe i del fitxer han de coincidir. És la primera regla no escrita de Java... val, escrita.
 
@@ -98,7 +98,7 @@ Després, amb `g1.sabor = "Chocolate"` i `g1.comer()`, li dius a *eixa* galeta c
 
 **Objecte:** — Tracte fet.
 
-> 🕶️ **Don Tip:** la classe definix el **QUÈ** (atributs) i el **CÓM** (mètodes). L'objecte és el **QUI** (la instància concreta que executa i té valors propis).
+> 🕶️ **Don Tip:** la classe defineix el **QUÈ** (atributs) i el **CÓM** (mètodes). L'objecte és el **QUI** (la instància concreta que executa i té valors propis).
 
 ---
 
@@ -108,7 +108,7 @@ Després, amb `g1.sabor = "Chocolate"` i `g1.comer()`, li dius a *eixa* galeta c
 
 **Exercici: quantes galetes hi ha?**
 
-Sense executar, respon: quants objectes de la classe `Galleta` existixen en memòria al final d'este `main`?
+Sense executar, respon: quants objectes de la classe `Galleta` existeixen en memòria al final d'este `main`?
 
 ```java
 public class Pasteleria2 {
@@ -134,7 +134,7 @@ public class Pasteleria2 {
 
 > **Q:** Per què cal escriure `new`? No podria Java crear l'objecte sol?
 >
-> **A:** No, perquè `new` és el "permís de construcció". Sense `new`, només declares una variable (com `Galleta g;`), però no hi ha galeta a la safata, només un forat buit. Fins que no faces `new`, l'objecte no existix.
+> **A:** No, perquè `new` és el "permís de construcció". Sense `new`, només declares una variable (com `Galleta g;`), però no hi ha galeta a la safata, només un forat buit. Fins que no faces `new`, l'objecte no existeix.
 
 > **Q:** I per què `String nombre = "Ana";` no porta `new`?
 >
@@ -153,7 +153,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. Què és la classe en l'analogia del tallagalletas?
 2. Quin operador fabrica objectes en memòria?
 3. Quants objectes crea este codi: `Galleta a = new Galleta(); Galleta b = new Galleta();`?
-4. Per a què servix el punt (`.`) entre l'objecte i el membre?
+4. Per a què serveix el punt (`.`) entre l'objecte i el membre?
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -169,7 +169,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. La **classe** és el motle que definix atributs i mètodes; l'**objecte** és la galeta concreta, amb els seus propis valors, vivint en memòria.
+1. La **classe** és el motle que defineix atributs i mètodes; l'**objecte** és la galeta concreta, amb els seus propis valors, vivint en memòria.
 2. Els objectes es fabriquen amb **`new`**, i cada `new` crea una instància independent encara que use el mateix motle.
 3. Amb el **punt** (`.`) accedeixes als atributs i invoques els mètodes d'un objecte concret.
 

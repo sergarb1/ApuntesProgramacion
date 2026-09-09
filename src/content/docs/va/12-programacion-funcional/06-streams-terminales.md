@@ -60,7 +60,7 @@ Aplica un `Consumer` a cada element. És la terminal "imperativa": l'única que 
 numeros.stream().forEach(System.out::println);   // imprimeix tots
 ```
 
-> ⚠️ **Advertència:** `forEach` amb un stream en paral·lel no garantix ordre. Per al curs, usa'l en streams normals i no et preocupes; però recorda que si l'ordre importa, és més segur `collect` i després recórrer.
+> ⚠️ **Advertència:** `forEach` amb un stream en paral·lel no garanteix ordre. Per al curs, usa'l en streams normals i no et preocupes; però recorda que si l'ordre importa, és més segur `collect` i després recórrer.
 
 ---
 
@@ -139,7 +139,7 @@ La **C**. `reduce(10, (a, b) -> a * b)` comença en la identitat `10` i va multi
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Què torna `count()`?
-2. Per a què servix el primer argument de `reduce(0, ...)`?
+2. Per a què serveix el primer argument de `reduce(0, ...)`?
 3. Què fa `forEach`?
 4. Pots reutilitzar el mateix stream després d'una operació terminal?
 

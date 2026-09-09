@@ -142,7 +142,7 @@ Escriu una classe `OperacionsArray` **utilitària** (constructor privat) amb est
 
 En un `main`, usa la classe **sense crear cap objecte** sobre `{3, 1, 4, 1, 5}` i `{1, 2, 3}`.
 
-**Pista:** el constructor `private OperacionsArray() {}` impedix instanciar-la, com `Math`. Per a `estaOrdenat`, recorre amb un `for` i compara cada element amb l'anterior (`numeros[i] < numeros[i - 1]` → no està ordenat).
+**Pista:** el constructor `private OperacionsArray() {}` impedeix instanciar-la, com `Math`. Per a `estaOrdenat`, recorre amb un `for` i compara cada element amb l'anterior (`numeros[i] < numeros[i - 1]` → no està ordenat).
 
 ---
 

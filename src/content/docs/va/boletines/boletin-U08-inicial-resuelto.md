@@ -130,7 +130,7 @@ public class Termometre {
 }
 ```
 
-Eixida: `Temperatura fora de rang.` i després `Temperatura: 36.5`. El setter convertix la classe en un "termòmetre amb cervell": no accepta qualsevol número, només valors físicament possibles.
+Eixida: `Temperatura fora de rang.` i després `Temperatura: 36.5`. El setter converteix la classe en un "termòmetre amb cervell": no accepta qualsevol número, només valors físicament possibles.
 
 </details>
 
@@ -253,7 +253,7 @@ En intentar `Constants.IVA = 0.5;` el compilador ho **prohibix**: `final` signif
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`1 2 2`**.
+Imprimeix **`1 2 2`**.
 
 `Trencaclosques.s` és `static`: una sola còpia compartida. Amb el primer `new`, `s` passa a 1 i `t1.i` es copia eixe 1. Amb el segon `new`, `s` passa a 2 i `t2.i` es copia eixe 2. Al final, `t1.i` = 1, `t2.i` = 2 i `Trencaclosques.s` = 2. L'estàtic puja per a tots; el d'instància es congela amb el valor que tenia la classe en el moment de nàixer.
 
@@ -278,6 +278,6 @@ public class Kata {
 }
 ```
 
-Per a `[1, 2, 2]` → `1 + 4 + 4 = 9`. El bucle recorre cada element i acumula `n[i] * n[i]`. Nota el `static`: CodeWars exigix el mètode estàtic per a poder cridar-lo sense crear objectes, just el que acabeu de practicar.
+Per a `[1, 2, 2]` → `1 + 4 + 4 = 9`. El bucle recorre cada element i acumula `n[i] * n[i]`. Nota el `static`: CodeWars exigeix el mètode estàtic per a poder cridar-lo sense crear objectes, just el que acabeu de practicar.
 
 </details>

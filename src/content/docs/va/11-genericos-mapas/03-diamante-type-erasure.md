@@ -11,7 +11,7 @@ description: "El peresós oficial que inferix el tipus per tu i el mag que fa de
 
 ## 📬 La idea en una frase
 
-> **El diamant `<>` t'estalvia repetir el tipus dos vegades, i el type erasure és el truc pel qual els genèrics només existixen en compilació: quan generes el bytecode, el compilador els borra i afig els castings per tu.**
+> **El diamant `<>` t'estalvia repetir el tipus dos vegades, i el type erasure és el truc pel qual els genèrics només existeixen en compilació: quan generes el bytecode, el compilador els borra i afig els castings per tu.**
 
 Ja saps crear classes genèriques. Ara toca dominar els dos detalls que la gent sol repetir de memòria sense entendre: el `<>` de `new ArrayList<>()` i la famosa "type erasure". Els dos són germans: el primer t'estalvia teclejar, el segon és el perquè que Java funcione amb genèrics sense perdre velocitat.
 
@@ -37,7 +37,7 @@ El `<>` és com l'"etcètera" dels genèrics: "ja saps de quin tipus estic parla
 
 ## 🎩 Type erasure: el mag es porta els genèrics
 
-Ací va el truc que ho explica tot: els genèrics SOLS existixen en temps de compilació. Quan el teu codi es convertix en bytecode, el compilador borra tota la informació de tipus genèrics. És com si un mag fera desaparéixer els `<String>` i `<Integer>`.
+Ací va el truc que ho explica tot: els genèrics SOLS existeixen en temps de compilació. Quan el teu codi es converteix en bytecode, el compilador borra tota la informació de tipus genèrics. És com si un mag fera desaparéixer els `<String>` i `<Integer>`.
 
 ```java
 // En tu código fuente:
@@ -61,7 +61,7 @@ A açò se li diu **type erasure**. El compilador fa tres coses:
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** gràcies al type erasure, els genèrics no existixen en runtime. Dos col·leccions amb tipus diferents són la mateixa classe de veritat.
+> 🕶️ **Don Tip:** gràcies al type erasure, els genèrics no existeixen en runtime. Dos col·leccions amb tipus diferents són la mateixa classe de veritat.
 
 **Exercici: el bessó perdut**
 
@@ -98,7 +98,7 @@ La **A**. `getClass()` torna la classe real de l'objecte en runtime, i gràcies 
 
 > ❓ **Per què no puc fer `new T()` dins d'una classe genèrica?**
 
-Perquè en temps de compilació, Java no sap què és `T`. No pot crear una instància d'alguna cosa que no coneix. És com demanar-li a un pastisser que faça "un pastís" però sense dir-li de què. Amb el type erasure, en runtime `T` ni tan sols existix.
+Perquè en temps de compilació, Java no sap què és `T`. No pot crear una instància d'alguna cosa que no coneix. És com demanar-li a un pastisser que faça "un pastís" però sense dir-li de què. Amb el type erasure, en runtime `T` ni tan sols existeix.
 
 ---
 
@@ -110,7 +110,7 @@ Tampoc. Els arrays coneixen el seu tipus en temps d'execució, però els genèri
 
 > ❓ **Els genèrics ralentitzen el meu programa?**
 
-No. Java aplica **type erasure**: el compilador borra tota la informació genèrica i la convertix en castings normals. És només sucre sintàctic en compilació. En runtime, no hi ha genèrics i no hi ha cost extra.
+No. Java aplica **type erasure**: el compilador borra tota la informació genèrica i la converteix en castings normals. És només sucre sintàctic en compilació. En runtime, no hi ha genèrics i no hi ha cost extra.
 
 ---
 
@@ -118,7 +118,7 @@ No. Java aplica **type erasure**: el compilador borra tota la informació genèr
 
 Posat a prova en 30 segons (les respostes estan amagades):
 
-1. Des de quina versió de Java existix l'operador diamant `<>`?
+1. Des de quina versió de Java existeix l'operador diamant `<>`?
 2. Què fa el compilador amb els genèrics en generar el bytecode?
 3. Per què no pots escriure `new T()` en una classe genèrica?
 4. En runtime, `ArrayList<String>` i `ArrayList<Integer>` són la mateixa classe?
@@ -139,7 +139,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. El **diamant `<>`** (Java 7+) inferix el tipus del costat dret i t'estalvia repetir-lo: `new Caja<>()`.
 2. El **type erasure** borra els genèrics en compilar: verifica, borra i afig castings.
-3. Gràcies a això, **els genèrics són gratis**: no existixen en runtime, no ralentitzen res i per això no pots crear `new T()` ni arrays de genèrics.
+3. Gràcies a això, **els genèrics són gratis**: no existeixen en runtime, no ralentitzen res i per això no pots crear `new T()` ni arrays de genèrics.
 
 > 🐛 **Vocabulari ràpid**
 >

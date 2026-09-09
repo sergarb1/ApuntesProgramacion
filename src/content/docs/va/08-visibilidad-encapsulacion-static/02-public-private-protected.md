@@ -11,7 +11,7 @@ description: "Els 4 nivells de visibilitat: de la tanca publicitària a Times Sq
 
 ## 📬 La idea en una frase
 
-> **Hi ha 4 nivells de visibilitat en Java — `public`, `protected`, package-private i `private` — i cada un és com un tipus de pany: decidix qui té la clau de cada membre de la teua classe.**
+> **Hi ha 4 nivells de visibilitat en Java — `public`, `protected`, package-private i `private` — i cada un és com un tipus de pany: decideix qui té la clau de cada membre de la teua classe.**
 
 En el punt 1 vas vore el problema de la casa de vidre. Ara toca el kit de panys. Java et dona exactament **quatre nivells** de visibilitat, de la tanca publicitària al diari amb cadenat.
 
@@ -26,7 +26,7 @@ En el punt 1 vas vore el problema de la casa de vidre. Ara toca el kit de panys.
 | (res) package-private | Mateix paquet (el veïnat) | El xafardeig del barri |
 | `private` | Només la pròpia classe | El teu diari secret amb cadenat |
 
-El detall important: **si no poses res, Java assumix package-private**. No existix una paraula `default` per a això (eixa paraula és per a una altra cosa), així que "sense modificador" = "veïnat".
+El detall important: **si no poses res, Java assumix package-private**. No existeix una paraula `default` per a això (eixa paraula és per a una altra cosa), així que "sense modificador" = "veïnat".
 
 > 💡 **Detall pràctic:** com més `private` sigues, més segur estàs. La regla d'or del programador paranoic: *comença amb l'accés més restrictiu i obri'l només si hi ha motiu*.
 
@@ -185,7 +185,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. Quants nivells de visibilitat té Java i com es diuen?
 2. Quin nivell assumix Java si no escrius cap modificador?
 3. Qui pot vore un membre `protected`?
-4. Pot un mètode ser `private`? Per a què servix?
+4. Pot un mètode ser `private`? Per a què serveix?
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -209,7 +209,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 >
 > | Terme | Idea general |
 > |---|---|
-> | Modificador d'accés | Paraula que decidix qui veu un membre: `public`, `protected`, `private` |
+> | Modificador d'accés | Paraula que decideix qui veu un membre: `public`, `protected`, `private` |
 > | Package-private | Visibilitat "per defecte": només el mateix paquet |
 > | Paquet | Carpeta de classes (`package barrio;`) |
 > | Subclasse | Classe que hereta d'una altra (`extends`) |

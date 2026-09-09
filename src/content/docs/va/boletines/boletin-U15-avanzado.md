@@ -108,7 +108,7 @@ Frontend: taula amb colors de fons segons prioritat (roig ALTA, groc MITJA, verd
 
 Usa `HttpClient` per a consultar l'API de GitHub (`https://api.github.com/users/{usuario}/repos`) i mostrar només el **nom** i el **llenguatge** de cada repositori d'un usuari (que es demana pel teclat). Després guarda els resultats en un fitxer `repos.txt`.
 
-**Pista:** parseja la resposta amb Gson (`JsonArray`), recórre-la, i escriu amb `Files.writeString` (els fitxers els vas vore a la U13). Recorda la capçalera `User-Agent`, que GitHub exigix.
+**Pista:** parseja la resposta amb Gson (`JsonArray`), recórre-la, i escriu amb `Files.writeString` (els fitxers els vas vore a la U13). Recorda la capçalera `User-Agent`, que GitHub exigeix.
 
 ---
 

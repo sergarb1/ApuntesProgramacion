@@ -23,7 +23,7 @@ Implementa un mètode `rotarDerecha(int[] arr, int k)` que desplace cada element
 
 Exemple: `{1, 2, 3, 4, 5}` amb `k = 2` → `{4, 5, 1, 2, 3}`.
 
-**Pista:** usa un array temporal de la grandària de `k` amb els últims `k` elements, desplaça la resta cap a la dreta i després col·loca els guardats al principi. (O dividix els índexs amb `(i + k) % arr.length`.)
+**Pista:** usa un array temporal de la grandària de `k` amb els últims `k` elements, desplaça la resta cap a la dreta i després col·loca els guardats al principi. (O divideix els índexs amb `(i + k) % arr.length`.)
 
 ---
 
@@ -89,7 +89,7 @@ public class CuentaParejas {
 }
 ```
 
-**Pista:** compta les parelles `(i, j)` amb `i < j` on el primer és menor que el segon. Amb `{2, 4, 6}` totes les parelles ho complixen. Quantes n'hi ha?
+**Pista:** compta les parelles `(i, j)` amb `i < j` on el primer és menor que el segon. Amb `{2, 4, 6}` totes les parelles ho compleixen. Quantes n'hi ha?
 
 ---
 

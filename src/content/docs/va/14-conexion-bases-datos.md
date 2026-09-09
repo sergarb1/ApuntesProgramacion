@@ -28,7 +28,7 @@ Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són t
 
 En acabar, seràs capaç de:
 
-- Explicar **què és JDBC** i per què servix per a qualsevol base de dades amb controlador.
+- Explicar **què és JDBC** i per què serveix per a qualsevol base de dades amb controlador.
 - Configurar la dependència de **SQLite** a Maven i connectar el teu programa amb `DriverManager.getConnection()`.
 - Executar consultes amb **`Statement`** i llegir els resultats amb **`ResultSet`** usant `next()` i els `getXxx("columna")`.
 - Aplicar el **CRUD complet** (INSERT, SELECT, UPDATE, DELETE) amb `executeQuery()` i `executeUpdate()`.
@@ -85,7 +85,7 @@ En acabar, seràs capaç de:
 | RA9 f) | S'han creat aplicacions que executin consultes sobre bases de dades. | ✅ Punts 3, 5 i 9 |
 | RA9 g) | S'han creat aplicacions per a possibilitar la gestió d'informació present en bases de dades relacionals. | ✅ Punts 6 i 9 |
 
-> 📌 Esta unitat cobrix la **RA9** completa. El camí fins ací: la **U03** et va ensenyar les excepcions (i `SQLException` és checked, et perseguirà), la **U07/U08** et va donar les classes i interfícies amb què muntar els POJO i el DAO, i la **U13** et va deixar el `try-with-resources` llest per a tancar connexions. Tot el material anterior cobra sentit ara: és hora que els teus objectes dormisquen en una base de dades.
+> 📌 Esta unitat cobreix la **RA9** completa. El camí fins ací: la **U03** et va ensenyar les excepcions (i `SQLException` és checked, et perseguirà), la **U07/U08** et va donar les classes i interfícies amb què muntar els POJO i el DAO, i la **U13** et va deixar el `try-with-resources` llest per a tancar connexions. Tot el material anterior cobra sentit ara: és hora que els teus objectes dormisquen en una base de dades.
 
 ---
 

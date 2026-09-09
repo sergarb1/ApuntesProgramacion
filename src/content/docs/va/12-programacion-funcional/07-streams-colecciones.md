@@ -11,7 +11,7 @@ description: "`toList()`, `Collectors.toMap` i `groupingBy`: del flux a llistes,
 
 ## 📬 La idea en una frase
 
-> **Un stream no guarda res, així que al final del pipeline toca aterrar: `toList()` o els `Collectors` convertixen el flux en llistes, conjunts, Strings i, amb `groupingBy`, en mapes agrupats per una clau.**
+> **Un stream no guarda res, així que al final del pipeline toca aterrar: `toList()` o els `Collectors` converteixen el flux en llistes, conjunts, Strings i, amb `groupingBy`, en mapes agrupats per una clau.**
 
 La cinta transportadora està molt bé per a processar, però al final els paquets han d'anar a algun lloc. La terminal `collect` (del punt 6) és la porta d'eixida, i hui coneixes la seua maleta: `Collectors`, la classe amb les receptes per a empaquetar de totes les formes imaginables.
 
@@ -19,7 +19,7 @@ La cinta transportadora està molt bé per a processar, però al final els paque
 
 ## 📥 `toList()`: l'eixida ràpida (Java 16+)
 
-Des de Java 16 existix `toList()` directe sobre el stream: la forma més curta d'aterrar en una llista.
+Des de Java 16 existeix `toList()` directe sobre el stream: la forma més curta d'aterrar en una llista.
 
 ```java
 List<String> palabras = List.of("hola", "mundo", "hola", "adios");
@@ -79,7 +79,7 @@ public class Agrupando {
 
 ## 🗺️ `toMap`: d'elements a entrades
 
-`Collectors.toMap(clau, valor)` convertix cada element en una entrada de mapa. Té un tercer argument: la **funció de fusió**, que decidix què fer quan dos elements volen la mateixa clau.
+`Collectors.toMap(clau, valor)` converteix cada element en una entrada de mapa. Té un tercer argument: la **funció de fusió**, que decideix què fer quan dos elements volen la mateixa clau.
 
 ```java
 List<String> palabras = List.of("hola", "mundo", "hola", "adios");
@@ -141,7 +141,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Què torna `toList()`?
 2. Què fa `Collectors.groupingBy(...)`?
-3. Per a què servix el tercer argument de `toMap`?
+3. Per a què serveix el tercer argument de `toMap`?
 4. Què torna `Collectors.joining(", ")`?
 
 <details>
@@ -158,9 +158,9 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. `toList()` i els `Collectors` convertixen el flux en **col·leccions reals**: llistes, conjunts, Strings i mapes.
+1. `toList()` i els `Collectors` converteixen el flux en **col·leccions reals**: llistes, conjunts, Strings i mapes.
 2. `groupingBy` agrupa els elements per una clau i torna un `Map<clau, List<valor>>`; amb `counting()` com a segon argument, compta cada grup.
-3. `toMap` convertix cada element en una entrada clau-valor i necessita una **funció de fusió** quan pot haver-hi claus repetides.
+3. `toMap` converteix cada element en una entrada clau-valor i necessita una **funció de fusió** quan pot haver-hi claus repetides.
 
 > 🐛 **Vocabulari ràpid**
 >

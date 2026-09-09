@@ -44,7 +44,7 @@ public class Main {
 }
 ```
 
-**Què imprimixes per pantalla? Tria assenyadament:**
+**Què imprimeixes per pantalla? Tria assenyadament:**
 
 1. **`...` i `...`** → La variable és `Animal`, així que s'executa el mètode d'`Animal`. ❌
 2. **`¡Guau!` i `¡Miau!`** → ✅ ¡Correcte! El polimorfisme executa el mètode de l'objecte real, no el de la referència.
@@ -61,7 +61,7 @@ public class Main {
 
 ## 🔥 Fireside Chat: Classe abstracta vs Interfície
 
-> *Dos veterans de la POO discutixen al costat de la pissarra mentre una subclasse els mira.*
+> *Dos veterans de la POO discuteixen al costat de la pissarra mentre una subclasse els mira.*
 
 **Classe abstracta:** — Jo soc l'esbós. Definisc l'esquelet i compartisc codi: els meus fills s'estalvien escriure l'avorrit. `Figura` amb `calcularArea()` abstracte i `mostrarColor()` ja fet. Sóc la família que hereta.
 
@@ -93,7 +93,7 @@ Endevina quin concepte de la unitat sóc:
 4. **Sóc el mecanisme pel qual `Animal a = new Perro()` executa el so del gos.**
 5. **Sóc l'operador que pregunta "eres realment un Perro?" abans de convertir.**
 6. **Sóc el contracte que una classe signa amb `implements` i que admet diversos alhora.**
-7. **Sóc la classe abstracta que definix l'esquelet d'un algoritme i deixa que les filles ompliguen els detalls.**
+7. **Sóc la classe abstracta que defineix l'esquelet d'un algoritme i deixa que les filles ompliguen els detalls.**
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -101,7 +101,7 @@ Endevina quin concepte de la unitat sóc:
 1. **`extends`** — establix l'herència.
 2. **`@Override`** — verificació en compilació de la sobrescriptura.
 3. **`super(...)`** — el constructor del pare s'executa primer, sempre.
-4. **El polimorfisme (dynamic binding)** — la JVM decidix en runtime.
+4. **El polimorfisme (dynamic binding)** — la JVM decideix en runtime.
 5. **`instanceof`** — i després el downcasting segur.
 6. **La interfície** — diversos `implements`, un sol `extends`.
 7. **El template method** — el patró de les classes abstractes en acció.
@@ -136,7 +136,7 @@ Endevina quin concepte de la unitat sóc:
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan l'arregles.
+**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan l'arregles.
 
 ```java
 public class Vehiculo
@@ -179,7 +179,7 @@ public class Coche extends Vehiculo {
 1. Hi ha algun `;` o `{` que falte? *no → seguix buscant.*
    <details><summary>I si continue atascat?</summary>La classe `Vehiculo` necessita la seua clau d'apertura `{` just després del nom.</details>
 2. Compila ja? *no → mira el missatge d'error i els constructors.*
-   <details><summary>I si continue atascat?</summary>`Vehiculo` només té constructor amb paràmetres: `Coche` ha de cridar-lo amb `super(velocidad)` com a primera línia. Sense això, el compilador busca un `super()` buit que no existix.</details>
+   <details><summary>I si continue atascat?</summary>`Vehiculo` només té constructor amb paràmetres: `Coche` ha de cridar-lo amb `super(velocidad)` com a primera línia. Sense això, el compilador busca un `super()` buit que no existeix.</details>
 3. Executa però els números ixen canviats? *És l'error de lògica: el constructor intercanvia els valors.*
    <details><summary>Solució final</summary>
 
@@ -283,8 +283,8 @@ public class Test {
 <details>
 <summary>💡 Solucions</summary>
 
-1. **`B`, `C`, `C`**. Només importa el tipus real de l'objecte (`B`, `C`, `C`); la referència (`A`, `A`, `B`) no decidix res.
-2. **Error de compilació**: Java intenta `super()` sense arguments i no existix. Cal cridar a `super(nombre)` com a primera línia.
+1. **`B`, `C`, `C`**. Només importa el tipus real de l'objecte (`B`, `C`, `C`); la referència (`A`, `A`, `B`) no decideix res.
+2. **Error de compilació**: Java intenta `super()` sense arguments i no existeix. Cal cridar a `super(nombre)` com a primera línia.
 3. **`hashCode()`**. Si `equals()` diu que són iguals però `hashCode()` diferix, el `HashSet` els fica en calaixos diferents.
 4. **Vertader.** `instanceof` mira el tipus real de l'objecte: `Perro` és un `Animal`, i l'objecte real és un `Perro`, així que és `true`.
 
@@ -333,7 +333,7 @@ Vertical:
 
 > ❓ **Puc heredar de diverses classes alhora?**
 
-No. Java no permet herència múltiple (el *problema del diamant*). Però per això existixen les interfícies: pots implementar tantes com vullgues.
+No. Java no permet herència múltiple (el *problema del diamant*). Però per això existeixen les interfícies: pots implementar tantes com vullgues.
 
 ---
 

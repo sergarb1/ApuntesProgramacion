@@ -1,9 +1,9 @@
 ---
 title: "05 — Mergesort: el fiable"
-description: "L'algorisme que sempre complix el que promet: O(n log n) passe el que passe 🤝"
+description: "L'algorisme que sempre compleix el que promet: O(n log n) passe el que passe 🤝"
 ---
 
-<p><small>L'algorisme que sempre complix el que promet: O(n log n) passe el que passe 🤝</small></p>
+<p><small>L'algorisme que sempre compleix el que promet: O(n log n) passe el que passe 🤝</small></p>
 
 > 🗺️ **Estàs en:** ⚡ **U06 · Algorítmica II: Tècniques** → 05 · Mergesort
 
@@ -11,7 +11,7 @@ description: "L'algorisme que sempre complix el que promet: O(n log n) passe el 
 
 ## 📬 La idea en una frase
 
-> **Mergesort dividix l'array per la meitat, ordena cada meitat recursivament i després fusiona les dues meitats ordenades en una de sola: el "divide i venceràs" sense trampes.**
+> **Mergesort divideix l'array per la meitat, ordena cada meitat recursivament i després fusiona les dues meitats ordenades en una de sola: el "divide i venceràs" sense trampes.**
 
 Creat per **John von Neumann** el 1945. Sí, el mateix de l'arquitectura d'ordinadors. El tio no parava.
 
@@ -143,7 +143,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. Mergesort **dividix per la meitat**, ordena cada meitat i **fusiona** les meitats ordenades.
+1. Mergesort **divideix per la meitat**, ordena cada meitat i **fusiona** les meitats ordenades.
 2. És **sempre O(n log n)** i **estable**, a canvi de O(n) de memòria extra.
 3. És l'opció fiable quan importa l'estabilitat o l'ordre inicial és problemàtic.
 

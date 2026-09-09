@@ -11,7 +11,7 @@ description: Apreta que cap, amb pèrdues i llàgrimes si no tries bé 🔄
 
 ## 📬 La idea en una frase
 
-> **El casting convertix un valor d'un tipus a un altre: la conversió implícita (widening) la fa Java sol i sense pèrdues, mentre que l'explícita (narrowing) la forces tu amb `(tipo)` i pots perdre dades pel camí.**
+> **El casting converteix un valor d'un tipus a un altre: la conversió implícita (widening) la fa Java sol i sense pèrdues, mentre que l'explícita (narrowing) la forces tu amb `(tipo)` i pots perdre dades pel camí.**
 
 Al magatzem de la memòria tens caixes de tots els tamanys. A voltes necessites ficar el contingut d'una caixa gran en una de menuda... i això, o ho fas amb compte, o perds coses pel camí. Benvingut a l'art d'apretar.
 
@@ -127,7 +127,7 @@ public class Perdidas {
 
 **Exercici: seguix el guarda**
 
-Sense executar, determina què imprimix este programa:
+Sense executar, determina què imprimeix este programa:
 
 ```java
 int a = 10;
@@ -144,9 +144,9 @@ System.out.println(pequeno);
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix `10` i `44`.
+Imprimeix `10` i `44`.
 
-- El primer bloc és una cadena de conversions sense pèrdua: `10` → `10.0` → `10` → `10`. Imprimix **10**.
+- El primer bloc és una cadena de conversions sense pèrdua: `10` → `10.0` → `10` → `10`. Imprimeix **10**.
 - El segon és el desbordament clàssic: 300 no cap en un `byte` (tope 127), es truncaren els bits sobrants i queda **44**. Com ficar un elefant en un Mini i que isca un gos salchicha.
 
 </details>
@@ -157,7 +157,7 @@ Imprimix `10` i `44`.
 
 1. Per què `long x = 100000;` compila sense casting i `int y = (int) 100000.5;` sí que necessita el `(int)`?
 2. Quant val `(int) 7.99`? I `(int) 7.1`?
-3. Què passa si convertixes `300` a `byte`?
+3. Què passa si converteixes `300` a `byte`?
 4. És el truncament el mateix que redonir?
 
 <details>
@@ -186,7 +186,7 @@ Imprimix `10` i `44`.
 > | Widening | Eixamplar: a caixa més gran, sense pèrdues, automàtic |
 > | Narrowing | Estrényer: a caixa més menuda, amb `(tipo)` i possibles pèrdues |
 > | Truncament | Tallar la part decimal, sense redonir |
-> | Desbordament | El valor no cap i es convertix en una cosa absurda en silenci |
+> | Desbordament | El valor no cap i es converteix en una cosa absurda en silenci |
 > | `(int)` | El casting que força un valor decimal a enter |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/02-variables-tipos-operadores) · **Anterior:** [04 · Relacionals, lògics i ternari](/ApuntesProgramacion/va/02-variables-tipos-operadores/04-operadores-relacionales-logicos) · **Següent:** [06 · Scanner: llegir pel teclat](/ApuntesProgramacion/va/02-variables-tipos-operadores/06-scanner-entrada-teclado)

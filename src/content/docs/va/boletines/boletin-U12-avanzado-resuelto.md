@@ -99,7 +99,7 @@ public class Maximo {
 }
 ```
 
-`max(Integer::compareTo)` torna un `Optional<Integer>`: si la llista està buida, la capsa està buida. `orElse(-1)` aterra amb seguretat: torna el màxim si hi ha valor i `-1` si no. Usar `get()` ací hauria llançat `NoSuchElementException` amb la llista buida: l'`orElse` és la xarxa que convertix una excepció en una dada controlada.
+`max(Integer::compareTo)` torna un `Optional<Integer>`: si la llista està buida, la capsa està buida. `orElse(-1)` aterra amb seguretat: torna el màxim si hi ha valor i `-1` si no. Usar `get()` ací hauria llançat `NoSuchElementException` amb la llista buida: l'`orElse` és la xarxa que converteix una excepció en una dada controlada.
 
 </details>
 
@@ -206,7 +206,7 @@ public class Maximo {
 }
 ```
 
-- Amb `reduce`, la identitat `Integer.MIN_VALUE` garantix que el primer element sempre guanye la comparació (qualsevol `int` és major que el mínim possible). L'acumulador va guardant el major vist.
+- Amb `reduce`, la identitat `Integer.MIN_VALUE` garanteix que el primer element sempre guanye la comparació (qualsevol `int` és major que el mínim possible). L'acumulador va guardant el major vist.
 - Amb `max(Integer::compareTo)` no hi ha identitat: torna un `Optional<Integer>` perquè una llista buida no té màxim. S'aterra amb `orElse(-1)`.
 
 La diferència clau: `reduce` amb identitat torna el valor directe; `max` torna `Optional` i t'obliga a gestionar l'absència.
@@ -242,7 +242,7 @@ public class Frecuencias {
 }
 ```
 
-Dos nivells de streams: el primer convertix l'array en flux i agrupa per la paraula mateixa (`p -> p`), comptant amb `counting()`: `hola`=3, `adios`=2, `java`=1. El segon recorre les entrades del mapa (`entrySet()`) i busca el màxim valor amb `max(Map.Entry.comparingByValue())`, que torna `Optional<Map.Entry>` (aterrat amb `orElse(null)`). És l'`entrySet` de la U11 + el `max` dels streams.
+Dos nivells de streams: el primer converteix l'array en flux i agrupa per la paraula mateixa (`p -> p`), comptant amb `counting()`: `hola`=3, `adios`=2, `java`=1. El segon recorre les entrades del mapa (`entrySet()`) i busca el màxim valor amb `max(Map.Entry.comparingByValue())`, que torna `Optional<Map.Entry>` (aterrat amb `orElse(null)`). És l'`entrySet` de la U11 + el `max` dels streams.
 
 </details>
 
@@ -275,7 +275,7 @@ public class Busqueda {
 }
 ```
 
-`filter(n -> n.startsWith("J")).findFirst()` torna `Optional<String>`: la capsa està plena si algú complix i buida si no. `ifPresentOrElse` és el mètode que junta els dos camins: el primer argument és el `Consumer` per a quan hi ha valor (`System.out::println`), el segon un `Runnable` per a quan no n'hi ha. També ho podries fer amb `ifPresent` + `orElse`, però `ifPresentOrElse` fa la parella en una sola crida.
+`filter(n -> n.startsWith("J")).findFirst()` torna `Optional<String>`: la capsa està plena si algú compleix i buida si no. `ifPresentOrElse` és el mètode que junta els dos camins: el primer argument és el `Consumer` per a quan hi ha valor (`System.out::println`), el segon un `Runnable` per a quan no n'hi ha. També ho podries fer amb `ifPresent` + `orElse`, però `ifPresentOrElse` fa la parella en una sola crida.
 
 </details>
 
@@ -296,6 +296,6 @@ long b = List.of(1, 2, 3).stream().count();
 System.out.println(a + " " + b);   // 3 3
 ```
 
-La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no servix.
+La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no serveix.
 
 </details>

@@ -46,7 +46,7 @@ public class Misteri {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`Trobat en 3 amb 1 passos.`** → Confons el nombre de passos amb la posició: la cerca no arriba en una sola volta. ❌
 2. **`Trobat en 3 amb 3 passos.`** → ✅ Correcte! Amb 6 elements, `mig` és `0 + (5-0)/2 = 2` → `dades[2] = 30`, que és menor que 40, així que `esquerra = 3`. Segona volta: `mig = 3 + (5-3)/2 = 4` → `dades[4] = 50`, que és major, així que `dreta = 3`. Tercera volta: `mig = 3 + (3-3)/2 = 3` → `dades[3] = 40`. Bingo en 3 passos! Amb `return` (estem en `main`) el programa acaba ací.
@@ -69,7 +69,7 @@ public class Misteri {
 
 **Binària:** — Uns milions de passos. Quina generositat. Jo amb un milió tarde vint passos. Vint. Mentre tu sues, jo ja he acabat i estic demanant un altre cafè.
 
-**Lineal:** — I qui t'ha donat permís per a ser tan intel·ligent? L'array **ordenat**. Si les dades arriben desordenades, tu no servixes ni per a obrir la porta. Jo, en canvi, funcione sempre. És la vida: sense exigir res, però sense grans alegries.
+**Lineal:** — I qui t'ha donat permís per a ser tan intel·ligent? L'array **ordenat**. Si les dades arriben desordenades, tu no serveixes ni per a obrir la porta. Jo, en canvi, funcione sempre. És la vida: sense exigir res, però sense grans alegries.
 
 **Binària:** — Ordenar una vegada i buscar mil, i veuràs. Jo soc la que salva les apps amb milions d'usuaris. Tu eres... el pla B.
 
@@ -79,7 +79,7 @@ public class Misteri {
 
 **Lineal:** — Tregua. Però que sàpies que en els arrays de 5 elements et guanye fins i tot a tu, amb els teus aires d'`esquerra + (dreta - esquerra) / 2`.
 
-> La lliçó: cap no és millor "en general". **Lineal** per a dades xicotetes o desordenades; **binària** per a dades grans i ordenades amb moltes cerques. El context decidix.
+> La lliçó: cap no és millor "en general". **Lineal** per a dades xicotetes o desordenades; **binària** per a dades grans i ordenades amb moltes cerques. El context decideix.
 
 ---
 
@@ -98,8 +98,8 @@ Endevina quin concepte de la unitat soc:
 <summary>🔄 Respostes</summary>
 
 1. **L'algoritme** — seqüència finita, precisa i sense ambigüitat de passos.
-2. **La cerca lineal** — O(n), no exigix ordre.
-3. **La cerca binària** — O(log n), exigix array ordenat.
+2. **La cerca lineal** — O(n), no exigeix ordre.
+3. **La cerca binària** — O(log n), exigeix array ordenat.
 4. **L'ordenació bombolla** — intercanvia veïns, O(n²).
 5. **L'ordenació per inserció** — col·loca cada element en el seu lloc, O(n²) amb O(n) en quasi ordenats.
 6. **La notació Big O** — descriu la taxa de creixement del temps d'execució.
@@ -152,7 +152,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Durada estimada:** 30 minuts
 > **Eina:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedixen que compile o que falle en execució, i 1 error de lògica que fa que el resultat siga incorrecte quan el arregles.
+**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedeixen que compile o que falle en execució, i 1 error de lògica que fa que el resultat siga incorrecte quan el arregles.
 
 ```java
 public class Tortura
@@ -184,16 +184,16 @@ public class Tortura
    <details><summary>I si encara estic atascat?</summary>La classe `Tortura` necessita `{` d'obertura.</details>
 3. Compila però explota en executar? *És l'error d'índexs: el bucle interior arriba massa lluny.*
    <details><summary>I si encara estic atascat?</summary>`j < dades.length` accedix a `dades[j + 1]` fora de l'array. Ha de ser `j < dades.length - 1 - i` (i l'exterior `i < dades.length - 1`).</details>
-4. Executa i imprimix `4 3 2 1`? *És l'error de lògica: el signe de la comparació ordena al revés.*
+4. Executa i imprimeix `4 3 2 1`? *És l'error de lògica: el signe de la comparació ordena al revés.*
    <details><summary>Solució final</summary>
 
-Els **3 errors** que impedixen compilar o executar:
+Els **3 errors** que impedeixen compilar o executar:
 
 1. Falta la `{` d'obertura de la classe després de `Tortura`.
 2. Falta el `;` al final de `System.out.print(n + " ")`.
 3. `j < dades.length` accedix a `dades[j + 1]` fora de l'array: `ArrayIndexOutOfBoundsException`. Ha de ser `j < dades.length - 1 - i`.
 
-L'**error de lògica**: `dades[j] < dades[j + 1]` ordena **de major a menor**. Compila i executa perfectament, però imprimix `4 3 2 1` en lloc de `1 2 3 4`. La bombolla puja el major cap al final comparant amb `>`, no amb `<`.
+L'**error de lògica**: `dades[j] < dades[j + 1]` ordena **de major a menor**. Compila i executa perfectament, però imprimeix `4 3 2 1` en lloc de `1 2 3 4`. La bombolla puja el major cap al final comparant amb `>`, no amb `<`.
 
 ```java
 public class Tortura {
@@ -234,7 +234,7 @@ Eixida correcta: `1 2 3 4`. Amb la versió trencada, una vegada arreglats els al
 
 ## 🧠 Atreveix-te a Pensar
 
-1. **Sense executar:** què imprimix este programa?
+1. **Sense executar:** què imprimeix este programa?
 
 ```java
 public class Misteri2 {
@@ -261,7 +261,7 @@ public class Misteri2 {
 <details>
 <summary>💡 Solucions</summary>
 
-1. Imprimix **`6`**. El bucle doble compta les parelles `(i, j)` amb `i < j` on `dades[i] < dades[j]`. Amb `{2,4,6,8}` totes les parelles complixen: 4 · 3 / 2 = 6.
+1. Imprimeix **`6`**. El bucle doble compta les parelles `(i, j)` amb `i < j` on `dades[i] < dades[j]`. Amb `{2,4,6,8}` totes les parelles compleixen: 4 · 3 / 2 = 6.
 2. Amb `>=` la bombolla seguiria ordenant, però **romp l'estabilitat**: dos elements iguals podrien intercanviar-se, canviant el seu ordre relatiu. La versió amb `>` (estricte) manté l'ordre dels iguals.
 3. El **depurador**: posa un breakpoint en el `while` i observa `esquerra`, `dreta` i `mig` en cada volta. Si `dreta` mai no baixa o `esquerra` no avança amb `mig + 1`, eixe és el fall. El clàssic off-by-one.
 4. **Fals.** Amb un array desordenat no és que siga lenta: retorna **resultats incorrectes sense avisar**. No hi ha error, hi ha escombraria silenciosa.
@@ -317,7 +317,7 @@ En els teus programes reals, sí: Java porta utilitats ordenades, eficients i pr
 
 > ❓ **Per què cal dir "log n" i no simplement "pocs passos"?**
 
-Perquè "pocs passos" no servix per a comparar: pocs comparat amb què. El logaritme en base 2 et diu exactament **quantes vegades pots partir per la meitat** abans d'arribar a 1. I quan algú et diu "és O(log n)", tu saps exactament què significa. La precisió és el sou del programador.
+Perquè "pocs passos" no serveix per a comparar: pocs comparat amb què. El logaritme en base 2 et diu exactament **quantes vegades pots partir per la meitat** abans d'arribar a 1. I quan algú et diu "és O(log n)", tu saps exactament què significa. La precisió és el sou del programador.
 
 ---
 

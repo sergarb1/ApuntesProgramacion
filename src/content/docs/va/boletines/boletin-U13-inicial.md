@@ -71,7 +71,7 @@ w.write("Contenido importante");
 w.close();
 ```
 
-Què passa si el fitxer `documento.txt` ja existix? Què torna `createNewFile()`?
+Què passa si el fitxer `documento.txt` ja existeix? Què torna `createNewFile()`?
 
 ---
 

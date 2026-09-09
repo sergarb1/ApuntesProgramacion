@@ -11,9 +11,9 @@ description: "Associa claus amb valors, el put que sobreescriu i les tres formes
 
 ## 📬 La idea en una frase
 
-> **Un `Map` associa claus úniques amb valors: busques per clau (nom) i obtens el seu valor (telèfon). `HashMap` ho fa en O(1) i, si repetixes clau, el `put` sobreescriu el valor anterior.**
+> **Un `Map` associa claus úniques amb valors: busques per clau (nom) i obtens el seu valor (telèfon). `HashMap` ho fa en O(1) i, si repeteixes clau, el `put` sobreescriu el valor anterior.**
 
-Fins ací només guardaves elements solts en llistes i conjunts. Però la vida real està plena d'associacions: nom → telèfon, paraula → vegades que apareix, matrícula → plaça de parking. Per a això existixen els **mapes**, la tercera família d'estructures juntament amb `List` i `Set`. Benvingut a la guia telefònica.
+Fins ací només guardaves elements solts en llistes i conjunts. Però la vida real està plena d'associacions: nom → telèfon, paraula → vegades que apareix, matrícula → plaça de parking. Per a això existeixen els **mapes**, la tercera família d'estructures juntament amb `List` i `Set`. Benvingut a la guia telefònica.
 
 ---
 
@@ -40,7 +40,7 @@ agenda.size();                    // 1 (solo queda Ana)
 Fixa't en les tres idees clau:
 
 1. **Les claus són úniques.** `put("Ana", 612345678)` i després `put("Ana", 600000000)`: el segon sobreescriu el primer. És com ratllar un número de la teua agenda per a posar-ne un altre: només queda l'últim.
-2. **`get` torna `null` si la clau no existix.** No llança excepció, però compte: si la variable és `int` (primitiu), assignar `null` dona error. Per això existix `getOrDefault`.
+2. **`get` torna `null` si la clau no existeix.** No llança excepció, però compte: si la variable és `int` (primitiu), assignar `null` dona error. Per això existeix `getOrDefault`.
 3. **Cerca rapidíssima**: O(1) de mitjana. Tant se val si hi ha 10 o 10.000 entrades.
 
 > 📝 **Nota:** les claus d'un HashMap han de ser **immutables**. Per això `String` i `Integer` són perfectes. Si uses un objecte mutable com a clau i després el modifiques, el seu `hashCode()` canvia i el HashMap no el trobarà mai. És com canviar el pany i esperar que la clau vella continue funcionant.
@@ -92,7 +92,7 @@ La tercera és la preferida dels professionals: `entrySet()` et dona parells cla
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** HashMap no garantix ordre. Si necessites ordre, usa TreeMap o LinkedHashMap (punt 7). I ull amb `put`: repetir clau sobreescriu, no afig.
+> 🕶️ **Don Tip:** HashMap no garanteix ordre. Si necessites ordre, usa TreeMap o LinkedHashMap (punt 7). I ull amb `put`: repetir clau sobreescriu, no afig.
 
 **Exercici 1: el HashMap traïdor**
 
@@ -171,7 +171,7 @@ Sí, HashMap admet **una** clau `null` (la guarda en una posició especial). Tre
 
 ---
 
-> ❓ **Què passa si la clau no existix en el mapa?**
+> ❓ **Què passa si la clau no existeix en el mapa?**
 
 `get()` torna `null`. No llança excepció. Usa'l amb cura o, millor, usa `getOrDefault(clau, valorPerDefecte)`, que et torna un valor segur.
 
@@ -187,9 +187,9 @@ Usa un mapa de llistes: `HashMap<String, ArrayList<Integer>>`. La clau apunta a 
 
 Posat a prova en 30 segons (les respostes estan amagades):
 
-1. Què torna `get(clau)` si la clau no existix?
-2. Què fa `put("Ana", x)` si la clau "Ana" ja existix?
-3. Quin mètode torna un valor per defecte si la clau no existix?
+1. Què torna `get(clau)` si la clau no existeix?
+2. Què fa `put("Ana", x)` si la clau "Ana" ja existeix?
+3. Quin mètode torna un valor per defecte si la clau no existeix?
 4. Quin és el bucle preferit per a recórrer un mapa i per què?
 
 <details>
@@ -206,7 +206,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. **`Map`** associa claus úniques amb valors: `put` afig (o sobreescriu), `get` consulta i torna `null` si la clau no existix.
+1. **`Map`** associa claus úniques amb valors: `put` afig (o sobreescriu), `get` consulta i torna `null` si la clau no existeix.
 2. Es recorre amb **`keySet()`** (claus), **`values()`** (valors) o **`entrySet()`** (parells), sent esta última la preferida.
 3. Les claus han de ser **immutables** i el `getOrDefault()` és el teu salvavides contra els `null`, especialment per a comptar freqüències.
 
@@ -217,7 +217,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | `Map` | Interfície que associa claus amb valors |
 > | Clau / valor | El parell associat; la clau és única |
 > | `put` | Afegir o sobrescriure una entrada |
-> | `getOrDefault` | Tornar un valor segur si la clau no existix |
+> | `getOrDefault` | Tornar un valor segur si la clau no existeix |
 > | `entrySet` | Les entrades (clau + valor) per a recórrer |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/11-genericos-mapas) · **Anterior:** [05 · Wildcards: `? extends T` i `? super T`](/ApuntesProgramacion/va/11-genericos-mapas/05-wildcards) · **Següent:** [07 · TreeMap, LinkedHashMap i altres mapes](/ApuntesProgramacion/va/11-genericos-mapas/07-treemap-otros-mapas)

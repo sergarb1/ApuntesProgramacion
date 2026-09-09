@@ -1,9 +1,9 @@
 ---
 title: "08 · Be the Code: col·leccions en acció"
-description: "Sé el Código pur: prediu l'eixida, caça el bug i decidix quina col·lecció encaixa abans que compile res 🧪"
+description: "Sé el Código pur: prediu l'eixida, caça el bug i decideix quina col·lecció encaixa abans que compile res 🧪"
 ---
 
-<p><small>Sé el Código pur: prediu l'eixida, caça el bug i decidix quina col·lecció encaixa abans que compile res 🧪</small></p>
+<p><small>Sé el Código pur: prediu l'eixida, caça el bug i decideix quina col·lecció encaixa abans que compile res 🧪</small></p>
 
 > 🗺️ **Estàs en:** 📚 **U10 · Col·leccions** → 08 · Be the Code: col·leccions en acció
 
@@ -180,7 +180,7 @@ La **A**. `sort` → `[1, 2, 4, 6]`. `reverse` → `[6, 4, 2, 1]`. `max` = 6 (el
 
 ## 🧪 Sé el Código: tria la col·lecció
 
-> *Eres la persona que decidix. Per a cada escenari, una línia: quina col·lecció i per què.*
+> *Eres la persona que decideix. Per a cada escenari, una línia: quina col·lecció i per què.*
 
 1. Guardar les matrícules dels cotxes d'un aparcament, **sense repetir** i sense que importe l'ordre.
 2. Simular la **fila** de la cafeteria a l'hora del pati.

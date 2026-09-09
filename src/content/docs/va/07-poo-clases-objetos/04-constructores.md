@@ -115,7 +115,7 @@ Sense constructor a la vista, `new Persona("Ana", 25)` fallaria si només existi
 
 **Exercici: quin constructor es crida?**
 
-Sense executar, què imprimix este codi?
+Sense executar, què imprimeix este codi?
 
 ```java
 public class Pedido {
@@ -143,7 +143,7 @@ public class Pedido {
 <details>
 <summary>🔄 Solució</summary>
 
-Es crida a `Pedido()`, que fa `this("Sin producto", 0)`: això executa primer `Pedido(String, int)` (imprimix **"Constructor con parámetros"**), després torna i acaba `Pedido()` (imprimix **"Constructor vacío"**). Després el `main` imprimix **"Sin producto x0"**.
+Es crida a `Pedido()`, que fa `this("Sin producto", 0)`: això executa primer `Pedido(String, int)` (imprimeix **"Constructor con parámetros"**), després torna i acaba `Pedido()` (imprimeix **"Constructor vacío"**). Després el `main` imprimeix **"Sin producto x0"**.
 
 El `this(...)` d'un constructor a un altre **sempre va primer**, abans de qualsevol altra instrucció. És com la presentació abans de la festa: primer crides el teu col·lega constructor i després fas les teues coses.
 

@@ -122,7 +122,7 @@ public class CastingAssassi {
 }
 ```
 
-- `(int) 9.99` trunca i dona **9**: es perden els 0.99€. El casting talla amb destral, no redonix.
+- `(int) 9.99` trunca i dona **9**: es perden els 0.99€. El casting talla amb destral, no redoneix.
 - `300` en un `byte` (màxim 127) es **desborda** silenciosament i dona **44**. Java no avisa: és la teua responsabilitat comprovar que el valor cap abans d'estretir la caixa.
 
 </details>
@@ -279,7 +279,7 @@ public class NotaFormatejada {
 }
 ```
 
-`String.format` construïx el text i el guarda en la variable `missatge` (no imprimeix res); `printf` escriu directament en pantalla. Els dos redonixen a dos decimals amb `%.2f`. Fixa't: usa `String.format` quan vulgues el text com a valor, i `printf` quan només vulgues escriure'l.
+`String.format` construïx el text i el guarda en la variable `missatge` (no imprimeix res); `printf` escriu directament en pantalla. Els dos redoneixen a dos decimals amb `%.2f`. Fixa't: usa `String.format` quan vulgues el text com a valor, i `printf` quan només vulgues escriure'l.
 
 </details>
 

@@ -13,7 +13,7 @@ description: "Concatena strings en SQL i Bobby Tables esborrarà la teua taula d
 
 > **Mai construïscues SQL concatenant strings amb dades de l'usuari: és SQL injection. La vacuna és `PreparedStatement`, que separa l'SQL de les dades amb placeholders `?` i l'ompli de forma segura.**
 
-Al punt 3 vas vore `Statement` i va quedar clar que servix per a consultes fixes. Ací arriba el moment en què et dic per què, així que hi haja **dades de l'usuari** de per mig, el `Statement` es convertix en una bomba de rellotgeria. I de passada coneixeràs Bobby Tables, el xiquet més famós de la història de les bases de dades.
+Al punt 3 vas vore `Statement` i va quedar clar que serveix per a consultes fixes. Ací arriba el moment en què et dic per què, així que hi haja **dades de l'usuari** de per mig, el `Statement` es converteix en una bomba de rellotgeria. I de passada coneixeràs Bobby Tables, el xiquet més famós de la història de les bases de dades.
 
 ---
 
@@ -123,7 +123,7 @@ ResultSet rs = stmt.executeQuery(sql);
 <details>
 <summary>🔄 Solució</summary>
 
-**No és segur, és SQL injection en estat pur.** Amb `Ana'; DELETE FROM matriculas; --`, l'SQL es convertix en un `SELECT` que acaba abans d'hora i després executa `DELETE FROM matriculas` (la instrucció que el `--` comenta només en la part sobrera). S'esborrarien totes les matrícules.
+**No és segur, és SQL injection en estat pur.** Amb `Ana'; DELETE FROM matriculas; --`, l'SQL es converteix en un `SELECT` que acaba abans d'hora i després executa `DELETE FROM matriculas` (la instrucció que el `--` comenta només en la part sobrera). S'esborrarien totes les matrícules.
 
 La solució: `PreparedStatement` amb placeholder.
 

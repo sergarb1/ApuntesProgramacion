@@ -21,15 +21,15 @@ Si el punt 1 era conéixer JDBC de lluny, ací t'hi acostes a saludar. Obrir una
 
 Tot programa JDBC seguix esta escala:
 
-1. **Carregar el controlador** — des de Java 6, automàtic. Només te'n recordes que existix quan lliges codi antic.
+1. **Carregar el controlador** — des de Java 6, automàtic. Només te'n recordes que existeix quan lliges codi antic.
 2. **Establir la connexió** — `DriverManager.getConnection(url)` et torna una `Connection`.
 3. **Crear un Statement** — `con.createStatement()` (o `con.prepareStatement(sql)`, ho veuràs al punt 4).
 4. **Executar la consulta** — `executeQuery()` per a SELECT, `executeUpdate()` per a INSERT/UPDATE/DELETE.
 5. **Processar els resultats** — recórrer el `ResultSet` amb `next()`.
 
-I el **bonus no opcional**: tancar-ho tot. En Java modern, `try-with-resources` ho fa sol (ho vas vore a la U13 amb els fitxers; ací és exactament la mateixa idea). Un recurs que no es tanca és una fuga: en un servidor, cada connexió oberta consumix memòria i hi ha un límit. Arriba el següent `getConnection()` i... "Too many connections".
+I el **bonus no opcional**: tancar-ho tot. En Java modern, `try-with-resources` ho fa sol (ho vas vore a la U13 amb els fitxers; ací és exactament la mateixa idea). Un recurs que no es tanca és una fuga: en un servidor, cada connexió oberta consumeix memòria i hi ha un límit. Arriba el següent `getConnection()` i... "Too many connections".
 
-> 💡 **Consell:** memoritza els 5 passos en ordre. El pas 4 i el 5 es repetixen en cada consulta que escrigues la resta de la teua vida. I el bonus de tancar... que no se t'oblide mai.
+> 💡 **Consell:** memoritza els 5 passos en ordre. El pas 4 i el 5 es repeteixen en cada consulta que escrigues la resta de la teua vida. I el bonus de tancar... que no se t'oblide mai.
 
 ---
 
@@ -42,7 +42,7 @@ String url = "jdbc:sqlite:instituto.db";
 Connection con = DriverManager.getConnection(url);
 ```
 
-> 📝 **Nota:** si el fitxer `instituto.db` no existix, SQLite el crea automàticament. No has de muntar la base de dades a mà abans de connectar: la primera vegada que la uses, ja hi serà.
+> 📝 **Nota:** si el fitxer `instituto.db` no existeix, SQLite el crea automàticament. No has de muntar la base de dades a mà abans de connectar: la primera vegada que la uses, ja hi serà.
 
 El famós protocol "jdbc:sqlite:" és la URL estàndard: `jdbc` és el protocol, `sqlite` és el subprotocol (quina base de dades) i la resta és el destí (per a MySQL seria una cosa com `jdbc:mysql://localhost:3306/instituto`).
 
@@ -94,7 +94,7 @@ try (Connection con = DriverManager.getConnection(url)) {
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Què torna `DriverManager.getConnection(url)`?
-2. Què fa SQLite si el fitxer de la base de dades no existix?
+2. Què fa SQLite si el fitxer de la base de dades no existeix?
 3. Quina excepció llança `getConnection()` i per què no pots ignorar-la?
 4. En quin ordre es tanquen els recursos amb `try-with-resources`?
 

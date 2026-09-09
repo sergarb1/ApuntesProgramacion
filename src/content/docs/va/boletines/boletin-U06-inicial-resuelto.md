@@ -74,7 +74,7 @@ Eixida: `Suma: 28`. El cas base quan `indice` ix de l'array torna 0 (element neu
 ¡BOOM!
 ```
 
-Imprimix 3, 2 i 1 mentre baixa recursivament, i en arribar al cas base (`n == 0`) fa ¡BOOM! i la pila es va desenrotllant sense fer res més.
+Imprimeix 3, 2 i 1 mentre baixa recursivament, i en arribar al cas base (`n == 0`) fa ¡BOOM! i la pila es va desenrotllant sense fer res més.
 
 </details>
 
@@ -196,7 +196,7 @@ public class GuardiaPalindroms {
 }
 ```
 
-Eixida: `reconocer: true`, `salas: true`, `hola: false`. El truc: comparar les puntes i, si no coincidixen, tornar `false` sense gastar més stack.
+Eixida: `reconocer: true`, `salas: true`, `hola: false`. El truc: comparar les puntes i, si no coincideixen, tornar `false` sense gastar més stack.
 
 </details>
 
@@ -217,6 +217,6 @@ public class Kata {
 }
 ```
 
-Amb `factorial(5)` → `120` i `factorial(0)` → `1`. El cas base `n <= 1` cobrix tant el 0 com l'1, i el cas recursiu encadena les multiplicacions.
+Amb `factorial(5)` → `120` i `factorial(0)` → `1`. El cas base `n <= 1` cobreix tant el 0 com l'1, i el cas recursiu encadena les multiplicacions.
 
 </details>

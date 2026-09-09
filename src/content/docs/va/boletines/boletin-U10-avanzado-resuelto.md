@@ -100,7 +100,7 @@ public class Conjuntos {
 }
 ```
 
-La màgia són els tres mètodes de `Set`: `retainAll` deixa només el comú, `addAll` unix sense duplicats i `removeAll` lleva la intersecció de la unió per a deixar el que està només en un dels dos. Com que `HashSet` no admet duplicats, la unió eix neta sola. El `while` garantix 8 elements únics en cada conjunt.
+La màgia són els tres mètodes de `Set`: `retainAll` deixa només el comú, `addAll` unix sense duplicats i `removeAll` lleva la intersecció de la unió per a deixar el que està només en un dels dos. Com que `HashSet` no admet duplicats, la unió eix neta sola. El `while` garanteix 8 elements únics en cada conjunt.
 
 </details>
 
@@ -233,7 +233,7 @@ public class PalabrasOrdenadas {
 }
 ```
 
-El `TreeSet` ordena automàticament (ordre alfabètic) i **elimina duplicats**: si l'usuari repetix una paraula, només es guarda una volta. `first()` i `last()` donen els extrems; `headSet("m")` torna totes les paraules que van abans que "m" en l'ordre natural.
+El `TreeSet` ordena automàticament (ordre alfabètic) i **elimina duplicats**: si l'usuari repeteix una paraula, només es guarda una volta. `first()` i `last()` donen els extrems; `headSet("m")` torna totes les paraules que van abans que "m" en l'ordre natural.
 
 </details>
 

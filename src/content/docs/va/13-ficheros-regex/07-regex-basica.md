@@ -93,7 +93,7 @@ Encontrado: 456 (posición 21-24)
 | `^` | Inici de línia | `^Hola` |
 | `$` | Final de línia | `mundo$` |
 | `\|` | OR lògic | `gato\|perro` |
-| `\b` | Límit de paraula | `\bJava\b` no coincidix amb "JavaScript" |
+| `\b` | Límit de paraula | `\bJava\b` no coincideix amb "JavaScript" |
 
 > 📝 **Nota:** `\w` NO inclou accents ni `ñ` per defecte. Per a "pérez" o "muñoz" necessites `[a-zA-ZáéíóúüñÑ]` o la bandera `Pattern.UNICODE_CHARACTER_CLASS`. Cosa d'examen, apunta-t'ho.
 
@@ -101,7 +101,7 @@ Encontrado: 456 (posición 21-24)
 
 ## 🕵️ Grups de captura: els parèntesis que recorden
 
-Els parèntesis `( )` no només agrupen: **capturen** el que coincidix per a poder extraure-ho després. És la base del punt 8, però convé vore-ho ja:
+Els parèntesis `( )` no només agrupen: **capturen** el que coincideix per a poder extraure-ho després. És la base del punt 8, però convé vore-ho ja:
 
 ```java
 Pattern patron = Pattern.compile("(\\w+): (\\d+) años");
@@ -171,7 +171,7 @@ Imprimeix **`Patos totales: 726`** (`3 + 45 + 678`).
 
 `find()` va saltant de coincidència en coincidència: primer "3 patos", després "45 patos", després "678 patos". De cada grup s'extrau la part numèrica amb `split(" ")` i s'acumula.
 
-I ull amb la segona pregunta (trampa): amb `matches()`, la resposta seria **cap coincidència** (o `false`). `matches()` exigix que **tot** el string complica amb el patró, i ací hi ha més text al voltant. Per a buscar subcadenes usa sempre `find()`. És l'error més repetit de la unitat.
+I ull amb la segona pregunta (trampa): amb `matches()`, la resposta seria **cap coincidència** (o `false`). `matches()` exigeix que **tot** el string complica amb el patró, i ací hi ha més text al voltant. Per a buscar subcadenes usa sempre `find()`. És l'error més repetit de la unitat.
 
 </details>
 
@@ -202,7 +202,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Una **regex** descriu un conjunt de cadenes amb símbols (`\d`, `\w`, `+`, `{n}`, `[a-z]`...), i en Java les contrabarres es **dupliquen** (`"\\d"`).
 2. **`Pattern.compile`** compila la regex (el motle) i **`matcher.find()`** busca coincidències en un text: `group()`, `start()` i `end()` et donen els detalls.
-3. `matches()` exigix que **tot** el string complica amb el patró; `find()` busca subcadenes. No els confongues: és l'error número 1.
+3. `matches()` exigeix que **tot** el string complica amb el patró; `find()` busca subcadenes. No els confongues: és l'error número 1.
 
 > 🐛 **Vocabulari ràpid**
 >

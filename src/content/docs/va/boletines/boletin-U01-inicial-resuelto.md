@@ -28,7 +28,7 @@ La classe obri i tanca amb `{}`, i dins viu el `main`. El `}` final tanca la cla
 
 ---
 
-## Exercici 2: Què imprimix?
+## Exercici 2: Què imprimeix?
 
 <details>
 <summary>🔄 Solució</summary>
@@ -37,7 +37,7 @@ La classe obri i tanca amb `{}`, i dins viu el `main`. El `}` final tanca la cla
 Dijo: "Java mola" y siguió: 	programando.
 ```
 
-`\"` imprimix la cometa literal, i `\t` deixa un tabulador abans de "programando". Com el primer `print` no salta de línia, l'eixida va tota seguida.
+`\"` imprimeix la cometa literal, i `\t` deixa un tabulador abans de "programando". Com el primer `print` no salta de línia, l'eixida va tota seguida.
 
 </details>
 
@@ -118,9 +118,9 @@ public class Completame {
 
 1→C, 2→A, 3→B, 4→D, 5→E
 
-- `class` definix un nou tipus de dades (C).
+- `class` defineix un nou tipus de dades (C).
 - `main` és el punt d'entrada del programa (A).
-- `System.out.println` imprimix text i salta de línia (B).
+- `System.out.println` imprimeix text i salta de línia (B).
 - `//` és el comentari d'una línia (D).
 - `args` conté els arguments de línia de comandes (E).
 

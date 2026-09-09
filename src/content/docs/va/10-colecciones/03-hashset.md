@@ -60,7 +60,7 @@ Els seus avantatges: **O(1)** per a afegir, esborrar i comprovar pertinença, i 
 
 ## 🎲 Un HashSet no té ordre
 
-Això és important: **HashSet no garantix cap ordre**. Si fiques `{"roig", "verd", "blau"}`, en imprimir pot eixir `[blau, roig, verd]`, `[verd, roig, blau]` o qualsevol altra combinació. No et fies de l'ordre, fia-te'n de `size()` i `contains()`.
+Això és important: **HashSet no garanteix cap ordre**. Si fiques `{"roig", "verd", "blau"}`, en imprimir pot eixir `[blau, roig, verd]`, `[verd, roig, blau]` o qualsevol altra combinació. No et fies de l'ordre, fia-te'n de `size()` i `contains()`.
 
 ```java
 HashSet<String> colores = new HashSet<>();
@@ -109,7 +109,7 @@ public class BeTheSet {
 <details>
 <summary>🔄 Solució</summary>
 
-La **B**. Els valors únics són `{1, 3, 4, 5}`: 4 elements. El `4` sí que hi és (`contains` → true). Els `add(1)` i `add(3)` repetits s'ignoren silenciosament. Compte: HashSet no garantix un ordre concret en imprimir, per això el `size()` és el fiable.
+La **B**. Els valors únics són `{1, 3, 4, 5}`: 4 elements. El `4` sí que hi és (`contains` → true). Els `add(1)` i `add(3)` repetits s'ignoren silenciosament. Compte: HashSet no garanteix un ordre concret en imprimir, per això el `size()` és el fiable.
 
 </details>
 
@@ -120,7 +120,7 @@ La **B**. Els valors únics són `{1, 3, 4, 5}`: 4 elements. El `4` sí que hi �
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quants elements hi ha en un `HashSet` després d'afegir `a, b, a, c, b`?
-2. `HashSet` garantix algun ordre en imprimir?
+2. `HashSet` garanteix algun ordre en imprimir?
 3. Quins mètodes usa HashSet per dins per a saber si un element ja hi és?
 4. Quina és la complexitat de `contains()` en un `HashSet`?
 

@@ -61,7 +61,7 @@ Obri `http://localhost:8080` en el teu navegador. **Acabes de crear el teu prime
 
 ## 🕶️ Sé el Código, my friend...
 
-> **Don Tip:** el mètode HTTP el decidix el client. `intercambio.getRequestMethod()` et diu quin ha sigut.
+> **Don Tip:** el mètode HTTP el decideix el client. `intercambio.getRequestMethod()` et diu quin ha sigut.
 
 Afig just abans de `server.start()`:
 

@@ -11,7 +11,7 @@ description: L'algorisme d'ordenació més famós del món, amb la seua partici�
 
 ## 📬 La idea en una frase
 
-> **Quicksort tria un pivot, partix l'array en menors i majors al seu voltant, i repetix recursivament en cada meitat: divide i venceràs en estat pur.**
+> **Quicksort tria un pivot, partix l'array en menors i majors al seu voltant, i repeteix recursivament en cada meitat: divide i venceràs en estat pur.**
 
 Creat per **Tony Hoare** el 1959. Sí, té més anys que els teus pares. I continua sent l'algorisme d'ordenació més usat del món. Per alguna cosa serà.
 
@@ -83,7 +83,7 @@ Posicions i=0, j=7
 Fixa't: el pivot (1) ha quedat ben col·locat i l'array s'ha partit en `[1]` i `[4, 3, 5, 9, 2, 6]`. Cada zona s'ordena igual, recursivament. Si tries un pivot diferent, els intercanvis canvien, però el patró és el mateix.
 
 > [!TIP]
-> El secret de Quicksort està en la **partició**. Si aconseguixes que els elements es repartisquen més o menys equilibradament, l'algorisme vola. Si no... prepara els O(n²).
+> El secret de Quicksort està en la **partició**. Si aconsegueixes que els elements es repartisquen més o menys equilibradament, l'algorisme vola. Si no... prepara els O(n²).
 
 ---
 
@@ -105,7 +105,7 @@ Fixa't: el pivot (1) ha quedat ben col·locat i l'array s'ha partit en `[1]` i `
 ## 📊 Complexitat
 
 - **Cas mitjà**: O(n log n) — quasi sempre.
-- **Millor cas**: O(n log n) — quan el pivot dividix sempre en meitats iguals.
+- **Millor cas**: O(n log n) — quan el pivot divideix sempre en meitats iguals.
 - **Pitjor cas**: O(n²) — quan el pivot és sempre el menor o el major (array ja ordenat amb mal pivot).
 - **Memòria**: O(log n) extra (per l'stack de les crides recursives). No necessita arrays auxiliars: ordena *in-place*.
 
@@ -140,7 +140,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. Quicksort **particiona** al voltant d'un pivot i repetix recursivament en cada zona: divide i venceràs.
+1. Quicksort **particiona** al voltant d'un pivot i repeteix recursivament en cada zona: divide i venceràs.
 2. El seu **cas mitjà** és O(n log n) i el **pitjor cas** O(n²), que s'evita amb una bona elecció de pivot.
 3. És **in-place** (memòria O(log n)) i **no estable**; el treball important ocorre en la partició.
 
@@ -148,7 +148,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 >
 > | Terme | Idea general |
 > |---|---|
-> | Pivot | L'element que dividix l'array en menors i majors |
+> | Pivot | L'element que divideix l'array en menors i majors |
 > | Partició | Repartir elements al voltant del pivot |
 > | In-place | Ordenar sense arrays auxiliars, movent el propi array |
 > | Estable | Que conserva l'ordre original dels elements iguals |

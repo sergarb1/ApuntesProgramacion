@@ -11,7 +11,7 @@ description: "Covariància i contravariància: el comodí ? i el principi PECS d
 
 ## 📬 La idea en una frase
 
-> **Un wildcard (`?`) significa "qualsevol tipus". `? extends T` servix per a LLEGIR d'una jerarquia (producer) i `? super T` per a ESCRIURE-hi (consumer). Regla PECS: Producer Extends, Consumer Super.**
+> **Un wildcard (`?`) significa "qualsevol tipus". `? extends T` serveix per a LLEGIR d'una jerarquia (producer) i `? super T` per a ESCRIURE-hi (consumer). Regla PECS: Producer Extends, Consumer Super.**
 
 Fins ací tot perfecte: `Caja<String>`, `ArrayList<Integer>`... Però arriba el moment incòmode: `List<Number>` NO accepta una `List<Integer>`. I tu juraries que un Integer és un Number. Doncs no: els genèrics són invariants. Per a escriure mètodes que accepten jerarquies senceres, necessites els wildcards.
 
@@ -106,7 +106,7 @@ rellenar(objetos);   // ✅ ? super Integer funciona con Object
 Joshua Bloch (l'autor de *Effective Java*) va resumir tot açò en quatre lletres que hauries de tatuar-te:
 
 > - `? extends T` → **P**roducer **E**xtends: si el mètode SOLS produïx (llig/dona) dades, usa `extends`.
-> - `? super T` → **C**onsumer **S**uper: si el mètode SOLS consumix (rep/escriu) dades, usa `super`.
+> - `? super T` → **C**onsumer **S**uper: si el mètode SOLS consumeix (rep/escriu) dades, usa `super`.
 
 El teu mètode llig de la col·lecció? → `? extends`. El teu mètode escriu en ella? → `? super`. Fa les dos coses? → no uses wildcard: usa `T` directament.
 
@@ -149,7 +149,7 @@ public class BeTheWildcard {
 <details>
 <summary>🔄 Solució</summary>
 
-La **C**. `List<? extends Number>` accepta qualsevol llista el tipus de la qual hereta de Number: tant `List<Integer>` com `List<Double>`. El mètode només llig (`for-each`), així que complix el costat "producer" de PECS sense problema. Imprimeix `1 2 3 1.5 2.5 3.5`.
+La **C**. `List<? extends Number>` accepta qualsevol llista el tipus de la qual hereta de Number: tant `List<Integer>` com `List<Double>`. El mètode només llig (`for-each`), així que compleix el costat "producer" de PECS sense problema. Imprimeix `1 2 3 1.5 2.5 3.5`.
 
 </details>
 

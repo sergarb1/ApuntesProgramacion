@@ -48,7 +48,7 @@ En acabar, seràs capaç de:
 | [05 · Wildcards: `? extends T` i `? super T`](/ApuntesProgramacion/va/11-genericos-mapas/05-wildcards) | Covariància, contravariància i el principi PECS | Tots |
 | [06 · HashMap: la guia telefònica](/ApuntesProgramacion/va/11-genericos-mapas/06-hashmap) | `put`, `get`, recórrer amb `keySet`/`values`/`entrySet` i comptar freqüències | Tots |
 | [07 · TreeMap, LinkedHashMap i altres mapes](/ApuntesProgramacion/va/11-genericos-mapas/07-treemap-otros-mapas) | Ordre natural, ordre d'inserció, `firstKey`, `headMap`... | Tots |
-| [08 · Map vs List vs Set: tria la teua estructura](/ApuntesProgramacion/va/11-genericos-mapas/08-elegir-estructura-datos) | Les tres preguntes que decidixen abans d'escriure la primera línia | Tots |
+| [08 · Map vs List vs Set: tria la teua estructura](/ApuntesProgramacion/va/11-genericos-mapas/08-elegir-estructura-datos) | Les tres preguntes que decideixen abans d'escriure la primera línia | Tots |
 | [09 · Repàs interactiu](/ApuntesProgramacion/va/11-genericos-mapas/09-repaso-interactivo) | Sé el Código, Fireside, Laboratori, Crucigrama i més | Tots |
 
 > 📖 **Flux de lectura:** els 8 primers punts són teoria en progressió. El 9 és l'aterratge pràctic: llig-lo just després del 8 i abans d'obrir els butlletins.
@@ -79,7 +79,7 @@ En acabar, seràs capaç de:
 | RA6 e) | S'han reconegut les característiques i avantatges de cadascuna de les col·leccions de dades disponibles. | ✅ Punt 8 |
 | RA6 f) | S'han creat classes i mètodes genèrics. | ✅ Punts 1, 2, 3, 4 i 5 |
 
-> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U10** (col·leccions, CEs c, d i e) i la **U13** (regex i XML, CEs g, h i i). Esta unitat cobrix els genèrics (CE f) i els mapes del paquet `java.util`.
+> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U10** (col·leccions, CEs c, d i e) i la **U13** (regex i XML, CEs g, h i i). Esta unitat cobreix els genèrics (CE f) i els mapes del paquet `java.util`.
 
 ---
 

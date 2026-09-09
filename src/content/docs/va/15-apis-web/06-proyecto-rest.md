@@ -60,7 +60,7 @@ public class ApiTareas {
 }
 ```
 
-> 💡 **Consell:** `AtomicInteger` et dona IDs que no es repetixen ni amb peticions simultànies. Amb un `int` normal, dues peticions alhora podrien llegir el mateix valor. En producció, eixe `ArrayList` seria una base de dades (JDBC, com a la U14), però el patró és idèntic.
+> 💡 **Consell:** `AtomicInteger` et dona IDs que no es repeteixen ni amb peticions simultànies. Amb un `int` normal, dues peticions alhora podrien llegir el mateix valor. En producció, eixe `ArrayList` seria una base de dades (JDBC, com a la U14), però el patró és idèntic.
 
 ---
 
@@ -136,7 +136,7 @@ server.createContext("/api/tareas/", intercambio -> {
 });
 ```
 
-Fixa't en dos detalls: el `404` quan l'ID no existix (el client pregunta per una cosa que no hi és), i el `204` del DELETE (esborrar "bé" no torna cos).
+Fixa't en dos detalls: el `404` quan l'ID no existeix (el client pregunta per una cosa que no hi és), i el `204` del DELETE (esborrar "bé" no torna cos).
 
 > 💡 **Consell:** `tareas.removeIf(...)` és la joia de les col·leccions de la U10: esborra tots els elements que complisquen la condició en una línia, sense `ConcurrentModificationException` perquè és un mètode de la pròpia llista.
 
@@ -147,15 +147,15 @@ Fixa't en dos detalls: el `404` quan l'ID no existix (el client pregunta per una
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quin mètode HTTP uses per a crear un recurs? I per a llistar-los?
-2. Quin codi d'estat tornes quan el client demana un ID que no existix?
+2. Quin codi d'estat tornes quan el client demana un ID que no existeix?
 3. Què torna un `DELETE` que ha eixit bé?
-4. Per què servix un `ArrayList` com a magatzem si en reiniciar es perd tot?
+4. Per què serveix un `ArrayList` com a magatzem si en reiniciar es perd tot?
 
 <details>
 <summary>🔄 Respostes</summary>
 
 1. `POST` per a crear, `GET` per a llistar.
-2. `404`, perquè el recurs demanat no existix.
+2. `404`, perquè el recurs demanat no existeix.
 3. `204` (sense contingut): esborrar amb èxit no necessita tornar cos.
 4. Perquè per a aprendre el patró REST basta; la persistència (amb JDBC, U14) canvia el magatzem, no les rutes ni els mètodes.
 
@@ -167,7 +167,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Una **API REST** ordena rutes i mètodes: `GET` llig, `POST` crea, `PUT` actualitza, `DELETE` esborra, i cada ruta diu quin recurs toca.
 2. El **magatzem en memòria** (`ArrayList` + `AtomicInteger`) és perfecte per a aprendre el patró; la base de dades de la U14 només substituïx el magatzem, no les rutes.
-3. Gestiona els **errors amb codis honestos**: `404` si no existix, `201` si crees, `204` si esborres; així la teua API parla clar.
+3. Gestiona els **errors amb codis honestos**: `404` si no existeix, `201` si crees, `204` si esborres; així la teua API parla clar.
 
 > 🐛 **Vocabulari ràpid**
 >

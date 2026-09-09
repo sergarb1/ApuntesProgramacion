@@ -1,9 +1,9 @@
 ---
 title: "03 — Divide i venceràs"
-description: "El patró més antic de la informàtica: dividix el problema, conquista cada part i combina ⚔️"
+description: "El patró més antic de la informàtica: divideix el problema, conquista cada part i combina ⚔️"
 ---
 
-<p><small>El patró més antic de la informàtica: dividix el problema, conquista cada part i combina ⚔️</small></p>
+<p><small>El patró més antic de la informàtica: divideix el problema, conquista cada part i combina ⚔️</small></p>
 
 > 🗺️ **Estàs en:** ⚡ **U06 · Algorítmica II: Tècniques** → 03 · Divide i venceràs
 
@@ -105,7 +105,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 <summary>🔄 Respostes</summary>
 
 1. **Dividir** en subproblemes, **conquistar** cada un (recursió) i **combinar** les solucions.
-2. Quicksort fa el treball en la **partició** (dividir) i la combinació és gratis; Mergesort dividix trivial i fa el treball en la **fusió** (combinar).
+2. Quicksort fa el treball en la **partició** (dividir) i la combinació és gratis; Mergesort divideix trivial i fa el treball en la **fusió** (combinar).
 3. Perquè no **descartar** treball: visita tots els elements una vegada, igual que el bucle → O(n) en tots dos.
 4. El pas de **combinar** (no ha de combinar res: descarta mitja array i continua).
 

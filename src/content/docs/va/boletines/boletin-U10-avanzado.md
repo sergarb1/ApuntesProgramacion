@@ -21,7 +21,7 @@ Simula una cua de supermercat usant `LinkedList<String>`. El programa ha de most
 
 Usa els mètodes `addLast()`, `removeFirst()` i `getFirst()` de `LinkedList`, amb un `switch` i un `Scanner`.
 
-**Pista:** el menú es repetix amb un `while` fins que l'usuari trie `0`. Cuida els casos en què la cua està buida abans de cridar `removeFirst()` o `getFirst()`.
+**Pista:** el menú es repeteix amb un `while` fins que l'usuari trie `0`. Cuida els casos en què la cua està buida abans de cridar `removeFirst()` o `getFirst()`.
 
 ---
 
@@ -91,7 +91,7 @@ Crea un programa que demane a l'usuari paraules amb `Scanner` fins que escriga `
 2. La primera paraula (`first()`) i l'última (`last()`).
 3. Les paraules que van abans que `"m"` en ordre alfabètic (`headSet("m")`).
 
-**Pista:** el TreeSet ordena i elimina duplicats automàticament. Comprova què passa si l'usuari repetix una paraula.
+**Pista:** el TreeSet ordena i elimina duplicats automàticament. Comprova què passa si l'usuari repeteix una paraula.
 
 ---
 
@@ -160,4 +160,4 @@ Demana a l'usuari les notes de 20 alumnes amb `Scanner`, guarda-les en un `Array
 
 Usa un bucle per a omplir la llista i un for-each per a sumar.
 
-**Pista:** per a la mitjana acumula la suma amb un for-each i dividix entre `notas.size()`. Per a aprovats, compta al mateix bucle. `Collections.max` i `Collections.min` t'estalvien els bucles del màxim/mínim.
+**Pista:** per a la mitjana acumula la suma amb un for-each i divideix entre `notas.size()`. Per a aprovats, compta al mateix bucle. `Collections.max` i `Collections.min` t'estalvien els bucles del màxim/mínim.

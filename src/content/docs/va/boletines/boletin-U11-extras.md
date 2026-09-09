@@ -91,7 +91,7 @@ public class CountingDuplicates {
 }
 ```
 
-Dos passades sobre el mateix mapa: primer es compten freqüències amb `getOrDefault` (el patró estrella de la unitat), i després es recorren els **valors** amb `values()` comptant quants superen 1. `toLowerCase()` unifica 'A' i 'a'. Este és l'ús de mapa més típic que existix en les katas.
+Dos passades sobre el mateix mapa: primer es compten freqüències amb `getOrDefault` (el patró estrella de la unitat), i després es recorren els **valors** amb `values()` comptant quants superen 1. `toLowerCase()` unifica 'A' i 'a'. Este és l'ús de mapa més típic que existeix en les katas.
 
 </details>
 
@@ -220,11 +220,11 @@ El `Map<Integer, String>` associa cada grandària amb la seua plantilla, i `Stri
 
 ### 5. 152 — Va de modes...
 
-Donat un conjunt de números, la **moda** és el valor (o valors) que més es repetix. Et demanen calcular la moda de cada distribució.
+Donat un conjunt de números, la **moda** és el valor (o valors) que més es repeteix. Et demanen calcular la moda de cada distribució.
 
 **Entrada:** diversos casos de prova. Cada cas comença amb un número que indica quants valors té el conjunt (mai major de 25.000). En la següent línia es donen els valors separats per espais. L'entrada acaba quan el primer número és 0.
 
-**Eixida:** per a cada cas, la moda (es garantix que només n'hi ha una).
+**Eixida:** per a cada cas, la moda (es garanteix que només n'hi ha una).
 
 **Exemple:** `1 2 2 3 3 3 4 4 4 4 5` → `4`, i `1 8 9 6 3 2 1 5 4 7 9 6 3 2 1 4 7` → `1`.
 
@@ -274,7 +274,7 @@ public class VaDeModas {
 }
 ```
 
-El problema clàssic de les freqüències amb mapa: una passada per a comptar (`getOrDefault`), una altra sobre `entrySet()` per a trobar el màxim. Com es garantix una única moda, no cal gestionar empats. Esta és la plantilla que usaràs en desenes de problemes de concursos.
+El problema clàssic de les freqüències amb mapa: una passada per a comptar (`getOrDefault`), una altra sobre `entrySet()` per a trobar el màxim. Com es garanteix una única moda, no cal gestionar empats. Esta és la plantilla que usaràs en desenes de problemes de concursos.
 
 </details>
 

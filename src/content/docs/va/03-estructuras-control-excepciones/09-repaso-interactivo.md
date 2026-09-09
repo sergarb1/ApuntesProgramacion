@@ -35,11 +35,11 @@ public class Misteri {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`Notable`** → La nota 6 és més gran que 5, i quasi també que 7, així que Java tria la millor. ❌
-2. **`Aprovat`** → ✅ Correcte! Java avalua de dalt a baix i es queda amb la **primera** condició que done `true`. Com que `nota >= 5` es complix, entra ací i s'oblida de la resta, encara que 6 no arribe a 7.
-3. **`Suspés`** → L'`else` només s'executa si cap condició anterior es complix, i ací sí que es complix la primera. ❌
+2. **`Aprovat`** → ✅ Correcte! Java avalua de dalt a baix i es queda amb la **primera** condició que done `true`. Com que `nota >= 5` es compleix, entra ací i s'oblida de la resta, encara que 6 no arribe a 7.
+3. **`Suspés`** → L'`else` només s'executa si cap condició anterior es compleix, i ací sí que es compleix la primera. ❌
 
 > <details>
 > <summary>🔄 Solució</summary>
@@ -58,11 +58,11 @@ public class Misteri {
 
 **switch:** — Clar, i t'omplires d'`else if` fins que el codi sembla l'escala d'un edifici. Amb mi poses la variable una vegada i cada cas en la seua línia. Net, directe, elegant.
 
-**if-else:** — Elegant fins que t'oblides un `break` i el teu switch es convertix en un tobogan. Saps què és el fall-through? Una malson amb nom.
+**if-else:** — Elegant fins que t'oblides un `break` i el teu switch es converteix en un tobogan. Saps què és el fall-through? Una malson amb nom.
 
 **switch:** — El fall-through s'usa a propòsit quan vull agrupar casos. I tu? Amb trenta `else if`, saps almenys quin va abans que quin?
 
-**if-else:** — Jo suporte rangs! `>= 18`, `< 65`... Tu només servixes per a valors exactes. Un dia has de decidir per edat i aniràs a plorar.
+**if-else:** — Jo suporte rangs! `>= 18`, `< 65`... Tu només serveixes per a valors exactes. Un dia has de decidir per edat i aniràs a plorar.
 
 **switch:** — Millor plorar que repetir una variable vint vegades. Cada un al seu terreny, no?
 
@@ -86,7 +86,7 @@ Endevina quin concepte de la unitat soc:
 <details>
 <summary>🔄 Respostes</summary>
 
-1. **L'`if`/`else`** — decidix entre dos camins segons una condició booleana.
+1. **L'`if`/`else`** — decideix entre dos camins segons una condició booleana.
 2. **El `switch`** — tria entre diversos `case` segons el valor d'una variable.
 3. **El `while`** — comprova abans d'executar (el `do-while` és el que corre primer).
 4. **El `break`** — acaba el bucle (i també el `switch`).
@@ -115,11 +115,11 @@ Endevina quin concepte de la unitat soc:
 
 Tria la resposta correcta per a cada decisió (respostes al final):
 
-1. Què imprimix `int n = 4; String r = n >= 5 ? "A" : "B";`?
+1. Què imprimeix `int n = 4; String r = n >= 5 ? "A" : "B";`?
    - a) `A`   b) `B`
 2. Quantes voltes fa `for (int i = 0; i < 3; i++)`?
    - a) 3   b) 4
-3. Què imprimix un `switch` amb `case 1` i `case 2` seguits sense `break` entre ells, si la variable val 1?
+3. Què imprimeix un `switch` amb `case 1` i `case 2` seguits sense `break` entre ells, si la variable val 1?
    - a) Només el `case 1`   b) El `case 1` i després el `case 2`
 4. Quin és el resultat de `10 / 0`?
    - a) `ArithmeticException`   b) Un nombre enorme
@@ -141,7 +141,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Durada estimada:** 30 minuts
 > **Eina:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan el arregles.
+**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan el arregles.
 
 ```java
 public class Tortura
@@ -212,7 +212,7 @@ Eixida correcta: `La suma dels senars és: 25` i `El nombre de senars és: 5` (e
 
 ## 🧠 Atreveix-te a Pensar
 
-1. **Sense executar:** què imprimix este programa?
+1. **Sense executar:** què imprimeix este programa?
 
 ```java
 public class Misteri2 {
@@ -232,7 +232,7 @@ public class Misteri2 {
 <details>
 <summary>💡 Solucions</summary>
 
-1. Imprimix `2`, `4`, `6`: el `continue` salta els senars i només s'imprimixen els parells de l'1 al 6.
+1. Imprimeix `2`, `4`, `6`: el `continue` salta els senars i només s'imprimeixen els parells de l'1 al 6.
 2. Repetint `while (numero > 0) { numero /= 10; comptador++; }`: cada divisió entre 10 li lleva un dígit al nombre fins que arriba a 0. Amb `123` → 3 dígits.
 3. El **depurador**: posa un breakpoint en el `nextInt()` i mira el valor que està arribant pel buffer. O, més ràpid, llig el stack trace: la línia `at ...` et diu exactament on es va llançar.
 4. **Vertader.** `RuntimeException` hereta d'`Exception`, així que un `catch (Exception e)` les atrapar totes.
@@ -273,7 +273,7 @@ Vertical:
 2. **"Quina és la diferència entre `break` i `continue` en un bucle?"**
 3. **"Un usuari escriu text on el teu programa espera un nombre i l'aplicació es cau. Com ho arreglaries?"**
 4. **"Què és una `NullPointerException` i com l'evites?"**
-5. **"Per a què servix el bloc `finally`?"**
+5. **"Per a què serveix el bloc `finally`?"**
 6. **"Quan crearíes una excepció pròpia en comptes d'usar les de Java?"**
 
 ---
@@ -294,7 +294,7 @@ Perquè es trenca des de dins amb `break`: `while (true) { if (condicio) break; 
 
 > ❓ **El `catch` pot capturar qualsevol excepció?**
 
-Si poses `catch (Exception e)`, captures totes les `Exception` i les seues filles (incloses les `RuntimeException`). Si vols capturar-ho absolutament tot, existix `catch (Throwable e)`, però això és com pescar amb dinamita: també atrapa errors greus de la JVM que no hauries de tocar.
+Si poses `catch (Exception e)`, captures totes les `Exception` i les seues filles (incloses les `RuntimeException`). Si vols capturar-ho absolutament tot, existeix `catch (Throwable e)`, però això és com pescar amb dinamita: també atrapa errors greus de la JVM que no hauries de tocar.
 
 ---
 
@@ -306,7 +306,7 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa humejant.
 
 **CONRAD:** — Això era un programa teu o una central nuclear? Quin blindatge. `try`, `catch`, `switch`, bucles... Fins i tot una excepció que t'has inventat. No està malament per a un aprenent de semàfor.
 
-**Novell:** — I ara què? Els meus programes decidixen, repetixen i sobreviuen.
+**Novell:** — I ara què? Els meus programes decideixen, repeteixen i sobreviuen.
 
 **CONRAD:** — *fa un glop* Decidir i repetir està bé, però per a resoldre problemes de veritat falta una cosa: pensar en gran. Dividir el problema, dissenyar la solució... Això és una altra història. La pròxima parada t'ho conta.
 

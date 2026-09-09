@@ -65,7 +65,7 @@ public class RepBbinaria {
    <details><summary>Atascat?</summary>`while (esquerra <= dreta) { ... }`</details>
 3. Calcula el `mig`.
    <details><summary>Atascat?</summary>`int mig = esquerra + (dreta - esquerra) / 2;` — la fórmula anti-desbordament.</details>
-4. Compara i decidix els tres casos.
+4. Compara i decideix els tres casos.
    <details><summary>Atascat?</summary>`==` → retorna `mig`; `<` → `esquerra = mig + 1`; `>` → `dreta = mig - 1`.</details>
 5. Fora del bucle, retorna el "no trobat".
    <details><summary>Atascat?</summary>`return -1;`</details>
@@ -126,7 +126,7 @@ public class RepBombolla {
 
 **Passos guiats:**
 
-1. Dos bucles anidats: l'exterior repetix passades.
+1. Dos bucles anidats: l'exterior repeteix passades.
    <details><summary>Atascat?</summary>`for (int i = 0; i < array.length - 1; i++) { ... }`</details>
 2. L'interior compara parelles veïnes, arribant cada vegada un element menys.
    <details><summary>Atascat?</summary>`for (int j = 0; j < array.length - 1 - i; j++) { ... }`</details>
@@ -191,7 +191,7 @@ public class BombollaLiosa {
 
 Hi ha **dos errors**:
 
-1. **Error d'índexs (i de càstig segur):** el bucle interior va `j < arr.length`, així que quan `j = arr.length - 1`, accedix a `arr[j + 1]` = `arr[arr.length]`, que **no existix** → `ArrayIndexOutOfBoundsException`. L'interior ha d'anar fins a `arr.length - 1 - i`.
+1. **Error d'índexs (i de càstig segur):** el bucle interior va `j < arr.length`, així que quan `j = arr.length - 1`, accedix a `arr[j + 1]` = `arr[arr.length]`, que **no existeix** → `ArrayIndexOutOfBoundsException`. L'interior ha d'anar fins a `arr.length - 1 - i`.
 2. **Error de rendiment:** el bucle exterior recorre `arr.length` vegades i l'interior **sempre** recorre tot l'array, sense aprofitar que cada passada deixa un element col·locat al final. A més, sense el flag `hiHaIntercanvi`, continua fent passades encara que l'array ja estiga ordenat. És bombolla "sense polir", i es nota.
 
 </details>
@@ -205,13 +205,13 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. En la cerca binària, quina condició usa el `while`: `esquerra <= dreta` o `esquerra < dreta`?
 2. Per què `esquerra = mig` (sense el `+1`) pot penjar el bucle?
 3. Què passa si fas la bombolla amb `j < array.length` en el bucle interior?
-4. Per a què servix el flag `hiHaIntercanvi` en la bombolla?
+4. Per a què serveix el flag `hiHaIntercanvi` en la bombolla?
 
 <details>
 <summary>🔄 Respostes</summary>
 
 1. `esquerra <= dreta`. Amb `<`, et pots perdre l'element que queda just en `mig` quan els punters es creuen.
-2. Perquè si `mig` no és l'objectiu, en reassignar `esquerra = mig` (o `dreta = mig`) el segment **no es reduïx** i el bucle es repetix amb els mateixos límits per sempre.
+2. Perquè si `mig` no és l'objectiu, en reassignar `esquerra = mig` (o `dreta = mig`) el segment **no es reduïx** i el bucle es repeteix amb els mateixos límits per sempre.
 3. `ArrayIndexOutOfBoundsException`: en arribar a `j = array.length - 1`, `arr[j + 1]` està fora de l'array.
 4. Detectar que l'array ja està ordenat per a parar (`break`) en comptes de seguir fent passades inútils.
 

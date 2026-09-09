@@ -211,7 +211,7 @@ El bucle exterior va amb `i` per 0, 1 i 2. L'interior comença en `j = i + 1`:
 - `i = 1`: parella `(1,2)` → `4 < 6` → **1**.
 - `i = 2`: l'interior no entra (`j = 3` no és `< 3`).
 
-Total: `2 + 1 = 3`. Amb `{2, 4, 6}` totes les parelles complixen `datos[i] < datos[j]`, i hi ha exactament `3 · 2 / 2 = 3` parelles.
+Total: `2 + 1 = 3`. Amb `{2, 4, 6}` totes les parelles compleixen `datos[i] < datos[j]`, i hi ha exactament `3 · 2 / 2 = 3` parelles.
 
 </details>
 
@@ -311,7 +311,7 @@ public class Buscaminas {
 }
 ```
 
-El `while` que col·loca mines garantix exactament 5 en posicions diferents (la condició `!minas[f][c]` evita repetir). Per a comptar veïnes, el doble bucle revisa les 8 caselles al voltant i el `if` amb els límits (0-4) impedix eixir-te de l'array: sense eixa comprovació, `minas[-1][...]` seria `ArrayIndexOutOfBoundsException`.
+El `while` que col·loca mines garanteix exactament 5 en posicions diferents (la condició `!minas[f][c]` evita repetir). Per a comptar veïnes, el doble bucle revisa les 8 caselles al voltant i el `if` amb els límits (0-4) impedeix eixir-te de l'array: sense eixa comprovació, `minas[-1][...]` seria `ArrayIndexOutOfBoundsException`.
 
 </details>
 

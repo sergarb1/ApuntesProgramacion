@@ -48,7 +48,7 @@ public class ApiFrases {
 }
 ```
 
-`Random.nextInt(longitud)` tria un índex aleatori de l'array de frases. El `Content-Type: application/json` convertix la resposta en una API que el `fetch` del frontend pot llegir amb `r.json()`.
+`Random.nextInt(longitud)` tria un índex aleatori de l'array de frases. El `Content-Type: application/json` converteix la resposta en una API que el `fetch` del frontend pot llegir amb `r.json()`.
 
 </details>
 
@@ -100,7 +100,7 @@ static String extraer(String datos, String clave) {
 }
 ```
 
-GET servix el formulari, POST rep les dades del cos i les torna en una pàgina de confirmació. El `405` per a mètodes que no siguen POST és la guinda professional: l'API no es calla, respon "mètode no permés".
+GET serveix el formulari, POST rep les dades del cos i les torna en una pàgina de confirmació. El `405` per a mètodes que no siguen POST és la guinda professional: l'API no es calla, respon "mètode no permés".
 
 </details>
 
@@ -230,7 +230,7 @@ server.createContext("/api/traducir", e -> {
 });
 ```
 
-Un mapa dins d'un altre: la paraula en espanyol és la clau de l'exterior, i el mapa interior associa idioma amb traducció. `getOrDefault` evita el `NullPointerException` quan la paraula o l'idioma no existixen. Els mapes, com a la U11.
+Un mapa dins d'un altre: la paraula en espanyol és la clau de l'exterior, i el mapa interior associa idioma amb traducció. `getOrDefault` evita el `NullPointerException` quan la paraula o l'idioma no existeixen. Els mapes, com a la U11.
 
 </details>
 
@@ -308,7 +308,7 @@ server.createContext("/api/tareas/", e -> {
 });
 ```
 
-`ConcurrentHashMap` + `AtomicInteger` aguanten peticions simultànies sense corrompre's. El `404` quan l'ID no existix és el comportament correcte d'una API REST que es respecta. El `201` en crear i el `204` en esborrar arredonixen la bona conducta.
+`ConcurrentHashMap` + `AtomicInteger` aguanten peticions simultànies sense corrompre's. El `404` quan l'ID no existeix és el comportament correcte d'una API REST que es respecta. El `201` en crear i el `204` en esborrar arredoneixen la bona conducta.
 
 </details>
 
@@ -368,7 +368,7 @@ public class GitHubCliente {
 }
 ```
 
-`HttpClient` demana, Gson parseja i `Files.writeString` guarda: el trio complet del costat client. La capçalera `User-Agent` és obligatòria a GitHub (sense ella, rebutja la petició). El `has(...)` evita el drama quan el camp `language` no existix o és `null`.
+`HttpClient` demana, Gson parseja i `Files.writeString` guarda: el trio complet del costat client. La capçalera `User-Agent` és obligatòria a GitHub (sense ella, rebutja la petició). El `has(...)` evita el drama quan el camp `language` no existeix o és `null`.
 
 </details>
 
@@ -459,7 +459,7 @@ I s'usa així, embolicant qualsevol handler:
 server.createContext("/api", new LoggerMiddleware(new TareasHandler()));
 ```
 
-El truc: `LoggerMiddleware` **implementa el mateix contracte** (`HttpHandler`) i embolica l'original. El `try/finally` garantix que el log s'imprimeix encara que el handler falle. `getResponseCode()` només val després d'enviar capçaleres, per això es llig al final. A això se li diu *decorator* o middleware: emboliques un handler amb un altre que afig comportament.
+El truc: `LoggerMiddleware` **implementa el mateix contracte** (`HttpHandler`) i embolica l'original. El `try/finally` garanteix que el log s'imprimeix encara que el handler falle. `getResponseCode()` només val després d'enviar capçaleres, per això es llig al final. A això se li diu *decorator* o middleware: emboliques un handler amb un altre que afig comportament.
 
 </details
 

@@ -116,7 +116,7 @@ Escriu un programa anomenat `GuardiaPalindroms` amb un mètode recursiu que comp
 static boolean esPalindromo(String s, int inicio, int fin)
 ```
 
-Prova'l amb `"reconocer"` (sí), `"salas"` (sí) i `"hola"` (no). Pista: si les puntes no coincidixen, ja pots tornar `false` sense continuar recursant.
+Prova'l amb `"reconocer"` (sí), `"salas"` (sí) i `"hola"` (no). Pista: si les puntes no coincideixen, ja pots tornar `false` sense continuar recursant.
 
 ---
 

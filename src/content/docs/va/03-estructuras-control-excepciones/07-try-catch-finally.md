@@ -51,7 +51,7 @@ public class LectorBlindat {
 }
 ```
 
-Si escrius `hola`, ja no explota: el `catch` atrapar l'error, imprimix un missatge simpàtic i **el programa continua**.
+Si escrius `hola`, ja no explota: el `catch` atrapar l'error, imprimeix un missatge simpàtic i **el programa continua**.
 
 > 💡 **Detall pràctic:** el `finally` és opcional i sol usar-se per a netejar recursos (tancar `Scanner`, fitxers...). S'executa **sempre**: si hi hagué excepció, si no n'hi hagué, i fins i tot si el `try` tenia un `return`.
 
@@ -76,7 +76,7 @@ try {
 }
 ```
 
-En Java 7+ existix una forma compacta per a diversos tipus amb el mateix tractament, separats per `|`:
+En Java 7+ existeix una forma compacta per a diversos tipus amb el mateix tractament, separats per `|`:
 
 ```java
 } catch (ArithmeticException | ArrayIndexOutOfBoundsException e) {
@@ -95,17 +95,17 @@ L'`e` del `catch` és l'objecte excepció atrapat. Pots preguntar-li coses:
 ```java
 catch (Exception e) {
     System.out.println("Missatge: " + e.getMessage());
-    e.printStackTrace();   // imprimix el stack trace complet (per a depurar)
+    e.printStackTrace();   // imprimeix el stack trace complet (per a depurar)
 }
 ```
 
-> ⚠️ **Advertència:** un `catch` **buit** (sense res a dins) és un pecat mortal: te tragues l'error i ni tan sols te n'adones que ha passat. Com un testimoni que no parla en un judici. Com a mínim, imprimix un missatge.
+> ⚠️ **Advertència:** un `catch` **buit** (sense res a dins) és un pecat mortal: te tragues l'error i ni tan sols te n'adones que ha passat. Com un testimoni que no parla en un judici. Com a mínim, imprimeix un missatge.
 
 ---
 
 ## 🏫 Exemple guiat: el menú a prova de bombes
 
-Reunim `do-while`, `try` i `catch`: un menú que repetix fins a triar bé i que no explota si escrius porqueria:
+Reunim `do-while`, `try` i `catch`: un menú que repeteix fins a triar bé i que no explota si escrius porqueria:
 
 ```java
 import java.util.InputMismatchException;
@@ -145,7 +145,7 @@ public class MenuBlindat {
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** la pregunta clau davant d'un `try` és: *què pot fallar ací i com ho manege?* Un `catch` que només existix "per si de cas" però no fa res és fum.
+> 🕶️ **Don Tip:** la pregunta clau davant d'un `try` és: *què pot fallar ací i com ho manege?* Un `catch` que només existeix "per si de cas" però no fa res és fum.
 
 **Exercici: el detectiu de l'ordre**
 
@@ -181,9 +181,9 @@ try {
 <details>
 <summary>🔄 Respostes</summary>
 
-1. S'executa **sempre**, hi haja o no excepció; servix per a netejar recursos.
+1. S'executa **sempre**, hi haja o no excepció; serveix per a netejar recursos.
 2. **Del més específic al més general**; si no, el general "se menja" els altres i no compila.
-3. Te tragues l'error sense assabentar-te'n: el programa continua, però amb una fallada oculta. Mínim: imprimix un missatge.
+3. Te tragues l'error sense assabentar-te'n: el programa continua, però amb una fallada oculta. Mínim: imprimeix un missatge.
 4. Perquè el text brossa es queda al buffer del `Scanner` i el següent `nextInt()` tornaria a fallar.
 
 </details>

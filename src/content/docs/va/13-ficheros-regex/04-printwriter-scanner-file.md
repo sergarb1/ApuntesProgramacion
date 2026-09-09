@@ -174,7 +174,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quin mètode de `PrintWriter` et permet formatejar amb `%d`, `%f`, `%s`?
 2. Com lliges un fitxer amb `Scanner` en comptes de pel teclat?
-3. Per a què servix `useDelimiter(";")`?
+3. Per a què serveix `useDelimiter(";")`?
 4. Què torna `hasNextInt()` quan el fitxer s'ha quedat sense números?
 
 <details>

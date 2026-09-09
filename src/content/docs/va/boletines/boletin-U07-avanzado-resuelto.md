@@ -93,7 +93,7 @@ Quadrat: àrea 16.0, perímetre 16.0, és quadrat? true
 Rectangle: àrea 40.0, perímetre 26.0, és quadrat? false
 ```
 
-Tres mètodes que *tornen* valors. Fixa't: `esQuadrat()` convertix una comparació en un booleà d'un sol `return`. Objectes que raonen, no només que mostren.
+Tres mètodes que *tornen* valors. Fixa't: `esQuadrat()` converteix una comparació en un booleà d'un sol `return`. Objectes que raonen, no només que mostren.
 
 </details>
 

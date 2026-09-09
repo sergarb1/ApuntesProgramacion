@@ -86,7 +86,7 @@ server.createContext("/saludo", e -> {
 });
 ```
 
-La query string arriba com `nombre=Pepe` i es dividix per `=`. L'`URLDecoder` convertix coses com `%20` en espais (si el nom fora "Ana M."). Si no hi ha query, el valor per defecte és `desconocido`.
+La query string arriba com `nombre=Pepe` i es divideix per `=`. L'`URLDecoder` converteix coses com `%20` en espais (si el nom fora "Ana M."). Si no hi ha query, el valor per defecte és `desconocido`.
 
 </details>
 
@@ -215,7 +215,7 @@ server.createContext("/conversor", e -> {
 });
 ```
 
-`String.format("%.2f", valor)` arredonix a dos decimals. Es multiplica per 166.386 (el canvi oficial). Un exercici clàssic de GET: l'entrada viatja en la URL i l'eixida és HTML.
+`String.format("%.2f", valor)` arredoneix a dos decimals. Es multiplica per 166.386 (el canvi oficial). Un exercici clàssic de GET: l'entrada viatja en la URL i l'eixida és HTML.
 
 </details>
 
@@ -241,7 +241,7 @@ server.createContext("/estado", e -> {
 });
 ```
 
-La capçalera `Content-Type: application/json` és el que convertix això en una API: sense ella, el navegador i `fetch` tractarien el text com a HTML o text pla. Fixa't en com s'escapen les cometes del JSON dins del codi Java.
+La capçalera `Content-Type: application/json` és el que converteix això en una API: sense ella, el navegador i `fetch` tractarien el text com a HTML o text pla. Fixa't en com s'escapen les cometes del JSON dins del codi Java.
 
 </details>
 
@@ -260,6 +260,6 @@ La solució és afegir una línia abans d'enviar les capçaleres:
 intercambio.getResponseHeaders().set("Content-Type", "application/json");
 ```
 
-Esta és la lliçó que es repetix en tota la unitat: **la capçalera correcta és la diferència entre "funciona" i "funciona en la meua màquina però el frontend es queixa"**.
+Esta és la lliçó que es repeteix en tota la unitat: **la capçalera correcta és la diferència entre "funciona" i "funciona en la meua màquina però el frontend es queixa"**.
 
 </details>

@@ -44,9 +44,9 @@ Fixa't en l'ordre: primer comproves la combinació completa (`major I entrada`),
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`Aprovat`**.
+Imprimeix **`Aprovat`**.
 
-Amb `nota = 8`, el primer `if` (`nota >= 5`) es complix i guanya, encara que 8 també compliria les condicions de Notable i Excel·lent. Java avalua en ordre i es queda amb la primera `true`. La lliçó: l'ordre dels `else if` decidix el resultat.
+Amb `nota = 8`, el primer `if` (`nota >= 5`) es compleix i guanya, encara que 8 també compliria les condicions de Notable i Excel·lent. Java avalua en ordre i es queda amb la primera `true`. La lliçó: l'ordre dels `else if` decideix el resultat.
 
 </details>
 
@@ -257,7 +257,7 @@ public class EdatBlindada {
 }
 ```
 
-Si escrius `hola`, el `catch` atrapar l'error, imprimix el missatge i el programa continua. Si escrius `17`, tot normal. Eixe és el poder del `try`/`catch`: el teu programa ja no mor per la porqueria de l'usuari.
+Si escrius `hola`, el `catch` atrapar l'error, imprimeix el missatge i el programa continua. Si escrius `17`, tot normal. Eixe és el poder del `try`/`catch`: el teu programa ja no mor per la porqueria de l'usuari.
 
 </details>
 

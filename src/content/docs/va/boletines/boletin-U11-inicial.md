@@ -119,7 +119,7 @@ Què imprimeix? Es perd el primer valor associat a la clau 1?
 
 ## Exercici 7: Escriu este programa — mini agenda amb getOrDefault
 
-Crea un `TreeMap<String, Integer>` per a emmagatzemar les edats de 5 persones. Ompli'l amb noms i edats. Després, demana a l'usuari un nom per teclat i mostra la seua edat. Si el nom no existix, mostra un missatge d'error usant `getOrDefault()` per a evitar el `null`.
+Crea un `TreeMap<String, Integer>` per a emmagatzemar les edats de 5 persones. Ompli'l amb noms i edats. Després, demana a l'usuari un nom per teclat i mostra la seua edat. Si el nom no existeix, mostra un missatge d'error usant `getOrDefault()` per a evitar el `null`.
 
 ---
 

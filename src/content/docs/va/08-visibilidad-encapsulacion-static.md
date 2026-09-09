@@ -14,7 +14,7 @@ Benvingut a la unitat dels cadenats. En la U07 vas aprendre a crear classes i ob
 
 Esta unitat té dues mitats que al final ballen juntes:
 
-- **Visibilitat i encapsulació:** aprendràs a amagar els teus atributs amb `private` i a controlar com es llig i es modifica amb `public` (getters i setters). És el pilar que sosté la POO: el teu objecte decidix què mostra i què guarda, i ningú deixa la teua classe en un estat impossible.
+- **Visibilitat i encapsulació:** aprendràs a amagar els teus atributs amb `private` i a controlar com es llig i es modifica amb `public` (getters i setters). És el pilar que sosté la POO: el teu objecte decideix què mostra i què guarda, i ningú deixa la teua classe en un estat impossible.
 - **Static:** aprendràs la diferència entre el que pertany a cada **objecte** (cada gat té el seu nom) i el que pertany a la **classe** (tots compartixen el comptador de gats). Atributs estàtics, mètodes estàtics i constants `static final` que ni el temps s'atrevix a tocar.
 
 Pel camí descobriràs per què `main` és `static` encara que no hauria de ser-ho, com es construïx una classe utilitària com `Math` (que ningú pot instanciar), i per què els experts diuen que els atributs `public` són com portar la cartera oberta al metro.

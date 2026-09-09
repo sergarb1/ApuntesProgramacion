@@ -10,7 +10,7 @@ emoji: 🅿️
 
 ---
 
-Benvingut a l'aparcament. En les unitats anteriors vas aprendre a **decidir** (U03) i a **repetir**, però sempre guardant una cosa per variable. Fins hui. En esta unitat descobrixes els **arrays**: la forma de guardar centenars (o milions) de dades del mateix tipus sota un sol nom i de moure-les amb un bucle.
+Benvingut a l'aparcament. En les unitats anteriors vas aprendre a **decidir** (U03) i a **repetir**, però sempre guardant una cosa per variable. Fins hui. En esta unitat descobreixes els **arrays**: la forma de guardar centenars (o milions) de dades del mateix tipus sota un sol nom i de moure-les amb un bucle.
 
 Pensa en tot el que és, en el fons, una llista de coses: les notes dels teus 30 alumnes, la temperatura de cada dia de l'any, les fitxes d'un tauler, els noms d'una classe. Doncs tot això, portat a Java, és esta unitat: **crear** l'array, **recórrer-lo**, **ordenar-lo**, **buscar-lo**, gestionar-lo amb la classe `Arrays` i passar-lo a **mètodes** sense que se t'escape res pel camí.
 

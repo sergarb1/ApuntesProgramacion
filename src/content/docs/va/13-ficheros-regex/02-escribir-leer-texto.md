@@ -19,7 +19,7 @@ Al punt 1 `File` només et deia si el fitxer existia i quant pesava. Ara toca el
 
 ## ✍️ Escriure amb FileWriter
 
-`FileWriter` escriu **caràcters** en un fitxer. Si el fitxer no existix, el crea; si existix, el **sobreescriu** per defecte.
+`FileWriter` escriu **caràcters** en un fitxer. Si el fitxer no existeix, el crea; si existeix, el **sobreescriu** per defecte.
 
 ```java
 import java.io.FileWriter;
@@ -67,15 +67,15 @@ public class LeerTexto {
 }
 ```
 
-El patró `while ((linea = lector.readLine()) != null)` és el pa de cada dia de Java: llig una línia, comprova que no és `null`, la processa i repetix. Quan `readLine()` torna `null`, el fitxer s'ha acabat.
+El patró `while ((linea = lector.readLine()) != null)` és el pa de cada dia de Java: llig una línia, comprova que no és `null`, la processa i repeteix. Quan `readLine()` torna `null`, el fitxer s'ha acabat.
 
 > 📝 **Nota:** la lectura amb `Scanner` pel teclat la vas vore en la U02 (punt 6). Ací el `Scanner` reapareix al punt 4, però llegint fitxers.
 
 ---
 
-## 🚨 I si el fitxer no existix en llegir?
+## 🚨 I si el fitxer no existeix en llegir?
 
-Llances un `FileReader` sobre un fitxer que no existix i... `FileNotFoundException`. És filla de `IOException`, així que tens dos camins:
+Llances un `FileReader` sobre un fitxer que no existeix i... `FileNotFoundException`. És filla de `IOException`, així que tens dos camins:
 
 1. **Declarar** l'excepció en la signatura: `throws IOException` (el que hem fet adalt).
 2. **Capturar-la** amb `try-catch` i fer alguna cosa sensata, com avisar l'usuari:
@@ -157,7 +157,7 @@ Detall fi: el codi del `while` ni tan sols guarda la línia. Només la descarta 
 
 Posat a prova en 30 segons (les respostes estan amagades):
 
-1. Què fa `FileWriter` amb un fitxer que ja existix per defecte?
+1. Què fa `FileWriter` amb un fitxer que ja existeix per defecte?
 2. Com afegixes text al final d'un fitxer sense esborrar l'anterior?
 3. Què torna `readLine()` quan el fitxer s'ha acabat?
 4. Per què s'embolica `FileReader` amb `BufferedReader`?
@@ -176,7 +176,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. **`FileWriter`** escriu caràcters en un fitxer (el crea si no existix i el sobreescriu si existix); amb l'argument `true` afig al final.
+1. **`FileWriter`** escriu caràcters en un fitxer (el crea si no existeix i el sobreescriu si existeix); amb l'argument `true` afig al final.
 2. **`FileReader`** + **`BufferedReader`** llig fitxers de text línia a línia amb `readLine()`, que torna `null` al final.
 3. Sense `close()` (o `flush()`) les dades es queden al buffer: **tanca sempre** o usa `try-with-resources` (punt 3).
 
@@ -189,6 +189,6 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | `BufferedReader` | Lector amb buffer que permet `readLine()` |
 > | `readLine()` | Torna la següent línia o `null` si no en queda cap |
 > | *Append* | Afegir al final del fitxer sense esborrar l'anterior |
-> | `FileNotFoundException` | Es llança en llegir un fitxer que no existix |
+> | `FileNotFoundException` | Es llança en llegir un fitxer que no existeix |
 
 📁 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/13-ficheros-regex) · **Anterior:** [01 · La classe File: el teu explorador de fitxers](/ApuntesProgramacion/va/13-ficheros-regex/01-clase-file) · **Següent:** [03 · try-with-resources: tancar sense plorar](/ApuntesProgramacion/va/13-ficheros-regex/03-try-with-resources)

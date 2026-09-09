@@ -132,7 +132,7 @@ public class Kata {
 }
 ```
 
-El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decidix amb operadors relacionals. Un repàs perfecte de la unitat (el `for...each` complet el veuràs en la U04).
+El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decideix amb operadors relacionals. Un repàs perfecte de la unitat (el `for...each` complet el veuràs en la U04).
 
 </details>
 
@@ -279,7 +279,7 @@ public class CostatCarrer {
 }
 ```
 
-L'operador mòdul `%` decidix: reste 0 és parell, reste 1 és senar. El `while` repetix fins a llegir el 0 sentinella. La lògica sencera del problema és un sol ternari.
+L'operador mòdul `%` decideix: reste 0 és parell, reste 1 és senar. El `while` repeteix fins a llegir el 0 sentinella. La lògica sencera del problema és un sol ternari.
 
 </details>
 

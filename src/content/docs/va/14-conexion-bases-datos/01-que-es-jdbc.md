@@ -13,7 +13,7 @@ description: "JDBC, l'USB de les bases de dades: Java parla amb SQLite, MySQL o 
 
 > **JDBC (Java Database Connectivity) és el traductor universal entre el teu codi Java i qualsevol base de dades que tinga un controlador: tant fa SQLite, MySQL o PostgreSQL, el codi que escrius és quasi el mateix.**
 
-En la U13 vas aprendre a guardar dades en fitxers: llistes planes, text pla, fitxers solts. Però un fitxer no sap respondre a «dóna'm tots els alumnes majors de 18». Per a això estan les **bases de dades relacionals**: taules, files, columnes i consultes. I perquè Java puga parlar-hi existix JDBC, un conjunt d'interfícies del paquet `java.sql`. Benvingut al punt on el teu programa comença a tindre memòria de llarg termini.
+En la U13 vas aprendre a guardar dades en fitxers: llistes planes, text pla, fitxers solts. Però un fitxer no sap respondre a «dóna'm tots els alumnes majors de 18». Per a això estan les **bases de dades relacionals**: taules, files, columnes i consultes. I perquè Java puga parlar-hi existeix JDBC, un conjunt d'interfícies del paquet `java.sql`. Benvingut al punt on el teu programa comença a tindre memòria de llarg termini.
 
 ---
 
@@ -34,7 +34,7 @@ La regla d'or: si canvies de base de dades i vas usar SQL estàndard, només can
 
 ## 🗄️ SQLite: la base de dades d'entrenament
 
-Per a aprendre no necessites muntar un servidor ni obrir ports. **SQLite** és una base de dades que viu en un **únic fitxer local**: sense servidor, sense usuari, sense contrasenya. Si el fitxer no existix, SQLite el crea sol la primera vegada que et connectes. Perfecta per a practicar, i de passada és la que usen un munt d'aplicacions reals.
+Per a aprendre no necessites muntar un servidor ni obrir ports. **SQLite** és una base de dades que viu en un **únic fitxer local**: sense servidor, sense usuari, sense contrasenya. Si el fitxer no existeix, SQLite el crea sol la primera vegada que et connectes. Perfecta per a practicar, i de passada és la que usen un munt d'aplicacions reals.
 
 > 📝 **Nota:** en el curs usem SQLite perquè no necessita instal·lació. Tot el que aprens ací (CRUD, PreparedStatement, transaccions) funciona igual en MySQL o PostgreSQL canviant el controlador i la URL.
 
@@ -52,7 +52,7 @@ Per a usar el controlador de SQLite en un projecte Maven, afegixes esta dependè
 </dependency>
 ```
 
-Quan Maven la descarrega, el controlador queda al teu *classpath* i Java el troba sol. Des de Java 6 no necessites ni escriure `Class.forName(...)` per a carregar-lo: JDBC 4.0 s'auto-descobrix. Si veus `Class.forName()` en tutorials antics, és que eixe tutorial es va escriure quan es feia a mà. No passa res si el poses; tampoc passa res si no el poses.
+Quan Maven la descarrega, el controlador queda al teu *classpath* i Java el troba sol. Des de Java 6 no necessites ni escriure `Class.forName(...)` per a carregar-lo: JDBC 4.0 s'auto-descobreix. Si veus `Class.forName()` en tutorials antics, és que eixe tutorial es va escriure quan es feia a mà. No passa res si el poses; tampoc passa res si no el poses.
 
 > ⚠️ **Advertència:** si Maven no troba la classe `org.sqlite.JDBC` en executar, el 99% de les voltes és que la dependència no està al `pom.xml` o no s'ha descarregat. Primer revisa això, i després el teu codi.
 

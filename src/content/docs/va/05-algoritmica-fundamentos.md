@@ -78,7 +78,7 @@ En acabar, seràs capaç de:
 | RA2 f) | S'han utilitzat paràmetres en la crida a mètodes. | ✅ Punts 2, 3, 4 i 5 |
 | RA6 a) | S'han escrit programes que utilitzen arrays. | ✅ Tots |
 
-> 📌 Esta unitat és el germen de la U06: els bucles que domines ací (`for`, `while`), les cerques i les ordenacions es convertixen en QuickSort, MergeSort i recursivitat. I els arrays que recorres hui són la base de les col·leccions de la U10.
+> 📌 Esta unitat és el germen de la U06: els bucles que domines ací (`for`, `while`), les cerques i les ordenacions es converteixen en QuickSort, MergeSort i recursivitat. I els arrays que recorres hui són la base de les col·leccions de la U10.
 
 ---
 

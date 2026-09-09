@@ -11,7 +11,7 @@ description: La taula de decisió definitiva per a triar algorisme com un profes
 
 ## 📬 La idea en una frase
 
-> **No existix el "millor algorisme d'ordenació": existix el millor per al teu cas concret, i triar-lo bé és tan important com saber implementar-lo.**
+> **No existeix el "millor algorisme d'ordenació": existeix el millor per al teu cas concret, i triar-lo bé és tan important com saber implementar-lo.**
 
 Ja has vist Quicksort i Mergesort, i en la U05 vas sobreviure a bombolla i inserció. Ara toca la pregunta d'examen, d'entrevista i de la vida real: *quin use?* La resposta sempre comença igual: *depén*.
 
@@ -30,7 +30,7 @@ Ja has vist Quicksort i Mergesort, i en la U05 vas sobreviure a bombolla i inser
 | L'array és enorme i les dades estan en disc | Mergesort extern (el de les bases de dades) |
 
 > [!WARNING]
-> Mai, baix cap concepte, uses **Bombolla (Bubble Sort)** en producció. És O(n²), lent, i els teus companys t'odiaran. És com usar un caragol per a repartir pizzes: existix, però no hauria.
+> Mai, baix cap concepte, uses **Bombolla (Bubble Sort)** en producció. És O(n²), lent, i els teus companys t'odiaran. És com usar un caragol per a repartir pizzes: existeix, però no hauria.
 
 ---
 

@@ -41,7 +41,7 @@ public class SemaforInvertit {
 }
 ```
 
-Pista: recorda que guanya el **primer** `if` que es complix, encara que n'hi haja altres més "precisos" després.
+Pista: recorda que guanya el **primer** `if` que es compleix, encara que n'hi haja altres més "precisos" després.
 
 ---
 

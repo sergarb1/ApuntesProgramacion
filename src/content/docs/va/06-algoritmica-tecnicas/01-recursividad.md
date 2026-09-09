@@ -1,9 +1,9 @@
 ---
 title: "01 — Recursivitat: una funció que es crida a si mateixa"
-description: Quan el teu codi decidix cridar-se a si mateix i el teu cervell comença a fumejar 🔁
+description: Quan el teu codi decideix cridar-se a si mateix i el teu cervell comença a fumejar 🔁
 ---
 
-<p><small>Quan el teu codi decidix cridar-se a si mateix i el teu cervell comença a fumejar 🔁</small></p>
+<p><small>Quan el teu codi decideix cridar-se a si mateix i el teu cervell comença a fumejar 🔁</small></p>
 
 > 🗺️ **Estàs en:** ⚡ **U06 · Algorítmica II: Tècniques** → 01 · Recursivitat
 

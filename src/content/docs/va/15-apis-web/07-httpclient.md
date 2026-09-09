@@ -1,9 +1,9 @@
 ---
 title: "07 · Consumir APIs externes amb HttpClient"
-description: "El teu programa es convertix en client: HttpClient, GET, BodyHandlers i parsejar JSON amb Gson 📡🔍"
+description: "El teu programa es converteix en client: HttpClient, GET, BodyHandlers i parsejar JSON amb Gson 📡🔍"
 ---
 
-<p><small>El teu programa es convertix en client: HttpClient, GET, BodyHandlers i parsejar JSON amb Gson 📡🔍</small></p>
+<p><small>El teu programa es converteix en client: HttpClient, GET, BodyHandlers i parsejar JSON amb Gson 📡🔍</small></p>
 
 > 🗺️ **Estàs en:** 🌐 **U15 · Servir i Consumir APIs amb Web** → 07 · Consumir APIs externes amb HttpClient
 
@@ -11,7 +11,7 @@ description: "El teu programa es convertix en client: HttpClient, GET, BodyHandl
 
 ## 📬 La idea en una frase
 
-> **Fins ara has sigut el servidor. Amb `java.net.http.HttpClient`, el teu programa es convertix en client i li pregunta a les APIs de tot el món: GitHub, el temps, la teua xarxa social preferida...**
+> **Fins ara has sigut el servidor. Amb `java.net.http.HttpClient`, el teu programa es converteix en client i li pregunta a les APIs de tot el món: GitHub, el temps, la teua xarxa social preferida...**
 
 Els punts anteriors eren sobre rebre. Ara toca demanar: en el món real, els teus programes criden a APIs de tercers constantment. Java 11 porta `HttpClient`, un client HTTP modern i sense dependències externes, amb suport d'HTTP/2, peticions síncrones i asíncrones, i gestió de capçaleres.
 
@@ -27,7 +27,7 @@ Consumir una API són sempre tres peces:
 2. **`HttpRequest`** — la petició: URL, mètode, capçaleres. Es construïx amb *builder*.
 3. **`HttpResponse`** — la resposta: codi d'estat, capçaleres i cos.
 
-El GET més bàsic que existix:
+El GET més bàsic que existeix:
 
 ```java
 import java.net.URI;
@@ -57,7 +57,7 @@ public class ClienteGET {
 Dos mètodes clau:
 
 - **`client.send(...)`** — fa la petició de forma **síncrona**: el programa es queda esperant fins que arriba la resposta (o falla). És el que usaràs el 90 % del temps.
-- **`HttpResponse.BodyHandlers.ofString()`** — li diu a Java "convertix-me el cos en un `String`". N'hi ha més: `ofByteArray()`, `ofInputStream()`, `ofFile(Path)`... segons el que necessites.
+- **`HttpResponse.BodyHandlers.ofString()`** — li diu a Java "converteix-me el cos en un `String`". N'hi ha més: `ofByteArray()`, `ofInputStream()`, `ofFile(Path)`... segons el que necessites.
 
 > 💡 **Consell:** per a provar, jsonplaceholder (`https://jsonplaceholder.typicode.com`) és l'API de joguina perfecta: torna JSON d'exemple per a practicar sense registre ni tokens.
 
@@ -98,7 +98,7 @@ UsuarioGitHub usuario = gson.fromJson(response.body(), UsuarioGitHub.class);
 System.out.println(usuario.name() + " tiene " + usuario.public_repos() + " repos públicos");
 ```
 
-> ⚠️ **Advertència:** si l'API torna camps que no existixen en el teu `record`, Gson els ignora per defecte. Si el teu `record` té camps que no estan en el JSON, es queden en `null`. Amb Jackson pots configurar-ho amb `@JsonIgnoreProperties(ignoreUnknown = true)`.
+> ⚠️ **Advertència:** si l'API torna camps que no existeixen en el teu `record`, Gson els ignora per defecte. Si el teu `record` té camps que no estan en el JSON, es queden en `null`. Amb Jackson pots configurar-ho amb `@JsonIgnoreProperties(ignoreUnknown = true)`.
 
 ---
 

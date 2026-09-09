@@ -224,7 +224,7 @@ public class Bitllets {
 }
 ```
 
-El truc voraç: ordenar per hora d'arribada garantix que sempre tries la ruta que llibera el dia abans, deixant buit per a més autobusos. Una sola passada amb un comptador i una variable `ultima`. Clàssic d'AceptaElReto: les dades s'ordenen i la solució ix sola.
+El truc voraç: ordenar per hora d'arribada garanteix que sempre tries la ruta que llibera el dia abans, deixant buit per a més autobusos. Una sola passada amb un comptador i una variable `ultima`. Clàssic d'AceptaElReto: les dades s'ordenen i la solució ix sola.
 
 </details>
 

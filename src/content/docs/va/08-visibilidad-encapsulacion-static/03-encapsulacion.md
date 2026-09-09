@@ -126,7 +126,7 @@ public class Hucha {
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quins són els 3 passos de l'encapsulació?
-2. Què és el patró JavaBeans i per a què servix?
+2. Què és el patró JavaBeans i per a què serveix?
 3. Per què `CuentaBancaria` no deixa fer `saldo = -1000`?
 4. Què guanyes en mantenibilitat en encapsular?
 

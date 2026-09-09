@@ -14,9 +14,9 @@ En la U11 vas vore genèrics i mapes: les teues dades per fi viuen en estructure
 
 Benvingut o benvinguda a la programació funcional. Esta unitat té tres grans actes:
 
-- **Lambdes i interfícies funcionals:** la fletxa `->` i els quatre vestits oficials (`Predicate`, `Function`, `Consumer`, `Supplier`). Les funcions deixen de ser només blocs de codi i es convertixen en valors que viatgen d'un lloc a un altre com un missatge dins d'una botella.
+- **Lambdes i interfícies funcionals:** la fletxa `->` i els quatre vestits oficials (`Predicate`, `Function`, `Consumer`, `Supplier`). Les funcions deixen de ser només blocs de codi i es converteixen en valors que viatgen d'un lloc a un altre com un missatge dins d'una botella.
 - **Streams:** la cinta transportadora que recorre les teues col·leccions sense escriure un sol bucle. `filter`, `map`, `distinct`, `sorted`, `limit`, `collect`, `reduce`... declares què vols i Java s'encarrega del com. La peresa mai no va ser tan productiva: les operacions intermèdies no fan res fins que obris l'aixeta.
-- **Optional i Collectors:** la capsa que accepta l'absència en comptes d'un `null` a seques, i la maleta que convertix streams en llistes, conjunts i mapes (`toList()`, `groupingBy`, `toMap`).
+- **Optional i Collectors:** la capsa que accepta l'absència en comptes d'un `null` a seques, i la maleta que converteix streams en llistes, conjunts i mapes (`toList()`, `groupingBy`, `toMap`).
 
 Pel camí entendràs per què les operacions intermèdies són peresoses, per què un `Stream` només es recorre una vegada, i per què `Optional.of(null)` t'explotarà a la cara (una vegada. Només en necessites una).
 

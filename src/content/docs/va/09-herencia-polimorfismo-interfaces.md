@@ -16,9 +16,9 @@ Esta unitat és el cor de la POO. I té tres grans actes:
 
 - **Herència (`extends`):** una classe filla obté tot el que té la seua classe pare i pot millorar-ho. Aprendràs a usar `super` per a cridar la superclasse, `@Override` per a sobreescriure mètodes i `protected` per a compartir secrets només amb la família.
 - **Polimorfisme:** el mateix mètode, mil comportaments. Una variable de tipus `Animal` pot apuntar a un `Gos`, un `Gat` o una `Vaca`, i cadascun fa el seu so. Veuràs `instanceof`, downcasting i la mítica classe `Object`, el besavi de tot.
-- **Abstracció i interfícies:** classes abstractes que no es poden instanciar (esbossos) i interfícies que són contractes. Ací es decidix si el teu codi és un caos o una obra d'art.
+- **Abstracció i interfícies:** classes abstractes que no es poden instanciar (esbossos) i interfícies que són contractes. Ací es decideix si el teu codi és un caos o una obra d'art.
 
-Pel camí descobriràs per què `toString()` et mentix si no el sobreescrius, què passa quan fas un downcasting a la babalà (spoiler: `ClassCastException`), i per què els entrevistadors de treball adoren preguntar "quan usaríes una classe abstracta i quan una interfície?".
+Pel camí descobriràs per què `toString()` et menteix si no el sobreescrius, què passa quan fas un downcasting a la babalà (spoiler: `ClassCastException`), i per què els entrevistadors de treball adoren preguntar "quan usaríes una classe abstracta i quan una interfície?".
 
 Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
 

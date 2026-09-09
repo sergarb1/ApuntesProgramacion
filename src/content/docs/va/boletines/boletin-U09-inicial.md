@@ -120,7 +120,7 @@ public class Test {
 }
 ```
 
-Què imprimeix cada crida? Per què el tipus de la referència no decidix res?
+Què imprimeix cada crida? Per què el tipus de la referència no decideix res?
 
 ---
 
@@ -155,7 +155,7 @@ public class Peix extends Animal {
 }
 ```
 
-Una de les dos línies amb `@Override` impedix compilar. Quina i per què? Què t'avisa el compilador en l'instant en què escrius eixa línia?
+Una de les dos línies amb `@Override` impedeix compilar. Quina i per què? Què t'avisa el compilador en l'instant en què escrius eixa línia?
 
 ---
 

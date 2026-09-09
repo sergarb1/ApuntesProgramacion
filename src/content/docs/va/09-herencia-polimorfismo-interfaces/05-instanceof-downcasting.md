@@ -28,7 +28,7 @@ if (a instanceof Perro) {
 }
 ```
 
-> 💡 **Consell:** usa'l amb moderació. Si omplis el teu codi d'`instanceof`, alguna cosa estàs fent mal: el polimorfisme (punt 4) hauria de resoldre la majoria dels casos sense preguntar. `instanceof` és per a quan un objecte concret necessita un tracte que el polimorfisme no cobrix.
+> 💡 **Consell:** usa'l amb moderació. Si omplis el teu codi d'`instanceof`, alguna cosa estàs fent mal: el polimorfisme (punt 4) hauria de resoldre la majoria dels casos sense preguntar. `instanceof` és per a quan un objecte concret necessita un tracte que el polimorfisme no cobreix.
 
 ---
 
@@ -155,7 +155,7 @@ Quants `instanceof` són necessaris? Podries haver-ho fet sense cap?
 <details>
 <summary>🔄 Solució</summary>
 
-Dos `instanceof` basten (el `else` final captura a `Vaca`). I sí, es podria haver resolt amb polimorfisme pur: un mètode `comportamientoEspecial()` en cada animal i un sol `for`. `instanceof` brilla quan el comportament és impossible de ficar en la superclasse (mètodes que només existixen en una subclasse, com `moverCola()`).
+Dos `instanceof` basten (el `else` final captura a `Vaca`). I sí, es podria haver resolt amb polimorfisme pur: un mètode `comportamientoEspecial()` en cada animal i un sol `for`. `instanceof` brilla quan el comportament és impossible de ficar en la superclasse (mètodes que només existeixen en una subclasse, com `moverCola()`).
 
 </details>
 
@@ -175,7 +175,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. `false`.
 2. `ClassCastException`, en temps d'execució.
-3. Perquè `instanceof` garantix que l'objecte és d'eixe tipus (o subclasse) abans de convertir, així que el cast no pot fallar.
+3. Perquè `instanceof` garanteix que l'objecte és d'eixe tipus (o subclasse) abans de convertir, així que el cast no pot fallar.
 4. Quan el polimorfisme pot resoldre-ho amb un mètode sobreescrit: no preguntes el que la JVM ja sap.
 
 </details>

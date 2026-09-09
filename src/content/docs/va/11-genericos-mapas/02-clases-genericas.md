@@ -11,7 +11,7 @@ description: "Els paràmetres de tipus, les convencions T/E/K/V/N i la teua prim
 
 ## 📬 La idea en una frase
 
-> **Una classe genèrica és una plantilla amb buits: declares `<T>` en la classe i qui la use decidix quin tipus reompli cada buit. `Caja<String>` i `Caja<Integer>` són dos classes diferents generades a partir del mateix motle.**
+> **Una classe genèrica és una plantilla amb buits: declares `<T>` en la classe i qui la use decideix quin tipus reompli cada buit. `Caja<String>` i `Caja<Integer>` són dos classes diferents generades a partir del mateix motle.**
 
 En el punt 1 vas usar `ArrayList<String>` com a consumidora. Hui toca l'altre costat del taulell: **crear la teua pròpia classe genèrica**. No és tan difícil com pareix: només has d'afegir `<T>` al nom de la classe i, a partir d'ací, `T` es comporta com un tipus qualsevol dins d'ella.
 
@@ -52,7 +52,7 @@ public class Caja<T> {
 }
 ```
 
-Fixa't en el patró: `T` apareix com a tipus de l'atribut, com a tipus del paràmetre de `guardar` i com a tipus de retorn de `sacar`. És una plantilla: quan algú escriu `Caja<String>`, totes les `T` es convertixen en `String` per a eixa instància.
+Fixa't en el patró: `T` apareix com a tipus de l'atribut, com a tipus del paràmetre de `guardar` i com a tipus de retorn de `sacar`. És una plantilla: quan algú escriu `Caja<String>`, totes les `T` es converteixen en `String` per a eixa instància.
 
 I així s'usa:
 
@@ -99,7 +99,7 @@ public class BeTheCaja {
 <details>
 <summary>🔄 Solució</summary>
 
-La **B**. `Caja<T>` guarda un únic atribut `contenido`. El segon `guardar(10)` sobreescriu el 5, així que `sacar()` torna 10. Moraleja: si necessites guardar diversos elements, esta capsa no et servix... per a això estan les col·leccions de la U10.
+La **B**. `Caja<T>` guarda un únic atribut `contenido`. El segon `guardar(10)` sobreescriu el 5, així que `sacar()` torna 10. Moraleja: si necessites guardar diversos elements, esta capsa no et serveix... per a això estan les col·leccions de la U10.
 
 </details>
 
@@ -115,7 +115,7 @@ Sí, i és molt comú. `Pareja<T, U>` amb `private T primero; private U segundo;
 
 > ❓ **Per què `Caja<int>` no compila?**
 
-Perquè els genèrics només funcionen amb tipus referència (objectes), i `int` és un primitiu. Per això existixen les classes wrapper (`Integer`, `Double`, `Boolean`...). L'autoboxing convertix automàticament `int` → `Integer` en passar un `5`, i l'unboxing fa el camí invers en llegir.
+Perquè els genèrics només funcionen amb tipus referència (objectes), i `int` és un primitiu. Per això existeixen les classes wrapper (`Integer`, `Double`, `Boolean`...). L'autoboxing converteix automàticament `int` → `Integer` en passar un `5`, i l'unboxing fa el camí invers en llegir.
 
 ---
 
@@ -131,7 +131,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quina lletra s'usa per convenció per al paràmetre de tipus d'una col·lecció?
 2. Quines lletres per a la clau i el valor d'un mapa?
-3. Per què no existix `Caja<int>`?
+3. Per què no existeix `Caja<int>`?
 4. Què li passa a `guardar(5)` quan després crides `guardar(10)` en una `Caja<Integer>`?
 
 <details>
@@ -157,7 +157,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Terme | Idea general |
 > |---|---|
 > | Classe genèrica | Classe que declara `<T>` i usa el tipus com un buit rellenable |
-> | Paràmetre de tipus | El `T` de `Caja<T>`; es decidix en instanciar |
+> | Paràmetre de tipus | El `T` de `Caja<T>`; es decideix en instanciar |
 > | Wrapper | Classe que embolica un primitiu (`Integer` embolica `int`) |
 > | Autoboxing | Passar de primitiu a wrapper automàticament |
 > | Tipus cru (raw type) | `Caja` sense `< >`: sense seguretat de tipus, evita'l |

@@ -130,7 +130,7 @@ Imprimeix **`10 15 30`**.
 - `add(1, 15)` inserix el 15 a la posició 1 i desplaça → `[10, 15, 20, 30]`.
 - `remove(Integer.valueOf(20))` esborra l'**objecte** 20 (no l'índex 2) → `[10, 15, 30]`.
 
-`remove(Integer.valueOf(20))` no és el mateix que `remove(2)`: el primer esborra l'objecte el valor del qual és 20; el segon esborra la posició 2 (que ara ocupa el 20, casualitat). Ací els dos coincidixen en el resultat, però per motius diferents. Si la llista haguera sigut `[10, 20, 15, 20]`, `remove(Integer.valueOf(20))` esborraria el primer 20 i `remove(2)` esborraria el 15.
+`remove(Integer.valueOf(20))` no és el mateix que `remove(2)`: el primer esborra l'objecte el valor del qual és 20; el segon esborra la posició 2 (que ara ocupa el 20, casualitat). Ací els dos coincideixen en el resultat, però per motius diferents. Si la llista haguera sigut `[10, 20, 15, 20]`, `remove(Integer.valueOf(20))` esborraria el primer 20 i `remove(2)` esborraria el 15.
 
 </details>
 
@@ -169,7 +169,7 @@ public class BuscarNombre {
 }
 ```
 
-`indexOf` torna la posició de la primera aparició, o `-1` si no existix. Comparar amb `>= 0` és el patró clàssic per a "hi és?".
+`indexOf` torna la posició de la primera aparició, o `-1` si no existeix. Comparar amb `>= 0` és el patró clàssic per a "hi és?".
 
 </details>
 
@@ -217,7 +217,7 @@ El patró del "màxim acumulat": assumixes que el primer és el major i, si n'ap
 <details>
 <summary>🔄 Solució</summary>
 
-No compila perquè **els genèrics només accepten objectes, i `int` és un primitiu**. `ArrayList<int>` no existix. La solució és usar la classe wrapper `Integer`:
+No compila perquè **els genèrics només accepten objectes, i `int` és un primitiu**. `ArrayList<int>` no existeix. La solució és usar la classe wrapper `Integer`:
 
 ```java
 import java.util.ArrayList;
@@ -232,7 +232,7 @@ public class Error {
 }
 ```
 
-L'**autoboxing** convertix automàticament l'`int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el convertix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
+L'**autoboxing** converteix automàticament l'`int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el converteix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
 
 </details>
 

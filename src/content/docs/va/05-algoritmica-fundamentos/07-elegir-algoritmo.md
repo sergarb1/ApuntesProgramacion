@@ -30,7 +30,7 @@ Per a obrir una nou faries servir una excavadora? Doncs això. Hi ha qui clava u
 
 ## 🧮 La pregunta clau: ¿ordenar abans de buscar?
 
-Val, la cerca binària és rapidíssima... però exigix un array ordenat. I ordenar també costa. Llavors: mereix la pena ordenar primer?
+Val, la cerca binària és rapidíssima... però exigeix un array ordenat. I ordenar també costa. Llavors: mereix la pena ordenar primer?
 
 La regla del bon administrador:
 

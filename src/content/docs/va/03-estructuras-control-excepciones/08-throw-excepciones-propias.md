@@ -11,9 +11,9 @@ description: Quan et toca a tu llançar la pedra i crear el teu propi defecte �
 
 ## 📬 La idea en una frase
 
-> **`throw` llança una excepció quan tu decidixes que alguna cosa no ha de continuar, i creant la teua pròpia excepció pots posar-li el nom que vulgues al problema.**
+> **`throw` llança una excepció quan tu decideixes que alguna cosa no ha de continuar, i creant la teua pròpia excepció pots posar-li el nom que vulgues al problema.**
 
-Fins ara Java llançava les excepcions per tu. Però hi ha un superpoder millor: **tu** decidixes quan llançar-les, i pots inventar-te tipus d'error a la teua mesura.
+Fins ara Java llançava les excepcions per tu. Però hi ha un superpoder millor: **tu** decideixes quan llançar-les, i pots inventar-te tipus d'error a la teua mesura.
 
 ---
 
@@ -142,7 +142,7 @@ Ho sentim: El producte Refresc està esgotat.
 La màquina seguix funcionant. 🤖
 ```
 
-Veus la màgia? El `throw` llança la teua excepció, el `catch` l'atrapar pel seu **nom propi** i el programa sobreviu. Eixe nom convertix un error genèric en un missatge que fins i tot la teua cap entén.
+Veus la màgia? El `throw` llança la teua excepció, el `catch` l'atrapar pel seu **nom propi** i el programa sobreviu. Eixe nom converteix un error genèric en un missatge que fins i tot la teua cap entén.
 
 ---
 
@@ -206,7 +206,7 @@ La teua excepció hereta de `RuntimeException` (que al seu torn hereta d'`Except
 
 ## ✅ Resum en 3 frases
 
-1. `throw` llança una excepció on tu decidixes, amb el missatge que vulgues.
+1. `throw` llança una excepció on tu decideixes, amb el missatge que vulgues.
 2. Crear la teua pròpia excepció és **heretar d'`Exception` o `RuntimeException`** i posar-li un constructor amb missatge.
 3. `throw` (llançar) ≠ `throws` (declarar), i les excepcions **checked** obliguen a gestionar-les mentre les **unchecked** no.
 

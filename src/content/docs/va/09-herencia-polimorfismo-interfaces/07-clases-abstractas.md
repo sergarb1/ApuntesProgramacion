@@ -11,7 +11,7 @@ description: "Esbossos que no s'instancien, mètodes abstractes que obliguen i e
 
 ## 📬 La idea en una frase
 
-> **Una classe abstracta és un esbós: no es pot instanciar, definix mètodes obligatoris (abstractes) i compartix codi concret amb les seues filles.**
+> **Una classe abstracta és un esbós: no es pot instanciar, defineix mètodes obligatoris (abstractes) i compartix codi concret amb les seues filles.**
 
 Imagina "A la venda: esbós de cadira". No pots seure't en un esbós, oi? Doncs això són les classes abstractes: plànols incomplets perquè *altres* els complenten.
 
@@ -111,7 +111,7 @@ public class Rectangulo extends Figura {
 }
 ```
 
-`Figura` definix **què** tenen totes les figures (color, àrea, perímetre) i delega **com** es calculen a cadascuna. El polimorfisme del punt 4 fa la resta: `ArrayList<Figura>` amb cercles i rectangles, i `calcularArea()` funciona sol.
+`Figura` defineix **què** tenen totes les figures (color, àrea, perímetre) i delega **com** es calculen a cadascuna. El polimorfisme del punt 4 fa la resta: `ArrayList<Figura>` amb cercles i rectangles, i `calcularArea()` funciona sol.
 
 ---
 
@@ -239,7 +239,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. Pots fer `new` sobre una classe abstracta?
 2. Què està obligada a fer una subclasse concreta?
 3. Pot una classe abstracta tindre mètodes concrets i constructors?
-4. Què garantix el `final` en el mètode `preparar()` del template method?
+4. Què garanteix el `final` en el mètode `preparar()` del template method?
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -257,7 +257,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Una **classe abstracta** és un esbós no instanciable amb mètodes abstractes (obligatoris) i concrets (compartits).
 2. Les subclasses **concretes** han d'implementar tots els mètodes abstractes; les abstractes poden deixar el deute pendent.
-3. El **template method** definix l'esquelet `final` d'un algoritme i delega els detalls variables a les subclasses.
+3. El **template method** defineix l'esquelet `final` d'un algoritme i delega els detalls variables a les subclasses.
 
 > 🐛 **Vocabulari ràpid**
 >

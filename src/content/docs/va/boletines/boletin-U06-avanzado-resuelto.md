@@ -55,7 +55,7 @@ puge 2
 puge 3
 ```
 
-L'ordre: `pintar(3)` imprimix "baixe 3", crida a `pintar(2)`, que imprimix "baixe 2", crida a `pintar(1)`, que imprimix "baixe 1" i crida a `pintar(0)` (que no fa res). En tornar, cada nivell executa el seu `println` pendent: primer el d'1, després el de 2, després el de 3. La pila es desenrotlla en ordre invers: **baixa tot, després puja tot**.
+L'ordre: `pintar(3)` imprimeix "baixe 3", crida a `pintar(2)`, que imprimeix "baixe 2", crida a `pintar(1)`, que imprimeix "baixe 1" i crida a `pintar(0)` (que no fa res). En tornar, cada nivell executa el seu `println` pendent: primer el d'1, després el de 2, després el de 3. La pila es desenrotlla en ordre invers: **baixa tot, després puja tot**.
 
 </details>
 
@@ -125,7 +125,7 @@ public class PotenciaRapida {
 }
 ```
 
-Eixida: `2^20 = 1048576`, `3^10 = 59049`. `potenciaRapida(2, 20)` fa només **5 crides recursives** (20 → 10 → 5 → 2 → 1 → 0), mentre que la versió lineal del butlletí inicial en fa 20. De O(n) a O(log n): eixe salt és tot el divide i venceràs. Quan `e` és senar, `e / 2` arredonix cap avall i per això cal multiplicar per `base` una vegada més.
+Eixida: `2^20 = 1048576`, `3^10 = 59049`. `potenciaRapida(2, 20)` fa només **5 crides recursives** (20 → 10 → 5 → 2 → 1 → 0), mentre que la versió lineal del butlletí inicial en fa 20. De O(n) a O(log n): eixe salt és tot el divide i venceràs. Quan `e` és senar, `e / 2` arredoneix cap avall i per això cal multiplicar per `base` una vegada més.
 
 </details>
 
@@ -284,7 +284,7 @@ public class HanoiContador {
 }
 ```
 
-Amb 3 discos, `Total de moviments: 7`. Amb 4 → 15, i amb 8 → 255. La fórmula `2^n - 1` es complix exactament. El patró clàssic: moure `n-1` a l'auxiliar, moure el disc gran, moure `n-1` de l'auxiliar al destí. Cada moviment imprés suma 1 al comptador.
+Amb 3 discos, `Total de moviments: 7`. Amb 4 → 15, i amb 8 → 255. La fórmula `2^n - 1` es compleix exactament. El patró clàssic: moure `n-1` a l'auxiliar, moure el disc gran, moure `n-1` de l'auxiliar al destí. Cada moviment imprés suma 1 al comptador.
 
 </details>
 

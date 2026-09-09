@@ -11,7 +11,7 @@ description: "Cridar mètodes sense crear objectes, la classe Math, i per què m
 
 ## 📬 La idea en una frase
 
-> **Un mètode `static` es diu usant la classe, sense crear objectes; no té `this` i no pot tocar atributs d'instància. I `main` és estàtic perquè és el primer a arribar a una festa on encara no existix cap objecte.**
+> **Un mètode `static` es diu usant la classe, sense crear objectes; no té `this` i no pot tocar atributs d'instància. I `main` és estàtic perquè és el primer a arribar a una festa on encara no existeix cap objecte.**
 
 Si els atributs `static` són el grup de WhatsApp, els mètodes `static` són el número d'atenció al client: no necessites parlar amb un empleat concret, crides al número general i llest.
 
@@ -38,7 +38,7 @@ int resultado = UtilidadesMatematicas.sumar(5, 3);  // Sense new, sense objecte.
 double med = UtilidadesMatematicas.media(10, 20);
 ```
 
-Compara-ho amb un mètode d'instància, que exigix un objecte:
+Compara-ho amb un mètode d'instància, que exigeix un objecte:
 
 ```java
 String texto = "Hola";
@@ -99,7 +99,7 @@ La uses des del primer dia del curs, i ara entens **per què** funciona sense `n
 public static void main(String[] args)
 ```
 
-Per què és estàtic? Perquè quan comença el programa **encara no existix cap objecte**. Algú ha d'arrancar la festa abans que arribe ningú. Si `main` fóra d'instància, la JVM necessitaria un objecte per a cridar-lo... i per a crear eixe objecte necessitaria un programa en marxa. Peix que es mossega la cua. Per això `main` és el primer a arribar i obri la porta ell mateix.
+Per què és estàtic? Perquè quan comença el programa **encara no existeix cap objecte**. Algú ha d'arrancar la festa abans que arribe ningú. Si `main` fóra d'instància, la JVM necessitaria un objecte per a cridar-lo... i per a crear eixe objecte necessitaria un programa en marxa. Peix que es mossega la cua. Per això `main` és el primer a arribar i obri la porta ell mateix.
 
 ---
 
@@ -115,7 +115,7 @@ Un poquet: no necessiten la referència a l'objecte. Però la diferència és ta
 
 > ❓ **Puc posar-li `static` a tot i estalviar-me crear objectes?**
 
-Pots, però aleshores no estàs fent POO: estàs fent "programació estàtica a la bruta". És com usar un tornavís per a clavar un clau: pots, però per a això existix el martell. Usa `static` per al que és de la classe, no per a tot.
+Pots, però aleshores no estàs fent POO: estàs fent "programació estàtica a la bruta". És com usar un tornavís per a clavar un clau: pots, però per a això existeix el martell. Usa `static` per al que és de la classe, no per a tot.
 
 ---
 
@@ -161,7 +161,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Amb el nom de la classe: `UtilidadesMatematicas.sumar(5, 3)`. Sense crear objectes.
 2. No: no té `this` i no sap de quin objecte parla.
-3. Perquè quan arranca el programa no existix cap objecte encara: algú ha d'obrir la porta.
+3. Perquè quan arranca el programa no existeix cap objecte encara: algú ha d'obrir la porta.
 4. `Math.sqrt` és estàtic (es diu sobre la classe) i `length()` és d'instància (es diu sobre l'objecte `texto`).
 
 </details>
@@ -180,7 +180,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > |---|---|
 > | Mètode estàtic | Mètode de la classe: `Clase.metodo()` |
 > | Mètode d'instància | Mètode de l'objecte: `objeto.metodo()` |
-> | `this` | Referència a l'objecte actual (no existix en estàtics) |
+> | `this` | Referència a l'objecte actual (no existeix en estàtics) |
 > | Classe utilitària | Només mètodes estàtics, sense objectes |
 > | Context estàtic | "El món de la classe": sense objectes a la vista |
 

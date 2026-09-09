@@ -11,7 +11,7 @@ description: "application/json, fetch des del frontend i per què les aplicacion
 
 ## 📬 La idea en una frase
 
-> **Les aplicacions modernes no tornen HTML al navegador: tornen dades en JSON i que el frontend se les arregle. Quan el teu servidor respon amb `application/json`, deixa de ser una pàgina web i es convertix en una API.**
+> **Les aplicacions modernes no tornen HTML al navegador: tornen dades en JSON i que el frontend se les arregle. Quan el teu servidor respon amb `application/json`, deixa de ser una pàgina web i es converteix en una API.**
 
 Fins ací el teu servidor parlava en HTML, l'idioma dels humans. Ara aprén l'idioma de les màquines: JSON. El frontend (JavaScript) demana dades i el backend li les dona en JSON, sense barrejar disseny amb dades. És la separació que fa funcionar totes les aplicacions modernes.
 
@@ -79,9 +79,9 @@ fetch('/api/usuarios')
 </script>
 ```
 
-El que ocorre per dins és exactament el punt 1: el navegador fa un `GET /api/usuarios`, el teu servidor respon amb `200` i un JSON, i `r.json()` el convertix en objectes JavaScript llestos per a usar.
+El que ocorre per dins és exactament el punt 1: el navegador fa un `GET /api/usuarios`, el teu servidor respon amb `200` i un JSON, i `r.json()` el converteix en objectes JavaScript llestos per a usar.
 
-> 💡 **Consell:** este és el patró de totes les aplicacions modernes: el **backend** servix dades (JSON) i el **frontend** les consumix i decidix com mostrar-les. Aprendre a servir JSON és aprendre a fer APIs; el frontend ja ve de sèrie en el navegador.
+> 💡 **Consell:** este és el patró de totes les aplicacions modernes: el **backend** serveix dades (JSON) i el **frontend** les consumeix i decideix com mostrar-les. Aprendre a servir JSON és aprendre a fer APIs; el frontend ja ve de sèrie en el navegador.
 
 ---
 
@@ -159,7 +159,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. **JSON** és el format de dades universal: objectes `{...}` i arrays `[...]`, i un `record` de Java és el seu cosí germà.
 2. Per a servir JSON, fixa **`Content-Type: application/json`** i la resta del handler és idèntic al de l'HTML.
-3. El **frontend** el consumix amb `fetch(...).then(r => r.json())`, i així naix la separació entre dades i disseny que definix les APIs.
+3. El **frontend** el consumeix amb `fetch(...).then(r => r.json())`, i així naix la separació entre dades i disseny que defineix les APIs.
 
 > 🐛 **Vocabulari ràpid**
 >
@@ -169,6 +169,6 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | `application/json` | El `Content-Type` de JSON |
 > | API | Interfície per la qual el teu servidor exposa dades |
 > | `fetch` | La forma de JavaScript de fer peticions HTTP |
-> | Frontend / Backend | Qui mostra (navegador) / qui servix (servidor) |
+> | Frontend / Backend | Qui mostra (navegador) / qui serveix (servidor) |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/15-apis-web) · **Anterior:** [04 · Paràmetres GET i formularis POST](/ApuntesProgramacion/va/15-apis-web/04-get-post) · **Següent:** [06 · Mini projecte: gestor de tasques (API REST)](/ApuntesProgramacion/va/15-apis-web/06-proyecto-rest)

@@ -11,7 +11,7 @@ description: "El teu servidor passa de parlar en text pla a servir pàgines comp
 
 ## 📬 La idea en una frase
 
-> **Tornar text pla és com parlar-li al navegador a cau d'orella: s'assabenta, però no mostra res bonic. Amb `Content-Type: text/html` i una cadena ben formada, el teu servidor es convertix en una web de veritat.**
+> **Tornar text pla és com parlar-li al navegador a cau d'orella: s'assabenta, però no mostra res bonic. Amb `Content-Type: text/html` i una cadena ben formada, el teu servidor es converteix en una web de veritat.**
 
 Al punt 2 el servidor contestava amb una frase solta. Hui li ensenyem a vestir-se: pàgines HTML completes. Dos camins, tots dos legítims: escriure-ho directament en una cadena Java o llegir-ho des d'un fitxer (molt més còmode quan la pàgina creix).
 
@@ -67,7 +67,7 @@ server.createContext("/", intercambio -> {
 });
 ```
 
-Amb esta estructura, l'HTML viu en `web/index.html` (dins del teu projecte, junt als fonts) i el codi Java només s'encarrega de servir-lo. Canviar el disseny ja no exigix recompilar: edites el fitxer, recarregues el navegador i llest.
+Amb esta estructura, l'HTML viu en `web/index.html` (dins del teu projecte, junt als fonts) i el codi Java només s'encarrega de servir-lo. Canviar el disseny ja no exigeix recompilar: edites el fitxer, recarregues el navegador i llest.
 
 > 💡 **Consell:** el fitxer pot portar CSS i JavaScript enllaçats amb rutes relatives (`estilos.css`, `app.js`). Però compte: eixes rutes també les demana el navegador al servidor, així que hauràs de servir eixos fitxers també. Es veu al punt 6 amb el projecte de tasques.
 
@@ -75,7 +75,7 @@ Amb esta estructura, l'HTML viu en `web/index.html` (dins del teu projecte, junt
 
 ## 🕶️ Sé el Código, my friend...
 
-> **Don Tip:** servix l'HTML amb el `Content-Type` correcte i el navegador és el teu millor aliat; oblida la capçalera i el navegador et mostrarà el codi en comptes de la pàgina.
+> **Don Tip:** serveix l'HTML amb el `Content-Type` correcte i el navegador és el teu millor aliat; oblida la capçalera i el navegador et mostrarà el codi en comptes de la pàgina.
 
 **Exercici: el servidor despistat**
 

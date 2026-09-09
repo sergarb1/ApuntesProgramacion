@@ -58,7 +58,7 @@ public static int[] digitize(long n) {
 }
 ```
 
-Amb `% 10` i `/ 10`: l'últim dígit eix primer (ja ve invertit), i després de dividir entre 10 es repetix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
+Amb `% 10` i `/ 10`: l'últim dígit eix primer (ja ve invertit), i després de dividir entre 10 es repeteix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
 
 </details>
 
@@ -189,7 +189,7 @@ Nord puja `y`, sud el baixa; est puja `x`, oest el baixa. Si al final tots dos c
 
 ### 5. 171 — Abadies de pedra
 
-Una serralada té una sèrie de muntanyes, cada una amb la seua altura. Es pot construir una **abadia** sobre una muntanya si és **més alta que totes les que té a la dreta** (cap al mar). Compta quantes muntanyes complixen la condició.
+Una serralada té una sèrie de muntanyes, cada una amb la seua altura. Es pot construir una **abadia** sobre una muntanya si és **més alta que totes les que té a la dreta** (cap al mar). Compta quantes muntanyes compleixen la condició.
 
 **Entrada:** diversos casos de prova. Cada cas comença amb `N` (nombre de muntanyes), seguit de `N` altures en la mateixa línia. Un `0` acaba l'entrada.
 
@@ -317,7 +317,7 @@ public class ContandoEnLaArena {
 }
 ```
 
-Cada número `n` es convertix en `n` uns. El bucle és el mateix que usaríes per a omplir un array, però ací l'"array" és un `StringBuilder` que creix. El `0` marca el final de l'entrada, com sempre en AceptaElReto.
+Cada número `n` es converteix en `n` uns. El bucle és el mateix que usaríes per a omplir un array, però ací l'"array" és un `StringBuilder` que creix. El `0` marca el final de l'entrada, com sempre en AceptaElReto.
 
 </details>
 

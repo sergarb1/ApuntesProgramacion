@@ -18,7 +18,7 @@ Esta unitat té tres grans actes:
 - **La forma moderna i la d'elit:** l'API **NIO** (`Files` i `Paths`), que fa en una línia el que abans costava cinc, i la **serialització**, que guarda objectes sencers en un fitxer com qui fica roba en una maleta.
 - **Expressions regulars:** `Pattern` i `Matcher`, la taula de símbols, i les seues aplicacions amb `matches()`, `replaceAll()`, `split()` i grups de captura per a validar correus, DNIs i telèfons com un professional.
 
-Pel camí entendràs per què `new File("ruta")` no crea res, què és això de l'infern de les contrabarres (`\\d`), per què no tancar un fitxer et pot costar les dades, i per què una regex no servix per a validar HTML (per molt que ho intentes).
+Pel camí entendràs per què `new File("ruta")` no crea res, què és això de l'infern de les contrabarres (`\\d`), per què no tancar un fitxer et pot costar les dades, i per què una regex no serveix per a validar HTML (per molt que ho intentes).
 
 > 📌 **Nota:** la consola (`System.out`, `printf`, `Scanner` pel teclat) ja la vas vore en la **U02**, punt 7. Ací el `Scanner` i el `PrintWriter` tornen, però jugant en la seua lliga: llegint i escrivint fitxers.
 

@@ -30,7 +30,7 @@ public class Propines {
 }
 ```
 
-La clau: `totalCompte * percentatgePropina / 100` multiplica primer (45.50 * 15 = 682.5) i dividix després per 100 → 6.825. Si hagueres escrit `percentatgePropina / 100`, hauries fet divisió entera (15/100 = 0) i la propina hauria eixit 0. Ordre i divisió entera: les dos trampes del punt 3.
+La clau: `totalCompte * percentatgePropina / 100` multiplica primer (45.50 * 15 = 682.5) i divideix després per 100 → 6.825. Si hagueres escrit `percentatgePropina / 100`, hauries fet divisió entera (15/100 = 0) i la propina hauria eixit 0. Ordre i divisió entera: les dos trampes del punt 3.
 
 </details>
 
@@ -65,7 +65,7 @@ Eixida:
 50.0€ són 54.347826086956516$
 ```
 
-Per a passar de dòlars a euros multipliques per la taxa; al revés, dividixes. El `final` garantix que ningú (ni tu) toque la taxa de canvi sense voler.
+Per a passar de dòlars a euros multipliques per la taxa; al revés, divideixes. El `final` garanteix que ningú (ni tu) toque la taxa de canvi sense voler.
 
 </details>
 
@@ -86,7 +86,7 @@ Per a passar de dòlars a euros multipliques per la taxa; al revés, dividixes. 
 
 Línia a línia:
 
-- `resultat1 = a / b` → primer dividix enters (7/2 = 3) i després guarda en `double`: **3.0**.
+- `resultat1 = a / b` → primer divideix enters (7/2 = 3) i després guarda en `double`: **3.0**.
 - `resultat2 = (double) a / b` → castin a `a` a 7.0 abans de dividir: **3.5**.
 - `resultat3 = a / (double) b` → castin a `b` a 2.0: **3.5**.
 - `3 + 4 * 2.0` → la multiplicació mana i el `2.0` arrossega a decimal: `3 + 8.0` = **11.0**.
@@ -146,7 +146,7 @@ Pas a pas:
 - `int y = x++ + ++x;` → `x++` usa 3 i deixa x = 4; `++x` puja x a 5 i usa 5. `y = 3 + 5 = 8`. Ara x = 5, y = 8.
 - `int z = --y + y-- + x++;` → `--y` baixa y a 7 i usa 7; `y--` usa 7 i baixa y a 6; `x++` usa 5 i puja x a 6. `z = 7 + 7 + 5 = 19`. Final: x = 6, y = 6, z = 19.
 
-> 💡 **Confessió honesta:** si en fer-ho et va eixir un altre número, benvingut al club: este exercici existix precisament perquè patisca una volta en classe i no vint en l'examen. La lliçó del punt 3: els `++` i `--` es fan servir sols, en la seua pròpia línia.
+> 💡 **Confessió honesta:** si en fer-ho et va eixir un altre número, benvingut al club: este exercici existeix precisament perquè patisca una volta en classe i no vint en l'examen. La lliçó del punt 3: els `++` i `--` es fan servir sols, en la seua pròpia línia.
 
 </details>
 
@@ -181,7 +181,7 @@ public class DuelDaus {
 }
 ```
 
-Ací no hi ha problema d'Enter residual: el `nextLine()` va abans del `nextInt()` (que ni tan sols usem). Els daus usen la fórmula `(int)(Math.random() * 6) + 1`, i el ternari encadenat decidix el guanyador en tres casos.
+Ací no hi ha problema d'Enter residual: el `nextLine()` va abans del `nextInt()` (que ni tan sols usem). Els daus usen la fórmula `(int)(Math.random() * 6) + 1`, i el ternari encadenat decideix el guanyador en tres casos.
 
 </details>
 
@@ -361,7 +361,7 @@ public class EdatSegura {
 }
 ```
 
-El bucle `while` repetix la pregunta fins que l'usuari dona un enter. `hasNextInt()` mira si la següent dada és un enter sense consumir-la; si no ho és, `sc.next()` es menja la brossa i el bucle torna a preguntar. Així el programa és **a prova de bombes**: no importa quantes vegades l'usuari escriga "hola" o "3.14", mai no saltarà la `InputMismatchException`.
+El bucle `while` repeteix la pregunta fins que l'usuari dona un enter. `hasNextInt()` mira si la següent dada és un enter sense consumir-la; si no ho és, `sc.next()` es menja la brossa i el bucle torna a preguntar. Així el programa és **a prova de bombes**: no importa quantes vegades l'usuari escriga "hola" o "3.14", mai no saltarà la `InputMismatchException`.
 
 </details>
 

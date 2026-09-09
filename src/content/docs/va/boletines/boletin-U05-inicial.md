@@ -5,7 +5,7 @@ description: "Exercicis bàsics d'Algorísmica: fonaments"
 
 # 📝 Butlletí U05 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE i deixa que els teus bucles busquen, ordenen i calculen. L'ordinador mai no es cansa de recórrer un array: eres tu qui decidix com.
+> Sense solucions. Sense presses. Obri l'IDE i deixa que els teus bucles busquen, ordenen i calculen. L'ordinador mai no es cansa de recórrer un array: eres tu qui decideix com.
 
 ---
 

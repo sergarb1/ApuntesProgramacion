@@ -112,9 +112,9 @@ Posat a prova en 30 segons (les respostes estan amagades):
 <summary>🔄 Respostes</summary>
 
 1. L'algoritme és la **idea** (la seqüència de passos); el programa és la seua **materialització** en un llenguatge (Java, Python…).
-2. Perquè és **ambigu**: no definix una quantitat exacta, i dos persones l'interpretarien de manera diferent.
-3. Sí, un algoritme pot rebre **zero o més** entrades. Per exemple, "imprimix els nombres de l'1 al 10".
-4. Deixaria de ser un algoritme: incomplix la propietat de ser **finit**. Es convertiria en un malson en bucle.
+2. Perquè és **ambigu**: no defineix una quantitat exacta, i dos persones l'interpretarien de manera diferent.
+3. Sí, un algoritme pot rebre **zero o més** entrades. Per exemple, "imprimeix els nombres de l'1 al 10".
+4. Deixaria de ser un algoritme: incompleix la propietat de ser **finit**. Es convertiria en un malson en bucle.
 
 </details>
 

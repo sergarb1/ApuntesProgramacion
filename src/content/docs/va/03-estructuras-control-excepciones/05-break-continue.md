@@ -213,7 +213,7 @@ Pas a pas: de l'1 al 8, `continue` es salta els múltiples de 3 (3 i 6), i `brea
 
 1. Quina és la diferència entre `break` i `continue` en una frase?
 2. A què afecten per defecte en bucles anidats?
-3. Per a què servix una etiqueta?
+3. Per a què serveix una etiqueta?
 4. Per què és perillós el `continue` en un `while` si va abans de l'actualització?
 
 <details>

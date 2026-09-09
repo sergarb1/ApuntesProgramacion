@@ -134,7 +134,7 @@ Fixa't en la segona decisió: els ternaris es poden **encadenar** (un ternari di
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** en una expressió amb `&&` i `||`, pregunta sempre: *i si el primer ja decidix?* Eixe és el curtcircuit.
+> 🕶️ **Don Tip:** en una expressió amb `&&` i `||`, pregunta sempre: *i si el primer ja decideix?* Eixe és el curtcircuit.
 
 **Exercici: el detectiu de booleans**
 
@@ -154,7 +154,7 @@ System.out.println(n);
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix `true`, `true`, `false` i `11`.
+Imprimeix `true`, `true`, `false` i `11`.
 
 1. `a`: 10 és major que 5 **i** menor que 20 → **true**.
 2. `b`: 10 no és major que 15, així que Java avalua el `||` amb la segona part: `++n == 11` → incrementa `n` a 11 i compara: `11 == 11` → **true**. (El `||` només curtcircuita quan la primera és `true`; ací era `false`.)
@@ -176,8 +176,8 @@ Imprimix `true`, `true`, `false` i `11`.
 <summary>🔄 Respostes</summary>
 
 1. Un **`boolean`**: `true` o `false`.
-2. `&&` exigix que **totes** les condicions es complisquen; `||` es conforma amb **una sola**.
-3. Quan la primera condició ja decidix el resultat, Java **no avalua les altres**: amb `&&` si la primera és `false`, amb `||` si la primera és `true`.
+2. `&&` exigeix que **totes** les condicions es complisquen; `||` es conforma amb **una sola**.
+3. Quan la primera condició ja decideix el resultat, Java **no avalua les altres**: amb `&&` si la primera és `false`, amb `||` si la primera és `true`.
 4. `String resultado = edad >= 18 ? "major" : "menor";`
 
 </details>
@@ -187,7 +187,7 @@ Imprimix `true`, `true`, `false` i `11`.
 ## ✅ Resum en 3 frases
 
 1. Els **relacionals** (`==`, `!=`, `<`, `>`, `<=`, `>=`) comparen i retornen un `boolean`, i `=` mai no s'usa per a comparar.
-2. Els **lògics** (`&&`, `||`, `!`) combinen condicions i patixen **curtcircuit**: si la primera ja decidix, no miren les altres.
+2. Els **lògics** (`&&`, `||`, `!`) combinen condicions i pateixen **curtcircuit**: si la primera ja decideix, no miren les altres.
 3. El **ternari** (`condició ? A : B`) resumix una decisió de dos camins en una línia.
 
 > 🐛 **Vocabulari ràpid**
@@ -196,7 +196,7 @@ Imprimix `true`, `true`, `false` i `11`.
 > |---|---|
 > | Operador relacional | Compara dos valors i dona `true`/`false` |
 > | Operador lògic | Combina booleans: `&&`, `\|\|`, `!` |
-> | Curtcircuit | Deixar d'avaluar quan la primera condició ja decidix |
+> | Curtcircuit | Deixar d'avaluar quan la primera condició ja decideix |
 > | Ternari | `condició ? valor1 : valor2`, un if-else en una línia |
 > | Booleà | Tipus amb només dos valors: `true` o `false` |
 

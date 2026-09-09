@@ -55,7 +55,7 @@ public class ClientePOST {
 
 Dues novetats:
 
-- **`BodyPublishers.ofString(json)`** — el mirall del `BodyHandler`: convertix el teu `String` en el cos de la petició. N'hi ha `ofByteArray()`, `ofFile()`... i `ofInputStream()` per a casos rars.
+- **`BodyPublishers.ofString(json)`** — el mirall del `BodyHandler`: converteix el teu `String` en el cos de la petició. N'hi ha `ofByteArray()`, `ofFile()`... i `ofInputStream()` per a casos rars.
 - **`.header("Content-Type", "application/json")`** — sense esta capçalera, el servidor pot rebutjar la teua petició o interpretar mal el cos. JSON sense `Content-Type` és com enviar una carta sense remitent.
 
 > 💡 **Consell:** `HttpRequest.BodyPublishers` té mètodes per a enviar String, byte[], fitxers, etc. El més comú és `ofString()` per a JSON. I si el servidor respon `415`, eixe codi significa "Unsupported Media Type": quasi sempre és que has oblidat el `Content-Type`.
@@ -107,7 +107,7 @@ try {
 }
 ```
 
-> ⚠️ **Advertència:** moltes APIs públiques (GitHub, Twitter, etc.) exigixen un **token d'autenticació** en la capçalera `Authorization`. Sense ell, tens quotes molt baixes (rate limiting) o accés denegat. Si veus un `403`, probablement necessites registrar una aplicació i obtindre un token.
+> ⚠️ **Advertència:** moltes APIs públiques (GitHub, Twitter, etc.) exigeixen un **token d'autenticació** en la capçalera `Authorization`. Sense ell, tens quotes molt baixes (rate limiting) o accés denegat. Si veus un `403`, probablement necessites registrar una aplicació i obtindre un token.
 
 Les capçaleres més comunes que enviaràs:
 
@@ -116,7 +116,7 @@ Les capçaleres més comunes que enviaràs:
 | `Content-Type` | Tipus de dades que envies (`application/json`) |
 | `Accept` | Tipus de dades que esperes rebre |
 | `Authorization` | Token Bearer, Basic Auth, etc. |
-| `User-Agent` | Identifica la teua aplicació (moltes APIs ho exigixen) |
+| `User-Agent` | Identifica la teua aplicació (moltes APIs ho exigeixen) |
 | `Cache-Control` | Control de memòria cau |
 
 ---

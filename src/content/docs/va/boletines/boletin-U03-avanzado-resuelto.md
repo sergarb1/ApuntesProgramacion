@@ -67,7 +67,7 @@ public class MenuTenac {
 }
 ```
 
-El `do-while` garantix que el menú es mostre almenys una vegada. Mentres l'opció no siga 1 ni 2, el bucle insistix. L'usuari pot ser tot el tonto que vulga; el menú no es rendix.
+El `do-while` garanteix que el menú es mostre almenys una vegada. Mentres l'opció no siga 1 ni 2, el bucle insistix. L'usuari pot ser tot el tonto que vulga; el menú no es rendix.
 
 </details>
 
@@ -85,7 +85,7 @@ El `do-while` garantix que el menú es mostre almenys una vegada. Mentres l'opci
 ****
 ```
 
-En total **10 asteriscs** (1 + 2 + 3 + 4). El bucle interior (`col <= fila`) imprimix tants asteriscs com el número de fila. El cor dels bucles anidats: el interior depén de l'exterior.
+En total **10 asteriscs** (1 + 2 + 3 + 4). El bucle interior (`col <= fila`) imprimeix tants asteriscs com el número de fila. El cor dels bucles anidats: el interior depén de l'exterior.
 
 </details>
 
@@ -109,7 +109,7 @@ public class Escala {
 }
 ```
 
-El interior imprimix de l'1 al número de fila amb `print` (sense salt de línia); el `println()` buit salta en acabar cada fila. L'escala completa:
+El interior imprimeix de l'1 al número de fila amb `print` (sense salt de línia); el `println()` buit salta en acabar cada fila. L'escala completa:
 
 ```
 1
@@ -129,7 +129,7 @@ El interior imprimix de l'1 al número de fila amb `print` (sense salt de línia
 
 Taula de parells, en ordre d'execució:
 
-| i | j | Què passa? | Imprimix? |
+| i | j | Què passa? | Imprimeix? |
 |---|---|---|---|
 | 1 | 1 | `1*1=1 < 8` | `11` |
 | 1 | 2 | `j==2 && i>=3` → no; `1*2=2 < 8` | `12` |
@@ -209,7 +209,7 @@ public class SumaSentinella {
 }
 ```
 
-El `while` es repetix mentres el nombre no siga 0. El 0 és el **sentinella**: no es suma, només senyala el final. És el patró clàssic de lectura de dades amb `while`.
+El `while` es repeteix mentres el nombre no siga 0. El 0 és el **sentinella**: no es suma, només senyala el final. És el patró clàssic de lectura de dades amb `while`.
 
 </details>
 
@@ -234,7 +234,7 @@ public class Kata {
 }
 ```
 
-Un bucle que recorre els parells `{edat, handicap}` i un ternari amb la condició combinada `&&`: per a ser "Senior" cal tindre almenys 55 anys I un handicap major que 7. Tot el que no ho complix és "Open". Bucles, condicionals i ternaris de la unitat en una sola funció.
+Un bucle que recorre els parells `{edat, handicap}` i un ternari amb la condició combinada `&&`: per a ser "Senior" cal tindre almenys 55 anys I un handicap major que 7. Tot el que no ho compleix és "Open". Bucles, condicionals i ternaris de la unitat en una sola funció.
 
 </details>
 

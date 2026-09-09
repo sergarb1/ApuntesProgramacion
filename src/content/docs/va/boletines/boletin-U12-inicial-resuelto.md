@@ -152,7 +152,7 @@ public class Longitudes {
 }
 ```
 
-Dos trucs nous: `Arrays.stream(nombres)` convertix l'array (de la U04) en stream, i `map(String::length)` transforma cada `String` en la seua longitud, canviant el tipus del flux a `Stream<Integer>`. El `forEach` amb `System.out::println` és la terminal que imprimeix cada element.
+Dos trucs nous: `Arrays.stream(nombres)` converteix l'array (de la U04) en stream, i `map(String::length)` transforma cada `String` en la seua longitud, canviant el tipus del flux a `Stream<Integer>`. El `forEach` amb `System.out::println` és la terminal que imprimeix cada element.
 
 </details>
 

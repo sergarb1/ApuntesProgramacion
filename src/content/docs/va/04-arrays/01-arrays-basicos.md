@@ -97,7 +97,7 @@ numeros[4] = 50;
 numeros[5] = 60; // Index 5 out of bounds for length 5
 ```
 
-L'array té places del 0 al 4. Demanar la 5 és com intentar aparcar on no hi ha plaça. Java et respon amb `ArrayIndexOutOfBoundsException` i el teu programa mor a l'acte. És **la** excepció més típica d'esta unitat i la primera que quasi tothom patix.
+L'array té places del 0 al 4. Demanar la 5 és com intentar aparcar on no hi ha plaça. Java et respon amb `ArrayIndexOutOfBoundsException` i el teu programa mor a l'acte. És **la** excepció més típica d'esta unitat i la primera que quasi tothom pateix.
 
 > 📝 **Nota:** els índexs vàlids van de `0` a `length - 1`. L'últim element sempre és `arr[arr.length - 1]`. No t'ho penses dues voltes: memoritza-ho.
 

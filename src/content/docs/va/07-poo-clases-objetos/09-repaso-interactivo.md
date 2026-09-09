@@ -44,7 +44,7 @@ public class Main {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`Ñam, galleta de chocolate` i `Ñam, galleta de vainilla`** → Cada galeta guarda el seu sabor original, sempre. ❌
 2. **`Ñam, galleta de limón` i `Ñam, galleta de vainilla`** → ✅ Correcte! `g3 = g1` copia la referència, no la galeta: `g3` i `g1` són la mateixa galeta. Canviar el sabor amb `g3` ho canvia per a `g1`. `g2` és una altra galeta, independent.
@@ -61,7 +61,7 @@ public class Main {
 
 ## 🔥 Fireside Chat: Classe vs Objecte
 
-> *Dos veterans del motle i la galeta discutixen al costat de la safata del forn.*
+> *Dos veterans del motle i la galeta discuteixen al costat de la safata del forn.*
 
 **Classe:** — Mira, jo soc el motle. Sense mi, els teus objectes serien amorfs. Jo definisc quins atributs i mètodes tenen tots els meus objectes. Soc la constitució del meu poble.
 
@@ -69,7 +69,7 @@ public class Main {
 
 **Classe:** — I quants ciutadans com tu puc produir? Milers. Jo soc únic, tu eres reproduïble. Eres una còpia, un clon, un *vulgar* duplicat.
 
-**Objecte:** — Un duplicat amb vida pròpia, sí. Tu definixes el plànol, però jo soc l'edifici. Ningú viu en un plànol. I et recorde: sense `new`, tu no ets més que teoria de fitxer.
+**Objecte:** — Un duplicat amb vida pròpia, sí. Tu defineixes el plànol, però jo soc l'edifici. Ningú viu en un plànol. I et recorde: sense `new`, tu no ets més que teoria de fitxer.
 
 **Classe:** — Sense mi, `new` no tindria res a fabricar. Ens necessitem. Com el tallagalletas i la galeta.
 
@@ -83,7 +83,7 @@ public class Main {
 
 Endevina quin concepte de la unitat soc:
 
-1. **Soc el motle que definix atributs i mètodes, però no soc cap cosa concreta.**
+1. **Soc el motle que defineix atributs i mètodes, però no soc cap cosa concreta.**
 2. **Soc la galeta: una cosa concreta, amb valors propis, vivint en la memòria.**
 3. **Soc el mètode especial que s'executa amb cada `new` perquè l'objecte nasca ben preparat.**
 4. **Soc la referència que no apunta a cap objecte; usar-me provoca l'error més famós de Java.**
@@ -112,9 +112,9 @@ Endevina quin concepte de la unitat soc:
 
 *I després està el clàssic:* escriuen un constructor amb paràmetres... i criden a `new Clase()` sense arguments. *Però si tu mateix has borrat el constructor buit!* Quan escrius qualsevol constructor, el buit desapareix. És com llevar la porta de ta casa i després intentar entrar per la porta.
 
-*I el colmo dels colmos:* `Galleta g;` i després `g.sabor = "chocolate"`. Però si `g` no apunta a RES! No has fet `new`. Això és `NullPointerException` en l'acte. És com intentar posar-li un collaret a un gos que no existix.
+*I el colmo dels colmos:* `Galleta g;` i després `g.sabor = "chocolate"`. Però si `g` no apunta a RES! No has fet `new`. Això és `NullPointerException` en l'acte. És com intentar posar-li un collaret a un gos que no existeix.
 
-**La lliçó:** abans d'acusar Java de "odiar-te", repassa el trio sagrat: **vaig fer `new`? el constructor existix amb els arguments que passe? la referència és `null`?** El 90% dels errors d'esta unitat s'arreglen amb estes tres preguntes. El compilador no t'odia: t'està passant les respostes de l'examen.
+**La lliçó:** abans d'acusar Java de "odiar-te", repassa el trio sagrat: **vaig fer `new`? el constructor existeix amb els arguments que passe? la referència és `null`?** El 90% dels errors d'esta unitat s'arreglen amb estes tres preguntes. El compilador no t'odia: t'està passant les respostes de l'examen.
 
 ---
 
@@ -124,7 +124,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 
 1. Quants objectes crea `Galleta a = new Galleta(); Galleta b = a;`?
    - a) 2   b) 1
-2. Què imprimix `System.out.println(new Galleta("chocolate").sabor);`?
+2. Què imprimeix `System.out.println(new Galleta("chocolate").sabor);`?
    - a) `chocolate`   b) `null`
 3. `Persona p;` sense `new`. Quant val `p`?
    - a) `0`   b) `null`
@@ -148,7 +148,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Durada estimada:** 30 minuts
 > **Eina:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan el arregles.
+**L'escenari:** copia este programa i fes que funcione. Té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan el arregles.
 
 ```java
 public class Coche
@@ -185,17 +185,17 @@ public class Coche
 1. Hi ha algun `;` que falte? *no → seguix buscant.*
    <details><summary>I si encara estic atascat?</summary>Comprova també les claus `{}`: la classe necessita la seua obertura.</details>
 2. Compila ja? *no → mira el missatge d'error i els arguments del constructor.*
-   <details><summary>I si encara estic atascat?</summary>`new Coche()` no existix: l'únic constructor demana `(String, int)`. És l'error "el buit va desaparéixer".</details>
+   <details><summary>I si encara estic atascat?</summary>`new Coche()` no existeix: l'únic constructor demana `(String, int)`. És l'error "el buit va desaparéixer".</details>
 3. Executa però la velocitat ix rara? *És l'error de lògica: el signe del mètode.*
    <details><summary>Solució final</summary>
 
 Els **3 errors de compilació**:
 
 1. Falta la `{` d'obertura de la classe després de `Coche`.
-2. `new Coche()` no coincidix amb el constructor: l'únic és `Coche(String, int)`. En escriure un constructor amb paràmetres, el buit desapareix.
+2. `new Coche()` no coincideix amb el constructor: l'únic és `Coche(String, int)`. En escriure un constructor amb paràmetres, el buit desapareix.
 3. Falta el `;` al final de `c.mostrar()`.
 
-L'**error de lògica**: `velocidad -= inc` **resta** en lloc de sumar. Compila i executa perfectament, però el cotxe accelera "cap arrere": amb la velocitat inicial a 0 i accelerar 50, imprimix `Seat va a -50` en lloc de `Seat va a 50`. Un signe separava el teu cotxe de la veritat.
+L'**error de lògica**: `velocidad -= inc` **resta** en lloc de sumar. Compila i executa perfectament, però el cotxe accelera "cap arrere": amb la velocitat inicial a 0 i accelerar 50, imprimeix `Seat va a -50` en lloc de `Seat va a 50`. Un signe separava el teu cotxe de la veritat.
 
 ```java
 public class Coche {
@@ -243,7 +243,7 @@ Eixida correcta: `Seat va a 50`. Amb la versió trencada, una vegada arreglats e
 
 ## 🧠 Atreveix-te a Pensar
 
-1. **Sense executar:** què imprimix este programa?
+1. **Sense executar:** què imprimeix este programa?
 
 ```java
 public class Cuenta {
@@ -266,7 +266,7 @@ public class Main {
 ```
 
 2. **El constructor perdut:** en l'exemple `Galleta` del punt 2 (sense constructor), què li passa al codi si afegixes `public Galleta(String sabor)` i deixes `new Galleta()` en un altre lloc?
-3. **El detectiu del heap:** el teu programa imprimix `null` quan esperaves un nom. Quina eina uses i què mires primer?
+3. **El detectiu del heap:** el teu programa imprimeix `null` quan esperaves un nom. Quina eina uses i què mires primer?
 4. **Vertader o fals:** "si un mètode rep un objecte i dins del mètode faig `parametro = null`, l'objecte original desapareix".
 
 <details>
@@ -292,7 +292,7 @@ Horitzontal:
 
 Vertical:
 2. Paraula que usa l'objecte per a parlar de si mateix (4 lletres)
-4. El motle que definix atributs i mètodes (5 lletres)
+4. El motle que defineix atributs i mètodes (5 lletres)
 ```
 
 <details>
@@ -314,7 +314,7 @@ Vertical:
 3. **"Per què `String` es compara amb `equals` i no amb `==`?"**
 4. **"Java passa els arguments per valor o per referència? Justifica amb un exemple d'objecte."**
 5. **"Si dos variables apunten al mateix objecte i una li canvia un atribut, què veu l'altra?"**
-6. **"Per a què servix sobrecarregar un constructor i com l'encadenes amb `this`?"**
+6. **"Per a què serveix sobrecarregar un constructor i com l'encadenes amb `this`?"**
 
 ---
 

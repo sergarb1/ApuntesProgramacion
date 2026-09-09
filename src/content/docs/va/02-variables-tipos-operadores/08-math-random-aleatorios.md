@@ -11,7 +11,7 @@ description: El casino de Java, amb daus i fórmules per a no fer trampa 🎲
 
 ## 📬 La idea en una frase
 
-> **`Math.random()` retorna un nombre aleatori entre `0.0` (inclòs) i `1.0` (exclòs), i amb la fórmula `(int)(Math.random() * (max - min + 1)) + min` el convertixes en un dau, una loteria o qualsevol nombre que necessites.**
+> **`Math.random()` retorna un nombre aleatori entre `0.0` (inclòs) i `1.0` (exclòs), i amb la fórmula `(int)(Math.random() * (max - min + 1)) + min` el converteixes en un dau, una loteria o qualsevol nombre que necessites.**
 
 Els teus programes ja escolten (Scanner) i calculen (operadors). Ara jugaran: als daus, a la loteria, a endevinar nombres. I per a això necessites el casino de Java: `Math.random()`.
 
@@ -78,7 +78,7 @@ int maximo = Math.max(3, 9);            // 9
 int minimo = Math.min(3, 9);            // 3
 ```
 
-> 💡 **Detall pràctic:** tots estos són **mètodes estàtics** de la classe `Math` (i `Math.PI` una constant estàtica): es criden amb `Math.nombre`, sense crear objectes. A l'examen, la pregunta típica és "com redonix 4.6 sense truncar-lo?" → `Math.round(4.6)`.
+> 💡 **Detall pràctic:** tots estos són **mètodes estàtics** de la classe `Math` (i `Math.PI` una constant estàtica): es criden amb `Math.nombre`, sense crear objectes. A l'examen, la pregunta típica és "com redoneix 4.6 sense truncar-lo?" → `Math.round(4.6)`.
 
 ---
 
@@ -121,7 +121,7 @@ Cada execució dona un resultat distint: això és el divertit (i a voltes frust
 
 > 🕶️ **Don Tip:** recorda sempre *truncar abans de sumar*: `(int)(... * 6) + 1`, mai `(int)(... * 6 + 1)`. Si sumes abans del casting, el rang canvia i els teus daus mentiran.
 
-**Exercici: el dau que mentix**
+**Exercici: el dau que menteix**
 
 Quin rang de nombres produïx cadascuna d'estes tres línies? Quina és la que dona un dau de veritat (1 a 6)?
 
@@ -136,7 +136,7 @@ int c = (int) (Math.random() * 7);
 
 - `a`: `Math.random() * 6` va de `0.0` a `5.999...` → després del `(int)`, **0 a 5**.
 - `b`: la línia anterior més `1` → **1 a 6**. ✅ És el dau de veritat.
-- `c`: `Math.random() * 7` va de `0.0` a `6.999...` → després del `(int)`, **0 a 6** (¡set cares, i el 0 no existix en un dau!).
+- `c`: `Math.random() * 7` va de `0.0` a `6.999...` → després del `(int)`, **0 a 6** (¡set cares, i el 0 no existeix en un dau!).
 
 La diferència entre `b` i `c` és subtil però decisiva: la `+ 1` ha d'anar **fora** del casting.
 

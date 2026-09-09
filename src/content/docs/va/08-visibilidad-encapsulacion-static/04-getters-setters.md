@@ -88,7 +88,7 @@ Si algú intenta `termometro.setTemperatura(-500)`, el setter el frena: el term�
 
 ## 🔒 Getter sense setter: atributs immutables
 
-I si vols que alguna cosa es lligca però **no es puga canviar**? Doncs poses getter i t'estalvies el setter. Punt. Així aconseguixes atributs de només lectura:
+I si vols que alguna cosa es lligca però **no es puga canviar**? Doncs poses getter i t'estalvies el setter. Punt. Així aconsegueixes atributs de només lectura:
 
 ```java
 public class Tarjeta {
@@ -129,7 +129,7 @@ No. Una altra opció molt comuna és **llançar una excepció** (`IllegalArgumen
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** pensa en el setter com un porter de discoteca: no deixa entrar els borratxos (valors invàlids). Un bon setter convertix l'error d'un usuari (o del teu futur jo) en una cosa controlada, no en un objecte trencat.
+> 🕶️ **Don Tip:** pensa en el setter com un porter de discoteca: no deixa entrar els borratxos (valors invàlids). Un bon setter converteix l'error d'un usuari (o del teu futur jo) en una cosa controlada, no en un objecte trencat.
 
 **Exercici: l'edat vigilada**
 
@@ -172,7 +172,7 @@ public void setEdad(int edad) {
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Com es diu el getter de `boolean activo`?
-2. Per a què servix validar en un setter?
+2. Per a què serveix validar en un setter?
 3. Quan uses un atribut només amb getter i sense setter?
 4. Què fa `this` en `this.nombre = nombre`?
 

@@ -252,7 +252,7 @@ public class TestPagaments {
 }
 ```
 
-Tres formes de pagar, un sol contracte. Cada classe guarda la seua lògica d'aprovació i el seu saldo intern: la interfície només exigix el mètode. La transferència descompta a més la seua comissió fixa d'1 €, que és la "taxa" del banc.
+Tres formes de pagar, un sol contracte. Cada classe guarda la seua lògica d'aprovació i el seu saldo intern: la interfície només exigeix el mètode. La transferència descompta a més la seua comissió fixa d'1 €, que és la "taxa" del banc.
 
 </details>
 
@@ -627,7 +627,7 @@ public class Cafeteria {
 }
 ```
 
-L'esquelet (`preparar()`) és `final`: ningú no pot reordenar els passos. Les subclasses només personalitzen els dos detalls variables. El template method garantix que l'algoritme sempre s'execute en l'ordre correcte, passe el que passe.
+L'esquelet (`preparar()`) és `final`: ningú no pot reordenar els passos. Les subclasses només personalitzen els dos detalls variables. El template method garanteix que l'algoritme sempre s'execute en l'ordre correcte, passe el que passe.
 
 </details>
 
@@ -734,6 +734,6 @@ public class Circuit {
 }
 ```
 
-Cada subclasse definix la seua despesa amb una constant i el seu `moure()`, que torna `true` només si va poder moure's. El `main` usa només `Vehicle`: el `while (v.moure())` pregunta al mateix vehicle i el polimorfisme fa la resta. Aquesta manera d'escriure el bucle evita el problema de comprovar el combustible des de fora (que deixaria un bucle infinit quan el vehicle no pot moure's però encara li queda combustible). Si demà arriba una `Bicicleta` (despesa 0), entra sense tocar el circuit. L'abstracció paga la casa.
+Cada subclasse defineix la seua despesa amb una constant i el seu `moure()`, que torna `true` només si va poder moure's. El `main` usa només `Vehicle`: el `while (v.moure())` pregunta al mateix vehicle i el polimorfisme fa la resta. Aquesta manera d'escriure el bucle evita el problema de comprovar el combustible des de fora (que deixaria un bucle infinit quan el vehicle no pot moure's però encara li queda combustible). Si demà arriba una `Bicicleta` (despesa 0), entra sense tocar el circuit. L'abstracció paga la casa.
 
 </details>

@@ -39,7 +39,7 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`3 3`** → El `put("Ana", m.get("Ana") + 2)` afig una altra entrada i el mapa en té 3. ❌
 2. **`5 2`** → ✅ Correcte! `Ana` passa de 3 a 5 (3 + 2), `Bob` seguix en 5, el mapa té 2 entrades, i el TreeMap de claus numèriques té `{5 → Ana, 5 → Bob}` on el segon `put` sobreescriu: primera clau = 5.
@@ -83,7 +83,7 @@ Endevina quin concepte de la unitat soc:
 1. **Soc el comodí que significa "qualsevol tipus" i limite a una jerarquia quan li pose `extends`.**
 2. **Soc l'operador peresós que evita repetir el tipus dos vegades.**
 3. **Soc el mag que borra els genèrics quan el codi es compila.**
-4. **Soc el mapa rapidíssim que no garantix cap ordre.**
+4. **Soc el mapa rapidíssim que no garanteix cap ordre.**
 5. **Soc el mapa que ordena les claus automàticament.**
 6. **Soc el mètode que funciona per a qualsevol tipus gràcies al seu `<T>` propi.**
 
@@ -109,7 +109,7 @@ Endevina quin concepte de la unitat soc:
 
 *I després està el que pregunta "per què no ordena el meu HashMap?"* I tant que no ordena! És un HashMap, el rei de la velocitat, no un bibliotecari. Si vols ordre, `TreeMap`. Si vols ordre d'arribada, `LinkedHashMap`. Cada mapa amb el seu superpoder.
 
-*I el colmo dels colmos:* el que escriu `Caja<int>` i espera que compile. No es pot! Els genèrics només accepten objectes: usa `Integer` i deixa que l'autoboxing faça la seua màgia. I no em vingues amb el `get` d'una clau que no existix: torna `null`. Usa `getOrDefault`, que per a això està.
+*I el colmo dels colmos:* el que escriu `Caja<int>` i espera que compile. No es pot! Els genèrics només accepten objectes: usa `Integer` i deixa que l'autoboxing faça la seua màgia. I no em vingues amb el `get` d'una clau que no existeix: torna `null`. Usa `getOrDefault`, que per a això està.
 
 **La lliçó:** abans d'acusar Java de "odiar-te", repassa el trio sagrat de la unitat: **estic sobrescriuent una clau amb `put`? he triat el mapa amb l'ordre que necessite? estic guardant un primitiu on només caben objectes?** El compilador no t'odia: t'està passant les respostes de l'examen.
 
@@ -137,7 +137,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 
 1. **b)** — Les claus d'un Map són úniques; `put` sobreescriu.
 2. **b)** — `int` és primitiu; s'usa `Integer` amb autoboxing.
-3. **a)** — `get` torna `null` si la clau no existix (no llança excepció).
+3. **a)** — `get` torna `null` si la clau no existeix (no llança excepció).
 4. **b)** — `TreeMap` ordena per clau; `HashMap` no ordena res.
 5. **b)** — `? extends Number` és de només lectura (PECS: Producer Extends).
 6. **a)** — El type erasure borra els genèrics en el bytecode: tots dos són `ArrayList`.
@@ -151,7 +151,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
+**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
 
 ```java
 import java.util.*;
@@ -198,7 +198,7 @@ public class Estadisticas {
    1. Falta el `;` al final de `suma += n.doubleValue()`.
    2. Falta el `;` al final de `resultado.put(...)`.
 
-   L'**error de lògica**: no existix. `media` recorre la llista, acumula amb `doubleValue()` (funciona per a qualsevol `Number`) i dividix entre la grandària: `(6+8+5+9)/4 = 7.0`. Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat. El resultat correcte és `7.0`.
+   L'**error de lògica**: no existeix. `media` recorre la llista, acumula amb `doubleValue()` (funciona per a qualsevol `Number`) i divideix entre la grandària: `(6+8+5+9)/4 = 7.0`. Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat. El resultat correcte és `7.0`.
 
    ```java
    import java.util.*;
@@ -267,15 +267,15 @@ public class Acertijo {
 
 3. **El detectiu del erasure:** per què no pots escriure `new T()` dins d'una classe genèrica, encara que t'hages passat pel `<T>`?
 
-4. **Vertader o fals:** "un `HashMap` garantix l'ordre en què introduïxes les claus".
+4. **Vertader o fals:** "un `HashMap` garanteix l'ordre en què introduïxes les claus".
 
 <details>
 <summary>💡 Solucions</summary>
 
 1. **`2 3`**. "casa" té c=1, a=2, s=1. `get("a")` = 2 i `size()` = 3 (tres claus diferents: c, a, s).
 2. Un **`TreeMap<String, Integer>`** (claus ordenades soles) recorregut amb `entrySet()`: cada entrada és la paraula i la seua comptada.
-3. Perquè en compilació Java no sap què és `T`, i en runtime el type erasure l'ha borrat: no hi ha manera d'instanciar un tipus que ja no existix.
-4. **Fals.** `HashMap` no garantix ordre. Per a ordre d'inserció usa `LinkedHashMap`; per a ordre natural, `TreeMap`.
+3. Perquè en compilació Java no sap què és `T`, i en runtime el type erasure l'ha borrat: no hi ha manera d'instanciar un tipus que ja no existeix.
+4. **Fals.** `HashMap` no garanteix ordre. Per a ordre d'inserció usa `LinkedHashMap`; per a ordre natural, `TreeMap`.
 
 </details>
 
@@ -287,8 +287,8 @@ public class Acertijo {
 Horizontal:
 1. Mapa que ordena les claus automàticament (7 lletres)
 3. Operador peresós que inferix el tipus en `new ArrayList<>()` (7 lletres)
-5. Mètode que torna un valor per defecte si la clau no existix (12 lletres)
-6. Mapa rapidíssim que no garantix ordre (7 lletres)
+5. Mètode que torna un valor per defecte si la clau no existeix (12 lletres)
+6. Mapa rapidíssim que no garanteix ordre (7 lletres)
 
 Vertical:
 2. Procés que borra els genèrics en compilar (12 lletres)
@@ -328,7 +328,7 @@ No. `Map` no hereta de la interfície `Collection` (encara que viu en `java.util
 
 > ❓ **Els genèrics ralentitzen el meu programa?**
 
-No. Java aplica **type erasure**: el compilador borra tota la informació genèrica i la convertix en castings normals. En runtime no hi ha genèrics, així que no hi ha cost extra. És només sucre sintàctic en compilació.
+No. Java aplica **type erasure**: el compilador borra tota la informació genèrica i la converteix en castings normals. En runtime no hi ha genèrics, així que no hi ha cost extra. És només sucre sintàctic en compilació.
 
 ---
 
@@ -340,7 +340,7 @@ Usa el **paràmetre de tipus `<T>`** quan necessites el tipus més d'una vegada 
 
 ## 🎬 Post-Crèdits
 
-La programadora acaba la seua agenda telefònica: un `HashMap<String, String>` amb nom → número, un `TreeMap` que li ordena els contactes alfabèticament i un `getOrDefault` que evita els `null` quan busca algú que no existix. Tot perfecte... fins que tanca el programa i la seua agenda desapareix.
+La programadora acaba la seua agenda telefònica: un `HashMap<String, String>` amb nom → número, un `TreeMap` que li ordena els contactes alfabèticament i un `getOrDefault` que evita els `null` quan busca algú que no existeix. Tot perfecte... fins que tanca el programa i la seua agenda desapareix.
 
 S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 

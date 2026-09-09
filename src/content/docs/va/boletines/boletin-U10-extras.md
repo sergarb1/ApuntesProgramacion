@@ -23,7 +23,7 @@ Et donen una cadena de text separada per espais. Escriu una funció que la divid
 <details>
 <summary>💡 Pista</summary>
 
-El mètode `String.split(" ")` ja et torna un `String[]`. Però com que estem a la unitat de col·leccions: convertix-lo en una `List<String>` amb `Arrays.asList(...)` o guarda les paraules amb un bucle en un `ArrayList<String>`.
+El mètode `String.split(" ")` ja et torna un `String[]`. Però com que estem a la unitat de col·leccions: converteix-lo en una `List<String>` amb `Arrays.asList(...)` o guarda les paraules amb un bucle en un `ArrayList<String>`.
 
 </details>
 
@@ -201,7 +201,7 @@ public class Kata {
 }
 ```
 
-El `HashSet` convertix la cerca en O(1): preguntar "està este número per a esborrar?" és instantani encara que `b` siga enorme. Amb un array al seu lloc, cada `contains` seria un recorregut lineal complet. Per això esta kata es resol amb col·leccions, no amb més arrays.
+El `HashSet` converteix la cerca en O(1): preguntar "està este número per a esborrar?" és instantani encara que `b` siga enorme. Amb un array al seu lloc, cada `contains` seria un recorregut lineal complet. Per això esta kata es resol amb col·leccions, no amb més arrays.
 
 </details>
 

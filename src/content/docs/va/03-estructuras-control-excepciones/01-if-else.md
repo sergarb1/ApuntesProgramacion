@@ -86,7 +86,7 @@ if (edat >= 18) {
 }
 ```
 
-> ⚠️ **Advertència:** no convertixques els teus programes en les Torres Kio. Més de 3 nivells d'anidament és senyal que estàs fent les coses estrany: en la U05 aprendràs a aplanar-ho.
+> ⚠️ **Advertència:** no converteixques els teus programes en les Torres Kio. Més de 3 nivells d'anidament és senyal que estàs fent les coses estrany: en la U05 aprendràs a aplanar-ho.
 
 ---
 
@@ -152,7 +152,7 @@ Entra, però amb el teu acompanyant.
 
 **Exercici: el semàfor confús**
 
-Sense executar, calcula què imprimix este programa:
+Sense executar, calcula què imprimeix este programa:
 
 ```java
 public class Semafor {
@@ -178,7 +178,7 @@ public class Semafor {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`Aprovat`**. L'ordre està invertit: com que el primer `if` demana `nota >= 5` i 8 ho complix, Java entra ací i no mira les altres condicions, encara que 8 també compliria `nota >= 7` i `nota >= 9`. Les condicions correctes anirien de la més exigent (9) a la més permissiva (5). La lliçó: **el primer `if` que es complix guanya**, encara que no siga el que volies.
+Imprimeix **`Aprovat`**. L'ordre està invertit: com que el primer `if` demana `nota >= 5` i 8 ho compleix, Java entra ací i no mira les altres condicions, encara que 8 també compliria `nota >= 7` i `nota >= 9`. Les condicions correctes anirien de la més exigent (9) a la més permissiva (5). La lliçó: **el primer `if` que es compleix guanya**, encara que no siga el que volies.
 
 </details>
 
@@ -215,10 +215,10 @@ Posat a prova en 30 segons (les respostes estan amagades):
 >
 > | Terme | Idea general |
 > |---|---|
-> | Condició | Expressió booleana que decidix: `edat >= 18` |
+> | Condició | Expressió booleana que decideix: `edat >= 18` |
 > | Branca | Cada un dels camins possibles (`if`, `else`) |
 > | Anidar | Ficar un `if` dins d'un altre `if` |
 > | Ternari | `condició ? valor1 : valor2`, un if-else en una línia |
-> | Curtcircuit | Java deixa d'avaluar quan la primera condició ja decidix |
+> | Curtcircuit | Java deixa d'avaluar quan la primera condició ja decideix |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/03-estructuras-control-excepciones) · **Anterior:** [Índex de la unitat](/ApuntesProgramacion/va/03-estructuras-control-excepciones) · **Següent:** [02 · switch](/ApuntesProgramacion/va/03-estructuras-control-excepciones/02-switch)

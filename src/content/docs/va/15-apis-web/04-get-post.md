@@ -117,7 +117,7 @@ Un formulari envia `nombre=Ana&edad=25` per POST a `/procesar`. Amb l'`extraerPa
 <summary>🔄 Solució</summary>
 
 1. `"25"`. El bucle partix `"nombre=Ana&edad=25"` per `&`, troba el parell `edad=25` i torna `"25"`.
-2. `null`. No existix cap parell la clau del qual siga `ciudad`.
+2. `null`. No existeix cap parell la clau del qual siga `ciudad`.
 3. `null`, gràcies a l'`if (datos == null) return null;` de la primera línia. Per això sempre es comprova abans d'usar `split`.
 
 </details>

@@ -1,9 +1,9 @@
 ---
 title: "08 — Be the Code: dissenya la teua classe"
-description: "Tanca la pàgina, obri l'editor i dissenya una classe completa de principi a fi (o patix amb honor) 🕶️"
+description: "Tanca la pàgina, obri l'editor i dissenya una classe completa de principi a fi (o pateix amb honor) 🕶️"
 ---
 
-<p><small>Tanca la pàgina, obri l'editor i dissenya una classe completa de principi a fi (o patix amb honor) 🕶️</small></p>
+<p><small>Tanca la pàgina, obri l'editor i dissenya una classe completa de principi a fi (o pateix amb honor) 🕶️</small></p>
 
 > 🗺️ **Estàs en:** 🏗️ **U07 · POO: Classes i Objectes** → 08 · Be the Code: dissenya la teua classe
 
@@ -53,7 +53,7 @@ El compte necessita tres comportaments:
 
 - `ingresar(double cantidad)`: suma al saldo. Hauria de rebutjar quantitats negatives (qui ingressa -50 €?).
 - `retirar(double cantidad)`: resta al saldo, però **sense deixar-lo negatiu**. Si no hi ha saldo suficient, no retira i avisa.
-- `mostrar()`: imprimix "Titular: X | Saldo: Y €".
+- `mostrar()`: imprimeix "Titular: X | Saldo: Y €".
 
 Escriu cada mètode amb la seua firma i la seua lògica. Recorda: els mètodes que només fan coses són `void`; si algun necessitara retornar alguna cosa, usaria `return`.
 
@@ -153,14 +153,14 @@ public class Coche {
 }
 ```
 
-> 🕶️ **Don Tip:** executa-ho amb `new Coche("Seat")` i mira què imprimix `mostrar()`. Després revisa el constructor amb lupa.
+> 🕶️ **Don Tip:** executa-ho amb `new Coche("Seat")` i mira què imprimeix `mostrar()`. Després revisa el constructor amb lupa.
 
 <details>
 <summary>🔄 Solució del lío</summary>
 
 1. **El constructor es queda sense inicialitzar l'atribut**: `marca = marca` assigna el paràmetre al paràmetre (sense `this`, guanya el paràmetre). L'atribut `marca` queda en `null`. Ha de ser `this.marca = marca`.
 2. **La velocitat mai no s'inicialitza**: Java la deixa en 0 per defecte, però això és dependre del regal. Un constructor ben educat posaria `this.velocidad = 0` (o millor, un constructor que la reba).
-3. **El `main` no existix**: la classe no té cap prova. La classe compila, però ningú no pot executar-la per a vore si funciona. Tota classe sense `main`... i sense un altre programa que l'use, és una classe que viu en l'ombra.
+3. **El `main` no existeix**: la classe no té cap prova. La classe compila, però ningú no pot executar-la per a vore si funciona. Tota classe sense `main`... i sense un altre programa que l'use, és una classe que viu en l'ombra.
 
 La lliçó: **el constructor és el que "bateja" els atributs, i sense un `main` (o un programa que instancie) la teua classe és només teoria**. Els tres errors típics del novell en una sola classe.
 

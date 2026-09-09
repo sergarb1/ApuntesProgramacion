@@ -11,7 +11,7 @@ description: "L'aparcament que creix sol: ArrayList, la família java.util i per
 
 ## 📬 La idea en una frase
 
-> **ArrayList és un array amb superpoders: creix sol, s'encongix sol i porta mètodes llestos (`add`, `get`, `remove`, `contains`...) en comptes d'obligar-te a escriure cada bucle a mà.**
+> **ArrayList és un array amb superpoders: creix sol, s'encongeix sol i porta mètodes llestos (`add`, `get`, `remove`, `contains`...) en comptes d'obligar-te a escriure cada bucle a mà.**
 
 En la U04 vas vore els arrays: grandària fixa, accés per índex i molt treball manual. Va arribar el moment que estaven esperant: l'aparcament s'ha quedat petit i necessites alguna cosa que cresca. Ací comença la unitat de les col·leccions i, probablement, la ferramenta que més usaràs en la teua vida com a programador o programadora.
 
@@ -40,7 +40,7 @@ Funciona, però és tediós. I si a més has d'esborrar un element del mig, és 
 
 ## 🎓 El Java Collections Framework (JCF)
 
-Per a això existix el **JCF**: una família de classes i interfícies en `java.util` que gestionen grups d'objectes com si foren de goma. L'arbre de la família comença així:
+Per a això existeix el **JCF**: una família de classes i interfícies en `java.util` que gestionen grups d'objectes com si foren de goma. L'arbre de la família comença així:
 
 ```
 Collection (interfície)
@@ -197,7 +197,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. Quin mètode usa ArrayList per a saber la seua grandària: `length`, `length()` o `size()`?
 2. Per què no es pot fer `ArrayList<int>`?
 3. Què esborra `lista.remove(2)` en un `ArrayList<Integer>`: l'índex 2 o el número 2?
-4. Per a què servix declarar `List<String> x = new ArrayList<>()` en comptes de `ArrayList<String> x`?
+4. Per a què serveix declarar `List<String> x = new ArrayList<>()` en comptes de `ArrayList<String> x`?
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -213,7 +213,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. **ArrayList** és una llista dinàmica: creix sol, s'encongix sol i porta mètodes (`add`, `get`, `remove`, `contains`, `size`) per a no reinventar la roda.
+1. **ArrayList** és una llista dinàmica: creix sol, s'encongeix sol i porta mètodes (`add`, `get`, `remove`, `contains`, `size`) per a no reinventar la roda.
 2. Pertany al **Java Collections Framework** (`java.util`), una família de llistes, conjunts i cues amb mètodes comuns.
 3. No guarda **primitius**: usa les classes wrapper (`Integer`, `Double`...) amb autoboxing automàtic, i compte amb la diferència entre `remove(índex)` i `remove(objecte)`.
 

@@ -150,7 +150,7 @@ Imprimeix: `Ataca con espada`, `Lanza hechizo`, `¡Y usa ambas!`. La sintaxi `In
 
 ## 🥊 EL RING: extends vs implements
 
-Dos paraules clau discutixen sobre qui és més important.
+Dos paraules clau discuteixen sobre qui és més important.
 
 **extends:** «Jo soc l'herència pura. Codi reutilitzat, una jerarquia clara. `Perro extends Animal`, `Coche extends Vehiculo`. ¡Soc la base de la POO!»
 
@@ -259,7 +259,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quina paraula usa una classe per a signar un contracte?
 2. Quantes classes pot estendre i quantes interfícies pot implementar una classe?
-3. Què són els mètodes `default` i per a què servixen?
+3. Què són els mètodes `default` i per a què serveixen?
 4. Quan tries una interfície en comptes d'una classe abstracta?
 
 <details>
@@ -268,7 +268,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. `implements`: `class Cancion implements Reproducible`.
 2. Una sola classe (extends), però diverses interfícies (implements).
 3. Mètodes amb implementació per defecte en una interfície: permeten evolucionar el contracte sense trencar les implementacions existents.
-4. Quan definixes una capacitat ("pot-fer") reutilitzable, no una jerarquia amb codi compartit. I si necessites herència múltiple de contractes, la interfície és l'única via.
+4. Quan defineixes una capacitat ("pot-fer") reutilitzable, no una jerarquia amb codi compartit. I si necessites herència múltiple de contractes, la interfície és l'única via.
 
 </details>
 

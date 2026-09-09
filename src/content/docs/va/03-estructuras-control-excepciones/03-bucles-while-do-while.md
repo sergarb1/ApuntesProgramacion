@@ -13,7 +13,7 @@ description: Repetir sense copiar i enganxar, fins que una condició diga prou �
 
 > **Un bucle és una cinta de córrer: executa el mateix bloc una vegada i una altra mentre la condició siga `true`.**
 
-T'imagines escriure "imprimix de l'1 al 100" amb cent `println`? Copiar i enganxar és pecat. Els bucles fan la faena bruta per tu: repetixen un bloc fins que els dius prou.
+T'imagines escriure "imprimeix de l'1 al 100" amb cent `println`? Copiar i enganxar és pecat. Els bucles fan la faena bruta per tu: repeteixen un bloc fins que els dius prou.
 
 ---
 
@@ -21,7 +21,7 @@ T'imagines escriure "imprimix de l'1 al 100" amb cent `println`? Copiar i enganx
 
 ```java
 while (condicio) {
-    // bloc que es repetix
+    // bloc que es repeteix
 }
 ```
 
@@ -56,7 +56,7 @@ while (true) {
 }
 ```
 
-Este programa imprimiria "Socors" fins que l'univers es congele. En l'IDE, el botó de parar (🟥) és el teu millor amic. Per què existix `while (true)`? Perquè a vegades vols un bucle "per sempre" que es trenque a l'interior amb `break` (ja ho veuràs en el punt 5).
+Este programa imprimiria "Socors" fins que l'univers es congele. En l'IDE, el botó de parar (🟥) és el teu millor amic. Per què existeix `while (true)`? Perquè a vegades vols un bucle "per sempre" que es trenque a l'interior amb `break` (ja ho veuràs en el punt 5).
 
 > 💡 **Detall pràctic:** la sentència sentinella. Un clàssic és llegir dades fins que l'usuari escriga "eixir":
 
@@ -96,7 +96,7 @@ do {
 System.out.println("Has triat l'opció " + opcio);
 ```
 
-Ací el menú es mostra **sempre almenys una vegada**, i es repetix mentre l'usuari no trie 1 o 2. Perfecte per a menús.
+Ací el menú es mostra **sempre almenys una vegada**, i es repeteix mentre l'usuari no trie 1 o 2. Perfecte per a menús.
 
 > ⚠️ **Advertència:** no confongues els dos. Amb `while`, si la condició és `false` d'entrada, **zero execucions**. Amb `do-while`, **almenys una**. És com la diferència entre "mira abans de creuar" i "creua i després mira".
 
@@ -152,7 +152,7 @@ Enlairament! 🚀
 
 **Exercici: el comptador parat**
 
-Sense executar, calcula quantes vegades imprimix "Hola" este programa... o si es penja:
+Sense executar, calcula quantes vegades imprimeix "Hola" este programa... o si es penja:
 
 ```java
 public class Comptador {
@@ -170,7 +170,7 @@ public class Comptador {
 <details>
 <summary>🔄 Solució</summary>
 
-**Bucle infinit.** `x` comença en 10 i en comptes de disminuir, s'incrementa (`x = x + 1`): la condició `x > 0` és `true` per sempre i el programa imprimix "Hola" eternament. La correcció seria `x = x - 1;`. Pista visual: un comptador que puja en un `while` que demana que baixe és fum a l'ordinador.
+**Bucle infinit.** `x` comença en 10 i en comptes de disminuir, s'incrementa (`x = x + 1`): la condició `x > 0` és `true` per sempre i el programa imprimeix "Hola" eternament. La correcció seria `x = x - 1;`. Pista visual: un comptador que puja en un `while` que demana que baixe és fum a l'ordinador.
 
 </details>
 
@@ -197,7 +197,7 @@ public class Comptador {
 
 ## ✅ Resum en 3 frases
 
-1. `while` comprova la condició **abans** d'executar i `do-while` **després**: el segon garantix almenys una execució.
+1. `while` comprova la condició **abans** d'executar i `do-while` **després**: el segon garanteix almenys una execució.
 2. Un bucle necessita que la condició **avance cap a `false`**; si no, tens un bucle infinit.
 3. Usa `while` per a llegir fins a un sentinella i `do-while` per a menús que s'han de mostrar sí o sí.
 
@@ -205,9 +205,9 @@ public class Comptador {
 >
 > | Terme | Idea general |
 > |---|---|
-> | Bucle | Bloc que es repetix mentre una condició siga `true` |
+> | Bucle | Bloc que es repeteix mentre una condició siga `true` |
 > | Iteració | Una volta completa del bucle |
-> | Condició | L'expressió booleana que decidix si es continua |
+> | Condició | L'expressió booleana que decideix si es continua |
 > | Sentinella | Valor especial que acaba la lectura ("eixir") |
 > | Bucle infinit | Bucle que no s'acaba mai per descuit |
 > | do-while | Bucle que executa almenys una volta i comprova al final |

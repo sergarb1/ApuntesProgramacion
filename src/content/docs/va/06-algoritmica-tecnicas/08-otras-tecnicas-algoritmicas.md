@@ -13,7 +13,7 @@ description: "Dos fitxes més per al teu cinturó: els algorismes voracos (greed
 
 > **Recursivitat i divide i venceràs no són les úniques tècniques: els algorismes voracos prenen la decisió que millor pinta en cada pas, i el backtracking prova camins i retrocedix quan arriba a un cul-de-sac.**
 
-Esta unitat ja t'ha donat les ferramentes estrella. Estos dos punts extra són "per a saber que existixen" i reconéixer-los quan els veges, perquè apareixen en munts de problemes reals (i en entrevistes). T'avise: ací no implementaràs res gegant, entendràs *la idea* amb exemples senzills.
+Esta unitat ja t'ha donat les ferramentes estrella. Estos dos punts extra són "per a saber que existeixen" i reconéixer-los quan els veges, perquè apareixen en munts de problemes reals (i en entrevistes). T'avise: ací no implementaràs res gegant, entendràs *la idea* amb exemples senzills.
 
 ---
 
@@ -21,7 +21,7 @@ Esta unitat ja t'ha donat les ferramentes estrella. Estos dos punts extra són "
 
 **La idea:** en cada pas, pren la decisió que pareix millor *en eixe moment*, sense mirar arrere ni avant. Com qui compra caramels i sempre agafa el més gran dels que queden.
 
-**La regla d'or:** un greedy només funciona si la decisió local òptima conduïx a la solució global òptima. Això no sempre passa. Quan funciona, és dels algorismes més ràpids i simples que existixen.
+**La regla d'or:** un greedy només funciona si la decisió local òptima conduïx a la solució global òptima. Això no sempre passa. Quan funciona, és dels algorismes més ràpids i simples que existeixen.
 
 ### Exemple clàssic: el canvi de monedes
 
@@ -167,7 +167,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 <summary>🔄 Respostes</summary>
 
 1. Que en **cada pas pren la decisió localment òptima**, sense mirar el futur.
-2. **No sempre**: amb certs conjunts de monedes (1, 3, 4) falla. El vorac és òptim només quan la decisió local garantix la global.
+2. **No sempre**: amb certs conjunts de monedes (1, 3, 4) falla. El vorac és òptim només quan la decisió local garanteix la global.
 3. **`deshacer(opcion)`**: si un camí no funciona, es recull l'últim pas i es prova una altra opció.
 4. Per a **no entrar en bucles infinits**: sense marcar, l'algorisme aniria d'una casella a una altra sense fi.
 
@@ -189,6 +189,6 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Òptim local vs global | El millor ara vs el millor en conjunt |
 > | Backtracking | Provar, i en fallar, desfer i provar una altra opció |
 > | Poda | Descartar de seguida els camins sense eixida |
-> | Programació dinàmica | Memoització + subproblemes que es repetixen |
+> | Programació dinàmica | Memoització + subproblemes que es repeteixen |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/06-algoritmica-tecnicas) · **Anterior:** [07 · Be the Code: quicksort des de zero](/ApuntesProgramacion/va/06-algoritmica-tecnicas/07-be-the-code-quicksort) · **Següent:** [09 · Repàs interactiu](/ApuntesProgramacion/va/06-algoritmica-tecnicas/09-repaso-interactivo)

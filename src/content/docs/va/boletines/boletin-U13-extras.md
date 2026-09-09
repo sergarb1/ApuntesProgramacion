@@ -23,7 +23,7 @@ Crea una funció que valide un PIN: un `String` que és vàlid només si té **4
 <details>
 <summary>💡 Pista</summary>
 
-És la kata més regex de la unitat: un sol `matches()` amb el patró `\\d{4}|\\d{6}` ho resol. Recorda: `matches()` exigix que tot el string complica amb el patró, que és just el que demana un PIN.
+És la kata més regex de la unitat: un sol `matches()` amb el patró `\\d{4}|\\d{6}` ho resol. Recorda: `matches()` exigeix que tot el string complica amb el patró, que és just el que demana un PIN.
 
 </details>
 
@@ -118,7 +118,7 @@ public class Kata {
 }
 ```
 
-Cada parell `data[i]` té l'edat en `[0]` i l'hándicap en `[1]`. El ternari decidix la categoria en una línia i guarda el resultat en la seua posició. És la lògica booleana pura de l'enunciat: les dues condicions amb `&&`.
+Cada parell `data[i]` té l'edat en `[0]` i l'hándicap en `[1]`. El ternari decideix la categoria en una línia i guarda el resultat en la seua posició. És la lògica booleana pura de l'enunciat: les dues condicions amb `&&`.
 
 </details>
 
@@ -136,7 +136,7 @@ Donat un número positiu `n`, torna la seua descomposició en factors primers am
 <details>
 <summary>💡 Pista</summary>
 
-Dividix per 2, després pels senars des de 3 fins a l'arrel quadrada de `n` (que es va reduint en dividir). Compta quantes voltes dividix cada divisor (l'exponent) i munta el string amb un `StringBuilder`.
+Dividix per 2, després pels senars des de 3 fins a l'arrel quadrada de `n` (que es va reduint en dividir). Compta quantes voltes divideix cada divisor (l'exponent) i munta el string amb un `StringBuilder`.
 
 </details>
 
@@ -168,7 +168,7 @@ public class Kata {
 }
 ```
 
-El `while` intern dividix mentre el divisor encaixe i compta les repeticions: eixe és l'exponent. El bucle només arriba a l'arrel de `n` (i `n` es va reduint), així que l'`if (n > 1)` final arreplega l'últim factor primer que queda. El `StringBuilder` evita concatenar cadenes en cada volta, que seria lent.
+El `while` intern divideix mentre el divisor encaixe i compta les repeticions: eixe és l'exponent. El bucle només arriba a l'arrel de `n` (i `n` es va reduint), així que l'`if (n > 1)` final arreplega l'últim factor primer que queda. El `StringBuilder` evita concatenar cadenes en cada volta, que seria lent.
 
 </details>
 
@@ -271,7 +271,7 @@ public class SumaDigitos {
 }
 ```
 
-Convertir el número a `String` permet tractar els dígits com a caràcters: `charAt(i) - '0'` convertix el caràcter `'3'` en el número `3` (perquè els codis ASCII dels dígits són consecutius). Sense operacions aritmètiques de `%` i `/`: la versió "d'unitat de regex" d'un clàssic.
+Convertir el número a `String` permet tractar els dígits com a caràcters: `charAt(i) - '0'` converteix el caràcter `'3'` en el número `3` (perquè els codis ASCII dels dígits són consecutius). Sense operacions aritmètiques de `%` i `/`: la versió "d'unitat de regex" d'un clàssic.
 
 </details>
 

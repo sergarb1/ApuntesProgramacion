@@ -239,6 +239,6 @@ pstmt.setDouble(2, 8.5);      // segon ?
 pstmt.setString(3, "DAM");    // tercer ?
 ```
 
-`setString(0, "Ana")` és **incorrecte**: llança una `SQLException` perquè no existix cap `?` amb índex 0. Els placeholders són posicionals i el primer és l'1. És la trampa clàssica de qui ve dels arrays, on els índexs comencen en 0.
+`setString(0, "Ana")` és **incorrecte**: llança una `SQLException` perquè no existeix cap `?` amb índex 0. Els placeholders són posicionals i el primer és l'1. És la trampa clàssica de qui ve dels arrays, on els índexs comencen en 0.
 
 </details>

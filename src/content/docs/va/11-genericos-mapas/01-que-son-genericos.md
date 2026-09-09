@@ -11,9 +11,9 @@ description: "El lio abans dels genèrics, el compilador que es torna el teu ami
 
 ## 📬 La idea en una frase
 
-> **Els genèrics existixen per una sola raó: seguretat de tipus. Comproven en temps de compilació que no fiques la pota amb els tipus i eliminen els castings a cegues i les temudes `ClassCastException`.**
+> **Els genèrics existeixen per una sola raó: seguretat de tipus. Comproven en temps de compilació que no fiques la pota amb els tipus i eliminen els castings a cegues i les temudes `ClassCastException`.**
 
-En la U10 vas vore `ArrayList<String>`, `HashSet<Integer>`... però ningú et va explicar d'on ix eixe `<String>`. Hui és el dia. Benvingut o benvinguda a la unitat on el compilador deixa de ser un jutge i es convertix en el teu entrenador personal.
+En la U10 vas vore `ArrayList<String>`, `HashSet<Integer>`... però ningú et va explicar d'on ix eixe `<String>`. Hui és el dia. Benvingut o benvinguda a la unitat on el compilador deixa de ser un jutge i es converteix en el teu entrenador personal.
 
 ---
 
@@ -95,7 +95,7 @@ public class BeTheList {
 - (A) Compila i afig el `42` sense problema.
 - (B) Error de compilació: no es pot ficar un `int` en una llista de Strings.
 - (C) Compila, però salta una excepció en executar.
-- (D) El `42` es convertix sol en `"42"` com a String.
+- (D) El `42` es converteix sol en `"42"` com a String.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -131,13 +131,13 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. **Abans dels genèrics**, les col·leccions eren capses de caos: tot es guardava com `Object`, tiraves amb casting a cegues i les `ClassCastException` explotaven en temps d'execució.
 2. **Amb els genèrics**, `ArrayList<String>` promet al compilador quin tipus conté i ell ho comprova en compilació: no cola un `int` en una llista de Strings.
-3. Els genèrics existixen per a **seguretat de tipus**: menys castings, menys excepcions i codi que s'explica sol.
+3. Els genèrics existeixen per a **seguretat de tipus**: menys castings, menys excepcions i codi que s'explica sol.
 
 > 🐛 **Vocabulari ràpid**
 >
 > | Terme | Idea general |
 > |---|---|
-> | Genèric | Codi que treballa amb un tipus que es decidix en usar-lo (`<T>`) |
+> | Genèric | Codi que treballa amb un tipus que es decideix en usar-lo (`<T>`) |
 > | Paràmetre de tipus | El `<String>` de `ArrayList<String>`: el tipus que es passa |
 > | Casting | Convertir a la força: `(String) objeto` |
 > | `ClassCastException` | Excepció en usar un objecte com si fóra d'un altre tipus |

@@ -115,7 +115,7 @@ Ha de mostrar `[1, 3, 5]` i `[]`.
 3. Segona passada: ompli les posicions.
    <details><summary>Atascat?</summary>Un segon `for` que, quan trobe el valor, faça `resultado[k++] = i;`</details>
 
-> 💡 **Consell de depuració:** este "comptar primer, crear després" és un patró que es repetix: no pots crear l'array de resultats fins a saber quantes places necessita. Quan la grandària depén de les dades, es fa en dues passades.
+> 💡 **Consell de depuració:** este "comptar primer, crear després" és un patró que es repeteix: no pots crear l'array de resultats fins a saber quantes places necessita. Quan la grandària depén de les dades, es fa en dues passades.
 
 <details>
 <summary>🔄 Solució completa</summary>

@@ -42,7 +42,7 @@ Fixa't en la condició: `i < gatos.length`. Si escrigueres `i <= gatos.length`, 
 
 ### Patrons clàssics amb for
 
-El `for` amb índex no només servix per a imprimir. Estos tres patrons es repetixen a cada exercici del curs:
+El `for` amb índex no només serveix per a imprimir. Estos tres patrons es repeteixen a cada exercici del curs:
 
 **Sumar tots els elements:**
 
@@ -155,7 +155,7 @@ La **A**. El for-each recorre cada element: 10, 20, 30, 40, 50. El `if` només s
 
 Posat a prova en 30 segons (les respostes estan amagades):
 
-1. Què imprimeix `for (int i = 0; i < a.length; i++)` sobre `{1,2,3}` si imprimixes `a[i]`?
+1. Què imprimeix `for (int i = 0; i < a.length; i++)` sobre `{1,2,3}` si imprimeixes `a[i]`?
 2. Per què `for (int i = 0; i <= a.length; i++)` llança excepció?
 3. Es pot modificar un array amb `for-each`?
 4. Quin bucle usaríes per a imprimir l'array al revés?

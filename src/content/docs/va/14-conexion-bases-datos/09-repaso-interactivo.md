@@ -41,11 +41,11 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`Total: 0`** → `COUNT(*)` sempre torna 0 si hi ha algun alumne. ❌
 2. **`Total: <nombre d'alumnes>`** → `COUNT(*)` torna una sola fila amb una columna, i `rs.getInt(1)` la llig per índex. ✅
-3. **Una excepció** → `getInt(1)` no existix perquè les columnes comencen en 0. ❌
+3. **Una excepció** → `getInt(1)` no existeix perquè les columnes comencen en 0. ❌
 
 > <details>
 > <summary>🔄 Solució</summary>
@@ -152,7 +152,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE, el controlador de SQLite i un fitxer nou
 
-**L'escenari:** et passen este gestor de contactes amb SQLite. Et diuen que té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
+**L'escenari:** et passen este gestor de contactes amb SQLite. Et diuen que té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
 
 ```java
 import java.sql.*;
@@ -219,7 +219,7 @@ public class GestorContactos {
 
 1. Falta el `;` al final de `String sql = "SELECT * FROM contactos"` a `listar()`.
 
-**L'"error de lògica"**: no existix com a tal. La lògica de crear taula, inserir i llistar és correcta i l'eixida seria `1 - Ana` i `2 - Luis`. Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha una falta de `;`. L'error "amagat" era la teua confiança en l'enunciat.
+**L'"error de lògica"**: no existeix com a tal. La lògica de crear taula, inserir i llistar és correcta i l'eixida seria `1 - Ana` i `2 - Luis`. Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha una falta de `;`. L'error "amagat" era la teua confiança en l'enunciat.
 
 **El problema real que no es veu en executar**: `insertar()` concatena l'SQL amb els valors, cosa que és **SQL injection** en estat pur (punt 5). El programa "funciona" perquè les dades són de confiança, però si `nombre` vinguera de l'usuari, un `Ana'; DROP TABLE contactos; --` s'enduria la taula. La correcció professional és `PreparedStatement`:
 
@@ -336,7 +336,7 @@ Vertical:
 
 > ❓ **És necessari `Class.forName()` per a carregar el controlador?**
 
-No. Des de Java 6, els controladors JDBC 4.0 s'auto-descobrixen si són al classpath. Ho veuràs en tutorials antics, i no passa res si el poses: només és codi que ja no cal.
+No. Des de Java 6, els controladors JDBC 4.0 s'auto-descobreixen si són al classpath. Ho veuràs en tutorials antics, i no passa res si el poses: només és codi que ja no cal.
 
 ---
 
@@ -368,9 +368,9 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 **Programadora:** — És a dir, que en comptes de connectar-me jo a la base de dades des de cada client, el client em parla a mi per la xarxa?
 
-**CONRAD:** — *assentix* Exacte. El teu programa Java es convertix en l'intermediari: rep peticions, consulta la base de dades amb el JDBC que acables de dominar, i torna les dades. Primer vas servir dades des de la base; ara les serviràs per la web.
+**CONRAD:** — *assentix* Exacte. El teu programa Java es converteix en l'intermediari: rep peticions, consulta la base de dades amb el JDBC que acables de dominar, i torna les dades. Primer vas servir dades des de la base; ara les serviràs per la web.
 
-**PROXIMAMENT EN U15:** Servir i Consumir APIs amb Web. El moment en què el teu programa Java es posa un uniforme de cambrer: rep peticions HTTP i servix dades en JSON. 🌐
+**PROXIMAMENT EN U15:** Servir i Consumir APIs amb Web. El moment en què el teu programa Java es posa un uniforme de cambrer: rep peticions HTTP i serveix dades en JSON. 🌐
 
 ---
 

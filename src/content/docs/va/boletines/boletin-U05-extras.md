@@ -118,7 +118,7 @@ public static int[] digitize(long n) {
 }
 ```
 
-Amb `% 10` i `/ 10`: l'últim dígit ix primer (ja ve invertit), i després de dividir entre 10 es repetix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
+Amb `% 10` i `/ 10`: l'últim dígit ix primer (ja ve invertit), i després de dividir entre 10 es repeteix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
 
 </details>
 
@@ -166,7 +166,7 @@ public static long numberOfDivisors(int n) {
 }
 ```
 
-La versió simple recorre de l'1 a n: si `n % i == 0`, és divisor. L'optimitzada s'aprofita que els divisors van en parelles: si `i` dividix `n`, llavors `n / i` també, excepte quan són el mateix (el cas del quadrat perfecte). D'O(n) a O(√n): Big O en acció.
+La versió simple recorre de l'1 a n: si `n % i == 0`, és divisor. L'optimitzada s'aprofita que els divisors van en parelles: si `i` divideix `n`, llavors `n / i` també, excepte quan són el mateix (el cas del quadrat perfecte). D'O(n) a O(√n): Big O en acció.
 
 </details>
 
@@ -290,7 +290,7 @@ En el primer cas, el jugador pregunta per 1 i 2: respon "major o igual" (1) i "m
 - [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=342)
 - Dificultat: Mitjana
 
-**Pista:** és la **cerca binària** del punt 3 al revés: cada pregunta dividix el rang possible en dos segons la resposta. Porta `min` i `max` (els límits possibles). Si la hipòtesi és menor que l'ocult, `min` puja a hipòtesi + 1; si és major o igual, `max` baixa a la hipòtesi. Al final, HO SAP si `min == max == n`.
+**Pista:** és la **cerca binària** del punt 3 al revés: cada pregunta divideix el rang possible en dos segons la resposta. Porta `min` i `max` (els límits possibles). Si la hipòtesi és menor que l'ocult, `min` puja a hipòtesi + 1; si és major o igual, `max` baixa a la hipòtesi. Al final, HO SAP si `min == max == n`.
 
 <details>
 <summary>🔄 Solució</summary>

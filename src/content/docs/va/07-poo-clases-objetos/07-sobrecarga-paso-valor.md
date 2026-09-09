@@ -13,13 +13,13 @@ description: "Diversos mètodes amb el mateix nom i què es copia de veritat qua
 
 > **La sobrecàrrega permet que diversos mètodes compartisquen nom si els seus paràmetres diferixen, i en Java tot es passa per valor: els primitius es copien, i de les referències es copia l'adreça (no l'objecte).**
 
-Dos conceptes que pareixen d'un altre planeta i que són pa de cada dia en el codi real. El primer et dona flexibilitat (un mètode `sumar` que funciona amb `int`, amb `double` i amb tres nombres). El segon t'explica per què el teu mètode no aconseguix "canviar" un `int` que li passes... però sí modifica un objecte. Anem a per ells.
+Dos conceptes que pareixen d'un altre planeta i que són pa de cada dia en el codi real. El primer et dona flexibilitat (un mètode `sumar` que funciona amb `int`, amb `double` i amb tres nombres). El segon t'explica per què el teu mètode no aconsegueix "canviar" un `int` que li passes... però sí modifica un objecte. Anem a per ells.
 
 ---
 
 ## 🎭 Sobrecàrrega: el mateix nom, altres mans
 
-**Sobrecarregar** un mètode és declarar diversos mètodes amb el **mateix nom** però amb **distinta llista de paràmetres** (nombre, tipus u ordre). Java decidix quin usar mirant els arguments de la crida:
+**Sobrecarregar** un mètode és declarar diversos mètodes amb el **mateix nom** però amb **distinta llista de paràmetres** (nombre, tipus u ordre). Java decideix quin usar mirant els arguments de la crida:
 
 ```java
 public class Calculadora {
@@ -124,7 +124,7 @@ La còpia i l'original guarden **la mateixa adreça**, així que tots dos apunte
 
 **Exercici: la gran confusió**
 
-Sense executar, què imprimix este programa?
+Sense executar, què imprimeix este programa?
 
 ```java
 public class Caja {
@@ -155,7 +155,7 @@ public class Main {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`99`** i **`5`**.
+Imprimeix **`99`** i **`5`**.
 
 - `c.valor = 99` modifica l'objecte compartit → l'original se n'assabenta → **99**.
 - `n = 7` canvia la còpia del primitiu → l'original continua en **5**.
@@ -206,7 +206,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. La **sobrecàrrega** permet diversos mètodes amb el mateix nom i distints paràmetres; el tipus de retorn no servix per a distingir-los.
+1. La **sobrecàrrega** permet diversos mètodes amb el mateix nom i distints paràmetres; el tipus de retorn no serveix per a distingir-los.
 2. Java és **pas per valor**: els primitius es copien i mai no canvien fora; les referències copien l'adreça, així que pots modificar l'objecte però no reassignar-lo des de dins.
 3. Els **constructors** també es sobrecarreguen i s'encadenen amb `this(...)` per a no repetir codi.
 

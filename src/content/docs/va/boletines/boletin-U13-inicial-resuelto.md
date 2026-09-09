@@ -14,7 +14,7 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 <details>
 <summary>🔄 Solució</summary>
 
-`FileWriter` llança `IOException` (per exemple, si no hi ha permís d'escriptura o la carpeta no existix). El `main` no la declara amb `throws` ni la captura amb `try-catch`, així que el compilador es queixa.
+`FileWriter` llança `IOException` (per exemple, si no hi ha permís d'escriptura o la carpeta no existeix). El `main` no la declara amb `throws` ni la captura amb `try-catch`, així que el compilador es queixa.
 
 Les **dues formes** de solucionar-ho:
 
@@ -115,7 +115,7 @@ public class Ciudades {
 <details>
 <summary>🔄 Solució</summary>
 
-Si `documento.txt` **ja existix**, `createNewFile()` torna `false` (no crea res de nou, no llança error) i el `FileWriter` **sobreescriu** el contingut igualment. El codi funciona, però sense que t'assabentes de si el fitxer ja estava.
+Si `documento.txt` **ja existeix**, `createNewFile()` torna `false` (no crea res de nou, no llança error) i el `FileWriter` **sobreescriu** el contingut igualment. El codi funciona, però sense que t'assabentes de si el fitxer ja estava.
 
 `createNewFile()` torna:
 - `true` si ha creat el fitxer.
@@ -132,7 +132,7 @@ if (f.createNewFile()) {
 }
 ```
 
-Si la carpeta no existix, `createNewFile()` llança `IOException`, així que també va amb `try-catch` o `throws`.
+Si la carpeta no existeix, `createNewFile()` llança `IOException`, així que també va amb `try-catch` o `throws`.
 
 </details>
 
@@ -200,8 +200,8 @@ true
 Número: 123
 ```
 
-- `"abc123".matches("\\d+")` → **`false`**: `matches()` exigix que **tot** el string siguen dígits, i hi ha lletres pel mig.
-- `"abc123".matches("\\w+")` → **`true`**: lletres i dígits són `\w`, i tot el string ho complix.
+- `"abc123".matches("\\d+")` → **`false`**: `matches()` exigeix que **tot** el string siguen dígits, i hi ha lletres pel mig.
+- `"abc123".matches("\\w+")` → **`true`**: lletres i dígits són `\w`, i tot el string ho compleix.
 - El `Matcher` amb `find()` busca **subcadenes**: troba "123" dins del text i ho imprimeix.
 
 La diferència clau: `matches()` = patró complet; `find()` = buscar dins. És l'error més repetit de la unitat.

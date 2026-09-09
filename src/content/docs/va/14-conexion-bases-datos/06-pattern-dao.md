@@ -1,9 +1,9 @@
 ---
 title: "06 · El patró DAO"
-description: "El patró DAO: una interfície que promet i una implementació que complix, perquè l'SQL no es cole mai en la teua lògica de negoci 🗄️🏗️"
+description: "El patró DAO: una interfície que promet i una implementació que compleix, perquè l'SQL no es cole mai en la teua lògica de negoci 🗄️🏗️"
 ---
 
-<p><small>El patró DAO: una interfície que promet i una implementació que complix, perquè l'SQL no es cole mai en la teua lògica de negoci 🗄️🏗️</small></p>
+<p><small>El patró DAO: una interfície que promet i una implementació que compleix, perquè l'SQL no es cole mai en la teua lògica de negoci 🗄️🏗️</small></p>
 
 > 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 06 · El patró DAO
 
@@ -153,9 +153,9 @@ class Prestamo {
 <details>
 <summary>🔄 Solució orientativa</summary>
 
-1. **Un per entitat**: `LibroDAO` i `PrestamoDAO`. Cadascun amb el seu POJO i la seua taula. Un DAO genèric amb `<T>` existix, però per a dues entitats afegix abstracció sense benefici.
+1. **Un per entitat**: `LibroDAO` i `PrestamoDAO`. Cadascun amb el seu POJO i la seua taula. Un DAO genèric amb `<T>` existeix, però per a dues entitats afegix abstracció sense benefici.
 2. `LibroDAO`: `listar`, `buscarPerIsbn`, `insertar`, `actualitzar`, `eliminar`. `PrestamoDAO`: `listar`, `buscarPerSoci`, `insertar` (registrar préstec), `actualitzar` (devolució).
-3. A la **lògica de negoci**, no al DAO. El DAO pregunta "està disponible?", i el servei de préstecs decidix si es presta. El DAO no pren decisions de negoci.
+3. A la **lògica de negoci**, no al DAO. El DAO pregunta "està disponible?", i el servei de préstecs decideix si es presta. El DAO no pren decisions de negoci.
 4. **Sí.** Prestar un llibre implica marcar `disponible = false` i crear el préstec: dues operacions que han d'anar juntes (transaccions, punt 7) o no anar-ne cap.
 
 </details>

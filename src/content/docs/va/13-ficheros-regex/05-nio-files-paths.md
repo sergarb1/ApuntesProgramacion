@@ -13,7 +13,7 @@ description: "Llegir, escriure i consultar fitxers en una línia: l'API NIO va a
 
 > **`Path` és la ruta moderna i `Files` la seua navalla suïssa: `readAllLines`, `write`, `readString`... coses que amb `File` costaven cinc línies i amb NIO són una.**
 
-Des de Java 7 existix l'API **NIO** (New I/O) en `java.nio.file`. És el reemplaçament modern de la classe `File`: `Path` per a representar rutes i `Files` per a fer tot lo altre. ¿Llegir un fitxer sencer en una llista de línies? Una línia de codi. ¿Escriure una llista en un fitxer? Una altra. El vell `File` continua funcionant, però quan veges això ja no voldràs tornar.
+Des de Java 7 existeix l'API **NIO** (New I/O) en `java.nio.file`. És el reemplaçament modern de la classe `File`: `Path` per a representar rutes i `Files` per a fer tot lo altre. ¿Llegir un fitxer sencer en una llista de línies? Una línia de codi. ¿Escriure una llista en un fitxer? Una altra. El vell `File` continua funcionant, però quan veges això ja no voldràs tornar.
 
 ---
 
@@ -84,8 +84,8 @@ public class NioFacil {
 | `Files.newBufferedWriter(ruta)` | `BufferedWriter` directe sobre un `Path` |
 | `Files.copy(origen, destí)` | Copia un fitxer |
 | `Files.move(origen, destí)` | Mou (o reanomena) |
-| `Files.delete(ruta)` | Esborra (llança excepció si no existix) |
-| `Files.deleteIfExists(ruta)` | Esborra si existix, sense excepció |
+| `Files.delete(ruta)` | Esborra (llança excepció si no existeix) |
+| `Files.deleteIfExists(ruta)` | Esborra si existeix, sense excepció |
 | `Files.walk(ruta)` | Recorre recursivament tot un arbre de fitxers |
 | `Files.lines(ruta)` | Un `Stream<String>` línia a línia (per a fitxers grans) |
 
@@ -139,7 +139,7 @@ Imprimeix **`Total: 26`**.
 
 Pas a pas:
 1. `Files.write` crea `nums.txt` amb les línies `3`, `7`, `2`, `9`, `5`.
-2. `readAllLines` les llig i el bucle les convertix a `int` i les suma: `3+7+2+9+5 = 26`.
+2. `readAllLines` les llig i el bucle les converteix a `int` i les suma: `3+7+2+9+5 = 26`.
 3. `Files.write` **sobreescriu** el fitxer amb una sola línia: `Total: 26`.
 4. `Files.readString` llig tot el fitxer i `println` ho imprimeix: `Total: 26`.
 

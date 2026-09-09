@@ -99,7 +99,7 @@ System.out.println(moneda.format(12345.67));  // 12.345,67 €
 
 ## 🚨 Errors clàssics del Scanner (i els seus remeis)
 
-El `Scanner` és traïdor. Aquestes són les fallades que es repetixen en cada examen i en cada programa de pràctiques:
+El `Scanner` és traïdor. Aquestes són les fallades que es repeteixen en cada examen i en cada programa de pràctiques:
 
 ### 1. Oblidar el `import java.util.Scanner;`
 
@@ -134,7 +134,7 @@ if (sc.hasNextInt()) {
 }
 ```
 
-> ⚠️ **Advertència:** `hasNextInt()` **no consumix** la dada: només mira si el següent és un enter. Si no ho és, has de consumir el text brossa amb `sc.next()` abans de tornar a preguntar, o es quedarà allà per sempre.
+> ⚠️ **Advertència:** `hasNextInt()` **no consumeix** la dada: només mira si el següent és un enter. Si no ho és, has de consumir el text brossa amb `sc.next()` abans de tornar a preguntar, o es quedarà allà per sempre.
 
 ### 4. El problema del `nextLine()` després del `nextInt()` (ja ho vas veure en el punt 6)
 
@@ -170,7 +170,7 @@ public class EdatSegura {
 }
 ```
 
-El bucle `while` repetix la pregunta fins que l'usuari dona un enter. Amb `hasNextInt()` + `sc.next()` per a descartar la brossa, el programa és **a prova de bombes**.
+El bucle `while` repeteix la pregunta fins que l'usuari dona un enter. Amb `hasNextInt()` + `sc.next()` per a descartar la brossa, el programa és **a prova de bombes**.
 
 ---
 

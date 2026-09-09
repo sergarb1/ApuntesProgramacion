@@ -84,7 +84,7 @@ Crea també un segon mètode que **mescle** dos llistes de números de tipus dis
 public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b)
 ```
 
-**Pista:** per a `sumar`, recorre amb `for (Number n : lista)` i usa `n.doubleValue()`. Per a `mezclar`, usa `addAll()` i convertix cada element amb `doubleValue()`. I no intentes `add` en `sumar`: `? extends` és de només lectura (PECS).
+**Pista:** per a `sumar`, recorre amb `for (Number n : lista)` i usa `n.doubleValue()`. Per a `mezclar`, usa `addAll()` i converteix cada element amb `doubleValue()`. I no intentes `add` en `sumar`: `? extends` és de només lectura (PECS).
 
 ---
 
@@ -106,9 +106,9 @@ Implementa una agenda usant `HashMap<String, String>` amb menú interactiu:
 4. **Esborrar contacte**.
 0. **Eixir**
 
-Usa un `while`, un `switch` i un `Scanner`. Cuida els casos en què el contacte no existix (usa `containsKey` o `getOrDefault`).
+Usa un `while`, un `switch` i un `Scanner`. Cuida els casos en què el contacte no existeix (usa `containsKey` o `getOrDefault`).
 
-**Pista:** el menú es repetix fins que l'usuari trie `0`. Per a buscar, comprova `containsKey(nombre)` abans de `get`.
+**Pista:** el menú es repeteix fins que l'usuari trie `0`. Per a buscar, comprova `containsKey(nombre)` abans de `get`.
 
 ---
 
@@ -164,7 +164,7 @@ Sense executar, respon:
 2. Quin tipus té realment `caja.getValor()` dins del bytecode si el compiles com a `Caja<String>`?
 3. Escriu un `main` que cree `Caja<String>` i `Caja<Integer>` i comprove amb `getClass()` que totes dues són instàncies de la mateixa classe `Caja` (el erasure: `<T>` desapareix en el bytecode).
 
-**Pista:** el type erasure convertix `Caja<T>` en `Caja` a secas (amb `Object` on estava `T`). Per això `caja.getClass()` torna el mateix per a `Caja<String>` i `Caja<Integer>`: en runtime no hi ha dos classes, només una `Caja`. El cast de `getValor()` l'afig el compilador, no el teu codi.
+**Pista:** el type erasure converteix `Caja<T>` en `Caja` a secas (amb `Object` on estava `T`). Per això `caja.getClass()` torna el mateix per a `Caja<String>` i `Caja<Integer>`: en runtime no hi ha dos classes, només una `Caja`. El cast de `getValor()` l'afig el compilador, no el teu codi.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -186,6 +186,6 @@ public class Demo {
 }
 ```
 
-Totes dues imprimixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
+Totes dues imprimeixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existeixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
 
 </details>.

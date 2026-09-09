@@ -324,7 +324,7 @@ public class CifradoCesar {
 }
 ```
 
-El truc del `% 26`: cada lletra es convertix a la seua posició en l'alfabet (`c - 'a'`), es desplaça `n` i es fa mòdul 26 perquè la `z` torne a la `a`. Descifrar és el mateix amb `n = -3`. Els caràcters que no són lletres (espais, signes) es queden intactes, que és el que fa un Cèsar clàssic.
+El truc del `% 26`: cada lletra es converteix a la seua posició en l'alfabet (`c - 'a'`), es desplaça `n` i es fa mòdul 26 perquè la `z` torne a la `a`. Descifrar és el mateix amb `n = -3`. Els caràcters que no són lletres (espais, signes) es queden intactes, que és el que fa un Cèsar clàssic.
 
 </details>
 

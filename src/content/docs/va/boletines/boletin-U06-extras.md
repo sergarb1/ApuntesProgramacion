@@ -69,7 +69,7 @@ Escriu `public static boolean isAscOrder(int[] arr)` que torne `true` si els nom
 <details>
 <summary>💡 Pista</summary>
 
-Un sol `for` amb `i` de 1 fins al final comparant `arr[i - 1] >= arr[i]` → si alguna vegada es complix, torna `false` al moment.
+Un sol `for` amb `i` de 1 fins al final comparant `arr[i - 1] >= arr[i]` → si alguna vegada es compleix, torna `false` al moment.
 
 </details>
 
@@ -119,7 +119,7 @@ No hi ha comptador de casos: els mòbils es lliguen **recursivament**. Crea un m
 
 En [AceptaElReto](https://aceptaelreto.com/problem/statement.php?id=143).
 
-Tens una pila de tortetes amb mides diferents. Amb una espàtula pots donar la volta a les `k` tortetes superiors (invertir l'ordre de les primeres `k`). Troba el mínim nombre de voltes per a ordenar-les de major (dalt) a menor (baix). L'entrada acaba amb `0`. Per a cada cas, imprimix quantes voltes necessites.
+Tens una pila de tortetes amb mides diferents. Amb una espàtula pots donar la volta a les `k` tortetes superiors (invertir l'ordre de les primeres `k`). Troba el mínim nombre de voltes per a ordenar-les de major (dalt) a menor (baix). L'entrada acaba amb `0`. Per a cada cas, imprimeix quantes voltes necessites.
 
 <details>
 <summary>💡 Pista</summary>

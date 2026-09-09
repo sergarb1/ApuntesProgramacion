@@ -11,7 +11,7 @@ description: "L'objecte cridant «¡parle de mi, no d'un altre!» per a desambig
 
 ## 📬 La idea en una frase
 
-> **`this` és l'objecte parlant de si mateix: servix per a desambiguar entre atribut i paràmetre, per a cridar un altre constructor, i per a passar-te a tu mateix com a argument.**
+> **`this` és l'objecte parlant de si mateix: serveix per a desambiguar entre atribut i paràmetre, per a cridar un altre constructor, i per a passar-te a tu mateix com a argument.**
 
 Tens un problema clàssic: el paràmetre es diu igual que l'atribut. `nombre` ací, `nombre` allà... a quin et referixes? Java necessita que li dones una pista, i eixa pista es diu `this`.
 
@@ -43,7 +43,7 @@ public class Persona {
 
 ## 🔗 Cridar un altre constructor: `this(...)`
 
-`this` també servix per a cridar un constructor des d'un altre constructor de la mateixa classe. Útil per a no repetir codi:
+`this` també serveix per a cridar un constructor des d'un altre constructor de la mateixa classe. Útil per a no repetir codi:
 
 ```java
 public class Galleta {
@@ -124,7 +124,7 @@ La **línia B** és la que fa alguna cosa: `this.nombre = nombre` copia el parà
 
 > **Q:** `this` és una paraula reservada, no? Puc usar-la fora d'una classe?
 >
-> **A:** No. `this` fora d'una classe és com demanar una pizza en una ferreteria: no té sentit. Només existix dins del context d'un objecte, és a dir, dins de mètodes no estàtics i constructors d'una classe.
+> **A:** No. `this` fora d'una classe és com demanar una pizza en una ferreteria: no té sentit. Només existeix dins del context d'un objecte, és a dir, dins de mètodes no estàtics i constructors d'una classe.
 
 > **Q:** I què passa amb els mètodes `static`? Ahí puc usar `this`?
 >

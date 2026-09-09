@@ -68,7 +68,7 @@ Et donen una URL com `"http://www.codewars.com/kata/56f8fe6a2e6c0dc83b0008a7?pag
 <details>
 <summary>💡 Pista</summary>
 
-Busca primer `://` (dividix protocol de la resta). Després busca la primera `/` (dividix domini de ruta). Si alguna cosa no està, eixe camp queda buit. Usa `indexOf` i `substring`.
+Busca primer `://` (divideix protocol de la resta). Després busca la primera `/` (divideix domini de ruta). Si alguna cosa no està, eixe camp queda buit. Usa `indexOf` i `substring`.
 
 </details>
 

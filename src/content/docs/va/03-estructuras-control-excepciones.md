@@ -10,12 +10,12 @@ emoji: 🔀
 
 ---
 
-Benvingut al semàfor del codi. En la U01 el teu programa va aprendre a parlar i en la U02 a guardar dades. Però parlar i guardar sense decidir és un lloro amb arxivador: repetix, però no pensa. Esta és la unitat on els teus programes comencen a **pensar**.
+Benvingut al semàfor del codi. En la U01 el teu programa va aprendre a parlar i en la U02 a guardar dades. Però parlar i guardar sense decidir és un lloro amb arxivador: repeteix, però no pensa. Esta és la unitat on els teus programes comencen a **pensar**.
 
 Fins ara, el teu codi corria en línia recta, de dalt a baix, com un soldadet obedient. En esta unitat li donaràs tres superpoders:
 
 1. **Decidir**: "si aprova, puja la nota; si no, a recuperació". Això és `if`, `else` i `switch`.
-2. **Repetir**: "imprimix les taules de multiplicar, tots els nombres de l'1 al 10". Això és `while`, `do-while` i `for`.
+2. **Repetir**: "imprimeix les taules de multiplicar, tots els nombres de l'1 al 10". Això és `while`, `do-while` i `for`.
 3. **Sobrevindre**: "i si l'usuari escriu lletres on s'esperaven nombres?". Això és `try`, `catch`, `throw` i les excepcions.
 
 I, de regal, aprendràs a escapar-te d'un bucle amb `break`, a saltar-te una volta amb `continue` i a inventar-te les teues pròpies excepcions. Sí, com en la vida real: et queixes d'alguna cosa, i de pas construïxes el teu propi defecte.

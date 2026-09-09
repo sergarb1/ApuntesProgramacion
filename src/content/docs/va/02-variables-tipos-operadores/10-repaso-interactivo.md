@@ -31,10 +31,10 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria sàviament:**
+**Què imprimeixes per pantalla? Tria sàviament:**
 
 1. **`Nota 710`, `Nota 17` i `3 de nota media`** → ✅ Correcte! En la primera línia, en vore text abans del `+`, Java concaten: `"Nota " + 7` és `"Nota 7"` i després `+ 10` dona `"Nota 710"`. En la segona, els parèntesis forcen la suma: `Nota 17`. I `7 / 2` és divisió entera: 3.
-2. **`Nota 17`, `Nota 17` i `3.5 de nota media`** → Els parèntesis no canvien res i la divisió entera es redonix. ❌
+2. **`Nota 17`, `Nota 17` i `3.5 de nota media`** → Els parèntesis no canvien res i la divisió entera es redoneix. ❌
 3. **`Nota 710`, `Nota 17` i `3.5 de nota media`** → La divisió de dos enters dona decimals. ❌
 
 > <details>
@@ -48,7 +48,7 @@ public class Misterio {
 
 ## 🔥 Fireside Chat: int vs double
 
-> *Dos caixes del magatzem discutixen al costat de la prestatgeria de les dades.*
+> *Dos caixes del magatzem discuteixen al costat de la prestatgeria de les dades.*
 
 **int:** — Jo sóc la caixa de mudança. Compacta, exacta, sense decimals. En mi no hi ha lloc per a tonteries. 17 dividit entre 5 són 3 i s'ha acabat.
 
@@ -76,12 +76,12 @@ Endevina quin concepte de la unitat sóc:
 2. **Compare dos valors i només sé dir dos paraules: `true` i `false`. Sóc el jutge de la discussió.**
 3. **Sóc la caixa màgica del text: no sóc primitiu, sóc una classe, i si intentes canviar-me, tire el vell i en cree un de nou.**
 4. **Sóc l'orella del programa: esper que escrigues pel teclat i després passe el que has llegit a una variable.**
-5. **Sóc el casino: et done un nombre entre 0 i 1, i si em multipliques i em convertixes a `int`, et faig un dau.**
+5. **Sóc el casino: et done un nombre entre 0 i 1, i si em multipliques i em converteixes a `int`, et faig un dau.**
 
 <details>
 <summary>🔄 Respostes</summary>
 
-1. **`final`** — El modificador que convertix una variable en constant.
+1. **`final`** — El modificador que converteix una variable en constant.
 2. **Un operador relacional** (`==`, `<`, `>`, ...) — Sempre retorna un `boolean`.
 3. **`String`** — Classe immutable que guarda text.
 4. **`Scanner`** — Llegix del teclat amb mètodes `next...`.
@@ -110,7 +110,7 @@ Endevina quin concepte de la unitat sóc:
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un archiu nou
 
-**L'escenari:** copia este programa al teu IDE i fes que funcione. És un caixer que calcula quants bitllets de 5 € et dona el banc per un reintegrament. Té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan l'arregles.
+**L'escenari:** copia este programa al teu IDE i fes que funcione. És un caixer que calcula quants bitllets de 5 € et dona el banc per un reintegrament. Té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte quan l'arregles.
 
 ```java
 import java.util.Scanner;
@@ -134,7 +134,7 @@ public class Tortura {
 **Pistes per quan et frustres (no abans):**
 
 1. Hi ha algun `;` que falte? *no → seguix buscant.*
-   <details><summary>I si encara estic atascat?</summary>La línia del `nextInt()` acaba sense punt i coma. El `;` existix perquè Java sàpia on acaba cada ordre.</details>
+   <details><summary>I si encara estic atascat?</summary>La línia del `nextInt()` acaba sense punt i coma. El `;` existeix perquè Java sàpia on acaba cada ordre.</details>
 2. Ja compila? *no → mira el missatge d'error i les majúscules.*
    <details><summary>I si encara estic atascat?</summary>Són dos coses: `string` ha de ser `String` (la classe amb majúscula) i falta la `{` que obri el cos del `main`.</details>
 3. Executa però el número de bitllets ix amb decimals? *És l'error de lògica: mescla de tipus.*
@@ -146,7 +146,7 @@ Els **3 errors de compilació**:
 2. Falta la `{` que obri el cos del `main` després de `main(string[] args)`.
 3. Falta el `;` al final de `int cantidad = sc.nextInt()`.
 
-L'**error de lògica**: `double billetes5 = cantidad / 5.0;` compila, però amb `cantidad = 17` imprimix **3.4** bitllets... i un caixer no et pot donar 3.4 bitllets. La solució és usar **divisió entera**: `int billetes5 = cantidad / 5;`
+L'**error de lògica**: `double billetes5 = cantidad / 5.0;` compila, però amb `cantidad = 17` imprimeix **3.4** bitllets... i un caixer no et pot donar 3.4 bitllets. La solució és usar **divisió entera**: `int billetes5 = cantidad / 5;`
 
 ```java
 import java.util.Scanner;
@@ -163,7 +163,7 @@ public class Tortura {
 }
 ```
 
-Per a `cantidad = 17`: `17 / 5` amb enters dona **3** bitllets (i sobren 2 €). Amb la versió trencada, `cantidad / 5.0` donava 3.4, que com a `double` sí que s'imprimix tal qual: el caixer "et donava 3.4 bitllets". La divisió entera és la que fa el treball net.
+Per a `cantidad = 17`: `17 / 5` amb enters dona **3** bitllets (i sobren 2 €). Amb la versió trencada, `cantidad / 5.0` donava 3.4, que com a `double` sí que s'imprimeix tal qual: el caixer "et donava 3.4 bitllets". La divisió entera és la que fa el treball net.
 
 </details>
 
@@ -183,7 +183,7 @@ Per a `cantidad = 17`: `17 / 5` amb enters dona **3** bitllets (i sobren 2 €).
 
 ## 🧠 Atreveix-te a Pensar
 
-1. **Sense executar:** què imprimix este programa?
+1. **Sense executar:** què imprimeix este programa?
 
 ```java
 public class Misterio2 {
@@ -261,7 +261,7 @@ Vertical:
 2. **"Per què `double nota = 7/2;` dona `3.0` i no `3.5`? I com ho arreglaries?"**
 3. **"Quan usaríes `int` i quan `long`? Posa un exemple de cada un."**
 4. **"Què és un casting i quins riscos té fer un casting de `double` a `int`?"**
-5. **"Com llegixes un número enter i una línia de text des del teclat sense que el text es quede buit?"**
+5. **"Com llegeixes un número enter i una línia de text des del teclat sense que el text es quede buit?"**
 
 ---
 
@@ -281,13 +281,13 @@ No exactament: `Math` és una **classe**, i `random()`, `pow()`, `round()`... s�
 
 > ❓ **Si escric `int nota = (int) 7.99;`, em dona 8 per redoniment?**
 
-No. El casting **trunca**, no redonix: `(int) 7.99` dona **7**. Per a redonir de veritat usa `Math.round(7.99)`. El truncament talla amb destral; el redoniment negocia.
+No. El casting **trunca**, no redoneix: `(int) 7.99` dona **7**. Per a redonir de veritat usa `Math.round(7.99)`. El truncament talla amb destral; el redoniment negocia.
 
 ---
 
 > ❓ **Puc sumar un `String` i un número així, sense més?**
 
-Sí: `"Resultado: " + 5` dona `"Resultado: 5"`. Java convertix el número a text i el concaten. Això s'anomena **concatenació**. El problema ve quan t'oblides dels parèntesis: `"Suma: " + 5 + 3` dona `"Suma: 53"`. ¡Els parèntesis són vida!
+Sí: `"Resultado: " + 5` dona `"Resultado: 5"`. Java converteix el número a text i el concaten. Això s'anomena **concatenació**. El problema ve quan t'oblides dels parèntesis: `"Suma: " + 5 + 3` dona `"Suma: 53"`. ¡Els parèntesis són vida!
 
 ---
 
@@ -295,11 +295,11 @@ Sí: `"Resultado: " + 5` dona `"Resultado: 5"`. Java convertix el número a text
 
 El programador novat acaba el seu caixer de bitllets, el compila i l'executa. Funciona. Llavors s'acosta CONRAD, el compilador cascarrabias, amb cara de pocs amics i una caixa etiquetada `double` a la mà.
 
-**CONRAD:** — Molt bonic el teu caixer. Declares variables, fas castings, llegixes del teclat... quasi pareix un programa de veritat. Però hi ha un problema.
+**CONRAD:** — Molt bonic el teu caixer. Declares variables, fas castings, llegeixes del teclat... quasi pareix un programa de veritat. Però hi ha un problema.
 
 **Novat:** — Quin problema?
 
-**CONRAD:** — *assenyala el codi amb menyspreu* El teu programa només fa UNA cosa. L'executes i s'ha acabat. Si l'usuari vol provar un altre reintegrament... ha de tornar a executar? Els programes de veritat **decidixen** i **repetixen**. Trien entre camins i donen voltes fins que s'acaba la condició.
+**CONRAD:** — *assenyala el codi amb menyspreu* El teu programa només fa UNA cosa. L'executes i s'ha acabat. Si l'usuari vol provar un altre reintegrament... ha de tornar a executar? Els programes de veritat **decideixen** i **repeteixen**. Trien entre camins i donen voltes fins que s'acaba la condició.
 
 **Novat:** — I això quan s'aprén?
 

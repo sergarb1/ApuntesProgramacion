@@ -13,7 +13,7 @@ description: "La porta que es tanca sola: deixa que Java faça servir close() pe
 
 > **En comptes d'acordar-te de tancar cada fitxer, li dius a Java "tanca això quan acabis, passe el que passe" i ell ho fa sol.**
 
-Al punt 2 vas vore que sense `close()` les dades es poden perdre. Però acordar-te de tancar, i a més quan hi ha excepcions pel mig, és un patiment. Des de Java 7 existix el `try-with-resources`: obris els recursos dins dels parèntesis del `try` i Java els tanca automàticament en eixir del bloc, tant si tot va bé com si salta una excepció.
+Al punt 2 vas vore que sense `close()` les dades es poden perdre. Però acordar-te de tancar, i a més quan hi ha excepcions pel mig, és un patiment. Des de Java 7 existeix el `try-with-resources`: obris els recursos dins dels parèntesis del `try` i Java els tanca automàticament en eixir del bloc, tant si tot va bé com si salta una excepció.
 
 ---
 
@@ -43,7 +43,7 @@ public class LectorLimpio {
 
 El que passa per darrere: en eixir del bloc `try` (amb èxit o amb excepció), Java crida a `close()` sobre cada recurs que vas declarar entre parèntesis. És el `finally` que t'estalvies escriure.
 
-> 💡 **Consell:** fixa't que el `catch` continua existint. El `try-with-resources` tanca els recursos, però no s'empassa les excepcions: tu decidixes com gestionar-les.
+> 💡 **Consell:** fixa't que el `catch` continua existint. El `try-with-resources` tanca els recursos, però no s'empassa les excepcions: tu decideixes com gestionar-les.
 
 ---
 

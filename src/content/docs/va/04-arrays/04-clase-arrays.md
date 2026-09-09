@@ -13,7 +13,7 @@ description: "toString, sort, copyOf, binarySearch i fill: els mètodes estàtic
 
 > **`java.util.Arrays` és una classe plena de mètodes estàtics per a treballar amb arrays: imprimir, ordenar, copiar, buscar i omplir sense escriure tu el bucle.**
 
-Els arrays tenen un problema: no tenen mètodes. `numeros.sort()` no existix. Per això Java et regala una classe de ferramentes, totes estàtiques, perquè no hagis de reinventar el bucle cada volta. És el més paregut a una navalla suïssa que existix en el món dels arrays.
+Els arrays tenen un problema: no tenen mètodes. `numeros.sort()` no existeix. Per això Java et regala una classe de ferramentes, totes estàtiques, perquè no hagis de reinventar el bucle cada volta. És el més paregut a una navalla suïssa que existeix en el món dels arrays.
 
 ---
 
@@ -47,7 +47,7 @@ System.out.println(numeros);           // [I@6d06d69c  (adreça de memòria, in�
 System.out.println(Arrays.toString(numeros)); // [1, 2, 3]
 ```
 
-Sense `toString`, Java imprimeix l'adreça de memòria de l'objecte (`[I@6d06d69c`), no les dades. Amb ell, obtens alguna cosa llegible. Per a arrays 2D existix `Arrays.deepToString()`.
+Sense `toString`, Java imprimeix l'adreça de memòria de l'objecte (`[I@6d06d69c`), no les dades. Amb ell, obtens alguna cosa llegible. Per a arrays 2D existeix `Arrays.deepToString()`.
 
 > ⚠️ **Advertència:** `numeros.toString()` tampoc no funciona: els arrays no sobreescriuen `toString()`. Sempre `Arrays.toString(numeros)`.
 
@@ -65,7 +65,7 @@ Amb `String` ordena alfabèticament. Compte amb les majúscules: `"Zebra"` va ab
 
 ### 🔎 Arrays.binarySearch: buscar ràpid (però només ordenat)
 
-La cerca binària partix l'array per la meitat a cada pas. És rapidíssima, però **exigix que l'array estiga ordenat abans**.
+La cerca binària partix l'array per la meitat a cada pas. És rapidíssima, però **exigeix que l'array estiga ordenat abans**.
 
 ```java
 int[] numeros = {3, 5, 7, 9, 11};
@@ -197,7 +197,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Terme | Idea general |
 > |---|---|
 > | Classe utilitària | Classe amb mètodes estàtics que no s'instancia (com `Math`) |
-> | Ordre natural | L'ordre que el tipus definix per defecte (numèric, alfabètic) |
+> | Ordre natural | L'ordre que el tipus defineix per defecte (numèric, alfabètic) |
 > | Cerca binària | Cerca que partix l'array per la meitat; requerix ordre |
 > | Ordenació lexicogràfica | Ordre alfabètic segons el valor dels caràcters |
 > | Còpia | Nou array independent amb els mateixos valors |

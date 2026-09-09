@@ -25,7 +25,7 @@ Executa això:
 public class Explosio {
     public static void main(String[] args) {
         int[] numeros = {1, 2, 3};
-        System.out.println(numeros[5]);   // no existix!
+        System.out.println(numeros[5]);   // no existeix!
     }
 }
 ```
@@ -66,7 +66,7 @@ String s = null; s.length();           // NullPointerException
 int num = Integer.parseInt("Hola");    // NumberFormatException
 ```
 
-> 💡 **Detall pràctic:** "RuntimeException" significa que l'error apareix quan el programa **corre**, no en compilar. El compilador no t'avisa: només ho descobrixes en plena execució.
+> 💡 **Detall pràctic:** "RuntimeException" significa que l'error apareix quan el programa **corre**, no en compilar. El compilador no t'avisa: només ho descobreixes en plena execució.
 
 ---
 
@@ -75,7 +75,7 @@ int num = Integer.parseInt("Hola");    // NumberFormatException
 | Excepció | Quan apareix | Frase típica |
 |---|---|---|
 | `ArithmeticException` | Dividir entre 0 | "Dividir entre zero, quin valent" |
-| `ArrayIndexOutOfBoundsException` | Índex fora de l'array | "Eixe buit no existix" |
+| `ArrayIndexOutOfBoundsException` | Índex fora de l'array | "Eixe buit no existeix" |
 | `NullPointerException` | Cridar alguna cosa `null` | "El clàssic absolut" |
 | `NumberFormatException` | Convertir text que no és nombre | "Convertir 'Hola' en nombre, no" |
 | `StringIndexOutOfBoundsException` | Índex fora d'un `String` | "substring() més enllà del final" |
@@ -160,7 +160,7 @@ int c = Integer.parseInt("quaranta-dos");
 ## ✅ Resum en 3 frases
 
 1. Una excepció és un **objecte** que Java llança quan alguna cosa eix malament i que hereta de `Throwable`.
-2. La família es dividix en `Error` (greus, no tocar), `Exception` (capturables) i `RuntimeException` (es llancen en executar, sense obligació de capturar-les).
+2. La família es divideix en `Error` (greus, no tocar), `Exception` (capturables) i `RuntimeException` (es llancen en executar, sense obligació de capturar-les).
 3. Llegir el missatge de l'excepció (què, on, en quin mètode) és la primera habilitat d'un bon depurador.
 
 > 🐛 **Vocabulari ràpid**

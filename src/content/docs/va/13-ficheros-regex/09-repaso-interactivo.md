@@ -48,7 +48,7 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`Suma: 83`** → La regex captura nom i edat, i se sumen 20 + 35 + 28. ✅
 2. **`Suma: 0`** → `m.matches()` no troba res perquè el patró no quadra amb les línies. ❌
@@ -57,7 +57,7 @@ public class Misterio {
 > <details>
 > <summary>🔄 Solució</summary>
 >
-> L'opció **1**. El fitxer es crea amb tres línies del format `Nom;edat`. La regex `(\\w+);(\\d+)` captura el nom (grup 1) i l'edat (grup 2), i com que `matches()` exigix que **tota** la línia quadre (i quadra), suma `20 + 35 + 28 = 83`. Tant se val quantes vegades l'executes: el fitxer ja existix i l'eixida és sempre la mateixa.
+> L'opció **1**. El fitxer es crea amb tres línies del format `Nom;edat`. La regex `(\\w+);(\\d+)` captura el nom (grup 1) i l'edat (grup 2), i com que `matches()` exigeix que **tota** la línia quadre (i quadra), suma `20 + 35 + 28 = 83`. Tant se val quantes vegades l'executes: el fitxer ja existeix i l'eixida és sempre la mateixa.
 >
 > </details>
 
@@ -92,7 +92,7 @@ Endevina quin concepte de la unitat soc:
 3. **Soc el bloc que tanca els fitxers per tu, passe el que passe.**
 4. **Soc la interfície-marca que permet guardar un objecte en un fitxer.**
 5. **Soc el motle compilat d'una expressió regular.**
-6. **Soc el mètode que exigix que TOT el string complica amb el patró.**
+6. **Soc el mètode que exigeix que TOT el string complica amb el patró.**
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -114,7 +114,7 @@ Endevina quin concepte de la unitat soc:
 
 **CONRAD:** — UNA ALTRA VEGADA! Ve un alumne i em diu: *CONRAD, el meu fitxer s'ha quedat a mig fer*. I jo: val, a veure el teu codi? *Pues mira, escric amb FileWriter...* I NO TANQUES! I tant que s'ha quedat a mig fer! Les dades viuen al buffer fins que arriba el `close()`. Et fa gràcia escriure cartes i no tancar el sobre? Pues això. Des de Java 7 tens `try-with-resources` per a tancar sense plorar. USA'L!
 
-*I després està el de la regex.* Escriu `"abc123".matches("\\d+")` i s'estranya que done `false`. Però si hi ha lletres pel mig! `matches()` exigix que TOT el string siguen dígits. Per a buscar subcadenes, `find()`. Porta tota la unitat dient-ho!
+*I després està el de la regex.* Escriu `"abc123".matches("\\d+")` i s'estranya que done `false`. Però si hi ha lletres pel mig! `matches()` exigeix que TOT el string siguen dígits. Per a buscar subcadenes, `find()`. Porta tota la unitat dient-ho!
 
 *I el de la serialització:* guarda un objecte, canvia la classe afegint un camp, i es queixa que en llegir-li salta `InvalidClassException`. I tant! No li posares el `serialVersionUID` i ara plora... Posa-l'hi fix i deixa de plorar.
 
@@ -130,7 +130,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
    - a) Crea el fitxer buit   b) Res, només representa la ruta
 2. Quin mètode de `String` torna `true` només si TOT el text és un correu vàlid?
    - a) `matches()`   b) `find()`
-3. Què llança llegir amb `FileReader` un fitxer que no existix?
+3. Què llança llegir amb `FileReader` un fitxer que no existeix?
    - a) `FileNotFoundException`   b) `NullPointerException`
 4. Quin mètode de `Files` (NIO) llig un fitxer complet com a `List<String>`?
    - a) `Files.readAllLines()`   b) `Files.readString()`
@@ -200,7 +200,7 @@ Els **errors de compilació**:
 1. Falta el `;` al final de `Pattern.compile("[\\w.]+@[\\w.]+\\.[a-z]{2,}")`.
 2. Falta el `;` al final del `System.out.println("Válidos: " + validos)`.
 
-L'**error de lògica**: no existix. L'enunciat deia "2 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. Eixa era la trampa: la teua confiança en l'enunciat.
+L'**error de lògica**: no existeix. L'enunciat deia "2 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. Eixa era la trampa: la teua confiança en l'enunciat.
 
 Eixida correcta:
 
@@ -326,7 +326,7 @@ Només si la seua classe (i totes les seues classes d'atributs) implementa `Seri
 
 > ❓ **Es poden validar documents HTML amb regex?**
 
-No. HTML no és un llenguatge regular: té etiquetes niades que les regex no poden rastrejar. Per a això existixen els *parsers*. Les regex són per a text pla amb patrons, no per a arbres d'etiquetes. Eixa pregunta se la fan tots, i la resposta és la mateixa: "no".
+No. HTML no és un llenguatge regular: té etiquetes niades que les regex no poden rastrejar. Per a això existeixen els *parsers*. Les regex són per a text pla amb patrons, no per a arbres d'etiquetes. Eixa pregunta se la fan tots, i la resposta és la mateixa: "no".
 
 ---
 

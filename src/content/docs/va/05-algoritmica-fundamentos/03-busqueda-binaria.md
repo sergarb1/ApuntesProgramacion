@@ -13,7 +13,7 @@ description: "El cercador Jedi: descarta mitja tona de paper en cada intent 🕯
 
 > **La cerca binària obri el "diccionari" per la meitat, compara, i descarta mitja tona de paper en cada intent. Només funciona si l'array està ordenat.**
 
-Buscar una paraula en un diccionari és un ritual molt concret: no obres per la pàgina 1 i passes d'una en una. Obres per la meitat, veus si la paraula està abans o després, i descartes la meitat del llibre en un gest. I repetix. Això és la cerca binària.
+Buscar una paraula en un diccionari és un ritual molt concret: no obres per la pàgina 1 i passes d'una en una. Obres per la meitat, veus si la paraula està abans o després, i descartes la meitat del llibre en un gest. I repeteix. Això és la cerca binària.
 
 ---
 
@@ -21,7 +21,7 @@ Buscar una paraula en un diccionari és un ritual molt concret: no obres per la 
 
 > **L'array ha d'estar ordenat.** Si no, este mètode no funciona.
 
-I el pitjor de tot: no t'avisa. No hi ha error de compilació, no hi ha excepció, no hi ha "ei, m'has donat escombraria". Simplement obtens la resposta equivocada. És com buscar "berenar" en un diccionari les paraules del qual estan a l'atzar: obrir per la meitat no et servix de res.
+I el pitjor de tot: no t'avisa. No hi ha error de compilació, no hi ha excepció, no hi ha "ei, m'has donat escombraria". Simplement obtens la resposta equivocada. És com buscar "berenar" en un diccionari les paraules del qual estan a l'atzar: obrir per la meitat no et serveix de res.
 
 ---
 
@@ -78,7 +78,7 @@ Tres comparacions. La cerca lineal n'hauria necessitat set. I en un array d'un m
 
 ## 🧮 Per què `esquerra + (dreta - esquerra) / 2` i no `(esquerra + dreta) / 2`?
 
-Perquè si l'array és molt gran (a prop de `Integer.MAX_VALUE` elements), `esquerra + dreta` pot **desbordar-se**: el resultat ja no cap en un `int` i es convertix en un nombre negatiu de sobte. La fórmula alternativa `esquerra + (dreta - esquerra) / 2` evita eixe problema.
+Perquè si l'array és molt gran (a prop de `Integer.MAX_VALUE` elements), `esquerra + dreta` pot **desbordar-se**: el resultat ja no cap en un `int` i es converteix en un nombre negatiu de sobte. La fórmula alternativa `esquerra + (dreta - esquerra) / 2` evita eixe problema.
 
 > ⚠️ **Advertència:** este és un bug tan famós que va aparéixer fins i tot en la biblioteca de Java original. Du anys col·leccionant trofeus: Bug de l'any, Bug de la dècada, Bug favorit del públic...
 
@@ -141,7 +141,7 @@ public class Traça {
 |---|---|---|---|---|---|
 | 1 | 0 | 5 | 2 | 8 | Bingo! → retorna 2 |
 
-Imprimix:
+Imprimeix:
 
 ```
 esquerra=0 dreta=5 mig=2
@@ -159,7 +159,7 @@ El 8 és just en el mig de la primera passada, així que l'algoritme fa **una so
 Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quin requisit imprescindible té la cerca binària?
-2. Què passa si l'incomplixes?
+2. Què passa si l'incompleixes?
 3. Quants passos màxims necessita per a un array d'1.000.000 d'elements?
 4. Per què s'usa `esquerra + (dreta - esquerra) / 2` en comptes de `(esquerra + dreta) / 2`?
 
@@ -177,7 +177,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. La cerca binària **dividix el problema a la meitat en cada pas**, comparant l'objectiu amb l'element central.
+1. La cerca binària **divideix el problema a la meitat en cada pas**, comparant l'objectiu amb l'element central.
 2. Exigix un array **ordenat**; si no ho està, retorna escombraria sense avisar.
 3. La seua complexitat és **O(log n)**: amb un milió d'elements basten ~20 passos, mentre que la lineal necessita un milió.
 

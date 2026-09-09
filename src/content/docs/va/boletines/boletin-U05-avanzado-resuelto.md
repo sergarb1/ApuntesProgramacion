@@ -14,7 +14,7 @@ description: Els mateixos exercicis que el butlletí avançat, amb solucions
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix:
+Imprimeix:
 
 ```
 Prove l'índex 3
@@ -63,7 +63,7 @@ public static int cercaBinaria(int[] dades, int objectiu) {
 }
 ```
 
-Eixida per a `objectiu = 7`: `Provant l'índex 4`, `Provant l'índex 1`, `Provant l'índex 2`, i retorna `2` (el 7 està en `dades[2]`). El `println` dins del bucle convertix la binària en una capsa de vidre: pots vore cada intent.
+Eixida per a `objectiu = 7`: `Provant l'índex 4`, `Provant l'índex 1`, `Provant l'índex 2`, i retorna `2` (el 7 està en `dades[2]`). El `println` dins del bucle converteix la binària en una capsa de vidre: pots vore cada intent.
 
 </details>
 
@@ -224,7 +224,7 @@ public class Kata {
 }
 ```
 
-Per a `[1, 0, 1, 1]`: valor = 0·2+1 = 1, després 1·2+0 = 2, després 2·2+1 = 5, després 5·2+1 = 11. El truc `valor * 2 + digit` convertix binari a decimal en un sol recorregut, sense `Math.pow`. És un algoritme clàssic que et trobaràs a tot arreu: dígit a dígit, el valor "es desplaça" cap a l'esquerra.
+Per a `[1, 0, 1, 1]`: valor = 0·2+1 = 1, després 1·2+0 = 2, després 2·2+1 = 5, després 5·2+1 = 11. El truc `valor * 2 + digit` converteix binari a decimal en un sol recorregut, sense `Math.pow`. És un algoritme clàssic que et trobaràs a tot arreu: dígit a dígit, el valor "es desplaça" cap a l'esquerra.
 
 </details>
 
@@ -298,6 +298,6 @@ public class Kaprekar {
 }
 ```
 
-Els nombres amb menys de 4 xifres es completen amb zeros perquè extraiem amb `% 10` i `/ 10` sobre un array de 4 posicions: el 21 es convertix en `{0, 0, 2, 1}`. L'algoritme de Kaprekar acaba sempre (màxim unes poques iteracions) i arriba a 6174... **excepte els repdigits** (1111, 5555...): la primera resta dóna 0 i, si entrares al `while (numero != 6174)`, et quedaries donant voltes amb 0 per sempre. Per això el problema oficial d'AceptaElReto demana que els repdigits imprimisquen `8`, i ho detectem abans amb `esRepdigit`. La bombolla del punt 4, reutilitzada dins del propi Kaprekar: el codi de la U05 resolent problemes reals.
+Els nombres amb menys de 4 xifres es completen amb zeros perquè extraiem amb `% 10` i `/ 10` sobre un array de 4 posicions: el 21 es converteix en `{0, 0, 2, 1}`. L'algoritme de Kaprekar acaba sempre (màxim unes poques iteracions) i arriba a 6174... **excepte els repdigits** (1111, 5555...): la primera resta dóna 0 i, si entrares al `while (numero != 6174)`, et quedaries donant voltes amb 0 per sempre. Per això el problema oficial d'AceptaElReto demana que els repdigits imprimisquen `8`, i ho detectem abans amb `esRepdigit`. La bombolla del punt 4, reutilitzada dins del propi Kaprekar: el codi de la U05 resolent problemes reals.
 
 </details>

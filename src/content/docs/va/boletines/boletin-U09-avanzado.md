@@ -97,7 +97,7 @@ tarjeta.procesarPagament(500);   // true
 tarjeta.procesarPagament(600);   // false (supera el límit)
 ```
 
-**Pista:** cada classe decidix la seua pròpia lògica d'aprovació; només el contracte `procesarPagament` és comú. Per a la transferència, comprova que `quantitat + 1 <= saldo`.
+**Pista:** cada classe decideix la seua pròpia lògica d'aprovació; només el contracte `procesarPagament` és comú. Per a la transferència, comprova que `quantitat + 1 <= saldo`.
 
 ---
 
@@ -207,7 +207,7 @@ public abstract class Beguda {
 
 Implementa `Te` (bosseta de te + llima) i `Cafe` (cafè mòlt + sucre). En el `main`, prepara un `Te` i un `Cafe` amb una variable de tipus `Beguda`.
 
-**Pista:** les subclasses només omplen els dos mètodes `protected abstract`. El `final` en `preparar()` garantix que ningú no reordene els passos. Per a provar ambdues, usa una referència polimòrfica: `Beguda b = new Te(); b.preparar();`.
+**Pista:** les subclasses només omplen els dos mètodes `protected abstract`. El `final` en `preparar()` garanteix que ningú no reordene els passos. Per a provar ambdues, usa una referència polimòrfica: `Beguda b = new Te(); b.preparar();`.
 
 ---
 
@@ -224,4 +224,4 @@ Cada vehicle té un `moure()` que reduïx el combustible i torna `true` si va po
 
 En `main()`, crea un `ArrayList<Vehicle>` amb diversos vehicles. Cada vehicle es mou repetidament mentre puga i compta quants moviments va fer.
 
-**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ...; return true; } else { System.out.println("Sense combustible"); return false; }`. El bucle del `main` usa el valor de retorn: `while (v.moure()) { moviments++; }`. Així no es queda mai en un bucle infinit quan el combustible no arriba per a moure's.
+**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumeix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ...; return true; } else { System.out.println("Sense combustible"); return false; }`. El bucle del `main` usa el valor de retorn: `while (v.moure()) { moviments++; }`. Així no es queda mai en un bucle infinit quan el combustible no arriba per a moure's.

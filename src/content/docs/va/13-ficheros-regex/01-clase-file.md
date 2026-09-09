@@ -11,9 +11,9 @@ description: "El GPS que localitza fitxers sense llegir-ne el contingut: existei
 
 ## 📬 La idea en una frase
 
-> **`File` no és el contingut d'un fitxer: és la targeta de visita que et diu on està, com es diu, quant pesa i si existix. Abans de llegir o escriure, pregunta-li al GPS.**
+> **`File` no és el contingut d'un fitxer: és la targeta de visita que et diu on està, com es diu, quant pesa i si existeix. Abans de llegir o escriure, pregunta-li al GPS.**
 
-En la U11 guardaves les teues dades en memòria: llistes, mapes, objectes... tot viu mentre el programa corre. Però i si vols saber si un fitxer existix abans d'obrir-lo? I si necessites recórrer les carpetes del teu disc? Ací entra la classe `File`. No llig ni escriu res: només explora i descriu. És el porter de l'edifici dels fitxers.
+En la U11 guardaves les teues dades en memòria: llistes, mapes, objectes... tot viu mentre el programa corre. Però i si vols saber si un fitxer existeix abans d'obrir-lo? I si necessites recórrer les carpetes del teu disc? Ací entra la classe `File`. No llig ni escriu res: només explora i descriu. És el porter de l'edifici dels fitxers.
 
 ---
 
@@ -50,7 +50,7 @@ System.out.println("Nombre: " + f.getName());            // només el nom amb ex
 | `createNewFile()` | Crea el fitxer buit (torna `false` si ja existia) |
 | `mkdir()` / `mkdirs()` | Crea la carpeta (amb `mkdirs`, crea també les intermèdies) |
 
-> ⚠️ **Advertència:** `File` **no llig contingut**. Li preguntes *"existix? quant pesa? és carpeta?"* i et contesta. Per a llegir el de dins, ja arribaran `FileReader`, `BufferedReader`, `Scanner` i `Files.readAllLines()` en els pròxims punts. Cadascú al seu ofici.
+> ⚠️ **Advertència:** `File` **no llig contingut**. Li preguntes *"existeix? quant pesa? és carpeta?"* i et contesta. Per a llegir el de dins, ja arribaran `FileReader`, `BufferedReader`, `Scanner` i `Files.readAllLines()` en els pròxims punts. Cadascú al seu ofici.
 
 ---
 
@@ -77,7 +77,7 @@ public class Explorador {
 }
 ```
 
-Recorda comprovar `exists()` i `isDirectory()` abans de `listFiles()`: si la ruta no existix, `listFiles()` torna `null` i el `for-each` t'esclata a la cara.
+Recorda comprovar `exists()` i `isDirectory()` abans de `listFiles()`: si la ruta no existeix, `listFiles()` torna `null` i el `for-each` t'esclata a la cara.
 
 ---
 
@@ -86,11 +86,11 @@ Recorda comprovar `exists()` i `isDirectory()` abans de `listFiles()`: si la rut
 Un error típic de novell és creure que `new File("notas.txt")` "crea" el fitxer o que en construir un `File` ja "lliges" alguna cosa. No:
 
 ```java
-File f = new File("notas.txt");   // Només representa la ruta. No existix res nou en el disc.
+File f = new File("notas.txt");   // Només representa la ruta. No existeix res nou en el disc.
 boolean creado = f.createNewFile();  // AIXÒ sí intenta crear-lo. Torna false si ja existia.
 ```
 
-`createNewFile()` crea un fitxer **buit** i torna `true` si l'ha creat, o `false` si ja existia. Si la carpeta no existix, llança `IOException`. El patró habitual: comprova `exists()` abans de decidir què fer.
+`createNewFile()` crea un fitxer **buit** i torna `true` si l'ha creat, o `false` si ja existia. Si la carpeta no existeix, llança `IOException`. El patró habitual: comprova `exists()` abans de decidir què fer.
 
 ---
 
@@ -124,14 +124,14 @@ public class DetectiveDeArchivos {
 }
 ```
 
-**Què imprimeix la PRIMERA vegada? I la SEGONA vegada (quan el fitxer ja existix)?**
+**Què imprimeix la PRIMERA vegada? I la SEGONA vegada (quan el fitxer ja existeix)?**
 
 <details>
 <summary>🔄 Solució</summary>
 
-La **primera** vegada: el fitxer no existix, així que es crea amb les paraules "Tres", "palabras" i "misteriosas". Després es llig i es concatena **al revés**: `misteriosas palabras Tres`.
+La **primera** vegada: el fitxer no existeix, així que es crea amb les paraules "Tres", "palabras" i "misteriosas". Després es llig i es concatena **al revés**: `misteriosas palabras Tres`.
 
-La **segona** vegada: el fitxer ja existix (`exists()` és `true`), així que no es recrea i es llig el mateix → torna a imprimir `misteriosas palabras Tres`.
+La **segona** vegada: el fitxer ja existeix (`exists()` és `true`), així que no es recrea i es llig el mateix → torna a imprimir `misteriosas palabras Tres`.
 
 La trampa està en l'`if (!f.exists())`: la primera execució "crea el fitxer", però les següents no. El contingut no canvia mai, així que l'eixida és sempre la mateixa.
 
@@ -145,8 +145,8 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Crea alguna cosa `new File("notas.txt")` en el disc?
 2. Quin mètode torna `true` si una ruta és una carpeta?
-3. Què torna `createNewFile()` si el fitxer ja existix?
-4. Per a què servix `length()`?
+3. Què torna `createNewFile()` si el fitxer ja existeix?
+4. Per a què serveix `length()`?
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -162,7 +162,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. **`File`** és un GPS de rutes: et diu si existixen, si són fitxer o carpeta, quant pesen i què contenen (`listFiles()`), però **no llig contingut**.
+1. **`File`** és un GPS de rutes: et diu si existeixen, si són fitxer o carpeta, quant pesen i què contenen (`listFiles()`), però **no llig contingut**.
 2. `new File("ruta")` **no crea res**: crea l'objecte que representa la ruta. Per a crear, `createNewFile()`, `mkdir()`/`mkdirs()` o un `FileWriter`.
 3. Abans d'operar amb una ruta, comprova `exists()` i `isFile()`/`isDirectory()`: els mètodes tornen `false` o `null` si la ruta no és l'esperada.
 

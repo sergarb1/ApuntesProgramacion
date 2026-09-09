@@ -1,9 +1,9 @@
 ---
 title: "07 · Triar la col·lecció adequada"
-description: "ArrayList, LinkedList, HashSet, TreeSet o LinkedHashSet: les tres preguntes que decidixen abans d'escriure la primera línia ⚖️"
+description: "ArrayList, LinkedList, HashSet, TreeSet o LinkedHashSet: les tres preguntes que decideixen abans d'escriure la primera línia ⚖️"
 ---
 
-<p><small>ArrayList, LinkedList, HashSet, TreeSet o LinkedHashSet: les tres preguntes que decidixen abans d'escriure la primera línia ⚖️</small></p>
+<p><small>ArrayList, LinkedList, HashSet, TreeSet o LinkedHashSet: les tres preguntes que decideixen abans d'escriure la primera línia ⚖️</small></p>
 
 > 🗺️ **Estàs en:** 📚 **U10 · Col·leccions** → 07 · Triar la col·lecció adequada
 
@@ -139,7 +139,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. **No hi ha col·lecció millor: hi ha col·lecció adequada.** Les tres preguntes (ordre, duplicats, velocitat) ho decidixen tot.
+1. **No hi ha col·lecció millor: hi ha col·lecció adequada.** Les tres preguntes (ordre, duplicats, velocitat) ho decideixen tot.
 2. **Llistes** per a ordre + duplicats, **Sets** per a sense duplicats, **LinkedList** per a cues i piles.
 3. En una entrevista, "quina és la millor col·lecció?" es respon sempre amb arguments, no amb un nom.
 

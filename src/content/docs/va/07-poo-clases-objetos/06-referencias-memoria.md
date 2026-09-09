@@ -96,7 +96,7 @@ Si intentes tocar un atribut o cridar un mètode d'una referència `null`, Java 
 
 **Exercici: el lío de les fletxes**
 
-Sense executar, què imprimix este programa?
+Sense executar, què imprimeix este programa?
 
 ```java
 public class Cuenta {
@@ -125,13 +125,13 @@ public class Main {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`150`** i **`150`**.
+Imprimeix **`150`** i **`150`**.
 
 - `b = a` fa que tots dos apunten al mateix compte, així que `b.saldo += 50` puja el saldo d'*eixe* compte a 150 (que també veu `a`).
 - `c = new Cuenta()` és un objecte nou; `c.saldo = a.saldo` copia el **valor** 150.
-- `a = null` desconnecta la variable `a`, però el compte continua viu perquè `b` l'apunta. Si ningú apuntara a l'objecte, el recol·lector de brossa el reciclaria (això també existix, i t'alegra la vida).
+- `a = null` desconnecta la variable `a`, però el compte continua viu perquè `b` l'apunta. Si ningú apuntara a l'objecte, el recol·lector de brossa el reciclaria (això també existeix, i t'alegra la vida).
 
-Resum: **`b` i `c` imprimixen 150, però per raons distintes**: `b` perquè compartix el compte amb `a`, `c` perquè li vas copiar el valor.
+Resum: **`b` i `c` imprimeixen 150, però per raons distintes**: `b` perquè compartix el compte amb `a`, `c` perquè li vas copiar el valor.
 
 </details>
 

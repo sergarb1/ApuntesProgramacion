@@ -54,7 +54,7 @@ El patró `"\\s+"` = "un o més espais" → el substituïx per un sol espai. Amb
 
 ## 🔪 split(): trocejar per patró
 
-`split(regex)` dividix el string per les coincidències i torna un `String[]`.
+`split(regex)` divideix el string per les coincidències i torna un `String[]`.
 
 ```java
 "a,b,c,d".split(",");        // ["a", "b", "c", "d"]
@@ -104,7 +104,7 @@ public class ValidadorRegex {
 }
 ```
 
-> 📝 **Nota:** `[\\w.]+@[\\w.]+\\.[a-z]{2,}` es llig: "lletres/punts, una `@`, lletres/punts, un punt, i almenys 2 lletres". És un format **bàsic**: no comprova si el domini existix ni si l'adreça és real. I el DNI: la regex només verifica el **format** (8 dígits + lletra); per a validar la lletra de veritat caldria l'algoritme mòdul 23. Les regex validen forma, no veritat.
+> 📝 **Nota:** `[\\w.]+@[\\w.]+\\.[a-z]{2,}` es llig: "lletres/punts, una `@`, lletres/punts, un punt, i almenys 2 lletres". És un format **bàsic**: no comprova si el domini existeix ni si l'adreça és real. I el DNI: la regex només verifica el **format** (8 dígits + lletra); per a validar la lletra de veritat caldria l'algoritme mòdul 23. Les regex validen forma, no veritat.
 
 ---
 
@@ -162,7 +162,7 @@ Amb una sola regex traus el nivell, la data, l'hora i el missatge de cada línia
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** cada parèntesi captura una part. `(.*)` al final captura "tot el que quede": és el clàssic per a la resta de la línia. Si una línia no coincidix, `find()` torna `false` i no passa res: el bucle seguix.
+> 🕶️ **Don Tip:** cada parèntesi captura una part. `(.*)` al final captura "tot el que quede": és el clàssic per a la resta de la línia. Si una línia no coincideix, `find()` torna `false` i no passa res: el bucle seguix.
 
 **Exercici: el formatejador de dates**
 
@@ -185,7 +185,7 @@ Imprimeix **`2024-03-15`**: passa de `dd/mm/aaaa` a `aaaa-mm-dd`.
 
 Els grups capturen el dia (`$1`), el mes (`$2`) i l'any (`$3`), i el reemplaçament `$3-$2-$1` els reordena. Eixe és el truc per a reordenar parts de text amb regex sense tocar res més.
 
-I la trampa: amb `15-03-2024` **no coincidix res** (el patró espera `/`, no `-`), així que `replaceAll` no toca el string i torna `15-03-2024` tal qual. Per a suportar tots dos separadors hauríes d'usar `[\\/\\-]` o dues crides. Les regex són literals: no endevinen, compleixen ordres.
+I la trampa: amb `15-03-2024` **no coincideix res** (el patró espera `/`, no `-`), així que `replaceAll` no toca el string i torna `15-03-2024` tal qual. Per a suportar tots dos separadors hauríes d'usar `[\\/\\-]` o dues crides. Les regex són literals: no endevinen, compleixen ordres.
 
 </details>
 

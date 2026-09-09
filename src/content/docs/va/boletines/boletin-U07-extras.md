@@ -18,7 +18,7 @@ Et donen una classe `Dinglemouse` amb un mètode `getFullName()` que hauria de t
 - [Enunciat en CodeWars](https://www.codewars.com/kata/597c684822bc9388f600010f)
 - Dificultat: 7 kyu
 
-**Pista:** fixa't en quins atributs existixen (`firstName` i `lastName`) i en com el mètode els concatena. La classe està feta per a rompre's: busca l'error de `this` o d'ordre.
+**Pista:** fixa't en quins atributs existeixen (`firstName` i `lastName`) i en com el mètode els concatena. La classe està feta per a rompre's: busca l'error de `this` o d'ordre.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -205,7 +205,7 @@ Per a `23:45`: `(23-23)*60 + (60-45)` = 15. Per a `21:30`: `2*60 + 30` = 150. El
 
 ### 6. 117 — La fiesta aburrida
 
-Tinín odia saludar desconeguts. L'entrada comença amb un nombre N (quanta gent hi ha) i després N línies amb el format `"Soy Lotario"`. Per a cada una, imprimix `"Hola, Lotario."`.
+Tinín odia saludar desconeguts. L'entrada comença amb un nombre N (quanta gent hi ha) i després N línies amb el format `"Soy Lotario"`. Per a cada una, imprimeix `"Hola, Lotario."`.
 
 **Entrada:**
 
@@ -251,7 +251,7 @@ public class FiestaAburrida {
 }
 ```
 
-`split(" ")` partix `"Soy Lotario"` en `["Soy", "Lotario"]` i l'índex 1 és el nom. El `sc.nextLine()` després del `nextInt()` consumix el salt de línia sobrant. Una versió amb classe `Persona` i el seu mètode `saludar()` és el repte extra ideal per a esta unitat.
+`split(" ")` partix `"Soy Lotario"` en `["Soy", "Lotario"]` i l'índex 1 és el nom. El `sc.nextLine()` després del `nextInt()` consumeix el salt de línia sobrant. Una versió amb classe `Persona` i el seu mètode `saludar()` és el repte extra ideal per a esta unitat.
 
 </details>
 

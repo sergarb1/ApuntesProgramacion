@@ -21,7 +21,7 @@ En el punt 1 vas vore que per a guardar una lambda en una variable necessites un
 
 És una interfície amb **exactament un mètode abstracte**. Eixe mètode és la firma que tota lambda ha de complir: si la interfície espera `boolean test(int)`, la teua lambda ha de ser una cosa que reba un `int` i torne un `boolean`.
 
-Perquè el compilador et faça una mà, existix l'anotació `@FunctionalInterface`: si algú intenta afegir un segon mètode abstracte, el compilador munta en còlera.
+Perquè el compilador et faça una mà, existeix l'anotació `@FunctionalInterface`: si algú intenta afegir un segon mètode abstracte, el compilador munta en còlera.
 
 ```java
 @FunctionalInterface
@@ -31,7 +31,7 @@ interface Transformador {
 }
 ```
 
-> ⚠️ **Advertència:** `@FunctionalInterface` és opcional. La interfície funciona igual sense ella; l'anotació només servix perquè el compilador verifique que seguixes les regles. Com un cinturó de seguretat: ningú t'obliga, però és bona idea.
+> ⚠️ **Advertència:** `@FunctionalInterface` és opcional. La interfície funciona igual sense ella; l'anotació només serveix perquè el compilador verifique que seguixes les regles. Com un cinturó de seguretat: ningú t'obliga, però és bona idea.
 
 ---
 
@@ -128,13 +128,13 @@ public class Portero {
 
 - (A) `Entrada: ADULTO`
 - (B) `Entrada: MENOR`
-- (C) Res: l'`if` mai no es complix.
+- (C) Res: l'`if` mai no es compleix.
 - (D) Error de compilació: no es poden combinar quatre lambdes així.
 
 <details>
 <summary>🔄 Solució</summary>
 
-La **A**. `reloj.get()` torna `20`, `mayorDeEdad.test(20)` és `true` (20 ≥ 18), i dins de l'`if` s'encadenen les altres dos: `etiqueta.apply(20)` torna `"ADULTO"` i `anunciar.accept("ADULTO")` imprimeix `Entrada: ADULTO`. Fixa't en com cada vestit fa el seu paper: el `Supplier` fabrica la dada, el `Predicate` decidix, la `Function` transforma i el `Consumer` actua. És el ball complet de `java.util.function`.
+La **A**. `reloj.get()` torna `20`, `mayorDeEdad.test(20)` és `true` (20 ≥ 18), i dins de l'`if` s'encadenen les altres dos: `etiqueta.apply(20)` torna `"ADULTO"` i `anunciar.accept("ADULTO")` imprimeix `Entrada: ADULTO`. Fixa't en com cada vestit fa el seu paper: el `Supplier` fabrica la dada, el `Predicate` decideix, la `Function` transforma i el `Consumer` actua. És el ball complet de `java.util.function`.
 
 </details>
 
@@ -146,7 +146,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quin mètode abstracte té `Predicate<T>` i què torna?
 2. Què torna `Function<T, R>`?
-3. Per a què servix `Consumer<T>`?
+3. Per a què serveix `Consumer<T>`?
 4. I `Supplier<T>`?
 
 <details>

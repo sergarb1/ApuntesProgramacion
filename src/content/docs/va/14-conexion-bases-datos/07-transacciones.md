@@ -98,7 +98,7 @@ if (algoMal) {
 
 És com en un videojoc: `setSavepoint` guarda la partida, `rollback(sp)` et torna a eixa partida guardada en comptes de començar de zero, i `commit()` guarda el final definitiu. Útil quan una transacció llarga té una part que saps que sempre ix bé i una altra que pot fallar.
 
-> 📝 **Nota:** els savepoints s'usen menys del que pareix. El 90% de les voltes et basta amb `commit()`/`rollback()` en bloc. Però saber que existixen t'estalviarà un ensurt el dia que els necessites.
+> 📝 **Nota:** els savepoints s'usen menys del que pareix. El 90% de les voltes et basta amb `commit()`/`rollback()` en bloc. Però saber que existeixen t'estalviarà un ensurt el dia que els necessites.
 
 ---
 

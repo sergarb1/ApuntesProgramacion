@@ -11,7 +11,7 @@ description: El moment en què el teu programa deixa de cridar i comença a esco
 
 ## 📬 La idea en una frase
 
-> **`Scanner` és la classe de Java que llegix el que escrius pel teclat: instancies un objecte amb `new Scanner(System.in)` i li demanes dades amb `nextInt()`, `nextDouble()` o `nextLine()`.**
+> **`Scanner` és la classe de Java que llegeix el que escrius pel teclat: instancies un objecte amb `new Scanner(System.in)` i li demanes dades amb `nextInt()`, `nextDouble()` o `nextLine()`.**
 
 Fins ara, els teus programes eren uns cridaners: només escopien text a la consola. A partir d'este punt tindran oïdes. I amb oïdes arriben els programes de veritat: un conversor de temperatures que et pregunta els graus, una calculadora que rep números...
 
@@ -39,7 +39,7 @@ Scanner sc = new Scanner(System.in);
 
 - `Scanner` és la classe (el motle).
 - `new Scanner(...)` crea l'objecte (el constructor).
-- `System.in` és l'argument que li passes: "llegix del teclat estàndard".
+- `System.in` és l'argument que li passes: "llegeix del teclat estàndard".
 
 > 💡 **Detall pràctic:** el nom de la variable sol ser `sc` o `teclado`, per pura costum. Quan acabis d'usar el `Scanner`, és bona pràctica tancar-lo amb `sc.close()`, sobretot si el programa va a continuar fent coses rares.
 
@@ -201,8 +201,8 @@ String nombre = sc.nextLine();    // ara sí que llig el nom
 <summary>🔄 Respostes</summary>
 
 1. Importa la classe `Scanner` des de la llibreria `java.util`, per a poder usar-la.
-2. **Crea un objecte** de tipus `Scanner` que llegix del teclat (`System.in`). És el constructor de la classe.
-3. `next()` llegix **una sola paraula** (fins a un espai); `nextLine()` llegix **tota la línia** fins a l'Enter.
+2. **Crea un objecte** de tipus `Scanner` que llegeix del teclat (`System.in`). És el constructor de la classe.
+3. `next()` llegeix **una sola paraula** (fins a un espai); `nextLine()` llegeix **tota la línia** fins a l'Enter.
 4. Perquè l'Enter que vas pulsar en `nextInt()` queda al buffer i el següent `nextLine()` se'l menja, retornant text buit.
 
 </details>

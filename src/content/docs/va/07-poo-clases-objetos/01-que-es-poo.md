@@ -1,9 +1,9 @@
 ---
 title: "01 — Què és la POO"
-description: "Quan el teu codi deixa de ser una recepta i es convertix en un món de coses que parlen entre elles 🏗️"
+description: "Quan el teu codi deixa de ser una recepta i es converteix en un món de coses que parlen entre elles 🏗️"
 ---
 
-<p><small>Quan el teu codi deixa de ser una recepta i es convertix en un món de coses que parlen entre elles 🏗️</small></p>
+<p><small>Quan el teu codi deixa de ser una recepta i es converteix en un món de coses que parlen entre elles 🏗️</small></p>
 
 > 🗺️ **Estàs en:** 🏗️ **U07 · POO: Classes i Objectes** → 01 · Què és la POO
 
@@ -13,7 +13,7 @@ description: "Quan el teu codi deixa de ser una recepta i es convertix en un mó
 
 > **La POO és escriure codi com funciona el món real: en comptes d'una llista d'instruccions, models *coses* amb les seues dades (atributs) i els seus comportaments (mètodes).**
 
-Fins ara els teus programes eren com una **recepta de cuina**: fes això, després això, després l'altre. Molt ordenat, però molt rígid. Si vols representar dos estudiants, dos cotxes o dos galetes... comences a copiar i enganxar variables com un boig. I quan el programa creix, la recepta es convertix en un caos.
+Fins ara els teus programes eren com una **recepta de cuina**: fes això, després això, després l'altre. Molt ordenat, però molt rígid. Si vols representar dos estudiants, dos cotxes o dos galetes... comences a copiar i enganxar variables com un boig. I quan el programa creix, la recepta es converteix en un caos.
 
 La POO arriba per a posar ordre: en lloc de variables soltes, agrupes les dades *de la mateixa cosa* juntament amb el que eixa cosa *sap fer*. Un gos no és només un `String nombre` i un `int edad` solts per ahí: és un **objecte** que té nom, edat, i sap lladrar.
 
@@ -80,7 +80,7 @@ public class Perro {
 La POO es recolza en quatre pilars. En esta unitat toquem el primer a fons i fem la promo dels altres:
 
 1. **Abstracció:** et quedes amb el que és important d'una cosa i t'oblides del soroll. Un gat en un programa és `nombre`, `edad` i `maullar()`, no els seus bigotis.
-2. **Encapsulació (U08):** cada objecte protegix les seues dades i decidix qui pot tocar-les. Com un compte bancari: el saldo no està tirat al carrer.
+2. **Encapsulació (U08):** cada objecte protegix les seues dades i decideix qui pot tocar-les. Com un compte bancari: el saldo no està tirat al carrer.
 3. **Herència (U09):** una classe pot "heretar" d'una altra. Un `Perro` és un `Animal` i, a més, lladra.
 4. **Polimorfisme (U09):** el mateix missatge, distintes respostes. Tots els animals "fan so"; el gos lladra i el gat miola.
 
@@ -94,7 +94,7 @@ La POO es recolza en quatre pilars. En esta unitat toquem el primer a fons i fem
 
 **Exercici: classifica**
 
-Sense executar res, decidix per a cada un d'estos si és un **atribut** o un **mètode** d'una classe `Videojuego`:
+Sense executar res, decideix per a cada un d'estos si és un **atribut** o un **mètode** d'una classe `Videojuego`:
 
 1. `String titulo;`
 2. `void pausar() { ... }`
@@ -125,9 +125,9 @@ La regla d'or: **atribut = substantiu (dada), mètode = verb (acció)**. Si el p
 
 > **Q:** La POO és només cosa de Java?
 >
-> **A:** No. És una *forma de pensar* que usen quasi tots els llenguatges moderns: Python, JavaScript, C++, C#... Cada un amb el seu accent, però la idea és la mateixa: modelar el món en objectes. Aprendre-la ací et servix per a tots.
+> **A:** No. És una *forma de pensar* que usen quasi tots els llenguatges moderns: Python, JavaScript, C++, C#... Cada un amb el seu accent, però la idea és la mateixa: modelar el món en objectes. Aprendre-la ací et serveix per a tots.
 
-> **Q:** Què passa amb el `main` que porte escrivint des de la U01? Ara no servix?
+> **Q:** Què passa amb el `main` que porte escrivint des de la U01? Ara no serveix?
 >
 > **A:** El `main` continua sent la porta d'entrada: el que hi ha dins de `main` és la "recepta" que arranca la pel·lícula. El que canvia és que ara, dins d'eixe `main`, en comptes de variables soltes crearàs objectes. El `main` continua sent el director; només canvia el repartiment.
 

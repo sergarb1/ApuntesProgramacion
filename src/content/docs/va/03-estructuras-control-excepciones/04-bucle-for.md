@@ -1,9 +1,9 @@
 ---
 title: 04 — Bucle for i bucles anidats
-description: El comptador obsessiu que repetix un nombre exacte de voltes 🔢
+description: El comptador obsessiu que repeteix un nombre exacte de voltes 🔢
 ---
 
-<p><small>El comptador obsessiu que repetix un nombre exacte de voltes 🔢</small></p>
+<p><small>El comptador obsessiu que repeteix un nombre exacte de voltes 🔢</small></p>
 
 > 🗺️ **Estàs en:** 🔀 **U03 · Estructures de Control i Excepcions** → 04 · Bucle for i bucles anidats
 
@@ -11,9 +11,9 @@ description: El comptador obsessiu que repetix un nombre exacte de voltes 🔢
 
 ## 📬 La idea en una frase
 
-> **`for` és un bucle amb comptador de sèrie: declara la variable, posa la condició i l'actualitza en la mateixa línia, ideal per a "repetix N vegades".**
+> **`for` és un bucle amb comptador de sèrie: declara la variable, posa la condició i l'actualitza en la mateixa línia, ideal per a "repeteix N vegades".**
 
-El `while` repetia "mentres passe alguna cosa". El `for` repetix "un nombre exacte de vegades". És el bucle favorit per a recórrer coses i el que més usaràs en tota la teua carrera.
+El `while` repetia "mentres passe alguna cosa". El `for` repeteix "un nombre exacte de vegades". És el bucle favorit per a recórrer coses i el que més usaràs en tota la teua carrera.
 
 ---
 
@@ -79,7 +79,7 @@ for (int i = 1; i <= 5; i++) {
 }
 ```
 
-Els tres imprimixen el mateix. El `for` guanya perquè junta les tres parts del control en una línia: és més difícil oblidar el `i++` (adéu, bucles infinits per descuit).
+Els tres imprimeixen el mateix. El `for` guanya perquè junta les tres parts del control en una línia: és més difícil oblidar el `i++` (adéu, bucles infinits per descuit).
 
 > 💡 **Detall pràctic:** si saps quantes vegades repetiràs → `for`. Si no ho saps → `while`. Regla que et salvarà la vida en l'examen.
 
@@ -143,7 +143,7 @@ Eixida (primeres línies):
 
 **Exercici: el triangular**
 
-Sense executar, calcula quants asteriscs imprimix en total este programa:
+Sense executar, calcula quants asteriscs imprimeix en total este programa:
 
 ```java
 public class Triangle {
@@ -161,7 +161,7 @@ public class Triangle {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix:
+Imprimeix:
 
 ```
 *
@@ -170,7 +170,7 @@ Imprimix:
 ****
 ```
 
-En total, **10 asteriscs** (1 + 2 + 3 + 4). Fixa't en el truc: la condició de l'interior és `ast <= fila`, així que cada fila imprimix tants asteriscs com número de fila. El bucle interior depén del valor de l'exterior: això és el cor dels bucles anidats.
+En total, **10 asteriscs** (1 + 2 + 3 + 4). Fixa't en el truc: la condició de l'interior és `ast <= fila`, així que cada fila imprimeix tants asteriscs com número de fila. El bucle interior depén del valor de l'exterior: això és el cor dels bucles anidats.
 
 </details>
 
@@ -180,7 +180,7 @@ En total, **10 asteriscs** (1 + 2 + 3 + 4). Fixa't en el truc: la condició de l
 
 1. Quines són les tres parts del `for`?
 2. Quantes vegades s'executa la inicialització?
-3. Què imprimix `for (int i = 0; i < 5; i++)`? 5 o 4 voltes?
+3. Què imprimeix `for (int i = 0; i < 5; i++)`? 5 o 4 voltes?
 4. En un bucle anidat, què fa el bucle interior per cada volta de l'exterior?
 
 <details>

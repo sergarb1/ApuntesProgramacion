@@ -23,7 +23,7 @@ public class Ordenado {
 
 ---
 
-## Exercici 2: Què imprimix?
+## Exercici 2: Què imprimeix?
 
 Sense executar, escriu l'eixida exacta d'este programa:
 
@@ -36,7 +36,7 @@ public class Escapista {
 }
 ```
 
-Pista: `\"` imprimix una cometa literal, `\t` és un tabulador.
+Pista: `\"` imprimeix una cometa literal, `\t` és un tabulador.
 
 ---
 
@@ -90,7 +90,7 @@ Relaciona cada concepte de l'esquerra amb la seua definició de la dreta:
 | Concepte | Definició |
 |---|---|
 | 1. `class` | A. Punt d'entrada del programa |
-| 2. `main` | B. Imprimix text i salta de línia |
+| 2. `main` | B. Imprimeix text i salta de línia |
 | 3. `System.out.println` | C. Definix un nou tipus de dades |
 | 4. `//` | D. Comentari d'una línia |
 | 5. `args` | E. Conté els arguments de línia de comandes |
@@ -109,7 +109,7 @@ Donat un array de números, eleva cada un al quadrat i suma els resultats. Per e
 
 ## Exercici 8: El detectiu d'errors
 
-El següent codi té 2 errors que impedixen que compile. Troba'ls i corregeix-los:
+El següent codi té 2 errors que impedeixen que compile. Troba'ls i corregeix-los:
 
 ```java
 public class Detective {

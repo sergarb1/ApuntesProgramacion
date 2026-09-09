@@ -54,9 +54,9 @@ El compilador i la JVM fan treballs distints:
 > **Compilador:** "¿`Animal` té `hacerSonido()`? Sí. Endavant."
 > **JVM (runtime):** "L'objecte és un `Perro`. Execute el de `Perro`."
 
-Això és **dynamic binding** (o late binding): el *què* es pot cridar ho decidix el compilador; el *com* s'executa ho decidix la JVM quan el programa corre. Eixa separació és la que fa possible el polimorfisme.
+Això és **dynamic binding** (o late binding): el *què* es pot cridar ho decideix el compilador; el *com* s'executa ho decideix la JVM quan el programa corre. Eixa separació és la que fa possible el polimorfisme.
 
-> 💡 **Detall pràctic:** si Java resolguera els mètodes en compilació (static binding), cridar a `a.hacerSonido()` sempre executaria la versió d'`Animal`. El polimorfisme existix perquè la decisió s'ajorna fins al moment just.
+> 💡 **Detall pràctic:** si Java resolguera els mètodes en compilació (static binding), cridar a `a.hacerSonido()` sempre executaria la versió d'`Animal`. El polimorfisme existeix perquè la decisió s'ajorna fins al moment just.
 
 ---
 
@@ -191,7 +191,7 @@ Hola desde C
 Hola desde C
 ```
 
-Només importa el tipus real de l'objecte (`B`, `C`, `C`). El tipus de la referència (`A`, `A`, `B`) no decidix res en runtime.
+Només importa el tipus real de l'objecte (`B`, `C`, `C`). El tipus de la referència (`A`, `A`, `B`) no decideix res en runtime.
 
 </details>
 
@@ -265,7 +265,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 <details>
 <summary>🔄 Respostes</summary>
 
-1. Que el mètode a executar es decidix en runtime segons el tipus real de l'objecte, no en compilació.
+1. Que el mètode a executar es decideix en runtime segons el tipus real de l'objecte, no en compilació.
 2. Només els d'`Animal` (`hacerSonido()`). Per a `moverCola()` necessites downcasting (punt 5).
 3. Perquè `agregarAnimal` accepta `Animal` (o qualsevol subclasse) i el bucle usa polimorfisme.
 4. No. Els mètodes són polimòrfics; els atributs es resolen pel tipus de la referència.

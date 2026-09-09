@@ -11,7 +11,7 @@ description: "El teu objecte sencer en una maleta: implementa Serializable i gua
 
 ## 📬 La idea en una frase
 
-> **La serialització convertix un objecte sencer en una seqüència de bytes que pots guardar en un fitxer, i la deserialització el reconstruïx tal qual. La teua `Persona`, el teu `Estudiant`, el teu `ArrayList` sencer, en una maleta.**
+> **La serialització converteix un objecte sencer en una seqüència de bytes que pots guardar en un fitxer, i la deserialització el reconstruïx tal qual. La teua `Persona`, el teu `Estudiant`, el teu `ArrayList` sencer, en una maleta.**
 
 Fins ara guardaves text. Però i si vols guardar un **objecte complet** amb tots els seus atributs? ¿O un `ArrayList` sencer? Fer-ho camp a camp en un `FileWriter` és un horror. La serialització et deixa "congelar" l'objecte, guardar-lo en un fitxer i "descongelar-lo" després amb totes les dades intactes.
 
@@ -81,7 +81,7 @@ public class RecuperandoObjetos {
 }
 ```
 
-> ⚠️ **Advertència:** `readObject()` pot llançar `ClassNotFoundException` si la classe no existix en deserialitzar (per exemple, si canvies de projecte o reanomenes la classe). Per això el mètode declara `throws Exception` o captura les tres: `IOException`, `ClassNotFoundException`.
+> ⚠️ **Advertència:** `readObject()` pot llançar `ClassNotFoundException` si la classe no existeix en deserialitzar (per exemple, si canvies de projecte o reanomenes la classe). Per això el mètode declara `throws Exception` o captura les tres: `IOException`, `ClassNotFoundException`.
 
 ---
 
@@ -195,7 +195,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. Quina interfície ha d'implementar una classe per a poder serialitzar-se?
 2. Quina excepció llança si un atribut no és serialitzable?
 3. Què fa `transient` en un atribut?
-4. Per a què servix `serialVersionUID`?
+4. Per a què serveix `serialVersionUID`?
 
 <details>
 <summary>🔄 Respostes</summary>

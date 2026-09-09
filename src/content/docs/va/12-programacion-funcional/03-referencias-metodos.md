@@ -11,7 +11,7 @@ description: "Reciclar mètodes ja escrits com si foren lambdes amb l'operador `
 
 ## 📬 La idea en una frase
 
-> **Quan la teua lambda només crida un mètode que ja existix, pots escriure `::` en comptes de `->`: `String::toUpperCase` significa "el mètode `toUpperCase` dels Strings", llest per a usar-se com una lambda.**
+> **Quan la teua lambda només crida un mètode que ja existeix, pots escriure `::` en comptes de `->`: `String::toUpperCase` significa "el mètode `toUpperCase` dels Strings", llest per a usar-se com una lambda.**
 
 En el punt 1 vas vore les lambdes i en el punt 2 els quatre vestits oficials. Hui aprens a vestir-los sense escriure ni una fletxa: si el cos de la teua lambda és literalment "crida a este mètode", Java et deixa reciclar eixe mètode directament amb l'operador **`::`** (dos punts, dos punts, no són punts suspensius).
 
@@ -25,7 +25,7 @@ Imagina que vols una `Function<String, String>` que pose un text en majúscules.
 Function<String, String> mayusculas = s -> s.toUpperCase();
 ```
 
-Eixa lambda fa una sola cosa: cridar a `toUpperCase()`. Java pensa: "escolta, ja existix eixe mètode, per a què escric la fletxa?". La versió amb `::`:
+Eixa lambda fa una sola cosa: cridar a `toUpperCase()`. Java pensa: "escolta, ja existeix eixe mètode, per a què escric la fletxa?". La versió amb `::`:
 
 ```java
 Function<String, String> mayusculas = String::toUpperCase;
@@ -57,7 +57,7 @@ Function<String, Integer> longitud = String::length;
 System.out.println(longitud.apply("java"));   // 4
 ```
 
-Equival a `s -> s.length()`. El paràmetre de la lambda es convertix en l'objecte sobre el qual cridem.
+Equival a `s -> s.length()`. El paràmetre de la lambda es converteix en l'objecte sobre el qual cridem.
 
 ### 3. Mètode d'instància sobre un objecte concret: `objeto::metodo`
 
@@ -66,7 +66,7 @@ Consumer<String> imprimir = System.out::println;
 imprimir.accept("¡Hola!");
 ```
 
-Equival a `s -> System.out.println(s)`. Ací l'objecte ja existix (`System.out`) i el paràmetre de la lambda és l'argument del mètode.
+Equival a `s -> System.out.println(s)`. Ací l'objecte ja existeix (`System.out`) i el paràmetre de la lambda és l'argument del mètode.
 
 ### 4. Constructor: `Clase::new`
 
@@ -142,7 +142,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 <summary>🔄 Respostes</summary>
 
 1. Una referència al mètode `toUpperCase` de qualsevol `String`, llesta per a cridar-se quan toque. No executa res per si sola.
-2. Quan el mètode es crida sobre un objecte concret que ja existix, com `System.out::println`. `Clase::metodo` servix per a mètodes que es criden sobre el paràmetre que arribe.
+2. Quan el mètode es crida sobre un objecte concret que ja existeix, com `System.out::println`. `Clase::metodo` serveix per a mètodes que es criden sobre el paràmetre que arribe.
 3. Referència a un mètode estàtic d'una classe.
 4. Referència al constructor: fabrica objectes nous, com un `Supplier` (`() -> new Clase()`).
 
@@ -152,7 +152,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 ## ✅ Resum en 3 frases
 
-1. Una **referència a mètode** (`::`) és una lambda encara més curta: reutilitza un mètode que ja existix en comptes d'escriure la fletxa.
+1. Una **referència a mètode** (`::`) és una lambda encara més curta: reutilitza un mètode que ja existeix en comptes d'escriure la fletxa.
 2. Hi ha quatre tipus: **estàtica** (`Math::abs`), **d'instància sobre classe** (`String::toUpperCase`), **d'instància sobre objecte** (`System.out::println`) i **de constructor** (`ArrayList::new`).
 3. Quan la teua lambda només crida un mètode, la referència és més llegible i es comporta exactament igual.
 
@@ -163,7 +163,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Referència a mètode | Reutilitzar un mètode com a lambda amb `::` |
 > | `Clase::estatico` | Referència a un mètode estàtic |
 > | `Clase::instancia` | Mètode d'instància cridat sobre el paràmetre que arribe |
-> | `objeto::metodo` | Mètode cridat sobre un objecte concret que ja existix |
+> | `objeto::metodo` | Mètode cridat sobre un objecte concret que ja existeix |
 > | `Clase::new` | Referència al constructor |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/12-programacion-funcional) · **Anterior:** [02 · Interfícies funcionals: Predicate, Function, Consumer, Supplier](/ApuntesProgramacion/va/12-programacion-funcional/02-interfaces-funcionales) · **Següent:** [04 · Streams: el flux de dades](/ApuntesProgramacion/va/12-programacion-funcional/04-streams-basicos)

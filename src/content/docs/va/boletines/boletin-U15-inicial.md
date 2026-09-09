@@ -119,4 +119,4 @@ server.createContext("/api/frase", intercambio -> {
 });
 ```
 
-El navegador mostra el text, però el `fetch` que el consumix es queixa: `r.json()` peta. Què falta i per què és tan important?
+El navegador mostra el text, però el `fetch` que el consumeix es queixa: `r.json()` peta. Què falta i per què és tan important?

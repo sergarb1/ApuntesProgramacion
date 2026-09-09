@@ -29,7 +29,7 @@ Usa `double nota = 8.7;` i mostra el resultat. Fixa't en l'ordre: el cas invàli
 
 Escriu un programa que mostre un menú de dues opcions (1. Jugar, 2. Eixir) amb `do-while` i repetisca la pregunta fins que l'usuari escriga 1 o 2. Usa `Scanner`. Al final mostra "Has triat l'opció X.".
 
-**Pista:** `do { ... } while (opcio != 1 && opcio != 2);`. El `do-while` garantix que el menú es mostre almenys una vegada.
+**Pista:** `do { ... } while (opcio != 1 && opcio != 2);`. El `do-while` garanteix que el menú es mostre almenys una vegada.
 
 ---
 
@@ -50,7 +50,7 @@ public class Piramide {
 }
 ```
 
-**Pista:** el bucle interior depén de `fila`: la fila 1 imprimix 1 asterisc, la fila 2 en imprimix 2... Quants asteriscs en total?
+**Pista:** el bucle interior depén de `fila`: la fila 1 imprimeix 1 asterisc, la fila 2 en imprimeix 2... Quants asteriscs en total?
 
 ---
 
@@ -65,7 +65,7 @@ Escriu un programa que imprimisca esta escala de nombres (bucles anidats):
 1 2 3 4
 ```
 
-**Pista:** bucle exterior de l'1 al 4 (les files) i bucle interior que imprimix de l'1 al número de fila, amb `print` per a no saltar de línia i un `println()` buit al final de cada fila.
+**Pista:** bucle exterior de l'1 al 4 (les files) i bucle interior que imprimeix de l'1 al número de fila, amb `print` per a no saltar de línia i un `println()` buit al final de cada fila.
 
 ---
 
@@ -118,7 +118,7 @@ Resol la kata **"Categorize New Member"** (7 kyu) en [CodeWars](https://www.code
 
 Completa el mètode `public static String[] openOrSenior(int[][] data)` que rep parells `{edat, handicap}` i retorna `"Senior"` si el membre té almenys 55 anys I un handicap major que 7; si no, `"Open"`.
 
-**Pista:** recorre l'array amb un `for` i decidix cada cas amb una condició combinada (`&&`): `data[i][0] >= 55 && data[i][1] > 7`.
+**Pista:** recorre l'array amb un `for` i decideix cada cas amb una condició combinada (`&&`): `data[i][0] >= 55 && data[i][1] > 7`.
 
 ---
 
@@ -138,7 +138,7 @@ Un ascensor partix de la planta 0. Donat un nombre de visites i les plantes de c
 
 Distància: |0-5| + |5-1| + |1-10| + |10-4| + |4-2| = 5 + 4 + 9 + 6 + 2 = **26**.
 
-**Pista:** un `while` que llegixca el nombre de visites i trenque amb `break` si és 0; dins, un `for` que acumule `Math.abs(pis - pisActual)` i actualitze `pisActual`.
+**Pista:** un `while` que llegeixca el nombre de visites i trenque amb `break` si és 0; dins, un `for` que acumule `Math.abs(pis - pisActual)` i actualitze `pisActual`.
 
 ---
 

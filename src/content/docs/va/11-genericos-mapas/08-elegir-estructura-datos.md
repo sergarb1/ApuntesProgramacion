@@ -1,9 +1,9 @@
 ---
 title: "08 · Map vs List vs Set: tria la teua estructura"
-description: "Les tres famílies del paquet java.util i les preguntes que decidixen abans d'escriure codi ⚖️"
+description: "Les tres famílies del paquet java.util i les preguntes que decideixen abans d'escriure codi ⚖️"
 ---
 
-<p><small>Les tres famílies del paquet java.util i les preguntes que decidixen abans d'escriure codi ⚖️</small></p>
+<p><small>Les tres famílies del paquet java.util i les preguntes que decideixen abans d'escriure codi ⚖️</small></p>
 
 > 🗺️ **Estàs en:** 🗺️ **U11 · Genèrics i Mapes** → 08 · Map vs List vs Set: tria la teua estructura
 
@@ -54,7 +54,7 @@ En la U10 vas dominar les llistes i els conjunts. En els punts 6 i 7, els mapes.
                            └── Sí → ArrayList
 ```
 
-Ho veus? La primera pregunta és la nova d'esta unitat: **necessites associar?** Si la resposta és sí, entres en el món dels mapes i només decidixes entre ordre natural, ordre d'arribada o velocitat pura. Si és no, tornes a la lògica de la U10.
+Ho veus? La primera pregunta és la nova d'esta unitat: **necessites associar?** Si la resposta és sí, entres en el món dels mapes i només decideixes entre ordre natural, ordre d'arribada o velocitat pura. Si és no, tornes a la lògica de la U10.
 
 ---
 

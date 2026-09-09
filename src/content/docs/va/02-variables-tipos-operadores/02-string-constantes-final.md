@@ -11,9 +11,9 @@ description: La caixa màgica del text i les caixes amb superglue 🔤
 
 ## 📬 La idea en una frase
 
-> **`String` és una classe (no un primitiu) que guarda text, és immutable com una foto, i `final` és el superglue que convertix qualsevol caixa en una constant que no es pot tocar.**
+> **`String` és una classe (no un primitiu) que guarda text, és immutable com una foto, i `final` és el superglue que converteix qualsevol caixa en una constant que no es pot tocar.**
 
-En el punt 1 vas vore les 8 caixes primitives. Però els programes també guarden text: noms, missatges, contrasenyes... Per a això existix `String`. I quan vulgues que un valor no canvie mai, el declares `final`. Anem a les dos.
+En el punt 1 vas vore les 8 caixes primitives. Però els programes també guarden text: noms, missatges, contrasenyes... Per a això existeix `String`. I quan vulgues que un valor no canvie mai, el declares `final`. Anem a les dos.
 
 ---
 
@@ -122,9 +122,9 @@ Total: 60.5€
 
 > 🕶️ **Don Tip:** quan vages `==` amb dos `String`, sospita. Pregunta't primer: *estan comparant referències o contingut?*
 
-**Exercici: Què imprimix este embolic de Strings?**
+**Exercici: Què imprimeix este embolic de Strings?**
 
-Sense executar, digues què imprimix exactament este codi:
+Sense executar, digues què imprimeix exactament este codi:
 
 ```java
 String x = "Java";
@@ -138,7 +138,7 @@ System.out.println(x.equals(z));
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix `true`, `false` i `true`.
+Imprimeix `true`, `false` i `true`.
 
 - `x == y` → **true**: els dos literals apunten al mateix objecte del pool de Strings.
 - `x == z` → **false**: `z` és un objecte nou creat amb `new`, no compartix referència.
@@ -173,7 +173,7 @@ Clàssic d'examen. Si l'encertes a la primera, esta unitat la portes bé.
 
 1. `String` és una **classe** que guarda text entre cometes dobles i és **immutable**: cada canvi crea un objecte nou.
 2. Els `String` es comparen amb **`.equals()`**, mai amb `==` (que només compara referències i et dona sorpreses).
-3. `final` convertix una variable en **constant** (per convenció, en MAJÚSCULES), i el compilador s'enfada si intentes canviar-la.
+3. `final` converteix una variable en **constant** (per convenció, en MAJÚSCULES), i el compilador s'enfada si intentes canviar-la.
 
 > 🐛 **Vocabulari ràpid**
 >
@@ -181,7 +181,7 @@ Clàssic d'examen. Si l'encertes a la primera, esta unitat la portes bé.
 > |---|---|
 > | `String` | Classe de Java que guarda cadenes de text |
 > | Immutable | Que no es pot modificar una volta creat |
-> | `final` | Modificador que convertix una variable en constant |
+> | `final` | Modificador que converteix una variable en constant |
 > | Constructor | El mecanisme que crea un objecte (`new String(...)`) |
 > | Pool de Strings | Zona on Java reutilitza literals iguals |
 > | `.equals()` | Mètode que compara el contingut de dos objectes |

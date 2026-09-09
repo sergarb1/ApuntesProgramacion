@@ -72,7 +72,7 @@ new Cat("Garfield").speak();  // "Garfield meows."
 - [Enunciat a CodeWars](https://www.codewars.com/kata/55a14aa4817efe41c20000bc)
 - Dificultat: 8 kyu
 
-**Pista:** `name` és privat, així que `Cat` no pot llegir-lo directament: necessita un getter `getName()` en `Pet` (recorda: els privats no s'hereten, però existixen dins de l'objecte). `Cat extends Pet` i usa `super(nombre)` per a construir la part del pare.
+**Pista:** `name` és privat, així que `Cat` no pot llegir-lo directament: necessita un getter `getName()` en `Pet` (recorda: els privats no s'hereten, però existeixen dins de l'objecte). `Cat extends Pet` i usa `super(nombre)` per a construir la part del pare.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -175,7 +175,7 @@ public class Ship {
 }
 ```
 
-La classe és immutable: els atributs `final` es fixen en nàixer i ningú pot canviar-los (ni tan sols amb un setter, que ací no existix). La constant `static final` documenta el `1.5`. El vaixell "sap" si mereix la pena saquejar-lo sense que ningú llig les seues tripes: encapsulació i responsabilitat única.
+La classe és immutable: els atributs `final` es fixen en nàixer i ningú pot canviar-los (ni tan sols amb un setter, que ací no existeix). La constant `static final` documenta el `1.5`. El vaixell "sap" si mereix la pena saquejar-lo sense que ningú llig les seues tripes: encapsulació i responsabilitat única.
 
 </details>
 
@@ -227,7 +227,7 @@ public class Persona {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        sc.nextLine();  // consumix el salt de línia
+        sc.nextLine();  // consumeix el salt de línia
 
         for (int i = 0; i < n; i++) {
             String linea = sc.nextLine();
@@ -240,7 +240,7 @@ public class Persona {
 }
 ```
 
-`Persona` encapsula el seu nom: `private` + constructor + un mètode que sap saludar. El `main` només s'encarrega de llegir i crear objectes. `linea.substring(4)` es salta els 4 primers caràcters (`"Soc "`). El `sc.nextLine()` extra després del `nextInt()` consumix l'Enter, el clàssic del Scanner que vas vore en la U02.
+`Persona` encapsula el seu nom: `private` + constructor + un mètode que sap saludar. El `main` només s'encarrega de llegir i crear objectes. `linea.substring(4)` es salta els 4 primers caràcters (`"Soc "`). El `sc.nextLine()` extra després del `nextInt()` consumeix l'Enter, el clàssic del Scanner que vas vore en la U02.
 
 </details>
 

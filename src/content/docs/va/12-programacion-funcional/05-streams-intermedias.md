@@ -11,9 +11,9 @@ description: "La cinta que filtra, transforma, lleva repetits, ordena i limita e
 
 ## 📬 La idea en una frase
 
-> **Les operacions intermèdies transformen el flux i tornen un altre `Stream`. No fan res per si soles (són peresoses) i no toquen la col·lecció original: només decidixen com serà la cinta quan arranque.**
+> **Les operacions intermèdies transformen el flux i tornen un altre `Stream`. No fan res per si soles (són peresoses) i no toquen la col·lecció original: només decideixen com serà la cinta quan arranque.**
 
-Ja tens la cinta del punt 4. Hui li poses les estacions: `filter` decidix quins paquets passen, `map` els reetiqueta, `distinct` trau els duplicats, `sorted` els ordena i `limit` talla el flux. Totes tornen un stream nou, totes són peresoses i cap modifica la teua llista original. Això sí: **l'ordre de les estacions importa**.
+Ja tens la cinta del punt 4. Hui li poses les estacions: `filter` decideix quins paquets passen, `map` els reetiqueta, `distinct` trau els duplicats, `sorted` els ordena i `limit` talla el flux. Totes tornen un stream nou, totes són peresoses i cap modifica la teua llista original. Això sí: **l'ordre de les estacions importa**.
 
 ---
 
@@ -21,7 +21,7 @@ Ja tens la cinta del punt 4. Hui li poses les estacions: `filter` decidix quins 
 
 ### `filter(Predicate)` — el porter
 
-Deixa passar només els elements que complixen la condició. Necessita un `Predicate` (punt 2).
+Deixa passar només els elements que compleixen la condició. Necessita un `Predicate` (punt 2).
 
 ```java
 List<Integer> numeros = List.of(1, 2, 3, 4, 5, 6);
@@ -154,7 +154,7 @@ La **B**. Primer `sorted()` ordena: `ana, bob, carla, david, eva`. Després `fil
 
 Posat a prova en 30 segons (les respostes estan amagades):
 
-1. `filter` deixa passar els elements que complixen la condició o els que no?
+1. `filter` deixa passar els elements que compleixen la condició o els que no?
 2. `map` modifica la col·lecció original?
 3. Què fa `distinct`?
 4. Què fa `limit(3)`?
@@ -182,7 +182,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Terme | Idea general |
 > |---|---|
 > | Intermèdia | Operació que torna un altre `Stream` |
-> | `filter` | Deixa passar el que complix el `Predicate` |
+> | `filter` | Deixa passar el que compleix el `Predicate` |
 > | `map` | Transforma cada element amb una `Function` |
 > | `distinct` | Elimina repetits (amb `equals`) |
 > | `sorted` | Ordena (ordre natural o amb `Comparator`) |

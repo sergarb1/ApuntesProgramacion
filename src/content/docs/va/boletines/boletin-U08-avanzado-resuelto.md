@@ -203,7 +203,7 @@ public class Hora {
 }
 ```
 
-Eixida: `09:05`. No necessita setters perquè és **immutable**: una vegada creada, el seu valor no canvia mai (els `final` ho garantixen). Canviar l'hora és crear una `Hora` nova. El constructor usa `throw` (vist en la U03) per als valors impossibles.
+Eixida: `09:05`. No necessita setters perquè és **immutable**: una vegada creada, el seu valor no canvia mai (els `final` ho garanteixen). Canviar l'hora és crear una `Hora` nova. El constructor usa `throw` (vist en la U03) per als valors impossibles.
 
 </details>
 
@@ -214,7 +214,7 @@ Eixida: `09:05`. No necessita setters perquè és **immutable**: una vegada crea
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix:
+Imprimeix:
 
 ```
 Bigotis (7 vides)
@@ -368,7 +368,7 @@ public class Validador {
 }
 ```
 
-Eixida: `true`, `false`, `false`, `false`, `false`. `esEmailValid` exigix: alguna cosa abans de la `@`, una sola `@`, i un `.` després. `indexOf('@', pos)` busca des de `pos` endavant. Cada condició fallida ix amb `false` a l'instant: sense `else` encadenats.
+Eixida: `true`, `false`, `false`, `false`, `false`. `esEmailValid` exigeix: alguna cosa abans de la `@`, una sola `@`, i un `.` després. `indexOf('@', pos)` busca des de `pos` endavant. Cada condició fallida ix amb `false` a l'instant: sense `else` encadenats.
 
 </details>
 

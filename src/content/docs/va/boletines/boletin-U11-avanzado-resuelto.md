@@ -83,7 +83,7 @@ public class Utilidades {
 }
 ```
 
-El límit `T extends Comparable<T>` garantix que `T` sap comparar-se. S'usa `Integer[]`, no `int[]`, perquè els arrays de genèrics no accepten primitius. El patró del màxim acumulat: candidat inicial en l'índex 0 i recorregut des de l'1.
+El límit `T extends Comparable<T>` garanteix que `T` sap comparar-se. S'usa `Integer[]`, no `int[]`, perquè els arrays de genèrics no accepten primitius. El patró del màxim acumulat: candidat inicial en l'índex 0 i recorregut des de l'1.
 
 </details>
 
@@ -200,7 +200,7 @@ public class Numeros {
 }
 ```
 
-`List<? extends Number>` accepta qualsevol llista de Number o d'una subclasse. En llegir, cada element és un `Number` i `doubleValue()` el convertix. Passar una `List<String>` seria un error de compilació: `String` no és un `Number`. I ull: `? extends` és de només lectura, així que en `sumar` no pots fer `add` (PECS: Producer Extends).
+`List<? extends Number>` accepta qualsevol llista de Number o d'una subclasse. En llegir, cada element és un `Number` i `doubleValue()` el converteix. Passar una `List<String>` seria un error de compilació: `String` no és un `Number`. I ull: `? extends` és de només lectura, així que en `sumar` no pots fer `add` (PECS: Producer Extends).
 
 </details>
 
@@ -426,6 +426,6 @@ public class Demo {
 }
 ```
 
-Totes dues imprimixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
+Totes dues imprimeixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existeixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
 
 </details>>

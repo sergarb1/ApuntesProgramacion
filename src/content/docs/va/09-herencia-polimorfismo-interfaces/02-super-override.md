@@ -13,7 +13,7 @@ description: "Cridar la superclasse, sobreescriure mètodes i encadenar construc
 
 > **`super` crida la superclasse (constructors i mètodes) i `@Override` li diu al compilador que estàs sobreescrivint, no inventant.**
 
-En el punt 1 vas vore que la filla "hereta". Però heretar no és suficient: de vegades vols que el teu pare faça primer la seua part i després tu la teua. Per a això existixen `super` i `@Override`.
+En el punt 1 vas vore que la filla "hereta". Però heretar no és suficient: de vegades vols que el teu pare faça primer la seua part i després tu la teua. Per a això existeixen `super` i `@Override`.
 
 ---
 
@@ -42,9 +42,9 @@ public class Coche extends Vehiculo {
 }
 ```
 
-Si el pare té un constructor amb paràmetres, **has de** cridar-lo amb `super(...)` i ha de ser **la primera línia** del constructor fill. Si no ho fas, el compilador intenta cridar `super()` (sense arguments)... que no existix. Error de compilació immediat.
+Si el pare té un constructor amb paràmetres, **has de** cridar-lo amb `super(...)` i ha de ser **la primera línia** del constructor fill. Si no ho fas, el compilador intenta cridar `super()` (sense arguments)... que no existeix. Error de compilació immediat.
 
-> ⚠️ **Advertència:** `super(...)` només servix per a invocar constructors i mètodes de la superclasse. No pots passar-lo com a paràmetre ni assignar-lo a una variable. És un punter "només lectura" cap amunt.
+> ⚠️ **Advertència:** `super(...)` només serveix per a invocar constructors i mètodes de la superclasse. No pots passar-lo com a paràmetre ni assignar-lo a una variable. És un punter "només lectura" cap amunt.
 
 ### 2. `super.metodo()` per a cridar el mètode del pare
 
@@ -78,7 +78,7 @@ public class Pez extends Animal {
 }
 ```
 
-La segona línia no compila: el compilador verifica que `nadar()` existisca en `Animal` i, com que no existix, t'avisa. Eixe avís a temps val or: si escrius mal el nom o la signatura d'un mètode, `@Override` t'ho descobrix sense esperar un bug rar en runtime.
+La segona línia no compila: el compilador verifica que `nadar()` existisca en `Animal` i, com que no existeix, t'avisa. Eixe avís a temps val or: si escrius mal el nom o la signatura d'un mètode, `@Override` t'ho descobreix sense esperar un bug rar en runtime.
 
 > 📝 **Nota:** `@Override` no és obligatori, però posa'l sempre. És com el cinturó de seguretat: no passa res si no el poses... fins que passa. A més, és la forma de dir-li a qui llig el teu codi "això és un override, no un mètode nou".
 
@@ -130,9 +130,9 @@ Si no escrius `super()`, Java l'afig automàticament al principi del constructor
 
 ## ⭐ Sé el Código, my friend...
 
-> 🕶️ **Don Tip:** si el pare té constructor amb paràmetres, el fill està obligat a cridar-lo amb `super(...)`. Si no, el compilador intenta el buit... que no existix.
+> 🕶️ **Don Tip:** si el pare té constructor amb paràmetres, el fill està obligat a cridar-lo amb `super(...)`. Si no, el compilador intenta el buit... que no existeix.
 
-**L'exercici clàssic: què impedix que compile això?**
+**L'exercici clàssic: què impedeix que compile això?**
 
 ```java
 public class Vehiculo {
@@ -161,7 +161,7 @@ public class Coche extends Vehiculo {
 }
 ```
 
-**Pregunta:** quin error impedix que `Coche` compile?
+**Pregunta:** quin error impedeix que `Coche` compile?
 
 <details>
 <summary>🔄 Solució</summary>
@@ -231,7 +231,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. `super(...)` per a cridar el constructor del pare i `super.metodo()` per a cridar un mètode del pare.
 2. Que verifique en el compilador que realment està sobreescrivint un mètode existent.
-3. Error de compilació: Java intenta `super()` sense arguments i no existix.
+3. Error de compilació: Java intenta `super()` sense arguments i no existeix.
 4. No: `final` prohibix la sobrescriptura. I una classe `final` ni tan sols pot tindre filles.
 
 </details>
@@ -241,7 +241,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. **`super`** encadena amb la superclasse: constructors i mètodes, sempre com a primera jugada.
-2. **`@Override`** és la teua xarxa de seguretat: el compilador comprova que el mètode sobreescrit existix.
+2. **`@Override`** és la teua xarxa de seguretat: el compilador comprova que el mètode sobreescrit existeix.
 3. Els **constructors** s'executen de dalt a baix (el pare primer) i els mètodes `final` són intocables.
 
 > 🐛 **Vocabulari ràpid**

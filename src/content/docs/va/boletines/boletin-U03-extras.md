@@ -20,7 +20,7 @@ Et donen un nombre i has de retornar-lo negatiu. Però compte: si el nombre ja �
 - [Enunciat en CodeWars](https://www.codewars.com/kata/55685cd7ad70877c23000102)
 - Dificultat: 8 kyu
 
-**Pista:** un ternari decidix: si és major que 0, canvia el signe (`-num`); si no, retorna'l tal qual.
+**Pista:** un ternari decideix: si és major que 0, canvia el signe (`-num`); si no, retorna'l tal qual.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -212,7 +212,7 @@ El `while (sc.hasNextInt())` és el patró "llegir fins al final". L'`if` dins d
 
 ### 6. 340 — Següent amb mateix nombre de xifres
 
-Donat un nombre natural N, troba el següent nombre que tinga el **mateix nombre de xifres** que N. Si no existix (perquè N és l'últim amb eixe nombre de xifres), mostra `MENSAJE`.
+Donat un nombre natural N, troba el següent nombre que tinga el **mateix nombre de xifres** que N. Si no existeix (perquè N és l'últim amb eixe nombre de xifres), mostra `MENSAJE`.
 
 **Entrada:** diversos casos separats per espais, que acaba amb un `0`.
 
@@ -265,7 +265,7 @@ public class SeguentCifres {
 }
 ```
 
-Dos bucles: el interior compta les xifres dividint entre 10 (`while (copia > 0)`), i l'exterior llig casos fins al 0 sentinella. Si N és 9, 99 o 999 (el `10^cifres - 1`), no existix següent i toca "MENSAJE". En qualsevol altre cas, sumar 1 no canvia el nombre de xifres... llevat dels de tots nous, que ja caçàrem abans.
+Dos bucles: el interior compta les xifres dividint entre 10 (`while (copia > 0)`), i l'exterior llig casos fins al 0 sentinella. Si N és 9, 99 o 999 (el `10^cifres - 1`), no existeix següent i toca "MENSAJE". En qualsevol altre cas, sumar 1 no canvia el nombre de xifres... llevat dels de tots nous, que ja caçàrem abans.
 
 </details>
 

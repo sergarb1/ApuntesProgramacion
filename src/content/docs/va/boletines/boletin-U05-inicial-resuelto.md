@@ -14,7 +14,7 @@ description: Els mateixos exercicis que el butlletí inicial, amb solucions
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`Posició: 3`**.
+Imprimeix **`Posició: 3`**.
 
 Recorregut: `cofre[0] = 12` (no), `cofre[1] = 7` (no), `cofre[2] = 25` (no), `cofre[3] = 9` (sí!). Guardem `posicio = 3` i el `break` talla el bucle. No cal seguir buscant: ja està.
 
@@ -49,7 +49,7 @@ Si el troba, el `return i` retorna l'índex i talla el mètode a l'instant. Nom�
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`1 2 3 `**.
+Imprimeix **`1 2 3 `**.
 
 Traça de la bombolla sobre `{3, 1, 2}`:
 
@@ -136,7 +136,7 @@ Per al 23: mig = 4 (16 < 23 → esquerra = 5), mig = 7 (56 > 23 → dreta = 6), 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`false`**.
+Imprimeix **`false`**.
 
 El 35 no està en l'array. La binària va descartant meitats: mig = 2 (30 < 35 → esquerra = 3), mig = 4 (50 > 35 → dreta = 3), mig = 3 (40 > 35 → dreta = 2). Ara `esquerra = 3` > `dreta = 2`, el `while` acaba i `trobat` seguix en `false`. Sense error, sense drama: el "no trobat" també es comunica.
 

@@ -36,7 +36,7 @@ CREATE TABLE contactos (
 
 ## 🧍 El POJO
 
-Cada fila de la taula es convertix en un objecte Java. És la classe de sempre, amb atributs privats, getters i setters (la vas vore a la U07 i la U08):
+Cada fila de la taula es converteix en un objecte Java. És la classe de sempre, amb atributs privats, getters i setters (la vas vore a la U07 i la U08):
 
 ```java
 public class Contacto {
@@ -68,7 +68,7 @@ public class Contacto {
 }
 ```
 
-L'estratègia de tota la unitat: la base de dades torna files, i el codi les convertix en objectes `Contacto`. Així el teu programa treballa amb objectes de veritat, no amb `ResultSet` solts.
+L'estratègia de tota la unitat: la base de dades torna files, i el codi les converteix en objectes `Contacto`. Així el teu programa treballa amb objectes de veritat, no amb `ResultSet` solts.
 
 ---
 
@@ -230,7 +230,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. El **CRUD** són les 4 operacions bàsiques: `INSERT` (create), `SELECT` (read), `UPDATE` (update) i `DELETE` (delete).
-2. Cada fila del `ResultSet` es convertix en un **objecte Java** (`Contacto`) i les consultes tornen `List<Contacto>` per a no dependre de la connexió oberta.
+2. Cada fila del `ResultSet` es converteix en un **objecte Java** (`Contacto`) i les consultes tornen `List<Contacto>` per a no dependre de la connexió oberta.
 3. **`WHERE` sempre** en `UPDATE` i `DELETE`, i comprova les **files afectades** que torna `executeUpdate()` per a saber si l'operació va tindre efecte.
 
 > 🐛 **Vocabulari ràpid**

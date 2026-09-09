@@ -115,9 +115,9 @@ public class Insercio2 {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`2 4`**.
+Imprimeix **`2 4`**.
 
-Amb només dos elements, la inserció és quasi ridícula de simple: `clau = 2`, `j = 0`. Com que `4 > 2`, desplaça el 4 a la posició 1 i `j` passa a `-1`. El `while` acaba (perquè `j >= 0` ja no es complix) i la clau es col·loca en `dades[0]`. Resultat: `{2, 4}`. La clau va viatjar fins al principi: eixe és el mecanisme exacte que, repetit, ordena arrays sencers.
+Amb només dos elements, la inserció és quasi ridícula de simple: `clau = 2`, `j = 0`. Com que `4 > 2`, desplaça el 4 a la posició 1 i `j` passa a `-1`. El `while` acaba (perquè `j >= 0` ja no es compleix) i la clau es col·loca en `dades[0]`. Resultat: `{2, 4}`. La clau va viatjar fins al principi: eixe és el mecanisme exacte que, repetit, ordena arrays sencers.
 
 </details>
 

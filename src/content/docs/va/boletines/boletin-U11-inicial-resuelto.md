@@ -54,7 +54,7 @@ Imprimeix **`30`** i **`2`**.
 <details>
 <summary>🔄 Solució</summary>
 
-No compila perquè **els genèrics només accepten objectes, i `int` és un primitiu**. `ArrayList<int>` no existix. La solució és usar la classe wrapper `Integer`:
+No compila perquè **els genèrics només accepten objectes, i `int` és un primitiu**. `ArrayList<int>` no existeix. La solució és usar la classe wrapper `Integer`:
 
 ```java
 import java.util.ArrayList;
@@ -69,7 +69,7 @@ public class Error {
 }
 ```
 
-L'**autoboxing** convertix automàticament el `int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el convertix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
+L'**autoboxing** converteix automàticament el `int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el converteix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
 
 </details>
 
@@ -173,7 +173,7 @@ public class Edades {
 }
 ```
 
-`getOrDefault(nombre, -1)` torna `-1` (un sentinella) si el nom no existix, així no toques un `null`. Amb un `TreeMap`, a més, les claus queden ordenades alfabèticament si algun dia decidixes llistar-les.
+`getOrDefault(nombre, -1)` torna `-1` (un sentinella) si el nom no existeix, així no toques un `null`. Amb un `TreeMap`, a més, les claus queden ordenades alfabèticament si algun dia decideixes llistar-les.
 
 </details>
 

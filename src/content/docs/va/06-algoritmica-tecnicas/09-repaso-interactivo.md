@@ -33,9 +33,9 @@ public class MisterioRecursivo {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
-1. **`4` i `6`** → Recorda: cada crida dividix `n` entre 2 fins a arribar a 0. ❌
+1. **`4` i `6`** → Recorda: cada crida divideix `n` entre 2 fins a arribar a 0. ❌
 2. **`5` i `7`** → ✅ Correcte! `contar(16)`: 16→8→4→2→1→0, cinc salts. `contar(100)`: 100→50→25→12→6→3→1→0, set salts. És un comptador de divisions entre 2 (o siga, el "log₂" arredonit).
 3. **`4` i `7`** → Compta els salts del primer: 16→8→4→2→1→0 són cinc passos, no quatre. ❌
 
@@ -54,7 +54,7 @@ public class MisterioRecursivo {
 2. "El Fibonacci ingenu és O(n log n)."
 3. "Quicksort és estable."
 4. "Mergesort sempre és O(n log n), passe el que passe."
-5. "La memoització convertix el Fibonacci de O(2ⁿ) a O(n)."
+5. "La memoització converteix el Fibonacci de O(2ⁿ) a O(n)."
 6. "En Java, `Arrays.sort()` usa TimSort per a tipus primitius."
 
 <details>
@@ -98,7 +98,7 @@ public class MisterioRecursivo {
 Endevina quin concepte de la unitat sóc:
 
 1. **Em crid a mi mateixa amb un problema més xicotet, fins que arribe a un cas que ja es resol sol.**
-2. **Sóc la variable que dividix l'array en menors i majors, i la meua elecció decidix si l'algorisme vola o s'arrossega.**
+2. **Sóc la variable que divideix l'array en menors i majors, i la meua elecció decideix si l'algorisme vola o s'arrossega.**
 3. **Sóc el pas en què dues llistes ordenades es combinen en una de sola, comparant el primer de cada una.**
 4. **Sóc la tècnica que guarda els resultats ja calculats per a no repetir treball.**
 
@@ -210,7 +210,7 @@ public class TorturaOrdenacion {
    <details><summary>I si continue atascat?</summary>El cas base hauria de ser `if (inicio >= fin) return;`.</details>
 2. On hauria d'anar el pivot en acabar la partició? *pista: ell també és un element de l'array.*
    <details><summary>I si continue atascat?</summary>Falta intercanviar el pivot (a `arr[inicio]`) amb `arr[i - 1]` abans de les crides recursives.</details>
-3. I les crides recursives de la dreta, quina zona cobrixen? *pista: amb el pivot a `i - 1`, la zona dreta comença en `i`.*
+3. I les crides recursives de la dreta, quina zona cobreixen? *pista: amb el pivot a `i - 1`, la zona dreta comença en `i`.*
    <details><summary>Solució final</summary>
 
 ```java
@@ -269,7 +269,7 @@ Eixida correcta: `[1, 2, 3, 4, 5, 6, 7]`.
 
 ## 🧠 Atreveix-te a Pensar
 
-1. **Sense executar:** què imprimix este programa?
+1. **Sense executar:** què imprimeix este programa?
 
 ```java
 public class Misterio2 {
@@ -294,7 +294,7 @@ public class Misterio2 {
 1. **`10`** — suma les xifres: 4 + 3 + 2 + 1 = 10. És una suma de dígits recursiva.
 2. `int r = 1; for (int i = 2; i <= n; i++) r *= i; return r;`. L'iteratiu no gasta stack i sol ser més ràpid, però el recursiu expressa millor la definició matemàtica. Per a un examen, domina els dos.
 3. El **depurador** amb breakpoints en la partició. Observa com canvien `i` i `j` (o `i` i el pivot) i on es creuen: els errors d'off-by-one en els límits de la partició són el clàssic.
-4. **Fals.** Mergesort és més *fiable* (garantix O(n log n)), però gasta O(n) de memòria i no guanya en velocitat pràctica amb arrays en memòria. "Millor" depén del context: eixa és tota la lliçó del punt 6.
+4. **Fals.** Mergesort és més *fiable* (garanteix O(n log n)), però gasta O(n) de memòria i no guanya en velocitat pràctica amb arrays en memòria. "Millor" depén del context: eixa és tota la lliçó del punt 6.
 
 </details>
 
@@ -307,7 +307,7 @@ Horitzontal:
 1. La condició que deté la recursió (5,4)
 3. Algorisme estable del punt 5 (9)
 5. Tècnica que guarda resultats ja calculats (12)
-6. La variable que dividix l'array en Quicksort (6)
+6. La variable que divideix l'array en Quicksort (6)
 
 Vertical:
 2. El que llança la JVM quan l'stack s'ompli (8,7)
@@ -375,7 +375,7 @@ El programador novençà acaba el seu Quicksort, l'executa i... funciona a la pr
 
 El novençà guarda el seu projecte, i sent que alguna cosa ha canviat en la seua manera de pensar. La recursivitat ja no li fa por: l'entén. I l'entén perquè, per a entendre la recursivitat, primer va entendre la recursivitat.
 
-**PRÒXIMAMENT EN U07:** POO: Classes i Objectes. El moment en què els teus programes deixen de ser funcions soltes i es convertixen en **ciutadans amb atributs i mètodes**. 🏗️
+**PRÒXIMAMENT EN U07:** POO: Classes i Objectes. El moment en què els teus programes deixen de ser funcions soltes i es converteixen en **ciutadans amb atributs i mètodes**. 🏗️
 
 ---
 

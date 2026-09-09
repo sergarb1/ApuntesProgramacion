@@ -40,8 +40,8 @@ Crea un rectangle de 4 x 4 i un altre de 5 x 8 i prova els tres mètodes en tots
 
 Escriu una classe `CompteBancari` amb els atributs `String titular` i `double saldo`. Afegeix:
 - `void ingressar(double quantitat)` → suma al saldo.
-- `void retirar(double quantitat)` → resta al saldo **només si** `quantitat <= saldo`; si no, imprimix `"Saldo insuficient"`.
-- `void mostrar()` → imprimix `"Titular: X | Saldo: Y €"`.
+- `void retirar(double quantitat)` → resta al saldo **només si** `quantitat <= saldo`; si no, imprimeix `"Saldo insuficient"`.
+- `void mostrar()` → imprimeix `"Titular: X | Saldo: Y €"`.
 
 Crea un compte amb 100 €, retira 30 €, intenta retirar 200 € i mostra el saldo final.
 
@@ -55,7 +55,7 @@ Escriu una classe `Hora` amb els atributs `int hora`, `int minut` i `int segon`.
 
 Crea una `Hora(23, 59, 59)`, crida `incrementarSegon()` i mostra `00:00:00`.
 
-**Pista:** la validació és un `if` gran en el constructor. L'arrossegament són tres `if` encadenats, de segon a minut a hora. Per a mostrar amb dos dígits, imprimix `"0" + valor` si és menor que 10.
+**Pista:** la validació és un `if` gran en el constructor. L'arrossegament són tres `if` encadenats, de segon a minut a hora. Per a mostrar amb dos dígits, imprimeix `"0" + valor` si és menor que 10.
 
 ---
 
@@ -115,7 +115,7 @@ Usa `this(...)` per a encadenar i evitar repetir codi. Afegeix `void mostrar()` 
 Escriu una classe `Fraccio` amb els atributs `int numerador` i `int denominador`. Afegeix:
 - Constructor que valide: si `denominador == 0`, s'usa `1`.
 - `Fraccio sumar(Fraccio altra)` → torna una fracció nova amb `(a.num * b.den + b.num * a.den) / (a.den * b.den)`.
-- `void simplificar()` → dividix numerador i denominador pel seu màxim comú divisor (MCD).
+- `void simplificar()` → divideix numerador i denominador pel seu màxim comú divisor (MCD).
 
 Crea `1/2` i `1/3`, suma-les i simplifica el resultat.
 

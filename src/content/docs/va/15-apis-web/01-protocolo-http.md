@@ -57,13 +57,13 @@ Fixa't en la diferència fina: `GET` no canvia res al servidor (és de només le
 
 ## 🚦 Els codis d'estat més comuns
 
-No necessites memoritzar els centenars que existixen. Amb la família i estos clàssics et basta:
+No necessites memoritzar els centenars que existeixen. Amb la família i estos clàssics et basta:
 
 | Codi | Significat | Moment típic |
 |---|---|---|
 | `200` | Tot bé | Pàgina carregada correctament |
 | `201` | Recurs creat | Un `POST` que crea alguna cosa nova |
-| `404` | No trobat | La URL no existix (o l'usuari no existix) |
+| `404` | No trobat | La URL no existeix (o l'usuari no existeix) |
 | `403` | Prohibit | Sense permís (sol faltar un token) |
 | `500` | Error intern | El servidor ha petat per dins |
 
@@ -99,7 +99,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Un **codi d'estat** (com `200 OK`) i un **cos** (HTML, JSON, imatge...) amb les seues capçaleres.
 2. `POST` per a registrar (crea alguna cosa al servidor). `GET` per a veure el perfil (només lectura).
-3. `404` és que el recurs no existix; `500` és que el servidor ha fallat internament.
+3. `404` és que el recurs no existeix; `500` és que el servidor ha fallat internament.
 4. La **query string**: els paràmetres que viatgen en la URL com a parelles `clau=valor`.
 
 </details>

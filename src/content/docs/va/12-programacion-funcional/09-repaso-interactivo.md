@@ -37,16 +37,16 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
-1. **`5`** → El `filter` no filtra res i el `map` convertix tots. ❌
+1. **`5`** → El `filter` no filtra res i el `map` converteix tots. ❌
 2. **`3`** → `filter` deixa passar a `carla`, `david` i `eva`... no? ❌
 3. **`2`** → ✅ Correcte de veritat: de `ana, bob, carla, david, eva` passen el filtre `carla` i `david` (les úniques amb més de 3 lletres). `map(String::toUpperCase)` les posa en majúscules, però no canvia la comptada. `count()` torna **2**.
 
 > <details>
 > <summary>🔄 Solució</summary>
 >
-> L'opció **3**: **`2`**. Les longituds són `ana`=3, `bob`=3, `carla`=5, `david`=5, `eva`=3. El `filter(n -> n.length() > 3)` deixa passar només `carla` i `david`. El `map` les convertix en `CARLA` i `DAVID`, però `count()` compta elements: no mira els valors transformats. La trampa està en `eva`: 3 lletres no superen a 3, i el `map` no canvia el nombre d'elements, només la seua forma.
+> L'opció **3**: **`2`**. Les longituds són `ana`=3, `bob`=3, `carla`=5, `david`=5, `eva`=3. El `filter(n -> n.length() > 3)` deixa passar només `carla` i `david`. El `map` les converteix en `CARLA` i `DAVID`, però `count()` compta elements: no mira els valors transformats. La trampa està en `eva`: 3 lletres no superen a 3, i el `map` no canvia el nombre d'elements, només la seua forma.
 >
 > </details>
 
@@ -62,7 +62,7 @@ public class Misterio {
 
 **Bucle For:** — I quan necessites modificar la llista mentre la recorres? Jo et deixe, amb compte. Tu ni ho intentes.
 
-**Stream:** — Per a això existixen les col·leccions d'eixida. I quan t'oblides del `break` i et recorres mil elements de més, no em vingues plorant. A més, jo puc dir `limit(3)` i em pare sol. Saps què és peresa productiva?
+**Stream:** — Per a això existeixen les col·leccions d'eixida. I quan t'oblides del `break` i et recorres mil elements de més, no em vingues plorant. A més, jo puc dir `limit(3)` i em pare sol. Saps què és peresa productiva?
 
 **Bucle For:** — Val, val... però els meus primitius i els meus índexs continuen sent útils per a coses simples.
 
@@ -78,7 +78,7 @@ public class Misterio {
 
 Endevina quin concepte de la unitat soc:
 
-1. **Soc la fletxa que convertix un bloc de codi en un valor que viatja sol.**
+1. **Soc la fletxa que converteix un bloc de codi en un valor que viatja sol.**
 2. **Soc la interfície funcional que respon `true` o `false` a una pregunta.**
 3. **Soc l'operador que et deixa reciclar un mètode com si fóra una lambda.**
 4. **Soc el flux peresós que no fa res fins que obris l'aixeta.**
@@ -149,7 +149,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
+**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el resultat siga incorrecte... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
 
 ```java
 import java.util.*;
@@ -193,7 +193,7 @@ public class Estadisticas {
 
    1. Línia A: falta el `()` — `count` sense parèntesis és una referència a mètode, no una crida. Ha de ser `count()`.
 
-   L'**error de lògica**: no existix. `aprobados` = 4 (7, 8, 9, 5 aproven; el 3 es queda fora). `dobladas` = `[14, 16, 6, 18, 10]` (tota la llista es dobla, també el 3). `total` = `14 + 16 + 6 + 18 + 10` = `64`. Eixida: `4 [14, 16, 6, 18, 10] 64`.
+   L'**error de lògica**: no existeix. `aprobados` = 4 (7, 8, 9, 5 aproven; el 3 es queda fora). `dobladas` = `[14, 16, 6, 18, 10]` (tota la llista es dobla, també el 3). `total` = `14 + 16 + 6 + 18 + 10` = `64`. Eixida: `4 [14, 16, 6, 18, 10] 64`.
 
    Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 1 falta de `()` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat.
 
@@ -283,7 +283,7 @@ Horizontal:
 1. Expressió sense nom que viatja com un valor (6 lletres)
 3. Operació terminal que combina tots els elements en un (6 lletres)
 5. Classe que embolica un valor o la seua absència (8 lletres)
-7. Operació intermèdia que deixa passar només el que complix una condició (6 lletres)
+7. Operació intermèdia que deixa passar només el que compleix una condició (6 lletres)
 
 Vertical:
 2. Interfície funcional que torna `boolean` (9 lletres)
@@ -336,7 +336,7 @@ No guarda res: és una vista sobre una font (llista, array...). Es buida en arri
 
 > ❓ **Puc usar streams amb arrays, que en la U04 eren una altra cosa?**
 
-Clar: `Arrays.stream(miArray)` convertix un array en flux, i `Arrays.stream(int[])` a més dona un `IntStream` amb mètodes com `sum()` i `average()`. Els arrays i els streams no competixen: es passen el relleu.
+Clar: `Arrays.stream(miArray)` converteix un array en flux, i `Arrays.stream(int[])` a més dona un `IntStream` amb mètodes com `sum()` i `average()`. Els arrays i els streams no competixen: es passen el relleu.
 
 ---
 

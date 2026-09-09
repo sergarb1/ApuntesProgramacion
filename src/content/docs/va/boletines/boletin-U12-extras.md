@@ -23,7 +23,7 @@ Implementa la funció `all`: rep una llista i un `Predicate`, i torna `true` si 
 <details>
 <summary>💡 Pista</summary>
 
-Un `Stream` té l'operació terminal `allMatch(Predicate)` que fa exactament això: torna `true` si tots els elements complixen el predicat. I amb la llista buida ja torna `true` per si sola. Una sola línia de stream.
+Un `Stream` té l'operació terminal `allMatch(Predicate)` que fa exactament això: torna `true` si tots els elements compleixen el predicat. I amb la llista buida ja torna `true` per si sola. Una sola línia de stream.
 
 </details>
 
@@ -41,7 +41,7 @@ public class Solution {
 }
 ```
 
-`allMatch` és la terminal dels quantificadors: comprova si tots els elements complixen el predicat (l'`all` que demana la kata). El `Stream` fa el recorregut per tu, i el cas de la llista buida està resolt per disseny: si no hi ha elements, tècnicament cap no falla, així que torna `true`. És la versió funcional del "recorre i comprova".
+`allMatch` és la terminal dels quantificadors: comprova si tots els elements compleixen el predicat (l'`all` que demana la kata). El `Stream` fa el recorregut per tu, i el cas de la llista buida està resolt per disseny: si no hi ha elements, tècnicament cap no falla, així que torna `true`. És la versió funcional del "recorre i comprova".
 
 </details>
 
@@ -59,7 +59,7 @@ Reps un array de números. Torna `"yes, ascending"` si està ordenat de menor a 
 <details>
 <summary>💡 Pista</summary>
 
-Un array ordenat de menor a major complix que cada element és menor o igual que el següent. Això és un `allMatch` sobre les parelles consecutives: `IntStream.range(0, array.length - 1).allMatch(i -> array[i] <= array[i + 1])`. Fes el mateix per a l'ordre descendent.
+Un array ordenat de menor a major compleix que cada element és menor o igual que el següent. Això és un `allMatch` sobre les parelles consecutives: `IntStream.range(0, array.length - 1).allMatch(i -> array[i] <= array[i + 1])`. Fes el mateix per a l'ordre descendent.
 
 </details>
 
@@ -83,7 +83,7 @@ public class Kata {
 }
 ```
 
-`IntStream.range(0, array.length - 1)` genera els índexs de 0 a n-2: cada un apunta a l'inici d'una parella `(array[i], array[i + 1])`. `allMatch` comprova que totes les parelles respecten l'ordre. És "ordenat" si totes les parelles van en la mateixa direcció. Un array d'un sol element complix les dos condicions alhora (no hi ha parelles), i l'`if` ascendent guanya: és correcte, un element està "ascendent".
+`IntStream.range(0, array.length - 1)` genera els índexs de 0 a n-2: cada un apunta a l'inici d'una parella `(array[i], array[i + 1])`. `allMatch` comprova que totes les parelles respecten l'ordre. És "ordenat" si totes les parelles van en la mateixa direcció. Un array d'un sol element compleix les dos condicions alhora (no hi ha parelles), i l'`if` ascendent guanya: és correcte, un element està "ascendent".
 
 </details>
 
@@ -129,7 +129,7 @@ public class Kata {
 }
 ```
 
-`IntStream.range(0, n)` genera els `n` números de la fila i `map` els convertix en imparells consecutius des de `primerImpar` (fila 3: 7, 9, 11). `.sum()` és la terminal que suma un `IntStream`. El resultat coincidix amb `n * n * n` (¡la suma de la fila n és sempre el cub de n!), però esta versió t'entrena a construir i sumar streams, que és el que toca la unitat.
+`IntStream.range(0, n)` genera els `n` números de la fila i `map` els converteix en imparells consecutius des de `primerImpar` (fila 3: 7, 9, 11). `.sum()` és la terminal que suma un `IntStream`. El resultat coincideix amb `n * n * n` (¡la suma de la fila n és sempre el cub de n!), però esta versió t'entrena a construir i sumar streams, que és el que toca la unitat.
 
 </details>
 
@@ -167,7 +167,7 @@ public class Kata {
 }
 ```
 
-`Arrays.stream(ages)` convertix l'array en un `IntStream`, `sorted()` l'ordena de menor a major, i `skip(ages.length - 2)` se salta tots els elements menys els dos últims. En estar ordenats, eixos dos últims són la segona més alta i la més alta, en eixe ordre. `.toArray()` recull el flux de tornada en un array. Quatre operacions per a un problema que a mà demanaria dos variables i un bucle.
+`Arrays.stream(ages)` converteix l'array en un `IntStream`, `sorted()` l'ordena de menor a major, i `skip(ages.length - 2)` se salta tots els elements menys els dos últims. En estar ordenats, eixos dos últims són la segona més alta i la més alta, en eixe ordre. `.toArray()` recull el flux de tornada en un array. Quatre operacions per a un problema que a mà demanaria dos variables i un bucle.
 
 </details>
 
@@ -191,7 +191,7 @@ La penya atlètica només compra dècims amb **números parells**. Et donen una 
 <details>
 <summary>💡 Pista</summary>
 
-Llig els `n` números en un array i compta els parells amb un stream: `Arrays.stream(decimos).filter(d -> d % 2 == 0).count()`. El `filter` amb un `Predicate` i la terminal `count` és la plantilla de "quants complixen".
+Llig els `n` números en un array i compta els parells amb un stream: `Arrays.stream(decimos).filter(d -> d % 2 == 0).count()`. El `filter` amb un `Predicate` i la terminal `count` és la plantilla de "quants compleixen".
 
 </details>
 
@@ -247,7 +247,7 @@ El bar de Javier obri tots els dies menys els dilluns. Apunta la caixa de cada d
 <details>
 <summary>💡 Pista</summary>
 
-Guarda els 6 valors en un `double[]`. Amb streams: `Arrays.stream(ventas).max()`, `.min()` i `.average()` et donen les tres dades (totes tornen `OptionalDouble`, aterra amb `orElse(0)`). Per a saber el dia, busca l'índex del màxim/mínim; i compta quants valors coincidixen amb el màxim/mínim: si n'hi ha més d'un, és `EMPATE`.
+Guarda els 6 valors en un `double[]`. Amb streams: `Arrays.stream(ventas).max()`, `.min()` i `.average()` et donen les tres dades (totes tornen `OptionalDouble`, aterra amb `orElse(0)`). Per a saber el dia, busca l'índex del màxim/mínim; i compta quants valors coincideixen amb el màxim/mínim: si n'hi ha més d'un, és `EMPATE`.
 
 </details>
 

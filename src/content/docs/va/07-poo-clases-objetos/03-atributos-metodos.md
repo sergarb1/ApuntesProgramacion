@@ -55,14 +55,14 @@ public class Coche {
         return velocidad;
     }
 
-    // Mètode que imprimix i no retorna res
+    // Mètode que imprimeix i no retorna res
     void mostrarEstado() {
         System.out.println(marca + " va a " + velocidad + " km/h");
     }
 }
 ```
 
-- **`void`** = no retorna res. Només executa (acelera, imprimix, saluda...).
+- **`void`** = no retorna res. Només executa (acelera, imprimeix, saluda...).
 - **Tipus normal** (`int`, `double`, `String`...) = retorna un valor amb `return`.
 
 > ⚠️ **Advertència:** si el mètode promet retornar un `int` (`int velocidadActual()`), està **obligat** a acabar amb un `return` que done un `int`. Si promet `void`, es prohibix el `return` amb valor. Java és un notari molt puntillós amb les firmes.
@@ -119,7 +119,7 @@ System.out.println(cocheB.marca + " → " + cocheB.velocidad);  // Ford → 0
 
 **Exercici: la caixa misteriosa**
 
-Sense executar, calcula què imprimix este programa:
+Sense executar, calcula què imprimeix este programa:
 
 ```java
 public class Caja {
@@ -150,11 +150,11 @@ public class Main {
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimix **`120`** i **`10`**.
+Imprimeix **`120`** i **`10`**.
 
 - `c1.volumen()` → 10 × 3 × 4 = **120** (hem canviat `ancho` a 10 abans de calcular).
 - `c2.volumen()` → 5 × 1 × 2 = **10**.
-- El canvi de `c1.ancho` **no afecta `c2`**: cada objecte té la seua pròpia còpia dels atributs. Si no ho has vist vindre, repetix el mantra: *cada objecte guarda els seus propis valors*.
+- El canvi de `c1.ancho` **no afecta `c2`**: cada objecte té la seua pròpia còpia dels atributs. Si no ho has vist vindre, repeteix el mantra: *cada objecte guarda els seus propis valors*.
 
 </details>
 
@@ -172,7 +172,7 @@ Imprimix **`120`** i **`10`**.
 
 > **Q:** Els atributs poden tindre valors per defecte?
 >
-> **A:** Sí, i de fet Java els dona un automàticament quan crees l'objecte: nombres a `0`, `boolean` a `false` i `String` (i qualsevol referència) a `null`. Però dependre d'eixos valors és mala costum: veuràs en el punt 4 que els **constructors** existixen per a donar-los un bon començament.
+> **A:** Sí, i de fet Java els dona un automàticament quan crees l'objecte: nombres a `0`, `boolean` a `false` i `String` (i qualsevol referència) a `null`. Però dependre d'eixos valors és mala costum: veuràs en el punt 4 que els **constructors** existeixen per a donar-los un bon començament.
 
 ---
 

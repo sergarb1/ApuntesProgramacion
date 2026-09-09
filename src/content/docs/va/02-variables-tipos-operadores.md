@@ -9,7 +9,7 @@ description: Les caixes del magatzem de la memòria i les màquines del gimnàs 
 
 ---
 
-Benvingut al magatzem. En la U01 vas aprendre a dir-li a Java que et salude per consola, però un programa que només imprimix text és un lloro: repetix, però no pensa. Per a pensar necessita *guardar* coses. Edats, preus, notes, si fa fred o no... i per a això existixen les **variables**.
+Benvingut al magatzem. En la U01 vas aprendre a dir-li a Java que et salude per consola, però un programa que només imprimeix text és un lloro: repeteix, però no pensa. Per a pensar necessita *guardar* coses. Edats, preus, notes, si fa fred o no... i per a això existeixen les **variables**.
 
 Imagina que la memòria del teu ordinador és un **magatzem gegant** ple de prestatgeries. Cada prestatgeria té caixes, i les variables són eixes caixes: cada una té una etiqueta perquè sàpies què hi ha dins. I quan les caixes s'omplin de números i text, arriben els **operadors**: les màquines de peses del gimnàs de dades que sumen, resten, comparen i transformen.
 

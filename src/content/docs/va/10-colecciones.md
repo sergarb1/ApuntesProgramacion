@@ -10,7 +10,7 @@ emoji: 📚
 
 ---
 
-En la U04 vas vore els arrays: grandària fixa, accés per índex i prou treball manual per a créixer o encongir-se. Hui això s'acaba. Les **col·leccions** de Java són com les estructures de dades amb superpoders: creixen soles, s'encongixen soles, rebutgen duplicats si vols, s'ordenen automàticament i es recorren sense que t'importe com estan construïdes per dins.
+En la U04 vas vore els arrays: grandària fixa, accés per índex i prou treball manual per a créixer o encongir-se. Hui això s'acaba. Les **col·leccions** de Java són com les estructures de dades amb superpoders: creixen soles, s'encongeixen soles, rebutgen duplicats si vols, s'ordenen automàticament i es recorren sense que t'importe com estan construïdes per dins.
 
 Esta unitat té tres grans actes:
 
@@ -49,7 +49,7 @@ En acabar, seràs capaç de:
 | [04 · TreeSet i LinkedHashSet](/ApuntesProgramacion/va/10-colecciones/04-treeset-linkedhashset) | El que ordena sol i el que recorda l'ordre d'arribada | Tots |
 | [05 · Iterator: el cambrer que pren nota](/ApuntesProgramacion/va/10-colecciones/05-iterator) | Recórrer qualsevol col·lecció i esborrar durant el recorregut sense `ConcurrentModificationException` | Tots |
 | [06 · La classe Collections: la navalla suïssa](/ApuntesProgramacion/va/10-colecciones/06-collections) | `sort`, `reverse`, `shuffle`, `max`, `min`, `frequency`... en una línia | Tots |
-| [07 · Triar la col·lecció adequada](/ApuntesProgramacion/va/10-colecciones/07-elegir-coleccion) | Ordre, duplicats i velocitat: les tres preguntes que decidixen | Tots |
+| [07 · Triar la col·lecció adequada](/ApuntesProgramacion/va/10-colecciones/07-elegir-coleccion) | Ordre, duplicats i velocitat: les tres preguntes que decideixen | Tots |
 | [08 · Be the Code: col·leccions en acció](/ApuntesProgramacion/va/10-colecciones/08-be-the-code) | Prediu l'eixida, caça el bug i tria la col·lecció a ull | Tots |
 | [09 · Repàs interactiu](/ApuntesProgramacion/va/10-colecciones/09-repaso-interactivo) | Sé el Código, Fireside, Laboratori, Crucigrama i més | Tots |
 
@@ -82,7 +82,7 @@ En acabar, seràs capaç de:
 | RA6 d) | S'han utilitzat iteradors per a recórrer els elements de les llistes. | ✅ Punts 5 i 9 |
 | RA6 e) | S'han reconegut les característiques i avantatges de cadascuna de les col·leccions de dades disponibles. | ✅ Punts 3, 4 i 7 |
 
-> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U11** (genèrics i mapes, CE f) i la **U13** (regex i XML, CEs g, h i i). Esta unitat cobrix el cor de les col·leccions: llistes, conjunts, iteradors i la llibreria `java.util`.
+> 📌 La **RA6** es completa amb la **U04** (arrays, CE a), la **U11** (genèrics i mapes, CE f) i la **U13** (regex i XML, CEs g, h i i). Esta unitat cobreix el cor de les col·leccions: llistes, conjunts, iteradors i la llibreria `java.util`.
 
 ---
 

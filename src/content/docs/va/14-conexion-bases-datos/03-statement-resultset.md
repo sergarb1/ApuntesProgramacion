@@ -1,9 +1,9 @@
 ---
 title: "03 · Statement i ResultSet: consultar dades"
-description: "Llança consultes amb Statement, processa files amb ResultSet i decidix entre executeQuery i executeUpdate sense ficar una forqueta al microones 🗄️📊"
+description: "Llança consultes amb Statement, processa files amb ResultSet i decideix entre executeQuery i executeUpdate sense ficar una forqueta al microones 🗄️📊"
 ---
 
-<p><small>Llança consultes amb Statement, processa files amb ResultSet i decidix entre executeQuery i executeUpdate sense ficar una forqueta al microones 🗄️📊</small></p>
+<p><small>Llança consultes amb Statement, processa files amb ResultSet i decideix entre executeQuery i executeUpdate sense ficar una forqueta al microones 🗄️📊</small></p>
 
 > 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 03 · Statement i ResultSet
 
@@ -91,7 +91,7 @@ try (Connection con = DriverManager.getConnection(url);
 
 Fixa't en l'ordre d'obertura: Connection → Statement → ResultSet. Amb `try-with-resources` es tanquen en ordre invers i no has de preocupar-te'n. Si la consulta és fixa i no té paràmetres variables, un `Statement` senzill és suficient. Quan hi haja dades de l'usuari de per mig... això és cosa del punt 5.
 
-> 💡 **Consell:** `Statement` servix per a consultes literalment fixes. Per al 90% de les teues consultes reals (amb paràmetres que canvien) usaràs `PreparedStatement`. Ho veuràs molt prompte, no t'enamores del `Statement` encara.
+> 💡 **Consell:** `Statement` serveix per a consultes literalment fixes. Per al 90% de les teues consultes reals (amb paràmetres que canvien) usaràs `PreparedStatement`. Ho veuràs molt prompte, no t'enamores del `Statement` encara.
 
 ---
 

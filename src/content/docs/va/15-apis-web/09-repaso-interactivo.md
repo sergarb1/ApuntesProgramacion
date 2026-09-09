@@ -41,11 +41,11 @@ public class Misterio {
 }
 ```
 
-**Què imprimixes per pantalla? Tria saviament:**
+**Què imprimeixes per pantalla? Tria saviament:**
 
 1. **`25 nada valor`** → ✅ Correcte! Per a la clau `edad` troba el parell `edad=25` i torna `"25"`. Per a `ciudad` no hi ha parell amb eixa clau → `"nada"`. Per a `clave` → `"valor"`.
 2. **`nada 25 valor`** → Vas llegir l'ordre al revés: pensa quina clau es busca primer. ❌
-3. **`25 25 valor`** → El segon `System.out` no busca "edad" dos vegades: busca `ciudad`, que no existix. ❌
+3. **`25 25 valor`** → El segon `System.out` no busca "edad" dos vegades: busca `ciudad`, que no existeix. ❌
 
 > <details>
 > <summary>🔄 Solució</summary>
@@ -83,7 +83,7 @@ Endevina quin concepte de la unitat soc:
 3. **Soc el format de dades que qualsevol llenguatge entén, amb claus i corxets.**
 4. **Soc la capçalera que delata si la resposta és HTML, JSON o text pla.**
 5. **Soc el client de Java 11+ que consulta APIs alienes amb el trio client-petició-resposta.**
-6. **Soc la llibreria que convertix JSON en objectes Java, amb `fromJson` com a conjur.**
+6. **Soc la llibreria que converteix JSON en objectes Java, amb `fromJson` com a conjur.**
 
 <details>
 <summary>🔄 Respostes</summary>
@@ -107,7 +107,7 @@ Endevina quin concepte de la unitat soc:
 
 *I després està el de l'HTML.* Torna una pàgina i el navegador li mostra el codi en comptes de la web. Endevines què falta? El `Content-Type: text/html`. Sense la capçalera, el navegador fa el que pot, i el que pot és mostrar-te el codi com a text pla. La capçalera és l'uniforme: sense ella, ningú sap què eres.
 
-*I el colmo dels colmos:* el que parseja el JSON a mà amb `split`. Li arriba un títol amb una cometa i Gson no té cap culpa: és que el `split("\"titulo\":\"")` s'ha descosit. Per què? Perquè existix Gson per a això. Al servidor i al client: **per a parsejar JSON, deixa de fer servir tisores.** Un `split` és per a aprendre, no per a produir.
+*I el colmo dels colmos:* el que parseja el JSON a mà amb `split`. Li arriba un títol amb una cometa i Gson no té cap culpa: és que el `split("\"titulo\":\"")` s'ha descosit. Per què? Perquè existeix Gson per a això. Al servidor i al client: **per a parsejar JSON, deixa de fer servir tisores.** Un `split` és per a aprendre, no per a produir.
 
 **La lliçó:** abans d'acusar Java de "odiar-te", repassa el trio sagrat de la unitat: **tinc la capçalera correcta? estic usant el mètode HTTP adequat? estic parsejant JSON amb una ferramenta de veritat?** El compilador no t'odia: t'està passant les respostes de l'examen.
 
@@ -121,7 +121,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
    - a) GET   b) POST
 2. El teu endpoint torna una llista d'usuaris. Quin `Content-Type` poses?
    - a) `text/html`   b) `application/json`
-3. El client demana `/api/tareas/99` i eixa tasca no existix. Quin codi tornes?
+3. El client demana `/api/tareas/99` i eixa tasca no existeix. Quin codi tornes?
    - a) `200`   b) `404`
 4. En `HttpClient`, quin mètode envia dades en el cos de la petició?
    - a) `.GET()`   b) `.POST(...)`
@@ -133,7 +133,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 
 1. **b)** — La contrasenya viatja en el cos del POST, no en la URL.
 2. **b)** — `application/json`. Tornes dades, no una pàgina.
-3. **b)** — `404`: el recurs demanat no existix.
+3. **b)** — `404`: el recurs demanat no existeix.
 4. **b)** — `.POST(...)` porta el `BodyPublisher`; `.GET()` no envia cos.
 5. **a)** — Gson deixa els camps absents en `null`. Per això es comproven amb `has(...)` / `isJsonNull()`.
 
@@ -146,7 +146,7 @@ Tria la resposta correcta per a cada decisió (respostes al final):
 > **Duració estimada:** 30 minuts
 > **Ferramenta:** el teu IDE i un fitxer nou
 
-**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedixen que compile i 1 error de lògica que fa que el JSON isca malament... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
+**L'escenari:** copia este programa i fes que funcione. Et diuen que té **3 errors** que impedeixen que compile i 1 error de lògica que fa que el JSON isca malament... però, i si t'ho diuen malament? La teua tasca: fer que compile, que execute i que **tota** l'eixida siga correcta, comptant tu els errors reals.
 
 ```java
 import com.sun.net.httpserver.HttpServer;
@@ -190,7 +190,7 @@ Els **errors de compilació**:
 1. Falta el `;` al final de `e.getResponseBody().write(json.getBytes())`.
 2. Falta el `;` al final de `System.out.println(...)`.
 
-L'**error de lògica**: no existix. El JSON `{"hora": "09:30:05"}` es construïx bé i el `Content-Type` és correcte. Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat. El servidor funciona en `http://localhost:8080/api/hora`.
+L'**error de lògica**: no existeix. El JSON `{"hora": "09:30:05"}` es construïx bé i el `Content-Type` és correcte. Eixa era la fallada intencionada: l'enunciat diu "3 errors de compilació i 1 de lògica", però només hi ha 2 faltes de `;` i cap lògica trencada. L'error "amagat" era la teua confiança en l'enunciat. El servidor funciona en `http://localhost:8080/api/hora`.
 
 ```java
 import com.sun.net.httpserver.HttpServer;
@@ -258,7 +258,7 @@ public class Acertijo {
 <summary>💡 Solucions</summary>
 
 1. Imprimeix `3` i després `4`. `substring` extrau l'ID de la ruta; `url.split("/")` dona `["", "api", "tareas", "3"]`, que són 4 trossos (el primer és buit perquè la URL comença per `/`).
-2. `Cache-Control: no-cache` (o `no-store`). Així el navegador no servix la resposta de la memòria cau i torna a preguntar al servidor.
+2. `Cache-Control: no-cache` (o `no-store`). Així el navegador no serveix la resposta de la memòria cau i torna a preguntar al servidor.
 3. La capçalera **`Authorization`** amb un token. Per a aconseguir-lo, normalment registres una aplicació en la plataforma i obtens un token d'accés.
 4. **Fals en la pràctica.** L'estàndard HTTP no ho prohibix del tot, però cap servidor decent ho respecta i `HttpClient` no t'ho posa fàcil: per a enviar dades usa POST, PUT o PATCH, que és el que el món espera.
 
@@ -299,7 +299,7 @@ Vertical:
 2. **"Quina és la diferència entre GET i POST? Quan usaríes cadascun?"**
 3. **"Què significa el codi 404? I el 500?"**
 4. **"Com consumes una API externa en Java sense llibreries de tercers?"**
-5. **"Què és Gson i per a què servix? Què passa si el JSON porta un camp que no està en el teu `record`?"**
+5. **"Què és Gson i per a què serveix? Què passa si el JSON porta un camp que no està en el teu `record`?"**
 6. **"Què és un `Content-Type` i per què és important?"**
 
 ---
@@ -320,17 +320,17 @@ Quasi. HTTPS és HTTP amb una capa de xifrat (SSL/TLS): les dades viatgen encrip
 
 > ❓ **El `HttpServer` és com Tomcat?**
 
-No. `HttpServer` és mínim i didàctic: servix per a entendre el protocol. Tomcat és un servidor d'aplicacions complet (Servlets, JSP...). Ací usem just el necessari perquè la web deixe de ser màgia.
+No. `HttpServer` és mínim i didàctic: serveix per a entendre el protocol. Tomcat és un servidor d'aplicacions complet (Servlets, JSP...). Ací usem just el necessari perquè la web deixe de ser màgia.
 
 ---
 
 ## 🎬 Post-Crèdits
 
-La programadora acaba la seua primera API: un gestor de tasques servit amb `HttpServer`, amb els seus quatre verbs REST i un frontend que fa `fetch`. Funciona. Fins que obri el mòbil i vol consumir-la des de fora de l'ordinador, i descobrix que el localhost només viu en la seua màquina.
+La programadora acaba la seua primera API: un gestor de tasques servit amb `HttpServer`, amb els seus quatre verbs REST i un frontend que fa `fetch`. Funciona. Fins que obri el mòbil i vol consumir-la des de fora de l'ordinador, i descobreix que el localhost només viu en la seua màquina.
 
 S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
-**CONRAD:** — Això és el bonic del que acabes de construir: l'API ja no depén d'on s'executa. Hui viu en el teu portàtil; demà, en un núvol. Els que la consumixen només veuen rutes i JSON.
+**CONRAD:** — Això és el bonic del que acabes de construir: l'API ja no depén d'on s'executa. Hui viu en el teu portàtil; demà, en un núvol. Els que la consumeixen només veuen rutes i JSON.
 
 **Programadora:** — Val... però ara mateix tot està en un `ArrayList` que s'esborra en reiniciar. Quan aprenc a guardar-lo de veritat?
 

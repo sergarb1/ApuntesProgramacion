@@ -10,7 +10,7 @@ emoji: 🏗️
 
 ---
 
-Benvingut a la unitat on els teus programes deixen de ser *receptes de cuina* i es convertixen en **mons de coses**. Fins ara has escrit programes lineals: això, després això, després això. Però el món real no funciona així. Al món real tens *coses*: un gos, un cotxe, un professor de programació amb ulleres de pasta. Cada cosa té **atributs** (color, edat, nombre de ganes de corregir exàmens) i **comportaments** (lladrar, accelerar, posar faltes d'ortografia).
+Benvingut a la unitat on els teus programes deixen de ser *receptes de cuina* i es converteixen en **mons de coses**. Fins ara has escrit programes lineals: això, després això, després això. Però el món real no funciona així. Al món real tens *coses*: un gos, un cotxe, un professor de programació amb ulleres de pasta. Cada cosa té **atributs** (color, edat, nombre de ganes de corregir exàmens) i **comportaments** (lladrar, accelerar, posar faltes d'ortografia).
 
 La **Programació Orientada a Objectes (POO)** és exactament això: escriure codi com funciona el món real. I en esta unitat aprendràs la base de tot: les **classes** (el motle) i els **objectes** (la galeta). Construiràs les teues pròpies classes amb atributs i mètodes, les faràs nàixer amb **constructors**, aprendràs a desambiguar amb `this`, a raonar sobre **referències i memòria**, i a exprimir la **sobrecàrrega** de mètodes i el pas de paràmetres.
 
@@ -24,7 +24,7 @@ Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són t
 
 En acabar, seràs capaç de:
 
-- Explicar què és la **POO** i per què existix (spoiler: no és per a fastidiar, és per a no tornar-te boig).
+- Explicar què és la **POO** i per què existeix (spoiler: no és per a fastidiar, és per a no tornar-te boig).
 - Diferenciar **classe** (el tallagalletas) d'**objecte** (la galeta), i crear objectes amb `new`.
 - Definir **atributs** (les propietats) i **mètodes** (els comportaments) d'una classe.
 - Usar **constructors** perquè els objectes nasquen ben preparats, amb o sense paràmetres.

@@ -5,7 +5,7 @@ description: CodeWars i AceptaElReto per a anar més enllà de la unitat
 
 # 📝 Butlletí U09 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista. CodeWars i AceptaElReto són els gimnasos on els programadors es repten cada dia: ací és on l'herència deixa de ser teoria i es convertix en reflexos.
+> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista. CodeWars i AceptaElReto són els gimnasos on els programadors es repten cada dia: ací és on l'herència deixa de ser teoria i es converteix en reflexos.
 
 ---
 
@@ -210,7 +210,7 @@ public class Ship {
 }
 ```
 
-Cada `Ship` guarda el seu propi estat (`draft` i `crew`) i decidix per si mateix si mereix la pena. Els atributs `final` fan l'objecte immutable: es fixen en nàixer. La constant `static final` documenta el `1.5`. És el mateix patró d'objecte amb comportament que has practicat tota la unitat.
+Cada `Ship` guarda el seu propi estat (`draft` i `crew`) i decideix per si mateix si mereix la pena. Els atributs `final` fan l'objecte immutable: es fixen en nàixer. La constant `static final` documenta el `1.5`. És el mateix patró d'objecte amb comportament que has practicat tota la unitat.
 
 </details>
 
@@ -262,7 +262,7 @@ public class Persona {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        sc.nextLine();  // consumix el salt de línia
+        sc.nextLine();  // consumeix el salt de línia
 
         for (int i = 0; i < n; i++) {
             String linea = sc.nextLine();
@@ -282,7 +282,7 @@ public class Persona {
 
 ### 6. 119 — Escuts de l'exèrcit romà
 
-Un general dividix els seus legionaris en formacions **quadrades** (el més gran possible), repetint amb els que queden lliures fins a esgotar-los. Cada quadrat de costat `n` necessita escuts segons el perímetre més la cobertura: per a un quadrat de `n × n`, els escuts són `n² + 4n` (una base per soldat més el perímetre exterior). Donat el nombre de legionaris, calcula el mínim d'escuts necessaris.
+Un general divideix els seus legionaris en formacions **quadrades** (el més gran possible), repetint amb els que queden lliures fins a esgotar-los. Cada quadrat de costat `n` necessita escuts segons el perímetre més la cobertura: per a un quadrat de `n × n`, els escuts són `n² + 4n` (una base per soldat més el perímetre exterior). Donat el nombre de legionaris, calcula el mínim d'escuts necessaris.
 
 **Entrada:** diversos casos de prova, cadascun amb el nombre de legionaris. Termina amb `0`.
 

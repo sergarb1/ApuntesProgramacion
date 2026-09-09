@@ -166,7 +166,7 @@ public class Erroneo {
 
 1. Tot programa té una **classe** (contenidor) i un **mètode `main`** (porta d'entrada).
 2. `System.out.println()` és la veu del programa; `;` és el punt final de cada frase.
-3. La JVM executa **línia a línia, en orde**: tu decidixes què entra per la porta.
+3. La JVM executa **línia a línia, en orde**: tu decideixes què entra per la porta.
 
 > 🐛 **Vocabulari ràpid**
 >
