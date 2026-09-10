@@ -141,4 +141,4 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Bytecode | Codi intermedi que entén la JVM |
 > | Compilador | Traductor de codi font a bytecode |
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [Índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Següent:** [02 · Instal·lació del JDK](/ApuntesProgramacion/va/01-introduccion/02-instalacion-jdk)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [U00 · Pensament Computacional](/ApuntesProgramacion/va/00-pensament-computacional) · **Següent:** [02 · Instal·lació del JDK](/ApuntesProgramacion/va/01-introduccion/02-instalacion-jdk)

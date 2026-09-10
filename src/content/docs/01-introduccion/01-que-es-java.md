@@ -141,4 +141,4 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 > | Bytecode | Código intermedio que entiende la JVM |
 > | Compilador | Traductor de código fuente a bytecode |
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [Índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Siguiente:** [02 · Instalación del JDK](/ApuntesProgramacion/01-introduccion/02-instalacion-jdk)
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [U00 · Pensamiento Computacional](/ApuntesProgramacion/00-pensament-computacional) · **Siguiente:** [02 · Instalación del JDK](/ApuntesProgramacion/01-introduccion/02-instalacion-jdk)

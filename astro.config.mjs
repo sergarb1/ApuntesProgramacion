@@ -38,6 +38,22 @@ export default defineConfig({
           translations: { va: '📚 Unitats' },
           items: [
             {
+              label: '🧠 0. Pensamiento Computacional',
+              translations: { va: '🧠 0. Pensament Computacional' },
+              items: [
+                { slug: '00-pensament-computacional', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
+                { slug: '00-pensament-computacional/01-ordinadors-llenguatges', label: '01 · Qué es un ordenador y un lenguaje de programación', translations: { va: '01 · Què és un ordinador i un llenguatge de programació' } },
+                { slug: '00-pensament-computacional/02-no-memoritzar', label: '02 · Programar no es memorizar código', translations: { va: '02 · Programar no és memoritzar codi' } },
+                { slug: '00-pensament-computacional/03-pensar-abans', label: '03 · Primero pensamos, después escribimos', translations: { va: '03 · Primer pensem, després escrivim' } },
+                { slug: '00-pensament-computacional/04-descomposicio', label: '04 · La descomposición', translations: { va: '04 · La descomposició' } },
+                { slug: '00-pensament-computacional/05-debugging-casos-limit', label: '05 · Debugging y casos límite', translations: { va: '05 · Debugging i casos límit' } },
+                { slug: '00-pensament-computacional/06-protocol-pau', label: '06 · El protocolo de paz', translations: { va: '06 · El protocol de pau' } },
+                { slug: '00-pensament-computacional/07-practicar', label: '07 · Practicar (menos mirar, más intentar)', translations: { va: '07 · Practicar (menys mirar, més intentar)' } },
+                { slug: '00-pensament-computacional/08-ia-tutor', label: '08 · Cómo utilizaremos la IA', translations: { va: '08 · Com utilitzarem la IA' } },
+                { slug: '00-pensament-computacional/09-primer-problema', label: '09 · Mi primer problema (puente a Java)', translations: { va: '09 · El meu primer problema (pont cap a Java)' } },
+              ],
+            },
+            {
               label: '🚀 1. Introducción a Java',
               translations: { va: '🚀 1. Introducció a Java' },
               items: [
@@ -284,8 +300,15 @@ export default defineConfig({
         {
           label: '📝 Boletines',
           translations: { va: '📝 Butlletins' },
-          items:
-            ['🚀','🔤','🔀','🅿️','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','🎯','📁','🗄️','🌐'].flatMap((emoji, i) => {
+          items: [
+            {
+              label: '🧠 Boletín Unidad 00',
+              translations: { va: '🧠 Butlletí Unitat 00' },
+              items: [
+                { slug: 'boletines/boletin-u00-inicial', label: '🟢 Actividades no evaluables', translations: { va: '🟢 Activitats no avaluables' } },
+              ],
+            },
+            ...['🚀','🔤','🔀','🅿️','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','🎯','📁','🗄️','🌐'].flatMap((emoji, i) => {
               const n = i + 1;
               const nn = String(n).padStart(2,'0');
               return [{
@@ -300,6 +323,7 @@ export default defineConfig({
                 ],
               }];
             }),
+          ],
         },
       ],
     }),

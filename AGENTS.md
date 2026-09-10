@@ -3,10 +3,11 @@
 **CC BY-SA 4.0** — Sergi Garcia Barea
 
 ## Descripción
-Curso completo de Programación en Java para DAM/DAW (o cualquier persona que quiera iniciarse), organizado en 15 unidades didácticas en Markdown. Cada unidad indica al final qué RAs oficiales del BOE cubre. Publicado como web estática con **Astro + Starlight** + GitHub Pages.
+Curso completo de Programación en Java para DAM/DAW (o cualquier persona que quiera iniciarse), organizado en 16 unidades didácticas en Markdown. Cada unidad indica al final qué RAs oficiales del BOE cubre. Publicado como web estática con **Astro + Starlight** + GitHub Pages.
 
-## Unidades (15)
+## Unidades (16)
 ```
+00-pensament-computacional.md         → (sin RA: introductoria)
 01-introduccion.md                    → RA1
 02-variables-tipos-operadores.md      → RA2        (10 puntos: incluye consola)
 03-estructuras-control-excepciones.md → RA3
@@ -24,7 +25,7 @@ Curso completo de Programación en Java para DAM/DAW (o cualquier persona que qu
 15-apis-web.md                        → RA5
 ```
 
-Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U02 tiene 10 puntos porque incluye el punto extra de consola (salida formateada).
+Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U02 tiene 10 puntos porque incluye el punto extra de consola (salida formateada). La U00 es introductoria (9 puntos, 1 boletín no evaluable).
 
 ## Boletines (5 por unidad)
 ```

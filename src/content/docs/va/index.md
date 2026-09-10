@@ -9,6 +9,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
 
 <div align="center" style="margin-bottom:2rem;">
   <a href="/ApuntesProgramacion/va/01-introduccion" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,#2d8a4e,#1e6b38);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🚀 Començar per la Unitat 1</a>
+  <a href="/ApuntesProgramacion/va/00-pensament-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primer: Pensament Computacional</a>
   <a href="https://github.com/sergarb1/ApuntesProgramacion" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🐙 Veure al GitHub</a>
 </div>
 
@@ -34,6 +35,17 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
 ## 📚 Unitats
 
 <div class="unit-grid">
+
+<div class="unit-card">
+  <div class="unit-card-header">
+    <span class="num">Unitat 0</span>
+    <span class="ra">—</span>
+  </div>
+  <a href="/ApuntesProgramacion/va/00-pensament-computacional" class="title-link">Pensament Computacional</a>
+  <p class="desc">Abans de codi, pensem. Descomposició, debugging, protocol de pau i el teu primer problema de programació sense tocar Java.</p>
+  <a href="/ApuntesProgramacion/va/00-pensament-computacional" class="unit-link">👉 Veure unitat 👈</a>
+
+</div>
 
 <div class="unit-card">
   <div class="unit-card-header">

@@ -1,10 +1,11 @@
 # ☕ Apuntes Programación Java — DAM/DAW
 
-Curso completo de **Programación en Java** para DAM/DAW. Material bilingüe (castellano / valencià) con **15 unidades**, **75 boletines de ejercicios** por idioma, proyecto final y programación funcional.
+Curso completo de **Programación en Java** para DAM/DAW. Material bilingüe (castellano / valencià) con **16 unidades**, **80 boletines de ejercicios** por idioma, proyecto final y programación funcional.
 
-## Estructura del curso (15 unidades)
+## Estructura del curso (16 unidades)
 | # | Unidad | RA |
 |---|---|---|
+| 00 | Pensamiento Computacional | — |
 | 01 | Introducción a Java | RA1 |
 | 02 | Variables, Tipos y Operadores (incluye consola) | RA2 |
 | 03 | Estructuras de Control y Excepciones | RA3 |
