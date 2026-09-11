@@ -47,7 +47,7 @@ En acabar, seràs capaç d'explicar:
 | [08 · Com utilitzarem la IA](/ApuntesProgramacion/va/00-pensament-computacional/08-ia-tutor) | Tutor socràtic, al·lucinacions, regles d'or | Todos |
 | [09 · El meu primer problema (pont cap a Java)](/ApuntesProgramacion/va/00-pensament-computacional/09-primer-problema) | Comparador de nombres, pseudocodi, glossari | Todos |
 
-> 📖 **Flujo de lectura:** els 8 primers punts són teoria en progressió. El 9º és l'aterratge pràctic: lé-lo just després del 8º i abans d'obrir els boletins.
+> 📖 **Flux de lectura:** els 8 primers punts són teoria en progressió. El 9º és l'aterratge pràctic: lé-lo just després del 8º i abans d'obrir els boletins.
 
 ---
 

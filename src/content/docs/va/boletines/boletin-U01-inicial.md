@@ -1,17 +1,17 @@
 ---
-title: Butlletí U01 — Inicial
-description: Exercicis bàsics d'Introducció a Java
+title: "Butlletí U01 — Inicial"
+description: "Exercicis bàsics d'Introducció a Java"
 ---
 
 # 📝 Butlletí U01 — Inicial
 
-> Sense solucions. Sense presses. Amb un editor de text i moltes ganes de compilar. Això només comença.
+> Sense solucions. Sense presses. Amb un editor de text i moltes ganes de compilar. Això només comença. Comenta les solucions al fòrum i intenta ajudar als companys a què milloren les seues capacitats com a programador.
 
 ---
 
 ## Exercici 1: Desordena això
 
-Les línies d'este programa estan desordenades. Ordena-les per a formar un programa Java vàlid que compile i s'execute.
+Les línies d'este programa estan desordenades. Ordena-les per a formar un programa Java vàlid que compile i s'execute:
 
 ```java
 }
@@ -36,13 +36,13 @@ public class Escapista {
 }
 ```
 
-Pista: `\"` imprimeix una cometa literal, `\t` és un tabulador.
+💡 **Pista important**: `\"` imprimeix una cometa doble literal, `\t` és un tabulador.
 
 ---
 
 ## Exercici 3: Caçador d'errors
 
-Este codi té **4 errors**. Troba'ls i corregeix-los.
+Este codi té **4 errors**. Troba'ls i corregeix-los:
 
 ```java
 Public class ErrorFinder {
@@ -57,22 +57,22 @@ Public class ErrorFinder {
 
 ## Exercici 4: La teua fitxa personal
 
-Escriu un programa anomenat `FichaPersonal` que mostre:
+Escriu un programa anomenat `FichaPersonal.java` que mostre el següent text per pantalla:
 
 ```
-Nom: [El teu nom]
-Edat: [La teua edat]
-Llenguatge favorit: Java
-¿Emocionat?: true
+Nombre: [El teu nom]
+Edad: [La teua edat]
+Lenguaje favorito: Java
+¿Emocionado?: true
 ```
 
-Usa una línia `println` per a cada camp. Fixa't en l'últim: `true` va com a **text** dins de les cometes del `println` (així apareix el text «¿Emocionat?: true»), no com un booleà solt.
+Usa una línia `System.out.println` per a cada camp i assegura't que els booleans (com `true`) no porten cometes.
 
 ---
 
 ## Exercici 5: Completa el programa
 
-Falta una línia crucial i un parell de caràcters. Afegix-los perquè compile i mostre "Aprobado, esto funciona".
+Falta una clau de tancament i un caràcter crucial. Afegeix-los perquè compile i mostre "Aprobado, esto funciona":
 
 ```java
 public class Completame {
@@ -88,28 +88,20 @@ public class Completame {
 Relaciona cada concepte de l'esquerra amb la seua definició de la dreta:
 
 | Concepte | Definició |
-|---|---|
+| --- | --- |
 | 1. `class` | A. Punt d'entrada del programa |
 | 2. `main` | B. Imprimeix text i salta de línia |
-| 3. `System.out.println` | C. Definix un nou tipus de dades |
+| 3. `System.out.println` | C. Defineix un nou tipus de dades o plantilla de codi |
 | 4. `//` | D. Comentari d'una línia |
-| 5. `args` | E. Conté els arguments de línia de comandes |
+| 5. `args` | E. Conté els arguments de la línia d'ordres |
 
-Escriu les respostes com "1→C, 2→A, ..."
-
----
-
-## Exercici 7: CodeWars — Square(n) Sum
-
-Resol la kata **"Square(n) Sum"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/515e271a311df0350d00000f).
-
-Donat un array de números, eleva cada un al quadrat i suma els resultats. Per exemple, `[1, 2, 2]` → 1 + 4 + 4 = 9.
+Escriu les respostes amb el format: 1→C, 2→A, ...
 
 ---
 
-## Exercici 8: El detectiu d'errors
+## Exercici 7: El detectiu d'errors
 
-El següent codi té 2 errors que impedeixen que compile. Troba'ls i corregeix-los:
+El següent codi té un error de sintaxi que impedeix que compile. Troba'l i corregeix-lo:
 
 ```java
 public class Detective {
@@ -120,16 +112,17 @@ public class Detective {
 }
 ```
 
-Escriu la versió corregida. Després, executa-la i comprova que funciona.
+Escriu la versió corregida. Després, executa-la en VS Code i comprova que funciona.
 
 ---
 
-## Exercici 9: La teua biografia
+## Exercici 8: La teua biografia
 
-Escriu un programa anomenat `Biografia` que mostre:
+Escriu un programa anomenat `Biografia.java` que mostre:
+
 - El teu nom
 - La teua edat
 - El teu llenguatge de programació favorit
 - Una frase que et motive
 
-Cada cosa en una línia. Usa **una sola** instrucció `System.out.println` amb `\n` per als salts.
+Cada dada ha d'eixir en una línia diferent, però amb una única condició: usa una sola instrucció `System.out.println` utilitzant `\n` per als salts de línia.

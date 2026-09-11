@@ -1,6 +1,6 @@
 ---
-title: 01 — ¿Qué es Java?
-description: La trilogía del café y el secreto de la taza humeante ☕
+title: "01 — ¿Qué es Java?"
+description: "La trilogía del café y el secreto de la taza humeante ☕"
 ---
 
 <p><small>La trilogía del café y el secreto de la taza humeante ☕</small></p>
@@ -9,21 +9,19 @@ description: La trilogía del café y el secreto de la taza humeante ☕
 
 ---
 
-## 📬 La idea en una frase
+Java es un lenguaje de programación que se ejecuta dentro de una máquina virtual (la JVM), lo que le permite correr igual en Windows, Linux o macOS: **"escribes una vez, corre en cualquier lugar"**.
 
-> **Java es un lenguaje de programación que se ejecuta dentro de una máquina virtual (la JVM), lo que le permite ejecutarse igual en Windows, Linux o macOS: "escribe una vez, corre en cualquier sitio".**
-
-Si tu ordenador es un cachorro muy listo pero con cero iniciativa, Java es uno de los idiomas que puedes usar para darle órdenes. Y la JVM es el intérprete que traduce tus órdenes al idioma concreto de cada cachorro.
+Si tu ordenador es un cachorro muy listo, pero con cero iniciativas, Java es uno de los idiomas que puedes usar para darle órdenes. Y la JVM es el intérprete que traduce tus órdenes al idioma concreto de cada cachorro.
 
 ---
 
-## 🔍 ¿De dónde sale este lenguaje?
+## 🔍 ¿De dónde viene este lenguaje?
 
 Java nació en **1995** en **Sun Microsystems**, y su historia tiene una de las curiosidades más divertidas del sector: se inspiró en la **máquina de café** de la oficina. Por eso el logo es una taza humeante. No me lo invento.
 
-La idea de sus creadores era simple pero ambiciosa: un lenguaje que funcionara en **cualquier dispositivo**, sin importar el sistema operativo ni el hardware. Antes de Java, cada plataforma necesitaba su propia versión del programa. Java propuso la solución: no programar para el ordenador, sino para una **máquina virtual** que el ordenador simula.
+La idea de sus creadores era simple, pero ambiciosa: un lenguaje que funcionara en **cualquier dispositivo**, sin importar el sistema operativo ni el hardware. Antes de Java, cada plataforma necesitaba su propia versión del programa. Java propuso la solución: no programar para el ordenador, sino para una **máquina virtual** que el ordenador simula.
 
-> 💡 **Dato freak:** el lenguaje se llamó primero *Oak* (roble), por un árbol que se veía desde la oficina. Tuvieron que cambiarlo por motivos de marca registrada y, según la leyenda, el nombre "Java" se eligió por el café que tomaban durante las reuniones.
+💡 **Dato freak:** el lenguaje se llamó primero *Oak* (roble), por un árbol que se veía desde la oficina. Tuvieron que cambiarlo por motivos de marca registrada y, según la leyenda, el nombre "Java" se eligió por el café que toman durante las reuniones.
 
 ---
 
@@ -43,32 +41,32 @@ La gracia es que ese `.class` es el mismo para todas las plataformas: la JVM de 
 
 ---
 
-## ☕ La trilogía del café: JVM, JRE y JDK
+## ☕ La trilogía del Café: JVM, JRE y JDK
 
 Aquí está el momento estrella de la unidad. Java funciona como una **cafetería de especialidad**, y tienes que memorizar quién es quién:
 
-| Concepto | Es... | Analogía |
-|---|---|---|
-| **JVM** | La máquina que ejecuta el bytecode | La máquina de café: tiene su receta y funciona igual en cualquier sitio |
-| **JRE** | Todo lo necesario para *ejecutar* Java | La cafetería entera: máquina, vasos, azúcar... |
-| **JDK** | Todo lo necesario para *crear* programas | El kit completo para montar tu cafetería: máquina, granos, molinillo y manual de barista |
+| Concepto | Definición | Analogía |
+| --- | --- | --- |
+| **JVM** | La máquina que ejecuta el *bytecode*. | La máquina de café: tiene su receta y funciona igual en cualquier lugar. |
+| **JRE** | Todo lo necesario para ejecutar Java. | La cafetería entera: máquina, vasos, azúcar... |
+| **JDK** | Todo lo necesario para crear programas. | El kit completo para montar tu cafetería: máquina, granos, molinillo y manual de barista. |
 
 - **JVM (Java Virtual Machine)**: la máquina de café. Ejecuta el bytecode y viaja con tu programa a todas partes.
-- **JRE (Java Runtime Environment)**: la cafetería entera. Tiene la JVM y las librerías necesarias para *ejecutar* café ya hecho. Si solo quieres ejecutar programas, te basta.
+- **JRE (Java Runtime Environment)**: la cafetería entera. Tiene la JVM y las bibliotecas necesarias para *ejecutar* café ya hecho. Si solo quieres *ejecutar* programas, te basta.
 - **JDK (Java Development Kit)**: el kit para montar tu propia cafetería. Incluye el JRE más el compilador `javac`, el generador de documentación `javadoc` y otras herramientas de desarrollo. Si quieres *crear* programas, lo necesitas.
 
 ```java
-// Imagina que esto es un grano de café verde:
+// Comentario de cómo funciona el código
 public class Cafe {
     public static void main(String[] args) {
-        System.out.println("☕ ¡Café listo!");
+        System.out.println("☕ ¡Café preparado!");
     }
 }
 ```
 
-El JDK compila esto a bytecode (café molido), el JRE lo pasa por la JVM y... ¡tachán! café en tu pantalla.
+El JDK compila esto a bytecode (café molido), el JRE lo pasa por la JVM y... ¡tarán! Café en tu pantalla.
 
-> ⚠️ **Advertencia:** no confundas JDK con JRE. El JDK es el *cuchillo del chef*; el JRE es el *plato servido*. El JDK incluye el JRE, así que instalando el JDK tienes las dos cosas. Instalar solo el JRE te permite ejecutar programas, pero no crearlos.
+⚠️ **Advertencia:** no confundas JDK con JRE. El JDK es el *cuchillo del chef*; el JRE es el *plato servido*. El JDK incluye el JRE, así que instalando el JDK tienes las dos cosas. Instalar solo el JRE te permite ejecutar programas, pero no crearlos.
 
 ---
 
@@ -76,7 +74,7 @@ El JDK compila esto a bytecode (café molido), el JRE lo pasa por la JVM y... ¡
 
 No es nostalgia. Java sigue siendo uno de los lenguajes más demandados del mundo porque:
 
-- **Es multiplataforma**: el mismo programa se ejecuta en móviles, servidores, cajeros y hasta en la lavadora inteligente.
+- **Es multiplataforma**: el mismo programa corre en móviles, servidores, cajeros e incluso en la lavadora inteligente.
 - **Domina el mundo empresarial**: las grandes empresas (banca, seguros, logística) llevan décadas construyendo sus sistemas en Java.
 - **Es el lenguaje oficial de Android** (en su variante Kotlin convive, pero Java sigue omnipresente).
 - **Tiene una comunidad enorme**: cualquier error que tengas, probablemente alguien ya lo resolvió hace diez años en un foro.
@@ -84,44 +82,19 @@ No es nostalgia. Java sigue siendo uno de los lenguajes más demandados del mund
 
 ---
 
-## 🏫 Ejemplo guiado: recorrer tu primer programa
+## 🎯 Mini-comprobación
 
-Ya has visto `Cafe`. Vamos a fijar las piezas de cualquier programa Java antes de que lo diseñes tú en el punto 3:
-
-```java
-public class MiPrimerPrograma {
-    public static void main(String[] args) {
-        System.out.println("¡Holaaaa, mundo!");
-        System.out.println("Estoy aprendiendo Java");
-        System.out.println("Y me está gustando (de momento)");
-    }
-}
-```
-
-- `public class MiPrimerPrograma`: declaras una clase llamada `MiPrimerPrograma`. La clase es el contenedor de tu programa.
-- `public static void main(String[] args)`: el "botón de inicio". Java busca esta línea al arrancar.
-- `System.out.println(...)`: la voz del programa; grita texto por la consola.
-
-> 💡 **Detalle práctico:** la clase pública debe llamarse **exactamente igual que el archivo**. Si el archivo se llama `MiPrimerPrograma.java`, la clase debe ser `MiPrimerPrograma`. Esto es una regla de Java, no un capricho.
-
----
-
-## 🎯 Mini-chequeo
-
-Ponte a prueba en 30 segundos (las respuestas están escondidas):
+Pon a prueba en 30 segundos (las respuestas están más adelante):
 
 1. ¿Cuál es la diferencia entre JDK y JRE en una frase?
-2. ¿Qué hace el compilador `javac` con tu código `.java`?
+2. ¿Qué hace el compilador javac con tu código `.java`?
 3. ¿Por qué el logo de Java es una taza humeante?
 
-<details>
-<summary>🔄 Respuestas</summary>
+**🔄 Respuestas**
 
-1. El **JDK sirve para crear** programas (incluye compilador); el **JRE sirve para ejecutarlos**. El JDK contiene al JRE.
-2. Lo traduce a **bytecode** (un archivo `.class`) que la JVM puede ejecutar.
-3. Porque el lenguaje se inspira en la máquina de café de la oficina de Sun Microsystems: "escribe una vez, corre en cualquier sitio" (como el café, que se prepara igual en cualquier cafetería).
-
-</details>
+1. El JDK sirve para crear programas (incluye el compilador); el JRE sirve para ejecutarlos. El JDK contiene el JRE.
+2. Lo traduce a bytecode (un archivo `.class`) que la JVM puede ejecutar.
+3. Porque el lenguaje se inspira en la máquina de café de la oficina de Sun Microsystems: "escribes una vez, corre en cualquier lugar" (como el café, que se prepara igual en cualquier cafetería).
 
 ---
 
@@ -131,14 +104,14 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 2. **JDK** crea (compila a bytecode), **JRE** ejecuta, **JVM** transporta: como Amazon pero con café.
 3. Java sigue siendo rey en el mundo empresarial y aprenderlo te forma como programador ordenado.
 
-> 🐛 **Vocabulario rápido**
->
-> | Término | Idea general |
-> |---|---|
-> | JVM | La máquina virtual que ejecuta el bytecode |
-> | JRE | Entorno de ejecución (JVM + librerías) |
-> | JDK | Kit de desarrollo (compilador + JRE + herramientas) |
-> | Bytecode | Código intermedio que entiende la JVM |
-> | Compilador | Traductor de código fuente a bytecode |
+---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [U00 · Pensamiento Computacional](/ApuntesProgramacion/00-pensament-computacional) · **Siguiente:** [02 · Instalación del JDK](/ApuntesProgramacion/01-introduccion/02-instalacion-jdk)
+## 🐛 Vocabulario rápido
+
+| Término | Idea general |
+| --- | --- |
+| **JVM** | La máquina virtual que ejecuta el bytecode |
+| **JRE** | Entorno de ejecución (JVM + bibliotecas) |
+| **JDK** | Kit de desarrollo (compilador + JRE + herramientas) |
+| **Bytecode** | Código intermedio que entiende la JVM |
+| **Compilador** | Traductor de código fuente a bytecode |

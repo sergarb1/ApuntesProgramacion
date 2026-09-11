@@ -1,38 +1,36 @@
 ---
-title: 08 — VS Code i el teu flux de treball
-description: La teua navalla suïssa per a no viure en la terminal 🗡️
+title: "08 — L'IDE i el teu flux de treball"
+description: "Projectes, dreceres, crear/executar/depurar 🛠️"
 ---
 
-<p><small>La teua navalla suïssa per a no viure en la terminal 🗡️</small></p>
+<p><small>Projectes, dreceres, crear/executar/depurar 🛠️</small></p>
 
-> 🗺️ **Estàs en:** 🚀 **U01 · Introducció a Java** → 08 · VS Code i el teu flux de treball
-
----
-
-## 📬 La idea en una frase
-
-> **L'IDE (Entorn de Desenrotllament Integrat) és la teua navalla suïssa: editor, compilador, executor i depurador, tot en una sola finestra.**
-
-En el punt 2 vas instal·lar el JDK i li vas fer una primera ullada a l'IDE. Ara vas a muntar el flux de treball diari: com s'organitza un projecte, com crear classes, executar-les, depurar-les i moure't amb dreceres sense tocar el ratolí.
+> 🗺️ **Estàs en:** 🚀 **U01 · Introducció a Java** → 08 · L'IDE i el teu flux de treball
 
 ---
 
-## 🗂️ Anatomia d'un projecte
+**L'IDE (Entorn de Desenrotllament Integrat) és la teua navalla suïssa: editor, compilador, executor i depurador, tot en una sola finestra.**
 
-Quan crees un projecte Java, l'IDE et genera una estructura de carpetes. Les importants són:
+En el punt 2 vas instal·lar el JDK i li vas fer una primera ullada a l'IDE/Editor. Ara vas a muntar el teu flux de treball diari: com s'organitza un projecte, com crear classes, executar-les, depurar-les i moure't amb dreceres en VS Code sense tocar el ratolí.
+
+---
+
+## 🗂️ Anatomia d'un projecte en VS Code
+
+Quan crees un projecte Java en VS Code, l'extensió et genera una estructura de carpetes neta. Les importants són:
 
 ```
 MiPrimerCurso/
-├── src/               ← EL TEU codi (.java) viu ací
+├── src/          ← EL TEU codi (.java) viu ací
 │   └── HolaMundo.java
-└── out/  (o target)   ← el bytecode (.class) compilat
+└── bin/ (o target)  ← el bytecode (.class) compilat automàticament
     └── HolaMundo.class
 ```
 
-- **`src`** (source): els teus archius `.java`. És el que tu escrius i el que es puja a Git.
-- **`out` / `target`**: el que genera el compilador. No es toca a mà i normalment ni es puja a Git.
+- **src** (source): Els teus arxius `.java`. És el que tu escrius i el que es puja a Git.
+- **bin / target**: El que genera el compilador en segon pla. No es toca a mà i normalment ni es puja a Git.
 
-> 💡 **Detall pràctic:** no edites mai els `.class`. Si borres `src` i edites `out`, l'IDE el regenerarà en compilar. El teu codi font és l'única font de veritat.
+💡 **Detall pràctic:** No edites mai els `.class`. Si esborres la carpeta `bin`, VS Code la regenerarà en compilar en segon pla. El teu codi font en `src` és l'única font de veritat.
 
 ---
 
@@ -40,101 +38,101 @@ MiPrimerCurso/
 
 Programar és un bucle de quatre passos que repetiràs milions de vegades:
 
-1. **Editar**: escrius o canvies codi en `src`.
-2. **Compilar**: l'IDE compila en guardar (o en polsar Build). Ací moren els errors de sintaxi.
-3. **Executar**: polses ▶ (Run). Ací moren els errors de runtime.
-4. **Depurar**: si la lògica falla, polses 🐞 (Debug) i comença el detectiu del punt 4.
+1. **Editar**: Escrius o canvies codi en `src`.
+2. **Compilar**: VS Code compila automàticament en guardar (`Ctrl + S`). Ací es marquen els errors de sintaxi en roig.
+3. **Executar**: Polses `Ctrl + F5` (o el botó ▶ Run). Ací es detecten els errors de runtime.
+4. **Depurar**: Si la lògica falla, polses `F5` (o Debug) i comença el detectiu del punt 4.
 
-```
-Editar → Compilar → Executar → Depurar → (tornar a Editar)
-```
+***Editar → Compilar (Auto) → Executar → Depurar → (Tornar a Editar)***
 
-> ⚠️ **Advertència:** el botó ▶ (Run) i el 🐞 (Debug) NO són el mateix. En VS Code, tots dos usen F5 però amb configuracions distintes: Run executa sense breakpoints; Debug els respecta. Si poses un breakpoint i executes sense mode depuració, el programa no es detindrà i pensaràs que el depurador està roí.
+⚠️ **Advertència:** Executar sense depurar (`Ctrl + F5`) i en mode depuració (`F5`) NO són el mateix. Executar normal ignora els breakpoints; Debug els respecta. Si poses un punt roig i executes sense depurar, el programa no es detindrà.
 
 ---
 
-## ⌨️ Les dreceres que et faran pareixer un pro
+## ⌨️ Les dreceres de VS Code que et faran paréixer un pro
 
-Deixa el ratolí en pau. Estes són les dreceres essencials en VS Code:
+Deixa el ratolí en pau. Estes són les dreceres essencials per a Java en VS Code:
 
-| Drecera (Windows/Linux) | Drecera (macOS) | Acció |
-|---|---|---|
-| `main` + Tab | `main` + Tab | Escriu l'esquelet `public static void main(String[] args) {}` (amb l'extensió de Java) |
-| `sout` + Tab | `sout` + Tab | Escriu `System.out.println()` (amb l'extensió de Java) |
-| `F5` | `⌘F5` | Executar (Run) |
-| `F5` amb launch.json o `Ctrl+F5` | `⌘F5` amb launch.json | Executar en mode depuració (Debug) |
-| `F10` / `F11` | `F10` / `F11` | Step Over / Step Into (depurador) |
-| `Ctrl + /` | `⌘ + /` | Comentar / descomentar la línia |
-| `Shift + Alt + ↓` | `Shift + ⌘ + ↓` | Duplicar la línia |
-| `F12` | `F12` | Anar a la definició (navegar) |
+| Drecera (Windows) | Acció |
+| --- | --- |
+| `main + Tab` (o `psvm`) | Escriu l'esquelet `public static void main(String[] args) {}` |
+| `sysout + Tab` (o `sout`) | Escriu `System.out.println()` |
+| `Ctrl + F5` | Executar (Run Without Debugging) |
+| `F5` | Executar en mode depuració (Start Debugging) |
+| `F10` / `F11` | Step Over / Step Into (depurador) |
+| `Ctrl + /` | Comentar / descomentar la línia seleccionada |
+| `Shift + Alt + ↓` | Duplicar la línia cap avall |
+| `F12` | Anar a la definició (Go to Definition) |
+| `F2` | Canviar el nom d'un símbol/variable en tot el projecte (Rename) |
 
-> 🧠 **Truc de memòria:** `main` + Tab i `sout` + Tab són els dos fragments que més escriuràs en el curs (funcionen amb l'Extension Pack for Java instal·lada). Aprèn les dreceres i VS Code les ompli sol.
-
----
-
-## 🧩 Autocompletat: el teu company silenciós
-
-L'IDE mentre escrius et suggerix, ressalta errors en roig abans de compilar i pot **arreglar** problemes amb un clic (la bombeta 💡):
-
-- Escrius `Syste` i l'IDE t'ofereix `System` (amb la S majúscula que tant costa).
-- Escrius una línia sense `;` i la bombeta t'ofereix "Insert semicolon".
-- Reanomenes una variable i l'IDE actualitza totes les seues aparicions: és *refactoritzar*.
-
-L'autocompletat no és trampa: és la raó per la qual la gent usa VS Code en lloc d'un bloc de notes. El teu codi ix amb menys errors tontos perquè l'editor et corregeix mentre penses.
+🧠 **Truc de memòria**: `main` i `sysout` són els dos snippets que més escriuràs en el curs. Escrius eixes lletres, premis Tab i VS Code te les ompli de golpe.
 
 ---
 
-## 🏫 Exemple guiat: de zero a executar en 60 segons
+## 🧩 Autocompletat (IntelliSense): el teu company silenciós
 
-1. **Obrir carpeta**: File → Open Folder → selecciona (o crea) la carpeta del teu projecte.
-2. **Nova classe**: clic dret en la carpeta → New File → noménala `HolaMundo.java`. Escriu `main` + Tab i dins `sout` + Tab per al missatge:
+L'extensió de Java mentre escrius et suggereix opcions, ressalta errors en roig abans d'executar i pot arreglar problemes amb un clic (la icona de la bombeta 💡 o `Ctrl + .`):
+
+- Escrius `Syste` i VS Code t'ofereix `System` (amb la S majúscula que tant costa al principi).
+- Et falta una variable o importació i la bombeta 💡 t'ofereix "Import 'java.util.Scanner'" o la correcció ràpida.
+- Selecciones una variable, premis `F2` i li canvies el nom: VS Code actualitza totes les seues aparicions en el projecte (això és refactoritzar).
+
+**L'autocompletat no és trampa**: és la raó per la qual la gent usa VS Code o un IDE en lloc d'un bloc de notes. El teu codi ix amb menys errors tontos perquè l'editor et corregeix mentre penses.
+
+---
+
+## 🏫 Exemple guiat: de zero a executar en 60 segons en VS Code
+
+1. **Nou projecte:** Prem `Ctrl + Shift + P`, escriu `Java: Create Java Project`, tria `No build tools`, selecciona la carpeta de destinació i anomena el projecte `MiPrimerCurso`.
+
+2. **Nova classe:** Dins de l'explorador esquerre, fes clic dret sobre la carpeta `src` → New File → anomena'l `HolaMundo.java`.
+
+3. Escriu `main` i prem Tab (apareix el mètode main). Dins, escriu `sysout` i prem Tab:
 
 ```java
 public class HolaMundo {
     public static void main(String[] args) {
-        System.out.println("¡Hola desde mi IDE!");
+        System.out.println("¡Hola des de VS Code!");
     }
 }
 ```
 
-3. Polsa **F5** (Run) i selecciona **Run Java**. Mira la consola.
-4. Posa un breakpoint en el `println` (clic en el marge esquerre), polsa **F5** de nou i selecciona **Debug Java**. Observa el panell de variables.
+4. Prem `Ctrl + F5` (Run). Mira la pestanya Terminal en la part inferior de VS Code.
 
-Si has arribat al pas 4 sense pànic, el teu flux de treball està muntat. A partir d'ací, el curs sencer és omplir este esquelet de contingut.
+5. Posa un breakpoint en el `println` (clic a l'esquerra del número de línia), prem `F5` (Debug) i observa el panell lateral esquerre de variables.
+
+Si has arribat al pas 5 sense pànic, el teu flux de treball està muntat. A partir d'ací, el curs sencer és omplir este esquelet de contingut.
 
 ---
 
-## 🎯 Mini-chequeig
+## 🎯 Mini-comprovació
 
-1. On viuen els teus archius `.java` i on els `.class`?
-2. Quina diferència hi ha entre els botons ▶ (Run) i 🐞 (Debug)?
-3. Què escriu `main` + Tab amb l'extensió de Java?
+1. On viuen els teus arxius `.java` i on els `.class`?
+2. Quina diferència hi ha entre executar amb `Ctrl + F5` (Run) i amb `F5` (Debug)?
+3. Què escriu `main + Tab`?
 
-<details>
-<summary>🔄 Respostes</summary>
+**🔄 Respostes**
 
-1. Els teus `.java` viuen en `src`; els `.class` compilats en `out`/`target`. No edites els `.class`.
-2. ▶ executa normal (ignora els breakpoints); 🐞 executa en mode depuració (els respecta).
+1. Els teus `.java` viuen en `src`; els `.class` compilats en `bin` (o `target`). No edites els `.class`.
+2. `Ctrl + F5` executa normal (ignora els breakpoints); `F5` executa en mode depuració (els respecta).
 3. L'esquelet `public static void main(String[] args) {}` complet.
-
-</details>
 
 ---
 
 ## ✅ Resum en 3 frases
 
-1. Un projecte té `src` (el teu codi) i `out` (bytecode): VS Code compila per tu.
-2. El teu bucle diari és **editar → compilar → executar → depurar**, i Run (F5) i Debug (F5 amb launch.json) no són el mateix.
-3. Les dreceres (`main`+Tab, `sout`+Tab, F10/F11) i l'autocompletat et fan més ràpid i amb menys errors tontos.
+1. Un projecte té `src` (el teu codi) i `bin` (bytecode): VS Code compila per tu en segon pla en guardar.
+2. El teu bucle diari és editar → compilar → executar → depurar, i Run (`Ctrl + F5`) i Debug (`F5`) no són el mateix.
+3. Les dreceres (`main`, `sysout`, `F10/F11`) i l'autocompletat (IntelliSense) et fan treballar més ràpid i amb menys errors.
 
-> 🐛 **Vocabulari ràpid**
->
-> | Terme | Idea general |
-> |---|---|
-> | IDE | Editor + compilador + executor + depurador en una app |
-> | Projecte | La carpeta que agrupa el teu codi i configuracions |
-> | src | Carpeta de codi font |
-> | Refactoritzar | Canviar codi mantenint el seu comportament |
-> | Consola de l'IDE | On s'imprimeix l'eixida dels teus programes |
+---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [07 · El compilador i els seus errors](/ApuntesProgramacion/va/01-introduccion/07-errores-compilador) · **Següent:** [09 · Repàs interactiu](/ApuntesProgramacion/va/01-introduccion/09-repaso-interactivo)
+## 🐛 Vocabulari ràpid
+
+| Terme | Idea general |
+| --- | --- |
+| **VS Code / IDE** | Editor + eines de Java en una sola aplicació |
+| **Projecte** | La carpeta arrel que agrupa el teu codi (`src`) i configuracions |
+| **src** | Carpeta de codi font on escrius els teus arxius `.java` |
+| **Refactoritzar** | Modificar o reestructurar el codi mantenint el seu comportament exactament igual |
+| **Terminal / Consola** | La finestra inferior on s'imprimeix l'eixida dels teus programes |

@@ -1,18 +1,20 @@
 ---
-title: Butlletí U01 — Inicial Resolt
-description: Els mateixos exercicis que el butlletí inicial, amb solucions
+title: "Butlletí U01 — Inicial Resolt"
+description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 ---
 
 # 📝 Butlletí U01 — Inicial (Resolt)
 
-> Les solucions estan ocultes en cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan ocultes. Intenta-ho de veritat abans de destapar-les. Compara el teu codi amb estes propostes de resolució i comparteix els teus dubtes o alternatives en el fòrum.
 
 ---
 
-## Exercici 1: Desordena això
+## Exercici 1: Desordena això (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
+
+**Codi ordenat i corregit:**
 
 ```java
 public class Ordenado {
@@ -22,40 +24,40 @@ public class Ordenado {
 }
 ```
 
-La classe obri i tanca amb `{}`, i dins viu el `main`. El `}` final tanca la classe.
-
 </details>
 
 ---
 
-## Exercici 2: Què imprimeix?
+## Exercici 2: Què imprimeix? (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
+
+**Eixida exacta per pantalla:**
 
 ```
 Dijo: "Java mola" y siguió: 	programando.
 ```
 
-`\"` imprimeix la cometa literal, i `\t` deixa un tabulador abans de "programando". Com el primer `print` no salta de línia, l'eixida va tota seguida.
+**Explicació**: `System.out.print` no afegeix salt de línia al final, per la qual cosa la segona instrucció s'imprimeix immediatament a continuació. La seqüència `\"` permet escriure la cometa doble sense tancar la cadena, i `\t` afegeix l'espaiat del tabulador.
 
 </details>
 
 ---
 
-## Exercici 3: Caçador d'errors
+## Exercici 3: Caçador d'errors (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
-Els 4 errors:
+**Errors trobats:**
 
-1. `Public` → **`public`** (minúscula).
-2. `string[] args` → **`String[] args`** (la classe `String` amb majúscula).
-3. `"Hola, "Mundo""` → les cometes niuades trenquen el text. Ha de ser `"Hola, \"Mundo\""` o `"Hola, Mundo"`.
-4. `?` al final del segon `println` → falta tancar el text amb `"` i afegir `;`. A més, falta el `;` al final de la primera línia del `println`.
+1. `Public` va en minúscula (`public`).
+2. `string` va amb la primera lletra en majúscula (`String`).
+3. En `"Hola, "Mundo""` cal escapar les cometes internes (`"Hola, \"Mundo\""`)
+4. En `"Esto funciona?)` falta la cometa doble de tancament (`"Esto funciona?"`).
 
-Versió corregida:
+**Codi corregit:**
 
 ```java
 public class ErrorFinder {
@@ -70,34 +72,39 @@ public class ErrorFinder {
 
 ---
 
-## Exercici 4: La teua fitxa personal
+## Exercici 4: La teua fitxa personal (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
+**Codi de resolució:**
+
 ```java
 public class FichaPersonal {
     public static void main(String[] args) {
-        System.out.println("Nom: Sergi");
-        System.out.println("Edat: 30");
-        System.out.println("Llenguatge favorit: Java");
-        System.out.println("¿Emocionat?: true");
+        System.out.println("Nombre: Sergi");
+        System.out.println("Edad: 25");
+        System.out.println("Lenguaje favorito: Java");
+        System.out.println("¿Emocionado?: " + true);
     }
 }
 ```
-
-El `true` va entre cometes perquè és part del text. Si l'hagueres escrit sense cometes, hauria sigut un booleà literal de veritat, però dins d'un `println` amb cometes és només text.
 
 </details>
 
 ---
 
-## Exercici 5: Completa el programa
+## Exercici 5: Completa el programa (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
-Falta el `;` al final del `println` i la clau de tancament `}` de la classe:
+**Elements afegits:**
+
+- El punt i coma `;` al final de la instrucció `System.out.println`.
+- La clau de tancament `}` de la classe `Completame`.
+
+**Codi corregit:**
 
 ```java
 public class Completame {
@@ -111,57 +118,25 @@ public class Completame {
 
 ---
 
-## Exercici 6: Emparella conceptes
+## Exercici 6: Emparella conceptes (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
-1→C, 2→A, 3→B, 4→D, 5→E
-
-- `class` defineix un nou tipus de dades (C).
-- `main` és el punt d'entrada del programa (A).
-- `System.out.println` imprimeix text i salta de línia (B).
-- `//` és el comentari d'una línia (D).
-- `args` conté els arguments de línia de comandes (E).
+**Resolució:** 1→C, 2→A, 3→B, 4→D, 5→E
 
 </details>
 
 ---
 
-## Exercici 7: CodeWars — Square(n) Sum
+## Exercici 7: El detectiu d'errors (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-public class Kata {
-    public static int squareSum(int[] n) {
-        int total = 0;
-        for (int i = 0; i < n.length; i++) {
-            total += n[i] * n[i];
-        }
-        return total;
-    }
-}
-```
+**Error trobat:** Falta el punt i coma `;` al final de la primera instrucció `System.out.println("Soy un detective")`.
 
-Per a `[1, 2, 2]`: 1² + 2² + 2² = 1 + 4 + 4 = 9. Fixa't que usem un `for` i un array `n[]`, conceptes que veuràs amb profunditat en la U04.
-
-</details>
-
----
-
-## Exercici 8: El detectiu d'errors
-
-<details>
-<summary>🔄 Solució</summary>
-
-Els 2 errors:
-
-1. Falta el `;` al final de `System.out.println("Soy un detective")`.
-2. Falta la clau de tancament `}` de la classe.
-
-Versió corregida:
+**Codi corregit:**
 
 ```java
 public class Detective {
@@ -176,19 +151,19 @@ public class Detective {
 
 ---
 
-## Exercici 9: La teua biografia
+## Exercici 8: La teua biografia (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
+**Codi de resolució (amb una sola instrucció i `\n`):**
+
 ```java
 public class Biografia {
     public static void main(String[] args) {
-        System.out.println("Nom: Sergi\nEdat: 30\nLlenguatge favorit: Java\nFrase: El codi ben escrit es comenta sol");
+        System.out.println("Nombre: Sergi\nEdad: 25\nLenguaje favorito: Java\nFrase: El código limpio habla por sí solo.");
     }
 }
 ```
-
-El `\n` inserix un salt de línia dins del mateix text, així que una sola instrucció `println` mostra les quatre línies.
 
 </details>

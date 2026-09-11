@@ -1,18 +1,20 @@
 ---
-title: Boletín U01 — Inicial Resuelto
-description: Los mismos ejercicios que el boletín inicial, con soluciones
+title: "Boletín U01 — Inicial Resuelto"
+description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 ---
 
 # 📝 Boletín U01 — Inicial (Resuelto)
 
-> Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
+> Las soluciones están ocultas. Intenta de verdad antes de destaparlas. Compara tu código con estas propuestas de resolución y comparte tus dudas o alternativas en el foro.
 
 ---
 
-## Ejercicio 1: desordena esto
+## Ejercicio 1: Desordena esto (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
+
+**Código ordenado y corregido:**
 
 ```java
 public class Ordenado {
@@ -22,40 +24,40 @@ public class Ordenado {
 }
 ```
 
-La clase abre y cierra con `{}`, y dentro vive el `main`. El `}` final cierra la clase.
-
 </details>
 
 ---
 
-## Ejercicio 2: ¿Qué imprime?
+## Ejercicio 2: ¿Qué imprime? (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
+
+**Salida exacta por pantalla:**
 
 ```
 Dijo: "Java mola" y siguió: 	programando.
 ```
 
-`\"` imprime la comilla literal, y `\t` deja un tabulador antes de "programando". Como el primer `print` no salta de línea, la salida va toda seguida.
+**Explicación**: `System.out.print` no añade salto de línea al final, por lo que la segunda instrucción se imprime inmediatamente a continuación. La secuencia `\"` permite escribir la comilla doble sin cerrar la cadena, y `\t` añade el espaciado del tabulador.
 
 </details>
 
 ---
 
-## Ejercicio 3: cazador de errores
+## Ejercicio 3: Cazador de errores (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
 
-Los 4 errores:
+**Errores encontrados:**
 
-1. `Public` → **`public`** (minúscula).
-2. `string[] args` → **`String[] args`** (la clase `String` con mayúscula).
-3. `"Hola, "Mundo""` → las comillas anidadas rompen el texto. Debe ser `"Hola, \"Mundo\""` o `"Hola, Mundo"`.
-4. `?` al final del segundo `println` → falta cerrar el texto con `"` y añadir `;`. Además, falta el `;` al final de la primera línea del `println`.
+1. `Public` va en minúscula (`public`).
+2. `string` va con la primera letra en mayúscula (`String`).
+3. En `"Hola, "Mundo""` hay que escapar las comillas internas (`"Hola, \"Mundo\""`)
+4. En `"Esto funciona?)` falta la comilla doble de cierre (`"Esto funciona?"`).
 
-Versión corregida:
+**Código corregido:**
 
 ```java
 public class ErrorFinder {
@@ -70,34 +72,39 @@ public class ErrorFinder {
 
 ---
 
-## Ejercicio 4: Tu ficha personal
+## Ejercicio 4: Tu ficha personal (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
+
+**Código de resolución:**
 
 ```java
 public class FichaPersonal {
     public static void main(String[] args) {
         System.out.println("Nombre: Sergi");
-        System.out.println("Edad: 30");
+        System.out.println("Edad: 25");
         System.out.println("Lenguaje favorito: Java");
-        System.out.println("¿Emocionado?: true");
+        System.out.println("¿Emocionado?: " + true);
     }
 }
 ```
-
-El `true` va entre comillas porque es parte del texto. Si lo hubieras escrito sin comillas, habría sido un booleano literal de verdad, pero dentro de un `println` con comillas es solo texto.
 
 </details>
 
 ---
 
-## Ejercicio 5: completa el programa
+## Ejercicio 5: Completa el programa (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
 
-Falta el `;` al final del `println` y la llave de cierre `}` de la clase:
+**Elementos añadidos:**
+
+- El punto y coma `;` al final de la instrucción `System.out.println`.
+- La llave de cierre `}` de la clase `Completame`.
+
+**Código corregido:**
 
 ```java
 public class Completame {
@@ -111,57 +118,25 @@ public class Completame {
 
 ---
 
-## Ejercicio 6: empareja conceptos
+## Ejercicio 6: Empareja conceptos (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
 
-1→C, 2→A, 3→B, 4→D, 5→E
-
-- `class` define un nuevo tipo de datos (C).
-- `main` es el punto de entrada del programa (A).
-- `System.out.println` imprime texto y salta de línea (B).
-- `//` es el comentario de una línea (D).
-- `args` contiene los argumentos de línea de comandos (E).
+**Resolución:** 1→C, 2→A, 3→B, 4→D, 5→E
 
 </details>
 
 ---
 
-## Ejercicio 7: CodeWars — Square(n) Sum
+## Ejercicio 7: El detective de errores (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-public class Kata {
-    public static int squareSum(int[] n) {
-        int total = 0;
-        for (int i = 0; i < n.length; i++) {
-            total += n[i] * n[i];
-        }
-        return total;
-    }
-}
-```
+**Error encontrado:** Falta el punto y coma `;` al final de la primera instrucción `System.out.println("Soy un detective")`.
 
-Para `[1, 2, 2]`: 1² + 2² + 2² = 1 + 4 + 4 = 9. Fíjate en que usamos un `for` y un array `n[]`, conceptos que verás con profundidad en la U04.
-
-</details>
-
----
-
-## Ejercicio 8: El detective de errores
-
-<details>
-<summary>🔄 Solución</summary>
-
-Los 2 errores:
-
-1. Falta el `;` al final de `System.out.println("Soy un detective")`.
-2. Falta la llave de cierre `}` de la clase.
-
-Versión corregida:
+**Código corregido:**
 
 ```java
 public class Detective {
@@ -176,19 +151,19 @@ public class Detective {
 
 ---
 
-## Ejercicio 9: Tu biografía
+## Ejercicio 8: Tu biografía (Solución)
 
 <details>
 <summary>🔄 Solución</summary>
 
+**Código de resolución (con una sola instrucción y `\n`):**
+
 ```java
 public class Biografia {
     public static void main(String[] args) {
-        System.out.println("Nombre: Sergi\nEdad: 30\nLenguaje favorito: Java\nFrase: El código bien escrito se comenta solo");
+        System.out.println("Nombre: Sergi\nEdad: 25\nLenguaje favorito: Java\nFrase: El código limpio habla por sí solo.");
     }
 }
 ```
-
-El `\n` inserta un salto de línea dentro del mismo texto, así que una sola instrucción `println` muestra las cuatro líneas.
 
 </details>

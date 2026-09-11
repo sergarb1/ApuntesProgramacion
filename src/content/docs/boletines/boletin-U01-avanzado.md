@@ -1,141 +1,232 @@
 ---
-title: Boletín U01 — Avanzado
-description: Ejercicios de dificultad progresiva para exprimir la unidad
+title: "Boletín U01 — Avanzado"
+description: "Ejercicios de dificultad progresiva para exprimir la unidad"
 ---
 
 # 📝 Boletín U01 — Avanzado
 
-> Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. Cada ejercicio incluye una pista (resiste a mirarla).
+> Sin soluciones. Sin prisas. Con un editor de texto y muchas ganas de compilar. Esto solo empieza. Comenta las soluciones en el foro e intenta ayudar a tus compañeros a que mejoren sus capacidades como programador.
 
 ---
 
-## ⭐ Ejercicio 1: ASCII art con prints
+## Ejercicio 1: Calculadora de propinas
 
-Escribe un programa que dibuje esta figura usando combinaciones de `System.out.print` y `System.out.println`:
+Escribe un programa que calcule cuánto dejar de propina en un restaurante. Declara:
 
-```
-  *
- ***
-*****
- ***
-  *
-```
+- `double totalCuenta = 45.50;`
+- `int porcentajePropina = 15;` (el porcentaje, sin el símbolo)
 
-Debes usar exactamente **5 líneas de código** (una por cada fila), combinando `print` y `println` sin usar bucles.
+Calcula la propina (`totalCuenta * porcentajePropina / 100`) y el total final (`totalCuenta + propina`). Muestra los tres valores.
 
-**Pista:** el `print` no salta de línea y el `println` sí. Piensa qué fila debe empezar nueva línea y cuál no.
+**Pista**: cuidado con la división: `porcentajePropina / 100` con enteros da 0. Multiplica primero y divide después, o usa `100.0`.
 
 ---
 
-## ⭐ Ejercicio 2: sin ejecutar — secuencias de escape
+## Ejercicio 2: Conversor dólar-euro
 
-¿Qué imprime exactamente este programa? Escribe la salida carácter por carácter.
+Declara `final double TASA_CAMBIO = 0.92;` (1 dólar = 0.92 euros). Declara `double dolares = 100.0;` y calcula su equivalente en euros. También haz la conversión inversa: dado `double euros = 50.0;`, calcula cuántos dólares son.
+
+**Muestra:**
+
+```
+100.0$ son 92.0€
+50.0€ son 54.347826086956516$
+```
+
+**Pista**: para pasar de euros a dólares divides entre la tasa: `euros / TASA_CAMBIO`.
+
+---
+
+## Ejercicio 3: ¿Qué imprime? — el casting traidor
+
+Sin ejecutar, escribe la salida exacta:
 
 ```java
-public class EscapeRoom {
+public class CastingTraidor {
+   public static void main(String[] args) {
+       int a = 7;
+       int b = 2;
+       double resultado1 = a / b;
+       double resultado2 = (double) a / b;
+       double resultado3 = a / (double) b;
+
+       System.out.println(resultado1);
+       System.out.println(resultado2);
+       System.out.println(resultado3);
+       System.out.println(3 + 4 * 2.0);
+       System.out.println((int) (3.7 + 2.3));
+   }
+}
+```
+
+**Pista**: fíjate bien en dónde está el casting y en qué momento se aplica la división entera. En `resultado1`, ¿la división se hace antes o después de guardar en el `double`?
+
+---
+
+## Ejercicio 4: Interés compuesto (sin bucle)
+
+Declara `final double CAPITAL_INICIAL = 1000.0;`, `final double TASA = 0.05;` (5% anual), `int años = 3;`. Calcula el capital final después de 3 años usando la fórmula del interés compuesto SIN bucles:
+
+```
+capitalFinal = capitalInicial * (1 + tasa)^años
+```
+
+Para la potencia usa `Math.pow(base, exponente)`. Muestra el capital año a año:
+
+```
+Año 0: 1000.0€
+Año 1: 1050.0€
+Año 2: 1102.5€
+Año 3: 1157.625€
+```
+
+💡 **Cuidado con la precisión:** en el año 3 tu programa puede imprimir `1157.6250000000002` en lugar de `1157.625` por la coma flotante binaria de los `double` (lo veremos en «Atréverte a pensar»). No es un error de tu código.
+
+**Pista**: para mostrar cada año sin bucle, crea tres variables distintas (`capital1`, `capital2`, `capital3`) y usa `Math.pow(1 + TASA, i)` con `i` valiendo 1, 2 y 3.
+
+---
+
+## Ejercicio 5: El enigma del post-incremento
+
+Sin ejecutar, determina el valor de cada variable después de ejecutar este código. Escribe el paso a paso:
+
+```java
+public class EnigmaIncrement {
+   public static void main(String[] args) {
+   int x = 3;
+   int y = x++ + ++x;
+   int z = --y + y-- + x++;
+   System.out.println("x = " + x);
+   System.out.println("y = " + y);
+   System.out.println("z = " + z);
+   }
+}
+```
+
+**Pista**: haz una tabla en un papel con los valores de `x` e `y` después de cada operación. `x++` usa y después incrementa; `++x` incrementa y después usa.
+
+---
+
+## 💡 Herramientas de ampliación (Operador ternario, .equals(), Scanner y Math.random())
+
+⚠️ **Fuera de temario (de momento):** Estas herramientas las veremos en detalle y de manera oficial en próximas unidades, pero es útil saber cómo funcionan si quieres empezar a explorar opciones más avanzadas en tus programas.
+
+### 1. El operador ternario (? :)
+
+Es una forma ultracompacta de escribir una estructura condicional (if-else) sencilla en una sola línea. Sirve para elegir entre dos valores según si se cumple o no una condición.
+
+**Sintaxis**: `condicion ? valor_si_verdadero : valor_si_falso`
+
+Ejemplo:
+
+```java
+int edad = 20;
+String estado = (edad >= 18) ? "Mayor de edad" : "Menor de edad";
+```
+
+Si la condición (`edad >= 18`) es cierta, retorna "Mayor de edad"; si no, retorna "Menor de edad".
+
+### 2. Comparar texto con .equals()
+
+En Java, las cadenas de texto (`String`) son objetos, no tipos primitivos como `int` o `double`. Por eso, nunca se debe utilizar `==` para comparar el contenido de dos textos, ya que `==` compara si están guardados en la misma posición de memoria, no si tienen las mismas letras.
+
+**Sintaxis**: `cadena1.equals(cadena2)`
+
+Ejemplo:
+
+```java
+String operador = "+";
+
+// Incorrecto ❌ (puede fallar según cómo se haya creado el texto):
+// if (operador == "+")
+
+// Correcto ✅ (compara el contenido del texto letra por letra):
+if (operador.equals("+")) {
+    System.out.println("Es una suma");
+}
+```
+
+### 3. Leer datos del teclado con Scanner y la importación (import)
+
+Para leer lo que el usuario escribe en la terminal, utilizamos la clase `Scanner`. Como no viene cargada por defecto en el motor básico de Java, tenemos que decirle al programa dónde encontrarla mediante una instrucción `import` en la primera línea del archivo.
+
+**Importación obligatoria**: `import java.util.Scanner;` (se pone antes de declarar la clase).
+
+Métodos principales de lectura:
+
+- `scanner.nextLine()`: Lee una línea de texto completa (`String`).
+- `scanner.nextInt()`: Lee un número entero (`int`).
+- `scanner.nextDouble()`: Lee un número decimal (`double`).
+
+**Ejemplo:**
+
+```java
+import java.util.Scanner; // 1. Importamos la clase de la biblioteca de Java
+
+public class EjemploScanner {
     public static void main(String[] args) {
-        System.out.println("Java\n\tmola\n\"mucho\"");
-        System.out.println("C:\\carpeta\\archivo.java");
+        Scanner scanner = new Scanner(System.in); // 2. Creamos el objeto Scanner
+
+        System.out.print("Introduce tu nombre: ");
+        String nombre = scanner.nextLine(); // 3. Leemos el texto introducido
+
+        System.out.println("Hola, " + nombre + "!");
+        scanner.close(); // Buenos hábitos: cerramos el Scanner al terminar
     }
 }
 ```
 
-**Pista:** `\n` salta de línea, `\t` tabula, `\"` imprime una comilla y `\\` imprime una barra invertida. Cuenta cada carácter del texto entre comillas como lo leería la máquina, no como lo escribes.
+### 4. Generar números aleatorios con Math.random()
 
----
+La clase `Math` viene incluida automáticamente en Java (no necesita `import`). Su método `Math.random()` genera un número decimal aleatorio entre 0.0 (incluido) y 1.0 (excluido).
 
-## ⭐⭐ Ejercicio 3: El reloj de milisegundos
+**Cómo adaptarlo para obtener un número entero en un rango (ej: un dado de 1 a 6):**
 
-`System.currentTimeMillis()` devuelve el número de milisegundos desde el 1 de enero de 1970 (la "epoch" de Unix). Escribe un programa que:
+- Multiplicamos el resultado por el máximo del rango (`Math.random() * 6` da de 0.0 a 5.999...).
+- Hacemos un casting a entero (`int`) para eliminar la parte decimal (0 a 5).
+- Sumamos 1 para ajustar el rango final (1 a 6).
 
-1. Capture el momento actual con `long inicio = System.currentTimeMillis();`
-2. Haga una pausa artificial (un bucle que cuente hasta 100.000.000 para perder tiempo)
-3. Capture el momento después con `long fin = System.currentTimeMillis();`
-4. Muestre cuántos milisegundos han pasado
+**Ejemplo para simulación de dados:**
 
-**Pista:** la resta `fin - inicio` te da los milisegundos transcurridos. No te preocupes si el tiempo varía cada vez: depende de la velocidad de tu ordenador.
-
----
-
-## ⭐⭐ Ejercicio 4: contador de argumentos
-
-Escribe un programa llamado `ContadorArgs` que reciba argumentos desde la línea de comandos y muestre:
-
-- Cuántos argumentos se recibieron
-- El primer argumento (si existe)
-- El último argumento (si existe)
-
-Si no se reciben argumentos, debe mostrar: "No se recibieron argumentos. Programa cancelado por falta de datos."
-
-Ejemplo de ejecución:
-
-```
-> java ContadorArgs hola mundo cruel
-Argumentos recibidos: 3
-Primer argumento: hola
-Último argumento: cruel
+```java
+// Genera un número entero aleatorio entre 1 y 6:
+int dado = (int) (Math.random() * 6) + 1;
+System.out.println("Has sacado un: " + dado);
 ```
 
-**Pista:** el último argumento es `args[args.length - 1]` (porque el primer elemento es el índice 0). Comprueba antes que `args.length > 0`.
+---
+
+## Ejercicio 6: El duelo de dados (Extra)
+
+Escribe un programa que lance un dado para el usuario (le pide el nombre con `Scanner`) y otro para la máquina (con `Math.random()`). Gana quien saque más. Muestra las dos tiradas y el ganador con un mensaje tipo:
+
+```
+Anna saca 4, la máquina saca 6.
+Gana la máquina.
+```
+
+**Pista**: combina `nextLine()` (nombre), `(int)(Math.random() * 6) + 1` (dados) y un ternario encadenado para el veredicto. Cuidado con el empate.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 5: La edad cósmica
+## Ejercicio 7: Supercalculadora con lógica (Extra)
 
-La Tierra tarda 365.25 días en orbitar el Sol. Mercurio tarda 87.97 días. Escribe un programa que, usando constantes `final`:
+Escribe un programa que lea dos números con `Scanner` (`double`) y un carácter de operación (`+`, `-`, `*`, `/`) con `next()`.
 
-1. Declare `final double DIAS_TIERRA = 365.25;`
-2. Declare `final double DIAS_MERCURIO = 87.97;`
-3. Almacene en una variable `int edadTerrestre = 20` (tu edad en años terrestres)
-4. Calcule los años que tendrías en Mercurio (divide los días terrestres vividos entre los días de Mercurio)
-5. Muestre: "En la Tierra tengo X años. En Mercurio tendría Y años."
+Según el operador, muestra el resultado. Si el operador es `/` y el segundo número es 0, muestra "Error: no se puede dividir entre 0". Para cualquier otro carácter, muestra "Operador desconocido".
 
-Para calcular los días vividos en la Tierra: `diasVividos = edadTerrestre * DIAS_TIERRA`.
-
-**Pista:** los años en Mercurio serán un `double` (el resultado de dividir dos `double`). La división `diasVividos / DIAS_MERCURIO` te lo da.
+**Pista**: calcula los resultados posibles en variables y elige con ternarios encadenados o con lógica. Puedes comprobar la división entre 0 con `op.equals("/") && b == 0`.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 6: CodeWars — Grasshopper - Summation
+## Ejercicio 8: Javadoc de campeonato
 
-Resuelve la kata **"Grasshopper - Summation"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/55d24f55d7dd296eb9000030).
+Escribe una clase llamada `SobreMi.java` que muestre por pantalla tu nombre, tu motivación para programar y cuántos argumentos ha recibido por la línea de órdenes (`args.length`).
 
-Suma todos los números del 1 hasta n. Si n = 4, devuelve 1+2+3+4 = 10.
+El programa tiene que incluir los tres tipos de comentarios de Java:
 
-**Pista:** hay una fórmula matemática (n * (n + 1) / 2), pero también puedes hacerlo con un bucle aunque no lo hayamos visto oficialmente. El método recibirá un `int n` y deberá devolver un `int`.
+- Comentario de una línea (`//`): Explica por qué se imprime primero el nombre.
+- Comentario de bloque (`/* ... */`): Un resumen breve de la función del programa.
+- Comentarios Javadoc (`/** ... */`): Documentación formal para la clase y para el método main, utilizando las etiquetas `@author`, `@version` y `@param`.
 
----
-
-## ⭐⭐⭐ Ejercicio 7: AceptaElReto — 119 Futbolistas
-
-Resuelve el problema **119 — Futbolistas** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=119).
-
-Lee los minutos que juega cada futbolista y determina cuántos partidos completos (90 minutos) ha jugado cada uno.
-
-**Pista:** cada caso de prueba termina cuando aparece un -1. Necesitarás leer números hasta encontrar el marcador de fin y sumar los minutos de cada futbolista.
-
----
-
-## ⭐⭐⭐ Ejercicio 8: Javadoc de campeonato
-
-Escribe una clase `SobreMi` totalmente documentada:
-
-1. Clase con Javadoc (`@author`, `@version`).
-2. Método `main` con Javadoc (`@param args`).
-3. Dentro del `main`, un comentario de una línea que explique *por qué* (no *qué*) imprimes tu motivación.
-4. Un comentario de bloque que explique qué hace tu programa a grandes rasgos.
-5. Imprime tu nombre, tu motivación y cuántos argumentos recibiste.
-
-**Pista:** recuerda que los comentarios Javadoc van justo **antes** de la clase y del método. Genera la documentación con `javadoc SobreMi.java` y abre los `.html` que se generen.
-
----
-
-## 📚 Referencias
-
-| Plataforma | Problema | Dificultad |
-|---|---|---|
-| AceptaElReto | 116 — ¡Hola mundo! | Principiante |
-| AceptaElReto | 119 — Futbolistas | Fácil |
-| AceptaElReto | 114 — Último dígito del factorial | Medio |
-| CodeWars | Square(n) Sum (8 kyu) | Principiante |
-| CodeWars | Grasshopper - Summation (8 kyu) | Principiante |
+**Tarea extra:** Ejecuta el comando `javadoc SobreMi.java` en la terminal (o desde las opciones de Java en VS Code) para generar la documentación en HTML y abre el archivo `index.html` en tu navegador.

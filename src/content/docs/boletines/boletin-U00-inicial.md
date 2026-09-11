@@ -13,7 +13,7 @@ description: "Actividades no evaluables de Pensamiento Computacional"
 
 * **El concepto:** Un ordenador no tiene sentido común; hace exactamente lo que le dices, no lo que tenías en la cabeza.
 * **Cómo participar:**
-  1. Elige una acción cotidiana (ej: *hacer un café de cápsula*, *ponerse un abrigar*, *Pedir una pizza por una app*).
+  1. Elige una acción cotidiana (ej: *hacer un café de cápsula*, *ponerse un abrigo*, *Pedir una pizza por una app*).
   2. Escribe en el foro las instrucciones paso a paso (máximo 8 pasos) para un robot.
   3. **Modo gambero:** ¡Lee la propuesta de un/a compañer/a y haz de *Robot Malicioso*: encuentra un paso donde falte información implícita e indica la pifia literal que haría el robot!
 

@@ -1,145 +1,150 @@
 ---
-title: 02 — Instal·lació del JDK
-description: Muntant el xiringuito sense que sobren caragols 🔧
+title: "02 — Instal·lació del JDK"
+description: "OpenJDK, java -version, PATH, IDE ☕"
 ---
 
-<p><small>Muntant el xiringuito sense que sobren caragols 🔧</small></p>
+<p><small>OpenJDK, java -version, PATH, IDE ☕</small></p>
 
 > 🗺️ **Estàs en:** 🚀 **U01 · Introducció a Java** → 02 · Instal·lació del JDK
 
 ---
 
-## 📬 La idea en una frase
+**Per a crear programes Java necessites el JDK. Instal·lar-lo és més fàcil que muntar un moble d'Ikea, i no et sobraran caragols.**
 
-> **Per a crear programes Java necessites el JDK. Instal·lar-lo és més fàcil que muntar un moble d'Ikea, i no et sobraran caragols.**
-
-En el punt anterior vas vore que el JDK és el kit complet per a *crear* programes. Ara toca posar-lo en la teua màquina i comprovar que tot funciona.
+En el punt anterior vas veure que el JDK és el kit complet per a *crear* programes. Ara toca posar-lo en la teua màquina i comprovar que tot funciona.
 
 ---
 
-## 🛒 Quin JDK instale?
+## 🛒 Quin JDK instal·le?
 
-El Java original de Sun/Oracle ha tingut una vida moguda amb les llicències. Hui la opció més sensata per a estudiar és:
+El Java original de Sun/Oracle ha tingut una vida moguda amb les llicències. Hui la millor opció i la més sensata per a estudiar és anar directament a la font oficial i lliure:
 
-- **Eclipse Temurin** (abans AdoptOpenJDK): un JDK **lliure, gratuït i mantingut per la comunitat**. És l'hereu de confiança de l'OpenJDK.
-- **Oracle JDK**: la versió oficial d'Oracle. Perfecta per a empreses, però amb llicència més restrictiva.
-- **OpenJDK**: el projecte de referència, del qual ixen els altres.
+1. **OpenJDK**: És el projecte de referència, lliure i de codi obert, del qual ixen totes les altres distribucions. **És la nostra opció principal i la recomanada, més senzill d'instal·lar en Linux.**
+   - [https://openjdk.org/index.html](https://openjdk.org/index.html)
+2. **Eclipse Temurin** (abans AdoptOpenJDK): Una distribució excel·lent basada directament en OpenJDK, lliure, gratuïta i mantinguda per la fundació Eclipse.
+   - [https://adoptium.net/es/temurin/releases](https://adoptium.net/es/temurin/releases)
+3. **Oracle JDK**: La versió comercial d'Oracle. Vàlida per a entorns empresarials, però amb una llicència més restrictiva. **Més senzill d'instal·lar en Windows**
+   - [https://www.oracle.com/java/technologies/downloads/](https://www.oracle.com/java/technologies/downloads/)
 
-> 💡 **Consell:** si uses [Eclipse Temurin](https://adoptium.net/) t'estalviaràs maldecaps. És com el JDK oficial però sense fums rars. Descarrega l'instal·lador segons el teu sistema (Windows x64, macOS, Linux) i deixa-ho amb els valors per defecte.
-
-La versió a triar: l'última **LTS** (suport a llarg termini). Hui dia, qualsevol 17, 21 o superior et serveix per a tot el curs. No t'obsessiones amb les versions: els apunts funcionen amb totes.
+**La versió a triar:** Triaràs l'última versió **LTS** (*suport a llarg termini*). Hui dia, qualsevol versió 17, 26 o superior et serveix per a tot el curs. No t'obsessiones amb el número exacte: tot el que aprendrem funciona exactament igual en totes elles.
 
 ---
 
 ## 🚀 Els primers passos
 
-### Pas 1: instal·lar
+### Pas 1: Instal·lar
 
-Executa l'instal·lador de Temurin i accepta els valors per defecte. En Windows, marca l'opció d'afegir el JDK al `PATH` si te l'ofereix (així podràs usar `java` des de qualsevol terminal).
+Executa l'instal·lador d'OpenJDK i accepta els valors per defecte. En Windows, assegura't de marcar l'opció d'afegir el JDK al PATH si te l'ofereix l'instal·lador (així podràs usar `java` i `javac` des de qualsevol terminal sense haver de configurar res a mà).
 
-### Pas 2: verificar
+### Pas 2: Verificar
 
-Obre una terminal (PowerShell en Windows, la terminal que preferixes en Linux/macOS) i escriu:
+Obre una terminal (PowerShell o CMD en Windows, o la terminal en Linux/macOS) i escriu:
 
-```
+```bash
 > java -version
-openjdk version "21" 2026-01-01
-OpenJDK Runtime Environment (build 21+35)
-OpenJDK 64-Bit Server VM (build 21+35, mixed mode)
-
-> javac -version
-javac 21
+openjdk version "21.0.2" 2024-01-16
+OpenJDK Runtime Environment (build 21.0.2+13-LTS)
+OpenJDK 64-Bit Server VM (build 21.0.2+13-LTS, mixed mode)
 ```
 
-Si veus alguna cosa pareguda, enhorabona! Tens poders de compilació. Si en canvi et diu `'java' no es reconeix com un comandament intern o extern`, significa que el `PATH` no està ben configurat: busca en el menú de Windows "Editar les variables d'entorn del sistema" i afegeix la carpeta `bin` del JDK a la variable `Path`.
+I després comprova el compilador:
 
-> 💡 **Què és el PATH?** És la llista de carpetes on Windows busca els comandaments que escrius. Si la carpeta `...\jdk-21\bin` està en el `PATH`, en escriure `java` Windows la troba. Sense ella, Windows s'encongeix d'espatles.
+```bash
+> javac -version
+javac 21.0.2
+```
 
-### Pas 3: per què hi ha dos comandaments?
+Si veus una eixida pareguda, enhorabona! Tens poders de compilació actius.
 
-- `java`: **executa** programes (arranca la JVM amb el teu bytecode).
-- `javac`: **compila** codi font `.java` a bytecode `.class`.
+Si, en canvi, el sistema et diu `'java' no es reconeix com un comandament intern o extern`, significa que el PATH no està ben configurat: busca en el menú de Windows "Editar les variables d'entorn del sistema" i afegeix la ruta de la carpeta `bin` de la teua instal·lació d'OpenJDK a la variable `Path`.
 
-Es necessiten els dos: `javac` converteix el teu codi i `java` el posa en marxa. Els veuràs junts tot el curs.
+### 💡 Què és el PATH?
+
+El "PATH" és la llista de carpetes on el teu sistema operatiu busca els programes i comandaments que escrius en la terminal. Si la carpeta `...\jdk-26\bin` (o similar) està en el PATH, en escriure `java` el sistema la troba a la primera. Sense eixa configuració, el sistema no sap on està instal·lat el teu JDK.
+
+### Pas 3: Per què hi ha dos comandaments?
+
+- **`javac`**: És el compilador. Converteix el teu codi font (`.java`) en bytecode (`.class`).
+- **`java`**: És l'executor. Arranca la JVM per a executar el bytecode que has compilat prèviament.
+
+**Es necessiten els dos**: primer **`javac`** tradueix el teu codi i després **`java`** el posa en marxa. Els veuràs treballar estretament durant tot el curs.
 
 ---
 
 ## 🛠️ L'IDE: la teua navalla suïssa
 
-El JDK és el motor, però la major part del temps no escriuràs codi en un bloc de notes: usaràs un **IDE** (Entorn de Desenrotllament Integrat). L'IDE reuneix en una sola aplicació:
+El JDK és el motor, però la major part del temps no escriuràs codi en un bloc de notes: usaràs un IDE (Entorn de Desenrotllament Integrat) o un editor avançat com VS Code. L'IDE reuneix en una sola aplicació:
 
-- **Editor de codi** amb colors, autocompletat i ressaltat d'errors mentre escrius.
-- **Compilador i executor** amb un botó: ja no necessites teclejar `javac` i `java` a mà (encara que és bo saber-ho).
-- **Depurador** integrat, l'arma secreta que usaràs en el punt 4.
-- **Gestió de projectes**: els teus programes no són només archius solts, sinó *projectes* amb estructura.
+- Editor de codi amb colors, autocompletat i ressaltat d'errors mentre escrius.
+- Compilador i executor amb un botó: ja no necessites teclejar `javac` i `java` a mà (encara que és bo saber com funciona).
+- Depurador integrat.
+- Gestió de projectes: els teus programes no són només arxius solts, sinó projectes amb estructura.
 
-| IDE | Punts forts |
-|---|---|
-| **Visual Studio Code** + Extension Pack for Java | Lleuger, multiplataforma, gratuït. L'extensió de Java et dona autocompletat, depurador i gestió de projectes. És el que farem servir en el curs |
-| **IntelliJ IDEA** (Community) | El favorit del sector; autocompletat bestial. Una mica més pesat en arrancar |
-| **NetBeans** | Simple, oficial d'Oracle, perfecte per a començar |
-| **Eclipse** | Clàssic, molt usat en empreses, un pèl més dens |
+| IDE / Editor | Punts forts |
+| --- | --- |
+| **VS Code** | L'opció recomanada. Molt lleuger, modern i altament personalitzable. Amb l'extensió Extension Pack for Java ofereix un entorn complet i excel·lent. |
+| **IntelliJ IDEA (Community)** | El favorit del sector professional; autocompletat bestial. Una mica més pesat en arrancar. |
+| **NetBeans** | Simple, oficial d'Oracle, perfecte per a començar. |
+| **Eclipse** | Clàssic, molt usat en empreses, un pèl més dens. |
 
-> 💡 **Recomanació per al curs:** Visual Studio Code amb l'extensió [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack). És gratuït, lleuger i multiplataforma. Si ja fas servir un altre IDE (IntelliJ, NetBeans), perfecte: l'IDE és una ferramenta, no l'objectiu.
+💡 **Recomanació per al curs:** VS Code amb el plugin de Java (Extension Pack for Java) és la millor opció per la seua lleugeresa i versatilitat. També pots usar IntelliJ IDEA Community Edition si el teu ordinador ho suporta, o NetBeans si vols alguna cosa més tradicional. Tots valen: l'IDE és una ferramenta, no l'objectiu.
 
 ---
 
-## 🏫 Exemple guiat: el teu primer projecte
+## 🏫 Exemple guiat: el teu primer projecte en VS Code
 
-Anem a deixar-ho tot muntat abans d'escriure codi:
+Ho deixarem tot muntat abans d'escriure codi:
 
-1. Obre **Visual Studio Code** i ves a **Arxiu → Obrir carpeta...**. Crea una carpeta nova (per exemple, `MiPrimerCurso`) i obri-la.
-2. Si no tens l'extensió de Java, instal·la-la: ves a la pestanya **Extensions** (icona de quadrats a la barra lateral), busca **Extension Pack for Java** i polsa **Install**.
-3. Crea un arxiu nou: clic dret en la carpeta del projecte → **New File...** → noménalo `HolaMundo.java`.
-4. Escriu dins:
+1. Obre VS Code i assegura't de tindre instal·lat el plugin Extension Pack for Java.
+2. Polsa `Ctrl + Shift + P` (o `Cmd + Shift + P` en Mac) per a obrir la paleta d'ordres, escriu `Java: Create Java Project` i selecciona `No build tools`.
+3. Tria la carpeta on vols guardar el projecte i dona-li un nom (per exemple, `MiPrimerCurso`).
+4. VS Code et crearà l'estructura del projecte amb una carpeta `src`.
+5. Dins de la carpeta `src`, crea un arxiu anomenat `HolaMundo.java` i escriu dins:
 
 ```java
 public class HolaMundo {
     public static void main(String[] args) {
-        System.out.println("¡Hola, Mundo! Llevo años esperando a que me crearas.");
+        System.out.println("¡Hola, Mundo! Porte anys esperant a que em creares.");
     }
 }
 ```
 
-5. Polsa **F5** (o el botó ▶ verd dalt a la dreta) i selecciona **Run Java**. Mira la consola.
+6. Fes clic en el botó Run ▶ (que apareixerà just damunt del mètode main) o prem `F5` i mira la terminal/consola.
 
-Si veus el missatge en la consola, el teu xiringuito està muntat: JDK + VS Code + primer programa. Estàs oficialment dins.
+Si veus el missatge en la pantalla, la teua paradeta està muntada: JDK + VS Code + primer programa. Estàs oficialment dins.
 
-> ⚠️ **Advertència:** no confongues la consola de l'IDE amb la terminal del sistema. La consola de l'IDE és on s'imprimeixen els `System.out.println` en executar. Si no veus eixida, busca la pestanya "Console" / "Eixida".
+⚠️ **Advertència:** no confongues la consola/terminal de l'IDE amb la terminal del sistema. La consola de VS Code és on s'imprimeixen els `System.out.println` en executar. Si no veus l'eixida, busca la pestanya Terminal o Output / Eixida.
 
 ---
 
-## 🎯 Mini-chequeig
+## 🎯 Mini-comprovació
 
 1. Quin comandament comprova que la teua instal·lació funciona?
-2. Per a què serveix el `PATH` i què passa si el JDK no està en ell?
+2. Per a què serveix el PATH i què passa si el JDK no està en ell?
 3. Quina és la diferència entre `java` i `javac`?
 
-<details>
-<summary>🔄 Respostes</summary>
+**🔄 Respostes**
 
 1. `java -version` (i també `javac -version`).
-2. El `PATH` és la llista de carpetes on el sistema busca els comandaments. Sense ell, en escriure `java` el sistema respon que no reconeix el comandament.
-3. `javac` **compila** el codi font a bytecode; `java` **executa** el bytecode amb la JVM.
-
-</details>
+2. El PATH és la llista de carpetes on el sistema busca els comandaments. Sense ell, en escriure `java` el sistema respon que no reconeix el comandament.
+3. `javac` compila el codi font a bytecode; `java` executa el bytecode amb la JVM.
 
 ---
 
 ## ✅ Resum en 3 frases
 
-1. Instal·la **Eclipse Temurin** (un JDK lliure) i verifica amb `java -version` i `javac -version`.
-2. `javac` compila, `java` executa, i el `PATH` és l'adreça postal que el sistema necessita per a trobar-los.
-3. **Visual Studio Code** amb Extension Pack for Java reuneix editor, compilador i depurador: és la teua navalla suïssa.
+1. Instal·la OpenJDK (un JDK lliure) i verifica amb `java -version` i `javac -version`.
+2. `javac` compila, `java` executa, i el PATH és l'adreça postal que el sistema necessita per a trobar-los.
+3. Un IDE o editor com VS Code (amb el plugin de Java) reuneix editor, compilador i depurador: és la teua navalla suïssa.
 
-> 🐛 **Vocabulari ràpid**
->
-> | Terme | Idea general |
-> |---|---|
-> | PATH | Llista de carpetes on el sistema busca comandaments |
-> | IDE | Entorn integrat: editor + compilador + depurador |
-> | LTS | Versió amb suport a llarg termini (la recomanada) |
-> | Terminal | La finestra on escrius comandaments com `java` |
-> | Projecte | La carpeta on viuen les teues classes i configuracions |
+---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-introduccion) · **Anterior:** [01 · Què és Java?](/ApuntesProgramacion/va/01-introduccion/01-que-es-java) · **Següent:** [03 · El teu primer programa](/ApuntesProgramacion/va/01-introduccion/03-hola-mundo)
+## 🐛 Vocabulari ràpid
+
+| Terme | Idea general |
+| --- | --- |
+| **PATH** | Llista de carpetes on el sistema busca comandaments |
+| **IDE / Editor** | Entorn integrat: editor + compilador + depurador |
+| **LTS** | Versió amb suport a llarg termini (la recomanada) |
+| **Terminal** | La finestra on escrius comandaments com `java` |
+| **Projecte** | La carpeta on viuen les teues classes i configuracions |

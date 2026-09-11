@@ -1,23 +1,21 @@
 ---
-title: "09 — Repaso interactivo: consolida lo aprendido"
-description: El cierre práctico de la unidad, con chicha y un bug que no va a funcionar 😈
+title: "09 — Repaso"
+description: "Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… 🧩"
 ---
 
-<p><small>El cierre práctico de la unidad, con chicha y un bug que no va a funcionar 😈</small></p>
+<p><small>Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… 🧩</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U01 · Introducción a Java** → 09 · Repaso interactivo
-
----
-
-## 📬 La idea en una frase
-
-> **En este punto no aprendemos nada nuevo: lo convertimos todo en práctica. Y, como siempre, algo no va a funcionar.** 😈
+> 🗺️ **Estás en:** 🚀 **U01 · Introducción a Java** → 09 · Repaso
 
 ---
 
-## ⭐ Sé el Código, my friend...
+**En este punto no aprendemos nada nuevo: lo convertimos todo en práctica. Y, como siempre, algo no funcionará.** 😈
 
-> *Eres la JVM. Acaban de darte este programa para ejecutar:*
+---
+
+## ⭐ Intenta pensar como el código, *my friend*...
+
+Eres la JVM. Acaban de darte este programa para ejecutar:
 
 ```java
 public class Misterio {
@@ -30,38 +28,29 @@ public class Misterio {
 
 **¿Qué imprimes por pantalla? Elige sabiamente:**
 
-1. **`Café 3` y `Café 3`** → La JVM siempre suma los números, ocurra lo que ocurra. ❌
-2. **`Café 12` y `Café 3`** → ✅ ¡Correcto! En la primera línea, al ver texto antes del `+`, Java concatena: `"Café " + 1` es `"Café 1"` y luego `+ 2` da `"Café 12"`. En la segunda, los paréntesis fuerzan la suma primero: `Café 3`.
-3. **`Café 1 2` y `Café 12`** → Los paréntesis no existen para la JVM. ❌
+1. **Café 3 y Café 3** → La JVM siempre suma los números, pase lo que pase. ❌
+2. **Café 12 y Café 3** → En la primera línea, al encontrar texto antes del `+`, Java concatena de izquierda a derecha: "Café " + 1 es "Café 1", y luego + 2 da "Café 12". En la segunda línea, los paréntesis fuerzan la suma aritmética primero: (1 + 2) = 3, dando "Café 3".
+3. **Café 1 2 y Café 12** → Los paréntesis no existen para la JVM. ❌
 
-> <details>
-> <summary>🔄 Solución</summary>
->
-> La opción **2**. Cuando un `+` mezcla texto y números, Java concatena (une cadenas). Los paréntesis `(1 + 2)` obligan a sumar primero. Este es el clásico que separa a los que han hecho la unidad de los que han dormido.
->
-> </details>
+### 🔄 Solución
+
+La opción 2. Cuando un operador `+` mezcla texto y números, Java concatena (une cadenas). Sin embargo, los paréntesis `(1 + 2)` obligan a realizar primero la suma aritmética. Este es el clásico ejercicio que separa los que han trabajado la unidad de los que han dormido.
 
 ---
 
 ## 🔥 Fireside Chat: JDK vs JRE
 
-> *Dos veteranos del café discuten junto a la taza humeante.*
+Dos veteranos del café discuten al lado de la taza humeante.
 
-**JRE:** — Mira, yo soy el entorno de ejecución. Traigo la JVM, las librerías, todo lo necesario para *ejecutar* Java. Sin mí, tu `.class` no se ejecuta ni de coña.
+- **JRE**: — Mira, yo soy el entorno de ejecución (Java Runtime Environment). Llevo la JVM, las bibliotecas, todo lo necesario para ejecutar Java. Sin mí, tu `.class` corre ni de broma.
+- **JDK**: — Ejecutar, ejecutar... ¿Y quién crea el `.class`? Yo. Llevo el compilador `javac`, el generador de Javadoc, la herramienta `jar`... Yo soy el kit completo de desarrollo (Java Development Kit). Tú eres solo la mitad servida.
+- **JRE**: — Oye, que sin mí tú eres un catálogo de herramientas sin enchufar. Compilas un programa y... ¿dónde lo ejecutas? ¡En mi casa!
+- **JDK**: (Sarcástico) — ¡Ah, claro! Como si yo no te trajera dentro. Cuando me instalan a mí, tú vienes incluido. Eres como el regalo que viene en el pack grande.
+- **JRE**: — De acuerdo, pero para el usuario final que solo quiere usar aplicaciones Java ya hechas, ¿a quién llaman? ¡A mí! Soy más ligero y ocupo menos espacio.
+- **JDK**: — Y sin compilador. O sea, un cocinero sin cuchillos. Hablaremos cuando quieras crear algo.
+- **JRE**: (Suspiro) — Siempre el mismo argumento...
 
-**JDK:** — Ejecutar, ejecutar... ¿Y quién crea el `.class`? Yo. Traigo el compilador `javac`, el `javadoc`, el `jar`... Yo soy el kit completo. Tú eres solo la mitad servida.
-
-**JRE:** — Oye, que sin mí tú eres un catálogo de herramientas sin enchufar. Compilas un programa y... ¿dónde lo ejecutas? En mi casa.
-
-**JDK:** — *sarcástico* Ah, claro, como si yo no te llevara dentro. Cuando instalo yo, vienes tú incluido. Eres como el regalo que se incluye en el pack grande.
-
-**JRE:** — Vale, pero para el usuario final que solo quiere *usar* programas Java, ¿a quién llaman? ¡A mí! Soy más ligero, menos complejo.
-
-**JDK:** — Y sin compilador. O sea, un cocinero sin receta. Hablaremos cuando quieras *crear* algo.
-
-**JRE:** — *suspiro* Siempre el mismo argumento.
-
-> La lección: el **JDK incluye al JRE**. Para crear programas necesitas el JDK. Para ejecutarlos ya instalados, te basta el JRE. Nunca te pongas del lado de uno solo en un examen.
+💡 **La lección:** El JDK incluye el JRE. Para programar y crear proyectos necesitas el JDK. Para ejecutar programas en la máquina del usuario final, bastaría con el JRE. Nunca pienses que son opciones excluyentes en un examen.
 
 ---
 
@@ -69,41 +58,37 @@ public class Misterio {
 
 Adivina qué concepto de la unidad soy:
 
-1. **Traduzco tu código `.java` a bytecode. Soy un profesor de lengua muy puntilloso: cualquier coma mal puesta me ofende.**
-2. **Soy la máquina de café: ejecuto el bytecode y funciono igual en cualquier sistema operativo.**
-3. **Soy la puerta de entrada de tu programa. Si cambio mi nombre, Java no encuentra la entrada y todo se queda a oscuras.**
-4. **Soy el detective del IDE: te dejo parar el programa donde quieras y espiar las variables.**
+1. Traduce tu código `.java` a bytecode. Soy un profesor de lengua muy puntillós: cualquier coma o llave mal puesta me ofende.
+2. Soy la máquina de café: ejecuto el bytecode y funciono igual en cualquier sistema operativo.
+3. Soy la puerta de entrada de tu programa. Si cambian mi nombre, Java no encuentra el inicio y todo se queda a oscuras.
+4. Soy el detective de VS Code: te dejo parar el programa donde quieras (breakpoints) y espiar las variables paso a paso.
 
-<details>
-<summary>🔄 Respuestas</summary>
+### 🔄 Respuestas
 
-1. **El compilador (`javac`)** — Traduce `.java` a `.class` y odia los errores de sintaxis.
-2. **La JVM** — La Java Virtual Machine, igual en cualquier plataforma.
-3. **El método `main`** — `public static void main(String[] args)` es el botón de inicio exacto que Java busca.
-4. **El depurador** — Con breakpoints, Step Over/Into y Watch.
-
-</details>
+1. El compilador (`javac`): Traduce `.java` a `.class` y detesta los errores de sintaxis.
+2. La JVM (Java Virtual Machine): La máquina virtual que ejecuta el bytecode igual en cualquier plataforma.
+3. El método `main`: `public static void main(String[] args)` es el punto de inicio exacto que busca Java.
+4. El depurador (debugger): Con breakpoints, Step Over (`F10`), Step Into (`F11`) y el panel de variables.
 
 ---
 
 ## 🤬 CONRAD VS EL MUNDO: "El compilador me odia"
 
-> *CONRAD, nuestro compilador cascarrabias, opina sobre el clásico del novato.*
+**CONRAD**, nuestro compilador cascarrabías, opina sobre el clásico de los principiantes:
 
-**CONRAD:** — ¡OTRA VEZ! Viene un alumno y me dice: *CONRAD, no compila*. Y yo: vale, ¿qué dice el error? *Pues no sé, no lo he leído.* ¡Ay, madre mía! Te doy la línea exacta, el motivo y hasta la flechita `^` señalando el sitio, ¿y no lo lees? Es como quejarse de que la sopa está fría sin mirarla. 
+**CONRAD**: — ¡OTRA VEZ! Viene un alumno y me dice: "CONRAD, no compila". Y yo le pregunto: "Vale, ¿qué dice el mensaje de error?". Y me responde: "Ah, no lo sé, no me lo he leído". ¡Ay, madre mía! Te doy la línea exacta, el motivo y hasta la flechita `^` señalando el lugar exacto, y no lo lees? ¡Es como quejarse de que la comida está caliente sin mirar el plato!
 
-*Y luego está el clásico:* `Public` con mayúscula. ¿POR QUÉ? La palabra es `public`. Con minúscula. Así, pequeñita. Llevo 25 años compilando y sigo viendo `Public`, `String` sin la S... ¡Y las clases que no coinciden con el nombre del archivo! ¡Si lo pide el propio archivo!
+Y después está el clásico: `Public` con mayúscula. ¿POR QUÉ? La palabra clave es `public`. En minúscula. Hace décadas que compilo y todavía veo `Public`, `string` con minúscula en lugar de `String`... ¡Y las clases que no coinciden con el nombre del archivo! ¡Si lo pone claro en el error!
 
-**La lección:** antes de llorar sobre el teclado, **lee el mensaje de error**. Archivo, línea, motivo. El 90% de los errores del novato se arreglan solos con esa información. El compilador no te odia: te está pasando las respuestas del examen.
+💡 **La lección:** Antes de llorar sobre el teclado, lee el mensaje de error. Archivo, línea y motivo. El 90% de los errores de los principiantes se arreglan solos consultando esa información. El compilador no te odia: te está pasando las respuestas del examen.
 
 ---
 
-## ⚡ Laboratorio de tortura: el programa que no arranca
+## ⚡ Laboratorio de Tortura: el programa que no arranca
 
-> **Duración estimada:** 30 minutos
-> **Herramienta:** tu IDE y un archivo nuevo
-
-**El escenario:** copia este programa en tu IDE y haz que funcione. Tiene **3 errores** que impiden que compile y 1 error de lógica que hace que el resultado sea incorrecto cuando lo arregles.
+- Duración estimada: 20–30 minutos
+- Herramienta: VS Code y un archivo `.java` nuevo
+- El escenario: Copia este programa en un archivo llamado `Tortura.java` y haz que funcione. Tiene 3 errores que impiden que compile y 1 error de lógica que hace que el resultado sea incorrecto cuando lo arregles.
 
 ```java
 public class Tortura
@@ -116,51 +101,54 @@ public class Tortura
 }
 ```
 
-**Fallo intencionado:** uno de los errores parece correcto a simple vista porque "se ve bien", pero cambia por completo la salida del programa.
+### 🛠️ Tu tarea
 
-**Tu tarea:** conseguir que compile, que ejecute y que **toda** la salida sea correcta. Si el resultado no cuadra, diagnostica.
+Conseguir que compile, que se ejecute y que toda la salida sea correcta.
 
-**Pistas para cuando te frustres (no antes):**
+### 💡 Pistas (solo si te bloqueas)
 
-1. ¿Hay algún `;` que falte? *no → sigue buscando.*
-   <details><summary>¿Y si sigo atascado?</summary>Comprueba también las llaves `{}`: la clase necesita su apertura.</details>
-2. ¿Compila ya? *no → mira el mensaje de error y las mayúsculas.*
-   <details><summary>¿Y si sigo atascado?</summary>`string` debe ser `String`, y `public` va en minúscula.</details>
-3. ¿Ejecuta pero la suma sale rara? *Es el error de lógica: el `+` sin paréntesis concatena en vez de sumar.*
-   <details><summary>Solución final</summary>
+1. ¿Falta alguna llave `{` de apertura en la clase?
+2. ¿`string` va en mayúscula o minúscula?
+3. ¿Falta algún `;` al final de la línea de la suma?
+4. Cuando consigas ejecutarlo, ¿por qué la suma sale `34` en lugar de 7? Recuerda cómo funciona el operador `+` con cadenas de texto.
+
+### 🔄 Solución del Laboratorio
 
 ```java
 public class Tortura {
     public static void main(String[] args) {
         int a = 3;
         int b = 4;
-        System.out.println("La suma es: " + (a + b));
+        System.out.println("La suma es: " + (a + b)); // Paréntesis para forzar la suma
         System.out.println("El producto es: " + (a * b));
     }
 }
 ```
 
-Salida correcta: `La suma es: 7` y `El producto es: 12`.
+Salida correcta por pantalla:
 
-</details>
+```
+La suma es: 7
+El producto es: 12
+```
 
 ---
 
 ## 🏆 Logros de esta unidad
 
 | Logro | Cómo conseguirlo |
-|---|---|
-| 🏅 **El Café de la Mañana** | Explicar JVM, JRE y JDK con la analogía de la cafetería sin mirar |
-| 🏅 **Primer Grito** | Ejecutar tu Hola Mundo sin ayuda en el IDE |
-| 🏅 **Detective de Bugs** | Encontrar los 3+1 errores del Laboratorio sin usar las pistas |
-| 🏅 **Atajo Pro** | Escribir un programa usando solo `psvm` + `sout` y atajos |
-| 🏅 **Traductor** | Generar la documentación Javadoc de una clase tuya y abrir los HTML |
+| --- | --- |
+| **🏅 El Café de la Mañana** | Hay que explicar la diferencia entre JVM, JRE y JDK con la analogía de la cafetería sin mirar los apuntes. |
+| **🏅 Primer Grito** | Ejecutar tu primer `HolaMundo.java` desde VS Code sin ayuda. |
+| **🏅 Detective de Bugs** | Encontrar los 3+1 errores del Laboratorio de Tortura sin mirar la solución. |
+| **🏅 Atajo Pro** | Hay que escribir un programa en VS Code usando solo los atajos `main + Tab` y `sysout + Tab`. |
+| **🏅 Traductor** | Documentar una clase con Javadoc (`/** ... */`) y entender las etiquetas `@param` y `@return`. |
 
 ---
 
-## 🧠 Atrévete a pensar
+## 🧠 Atréverte a pensar
 
-1. **Sin ejecutar:** ¿qué imprime este programa?
+1. Sin ejecutar, ¿qué imprime este programa?
 
 ```java
 public class Misterio2 {
@@ -172,51 +160,36 @@ public class Misterio2 {
 }
 ```
 
-2. **El saludo que no saluda:** en el ejemplo `Saludos` del punto 3, ¿cómo harías para que `saludo()` también se ejecutara, sin cambiar el método en sí?
-3. **El detective del IDE:** tu programa "funciona" pero imprime `La suma es: 34` en vez de `7`. ¿Qué herramienta usas y qué líneas examinas primero?
-4. **Verdadero o falso:** "`javac` y `java` hacen lo mismo: el primero es para Windows y el segundo para Linux."
+2. El saludo que no saluda: En un programa donde tienes un método `public static void saludo()`, ¿cómo haces para que se ejecute si solo está definido fuera de `main`?
 
-<details>
-<summary>💡 Soluciones</summary>
+3. El detective de VS Code: Tu programa se ejecuta, pero imprime "La suma es: 34" en lugar de 7. ¿Qué herramienta piensas usar y cómo lo investigas?
 
-1. `Uno Dos` en una línea y `Tres` en la siguiente (sin salto después de "Tres"). `print` no salta de línea, `println` sí.
-2. Añadiendo la llamada dentro del `main`: `saludo();` después del primer `println`. Solo se ejecuta lo que se llama desde `main`.
-3. El **depurador**: pon un breakpoint en la línea de la suma y observa con Step Over cómo se concatena `"La suma es: " + 3` → `"La suma es: 3"` y luego `+ 4` → `"La suma es: 34"`. La solución es `(a + b)`.
-4. **Falso.** `javac` compila (`.java` → `.class`) y `java` ejecuta (la JVM ejecuta el `.class`). Ambos sirven en cualquier sistema.
+4. Verdadero o falso: "javac y java hacen lo mismo: el primero es para Windows y el segundo para Linux."
 
-</details>
+### 💡 Soluciones a las preguntas
 
----
-
-## 🧩 Crucigrama de bits
+1. Imprime:
 
 ```
-Horizontal:
-1. Entorno de Desarrollo Integrado (3 letras)
-3. El método que Java busca al arrancar (4 letras)
-5. Kit completo para crear programas (3 letras)
-6. Código intermedio que entiende la JVM (8 letras)
-
-Vertical:
-2. Máquina virtual que ejecuta el bytecode (3 letras)
-4. Imprime texto sin saltar de línea (5 letras)
+Uno Dos
+Tres
 ```
 
-<details>
-<summary>📝 Soluciones</summary>
+(`print` no añade salto de línea al final, pero `println` sí. Después de "Tres" no hay salto).
 
-**Horizontal:** 1. IDE · 3. MAIN · 5. JDK · 6. BYTECODE
-**Vertical:** 2. JVM · 4. PRINT
+2. Hay que añadir la llamada `saludo();` dentro del método `main`. En Java, solo se ejecuta automáticamente lo que se llama directa o indirectamente desde el método `main`.
 
-</details>
+3. Usas el depurador (`F5`): Pones un breakpoint en la línea del `println`, avanzas con `F10` (Step Over) y inspeccionas el panel lateral de variables. Verás cómo `"La suma es: " + 3` se convierte en `"La suma es: 3"` y luego `+ 4` da `"La suma es: 34"`. La solución es añadir paréntesis `(a + b)`.
+
+4. Falso. `javac` es el compilador (`.java` → `.class`) y `java` es el ejecutor de la JVM. Ambos se utilizan en cualquier sistema operativo (Windows, Linux, macOS).
 
 ---
 
 ## 💬 Preguntas de entrevista de trabajo
 
-> Preguntas reales que te harían para programador Java junior.
+Preguntas reales que te harían para programador Java júnior.
 
-1. **"Explícame, como si yo fuera tu abuela, la diferencia entre JDK, JRE y JVM."**
+1. **"Explícame, como si fuera tu abuela, la diferencia entre JDK, JRE y JVM."**
 2. **"¿Qué es el método `main` y por qué tiene esa firma exacta?"**
 3. **"Un programa compila pero hace lo que no debe. ¿Cuál es tu proceso para arreglarlo?"**
 4. **"¿Qué es un array y qué pasa si accedes a un índice que no existe?"**
@@ -226,19 +199,15 @@ Vertical:
 
 ## 🤷 No hay preguntas tontas
 
-> ❓ **¿Puedo escribir Java en un bloc de notas o necesito sí o sí un IDE?**
+❓ **¿Puedo escribir Java en un bloc de notas o necesito sí o sí un IDE?**
 
-Puedes, y de hecho es un buen ejercicio: `notepad MiPrograma.java`, `javac MiPrograma.java`, `java MiPrograma`. Pero el IDE te ahorra errores tontos con el autocompletado y te da el depurador. Los pros usan IDE; los masoquistas, bloc de notas.
+Puedes, y de hecho es un buen ejercicio: `notepad MiPrograma.java`, `javac MiPrograma.java`, `java MiPrograma`. Pero el IDE te ahorra errores tontos con el autocompletado y te da el depurador. Los profes usan IDE; los masoquistas, bloc de notas.
 
----
-
-> ❓ **¿Por qué el primer `println` de Hola Mundo tenía "args" si no lo uso?**
+❓ **¿Por qué el primer `println` de Hola Mundo tenía "args" si no lo uso?**
 
 `String[] args` es obligatorio en la firma del `main` aunque no lo uses. Java lo espera sí o sí. Es como la firma en un contrato: está aunque no se ejecute esa cláusula. En el punto 6 viste cómo usarlo.
 
----
-
-> ❓ **¿Java y JavaScript son primos?**
+❓ **¿Java y JavaScript son primos?**
 
 No, ni siquiera son del mismo planeta. Java es a JavaScript como un perro es a un perrito caliente. El nombre fue una estrategia de marketing de Netscape para montarse en el boom de Java.
 
@@ -246,18 +215,12 @@ No, ni siquiera son del mismo planeta. Java es a JavaScript como un perro es a u
 
 ## 🎬 Poscréditos
 
-El programador novato termina su primer programa, lo compila y lo ejecuta. Todo perfecto. Entonces se acerca CONRAD, el compilador cascarrabias, con cara de pocos amigos y una taza humeante en la mano.
+El programador aprendiz acaba su primer programa, lo compila y lo ejecuta. Todo perfecto. Entonces se acerca CONRAD, el compilador cascarrabías, con cara de pocos amigos y una taza humeante en la mano.
 
-**CONRAD:** — Muy bonito el Hola Mundo. ¿Y ahora qué? ¿Vas a imprimir texto toda tu vida? Los programas de verdad *guardan* datos, *calculan* y *deciden*. Sin variables, sin tipos, sin operadores... esto es un triler de cartas.
+**CONRAD:** — Muy bonito el Hola Mundo. ¿Y ahora qué? ¿Vas a imprimir texto toda la vida? Los programas de verdad *guardan* datos, *calculan* y *deciden*. Sin variables, sin tipos, sin operadores... esto es un triler de cartas.
 
-**Novato:** — ¿Y eso cuándo se aprende?
+**Aprendiz:** — ¿Y eso cuándo se aprende?
 
-**CONRAD:** — *toma un sorbo* La próxima parada. Ya te veo declarando tu primer `int`... y cometiendo tu primer error de tipos. Espérame, que yo estaré ahí para reírme.
+**CONRAD:** — *da un trago* La próxima parada. Ya te veo declarando tu primer `int`... y cometiendo tu primer error de tipo. Espérame, que yo estaré ahí para reírme.
 
-El novato guarda su proyecto, cierra el IDE y siente que esto solo acaba de empezar.
-
-**PRÓXIMAMENTE EN U02:** Variables, tipos de datos y operadores. El momento en el que tus programas dejan de decir "Hola" y empiezan a *calcular*. 🔤
-
----
-
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/01-introduccion) · **Anterior:** [08 · VS Code y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo) · **Siguiente:** **[U02 · Variables, Tipos y Operadores](/ApuntesProgramacion/02-variables-tipos-operadores)**
+El aprendiz guarda su proyecto, cierra el IDE y siente que esto solo acaba de empezar.
