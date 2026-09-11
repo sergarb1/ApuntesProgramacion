@@ -96,7 +96,7 @@ Lo aplicaremos todo a un programa real:
 /**
  * Clase que saluda de distintas formas.
  *
- * @author Alumne DAW
+ * @author Alumno DAW
  * @version 1.0
  */
 public class Saludo {

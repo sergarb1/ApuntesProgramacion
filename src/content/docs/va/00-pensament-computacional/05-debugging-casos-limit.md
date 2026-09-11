@@ -21,7 +21,7 @@ En programació, els errors tenen un nom tàctic —**bugs** 🐛— i l'art de 
 
 Per a un humà normal, una llum roja gegant significa: *«PERILL! HO HAS FET MALAMENT!»*. Però per a un programador o programadora, **el text roig és un assistent ultra-eficient que parla amb tu gratis.** 🤖💬
 
-**Pensa-ho així:** la màquina podria simplement quedar-se en silenci, petar o dir-te un "No funciona" i deixar-te a les fosques. Però no! Et dona una **stack trace** (la famosa muntanya de lletres rojes) que et diu dues coses or pur:
+**Pensa-ho així:** la màquina podria simplement quedar-se en silenci, petar o dir-te un "No funciona" i deixar-te a les fosques. Però no! Et dona una **stack trace** (la famosa muntanya de lletres rojes) que et diu dues coses d'or pur:
 
 1. **Què ha passat? 🧐** *(Ex. T'has oblidat de tancar un parèntesi, o has intentat dividir per zero).*
 2. **En quina línia exacta ha passat?** 📍 (Ex. Al fitxer Main.java, a la línia 24).

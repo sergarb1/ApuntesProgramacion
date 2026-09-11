@@ -1,9 +1,9 @@
 ---
 title: "Boletín U00 — Inicial"
-description: "Actividades no evaluables de Pensamiento Computacional"
+description: "Inicial por resolver — Pensamiento Computacional"
 ---
 
-# 📝 Boletín U00 — Inicial
+# 📝 Inicial por resolver
 
 > Entrena la mente de programador/a sin una sola línea de Java. No tienen nota ni cuentan para la evaluación, pero son la mejor manera de romper el hielo y compartir ideas en el foro.
 

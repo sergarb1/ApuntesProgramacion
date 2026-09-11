@@ -101,7 +101,7 @@ S'executarà correctament? **Sí**, però només imprimeix la primera línia. El
 Seràs Java per un moment. Pren paper i boli (o mentalment). Et donen este codi:
 
 ```java
-public class Computadora {
+public class Ordinador {
     public static void main(String[] args) {
         int x = 5;
         int y = 10;
@@ -113,7 +113,7 @@ public class Computadora {
 
 Segueix els passos com si fores la JVM:
 
-1. Trobes la classe `Computadora`.
+1. Trobes la classe `Ordinador`.
 2. Busques el mètode `main` — ací està.
 3. Crees un espai anomenat `x` i fiques un 5.
 4. Crees `y` i fiques un 10.

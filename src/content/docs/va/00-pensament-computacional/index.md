@@ -56,7 +56,7 @@ En acabar, seràs capaç d'explicar:
 > Entrena la ment de programador/a sense una sola línia de Java. Són exercicis no avaluables, però són la millor manera de trencar el gel.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u00-inicial" class="elink">🟢 Activitats no avaluables</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u00-inicial" class="elink">🟢 Inicial per resoldre</a>
 </div>
 
 ---

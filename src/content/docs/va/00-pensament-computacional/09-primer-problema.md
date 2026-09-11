@@ -75,8 +75,8 @@ L'algorisme és 100% sòlid. Funciona en paper i funciona en el teu cap. 🏆
 
 Ací ve la màgia! A partir de la pròxima unitat, l'única cosa que farem serà **aprendre com es diuen en Java eixes mateixes instruccions que tu ja has pensat**:
 
-* Per a demanar dades, aprendre'm a usar una eina de Java anomenada Scanner.
-* Per a comparar i prendre decisions (SI... SI NO), aprendre'm la paraula reservada if i else.
+* Per a demanar dades, aprendrem a usar una eina de Java anomenada Scanner.
+* Per a comparar i prendre decisions (SI... SI NO), aprendrem la paraula reservada if i else.
 * Per a mostrar missatges per pantalla, usarem una instrucció anomenada System.out.println().
 
 | 🧠 LA TEUA LÒGICA (Unitat 0) | ☕ LA TRADUCCIÓ A JAVA (Unitat 1) |

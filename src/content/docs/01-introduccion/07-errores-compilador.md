@@ -30,7 +30,7 @@ Tu código (.java)  --javac-->  bytecode (.class)  --java-->  salida
 ```
 
 - **Errores de compilación**: el compilador detecta que has escrito mal alguna cosa. Te dice la **línea exacta** y el motivo. No se genera el `.class`.
-- **Errores de ejecución (runtime)**: el programa compila, pero explota al correr (por ejemplo, `ArrayIndexOutOfBoundsException` del punto 6).
+- **Errores de ejecución (runtime)**: el programa compila, pero explota al ejecutar (por ejemplo, `ArrayIndexOutOfBoundsException` del punto 6).
 - **Errores de lógica**: todo "funciona", pero el resultado es incorrecto. El más peligroso: ni el compilador ni el runtime te avisan. Aquí entra el depurador del punto 4.
 
 ---

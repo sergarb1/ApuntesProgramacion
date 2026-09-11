@@ -63,7 +63,7 @@ export default defineConfig({
                 { slug: '01-introduccion/03-hola-mundo', label: '03 · Tu primer programa', translations: { va: '03 · El teu primer programa' } },
                 { slug: '01-introduccion/04-depurador', label: '04 · El depurador', translations: { va: '04 · El depurador' } },
                 { slug: '01-introduccion/05-comentarios', label: '05 · Comentarios y documentación', translations: { va: '05 · Comentaris i documentació' } },
-                { slug: '01-introduccion/06-argumentos', label: '06 · Argumentos de línea de comandos', translations: { va: '06 · Arguments de línia de comandes' } },
+                { slug: '01-introduccion/06-argumentos', label: '06 · Argumentos de línea de órdenes', translations: { va: "06 · Arguments de línia d'ordres" } },
                 { slug: '01-introduccion/07-errores-compilador', label: '07 · El compilador y sus errores', translations: { va: '07 · El compilador i els seus errors' } },
                 { slug: '01-introduccion/08-ide-flujo-trabajo', label: '08 · El IDE y tu flujo de trabajo', translations: { va: "08 · L'IDE i el teu flux de treball" } },
                 { slug: '01-introduccion/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
@@ -305,7 +305,7 @@ export default defineConfig({
               label: '🧠 Boletín Unidad 00',
               translations: { va: '🧠 Butlletí Unitat 00' },
               items: [
-                { slug: 'boletines/boletin-u00-inicial', label: '🟢 Actividades no evaluables', translations: { va: '🟢 Activitats no avaluables' } },
+                { slug: 'boletines/boletin-u00-inicial', label: '🟢 Inicial por resolver', translations: { va: '🟢 Inicial per resoldre' } },
               ],
             },
             ...['🚀','🔤','🔀','🅿️','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','🎯','📁','🗄️','🌐'].flatMap((emoji, i) => {

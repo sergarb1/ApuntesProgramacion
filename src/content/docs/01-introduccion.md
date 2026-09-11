@@ -1,11 +1,11 @@
 ---
-title: U01 — Introducción a Java
-description: Tu primer café con Java ☕
+title: "U01 — Introducción a Java"
+description: "Tu primer café con Java ☕"
 ---
 
 <p><small>Tu primer café con Java ☕</small></p>
 
-> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → **☕ AQUÍ ESTÁS (U01)** → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
+> 🗺️ **El mapa del paquete:** 🚪 Bienvenida → **☕ AQUÍ ESTÁS (U01)** → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 
@@ -42,7 +42,7 @@ Al terminar, serás capaz de:
 | [03 · Tu primer programa](/ApuntesProgramacion/01-introduccion/03-hola-mundo) | Hola Mundo, estructura, el método `main` | Todos |
 | [04 · El depurador](/ApuntesProgramacion/01-introduccion/04-depurador) | Breakpoints, step over/into, watch | Todos |
 | [05 · Comentarios y documentación](/ApuntesProgramacion/01-introduccion/05-comentarios) | `//`, `/* */`, `/** */` y Javadoc | Todos |
-| [06 · Argumentos de línea de comandos](/ApuntesProgramacion/01-introduccion/06-argumentos) | El array `args`, cómo leerlo y usarlo | Todos |
+| [06 · Argumentos de línea de órdenes](/ApuntesProgramacion/01-introduccion/06-argumentos) | El array `args`, cómo leerlo y usarlo | Todos |
 | [07 · El compilador y sus errores](/ApuntesProgramacion/01-introduccion/07-errores-compilador) | Compilar vs ejecutar, errores típicos del novato | Todos |
 | [08 · VS Code y tu flujo de trabajo](/ApuntesProgramacion/01-introduccion/08-ide-flujo-trabajo) | Proyectos, atajos, crear/ejecutar/depurar | Todos |
 | [09 · Repaso interactivo](/ApuntesProgramacion/01-introduccion/09-repaso-interactivo) | Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… | Todos |

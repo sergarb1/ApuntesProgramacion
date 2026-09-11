@@ -215,12 +215,12 @@ No, ni tan sols són del mateix planeta. Java és a JavaScript com un gos és a 
 
 ## 🎬 Poscrèdits
 
-El programador aprenent acaba el seu primer programa, el compila i l'executa. Tot perfecte. Llavors s'acosta CONRAD, el compilador cascarrabias, amb cara de pocs amics i una tassa humejant a la mà.
+El programador aprenent acaba el seu primer programa, el compila i l'executa. Tot perfecte. Llavors s'acosta CONRAD, el compilador cascarrabies, amb cara de pocs amics i una tassa humejant a la mà.
 
 **CONRAD:** — Molt bonic l'Hola Món. I ara què? Vas a imprimir text tota la vida? Els programes de veritat *guarden* dades, *calculem* i *decidixen*. Sense variables, sense tipus, sense operadors... això és un triler de cartes.
 
 **Aprenent:** — I això quan s'aprén?
 
-**CONRAD:** — *fa un glop* La pròxima parada. Ja et veig declarant el teu primer `int`... i cometent el teu primer error de tipus. Espera'm, que jo estaré ahí per a riure.
+**CONRAD:** — *fa un glop* La pròxima parada. Ja et veig declarant el teu primer `int`... i cometent el teu primer error de tipus. Espera'm, que jo estaré allí per a riure.
 
 L'aprenent guarda el seu projecte, tanca l'IDE i sent que això només acaba de començar.

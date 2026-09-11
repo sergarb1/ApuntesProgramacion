@@ -65,7 +65,7 @@ Deixa el ratolí en pau. Estes són les dreceres essencials per a Java en VS Cod
 | `F12` | Anar a la definició (Go to Definition) |
 | `F2` | Canviar el nom d'un símbol/variable en tot el projecte (Rename) |
 
-🧠 **Truc de memòria**: `main` i `sysout` són els dos snippets que més escriuràs en el curs. Escrius eixes lletres, premis Tab i VS Code te les ompli de golpe.
+🧠 **Truc de memòria**: `main` i `sysout` són els dos snippets que més escriuràs en el curs. Escrius eixes lletres, premis Tab i VS Code te les ompli de cop.
 
 ---
 

@@ -56,7 +56,7 @@ Al terminar, serás capaz de explicar:
 > Entrena la mente de programador/a sin una sola línea de Java. Son ejercicios no evaluables, pero son la mejor manera de romper el hielo y compartir ideas en el foro.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u00-inicial" class="elink">🟢 Actividades no evaluables</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u00-inicial" class="elink">🟢 Inicial por resolver</a>
 </div>
 
 ---

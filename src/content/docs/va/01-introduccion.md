@@ -1,11 +1,11 @@
 ---
-title: U01 — Introducció a Java
-description: El teu primer cafè amb Java ☕
+title: "U01 — Introducció a Java"
+description: "El teu primer cafè amb Java ☕"
 ---
 
 <p><small>El teu primer cafè amb Java ☕</small></p>
 
-> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → **☕ ACÍ ETS (U01)** → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
+> 🗺️ **El mapa del paquet:** 🚪 Benvinguda → **☕ ACÍ ETS (U01)** → 🔤 U02 → 🔀 U03 → 🅿️ U04 → 🧩 U05 → ⚡ U06 → 🏗️ U07 → 🔒 U08 → 🧬 U09 → 📚 U10 → 🗺️ U11 → 🎯 U12 → 📁 U13 → 🗄️ U14 → 🌐 U15
 
 ---
 

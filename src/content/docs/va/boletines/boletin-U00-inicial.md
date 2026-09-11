@@ -1,9 +1,9 @@
 ---
-title: "Boletín U00 — Inicial"
-description: Activitats no avaluables de Pensament Computacional
+title: "Butlletí U00 — Inicial"
+description: "Inicial per resoldre — Pensament Computacional"
 ---
 
-# 📝 Boletín U00 — Inicial
+# 📝 Inicial per resoldre
 
 > Entrena la teua ment de programador/a (sense una sola línia de Java). No tenen nota ni compten per a l'avaluació, però són la millor manera de trencar el gel i compartir idees al fòrum.
 
@@ -104,7 +104,7 @@ Quan em quede bloquejat/ada davant d'un exercici nou, el primer que faré abans 
 
 **2. La meua relació amb la solució dels exercicis...**
 
-Quan revise un exemple de codi resolt als apunts o en un vídeo, per a assegurar-me que no caigut en el "miratge de la comprensió", jo...
+Quan revise un exemple de codi resolt als apunts o en un vídeo, per a assegurar-me que no he caigut en el "miratge de la comprensió", jo...
 
 (**Pista**: Recorda la regla de la pantalla tapada).
 

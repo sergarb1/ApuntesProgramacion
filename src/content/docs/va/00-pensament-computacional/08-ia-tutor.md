@@ -9,7 +9,7 @@ description: "L'assistent, no el teu oracle 🤖🧠"
 
 ---
 
-Siguem realistes des del primer segon: en un cicle a distància, eines com ChatGPT, Gemini o Claude estan literalment a un clic de distància a la teua pantalla. Vull dir-te que està «completament prohibit usar la intel·ligència artificial» seria com intentar posar-li portes al camp o prohibir l'ús de la calculadora a un matemàtic. 🚫🌾
+Siguem realistes des del primer segon: en un cicle a distància, eines com ChatGPT, Gemini o Claude estan literalment a un clic de distància a la teua pantalla. Dir-te que està «completament prohibit usar la intel·ligència artificial» seria com intentar posar-li portes al camp o prohibir l'ús de la calculadora a un matemàtic. 🚫🌾
 
 Ara bé, hi ha una diferència ABISMAL entre **usar la IA per a multiplicar el teu aprenentatge** i **usar la IA per a atrofiar el teu cervell**. 🧠💥
 
