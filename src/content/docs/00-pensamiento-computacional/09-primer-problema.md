@@ -132,4 +132,4 @@ Para cerrar la unidad y que no te suenen a "chino" las palabras que el profesora
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/00-pensament-computacional) · **Anterior:** [08 · Cómo utilizaremos la IA](/ApuntesProgramacion/00-pensament-computacional/08-ia-tutor) · **Siguiente:** **[U01 · Introducción a Java](/ApuntesProgramacion/01-introduccion)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/00-pensamiento-computacional) · **Anterior:** [08 · Cómo utilizaremos la IA](/ApuntesProgramacion/00-pensamiento-computacional/08-ia-tutor) · **Siguiente:** **[U01 · Introducción a Java](/ApuntesProgramacion/01-introduccion)**

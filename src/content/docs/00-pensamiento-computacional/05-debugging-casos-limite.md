@@ -61,4 +61,4 @@ Probar los casos que nadie se espera es la diferencia entre un programa de afici
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/00-pensament-computacional) · **Anterior:** [04 · La descomposición](/ApuntesProgramacion/00-pensament-computacional/04-descomposicio) · **Siguiente:** [06 · El protocolo de paz](/ApuntesProgramacion/00-pensament-computacional/06-protocol-pau)
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/00-pensamiento-computacional) · **Anterior:** [04 · La descomposición](/ApuntesProgramacion/00-pensamiento-computacional/04-descomposicion) · **Siguiente:** [06 · El protocolo de paz](/ApuntesProgramacion/00-pensamiento-computacional/06-protocolo-paz)

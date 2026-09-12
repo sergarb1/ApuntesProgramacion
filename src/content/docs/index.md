@@ -9,7 +9,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 
 <div align="center" style="margin-bottom:2rem;">
   <a href="/ApuntesProgramacion/01-introduccion" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,#2d8a4e,#1e6b38);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🚀 Empezar por la Unidad 1</a>
-  <a href="/ApuntesProgramacion/00-pensament-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primero: Pensamiento Computacional</a>
+  <a href="/ApuntesProgramacion/00-pensamiento-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primero: Pensamiento Computacional</a>
   <a href="https://github.com/sergarb1/ApuntesProgramacion" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🐙 Ver en GitHub</a>
 </div>
 
@@ -41,9 +41,9 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 0</span>
     <span class="ra">—</span>
   </div>
-  <a href="/ApuntesProgramacion/00-pensament-computacional" class="title-link">Pensamiento Computacional</a>
+  <a href="/ApuntesProgramacion/00-pensamiento-computacional" class="title-link">Pensamiento Computacional</a>
   <p class="desc">Antes de código, pensemos. Descomposición, debugging, protocolo de paz y tu primer problema de programación sin tocar Java.</p>
-  <a href="/ApuntesProgramacion/00-pensament-computacional" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/00-pensamiento-computacional" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
