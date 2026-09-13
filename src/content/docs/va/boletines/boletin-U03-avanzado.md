@@ -1,4 +1,4 @@
----
+﻿---
 title: Butlletí U03 — Avançat
 description: Exercicis de dificultat progressiva per a exprimir la unitat
 ---
@@ -9,136 +9,180 @@ description: Exercicis de dificultat progressiva per a exprimir la unitat
 
 ---
 
-## ⭐ Exercici 1: La calculadora de notes
+## ⭐ Exercici 1: Calculadora de propines
 
-Escriu un programa que convertisca una nota numèrica (`double nota`) en la seua qualificació textual usant `if`/`else if`:
+Escriu un programa que calcule quant deixar de propina en un restaurant. Declara:
 
-- `>= 9` → "Excel·lent"
-- `>= 7` → "Notable"
-- `>= 5` → "Aprovat"
-- `>= 0` → "Suspés"
-- Qualsevol altre valor (negatiu o major que 10) → "Nota invàlida"
+- `double totalCompte = 45.50;`
+- `int percentatgePropina = 15;` (el percentatge, sense el símbol)
 
-Usa `double nota = 8.7;` i mostra el resultat. Fixa't en l'ordre: el cas invàlid s'ha de comprovar abans que els rangs.
+Calcula la propina (`totalCompte * percentatgePropina / 100`) i el total final (`totalCompte + propina`). Mostra els tres valors.
 
-**Pista:** un `if` inicial per al cas invàlid (`nota < 0 || nota > 10`) i després la cascada de rangs de dalt a baix.
+**Pista:** compte amb la divisió: `percentatgePropina / 100` amb enters dona 0. Multiplica primer i divideix després, o usa `100.0`.
 
 ---
 
-## ⭐ Exercici 2: El menú que no es rendix
+## ⭐ Exercici 2: Conversor dòlar-euro
 
-Escriu un programa que mostre un menú de dues opcions (1. Jugar, 2. Eixir) amb `do-while` i repetisca la pregunta fins que l'usuari escriga 1 o 2. Usa `Scanner`. Al final mostra "Has triat l'opció X.".
+Declara `final double TAXA_CANVI = 0.92;` (1 dòlar = 0.92 euros). Declara `double dolars = 100.0;` i calcula el seu equivalent en euros. També fes la conversió inversa: donat `double euros = 50.0;`, calcula quants dòlars són.
 
-**Pista:** `do { ... } while (opcio != 1 && opcio != 2);`. El `do-while` garanteix que el menú es mostre almenys una vegada.
+Mostra:
+
+```
+100.0$ són 92.0€
+50.0€ són 54.347826086956516$
+```
+
+**Pista:** per a passar d'euros a dòlars divideixes entre la taxa: `euros / TAXA_CANVI`.
 
 ---
 
-## ⭐⭐ Exercici 3: Què imprimeix? — la piràmide
+## ⭐⭐ Exercici 3: Què imprimeix? — el casting traïdor
 
 Sense executar, escriu l'eixida exacta:
 
 ```java
-public class Piramide {
+public class CastingTraidor {
     public static void main(String[] args) {
-        for (int fila = 1; fila <= 4; fila++) {
-            for (int col = 1; col <= fila; col++) {
-                System.out.print("*");
-            }
-            System.out.println();
-        }
+        int a = 7;
+        int b = 2;
+        double resultat1 = a / b;
+        double resultat2 = (double) a / b;
+        double resultat3 = a / (double) b;
+
+        System.out.println(resultat1);
+        System.out.println(resultat2);
+        System.out.println(resultat3);
+        System.out.println(3 + 4 * 2.0);
+        System.out.println((int) (3.7 + 2.3));
     }
 }
 ```
 
-**Pista:** el bucle interior depén de `fila`: la fila 1 imprimeix 1 asterisc, la fila 2 en imprimeix 2... Quants asteriscs en total?
+**Pista:** fixa't bé en on està el casting i en quin moment s'aplica la divisió entera. En `resultat1`, ¿la divisió es fa abans o després de guardar en el `double`?
 
 ---
 
-## ⭐⭐ Exercici 4: L'escala de nombres
+## ⭐⭐ Exercici 4: Interès compost (sense bucle)
 
-Escriu un programa que imprimisca esta escala de nombres (bucles anidats):
+Declara `final double CAPITAL_INICIAL = 1000.0;`, `final double TAXA = 0.05;` (5% anual) i `int anys = 3;`. Calcula el capital final després de 3 anys usant la fórmula de l'interès compost SENSE bucles:
 
 ```
-1
-1 2
-1 2 3
-1 2 3 4
+capitalFinal = capitalInicial * (1 + taxa)^anys
 ```
 
-**Pista:** bucle exterior de l'1 al 4 (les files) i bucle interior que imprimeix de l'1 al número de fila, amb `print` per a no saltar de línia i un `println()` buit al final de cada fila.
+Per a la potència usa `Math.pow(base, exponent)`. Mostra el capital any a any:
+
+```
+Any 0: 1000.0€
+Any 1: 1050.0€
+Any 2: 1102.5€
+Any 3: 1157.625€
+```
+
+> 💡 **Compte amb la precisió:** en l'any 3 el teu programa pot imprimir `1157.6250000000002` en lloc de `1157.625` per la coma flotant binària dels `double` (ho veurem a «Atreveix-te a pensar»). No és un error del teu codi.
+
+**Pista:** per a mostrar cada any sense bucle, crea tres variables distintes (`capital1`, `capital2`, `capital3`) i usa `Math.pow(1 + TAXA, i)` amb `i` valent 1, 2 i 3.
 
 ---
 
-## ⭐⭐⭐ Exercici 5: Què imprimeix? — break, continue i l'etiqueta
+## ⭐⭐⭐ Exercici 5: L'enigma del post-increment
 
-Sense executar, escriu l'eixida exacta:
+Sense executar, determina el valor de cada variable després d'executar este codi. Escriu el pas a pas:
 
 ```java
-public class Escapista {
+public class EnigmaIncrement {
     public static void main(String[] args) {
-        exterior:
-        for (int i = 1; i <= 4; i++) {
-            for (int j = 1; j <= 3; j++) {
-                if (j == 2 && i >= 3) {
-                    continue exterior;
-                }
-                if (i * j >= 8) {
-                    break exterior;
-                }
-                System.out.print(i + "" + j + " ");
-            }
-        }
+        int x = 3;
+        int y = x++ + ++x;
+        int z = --y + y-- + x++;
+        System.out.println("x = " + x);
+        System.out.println("y = " + y);
+        System.out.println("z = " + z);
     }
 }
 ```
 
-**Pista:** fes una taula de parells `(i, j)`. El `continue exterior` salta a la següent `i`; el `break exterior` apaga tots els bucles. Comprova parell a parell fins on arriba.
+**Pista:** fes una taula amb els valors de `x` i `y` després de cada operació. `x++` usa i després incrementa; `++x` incrementa i després usa.
 
 ---
 
-## ⭐⭐ Exercici 6: Caçador de primers
+## ⭐⭐ Exercici 6: El duel de daus
 
-Escriu un programa que imprimisca tots els nombres primers de l'1 al 50, cada un en la seua línia. Reutilitza la lògica del detectiu de divisors (`for` + `break`) dins d'un altre `for`.
-
-**Pista:** anida dos bucles: un que recórrega de l'1 al 50 i un altre interior que busque divisors. Usa un booleà `esPrimer` que es pose a `false` amb `break` si apareix un divisor.
-
----
-
-## ⭐⭐ Exercici 7: La suma sentinella
-
-Escriu un programa que sume nombres enters introduïts per l'usuari fins que escriga `0`. Mostra la suma final. Usa `while` i un sentinella.
-
-**Pista:** `while (numero != 0) { suma += numero; numero = sc.nextInt(); }`. El 0 no es suma: és el senyal de parada.
-
----
-
-## ⭐⭐⭐ Exercici 8: CodeWars — Categorize New Member
-
-Resol la kata **"Categorize New Member"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/5502c9e7b3216ec63c0001aa).
-
-Completa el mètode `public static String[] openOrSenior(int[][] data)` que rep parells `{edat, handicap}` i retorna `"Senior"` si el membre té almenys 55 anys I un handicap major que 7; si no, `"Open"`.
-
-**Pista:** recorre l'array amb un `for` i decideix cada cas amb una condició combinada (`&&`): `data[i][0] >= 55 && data[i][1] > 7`.
-
----
-
-## ⭐⭐⭐ Exercici 9: AceptaElReto — 156 Ascensor
-
-Resol el problema **156 — Ascensor** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=156).
-
-Un ascensor partix de la planta 0. Donat un nombre de visites i les plantes de cada visita, calcula la distància total recorreguda. El valor `0` indica el final de l'entrada (no es processa). Usa `Math.abs()` per a les distàncies.
-
-**Exemple:**
+Escriu un programa que llance un dau per a l'usuari (li demana el nom amb `Scanner`) i un altre per a la màquina (amb `Math.random()`). Guanya qui traga més. Mostra les dos tirades i el guanyador amb un missatge tipus:
 
 ```
-5
-5 1 10 4 2
-0
+Anna trau 4, la màquina trau 6.
+Guanya la màquina.
 ```
 
-Distància: |0-5| + |5-1| + |1-10| + |10-4| + |4-2| = 5 + 4 + 9 + 6 + 2 = **26**.
+**Pista:** combina `nextLine()` (nom), `(int)(Math.random() * 6) + 1` (daus) i un ternari encadenat per al veredicte. Compte amb l'empat.
 
-**Pista:** un `while` que llegeixca el nombre de visites i trenque amb `break` si és 0; dins, un `for` que acumule `Math.abs(pis - pisActual)` i actualitze `pisActual`.
+---
+
+## ⭐⭐ Exercici 7: Supercalculadora amb lògica
+
+Escriu un programa que llegeixca dos nombres amb `Scanner` (`double`) i un caràcter d'operació (`+`, `-`, `*`, `/`) amb `next()`.
+
+Segons l'operador, mostra el resultat. Si l'operador és `/` i el segon nombre és 0, mostra "Error: no es pot dividir entre 0". Per a qualsevol altre caràcter, mostra "Operador desconegut".
+
+**Pista:** calcula els resultats possibles en variables i tria amb ternaris encadenats o amb lògica. Pots comprovar la divisió entre 0 amb `(op.equals("/") && b == 0)`.
+
+---
+
+## ⭐⭐⭐ Exercici 8: CodeWars — Convert boolean values to strings 'Yes' or 'No'
+
+Resol la kata **"Convert boolean values to strings 'Yes' or 'No'"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/53369039d7ab3ac506000467).
+
+Completa el mètode `public static String boolToWord(boolean b)` que retorne `"Yes"` si rep `true` i `"No"` si rep `false`.
+
+**Pista:** es pot fer en una sola línia amb l'operador ternari: `b ? "Yes" : "No"`.
+
+---
+
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 114 Últim dígit del factorial
+
+Resol el problema **114 — Últim dígit del factorial** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=114).
+
+Donat un nombre N (0 ≤ N ≤ 1.000.000), calcula l'últim dígit de N! (factorial de N).
+
+**Pista:** no necessites calcular el factorial sencer. Observa que 5! = 120, 6! = 720, 7! = 5040... a partir de 5, el factorial sempre acaba en 0. Només necessites gestionar els casos menuts (0 a 4) i els grans amb una sola regla.
+
+---
+
+## ⭐⭐ Exercici 10: el tiquet de compra amb NumberFormat
+
+Escriu un programa anomenat `TiquetCompra` que simule un tiquet de compra amb tres productes (Pa, Llet i Ous, cadascun amb el seu preu i la seua quantitat). Mostra el tiquet usant `NumberFormat` amb moneda i locale espanyol per als preus:
+
+```
+==========================
+    TICKET DE COMPRA
+==========================
+Pa    2 x 1,20 € = 2,40 €
+Llet  3 x 0,95 € = 2,85 €
+Ous   1 x 3,50 € = 3,50 €
+--------------------------
+TOTAL               = 8,75 €
+==========================
+```
+
+Requisits: alinear els noms a l'esquerra, dos decimals en els preus i formatar tots els imports amb `NumberFormat.getCurrencyInstance(new Locale("es", "ES"))`.
+
+**Pista:** `NumberFormat` formata un `double` com a moneda amb el separador del teu idioma (`1.234,56 €`). Per a cada producte calcula el subtotal (`preu * quantitat`) i suma'l al total. El `Locale("es", "ES")` li diu "parla com a Espanya": coma per als decimals i símbol €.
+
+---
+
+## ⭐⭐⭐ Exercici 11: l'edat a prova de bombes
+
+Escriu un programa anomenat `EdatSegura` que demane l'edat pel teclat amb `Scanner` i **la repeteixca fins que l'usuari escriga un nombre enter**. Si l'usuari escriu lletres o un decimal, el programa ha d'avisar amb "Això no és un nombre enter." i tornar a preguntar sense trencar-se (res d'`InputMismatchException`).
+
+Quan per fi aconseguisca un enter, mostra amb `printf`:
+
+```
+Genial, 20 anys i llest per a programar.
+```
+
+**Pista:** abans de cada `nextInt()`, pregunta amb `sc.hasNextInt()`. Si retorna `false`, descarta la brossa amb `sc.next()` i repeteix. Recorda: `hasNextInt()` **mira** la següent dada sense consumir-la; si no la descartes, es quedarà ací per sempre.
 
 ---
 
@@ -146,9 +190,10 @@ Distància: |0-5| + |5-1| + |1-10| + |10-4| + |4-2| = 5 + 4 + 9 + 6 + 2 = **26**
 
 | Plataforma | Problema | Dificultat |
 |---|---|---|
-| AceptaElReto | 156 — Ascensor | Fàcil |
-| AceptaElReto | 149 — San Fermines | Fàcil |
-| AceptaElReto | 340 — Següent amb mateix nombre de xifres | Mitjà |
-| CodeWars | Even or Odd (8 kyu) | Principiant |
-| CodeWars | Categorize New Member (7 kyu) | Aficionat |
-| CodeWars | Return Negative (8 kyu) | Principiant |
+| AceptaElReto | 114 — Últim dígit del factorial | Fàcil |
+| AceptaElReto | 148 — Cap d'any | Fàcil |
+| AceptaElReto | 217 — Quin costat del carrer? | Fàcil |
+| CodeWars | Will you make it? (8 kyu) | Principiant |
+| CodeWars | Convert boolean to Yes/No (8 kyu) | Principiant |
+| CodeWars | Keep Hydrated (8 kyu) | Principiant |
+| CodeWars | Get the Middle Character (7 kyu) | Intermedi |

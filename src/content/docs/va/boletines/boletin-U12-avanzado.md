@@ -1,127 +1,191 @@
----
+﻿---
 title: "Butlletí U12 — Avançat"
-description: "Exercicis de dificultat progressiva per a esprémer reduce, groupingBy, Optional i les referències a mètodes"
+description: "Exercicis de dificultat progressiva per a esprémer els genèrics i els mapes"
 ---
 
 # 📝 Butlletí U12 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resistix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix a mirar-la).
 
 ---
 
-## ⭐⭐ Exercici 1: Ordenar amb referències a mètode
+## ⭐ Exercici 1: Pila genèrica `<T>`
 
-Tens una llista de noms. Ordena la llista **per longitud** (de menor a major) amb un stream usant `sorted()` i la referència `String::length` combinada amb `Comparator.comparing`. Després mostra-la.
+Implementa una classe genèrica `Pila<T>` que funcione com una pila (LIFO). Ha de tindre els mètodes:
 
-**Pista:** `sorted(Comparator.comparing(String::length))` ordena per longitud sense tocar la llista original. Si vols l'ordre invers, usa `reversed()`.
+- `void push(T elemento)` — apila un element.
+- `T pop()` — desapila i torna l'element superior (llança `EmptyStackException` si està buida).
+- `T peek()` — torna l'element superior sense desapilar-lo.
+- `boolean isEmpty()` — indica si està buida.
+- `int size()` — nombre d'elements.
 
----
+Internament, usa un `ArrayList<T>` com a emmagatzematge. Prova-la amb `Pila<Integer>`, `Pila<String>` i `Pila<Double>`.
 
-## ⭐⭐ Exercici 2: Agrupar paraules per la seua primera lletra
-
-Tens una llista de paraules. Usa `groupingBy` per a agrupar-les per la seua **primera lletra** i mostra el mapa resultant. Després, amb `groupingBy(p -> p.charAt(0), Collectors.counting())`, compta quantes paraules hi ha en cada grup.
-
-**Pista:** `groupingBy` torna `Map<Character, List<String>>`. El segon argument `counting()` canvia el valor del mapa a `Long`.
-
----
-
-## ⭐⭐ Exercici 3: Optional — el que no es deixa enganyar
-
-Implementa un mètode que reba una `List<Integer>` i torne el **màxim** usant `max(Integer::compareTo)`, gestionant el resultat amb `orElse` perquè torne `-1` si la llista està buida. Prova amb una llista buida i amb una de plena.
-
-**Pista:** `max` torna `Optional<Integer>`. No uses `get()` a cegues: `orElse(-1)` aterra amb seguretat.
+**Pista:** `EmptyStackException` està en `java.util.EmptyStackException`. Recorda comprovar `isEmpty()` abans de `pop()`/`peek()`.
 
 ---
 
-## ⭐⭐⭐ Exercici 4: El pipeline complet
+## ⭐⭐ Exercici 2: Mètode genèric `maximo` sobre un array
 
-Tens esta llista de números:
+Implementa un mètode genèric:
 
 ```java
-List<Integer> numeros = List.of(12, 5, 8, 3, 9, 5, 12, 7);
+public static <T extends Comparable<T>> T maximo(T[] array)
 ```
 
-Construïx un pipeline que: filtre els **majors o iguals a 5**, els **eleve al quadrat** (`n * n`), **elimine els duplicats**, els **ordene de major a menor** i es quede amb els **3 primers**. Arreplega el resultat en una llista amb `toList()`.
+Que torne l'element més gran de l'array usant `compareTo()`. Prova-ho amb un `Integer[]` i un `String[]`.
 
-**Pista:** per a ordenar de major a menor: `sorted(Comparator.reverseOrder())`. Recorda que l'ordre de les estacions importa: `distinct` abans de `sorted` canvia la comptada.
-
----
-
-## ⭐⭐ Exercici 5: De llista a mapa amb `toMap`
-
-Crea una classe senzilla `Alumno` amb `nombre` i `nota`. Amb una llista de 5 alumnes, usa `Collectors.toMap` per a obtenir un `Map<String, Integer>` on la clau siga el nom i el valor la nota. Com que els noms són únics, usa una funció de fusió per si de cas.
-
-**Pista:** `Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)`. La fusió `(a, b) -> a` evita la `IllegalStateException` si es repeteix una clau.
+**Pista:** assumix que el primer és el màxim i recorre des de l'índex 1. No pots usar arrays de primitius: usa `Integer[]`, no `int[]`.
 
 ---
 
-## ⭐⭐⭐ Exercici 6: El màxim amb `reduce` i comparador
+## ⭐⭐ Exercici 3: HashMap invers
 
-Implementa el màxim d'una `List<Integer>` de dues formes: amb `reduce` i un acumulador que vaja guardant el major (sense usar `Math::max`), i amb `max`. Què torna cada una? Quina necessita una identitat?
-
-**Pista:** `reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b)` usa `Integer.MIN_VALUE` com a identitat. `max(Integer::compareTo)` torna un `Optional`.
-
----
-
-## ⭐⭐ Exercici 7: Freqüències amb `groupingBy`
-
-Tens un array de paraules amb repetides:
+Escriu un mètode genèric estàtic:
 
 ```java
-String[] palabras = {"hola", "adios", "hola", "java", "hola", "adios"};
+public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original)
 ```
 
-Usa `Arrays.stream` i `groupingBy(p -> p, Collectors.counting())` per a comptar quantes vegades apareix cada paraula. Mostra el mapa i, després, la paraula que més vegades apareix.
+Que torne un nou `HashMap` intercanviant claus i valors. Si hi ha valors duplicats en el mapa original, l'últim trobat sobreescriu l'anterior.
 
-**Pista:** el mapa és `Map<String, Long>`. Per a la paraula més repetida, recorre `entrySet()` comparant valors, o usa streams de nou amb `max(Map.Entry.comparingByValue())`.
+Prova amb un mapa de `String → Integer` i un altre de `String → String`.
 
----
-
-## ⭐⭐⭐ Exercici 8: Optional i streams, la parella
-
-Tens una llista de noms. Busca, amb streams, el **primer nom que comence per "J"** usant `filter(...).findFirst()`. Gestiona el `Optional` resultant amb `ifPresent` per a imprimir-lo i amb `orElse` per a mostrar "no hay nadie" si no existeix. Prova amb una llista que tinga "J" i amb una altra que no.
-
-**Pista:** `findFirst()` torna `Optional<String>`. Amb `ifPresent(System.out::println)` imprimeixes només si hi ha valor; `orElse("no hay nadie")` cobreix l'absència.
+**Pista:** recorre `original.entrySet()` i fes `invertido.put(e.getValue(), e.getKey())`.
 
 ---
 
-## ⭐⭐⭐ Exercici 9: el stream que es nega a morir
+## ⭐⭐ Exercici 4: TreeMap — freqüència de lletres
 
-Observa este codi i respon **sense executar-lo**:
+Escriu un programa que lligga un text per teclat (o use un hardcodejat) i compte quantes vegades apareix cada **lletra** (ignorant espais, números i signes). Usa un `TreeMap<Character, Integer>` perquè les lletres es mostren automàticament ordenades alfabèticament.
+
+Exemple d'eixida per a «Hola mundo»:
+```
+a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
+```
+
+**Pista:** recorre el `String` amb `toCharArray()` i usa `Character.isLetter(c)` per a filtrar. El `getOrDefault` suma el comptador; el TreeMap ordena sol.
+
+---
+
+## ⭐⭐⭐ Exercici 5: Wildcards — suma i mescla de números
+
+Implementa un mètode que sume tots els números d'una llista, acceptant qualsevol subtipus de `Number`:
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+public static double sumar(List<? extends Number> lista)
+```
 
-public class Test {
-    public static void main(String[] args) {
-        Stream<Integer> flujo = List.of(1, 2, 3).stream();
-        long a = flujo.count();
-        long b = flujo.count();
-        System.out.println(a + " " + b);
+Prova-ho amb `List<Integer>`, `List<Double>` i `List<Float>`. Què passa si intentes passar una `List<String>`?
+
+Crea també un segon mètode que **mescle** dos llistes de números de tipus distints en una sola `List<Double>`:
+
+```java
+public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b)
+```
+
+**Pista:** per a `sumar`, recorre amb `for (Number n : lista)` i usa `n.doubleValue()`. Per a `mezclar`, usa `addAll()` i converteix cada element amb `doubleValue()`. I no intentes `add` en `sumar`: `? extends` és de només lectura (PECS).
+
+---
+
+## ⭐⭐ Exercici 6: Caché LRU amb LinkedHashMap
+
+Crea una classe `CacheLRU<K, V>` que use internament un `LinkedHashMap<K, V>` amb capacitat màxima de 5 elements. Quan s'afig un element i ja n'hi ha 5, s'elimina el **menys recentment usat** (accés, no inserció).
+
+**Pista:** `LinkedHashMap` té el constructor amb `accessOrder=true` i el mètode protegit `removeEldestEntry()` que torna si cal expulsar el més vell. Sobreescriu-lo perquè torne `size() > 5`.
+
+---
+
+## ⭐⭐ Exercici 7: Agenda completa amb menú
+
+Implementa una agenda usant `HashMap<String, String>` amb menú interactiu:
+
+1. **Afegir contacte** (nom i telèfon).
+2. **Buscar per nom** (mostra el telèfon).
+3. **Llistar tots** (recorre amb `entrySet`).
+4. **Esborrar contacte**.
+0. **Eixir**
+
+Usa un `while`, un `switch` i un `Scanner`. Cuida els casos en què el contacte no existeix (usa `containsKey` o `getOrDefault`).
+
+**Pista:** el menú es repeteix fins que l'usuari trie `0`. Per a buscar, comprova `containsKey(nombre)` abans de `get`.
+
+---
+
+## ⭐⭐⭐ Exercici 8: Sistema de votacions amb mètode genèric
+
+Crea un sistema de votacions on:
+
+- Cada votant pot votar per un candidat (String).
+- Usa un `HashMap<String, Integer>` per als vots.
+- Usa un `TreeMap<String, Integer>` per a mostrar el rànquing ordenat.
+
+Crea un mètode genèric:
+
+```java
+public static <T> T obtenerGanador(Map<T, Integer> votos)
+```
+
+Que torne la clau amb més vots. Prova-ho amb un `HashMap<String, Integer>` i un altre `HashMap<Integer, Integer>`.
+
+**Pista:** recorre `votos.entrySet()` i guarda el guanyador provisional comparant `getValue()` amb un màxim acumulat. El mètode és genèric perquè el tipus de la clau (`String`, `Integer`...) no importa.
+
+---
+
+## ⭐⭐ Exercici 9: Parella genèrica amb intercanvi
+
+Crea una classe genèrica `Pareja<T, U>` que emmagatzeme dos objectes de tipus possiblement distints. Inclou mètodes `getPrimero()`, `getSegundo()`, `setPrimero(T)`, `setSegundo(U)` i un mètode `intercambiar()` que torne una nova `Pareja<U, T>` amb els valors intercanviats.
+
+**Pista:** `intercambiar()` crea i torna `new Pareja<>(this.segundo, this.primero)`. L'ordre dels paràmetres de tipus canvia: `Pareja<U, T>`
+
+---
+
+## ⭐⭐⭐ Exercici 10: el type erasure al descobert
+
+La classe `Caja<T>` guarda un valor i el torna amb `getValor()`. Escriu un programa que demostre el **type erasure** en acció:
+
+```java
+public class Caja<T> {
+    private T valor;
+
+    public Caja(T valor) {
+        this.valor = valor;
+    }
+
+    public T getValor() {
+        return valor;
     }
 }
 ```
 
-1. Compila?
-2. Què ocorre en executar-lo?
-3. Com l'arreglaries?
+Sense executar, respon:
 
-**Pista:** un stream és d'un sol ús. La primera operació terminal el consumeix. Si vols comptar dos vegades, crea dos streams (`List.of(1, 2, 3).stream()` dos vegades).
+1. Què es compila més ràpid: `Caja<String>` o `Caja<Integer>`? Són classes distintes en temps d'execució?
+2. Quin tipus té realment `caja.getValor()` dins del bytecode si el compiles com a `Caja<String>`?
+3. Escriu un `main` que cree `Caja<String>` i `Caja<Integer>` i comprove amb `getClass()` que totes dues són instàncies de la mateixa classe `Caja` (el erasure: `<T>` desapareix en el bytecode).
+
+**Pista:** el type erasure converteix `Caja<T>` en `Caja` a secas (amb `Object` on estava `T`). Per això `caja.getClass()` torna el mateix per a `Caja<String>` i `Caja<Integer>`: en runtime no hi ha dos classes, només una `Caja`. El cast de `getValor()` l'afig el compilador, no el teu codi.
 
 <details>
 <summary>🔄 Solució</summary>
 
-1. **Sí, compila** (l'error és d'execució, no de sintaxi).
-2. En executar, la segona crida `flujo.count()` llança **`IllegalStateException: stream has already been operated upon or closed`**. El primer `count()` ja va consumir el stream: no es pot reutilitzar.
-3. Creant un stream nou per a cada comptada:
+1. **És la mateixa classe.** `Caja<String>` i `Caja<Integer>` no generen dos classes en el bytecode: el compilador esborra el paràmetre de tipus i deixa una única `Caja` amb `Object`. Per això no hi ha cap guany de rendiment per "especialitzar": erasure significa que no es duplica codi.
+2. **`Object`.** `getValor()` en el bytecode torna `Object`. El compilador inserix el cast a `String` en el punt d'ús (quan assignes a `String s = caja.getValor();`).
+3. La comprovació amb `getClass()`:
 
 ```java
-long a = List.of(1, 2, 3).stream().count();
-long b = List.of(1, 2, 3).stream().count();
-System.out.println(a + " " + b);   // 3 3
+public class Demo {
+    public static void main(String[] args) {
+        Caja<String> cajaTexto = new Caja<>("hola");
+        Caja<Integer> cajaNumero = new Caja<>(42);
+
+        System.out.println(cajaTexto.getClass());
+        System.out.println(cajaNumero.getClass());
+        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+    }
+}
 ```
 
-La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no serveix.
+Totes dues imprimeixen `class Caja` i la comparació amb `==` dona `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existeixen en temps de compilació. Aquest és el type erasure: el mag que esborra els tipus quan compiles.
 
-</details>
+</details>.

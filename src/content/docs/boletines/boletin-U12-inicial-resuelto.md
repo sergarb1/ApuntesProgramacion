@@ -1,4 +1,4 @@
----
+﻿---
 title: "Boletín U12 — Inicial Resuelto"
 description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 ---
@@ -9,25 +9,104 @@ description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 
 ---
 
-## Ejercicio 1: Completa el código — tu primera lambda
+## Ejercicio 1: Completa el código — clase con dos tipos genéricos
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-Predicate<Integer> esMayorDeEdad = edad -> edad >= 18;
-Function<Integer, Integer> doble = x -> x * 2;
-Consumer<String> imprimir = s -> System.out.println(s);
-Supplier<String> saludar = () -> "¡Hola!";
+public class Par<T, U> {
+    private T primero;
+    private U segundo;
+
+    public Par(T primero, U segundo) {
+        this.primero = primero;
+        this.segundo = segundo;
+    }
+
+    public T getPrimero() { return primero; }
+    public U getSegundo() { return segundo; }
+}
 ```
 
-La variable debe ser de tipo **interfaz funcional**: la lambda solo compila si su firma encaja con el método abstracto de la interfaz. `Predicate` espera `boolean test(Integer)`, `Function` espera `R apply(T)`, `Consumer` espera `void accept(T)` y `Supplier` espera `T get()`. Fíjate en el `Supplier`: sin parámetros, los paréntesis vacíos `()` son obligatorios.
+La declaración correcta es `public class Par<T, U>`. Si creas `Par<String, Integer> par = new Par<>("Ana", 25);`, entonces `par.getPrimero()` devuelve un `String` (sin casting) y `par.getSegundo()` un `Integer`. Los dos parámetros de tipo van separados por comas y se rellenan al instanciar.
 
 </details>
 
 ---
 
-## Ejercicio 2: ¿Qué imprime? — el orden de la flecha
+## Ejercicio 2: ¿Qué imprime? — HashMap con put repetido
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`30`** y **`2`**.
+
+- `put("Ana", 10)` y luego `put("Ana", 30)`: la clave "Ana" se sobrescribe con el último valor.
+- Por eso `size()` es 2, no 3: las claves son únicas y "Ana" solo cuenta una vez.
+
+</details>
+
+---
+
+## Ejercicio 3: Encuentra el error — ArrayList\<int\> no compila
+
+<details>
+<summary>🔄 Solución</summary>
+
+No compila porque **los genéricos solo aceptan objetos, y `int` es un primitivo**. `ArrayList<int>` no existe. La solución es usar la clase wrapper `Integer`:
+
+```java
+import java.util.ArrayList;
+
+public class Error {
+    public static void main(String[] args) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+        numeros.add(5);
+        numeros.add(10);
+        System.out.println(numeros.get(0) + numeros.get(1)); // 15
+    }
+}
+```
+
+El **autoboxing** convierte automáticamente el `int` 5 en un `Integer` al añadirlo, y el **unboxing** lo convierte de vuelta a `int` al sumar. Tú no escribes nada de eso: Java lo hace solo.
+
+</details>
+
+---
+
+## Ejercicio 4: Escribe este programa — contador de palabras con HashMap
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class ContadorPalabras {
+    public static void main(String[] args) {
+        String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
+
+        HashMap<String, Integer> contador = new HashMap<>();
+        for (String p : palabras) {
+            contador.put(p, contador.getOrDefault(p, 0) + 1);
+        }
+
+        for (Map.Entry<String, Integer> entrada : contador.entrySet()) {
+            System.out.println(entrada.getKey() + " → " + entrada.getValue());
+        }
+    }
+}
+```
+
+El patrón de las frecuencias: `getOrDefault(p, 0) + 1` devuelve la cuenta actual (o 0 la primera vez) y suma 1. `entrySet()` te da cada palabra con su contador en un solo bucle, sin un `get` extra.
+
+</details>
+
+---
+
+## Ejercicio 5: ¿Qué imprime? — método genérico con límite
 
 <details>
 <summary>🔄 Solución</summary>
@@ -35,165 +114,96 @@ La variable debe ser de tipo **interfaz funcional**: la lambda solo compila si s
 Imprime:
 
 ```
-26
-1
+8
+perro
 ```
 
-- `operacion.apply(5)` → `5 * 5 + 1` = 26.
-- `operacion.apply(0)` → `0 * 0 + 1` = 1.
+- `maximo(5, 8)`: `T` es `Integer` y `8.compareTo(5) > 0`, así que devuelve 8.
+- `maximo("gato", "perro")`: `T` es `String` y `"perro".compareTo("gato") > 0` (p > g), así que devuelve "perro".
 
-El cuerpo `x * x + 1` es una **sola expresión**: en las lambdas, un cuerpo de una expresión devuelve su resultado sin necesidad de `return` ni llaves. Las llaves y el `return` solo hacen falta cuando el cuerpo tiene varias sentencias.
+Si `T` no tuviera el límite `Comparable<T>`, el código no compilaría: el método no podría llamar a `compareTo()` porque no sabría que `T` sabe compararse.
 
 </details>
 
 ---
 
-## Ejercicio 3: Encuentra el error — la lambda mal vestida
+## Ejercicio 6: Encuentra el error — la clave duplicada y el primer valor perdido
 
 <details>
 <summary>🔄 Solución</summary>
 
-El error está en la línea `esPositivo.accept(5)`: `Predicate` no tiene un método `accept`. Su método abstracto es `test(T)`. `accept` pertenece a `Consumer`. La línea correcta es:
+Imprime **`Uno otra vez`**.
 
-```java
-System.out.println(esPositivo.test(5));   // true
-```
-
-Cada interfaz funcional tiene SU método: `Predicate` usa `test`, `Function` usa `apply`, `Consumer` usa `accept` y `Supplier` usa `get`. Confundirlos es como pedir una pizza en la pescadería: no es que la pizza no exista, es que no está ahí.
+Sí, el primer valor ("uno") se pierde: al hacer `put(1, "Uno otra vez")` con una clave que ya existía, el HashMap sobrescribe el valor anterior. Las claves son únicas y solo pueden tener UN valor, el último que se ponga.
 
 </details>
 
 ---
 
-## Ejercicio 4: Escribe este programa — filtrar pares con streams
+## Ejercicio 7: Escribe este programa — mini agenda con getOrDefault
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.Scanner;
+import java.util.TreeMap;
 
-public class Pares {
+public class Edades {
     public static void main(String[] args) {
-        List<Integer> numeros = List.of(10, 15, 22, 33, 40, 55);
+        TreeMap<String, Integer> edades = new TreeMap<>();
+        edades.put("Ana", 25);
+        edades.put("Bob", 30);
+        edades.put("Carla", 22);
+        edades.put("David", 28);
+        edades.put("Eva", 35);
 
-        List<Integer> pares = numeros.stream()
-            .filter(n -> n % 2 == 0)
-            .toList();
+        Scanner sc = new Scanner(System.in);
+        System.out.print("¿De quién quieres saber la edad? ");
+        String nombre = sc.nextLine();
 
-        System.out.println(pares);   // [10, 22, 40]
+        int edad = edades.getOrDefault(nombre, -1);
+        if (edad == -1) {
+            System.out.println(nombre + " no está en el mapa.");
+        } else {
+            System.out.println(nombre + " tiene " + edad + " años.");
+        }
+        sc.close();
     }
 }
 ```
 
-El `filter` con `n -> n % 2 == 0` (un `Predicate<Integer>`) deja pasar solo los pares: 10, 22 y 40. `toList()` recoge el resultado. Hay 3 pares. Fíjate en que la lista original no se toca: el stream crea una lista nueva.
+`getOrDefault(nombre, -1)` devuelve `-1` (un centinela) si el nombre no existe, así no tocas un `null`. Con un `TreeMap`, además, las claves quedan ordenadas alfabéticamente si algún día decides listarlas.
 
 </details>
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — el pipeline básico
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`2`**.
-
-- `filter(p -> p.length() >= 4)` deja pasar: `luna` (4), `cielo` (5) y la segunda `sol` no (3 letras). Pero la primera `sol` tampoco: 3 < 4. Espera... repasemos: `sol`=3, `luna`=4, `mar`=3, `cielo`=5. Pasan `luna` y `cielo`.
-- `distinct()` no cambia nada aquí (ya no hay repetidos entre los que pasan).
-- `count()` → 2.
-
-Sin `distinct()`, el resultado sería el mismo en este caso (2), porque `sol` ya fue eliminada por el `filter`. `distinct()` habría importado si el `filter` dejara pasar dos iguales.
-
-</details>
-
----
-
-## Ejercicio 6: Completa el código — mayúsculas con map
+## Ejercicio 8: Completa el código — getOrDefault
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-List<String> mayusculas = palabras.stream()
-    .map(String::toUpperCase)
-    .toList();
+int edadAna = edades.get("Ana");                  // 25
+int edadCarlos = edades.getOrDefault("Carlos", 0); // 0
 ```
 
-- La intermedia es **`map`** con la referencia a método `String::toUpperCase` (equivale a `p -> p.toUpperCase()`).
-- La terminal es **`toList()`** (Java 16+).
-
-Con `Collectors.toList()` sería exactamente igual pero devolviendo un `ArrayList` modificable: `palabras.stream().map(String::toUpperCase).collect(Collectors.toList())`. `toList()` devuelve una lista inmutable; para el resultado sería `["HOLA", "JAVA", "MUNDO"]`.
+`edades.get("Carlos")` devuelve `null`, y asignar `null` a un primitivo `int` provoca un error (o un `NullPointerException` si la variable fuera `Integer`). `getOrDefault("Carlos", 0)` devuelve el valor por defecto 0 y evita el susto. Es el salvavidas de los mapas.
 
 </details>
 
 ---
 
-## Ejercicio 7: Escribe este programa — longitud de cada palabra
+## Ejercicio 9: Encuentra el error — la clave mutable
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-import java.util.*;
-import java.util.stream.*;
+Imprime **`null`** (o un valor impredecible, según el `hashCode` interno).
 
-public class Longitudes {
-    public static void main(String[] args) {
-        String[] nombres = {"Ana", "Bob", "Carla", "David"};
+El problema: las claves de un HashMap deben ser **inmutables**. Al modificar `lista` con `add(3)` después de usarla como clave, su `hashCode()` cambia. El HashMap busca en el bucket antiguo, pero la clave ahora tiene otro hash, así que `get()` no la encuentra aunque esté dentro del mapa.
 
-        List<Integer> longitudes = Arrays.stream(nombres)
-            .map(String::length)
-            .collect(Collectors.toList());
-
-        longitudes.forEach(System.out::println);   // 3, 3, 5, 5
-    }
-}
-```
-
-Dos trucos nuevos: `Arrays.stream(nombres)` convierte el array (de la U04) en stream, y `map(String::length)` transforma cada `String` en su longitud, cambiando el tipo del flujo a `Stream<Integer>`. El `forEach` con `System.out::println` es la terminal que imprime cada elemento.
-
-</details>
-
----
-
-## Ejercicio 8: Encuentra el error — la cinta que nunca arranca
-
-<details>
-<summary>🔄 Solución</summary>
-
-El pipeline no tiene **operación terminal**: `filter` y `map` son intermedias (perezosas) y no ejecutan nada hasta que llega un `collect`, `count`, `forEach` o similar. El stream se prepara, pero la cinta nunca arranca.
-
-Para ver los números transformados hay que cerrar el grifo. Por ejemplo:
-
-```java
-List<Integer> imparesDoblados = numeros.stream()
-    .filter(n -> n % 2 == 1)
-    .map(n -> n * 10)
-    .toList();
-System.out.println(imparesDoblados);   // [10, 30, 50]
-```
-
-Es el error más típico de la unidad: montar la ruta y olvidar que el autobús necesita arrancar.
-
-</details>
-
----
-
-## Ejercicio 9: Completa el código — un Consumer para imprimir
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-palabras.stream()
-    .forEach(p -> System.out.print("(" + p + ")"));
-```
-
-- `System.out.print(...)` imprime **sin salto de línea**: la salida sería `(hola)(java)`.
-- `System.out.println(...)` añade el salto de línea al final: `(hola)` y `(java)` en líneas separadas.
-
-El `forEach` recibe un `Consumer<String>`; la lambda `p -> System.out.print("(" + p + ")")` se puede reescribir con una referencia a método, aunque aquí el cuerpo ya no es una única llamada, así que la lambda es la opción natural.
+Es como cambiar la cerradura de tu casa y esperar que tu llave vieja siga funcionando. Por eso `String` e `Integer` son claves perfectas: nunca cambian. Nunca uses una `ArrayList`, un array o tus propias clases mutables como clave de un HashMap.
 
 </details>

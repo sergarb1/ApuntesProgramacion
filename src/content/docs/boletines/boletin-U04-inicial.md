@@ -1,139 +1,113 @@
----
-title: "Boletín U04 — Inicial"
-description: "Ejercicios básicos de Arrays"
+﻿---
+title: Boletín U04 — Inicial
+description: Ejercicios básicos de Estructuras de Control y Excepciones
 ---
 
 # 📝 Boletín U04 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, crea tu primer aparcamiento de datos y haz que el `for-each` deje de parecer magia. Ninguna plaza nace sabiendo tener dueño.
+> Sin soluciones. Sin prisas. Abre el IDE, enciende el semáforo y haz que tu código decida, repita y sobreviva. Nadie nace sabiendo cuándo poner un `break`.
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — Array de booleanos
+## Ejercicio 1: El portero del club
 
-```java
-boolean[] flags = new boolean[3];
-flags[1] = true;
-System.out.println(flags[0] + " " + flags[1] + " " + flags[2]);
-```
+Escribe un programa llamado `Portero` que, con las variables `int edad = 17` y `boolean tieneEntrada = true`, decida con `if`/`else`:
 
-¿Qué imprime? ¿Cuál es el valor por defecto de un `boolean` en un array?
+- Si `edad >= 18` **Y** tiene entrada → "Adelante, que pase el mayor de edad."
+- Si es mayor de edad pero **no** tiene entrada → "Faltas tú solito, sin entrada no hay paraíso."
+- Si es menor → "Fuera de aquí, pequeñín."
 
 ---
 
-## Ejercicio 2: Encuentra el error — NullPointerException
-
-```java
-String[] nombres = new String[3];
-nombres[0] = "Ana";
-nombres[1] = "Bob";
-System.out.println(nombres[2].toUpperCase());
-```
-
-¿Qué ocurre al ejecutar este código? ¿Por qué?
-
----
-
-## Ejercicio 3: Completa el código — for básico para buscar el mayor
-
-Completa el siguiente programa para que encuentre e imprima el número más grande del array:
-
-```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < ______; i++) {   // ¿hasta dónde llega el bucle?
-    if (numeros[i] ______ mayor) {    // ¿qué operador?
-        ______ = numeros[i];          // ¿qué asignamos?
-    }
-}
-
-System.out.println("El mayor es: " + mayor);
-```
-
----
-
-## Ejercicio 4: Escribe este programa — contar números pares
-
-Crea un array de 10 enteros con valores que tú elijas. Recórrelo con un bucle `for` y cuenta cuántos de ellos son pares. Al final, imprime el total de pares y el array original con `Arrays.toString`.
-
-Ejemplo de salida:
-
-```
-Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]
-Pares: 5
-```
-
-Pista: un número es par si `numeros[i] % 2 == 0`.
-
----
-
-## Ejercicio 5: Encuentra el error — length vs length()
-
-```java
-int[] numeros = {10, 20, 30};
-String texto = "Hola";
-
-System.out.println(numeros.length());
-System.out.println(texto.length);
-```
-
-¿Qué líneas tienen error? Explica la diferencia entre `length` (sin paréntesis) y `length()` (con paréntesis).
-
----
-
-## Ejercicio 6: ¿Qué imprime? — la suma de los impares
+## Ejercicio 2: ¿Qué imprime? — el semáforo invertido
 
 Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class SumaImpares {
+public class SemaforoInvertido {
     public static void main(String[] args) {
-        int[] datos = {3, 8, 2, 9, 5};
-        int total = 0;
+        int nota = 8;
 
-        for (int n : datos) {
-            if (n % 2 == 1) {
-                total += n;
-            }
+        if (nota >= 5) {
+            System.out.println("Aprobado");
+        } else if (nota >= 7) {
+            System.out.println("Notable");
+        } else if (nota >= 9) {
+            System.out.println("Sobresaliente");
+        } else {
+            System.out.println("Suspenso");
         }
-
-        System.out.println(total);
     }
 }
 ```
 
-Pista: el `for-each` recorre todos los valores; solo se suman los que dejan resto 1 al dividir entre 2.
+Pista: recuerda que gana el **primer** `if` que se cumple, aunque haya otros más "precisos" después.
 
 ---
 
-## Ejercicio 7: Escribe este programa — búsqueda lineal
+## Ejercicio 3: El menú del día
 
-Crea un array de enteros llamado `edades` con 8 valores. Pide al usuario un número por teclado (con `Scanner`) y busca si ese número está en el array. Imprime «Encontrado en posición X» o «No encontrado».
+Escribe un programa llamado `MenuDia` que, con `int dia = 4`, muestre con `switch` el menú correspondiente:
+
+- `1` → Lunes: Lentejas
+- `2` → Martes: Paella
+- `3` → Miércoles: Macarrones
+- `4` → Jueves: Fabada
+- `5` → Viernes: Pescado
+- Cualquier otro número → `default`: Fin de semana, no hay menú
+
+No te olvides del `break` en cada `case` ni del `default`.
+
+---
+
+## Ejercicio 4: La cuenta atrás del cohete
+
+Escribe un programa llamado `Cohete` que cuente desde 5 hasta 0 con un `while` y luego muestre "¡Despegue! 🚀". Muestra un número por línea.
+
+Pista: `int contador = 5;` y `while (contador >= 0) { ... contador--; }`.
+
+---
+
+## Ejercicio 5: La tabla del 7
+
+Escribe un programa llamado `TablaDelSiete` que muestre la tabla de multiplicar del 7 (del 1 al 10) usando un `for`:
 
 ```
-Introduce edad a buscar: 25
-Encontrado en posición 3
+7 x 1 = 7
+7 x 2 = 14
+...
 ```
 
-Pista: usa una variable `posicion = -1` como "no encontrado", y `break` en cuanto lo encuentres.
+---
+
+## Ejercicio 6: Solo los pares
+
+Escribe un programa llamado `SoloPares` que imprima los números pares del 2 al 20 usando un `for` y `continue`. Cada número en su línea.
+
+Pista: recorre del 1 al 20 y usa `continue` para saltarte los impares (`if (i % 2 != 0) continue;`).
 
 ---
 
-## Ejercicio 8: Escribe este programa — el inverso
+## Ejercicio 7: El detective de divisores
 
-Crea un array de 10 enteros, rellénalo con los números del 1 al 10 y luego imprímelo en **orden inverso** (del 10 al 1). Hazlo con un `for` que recorra el array hacia atrás.
+Escribe un programa llamado `DetectiveDivisores` que compruebe con `for` y `break` si el número `int numero = 29` tiene algún divisor entre 2 y `numero - 1`. Si lo encuentra, muestra "No es primo" y sale; si no, muestra "Es primo".
 
-Pista: el bucle va de `length - 1` hasta `0`, bajando con `i--`.
+Pista: recorre los divisores y, en cuanto encuentres uno (`numero % divisor == 0`), haz `break`.
 
 ---
 
-## Ejercicio 9: Escribe este programa — la clase Arrays en acción
+## Ejercicio 8: La edad blindada
 
-Crea el array `int[] notas = {7, 3, 9, 5, 2, 8}` y haz lo siguiente:
+Escribe un programa llamado `EdadBlindada` que pida la edad con `Scanner.nextInt()` dentro de un `try`/`catch`. Si el usuario escribe algo que no es un número, atrapa el `InputMismatchException` y muestra "Eso no es una edad válida.". Si lo es, muestra "Tienes X años."
 
-1. Muéstralo con `Arrays.toString`.
-2. Ordena con `Arrays.sort` y muéstralo otra vez.
-3. Busca el `8` con `Arrays.binarySearch` e imprime su posición.
+Pista: necesitas `import java.util.Scanner;` e `import java.util.InputMismatchException;`. Después del `catch`, el programa debe seguir vivo.
 
-Pista: `import java.util.Arrays;` al principio, y recuerda: `binarySearch` solo es fiable si el array ya está ordenado.
+---
+
+## Ejercicio 9: CodeWars — Even or Odd
+
+Resuelve la kata **"Even or Odd"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/53da3dbb4a5168369a0000fe).
+
+Crea el método `public static String even_or_odd(int number)` que devuelva `"Even"` si el número es par y `"Odd"` si es impar.
+
+Pista: el operador `%` del punto 3 de la U03 es tu mejor amigo: `number % 2 == 0`.

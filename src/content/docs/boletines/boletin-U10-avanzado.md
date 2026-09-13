@@ -1,163 +1,227 @@
----
-title: "Boletín U10 — Avanzado"
-description: "Ejercicios de dificultad progresiva para exprimir las colecciones"
+﻿---
+title: Boletín U10 — Avanzado
+description: Ejercicios de dificultad progresiva para exprimir la unidad
 ---
 
 # 📝 Boletín U10 — Avanzado
 
-> Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. Cada ejercicio incluye una pista (resiste a mirarla).
+> Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. La herencia es como la familia: a veces heredas cosas buenas, a veces te toca la colección de sellos de tu tío abuelo. Pero con interfaces, al menos eliges qué implementar.
 
 ---
 
-## ⭐ Ejercicio 1: La cola del supermercado con LinkedList
+## ⭐ Ejercicio 1: Interfaz FiguraGeometrica
 
-Simula una cola de supermercado usando `LinkedList<String>`. El programa debe mostrar un menú:
+Crea una interfaz `FiguraGeometrica` con dos métodos:
 
-1. **Llega cliente** → Añade un nombre al final de la cola.
-2. **Atender cliente** → Elimina y muestra el primero de la cola.
-3. **¿Quién sigue?** → Muestra el primero sin eliminarlo.
-4. **Estado de la cola** → Muestra todos los clientes en orden.
-0. **Salir**
+- `double calcularArea()`
+- `double calcularPerimetro()`
 
-Usa los métodos `addLast()`, `removeFirst()` y `getFirst()` de `LinkedList`, con un `switch` y un `Scanner`.
+Implementa la interfaz en:
 
-**Pista:** el menú se repite con un `while` hasta que el usuario elija `0`. Cuida los casos en los que la cola está vacía antes de llamar a `removeFirst()` o `getFirst()`.
+- `Circulo` (constructor con radio)
+- `Rectangulo` (constructor con ancho y alto)
+- `TrianguloRectangulo` (constructor con base y altura)
 
----
-
-## ⭐⭐ Ejercicio 2: Intersección y unión de conjuntos
-
-Crea dos `HashSet<Integer>` con números aleatorios (entre 1 y 20, 8 elementos cada uno). Calcula y muestra:
-
-- **Intersección:** elementos que están en ambos conjuntos.
-- **Unión:** todos los elementos sin repetir.
-- **Diferencia simétrica:** elementos que están en uno u otro, pero no en ambos.
-
-**Pista:** usa `retainAll()`, `addAll()` y `removeAll()` de la interfaz `Set`. Para la diferencia simétrica: `union.removeAll(interseccion)`.
-
----
-
-## ⭐⭐ Ejercicio 3: Eliminar duplicados manteniendo el orden
-
-Crea un `ArrayList<Integer>` con elementos repetidos (`[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]`). Escribe un método que devuelva un nuevo `ArrayList<Integer>` **sin duplicados pero manteniendo el orden de primera aparición**.
-
-**Pista:** un `HashSet` no vale directamente porque pierde el orden. Usa un `LinkedHashSet` (conserva el orden de inserción) o recorre manualmente comprobando con `contains` antes de añadir.
-
----
-
-## ⭐⭐⭐ Ejercicio 4: ¿Qué imprime? — el remove que rompe el baile
-
-Sin ejecutar, responde qué ocurre con este programa:
+En el `main`, crea un `ArrayList<FiguraGeometrica>`, añade un círculo de radio 5, un rectángulo 4x3 y un triángulo rectángulo 3x4. Recórrelos imprimiendo área y perímetro de cada uno.
 
 ```java
-import java.util.ArrayList;
+public interface FiguraGeometrica {
+    double calcularArea();
+    double calcularPerimetro();
+}
+```
 
-public class Puzle {
-    public static void main(String[] args) {
-        ArrayList<String> palabras = new ArrayList<>();
-        palabras.add("hola");
-        palabras.add("mundo");
-        palabras.add("adiós");
+**Pista:** para el triángulo rectángulo, `area = base * altura / 2` y el perímetro es `base + altura + hipotenusa`, con `hipotenusa = Math.sqrt(base*base + altura*altura)`.
 
-        for (String p : palabras) {
-            if (p.equals("mundo")) {
-                palabras.remove(p);
-            }
-        }
-        System.out.println(palabras);
+---
+
+## ⭐ Ejercicio 2: Jerarquía de Empleados
+
+Crea una clase base `Empleado` con:
+
+- `String nombre`
+- `double salarioBase`
+- Constructor, getters
+- Método `double calcularSalario()` que devuelva el `salarioBase`
+
+Crea dos subclases:
+
+- `Gerente`: tiene un `double bono` extra. `calcularSalario()` devuelve `salarioBase + bono`.
+- `Vendedor`: tiene un `double comision` por venta y un `int ventasRealizadas`. `calcularSalario()` devuelve `salarioBase + comision * ventasRealizadas`.
+
+En el `main`, crea un array de `Empleado` con un gerente y un vendedor, recórrelo polimórficamente y muestra el salario de cada uno.
+
+```java
+public class Empleado {
+    protected String nombre;
+    protected double salarioBase;
+
+    public Empleado(String nombre, double salarioBase) {
+        this.nombre = nombre;
+        this.salarioBase = salarioBase;
+    }
+
+    public double calcularSalario() {
+        return salarioBase;
     }
 }
 ```
 
-¿Imprime algo? ¿O lanza una excepción? ¿Cuál y por qué?
-
-**Pista:** piensa en lo que hace el `for-each` por debajo (usa un `Iterator`) y en lo que pasa si la colección cambia mientras se recorre.
+**Pista:** declara `nombre` y `salarioBase` como `protected` para que las subclases los usen sin getters. El `@Override` de `calcularSalario()` en cada subclase es el corazón del polimorfismo.
 
 ---
 
-## ⭐⭐ Ejercicio 5: Filtrar con Iterator
+## ⭐⭐ Ejercicio 3: Sistema de pagos con interfaz
 
-Crea un `ArrayList<Integer>` con los números del 1 al 10. Recórrelo con un `Iterator<Integer>` explícito y **borra todos los números pares** usando `it.remove()`. Al final, imprime la lista.
+Crea una interfaz `Pagable` con el método:
 
-**Pista:** recorre con `while (it.hasNext())`, obtén cada número con `it.next()` y comprueba si es par con `% 2 == 0`. Nunca uses `lista.remove(...)` dentro del bucle.
+- `boolean procesarPago(double cantidad)`
 
----
+Implementa la interfaz en:
 
-## ⭐⭐ Ejercicio 6: El TreeSet ordenado
-
-Crea un programa que pida al usuario palabras con `Scanner` hasta que escriba `"fin"`. Guárdalas en un `TreeSet<String>`. Al terminar, muestra:
-
-1. Las palabras ordenadas (imprimir el TreeSet directamente).
-2. La primera palabra (`first()`) y la última (`last()`).
-3. Las palabras que van antes que `"m"` en orden alfabético (`headSet("m")`).
-
-**Pista:** el TreeSet ordena y elimina duplicados automáticamente. Comprueba qué pasa si el usuario repite una palabra.
-
----
-
-## ⭐⭐⭐ Ejercicio 7: Encuentra el error — el bucle que explota
+- `TarjetaCredito`: tiene `double limite` y `double saldoUsado`. Puede pagar si `cantidad + saldoUsado <= limite`.
+- `PayPal`: tiene `double saldo`. Puede pagar si `cantidad <= saldo`.
+- `TransferenciaBancaria`: tiene `double saldo`. Puede pagar siempre que `cantidad <= saldo`, pero tiene un coste fijo de 1 € por transferencia.
 
 ```java
-import java.util.ArrayList;
+public interface Pagable {
+    boolean procesarPago(double cantidad);
+}
+```
 
-public class Error {
-    public static void main(String[] args) {
-        ArrayList<String> nombres = new ArrayList<>();
-        nombres.add("Ana");
-        nombres.add("Bob");
-        nombres.add("Carla");
+Ejemplo:
 
-        for (String n : nombres) {
-            if (n.equals("Bob")) {
-                nombres.remove(n);
-            }
-        }
-        System.out.println(nombres);
+```java
+Pagable tarjeta = new TarjetaCredito(1000, 0);
+tarjeta.procesarPago(500);   // true
+tarjeta.procesarPago(600);   // false (supera el límite)
+```
+
+**Pista:** cada clase decide su propia lógica de aprobación; solo el contrato `procesarPago` es común. Para la transferencia, comprueba que `cantidad + 1 <= saldo`.
+
+---
+
+## ⭐⭐ Ejercicio 4: Interfaces múltiples: Volador y Nadador
+
+Crea dos interfaces:
+
+- `Volador`: método `void volar()`
+- `Nadador`: método `void nadar()`
+
+Crea una clase `Pato` que implemente ambas interfaces, una clase `Avion` que solo implemente `Volador` y una clase `Pez` que solo implemente `Nadador`.
+
+En el `main`, crea un `ArrayList<Volador>` con un `Pato` y un `Avion`, y recórrelo llamando a `volar()`. Luego haz lo mismo con un `ArrayList<Nadador>`.
+
+```java
+public interface Volador { void volar(); }
+public interface Nadador { void nadar(); }
+```
+
+**Pista:** el `Pato` es la estrella: una sola clase que firma dos contratos. Los `ArrayList` de tipo interfaz aceptan cualquier clase que implemente ese contrato.
+
+---
+
+## ⭐⭐ Ejercicio 5: Downcasting seguro
+
+Crea una jerarquía `Empleado` → `Programador`, `Diseñador`:
+
+- `Programador` tiene `void escribirCodigo()`.
+- `Diseñador` tiene `void disenar()`.
+- `Empleado` tiene `String nombre` y `void mostrarInfo()`.
+
+En el `main`, crea un `ArrayList<Empleado>` con varios empleados de ambos tipos y recórrelo usando `instanceof` para llamar a los métodos específicos.
+
+**Pista:** dentro del bucle, `if (e instanceof Programador)` → `((Programador) e).escribirCodigo();`. Siempre con `instanceof` antes del cast: nunca bajes sin preguntar.
+
+---
+
+## ⭐⭐ Ejercicio 6: Calculadora de figuras con clase abstracta
+
+Crea una clase abstracta `Figura` con:
+
+- Atributo `protected String color`.
+- Constructor que reciba el color.
+- Métodos abstractos `double calcularArea()` y `double calcularPerimetro()`.
+- Método concreto `void mostrarColor()` que imprima el color.
+
+Implementa `Circulo` (radio) y `Rectangulo` (ancho, alto). En el `main`, crea un `ArrayList<Figura>` con un círculo rojo de radio 3 y un rectángulo azul de 4x2, y muestra el área de cada uno y su color.
+
+**Pista:** el área total de la lista se calcula recorriéndola con `for (Figura f : figuras)`. `mostrarColor()` ya está hecho: las subclases solo implementan los dos métodos abstractos.
+
+---
+
+## ⭐⭐⭐ Ejercicio 7: Sistema de notificaciones polimórfico
+
+Crea una interfaz `Notificable` con:
+
+- `void enviar(String mensaje)`
+- `String getEstado()`
+
+Implementa:
+
+- `EmailNotificacion`: atributos `String direccion`, `boolean enviado`. Al enviar, imprime "Enviando email a [dirección]: [mensaje]". Estado: "Enviado" o "Pendiente".
+- `SMSNotificacion`: atributos `String telefono`, `boolean enviado`. Al enviar, imprime "Enviando SMS a [teléfono]: [mensaje]". Estado similar.
+- `PushNotificacion`: atributos `String dispositivoId`, `boolean enviado`. Al enviar, imprime "Enviando push a [dispositivoId]: [mensaje]".
+
+```java
+public interface Notificable {
+    void enviar(String mensaje);
+    String getEstado();
+}
+```
+
+En el `main`, crea un `ArrayList<Notificable>` con los tres tipos. Añade un método estático que recorra la lista y envíe todas las notificaciones:
+
+```java
+public static void enviarTodas(List<Notificable> notificaciones, String mensaje) {
+    for (Notificable n : notificaciones) {
+        n.enviar(mensaje);
     }
 }
 ```
 
-Este programa compila pero **se cae en ejecución**. ¿Qué excepción lanza y por qué? Reescríbelo usando un `Iterator` explícito para que funcione.
-
-**Pista:** el `for-each` esconde un `Iterator`. Borrar con el `remove()` de la lista mientras el iterador recorre es una declaración de guerra.
+**Pista:** los tres tipos comparten el patrón: al enviar, ponen `enviado = true` y devuelven "Enviado"; si no, "Pendiente". El polimorfismo hace que `enviarTodas` no sepa con qué tipo trata.
 
 ---
 
-## ⭐⭐ Ejercicio 8: ¿Qué imprime? — Collections en acción
+## ⭐⭐⭐ Ejercicio 8: Template method — las bebidas
 
-Sin ejecutar, responde qué imprime:
+Crea una clase abstracta `Bebida` con el patrón template method:
 
 ```java
-import java.util.*;
-
-public class Puzzle {
-    public static void main(String[] args) {
-        ArrayList<Integer> nums = new ArrayList<>();
-        nums.add(5);
-        nums.add(1);
-        nums.add(8);
-        nums.add(3);
-
-        Collections.sort(nums);
-        Collections.reverse(nums);
-
-        System.out.println(nums.get(1));
+public abstract class Bebida {
+    public final void preparar() {
+        hervirAgua();
+        prepararIngrediente();
+        servirEnTaza();
+        anadirExtras();
     }
+
+    private void hervirAgua() { System.out.println("Hirviendo agua..."); }
+    private void servirEnTaza() { System.out.println("Sirviendo en taza..."); }
+
+    protected abstract void prepararIngrediente();
+    protected abstract void anadirExtras();
 }
 ```
 
-**Pista:** recuerda que `sort` y `reverse` **modifican la lista original**. Primero ordena, después da la vuelta, y mira qué queda en la posición 1.
+Implementa `Te` (bolsita de té + limón) y `Cafe` (café molido + azúcar). En el `main`, prepara un `Te` y un `Cafe` con una variable de tipo `Bebida`.
+
+**Pista:** las subclases solo rellenan los dos métodos `protected abstract`. El `final` en `preparar()` garantiza que nadie reordene los pasos. Para probar ambas, usa una referencia polimórfica: `Bebida b = new Te(); b.preparar();`.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: Estadísticas de clase con ArrayList
+## ⭐⭐⭐ Ejercicio 9: El gran reto — vehículos con combustible
 
-Pide al usuario las notas de 20 alumnos con `Scanner`, guárdalas en un `ArrayList<Double>` y calcula:
+Crea una jerarquía de vehículos:
 
-- La nota media.
-- La nota más alta y la más baja (puedes usar `Collections.max()` y `Collections.min()`).
-- Cuántos alumnos aprobaron (nota >= 5).
+- `Vehiculo` (abstracta): `String matricula`, `int combustible`, `abstract boolean mover()`
+- `Coche`: gasta 5 de combustible por movimiento
+- `Moto`: gasta 3 de combustible por movimiento
+- `Camion`: gasta 10 de combustible por movimiento, pero puede llevar `int carga`
 
-Usa un bucle para rellenar la lista y un for-each para sumar.
+Cada vehículo tiene un `mover()` que reduce el combustible y devuelve `true` si pudo moverse. Si no hay suficiente, imprime "Sin combustible" y devuelve `false`.
 
-**Pista:** para la media acumula la suma con un for-each y divide entre `notas.size()`. Para aprobados, cuenta en el mismo bucle. `Collections.max` y `Collections.min` te ahorran los bucles del máximo/mínimo.
+En `main()`, crea un `ArrayList<Vehiculo>` con varios vehículos. Cada vehículo se mueve repetidamente mientras pueda y cuenta cuántos movimientos hizo.
+
+**Pista:** da a cada subclase una constante `private static final int GASTO` con lo que consume por movimiento. En `mover()`: `if (combustible >= GASTO) { combustible -= GASTO; ...; return true; } else { System.out.println("Sin combustible"); return false; }`. El bucle del `main` usa el valor de retorno: `while (v.mover()) { movimientos++; }`. Así nunca se queda en un bucle infinito cuando el combustible no llega para moverse.

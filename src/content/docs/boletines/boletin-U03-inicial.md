@@ -1,113 +1,160 @@
----
+﻿---
 title: Boletín U03 — Inicial
-description: Ejercicios básicos de Estructuras de Control y Excepciones
+description: Ejercicios básicos de Variables, Tipos y Operadores
 ---
 
 # 📝 Boletín U03 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, enciende el semáforo y haz que tu código decida, repita y sobreviva. Nadie nace sabiendo cuándo poner un `break`.
+> Sin soluciones. Sin prisas. Abre el IDE, declara variables y ensucia tus manos de bits. Nadie nace sabiendo qué es un `double`.
 
 ---
 
-## Ejercicio 1: El portero del club
+## Ejercicio 1: conversor de temperaturas
 
-Escribe un programa llamado `Portero` que, con las variables `int edad = 17` y `boolean tieneEntrada = true`, decida con `if`/`else`:
+Escribe un programa llamado `ConversorTemperatura` que convierta 30 grados Celsius a Fahrenheit. Usa la fórmula:
 
-- Si `edad >= 18` **Y** tiene entrada → "Adelante, que pase el mayor de edad."
-- Si es mayor de edad pero **no** tiene entrada → "Faltas tú solito, sin entrada no hay paraíso."
-- Si es menor → "Fuera de aquí, pequeñín."
+```
+F = C * 9/5 + 32
+```
+
+Declara `int celsius = 30` y una variable `double fahrenheit` para el resultado. Muestra ambas temperaturas.
 
 ---
 
-## Ejercicio 2: ¿Qué imprime? — el semáforo invertido
+## Ejercicio 2: ¿Qué imprime? — incrementos
 
 Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class SemaforoInvertido {
+public class Incrementos {
     public static void main(String[] args) {
-        int nota = 8;
-
-        if (nota >= 5) {
-            System.out.println("Aprobado");
-        } else if (nota >= 7) {
-            System.out.println("Notable");
-        } else if (nota >= 9) {
-            System.out.println("Sobresaliente");
-        } else {
-            System.out.println("Suspenso");
-        }
+        int x = 5;
+        System.out.println(x++);
+        System.out.println(++x);
+        System.out.println(x--);
+        System.out.println(--x);
+        System.out.println(x);
     }
 }
 ```
 
-Pista: recuerda que gana el **primer** `if` que se cumple, aunque haya otros más "precisos" después.
+Pista: recuerda la diferencia entre pre y post. `x++` usa y luego sube; `++x` sube y luego usa.
 
 ---
 
-## Ejercicio 3: El menú del día
+## Ejercicio 3: calculadora de descuentos
 
-Escribe un programa llamado `MenuDia` que, con `int dia = 4`, muestre con `switch` el menú correspondiente:
+Declara una constante `final double DESCUENTO = 0.15` y declara `double precioOriginal = 120.0`. Calcula:
 
-- `1` → Lunes: Lentejas
-- `2` → Martes: Paella
-- `3` → Miércoles: Macarrones
-- `4` → Jueves: Fabada
-- `5` → Viernes: Pescado
-- Cualquier otro número → `default`: Fin de semana, no hay menú
+1. El descuento (`precioOriginal * DESCUENTO`)
+2. El precio final (`precioOriginal - descuento`)
 
-No te olvides del `break` en cada `case` ni del `default`.
+Muestra todo con `println`. Si luego intentas cambiar el valor de `DESCUENTO`, el compilador se enfadará. ¿Sabes por qué?
 
 ---
 
-## Ejercicio 4: La cuenta atrás del cohete
+## Ejercicio 4: El tipo perfecto
 
-Escribe un programa llamado `Cohete` que cuente desde 5 hasta 0 con un `while` y luego muestre "¡Despegue! 🚀". Muestra un número por línea.
+Indica qué tipo de dato primitivo (`int`, `double`, `boolean`, `char`, `long`) usarías para cada caso:
 
-Pista: `int contador = 5;` y `while (contador >= 0) { ... contador--; }`.
+1. El número de habitantes de tu ciudad (~500.000)
+2. La distancia en kilómetros hasta la Luna (~384.400)
+3. La inicial de tu segundo apellido
+4. La nota media de un examen (3.7)
+5. Si has aprobado o no el examen anterior
+6. El precio de un café en céntimos (entero)
 
 ---
 
-## Ejercicio 5: La tabla del 7
+## Ejercicio 5: El casting asesino
 
-Escribe un programa llamado `TablaDelSiete` que muestre la tabla de multiplicar del 7 (del 1 al 10) usando un `for`:
+Declara `double precio = 9.99;`. Conviértelo a `int` con un casting explícito. Imprime ambos valores. ¿Qué se pierde por el camino?
+
+Después, declara `int grande = 300;` y conviértelo a `byte`. Imprime el resultado. ¿Te esperabas ese número? (Pista: en un `byte` solo caben -128 a 127.)
+
+---
+
+## Ejercicio 6: ¿Par o impar?
+
+Escribe un programa llamado `ParOImpar` que use el operador `%` para determinar si un número es par o impar. Puedes usar una variable `int numero = 7;` y el operador ternario para mostrar "Par" o "Impar". Muestra también `true` o `false` al comprobar si `numero % 2 == 0`.
+
+---
+
+## Ejercicio 7: String en acción
+
+Escribe un programa llamado `NombreEnAccion` que, con la variable `String nombre = "  ana  ";`:
+
+1. Limpie los espacios con `trim()`
+2. Muestre la longitud del nombre limpio
+3. Lo muestre en mayúsculas
+4. Muestre la primera letra (con `substring(0, 1)`)
+
+---
+
+## Ejercicio 8: saludo con Scanner
+
+Escribe un programa llamado `SaludoScanner` que:
+
+1. Pregunte "¿Cómo te llamas?" y lea el nombre con `nextLine()`
+2. Pregunte "¿Cuántos años tienes?" y lea la edad con `nextInt()`
+3. Muestre: "Hola, [nombre]. [edad] años, bienvenido."
+
+Recuerda el `import java.util.Scanner;` y el `sc.close()`.
+
+---
+
+## Ejercicio 9: CodeWars — Will you make it?
+
+Resuelve la kata **"Will you make it?"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/5861d28f124b35723e00005e).
+
+Te dan la distancia hasta una gasolinera, los litros que tiene tu coche y los kilómetros por litro. Determina si llegas o no. Devuelve `true` si llegas, `false` si te quedas tirado.
+
+---
+
+## Ejercicio 10: ¿Qué imprime? — printf con conversiones
+
+Sin ejecutar, escribe la salida exacta de este programa:
+
+```java
+public class FormateoBasico {
+    public static void main(String[] args) {
+        int entero = 42;
+        double decimal = 3.1416;
+        String texto = "Java";
+
+        System.out.printf("%d %f %s %n", entero, decimal, texto);
+    }
+}
+```
+
+¿Qué imprime? ¿Qué hace `%n` al final?
+
+**Pista:** `%d` es para enteros, `%f` para decimales y `%s` para texto. ¿Cuántos decimales muestra `%f` cuando no le pones `%.2f`?
+
+---
+
+## Ejercicio 11: la nota con dos decimales
+
+Escribe un programa llamado `NotaFormateada` que declare `String nombre = "Marta"` y `double nota = 9.5678;`. Usa `String.format()` para construir este mensaje:
 
 ```
-7 x 1 = 7
-7 x 2 = 14
-...
+Marta ha sacado un 9.57.
 ```
 
----
+Después muestra el mismo mensaje con `System.out.printf()`. ¿Qué diferencia hay entre las dos formas?
 
-## Ejercicio 6: Solo los pares
-
-Escribe un programa llamado `SoloPares` que imprima los números pares del 2 al 20 usando un `for` y `continue`. Cada número en su línea.
-
-Pista: recorre del 1 al 20 y usa `continue` para saltarte los impares (`if (i % 2 != 0) continue;`).
+**Pista:** `String.format` devuelve un `String` y no imprime nada; `printf` escribe directamente en pantalla. Los dos usan `%.2f` para dejar dos decimales.
 
 ---
 
-## Ejercicio 7: El detective de divisores
+## Ejercicio 12: la propina con dos decimales
 
-Escribe un programa llamado `DetectiveDivisores` que compruebe con `for` y `break` si el número `int numero = 29` tiene algún divisor entre 2 y `numero - 1`. Si lo encuentra, muestra "No es primo" y sale; si no, muestra "Es primo".
+Escribe un programa llamado `PropinaFormateada` que pida con `Scanner` el total de la cuenta (`double`) y el porcentaje de propina (`int`). Calcula la propina y el total final, y muéstralos con `System.out.printf` y dos decimales:
 
-Pista: recorre los divisores y, en cuanto encuentres uno (`numero % divisor == 0`), haz `break`.
+```
+Total: 45.50 €
+Propina (15%): 6.82 €
+Total a pagar: 52.33 €
+```
 
----
-
-## Ejercicio 8: La edad blindada
-
-Escribe un programa llamado `EdadBlindada` que pida la edad con `Scanner.nextInt()` dentro de un `try`/`catch`. Si el usuario escribe algo que no es un número, atrapa el `InputMismatchException` y muestra "Eso no es una edad válida.". Si lo es, muestra "Tienes X años."
-
-Pista: necesitas `import java.util.Scanner;` e `import java.util.InputMismatchException;`. Después del `catch`, el programa debe seguir vivo.
-
----
-
-## Ejercicio 9: CodeWars — Even or Odd
-
-Resuelve la kata **"Even or Odd"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/53da3dbb4a5168369a0000fe).
-
-Crea el método `public static String even_or_odd(int number)` que devuelva `"Even"` si el número es par y `"Odd"` si es impar.
-
-Pista: el operador `%` del punto 3 de la U02 es tu mejor amigo: `number % 2 == 0`.
+**Pista:** `%.2f` controla los decimales. Multiplica primero (`total * porcentaje`) y divide después con `100.0`, o `porcentaje / 100` dará 0.

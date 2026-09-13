@@ -1,6 +1,6 @@
----
-title: "Boletín U10 — Inicial Resuelto"
-description: "Los mismos ejercicios que el boletín inicial, con soluciones"
+﻿---
+title: Boletín U10 — Inicial Resuelto
+description: Los mismos ejercicios que el boletín inicial, con soluciones
 ---
 
 # 📝 Boletín U10 — Inicial (Resuelto)
@@ -9,74 +9,143 @@ description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — ArrayList remove por índice vs valor
+## Ejercicio 1: ¿Qué imprime? — La familia musical
 
 <details>
 <summary>🔄 Solución</summary>
 
-Imprime **`[A, C, D]`**.
+Imprime **"El bajista toca el bajo"**.
 
-Paso a paso:
-
-- `lista.remove(1)` borra por **índice**: se va el `"B"` de la posición 1 → `[A, C, B, D]`.
-- `lista.remove("B")` borra por **objeto**: busca la primera aparición de `"B"` y la borra → `[A, C, D]`.
-
-El primer `remove` borra el `"B"` de la posición 1 (el primero). Cuando después llamas a `remove("B")`, ese `"B"` ya no está, pero queda el `"B"` que estaba en la posición 3 (el cuarto elemento), que ahora es el primero que encuentra: lo borra. Resultado final `[A, C, D]`.
+`Bajista` tiene su propia versión de `tocar()`. Java busca el método empezando por la clase más específica (`Bajista`) y lo encuentra ahí mismo: nunca sube a `Guitarrista` ni a `Musico`. Ese es el *dynamic dispatch*: el método se resuelve según el tipo real del objeto, no según el tipo de la referencia.
 
 </details>
 
 ---
 
-## Ejercicio 2: Encuentra el error — size() vs length vs length()
+## Ejercicio 2: Encuentra el error — extends mal usado
 
 <details>
 <summary>🔄 Solución</summary>
 
-Las **líneas 1 y 2 tienen error**, la 3 es correcta:
-
-- `nombres.length` → las colecciones usan `size()` como método. `ArrayList` no tiene `length`. → **Error**.
-- `edades.size()` → los arrays usan `length` como atributo, sin paréntesis. → **Error**.
-- `saludo.length` → los `String` usan `length()` como método, con paréntesis. → **Correcta**.
-
-Regla de oro: **array → `length`; `String` → `length()`; colecciones → `size()`.** Confundirlos es la trampa favorita de los exámenes.
-
-</details>
-
----
-
-## Ejercicio 3: Completa el código — for-each que suma una lista
-
-<details>
-<summary>🔄 Solución</summary>
+El error es que `Perro` no llama al constructor de `Animal`. Cuando una clase hija no pone `super(...)`, Java intenta llamar a `super()` sin parámetros. Pero `Animal` solo tiene `Animal(String)`, así que el compilador no encuentra el constructor vacío: **error de compilación**.
 
 ```java
-import java.util.ArrayList;
+public class Perro extends Animal {
+    private String raza;
 
-public class SumaLista {
-    public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
-        numeros.add(4);
-        numeros.add(9);
-        numeros.add(2);
-        numeros.add(7);
-
-        int suma = 0;
-        for (Integer n : numeros) {
-            suma += n;
-        }
-
-        System.out.println("Suma: " + suma);
+    public Perro(String especie, String raza) {
+        super(especie);   // ¡la clave!
+        this.raza = raza;
     }
 }
 ```
 
-Los huecos: `0`, `Integer n` y `+=`. El for-each recorre cada elemento de la lista y lo acumula en `suma`. Resultado: `Suma: 22`.
+Piensa en `super()` como llamar a papá para que configure su parte antes de que tú configures la tuya. Si papá necesita una especie para construirse, tú tienes que pasársela. Es como construir una casa sin cimientos: el constructor del padre es la base.
 
 </details>
 
 ---
 
-## Ejercicio 4: Escribe este programa — la lista de la compra
+## Ejercicio 3: Completa el código — el gato que llama a su padre
+
+<details>
+<summary>🔄 Solución</summary>
+
+La palabra es **`super`**:
+
+```java
+public class Gato extends Animal {
+    @Override
+    public void hacerSonido() {
+        super.hacerSonido();   // primero lo del padre
+        System.out.println("¡MIAU!");
+    }
+
+    public static void main(String[] args) {
+        Gato g = new Gato();
+        g.hacerSonido();
+    }
+}
+```
+
+Salida:
+
+```
+Algún sonido genérico...
+¡MIAU!
+```
+
+`super.hacerSonido()` ejecuta la versión de `Animal` y luego el `Gato` añade lo suyo. Sin el `super`, el método estaría sobrescrito por completo y la línea del padre no saldría jamás.
+
+</details>
+
+---
+
+## Ejercicio 4: Escribe este programa — la herencia de vehículos
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Vehiculo {
+    protected String marca;
+
+    public Vehiculo(String marca) {
+        this.marca = marca;
+    }
+}
+
+public class Coche extends Vehiculo {
+    protected int numPuertas;
+
+    public Coche(String marca, int numPuertas) {
+        super(marca);
+        this.numPuertas = numPuertas;
+    }
+}
+
+public class Deportivo extends Coche {
+    private int velocidadMaxima;
+
+    public Deportivo(String marca, int numPuertas, int velocidadMaxima) {
+        super(marca, numPuertas);
+        this.velocidadMaxima = velocidadMaxima;
+    }
+
+    public static void main(String[] args) {
+        Deportivo d = new Deportivo("Ferrari", 2, 340);
+        System.out.println(d.marca + " con " + d.numPuertas
+                + " puertas y " + d.velocidadMaxima + " km/h");
+    }
+}
+```
+
+La herencia en cadena: `Deportivo` → `Coche` → `Vehiculo`. Cada constructor llama al de su padre con `super(...)`. Por eso `marca` (de `Vehiculo`) y `numPuertas` (de `Coche`) son accesibles en `Deportivo` gracias a `protected`.
+
+</details>
+
+---
+
+## Ejercicio 5: ¿Qué imprime? — polimorfismo con referencias
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime:
+
+```
+Y
+Z
+Z
+```
+
+El tipo de la **referencia** (X, X, Y) no importa. Lo que importa es el tipo **real** del objeto (Y, Z, Z). Java siempre ejecuta el método más específico del objeto real. Es como llevar la chaqueta de tu padre: por fuera pareces tu padre (la referencia), pero por dentro eres tú (el objeto). Cuando hablas, se oye tu voz, no la de tu padre. Dynamic binding en todo su esplendor.
+
+</details>
+
+---
+
+## Ejercicio 6: Escribe este programa — la granja polimórfica
 
 <details>
 <summary>🔄 Solución</summary>
@@ -84,21 +153,31 @@ Los huecos: `0`, `Integer n` y `+=`. El for-each recorre cada elemento de la lis
 ```java
 import java.util.ArrayList;
 
-public class Compra {
+public class Animal {
+    public void hacerSonido() { System.out.println("..."); }
+}
+
+class Vaca extends Animal {
+    @Override public void hacerSonido() { System.out.println("Muuuu"); }
+}
+
+class Oveja extends Animal {
+    @Override public void hacerSonido() { System.out.println("Beeee"); }
+}
+
+class Gallina extends Animal {
+    @Override public void hacerSonido() { System.out.println("Cloc cloc"); }
+}
+
+public class Granja {
     public static void main(String[] args) {
-        ArrayList<String> compra = new ArrayList<>();
-        compra.add("Leche");
-        compra.add("Pan");
-        compra.add("Huevos");
+        ArrayList<Animal> animales = new ArrayList<>();
+        animales.add(new Vaca());
+        animales.add(new Oveja());
+        animales.add(new Gallina());
 
-        compra.add(1, "Café");       // [Leche, Café, Pan, Huevos]
-
-        System.out.println("Tamaño: " + compra.size()); // 4
-
-        compra.remove(2);            // se va "Pan" → [Leche, Café, Huevos]
-
-        for (String item : compra) {
-            System.out.println(item);
+        for (Animal a : animales) {
+            a.hacerSonido();
         }
     }
 }
@@ -107,169 +186,78 @@ public class Compra {
 Salida:
 
 ```
-Tamaño: 4
-Leche
-Café
-Huevos
+Muuuu
+Beeee
+Cloc cloc
 ```
 
-`add(1, "Café")` inserta en la posición 1 y desplaza al resto; `remove(2)` borra por índice (el tercer elemento, "Pan").
+Un solo `ArrayList<Animal>` y un solo bucle: cada animal ejecuta su propia versión gracias al polimorfismo. Sin él, tendrías tres listas separadas. Esto es lo que hace que el polimorfismo valga su peso en oro.
 
 </details>
 
 ---
 
-## Ejercicio 5: ¿Qué imprime? — el ArrayList misterioso
+## Ejercicio 7: Encuentra el error — @Override que no lo es
 
 <details>
 <summary>🔄 Solución</summary>
 
-Imprime **`10 15 30`**.
+La línea que **no compila** es:
 
-- `add(10)`, `add(20)`, `add(30)` → `[10, 20, 30]`.
-- `add(1, 15)` inserta el 15 en la posición 1 y desplaza → `[10, 15, 20, 30]`.
-- `remove(Integer.valueOf(20))` borra el **objeto** 20 (no el índice 2) → `[10, 15, 30]`.
+```java
+@Override
+public void nadar() { }   // ✗ ERROR: Animal no tiene nadar()
+```
 
-`remove(Integer.valueOf(20))` no es lo mismo que `remove(2)`: el primero borra el objeto cuyo valor es 20; el segundo borra la posición 2 (que ahora ocupa el 20, casualidad). Aquí los dos coinciden en el resultado, pero por motivos distintos. Si la lista hubiera sido `[10, 20, 15, 20]`, `remove(Integer.valueOf(20))` borraría el primer 20 y `remove(2)` borraría el 15.
+`@Override` le dice al compilador: "verifica que realmente estoy sobrescribiendo un método del padre". Como `Animal` no tiene `nadar()`, el compilador lo avisa en el acto. La otra línea (`hacerSonido()`) sí es un override válido. Ese aviso a tiempo es el regalo de `@Override`: si escribes mal un nombre de método, te entera el compilador, no un bug rarísimo a medianoche.
 
 </details>
 
 ---
 
-## Ejercicio 6: Escribe este programa — ¿está en la lista?
+## Ejercicio 8: Escribe este programa — el perro bien heredado
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.ArrayList;
-import java.util.Scanner;
+public class Perro extends Animal {
+    public Perro(String nombre, int edad) {
+        super(nombre, edad);
+    }
 
-public class BuscarNombre {
+    public void ladrar() {
+        System.out.println(nombre + " dice: ¡Guau!");
+    }
+
     public static void main(String[] args) {
-        ArrayList<String> nombres = new ArrayList<>();
-        nombres.add("Ana");
-        nombres.add("Bob");
-        nombres.add("Carla");
-        nombres.add("David");
-        nombres.add("Eva");
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Introduce un nombre: ");
-        String buscado = sc.nextLine();
-
-        int pos = nombres.indexOf(buscado);
-        if (pos >= 0) {
-            System.out.println("Sí, está en la posición " + pos);
-        } else {
-            System.out.println("No está");
-        }
-        sc.close();
+        Perro p = new Perro("Firulais", 3);
+        p.ladrar();
     }
 }
 ```
 
-`indexOf` devuelve la posición de la primera aparición, o `-1` si no existe. Comparar con `>= 0` es el patrón clásico para "¿está?".
+Salida: `Firulais dice: ¡Guau!`
+
+`Perro` puede usar `nombre` y `edad` porque están declarados como `protected` en `Animal`: la herencia los pone a disposición de toda la familia. Si fueran `private`, ni `Perro` los vería. Es como la herencia familiar: lo que es privado en casa de los abuelos, no lo ven ni los nietos.
 
 </details>
 
 ---
 
-## Ejercicio 7: Escribe este programa — el mayor de la lista
+## Ejercicio 9: ¿Qué imprime? — la cadena de constructores
 
 <details>
 <summary>🔄 Solución</summary>
 
-```java
-import java.util.ArrayList;
-
-public class MayorLista {
-    public static int mayor(ArrayList<Integer> notas) {
-        int max = notas.get(0);
-        for (int i = 1; i < notas.size(); i++) {
-            if (notas.get(i) > max) {
-                max = notas.get(i);
-            }
-        }
-        return max;
-    }
-
-    public static void main(String[] args) {
-        ArrayList<Integer> notas = new ArrayList<>();
-        notas.add(6);
-        notas.add(8);
-        notas.add(5);
-        notas.add(9);
-
-        System.out.println("La mayor es: " + mayor(notas)); // 9
-    }
-}
-```
-
-El patrón del "máximo acumulado": asumes que el primero es el mayor y, si aparece uno más grande, lo sustituyes. El bucle empieza en `i = 1` porque el candidato inicial ya es `notas.get(0)`.
-
-</details>
-
----
-
-## Ejercicio 8: Encuentra el error — ArrayList<int> no compila
-
-<details>
-<summary>🔄 Solución</summary>
-
-No compila porque **los genéricos solo aceptan objetos, y `int` es un primitivo**. `ArrayList<int>` no existe. La solución es usar la clase wrapper `Integer`:
-
-```java
-import java.util.ArrayList;
-
-public class Error {
-    public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
-        numeros.add(5);
-        numeros.add(10);
-        System.out.println(numeros.get(0) + numeros.get(1)); // 15
-    }
-}
-```
-
-El **autoboxing** convierte automáticamente el `int` 5 en un `Integer` al añadirlo, y el **unboxing** lo convierte de vuelta a `int` al sumar. Tú no escribes nada de eso: Java lo hace solo.
-
-</details>
-
----
-
-## Ejercicio 9: Escribe este programa — posición y valor
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.ArrayList;
-
-public class PosicionValor {
-    public static void main(String[] args) {
-        ArrayList<Integer> lista = new ArrayList<>();
-        for (int i = 1; i <= 5; i++) {
-            lista.add(i);
-        }
-
-        for (int i = 0; i < lista.size(); i++) {
-            System.out.println("Posición " + i + " → " + lista.get(i));
-        }
-    }
-}
-```
-
-Salida:
+Imprime:
 
 ```
-Posición 0 → 1
-Posición 1 → 2
-Posición 2 → 3
-Posición 3 → 4
-Posición 4 → 5
+Abuelo
+Padre
+Hijo
 ```
 
-El primer bucle rellena la lista con `add(i)`; el segundo la recorre con el for clásico y lee cada posición con `get(i)`. Ojo: `add(i)` con `i` desde 1 añade al final los valores 1 a 5; `get(i)` recupera por índice.
+Al crear un `Hijo` se ejecutan **todos** los constructores de la cadena, del más general al más específico. Como cada constructor llama a `super()` (o Java lo pone automáticamente), primero se construye `Abuelo`, luego `Padre` y por último `Hijo`. Los cimientos antes que el tejado, siempre.
 
 </details>

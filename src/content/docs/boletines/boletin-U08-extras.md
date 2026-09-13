@@ -1,181 +1,146 @@
----
+﻿---
 title: Boletín U08 — Extras
 description: CodeWars y AceptaElReto para ir más allá de la unidad
 ---
 
 # 📝 Boletín U08 — Extras
 
-> Ejercicios de CodeWars y AceptaElReto con pistas. La solución está oculta: resístete hasta agotar tu pista. Los `private`, los getters y el `static` son aquí los protagonistas: encapsula, protege y comparte sin miedo.
+> Ejercicios de CodeWars y AceptaElReto con pistas. La solución está oculta: resístete hasta agotar tu pista.
 
 ---
 
 ## CodeWars
 
-### 1. Playing with cubes II
+### 1. FIXME: Get Full Name
 
-Te dan un molde de clase `Cube` con un atributo privado `side`. Tu trabajo: construirla con getter y setter, y dos constructores (uno vacío que inicializa `side` a 0, y otro que recibe el lado).
+Te dan una clase `Dinglemouse` con un método `getFullName()` que debería devolver `"Nombre Apellido"`, pero el resultado está al revés o incompleto. Arréglala.
 
-**Ejemplo de uso:**
-```java
-Cube c = new Cube(3);
-c.getSide();  // 3
-c.setSide(7);
-c.getSide();  // 7
-```
+- [Enunciado en CodeWars](https://www.codewars.com/kata/597c684822bc9388f600010f)
+- Dificultad: 7 kyu
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55c0ac142326fdf18d0000af)
-- Dificultad: 8 kyu
-
-**Pista:** `side` debe ser `private` (nadie lo toca desde fuera) y los únicos portales son `getSide()` y `setSide()`. El constructor sin parámetros pone `this.side = 0;`. Exactamente lo que has visto en la unidad: encapsulación pura.
+**Pista:** fíjate en qué atributos existen (`firstName` y `lastName`) y en cómo el método los concatena. La clase está hecha para romperse: busca el error de `this` o de orden.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Cube {
-    private int side;
+public class Dinglemouse {
+    private final String firstName;
+    private final String lastName;
 
-    public Cube() {
-        this.side = 0;
+    public Dinglemouse(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public Cube(int side) {
-        this.side = side;
-    }
-
-    public int getSide() {
-        return side;
-    }
-
-    public void setSide(int side) {
-        this.side = side;
+    public String getFullName() {
+        if (firstName.isEmpty() && lastName.isEmpty()) {
+            return "";
+        }
+        if (firstName.isEmpty()) {
+            return lastName;
+        }
+        if (lastName.isEmpty()) {
+            return firstName;
+        }
+        return firstName + " " + lastName;
     }
 }
 ```
 
-El atributo `side` es `private`: nadie puede hacer `c.side = 9` desde fuera. Los dos constructores dan dos formas de nacer (con o sin valor), y el getter/setter son las únicas puertas. El `this` del setter desambigua el parámetro del atributo, como viste en la unidad.
+La clase original fallaba al construir el nombre completo: los casos en los que falta un nombre o los dos debían devolver lo que hay. El método correcto encadena los casos límite antes de juntar ambos nombres con un espacio.
 
 </details>
 
 ---
 
-### 2. Classy Extentions
+### 2. Geometry Basics: Distance between points in 2D
 
-Crea la clase `Pet` con un atributo privado `name` (String) y un método `speak()` que devuelva el nombre del animal. Después crea la clase `Cat` que **hereda** de `Pet` y sobrescribe `speak()` para que devuelva `"[name] meows."`.
+Te dan una clase `Point` con dos propiedades (`x` e `y`) y tienes que implementar el método `distanceBetweenPoints(Point a, Point b)` que devuelva la distancia entre ellos.
 
-**Ejemplos:**
-```java
-new Cat("Milo").speak();  // "Milo meows."
-new Cat("Garfield").speak();  // "Garfield meows."
-```
+**Ejemplo:** `Point(3, 3)` y `Point(3, 3)` → `0`. `Point(1, 6)` y `Point(4, 2)` → `5`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55a14aa4817efe41c20000bc)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/58dced7b702b805b200000be)
 - Dificultad: 8 kyu
 
-**Pista:** `name` es privado, así que `Cat` no puede leerlo directamente: necesita un getter `getName()` en `Pet` (recuerda: los privados no se heredan, pero existen dentro del objeto). `Cat extends Pet` y usa `super(nombre)` para construir la parte del padre.
+**Pista:** distancia euclidiana `Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))`. Los objetos se pasan como parámetro, como hicimos con `Fraccion.sumar`.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Pet {
-    private String name;
-
-    public Pet(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String speak() {
-        return name;
+public class Kata {
+    public static double distanceBetweenPoints(Point a, Point b) {
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
     }
 }
 
-public class Cat extends Pet {
-    public Cat(String name) {
-        super(name);
-    }
+class Point {
+    public double x;
+    public double y;
 
-    @Override
-    public String speak() {
-        return getName() + " meows.";
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 }
 ```
 
-Fíjate: `Cat` no toca `name` directamente (es privado en `Pet`), usa `getName()`. Eso es el triángulo perfecto: **encapsulación** (privado + getter) + **herencia** (`extends`) + **sobrescritura** (`@Override`). La herencia la profundizas en la U09, pero aquí ya la ves en acción.
+El método recibe dos objetos `Point` y lee sus atributos (`a.x`, `b.x`...). Es exactamente el mismo patrón de `sumar(Fraccion otra)`: un objeto trabaja con otro. La fórmula de Pitágoras resuelta por objetos.
 
 </details>
 
 ---
 
-### 3. Sleigh Authentication
+### 3. Grasshopper — Personalized Message
 
-Papá Noel tiene un método `authenticate(name, password)` y solo admite dos credenciales: el nombre debe ser `"Santa Claus"` y la contraseña `"Ho Ho Ho!"`. Devuelve `true` solo si ambas coinciden.
+Crea el método `greet(name, owner)` que devuelva `"Hello boss"` si `name` y `owner` son iguales, o `"Hello guest"` si son distintos.
 
-**Ejemplos:** `authenticate("Santa Claus", "Ho Ho Ho!")` → `true`, `authenticate("Santa", "Ho Ho Ho!")` → `false`.
+**Ejemplos:** `greet("Daniel", "Daniel")` → `"Hello boss"`, `greet("Greg", "Daniel")` → `"Hello guest"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5772da22b89313a4d50012f7)
+- Dificultad: 8 kyu
+
+**Pista:** compara `String` con `.equals()`, nunca con `==`. Un `if`/`else` o un ternario.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static String greet(String name, String owner) {
+        return name.equals(owner) ? "Hello boss" : "Hello guest";
+    }
+}
+```
+
+Una línea con el ternario y `.equals()`. Si usas `==` con cadenas, los resultados serán impredecibles: en Java los `String` se comparan con `.equals()` porque son objetos (aunque Java les da un trato especial). La U09 te contará por qué.
+
+</details>
+
+---
+
+### 4. Sleigh Authentication
+
+Tienes que completar la clase `Sleigh` con un método `authenticate(name, password)` que devuelva `true` solo si `name` es `"Santa Claus"` y `password` es `"Ho Ho Ho!"`.
 
 - [Enunciado en CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
 - Dificultad: 8 kyu
 
-**Pista:** los dos valores son constantes: `private static final String NOMBRE_VALIDO = "Santa Claus";`. Compara con `.equals()`, nunca con `==`. Y nota el `static`: el método no necesita objeto, es pura lógica de clase.
+**Pista:** devuelve `name.equals("Santa Claus") && password.equals("Ho Ho Ho!")`. Otra vez `.equals()`, y el `&&` de la U04.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Sleigh {
-    private static final String NOMBRE_VALIDO = "Santa Claus";
-    private static final String PASSWORD_VALIDO = "Ho Ho Ho!";
-
     public boolean authenticate(String name, String password) {
-        return NOMBRE_VALIDO.equals(name) && PASSWORD_VALIDO.equals(password);
+        return name.equals("Santa Claus") && password.equals("Ho Ho Ho!");
     }
 }
 ```
 
-Las constantes `static final` son el secreto de la casa: `static` (una sola copia para toda la clase, la viste en el punto 7) y `final` (nadie puede reasignarlas). El `authenticate` combina las dos comprobaciones con `&&`. El `.equals()` se llama sobre la constante, no sobre el parámetro: así `null` nunca rompe el método.
-
-</details>
-
----
-
-### 4. Object Oriented Piracy
-
-Crea la clase `Ship` que recibe un `draft` (calado) y un `crew` (tripulantes). Implementa `isWorthIt()`: devuelve `true` si el calado total menos `1.5` por cada tripulante supera 20.
-
-**Ejemplo:** `new Ship(15, 10).isWorthIt()` → `false` (`15 - 1.5*10 = 0`).
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add)
-- Dificultad: 8 kyu
-
-**Pista:** guarda `draft` y `crew` en atributos `private final` (se fijan en el constructor y ya no cambian). El método combina ambos: `return draft - 1.5 * crew > 20;`. El `1.5` merece ser una constante con nombre.
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Ship {
-    private static final double PESO_TRIPULANTE = 1.5;
-
-    private final double draft;
-    private final int crew;
-
-    public Ship(double draft, int crew) {
-        this.draft = draft;
-        this.crew = crew;
-    }
-
-    public boolean isWorthIt() {
-        return draft - PESO_TRIPULANTE * crew > 20;
-    }
-}
-```
-
-La clase es inmutable: los atributos `final` se fijan al nacer y nadie puede cambiarlos (ni siquiera con un setter, que aquí no existe). La constante `static final` documenta el `1.5`. El barco "sabe" si merece la pena saquearlo sin que nadie lea sus tripas: encapsulación y responsabilidad única.
+Un método de una sola línea: dos comparaciones con `.equals()` unidas por `&&`. Es una de esas katas trampa: parece trivial, pero muchos caen usando `==` y fallan los tests. Objetos por todos lados.
 
 </details>
 
@@ -183,11 +148,67 @@ La clase es inmutable: los atributos `final` se fijan al nacer y nadie puede cam
 
 ## AceptaElReto
 
-### 5. 117 — La fiesta aburrida
+### 5. 148 — Nochevieja
 
-Tinín odia las fiestas, y cada persona que se le acerca se presenta con el formato `"Soy Lotario"`. Ayúdale a responder `"Hola, [nombre]."` a cada uno. La entrada empieza con un número que indica cuántas personas hay, seguido de una línea por persona. Escribe la solución con una clase `Persona` que guarde el nombre y un método `saludar()`.
+Ramón se pasa el día de Nochevieja contando los minutos que faltan para medianoche. Para cada hora de la entrada (formato `HH:MM`), di cuántos minutos faltan para las `00:00`. La entrada termina con `00:00`, que no se procesa.
 
-**Entrada de ejemplo:**
+**Entrada:**
+
+```
+23:45
+21:30
+00:01
+00:00
+```
+
+**Salida:**
+
+```
+15
+150
+1439
+```
+
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=148)
+- Dificultad: Fácil
+
+**Pista:** separa la hora y el minuto con `split(":")`. Los minutos que faltan son `(23 - hora) * 60 + (60 - minuto)`. Escribe una clase `Hora` con un método `minutosHastaMedianoche()` y verás lo natural que queda.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class Nochevieja {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String linea = sc.next();
+
+        while (!linea.equals("00:00")) {
+            String[] partes = linea.split(":");
+            int hora = Integer.parseInt(partes[0]);
+            int minuto = Integer.parseInt(partes[1]);
+            System.out.println((23 - hora) * 60 + (60 - minuto));
+            linea = sc.next();
+        }
+        sc.close();
+    }
+}
+```
+
+Para `23:45`: `(23-23)*60 + (60-45)` = 15. Para `21:30`: `2*60 + 30` = 150. El `while` se detiene con la línea `00:00` porque se compara con `.equals()` (es un `String`, recuerda). La versión con clase `Hora` es un buen ejercicio voluntario.
+
+</details>
+
+---
+
+### 6. 117 — La fiesta aburrida
+
+Tinín odia saludar a desconocidos. La entrada empieza con un número N (cuánta gente hay) y luego N líneas con el formato `"Soy Lotario"`. Para cada una, imprime `"Hola, Lotario."`.
+
+**Entrada:**
+
 ```
 3
 Soy Lotario
@@ -195,7 +216,8 @@ Soy Aldonza
 Soy Ender
 ```
 
-**Salida de ejemplo:**
+**Salida:**
+
 ```
 Hola, Lotario.
 Hola, Aldonza.
@@ -205,7 +227,7 @@ Hola, Ender.
 - [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
 - Dificultad: Fácil
 
-**Pista:** lee la línea, quita el `"Soy "` inicial (`linea.substring(4)` o `split(" ")[1]`), crea la `Persona` con ese nombre y llama a su `saludar()`. Es una excusa perfecta para una clase con un atributo y un método, en vez de un main que lo hace todo.
+**Pista:** `split(" ")` sobre cada línea y coge la segunda parte (índice 1). Puedes modelar cada persona como un objeto de una clase `Persona` con el nombre y un método `saludar()`.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -213,82 +235,7 @@ Hola, Ender.
 ```java
 import java.util.Scanner;
 
-public class Persona {
-    private String nombre;
-
-    public Persona(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void saludar() {
-        System.out.println("Hola, " + nombre + ".");
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        sc.nextLine();  // consume el salto de línea
-
-        for (int i = 0; i < n; i++) {
-            String linea = sc.nextLine();
-            String nombre = linea.substring(4);  // quita "Soy "
-            Persona p = new Persona(nombre);
-            p.saludar();
-        }
-        sc.close();
-    }
-}
-```
-
-`Persona` encapsula su nombre: `private` + constructor + un método que sabe saludar. El `main` solo se encarga de leer y crear objetos. `linea.substring(4)` se salta los 4 primeros caracteres (`"Soy "`). El `sc.nextLine()` extra tras el `nextInt()` consume el Enter, el clásico del Scanner que viste en la U02.
-
-</details>
-
----
-
-### 6. 117 bis — La fiesta aburrida con contador estático
-
-Reto extra con `static`: usa la clase `Persona` del ejercicio 5, pero añade un atributo `private static int totalSaludos` que cuente cuántas personas ha saludado Tinín en total. Tras cada saludo, muestra el total acumulado.
-
-**Entrada de ejemplo:**
-```
-2
-Soy Lotario
-Soy Ender
-```
-
-**Salida de ejemplo:**
-```
-Hola, Lotario. (saludos: 1)
-Hola, Ender. (saludos: 2)
-```
-
-**Pista:** `static` significa "de la clase, no del objeto": todos los `Persona` comparten `totalSaludos`. Instruméntalo dentro de `saludar()` con `totalSaludos++`. Así practicas que el contador sube para todos los objetos, como el `Contador` del boletín inicial.
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Scanner;
-
-public class Persona {
-    private static int totalSaludos = 0;
-
-    private String nombre;
-
-    public Persona(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public void saludar() {
-        totalSaludos++;
-        System.out.println("Hola, " + nombre + ". (saludos: " + totalSaludos + ")");
-    }
-
-    public static int getTotalSaludos() {
-        return totalSaludos;
-    }
-
+public class FiestaAburrida {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -296,18 +243,18 @@ public class Persona {
 
         for (int i = 0; i < n; i++) {
             String linea = sc.nextLine();
-            Persona p = new Persona(linea.substring(4));
-            p.saludar();
+            String nombre = linea.split(" ")[1];
+            System.out.println("Hola, " + nombre + ".");
         }
         sc.close();
     }
 }
 ```
 
-`totalSaludos` es `static`: hay una única copia compartida por toda la clase, no una por objeto. Cada `saludar()` lo incrementa y, como todos comparten la misma variable, el contador acumula de verdad. `getTotalSaludos()` es `static` porque la pregunta "¿cuántos saludos en total?" se la haces a la clase, no a una persona concreta.
+`split(" ")` parte `"Soy Lotario"` en `["Soy", "Lotario"]` y el índice 1 es el nombre. El `sc.nextLine()` tras el `nextInt()` consume el salto de línea sobrante. Una versión con clase `Persona` y su método `saludar()` es el reto extra ideal para esta unidad.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines la encapsulación, vuelve a los problemas de unidades anteriores y reescríbelos con clases bien blindadas: un `Rectangulo` con su área como método, un `Numero` con su análisis como método... El `private`, los getters y el `static` transforman un script suelto en un diseño. El material no se pierde: se reutiliza.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines las clases, el paso natural es proteger sus datos: eso es la **encapsulación** de la U09. Y si quieres ver objetos que se crean y destruyen solos, espérate a los arrays de la U05 y las colecciones de la U11, donde crearás decenas de objetos en un bucle.

@@ -1,185 +1,147 @@
----
-title: "Butlletí U04 — Extres"
-description: "CodeWars i AceptaElReto per a anar més enllà dels arrays"
+﻿---
+title: Butlletí U04 — Extres
+description: CodeWars i AceptaElReto per a anar més enllà de la unitat
 ---
 
 # 📝 Butlletí U04 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
+> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista.
 
 ---
 
 ## CodeWars
 
-### 1. Convert number to reversed array of digits
+### 1. Return Negative
 
-Et donen un número enter no negatiu. Torna els seus dígits en un array d'enters, **en ordre invers**.
+Et donen un nombre i has de retornar-lo negatiu. Però compte: si el nombre ja és negatiu, deixa'l com està.
 
-**Exemple:** `35231` → `[1, 3, 2, 5, 3]` · `0` → `[0]`.
+**Exemples:** `1` → `-1`, `-14` → `-14`, `34` → `-34`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5583090cbe83f4fd8c000051)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/55685cd7ad70877c23000102)
 - Dificultat: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Per a extraure dígits, `% 10` et dona l'últim i `/ 10` se'l treu. Amb això ja eixen invertits: el primer que traus és l'últim del número.
-
-</details>
+**Pista:** un ternari decideix: si és major que 0, canvia el signe (`-num`); si no, retorna'l tal qual.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static int[] digitize(long n) {
-        String texto = Long.toString(n);
-        int[] resultado = new int[texto.length()];
-
-        for (int i = 0; i < resultado.length; i++) {
-            resultado[i] = Character.getNumericValue(texto.charAt(resultado.length - 1 - i));
-        }
-        return resultado;
+    public static int makeNegative(int num) {
+        return num > 0 ? -num : num;
     }
 }
 ```
 
-Una altra forma, sense convertir a text, si prefereixes `%` i `/`:
-
-```java
-public static int[] digitize(long n) {
-    String texto = String.valueOf(n);
-    int[] resultado = new int[texto.length()];
-    for (int i = 0; i < texto.length(); i++) {
-        resultado[i] = (int) (n % 10);
-        n /= 10;
-    }
-    return resultado;
-}
-```
-
-Amb `% 10` i `/ 10`: l'últim dígit eix primer (ja ve invertit), i després de dividir entre 10 es repeteix. El cas `0` → `[0]` funciona sol: `0 % 10 = 0`.
+Un ternari amb la condició `num > 0`. Si és positiu, l'operador unari `-` el fa negatiu; si ja era negatiu (o zero), es queda igual. Decidir amb una línia: pura U04.
 
 </details>
 
 ---
 
-### 2. Find the smallest integer in the array
+### 2. Sum of positive
 
-Et donen un array d'enters. Torna l'enter **més menut**.
+Et donen un array d'enters. Retorna la suma de tots els **positius**.
 
-**Exemples:** `[78, 56, 232, 12, 11, 43]` → `11` · `[34, -345, -1, 100]` → `-345`.
+**Exemple:** `[1, -4, 7, 12]` → `1 + 7 + 12 = 20`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5715eaedb436cf5606000381)
 - Dificultat: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-El patró del mínim: comença assumint que el primer és el mínim i compara amb cada un. Ací l'array mai no està buit.
-
-</details>
+**Pista:** recorre l'array amb un `for` i, amb un `if`, suma només els nombres majors que 0.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static int findSmallestInt(int[] args) {
-        int minimo = args[0];
-        for (int i = 1; i < args.length; i++) {
-            if (args[i] < minimo) {
-                minimo = args[i];
+    public static int sum(int[] arr) {
+        int suma = 0;
+        for (int numero : arr) {
+            if (numero > 0) {
+                suma += numero;
             }
         }
-        return minimo;
+        return suma;
     }
 }
 ```
 
-El mateix esquelet que el "màxim acumulat", però al revés. Com l'array mai no està buit, pots usar `args[0]` com a punt de partida sense por.
+El bucle recorre cada nombre i l'`if` filtra els positius abans de sumar-los. El `for...each` és una drecera que ja coneixes; l'`if` dins del bucle és l'essència de les estructures de control.
 
 </details>
 
 ---
 
-### 3. Count by X
+### 3. Grasshopper — Summation
 
-Torna un array amb els **primers `n` múltiples** de `x`.
+Escriu un programa que calcule la suma de tots els nombres des d'1 fins a `n`.
 
-**Exemples:** `countBy(2, 5)` → `[2, 4, 6, 8, 10]` · `countBy(1, 10)` → `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+**Exemples:** `summation(2)` → `3` (1 + 2), `summation(8)` → `36` (1 + 2 + ... + 8).
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/5513795bd3fafb56c200049e)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/55d24f55d7dd296eb9000030)
 - Dificultat: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Crea l'array amb `new int[n]` i ompli amb un `for`: la plaça `i` guarda `x * (i + 1)`.
-
-</details>
+**Pista:** un `for` que acumule de l'1 al `n` en una variable `suma`. (O la fórmula matemàtica `n * (n + 1) / 2`, si et va la drecera.)
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static int[] countBy(int x, int n) {
-        int[] resultado = new int[n];
-        for (int i = 0; i < n; i++) {
-            resultado[i] = x * (i + 1);
+    public static int summation(int n) {
+        int suma = 0;
+        for (int i = 1; i <= n; i++) {
+            suma += i;
         }
-        return resultado;
+        return suma;
     }
 }
 ```
 
-Saps la grandària per endavant (`n`), així que no cal el patró de dues passades: un sol `for` crea i ompli. El `(i + 1)` és perquè els múltiples comencen en `x * 1`, no en `x * 0`.
+Amb bucles: `suma += i` acumula cada volta. Amb la fórmula directa: `return n * (n + 1) / 2;`, que dona el mateix resultat sense ni un bucle. Les dues són vàlides; el bucle és el que practiquem ací.
 
 </details>
 
 ---
 
-### 4. Take a Ten Minute Walk
+### 4. Sum without highest and lowest number
 
-Vius en una ciutat en graella. Et donen un array de direccions (`'n'`, `'s'`, `'e'`, `'w'`). Torna `true` si el passeig dura **exactament 10 minuts** (una illa per minut) **i et deixa al punt de partida**.
+Suma tots els nombres d'un array **excepte** el més alt i el més baix. Si l'array està buit, és `null` o té un sol element, retorna `0`.
 
-**Exemples:** `['n','s','n','s','n','s','n','s','n','s']` → `true` · `['n','n','n','s','n','s','n','s','n','s']` → `false`.
+**Exemple:** `[6, 2, 1, 8, 10]` → `2 + 6 + 8 = 16`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/54da539698eb8f52b900053b)
-- Dificultat: 6 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/576b93db112df076d900060c)
+- Dificultat: 7 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Porta dos comptadors: un per a nord/sud i un altre per a est/oest. Si el passeig no dura 10 minuts, ja pots tornar `false` sense comptar res.
-
-</details>
+**Pista:** recorre l'array una vegada per a acumular la suma i, en el mateix bucle, rastreja el mínim i el màxim amb dos `if`. Al final: `suma - minimo - maximo`.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static boolean isValid(char[] walk) {
-        if (walk.length != 10) {
-            return false;
+    public static int sum(int[] numeros) {
+        if (numeros == null || numeros.length <= 1) {
+            return 0;
         }
 
-        int x = 0, y = 0;
-        for (char c : walk) {
-            if (c == 'n') y++;
-            if (c == 's') y--;
-            if (c == 'e') x++;
-            if (c == 'w') x--;
+        int suma = 0;
+        int minimo = Integer.MAX_VALUE;
+        int maximo = Integer.MIN_VALUE;
+
+        for (int numero : numeros) {
+            suma += numero;
+            if (numero < minimo) minimo = numero;
+            if (numero > maximo) maximo = numero;
         }
 
-        return x == 0 && y == 0;
+        return suma - minimo - maximo;
     }
 }
 ```
 
-Nord puja `y`, sud el baixa; est puja `x`, oest el baixa. Si al final tots dos comptadors tornen a 0, ets on vas començar. És un array recorregut una sola volta, amb la suma com a testimoni. O(n), com ha de ser.
+El truc: `Integer.MAX_VALUE` i `Integer.MIN_VALUE` com a "infinits" inicials, perquè el primer nombre de l'array sempre els supere. Un sol bucle fa tres coses (sumar, buscar mínim, buscar màxim) i la resta final lleva els extrems. Tres decisions en un sol recorregut: pura múscul d'esta unitat.
 
 </details>
 
@@ -187,38 +149,32 @@ Nord puja `y`, sud el baixa; est puja `x`, oest el baixa. Si al final tots dos c
 
 ## AceptaElReto
 
-### 5. 171 — Abadies de pedra
+### 5. 149 — San Fermines
 
-Una serralada té una sèrie de muntanyes, cada una amb la seua altura. Es pot construir una **abadia** sobre una muntanya si és **més alta que totes les que té a la dreta** (cap al mar). Compta quantes muntanyes compleixen la condició.
+Als sanfermines, els moços volen saber la velocitat màxima dels braus per a saber si eixir corrent o volar. Donat un nombre de braus i la velocitat de cada un, digues quina és la màxima.
 
-**Entrada:** diversos casos de prova. Cada cas comença amb `N` (nombre de muntanyes), seguit de `N` altures en la mateixa línia. Un `0` acaba l'entrada.
+**Entrada:** diversos casos de prova fins al final de l'entrada (EOF). Cada cas: un nombre N i a continuació les N velocitats.
 
 **Exemple:**
 
 ```
 3
-5 3 4
-4
-2 3 4 1
-0
+10 20 15
+5
+50 12 90 7 25
 ```
 
 **Eixida:**
 
 ```
-2
-2
+20
+90
 ```
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=171)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=149)
 - Dificultat: Fàcil
 
-<details>
-<summary>💡 Pista</summary>
-
-Recorre l'array **de dreta a esquerra** guardant l'altura màxima vista. L'última muntanya sempre val. Quan una muntanya supere la màxima vista fins ara, és una abadia nova.
-
-</details>
+**Pista:** un `while (sc.hasNextInt())` llig fins al final de l'entrada. Dins, un `for` recorre les velocitats i un `if` va guardant el màxim.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -226,72 +182,53 @@ Recorre l'array **de dreta a esquerra** guardant l'altura màxima vista. L'últi
 ```java
 import java.util.Scanner;
 
-public class Abadias {
+public class SanFermines {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
 
-        while (n != 0) {
-            int[] montanas = new int[n];
+        while (sc.hasNextInt()) {
+            int n = sc.nextInt();
+            int max = 0;
+
             for (int i = 0; i < n; i++) {
-                montanas[i] = sc.nextInt();
-            }
-
-            int abadias = 0;
-            int maxVista = -1;
-            for (int i = n - 1; i >= 0; i--) {
-                if (montanas[i] > maxVista) {
-                    abadias++;
-                    maxVista = montanas[i];
+                int velocitat = sc.nextInt();
+                if (velocitat > max) {
+                    max = velocitat;
                 }
             }
 
-            System.out.println(abadias);
-            n = sc.nextInt();
+            System.out.println(max);
         }
         sc.close();
     }
 }
 ```
 
-La clau és recórrer cap arrere: la muntanya veu el mar si és més alta que **tot** el que té a la dreta, i la màxima vista ho resumix tot. Amb `5 3 4`: el 4 val, el 3 no (hi ha un 4 més alt), el 5 val → 2. És un array + recorregut en el sentit correcte.
+El `while (sc.hasNextInt())` és el patró "llegir fins al final". L'`if` dins del `for` compara cada velocitat amb el màxim acumulat. En acabar el bucle, `max` és la resposta. Bucles i decisions treballant en equip.
 
 </details>
 
 ---
 
-### 6. 369 — Comptant en la sorra
+### 6. 340 — Següent amb mateix nombre de xifres
 
-Un xiquet escriu els números en la sorra amb marques de compte: l'`1` el escriu com `1`, el `2` com `11`, el `3` com `111`... És a dir, cada número es representa amb tants uns com val. Donat un número, escriu-lo com ho faria el xiquet.
+Donat un nombre natural N, troba el següent nombre que tinga el **mateix nombre de xifres** que N. Si no existeix (perquè N és l'últim amb eixe nombre de xifres), mostra `MENSAJE`.
 
-**Entrada:** diversos números, un per línia, fins a un `0` final.
+**Entrada:** diversos casos separats per espais, que acaba amb un `0`.
 
-**Exemple:**
-
-```
-1
-5
-3
-0
-```
-
-**Eixida:**
+**Exemples:**
 
 ```
-1
-11111
-111
+1 → 2
+9 → MENSAJE
+99 → MENSAJE
+100 → 101
 ```
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=369)
-- Dificultat: Fàcil
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=340)
+- Dificultat: Mitjà
 
-<details>
-<summary>💡 Pista</summary>
-
-Un bucle que afija `'1'` a un `StringBuilder` tantes voltes com indique el número. No cal array: és la prova que de vegades n'hi ha prou amb saber quantes voltes repetir.
-
-</details>
+**Pista:** compta les xifres de N amb un `while (copia > 0) { cifras++; copia /= 10; }`. Si N és `9`, `99`, `999`... (tots nous), no hi ha següent. En la resta de casos, la resposta és `N + 1`.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -299,17 +236,28 @@ Un bucle que afija `'1'` a un `StringBuilder` tantes voltes com indique el núme
 ```java
 import java.util.Scanner;
 
-public class ContandoEnLaArena {
+public class SeguentCifres {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
         while (n != 0) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < n; i++) {
-                sb.append('1');
+            int copia = n;
+            int cifres = 0;
+
+            while (copia > 0) {
+                cifres++;
+                copia /= 10;
             }
-            System.out.println(sb);
+
+            int ultimAmbEixeTamany = (int) Math.pow(10, cifres) - 1;
+
+            if (n == ultimAmbEixeTamany) {
+                System.out.println("MENSAJE");
+            } else {
+                System.out.println(n + 1);
+            }
+
             n = sc.nextInt();
         }
         sc.close();
@@ -317,10 +265,10 @@ public class ContandoEnLaArena {
 }
 ```
 
-Cada número `n` es converteix en `n` uns. El bucle és el mateix que usaríes per a omplir un array, però ací l'"array" és un `StringBuilder` que creix. El `0` marca el final de l'entrada, com sempre en AceptaElReto.
+Dos bucles: el interior compta les xifres dividint entre 10 (`while (copia > 0)`), i l'exterior llig casos fins al 0 sentinella. Si N és 9, 99 o 999 (el `10^cifres - 1`), no existeix següent i toca "MENSAJE". En qualsevol altre cas, sumar 1 no canvia el nombre de xifres... llevat dels de tots nous, que ja caçàrem abans.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines l'aparcament sencer —crear, recórrer, ordenar, buscar, invertir i compactar—, torna a estos problemes amb el punt 9 com a examen. I en la U05 t'esperen els algoritmes: cerca binària, bombolla i Big O. Els arrays que has après hui són la matèria primera de tot el que ve.
+> 🧭 **I si et quedes amb ganes?** Quan domines els bucles i les condicions podràs tornar als problemes de la U03 (com Nochevieja o Quina banda del carrer?) i resoldre'ls amb `for` i `switch` per a fer solucions més elegants. El material no es perd: es reutilitza.

@@ -1,6 +1,6 @@
----
+﻿---
 title: "Boletín U11 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá de los genéricos y los mapas"
+description: "CodeWars y AceptaElReto para ir más allá de las colecciones"
 ---
 
 # 📝 Boletín U11 — Extras
@@ -11,19 +11,19 @@ description: "CodeWars y AceptaElReto para ir más allá de los genéricos y los
 
 ## CodeWars
 
-### 1. Counting sheep...
+### 1. Convert a string to an array
 
-Te dan un array de ovejas donde algunas pueden faltar de su puesto. `true` significa que hay oveja presente; `null` o `false`, que está vacío. Cuenta cuántas ovejas hay presentes.
+Te dan una cadena de texto separada por espacios. Escribe una función que la divida y devuelva un array de palabras.
 
-**Ejemplo:** `{true, true, true, false, true, true, true, true, true, false, true, false}` → `11`.
+**Ejemplo:** `"Robin Singh"` → `["Robin", "Singh"]`, y `"I love arrays they are my favorite"` → `["I", "love", "arrays", "they", "are", "my", "favorite"]`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54edbc7200b811e956000556)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/57e76bc428d6fbc2d500036d)
 - Dificultad: 8 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Recorre el array y cuenta los `true` con un `if` o con un for-each. Si lo quieres exprimir con la unidad: guarda los presentes en un `ArrayList<Boolean>` filtrando los `null`, y al final devuelve su tamaño.
+El método `String.split(" ")` ya te devuelve un `String[]`. Pero como estamos en la unidad de colecciones: conviértelo en una `List<String>` con `Arrays.asList(...)` o guarda las palabras con un bucle en un `ArrayList<String>`.
 
 </details>
 
@@ -31,135 +31,51 @@ Recorre el array y cuenta los `true` con un `if` o con un for-each. Si lo quiere
 <summary>🔄 Solución</summary>
 
 ```java
-public class Counter {
-    public int countSheeps(Boolean[] arrayOfSheeps) {
-        int ovejas = 0;
-        for (Boolean b : arrayOfSheeps) {
-            if (b != null && b) {
-                ovejas++;
-            }
-        }
-        return ovejas;
-    }
-}
-```
-
-El `b != null && b` es importante: la kata mete `null` en el array y un `boolean` con valor `null` explotaría si solo hicieras `b == true`. Con el cortocircuito `&&`, si `b` es `null`, la segunda parte ni se evalúa.
-
-</details>
-
----
-
-### 2. Counting Duplicates
-
-Escribe una función que devuelva cuántos caracteres **distintos** (letras y dígitos, sin distinguir mayúsculas) aparecen más de una vez en una cadena.
-
-**Ejemplo:** `"abcde"` → `0`, `"aabbcde"` → `2` (a y b), `"indivisibility"` → `1` (la i), `"aA11"` → `2` (a y 1).
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1)
-- Dificultad: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Usa un `HashMap<Character, Integer>` para contar cuántas veces aparece cada carácter (con `toLowerCase()` primero y `getOrDefault` al contar). Después cuenta cuántas claves tienen un valor mayor que 1.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-public class CountingDuplicates {
-    public static int duplicateCount(String text) {
-        HashMap<Character, Integer> contador = new HashMap<>();
-        for (char c : text.toLowerCase().toCharArray()) {
-            contador.put(c, contador.getOrDefault(c, 0) + 1);
-        }
-
-        int repetidos = 0;
-        for (int veces : contador.values()) {
-            if (veces > 1) {
-                repetidos++;
-            }
-        }
-        return repetidos;
-    }
-}
-```
-
-Dos pasadas sobre el mismo mapa: primero se cuentan frecuencias con `getOrDefault` (el patrón estrella de la unidad), y después se recorren los **valores** con `values()` contando cuántos superan 1. `toLowerCase()` unifica 'A' y 'a'. Este es el uso de mapa más típico que existe en las katas.
-
-</details>
-
----
-
-### 3. Find the unique number
-
-Tienes un array de números donde todos son iguales excepto uno. Encuentra el número único.
-
-**Ejemplo:** `[ 1, 1, 1, 2, 1, 1 ]` → `2`, y `[ 0, 0, 0.55, 0, 0 ]` → `0.55`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/585d7d5adb20cf33cb000235)
-- Dificultad: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Cuenta las apariciones de cada número con un `HashMap<Double, Integer>`. Después recorre `entrySet()` y devuelve la clave cuyo valor sea 1. Alternativa tramposa: mira los tres primeros números para saber cuál es el repetido.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 public class Kata {
-    public static double findUniq(double[] arr) {
-        HashMap<Double, Integer> contador = new HashMap<>();
-        for (double d : arr) {
-            contador.put(d, contador.getOrDefault(d, 0) + 1);
-        }
-
-        for (Map.Entry<Double, Integer> e : contador.entrySet()) {
-            if (e.getValue() == 1) {
-                return e.getKey();
-            }
-        }
-        return -1;
+    public static String[] stringToArray(String s) {
+        return s.split(" ");
     }
 }
 ```
 
-El `HashMap` agrupa por valor: todos los repetidos caen en una clave con contador alto y el único solitario tiene contador 1. Recorrer `entrySet()` y devolver la clave con `getValue() == 1` es directo. La pista alternativa (comparar los tres primeros) evita el mapa, pero esta versión te entrena en frecuencias, que es justo lo que toca esta unidad.
+O, pensando en colecciones:
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Kata {
+    public static List<String> stringToArray(String s) {
+        List<String> palabras = new ArrayList<>();
+        for (String palabra : s.split(" ")) {
+            palabras.add(palabra);
+        }
+        return palabras;
+    }
+}
+```
+
+`split(" ")` parte la cadena por los espacios y devuelve un array. La versión con `ArrayList` recorre ese array y construye la lista: el mismo dato, visto desde la unidad de colecciones.
 
 </details>
 
 ---
 
-### 4. Who likes it?
+### 2. Roman Numerals Encoder
 
-Implementa la función `likes` que recibe un array de nombres de gente a la que le gusta un ítem y devuelve el texto de la forma:
+Crea una función que convierta un número positivo (1 a 3999) en su representación en **números romanos**.
 
-- `[]` → `"no one likes this"`
-- `["Peter"]` → `"Peter likes this"`
-- `["Jacob", "Alex"]` → `"Jacob and Alex like this"`
-- `["Max", "John", "Mark"]` → `"Max, John and Mark like this"`
-- `["Alex", "Jacob", "Mark", "Max"]` → `"Alex, Jacob and 2 others like this"`
+**Ejemplo:** `182` → `"CLXXXII"`, `1990` → `"MCMXC"`, `1666` → `"MDCLXVI"`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5266876b8f4bf2da9b000362)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/51b62bf6a9c58071c600002b)
 - Dificultad: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Cada tamaño de array tiene su plantilla. Guarda las plantillas en un `Map<Integer, String>` donde la clave es el número de nombres y el valor la plantilla con `%s`. Después usa `String.format()` para rellenarla.
+Prepara dos arrays paralelos: los valores `{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}` y sus símbolos `{"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"}`. Recórrelos en orden descendente y, mientras el número alcance el valor, resta y añade el símbolo.
 
 </details>
 
@@ -167,50 +83,125 @@ Cada tamaño de array tiene su plantilla. Guarda las plantillas en un `Map<Integ
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+public class Kata {
+    public static String solution(int n) {
+        int[] valores = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] simbolos = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
-public class Solution {
-    public static String whoLikesIt(String... names) {
-        int n = names.length;
-        String texto;
-
-        switch (n) {
-            case 0:  texto = "no one likes this"; break;
-            case 1:  texto = names[0] + " likes this"; break;
-            case 2:  texto = names[0] + " and " + names[1] + " like this"; break;
-            case 3:  texto = names[0] + ", " + names[1] + " and " + names[2] + " like this"; break;
-            default: texto = names[0] + ", " + names[1] + " and " + (n - 2) + " others like this"; break;
+        StringBuilder resultado = new StringBuilder();
+        for (int i = 0; i < valores.length; i++) {
+            while (n >= valores[i]) {
+                resultado.append(simbolos[i]);
+                n -= valores[i];
+            }
         }
-        return texto;
+        return resultado.toString();
     }
 }
 ```
 
-Y la versión con mapas (la que pide la pista):
+El truco está en los símbolos compuestos (`CM` = 900, `IV` = 4): sin ellos, no podrías representar los restos del 4 y el 9. El `while` va restando el valor máximo posible con cada símbolo. Es un clásico de arrays paralelos y del patrón "greedy".
+
+</details>
+
+---
+
+### 3. Delete occurrences of an element if it occurs more than n times
+
+Te dan una lista de enteros y un límite `n`. Devuelve una nueva lista con los mismos elementos, pero cada valor solo puede aparecer como máximo `n` veces (se conservan las primeras `n` apariciones).
+
+**Ejemplo:** `[1, 2, 3, 1, 2, 1, 2, 3]` con `n = 2` → `[1, 2, 3, 1, 2, 3]`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/554ca54ffa7d91b236000023)
+- Dificultad: 6 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Usa un `HashMap<Integer, Integer>` (lo verás en la U12, pero ya puedes usarlo) para llevar la cuenta de cuántas veces ha aparecido cada valor. Solo añade el elemento a la respuesta si su contador aún no ha llegado a `n`.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-public class Solution {
-    public static String whoLikesIt(String... names) {
-        int n = names.length;
-        Map<Integer, String> plantillas = new HashMap<>();
-        plantillas.put(0, "no one likes this");
-        plantillas.put(1, "%s likes this");
-        plantillas.put(2, "%s and %s like this");
-        plantillas.put(3, "%s, %s and %s like this");
+public class Kata {
+    public static int[] deleteNth(int[] elements, int maxOcurrences) {
+        Map<Integer, Integer> contador = new HashMap<>();
+        List<Integer> resultado = new ArrayList<>();
 
-        if (n <= 3) {
-            return String.format(plantillas.get(n), (Object[]) names);
+        for (int e : elements) {
+            int veces = contador.getOrDefault(e, 0);
+            if (veces < maxOcurrences) {
+                resultado.add(e);
+                contador.put(e, veces + 1);
+            }
         }
-        return names[0] + ", " + names[1] + " and " + (n - 2) + " others like this";
+
+        int[] arr = new int[resultado.size()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = resultado.get(i);
+        }
+        return arr;
     }
 }
 ```
 
-El `Map<Integer, String>` asocia cada tamaño con su plantilla, y `String.format` rellena los `%s`. La clave es el tamaño del array: un caso perfecto de "asociar un dato con otro", que es la definición misma de un mapa.
+El `HashMap` asocia cada valor con las veces que ha aparecido. `getOrDefault(e, 0)` devuelve la cuenta actual (o 0 si es la primera vez). Si aún no has llegado al límite, añades el elemento y subes el contador. Es la combinación perfecta de listas (el resultado) y mapas (la cuenta).
+
+</details>
+
+---
+
+### 4. Array.diff
+
+Te dan dos arrays. Devuelve el primer array con todos los valores que estaban en el segundo **eliminados**.
+
+**Ejemplo:** `[1, 2, 2, 2, 3]` y `[2]` → `[1, 3]`, y `[1, 2, 3]` y `[1, 2]` → `[3]`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/523f5d21c841566fde000009)
+- Dificultad: 6 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Convierte el segundo array en un `HashSet<Integer>` y recorre el primero con un `for-each`: solo añade al resultado los elementos que `set.contains(...)` diga que NO están.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.*;
+
+public class Kata {
+    public static int[] arrayDiff(int[] a, int[] b) {
+        Set<Integer> aBorrar = new HashSet<>();
+        for (int x : b) {
+            aBorrar.add(x);
+        }
+
+        List<Integer> resultado = new ArrayList<>();
+        for (int x : a) {
+            if (!aBorrar.contains(x)) {
+                resultado.add(x);
+            }
+        }
+
+        int[] arr = new int[resultado.size()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = resultado.get(i);
+        }
+        return arr;
+    }
+}
+```
+
+El `HashSet` convierte la búsqueda en O(1): preguntar "¿está este número para borrar?" es instantáneo aunque `b` sea enorme. Con un array en su lugar, cada `contains` sería un recorrido lineal completo. Por eso esta kata se resuelve con colecciones, no con más arrays.
 
 </details>
 
@@ -218,23 +209,19 @@ El `Map<Integer, String>` asocia cada tamaño con su plantilla, y `String.format
 
 ## AceptaElReto
 
-### 5. 152 — Va de modas...
+### 5. 158 — Los saltos de Mario
 
-Dado un conjunto de números, la **moda** es el valor (o valores) que más se repite. Te piden calcular la moda de cada distribución.
+Mario se encuentra sobre un muro y tiene que saltar a una serie de muros sucesivos. Cuenta **cuántos saltos son hacia arriba** (el siguiente muro está más alto) y **cuántos hacia abajo** (el siguiente muro está más bajo). Si dos muros tienen la misma altura, el salto no es ni arriba ni abajo.
 
-**Entrada:** varios casos de prueba. Cada caso comienza con un número que indica cuántos valores tiene el conjunto (nunca mayor de 25.000). En la siguiente línea se dan los valores separados por espacios. La entrada termina cuando el primer número es 0.
+**Entrada:** varios casos de prueba. Cada caso empieza con el número de muros `n`, seguido de `n` alturas. Mario se encuentra sobre el primero.
 
-**Salida:** para cada caso, la moda (se garantiza que solo hay una).
-
-**Ejemplo:** `1 2 2 3 3 3 4 4 4 4 5` → `4`, y `1 8 9 6 3 2 1 5 4 7 9 6 3 2 1 4 7` → `1`.
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=152)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=158)
 - Dificultad: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Cuenta cada número con un `HashMap<Integer, Integer>` (el patrón `getOrDefault`). Después recorre `entrySet()` guardando el número con mayor contador. No hace falta ordenar nada: el mapa hace el trabajo.
+Guarda las alturas en un `ArrayList<Integer>` y recorre con un for clásico desde el índice 1: compara `alturas.get(i)` con `alturas.get(i - 1)`. Más alto → sube++; más bajo → baja++.
 
 </details>
 
@@ -242,61 +229,57 @@ Cuenta cada número con un `HashMap<Integer, Integer>` (el patrón `getOrDefault
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class VaDeModas {
+public class SaltosDeMario {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        while (true) {
+        int casos = sc.nextInt();
+        for (int c = 0; c < casos; c++) {
             int n = sc.nextInt();
-            if (n == 0) break;
-
-            HashMap<Integer, Integer> frec = new HashMap<>();
+            ArrayList<Integer> muros = new ArrayList<>();
             for (int i = 0; i < n; i++) {
-                int valor = sc.nextInt();
-                frec.put(valor, frec.getOrDefault(valor, 0) + 1);
+                muros.add(sc.nextInt());
             }
 
-            int moda = 0, maxVeces = 0;
-            for (Map.Entry<Integer, Integer> e : frec.entrySet()) {
-                if (e.getValue() > maxVeces) {
-                    maxVeces = e.getValue();
-                    moda = e.getKey();
+            int sube = 0, baja = 0;
+            for (int i = 1; i < muros.size(); i++) {
+                if (muros.get(i) > muros.get(i - 1)) {
+                    sube++;
+                } else if (muros.get(i) < muros.get(i - 1)) {
+                    baja++;
                 }
             }
-            System.out.println(moda);
+            System.out.println(sube + " " + baja);
         }
         sc.close();
     }
 }
 ```
 
-El problema clásico de las frecuencias con mapa: una pasada para contar (`getOrDefault`), otra sobre `entrySet()` para encontrar el máximo. Como se garantiza una única moda, no hay que gestionar empates. Esta es la plantilla que usarás en decenas de problemas de concursos.
+La lista guarda todas las alturas del caso y el bucle compara cada muro con el anterior. Un salto hacia arriba es `sube++`; hacia abajo, `baja++`; si son iguales, no se cuenta. `ArrayList` con acceso por índice al servicio del clásico de ProgramaMe.
 
 </details>
 
 ---
 
-### 6. 416 — Michael J. Fox y el Pato Donald
+### 6. 168 — La pieza perdida
 
-En un grupo de personas, hay que comprobar si **dos personas cumplen años el mismo día**. Te dan las fechas de nacimiento de cada una en formato `día/mes/año`.
+Un puzzle tiene piezas numeradas del 1 al `n`, pero en la bolsa falta una. Te dan el número total de piezas `n` y los números de todas las que había (no necesariamente en orden). Dime **qué pieza falta**.
 
-**Entrada:** varios casos de prueba en dos líneas cada uno. La primera línea tiene el número de personas del grupo; la segunda, sus fechas de nacimiento separadas por espacios. La entrada termina con un `0`.
+**Entrada:** varios casos. Cada caso: una línea con `n`, y otra con `n - 1` números (los que hay en la bolsa). La entrada termina con `0`.
 
-**Salida:** `SI` si hay algún cumpleaños repetido (mismo día y mes) y `NO` en caso contrario.
+**Pista:** la numeración de las piezas empieza en 1.
 
-**Ejemplo:** `9/6/1961 22/10/1938 31/5/1961 20/4/1964` → `NO`, y `9/6/1961 22/10/1938 31/5/1961 20/4/1964 9/6/1934` → `SI`.
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=168)
 - Dificultad: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Mete cada fecha en un `HashSet<String>`. Si `add` devuelve `false`, esa fecha ya estaba: hay repetido. Recuerda que el año no cuenta: corta la fecha en `día/mes` con `split("/")`.
+Mete todos los números de la bolsa en un `HashSet<Integer>` y recorre del 1 a `n`: la primera pieza que no esté en el conjunto es la que falta.
 
 </details>
 
@@ -307,7 +290,7 @@ Mete cada fecha en un `HashSet<String>`. Si `add` devuelve `false`, esa fecha ya
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class Cumpleanos {
+public class PiezaPerdida {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -315,27 +298,27 @@ public class Cumpleanos {
             int n = sc.nextInt();
             if (n == 0) break;
 
-            HashSet<String> fechas = new HashSet<>();
-            boolean repetido = false;
+            HashSet<Integer> bolsa = new HashSet<>();
+            for (int i = 0; i < n - 1; i++) {
+                bolsa.add(sc.nextInt());
+            }
 
-            for (int i = 0; i < n; i++) {
-                String fecha = sc.next();
-                String diaMes = fecha.split("/")[0] + "/" + fecha.split("/")[1];
-                if (!fechas.add(diaMes)) {
-                    repetido = true;
+            for (int pieza = 1; pieza <= n; pieza++) {
+                if (!bolsa.contains(pieza)) {
+                    System.out.println(pieza);
+                    break;
                 }
             }
-            System.out.println(repetido ? "SI" : "NO");
         }
         sc.close();
     }
 }
 ```
 
-El truco del `HashSet`: `add()` devuelve `false` si el elemento ya estaba, así que no necesitas `contains` por separado. Se guarda solo `día/mes` (sin el año) porque dos personas cumplen el mismo día aunque hayan nacido en años distintos. Detectar duplicados en O(1) es el superpoder del Set, hermano pequeño del mapa de esta unidad.
+El `HashSet` guarda las `n - 1` piezas que hay. Luego se comprueba cada número del 1 a `n` con `contains`, que es O(1): la primera pieza que no esté en el conjunto es la que falta. Sin ordenar nada y sin un solo bucle de búsqueda lineal.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines genéricos y mapas, vuelve a los problemas de unidades anteriores y reescríbelos con `HashMap` y clases genéricas: el contador de notas, el buscador de nombres... Todo lo que antes era un array paralelo ahora es un mapa. El material no se pierde: se reutiliza.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines listas, conjuntos e iteradores, vuelve a los problemas de unidades anteriores y resuélvelos guardando los datos en colecciones: ya no hará falta pedir todo por teclado de golpe. El material no se pierde: se reutiliza.

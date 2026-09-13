@@ -1,160 +1,128 @@
----
-title: Boletín U02 — Inicial
-description: Ejercicios básicos de Variables, Tipos y Operadores
+﻿---
+title: "Boletín U02 — Inicial"
+description: "Ejercicios básicos de Introducción a Java"
 ---
 
 # 📝 Boletín U02 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, declara variables y ensucia tus manos de bits. Nadie nace sabiendo qué es un `double`.
+> Sin soluciones. Sin prisas. Con un editor de texto y muchas ganas de compilar. Esto solo empieza. Comenta las soluciones en el foro e intenta ayudar a tus compañeros a que mejoren sus capacidades como programador.
 
 ---
 
-## Ejercicio 1: conversor de temperaturas
+## Ejercicio 1: Desordena esto
 
-Escribe un programa llamado `ConversorTemperatura` que convierta 30 grados Celsius a Fahrenheit. Usa la fórmula:
+Las líneas de este programa están desordenadas. Ordénalas para formar un programa Java válido que compile y se ejecute:
 
+```java
+}
+    public static void main(String[] args) {
+        System.out.println("Mi primer programa ordenado");
+public class Ordenado {
+    }
 ```
-F = C * 9/5 + 32
-```
-
-Declara `int celsius = 30` y una variable `double fahrenheit` para el resultado. Muestra ambas temperaturas.
 
 ---
 
-## Ejercicio 2: ¿Qué imprime? — incrementos
+## Ejercicio 2: ¿Qué imprime?
 
 Sin ejecutar, escribe la salida exacta de este programa:
 
 ```java
-public class Incrementos {
+public class Escapista {
     public static void main(String[] args) {
-        int x = 5;
-        System.out.println(x++);
-        System.out.println(++x);
-        System.out.println(x--);
-        System.out.println(--x);
-        System.out.println(x);
+        System.out.print("Dijo: \"Java mola\"");
+        System.out.println(" y siguió: \tprogramando.");
     }
 }
 ```
 
-Pista: recuerda la diferencia entre pre y post. `x++` usa y luego sube; `++x` sube y luego usa.
+💡 **Pista importante**: `\"` imprime una comilla doble literal, `\t` es un tabulador.
 
 ---
 
-## Ejercicio 3: calculadora de descuentos
+## Ejercicio 3: Cazador de errores
 
-Declara una constante `final double DESCUENTO = 0.15` y declara `double precioOriginal = 120.0`. Calcula:
-
-1. El descuento (`precioOriginal * DESCUENTO`)
-2. El precio final (`precioOriginal - descuento`)
-
-Muestra todo con `println`. Si luego intentas cambiar el valor de `DESCUENTO`, el compilador se enfadará. ¿Sabes por qué?
-
----
-
-## Ejercicio 4: El tipo perfecto
-
-Indica qué tipo de dato primitivo (`int`, `double`, `boolean`, `char`, `long`) usarías para cada caso:
-
-1. El número de habitantes de tu ciudad (~500.000)
-2. La distancia en kilómetros hasta la Luna (~384.400)
-3. La inicial de tu segundo apellido
-4. La nota media de un examen (3.7)
-5. Si has aprobado o no el examen anterior
-6. El precio de un café en céntimos (entero)
-
----
-
-## Ejercicio 5: El casting asesino
-
-Declara `double precio = 9.99;`. Conviértelo a `int` con un casting explícito. Imprime ambos valores. ¿Qué se pierde por el camino?
-
-Después, declara `int grande = 300;` y conviértelo a `byte`. Imprime el resultado. ¿Te esperabas ese número? (Pista: en un `byte` solo caben -128 a 127.)
-
----
-
-## Ejercicio 6: ¿Par o impar?
-
-Escribe un programa llamado `ParOImpar` que use el operador `%` para determinar si un número es par o impar. Puedes usar una variable `int numero = 7;` y el operador ternario para mostrar "Par" o "Impar". Muestra también `true` o `false` al comprobar si `numero % 2 == 0`.
-
----
-
-## Ejercicio 7: String en acción
-
-Escribe un programa llamado `NombreEnAccion` que, con la variable `String nombre = "  ana  ";`:
-
-1. Limpie los espacios con `trim()`
-2. Muestre la longitud del nombre limpio
-3. Lo muestre en mayúsculas
-4. Muestre la primera letra (con `substring(0, 1)`)
-
----
-
-## Ejercicio 8: saludo con Scanner
-
-Escribe un programa llamado `SaludoScanner` que:
-
-1. Pregunte "¿Cómo te llamas?" y lea el nombre con `nextLine()`
-2. Pregunte "¿Cuántos años tienes?" y lea la edad con `nextInt()`
-3. Muestre: "Hola, [nombre]. [edad] años, bienvenido."
-
-Recuerda el `import java.util.Scanner;` y el `sc.close()`.
-
----
-
-## Ejercicio 9: CodeWars — Will you make it?
-
-Resuelve la kata **"Will you make it?"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/5861d28f124b35723e00005e).
-
-Te dan la distancia hasta una gasolinera, los litros que tiene tu coche y los kilómetros por litro. Determina si llegas o no. Devuelve `true` si llegas, `false` si te quedas tirado.
-
----
-
-## Ejercicio 10: ¿Qué imprime? — printf con conversiones
-
-Sin ejecutar, escribe la salida exacta de este programa:
+Este código tiene **4 errores**. Encuéntralos y corrígelos:
 
 ```java
-public class FormateoBasico {
-    public static void main(String[] args) {
-        int entero = 42;
-        double decimal = 3.1416;
-        String texto = "Java";
-
-        System.out.printf("%d %f %s %n", entero, decimal, texto);
+Public class ErrorFinder {
+    public static void main(string[] args) {
+        System.out.println("Hola, "Mundo"");
+        System.out.println("Esto funciona?)
     }
 }
 ```
 
-¿Qué imprime? ¿Qué hace `%n` al final?
+---
 
-**Pista:** `%d` es para enteros, `%f` para decimales y `%s` para texto. ¿Cuántos decimales muestra `%f` cuando no le pones `%.2f`?
+## Ejercicio 4: Tu ficha personal
+
+Escribe un programa llamado `FichaPersonal.java` que muestre el siguiente texto por pantalla:
+
+```
+Nombre: [Tu nombre]
+Edad: [Tu edad]
+Lenguaje favorito: Java
+¿Emocionado?: true
+```
+
+Usa una línea `System.out.println` para cada campo y asegúrate de que los boleanos (como `true`) no llevan comillas.
 
 ---
 
-## Ejercicio 11: la nota con dos decimales
+## Ejercicio 5: Completa el programa
 
-Escribe un programa llamado `NotaFormateada` que declare `String nombre = "Marta"` y `double nota = 9.5678;`. Usa `String.format()` para construir este mensaje:
+Falta una llave de cierre y un carácter crucial. Añádelos para que compile y muestre "Aprobado, esto funciona":
 
+```java
+public class Completame {
+    public static void main(String[] args) {
+        System.out.println("Aprobado, esto funciona")
+}
 ```
-Marta ha sacado un 9.57.
-```
-
-Después muestra el mismo mensaje con `System.out.printf()`. ¿Qué diferencia hay entre las dos formas?
-
-**Pista:** `String.format` devuelve un `String` y no imprime nada; `printf` escribe directamente en pantalla. Los dos usan `%.2f` para dejar dos decimales.
 
 ---
 
-## Ejercicio 12: la propina con dos decimales
+## Ejercicio 6: Empareja conceptos
 
-Escribe un programa llamado `PropinaFormateada` que pida con `Scanner` el total de la cuenta (`double`) y el porcentaje de propina (`int`). Calcula la propina y el total final, y muéstralos con `System.out.printf` y dos decimales:
+Relaciona cada concepto de la izquierda con su definición de la derecha:
 
+| Concepto | Definición |
+| --- | --- |
+| 1. `class` | A. Punto de entrada del programa |
+| 2. `main` | B. Imprime texto y salta de línea |
+| 3. `System.out.println` | C. Define un nuevo tipo de datos o plantilla de código |
+| 4. `//` | D. Comentario de una línea |
+| 5. `args` | E. Contiene los argumentos de la línea de órdenes |
+
+Escribe las respuestas con el formato: 1→C, 2→A, ...
+
+---
+
+## Ejercicio 7: El detective de errores
+
+El siguiente código tiene un error de sintaxis que impide que compile. Encuéntralo y corrígelo:
+
+```java
+public class Detective {
+    public static void main(String[] args) {
+        System.out.println("Soy un detective")
+        System.out.println("y resuelvo errores");
+    }
+}
 ```
-Total: 45.50 €
-Propina (15%): 6.82 €
-Total a pagar: 52.33 €
-```
 
-**Pista:** `%.2f` controla los decimales. Multiplica primero (`total * porcentaje`) y divide después con `100.0`, o `porcentaje / 100` dará 0.
+Escribe la versión corregida. Después, ejecútala en VS Code y comprueba que funciona.
+
+---
+
+## Ejercicio 8: Tu biografía
+
+Escribe un programa llamado `Biografia.java` que muestre:
+
+- Tu nombre
+- Tu edad
+- Tu lenguaje de programación favorito
+- Una frase que te motive
+
+Cada dato tiene que salir en una línea diferente, pero con una única condición: usa una sola instrucción `System.out.println` utilizando `\n` para los saltos de línea.

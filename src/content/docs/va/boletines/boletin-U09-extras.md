@@ -1,178 +1,143 @@
----
+﻿---
 title: Butlletí U09 — Extres
 description: CodeWars i AceptaElReto per a anar més enllà de la unitat
 ---
 
 # 📝 Butlletí U09 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista. CodeWars i AceptaElReto són els gimnasos on els programadors es repten cada dia: ací és on l'herència deixa de ser teoria i es converteix en reflexos.
+> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista. Els `private`, els getters i el `static` són ací els protagonistes: encapsula, protegeix i compartix sense por.
 
 ---
 
 ## CodeWars
 
-### 1. Thinkful — Object Drills: Quarks
+### 1. Playing with cubes II
 
-Crea la classe `Quark` amb tres propietats: `color` (String), `flavor` (String) i `baryon_number` (sempre `1.0`). A més:
-- Constructor que rep `color` i `flavor`.
-- `interact(altre)` → intercanvia els colors dels dos quarks.
+Et donen un motle de classe `Cube` amb un atribut privat `side`. El teu treball: construir-la amb getter i setter, i dos constructors (un buit que inicialitza `side` a 0, i un altre que rep el costat).
 
-**Exemple:**
+**Exemple d'ús:**
 ```java
-Quark q1 = new Quark("red", "up");
-Quark q2 = new Quark("blue", "strange");
-q1.interact(q2);
-q1.color;  // "blue"
-q2.color;  // "red"
-q1.baryon_number;  // 1.0
+Cube c = new Cube(3);
+c.getSide();  // 3
+c.setSide(7);
+c.getSide();  // 7
 ```
 
-- [Enunciat a CodeWars](https://www.codewars.com/kata/5882b052bdeafec15e0000e6)
-- Dificultat: 7 kyu
-
-**Pista:** `baryon_number` és una constant que tots els quarks compartixen: `public final double baryon_number = 1.0;`. `interact()` usa una variable temporal per a intercanviar: `String temp = this.color; this.color = altre.color; altre.color = temp;`. El `this` desambigua qui és qui en l'intercanvi.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Quark {
-    public String color;
-    public String flavor;
-    public final double baryon_number = 1.0;
-
-    public Quark(String color, String flavor) {
-        this.color = color;
-        this.flavor = flavor;
-    }
-
-    public void interact(Quark altre) {
-        String temporal = this.color;
-        this.color = altre.color;
-        altre.color = temporal;
-    }
-}
-```
-
-La física de quarks aplicada: `baryon_number` és `final` perquè cap quark canvia el seu nombre bariònic (és una constant universal). `interact()` intercanvia els colors amb una variable temporal; sense ella, un dels dos colors es perdria. Este és el clàssic "swap" que ja vas vore amb variables, ara entre dos objectes.
-
-</details>
-
----
-
-### 2. Building blocks
-
-Crea la classe `Block` que rep les tres dimensions (com `int[]` de 3 o com 3 enters) i els mètodes:
-- `int getWidth()`, `int getLength()`, `int getHeight()`
-- `int getVolume()` → `width * length * height`
-- `int getSurfaceArea()` → `2 * (w*l + w*h + l*h)`
-
-**Exemple:** `new Block(new int[]{2, 4, 6})` → volum 48, superfície `2*(2*4 + 2*6 + 4*6) = 88`.
-
-- [Enunciat a CodeWars](https://www.codewars.com/kata/55b75fcf67e558d3750000a3)
-- Dificultat: 7 kyu
-
-**Pista:** guarda les tres dimensions en atributs privats en el constructor, i deixa que els getters les tornen. Per a la superfície, la fórmula és la suma de les tres cares per dos. El polimorfisme no apareix ací, però l'objecte amb estat i comportament sí: l'excusa perfecta per a repassar la U07 mentre penses en l'herència.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Block {
-    private final int width;
-    private final int length;
-    private final int height;
-
-    public Block(int[] dimensions) {
-        this.width = dimensions[0];
-        this.length = dimensions[1];
-        this.height = dimensions[2];
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public int getLength() {
-        return length;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getVolume() {
-        return width * length * height;
-    }
-
-    public int getSurfaceArea() {
-        return 2 * (width * length + width * height + length * height);
-    }
-}
-```
-
-L'objecte `Block` guarda el seu estat i l'exposa amb getters. Els atributs `final` es fixen en el constructor (un bloc no canvia de forma). El volum i la superfície són mètodes que calculen a partir de l'estat. És un objecte amb responsabilitat única: sap les seues dimensions i com mesurar-se. L'herència del curs arribarà quan vulgues especialitzar-lo en `Cub` o `Caixa` sense duplicar codi.
-
-</details>
-
----
-
-### 3. Basic subclasses — Adam and Eve
-
-Segons el mite, Adam i Eva van ser els primers humans. El teu treball és "fer el treball de Déu": crear un mètode estàtic `create()` que torne un array de `Human` amb dos objectes: el primer un `Man` i el segon una `Woman`. Les dues classes hereten de `Human`, i cada humà té `name`, `sex` i la propietat `species` amb valor `"Human"`.
-
-- [Enunciat a CodeWars](https://www.codewars.com/kata/547274e24481cfc469000416)
+- [Enunciat a CodeWars](https://www.codewars.com/kata/55c0ac142326fdf18d0000af)
 - Dificultat: 8 kyu
 
-**Pista:** herència pura: `class Man extends Human` i `class Woman extends Human`. Cada subclasse crida `super(...)` per a omplir el nom i el sexe. L'array de retorn és de tipus `Human`, així que accepta les dues subclasses.
+**Pista:** `side` ha de ser `private` (ningú el toca des de fora) i els únics portals són `getSide()` i `setSide()`. El constructor sense paràmetres posa `this.side = 0;`. Exactament el que has vist en la unitat: encapsulació pura.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Human {
-    private String name;
-    private String sex;
-    protected String species = "Human";
+public class Cube {
+    private int side;
 
-    public Human(String name, String sex) {
+    public Cube() {
+        this.side = 0;
+    }
+
+    public Cube(int side) {
+        this.side = side;
+    }
+
+    public int getSide() {
+        return side;
+    }
+
+    public void setSide(int side) {
+        this.side = side;
+    }
+}
+```
+
+L'atribut `side` és `private`: ningú pot fer `c.side = 9` des de fora. Els dos constructors donen dues maneres de nàixer (amb o sense valor), i el getter/setter són les úniques portes. El `this` del setter desambigua el paràmetre de l'atribut, com has vist en la unitat.
+
+</details>
+
+---
+
+### 2. Classy Extentions
+
+Crea la classe `Pet` amb un atribut privat `name` (String) i un mètode `speak()` que torne el nom de l'animal. Després crea la classe `Cat` que **hereta** de `Pet` i sobreescriu `speak()` perquè torne `"[name] meows."`.
+
+**Exemples:**
+```java
+new Cat("Milo").speak();  // "Milo meows."
+new Cat("Garfield").speak();  // "Garfield meows."
+```
+
+- [Enunciat a CodeWars](https://www.codewars.com/kata/55a14aa4817efe41c20000bc)
+- Dificultat: 8 kyu
+
+**Pista:** `name` és privat, així que `Cat` no pot llegir-lo directament: necessita un getter `getName()` en `Pet` (recorda: els privats no s'hereten, però existeixen dins de l'objecte). `Cat extends Pet` i usa `super(nombre)` per a construir la part del pare.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Pet {
+    private String name;
+
+    public Pet(String name) {
         this.name = name;
-        this.sex = sex;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public String getSpecies() {
-        return species;
+    public String speak() {
+        return name;
     }
 }
 
-class Man extends Human {
-    public Man(String name) {
-        super(name, "man");
+public class Cat extends Pet {
+    public Cat(String name) {
+        super(name);
     }
-}
 
-class Woman extends Human {
-    public Woman(String name) {
-        super(name, "woman");
-    }
-}
-
-public class God {
-    public static Human[] create() {
-        return new Human[] { new Man("Adam"), new Woman("Eve") };
+    @Override
+    public String speak() {
+        return getName() + " meows.";
     }
 }
 ```
 
-`Man` i `Woman` heretem tot de `Human` i només aporten el seu constructor amb el sexe fix. `create()` torna un array de `Human` (el tipus general) omplit amb les dues subclasses: polimorfisme de dalt a baix, com Adam i Eva al Paradís.
+Fixa't: `Cat` no toca `name` directament (és privat en `Pet`), usa `getName()`. Això és el triangle perfecte: **encapsulació** (privat + getter) + **herència** (`extends`) + **sobreescriptura** (`@Override`). L'herència la aprofundeixes en la U10, però ací ja la veus en acció.
+
+</details>
+
+---
+
+### 3. Sleigh Authentication
+
+Pare Noel té un mètode `authenticate(name, password)` i només admet dues credencials: el nom ha de ser `"Santa Claus"` i la contrasenya `"Ho Ho Ho!"`. Torna `true` només si totes dues coincideixen.
+
+**Exemples:** `authenticate("Santa Claus", "Ho Ho Ho!")` → `true`, `authenticate("Santa", "Ho Ho Ho!")` → `false`.
+
+- [Enunciat a CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
+- Dificultat: 8 kyu
+
+**Pista:** els dos valors són constants: `private static final String NOM_VALID = "Santa Claus";`. Compara amb `.equals()`, mai amb `==`. I nota el `static`: el mètode no necessita objecte, és pura lògica de classe.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Sleigh {
+    private static final String NOM_VALID = "Santa Claus";
+    private static final String PASSWORD_VALID = "Ho Ho Ho!";
+
+    public boolean authenticate(String name, String password) {
+        return NOM_VALID.equals(name) && PASSWORD_VALID.equals(password);
+    }
+}
+```
+
+Les constants `static final` són el secret de la casa: `static` (una sola còpia per a tota la classe, la vas vore en el punt 7) i `final` (ningú pot reassignar-les). El `authenticate` combina les dos comprovacions amb `&&`. El `.equals()` es crida sobre la constant, no sobre el paràmetre: així `null` mai trenca el mètode.
 
 </details>
 
@@ -187,7 +152,7 @@ Crea la classe `Ship` que rep un `draft` (calat) i un `crew` (tripulants). Imple
 - [Enunciat a CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add)
 - Dificultat: 8 kyu
 
-**Pista:** guarda `draft` i `crew` en atributs `private final`. El mètode combina tots dos: `return draft - 1.5 * crew > 20;`. És la classe d'objecte simple que ja domines: una excusa per a repassar que l'estat viu en l'objecte, no en el main.
+**Pista:** guarda `draft` i `crew` en atributs `private final` (es fixen en el constructor i ja no canvien). El mètode combina tots dos: `return draft - 1.5 * crew > 20;`. El `1.5` mereix ser una constant amb nom.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -210,7 +175,7 @@ public class Ship {
 }
 ```
 
-Cada `Ship` guarda el seu propi estat (`draft` i `crew`) i decideix per si mateix si mereix la pena. Els atributs `final` fan l'objecte immutable: es fixen en nàixer. La constant `static final` documenta el `1.5`. És el mateix patró d'objecte amb comportament que has practicat tota la unitat.
+La classe és immutable: els atributs `final` es fixen en nàixer i ningú pot canviar-los (ni tan sols amb un setter, que ací no existeix). La constant `static final` documenta el `1.5`. El vaixell "sap" si mereix la pena saquejar-lo sense que ningú llig les seues tripes: encapsulació i responsabilitat única.
 
 </details>
 
@@ -220,7 +185,7 @@ Cada `Ship` guarda el seu propi estat (`draft` i `crew`) i decideix per si matei
 
 ### 5. 117 — La festa avorrida
 
-Tinín odia les festes, i cada persona que se li acosta es presenta amb el format `"Soc Lotari"`. Ajuda'l a respondre `"Hola, [nom]."` a cadascun. L'entrada comença amb un nombre que indica quantes persones hi ha, seguit d'una línia per persona. Resol-lo amb una classe `Persona` que encapsule el nom i un mètode `saludar()`.
+Tinín odia les festes, i cada persona que se li acosta es presenta amb el format `"Soc Lotari"`. Ajuda'l a respondre `"Hola, [nom]."` a cadascun. L'entrada comença amb un nombre que indica quantes persones hi ha, seguit d'una línia per persona. Escriu la solució amb una classe `Persona` que guarde el nom i un mètode `saludar()`.
 
 **Entrada d'exemple:**
 ```
@@ -240,7 +205,7 @@ Hola, Ender.
 - [Enunciat a AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
 - Dificultat: Fàcil
 
-**Pista:** llig la línia i trau el `"Soc "` inicial amb `linea.substring(4)` o `split(" ")[1]`. Crea la `Persona` amb eixe nom i crida `saludar()`. És l'excusa perfecta per a vore que un objecte amb un mètode pot substituir un main que fa de tot.
+**Pista:** llig la línia, trau el `"Soc "` inicial (`linea.substring(4)` o `split(" ")[1]`), crea la `Persona` amb eixe nom i crida el seu `saludar()`. És una excusa perfecta per a una classe amb un atribut i un mètode, en comptes d'un main que ho fa tot.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -266,6 +231,71 @@ public class Persona {
 
         for (int i = 0; i < n; i++) {
             String linea = sc.nextLine();
+            String nom = linea.substring(4);  // trau "Soc "
+            Persona p = new Persona(nom);
+            p.saludar();
+        }
+        sc.close();
+    }
+}
+```
+
+`Persona` encapsula el seu nom: `private` + constructor + un mètode que sap saludar. El `main` només s'encarrega de llegir i crear objectes. `linea.substring(4)` es salta els 4 primers caràcters (`"Soc "`). El `sc.nextLine()` extra després del `nextInt()` consumeix l'Enter, el clàssic del Scanner que vas vore en la U03.
+
+</details>
+
+---
+
+### 6. 117 bis — La festa avorrida amb comptador estàtic
+
+Repte extra amb `static`: usa la classe `Persona` de l'exercici 5, però afig un atribut `private static int totalSaluts` que compte quantes persones ha saludat Tinín en total. Després de cada salut, mostra el total acumulat.
+
+**Entrada d'exemple:**
+```
+2
+Soc Lotari
+Soc Ender
+```
+
+**Eixida d'exemple:**
+```
+Hola, Lotari. (saluts: 1)
+Hola, Ender. (saluts: 2)
+```
+
+**Pista:** `static` significa "de la classe, no de l'objecte": tots els `Persona` compartixen `totalSaluts`. Instrumenta-ho dins de `saludar()` amb `totalSaluts++`. Així practiques que el comptador puja per a tots els objectes, com el `Contador` del butlletí inicial.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class Persona {
+    private static int totalSaluts = 0;
+
+    private String nom;
+
+    public Persona(String nom) {
+        this.nom = nom;
+    }
+
+    public void saludar() {
+        totalSaluts++;
+        System.out.println("Hola, " + nom + ". (saluts: " + totalSaluts + ")");
+    }
+
+    public static int getTotalSaluts() {
+        return totalSaluts;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();
+
+        for (int i = 0; i < n; i++) {
+            String linea = sc.nextLine();
             Persona p = new Persona(linea.substring(4));
             p.saludar();
         }
@@ -274,83 +304,10 @@ public class Persona {
 }
 ```
 
-`Persona` encapsula el seu nom i sap saludar: el `main` només llig i crea objectes. `linea.substring(4)` es salta `"Soc "`. És la manera "orientada a objectes" de resoldre un problema que també podries fer amb un `String` solt: ací l'estat (el nom) i el comportament (`saludar()`) viuen junts en la classe.
+`totalSaluts` és `static`: hi ha una única còpia compartida per tota la classe, no una per objecte. Cada `saludar()` l'incrementa i, com que tots compartixen la mateixa variable, el comptador acumula de veritat. `getTotalSaluts()` és `static` perquè la pregunta "quants saluts en total?" se li fa a la classe, no a una persona concreta.
 
 </details>
 
 ---
 
-### 6. 119 — Escuts de l'exèrcit romà
-
-Un general divideix els seus legionaris en formacions **quadrades** (el més gran possible), repetint amb els que queden lliures fins a esgotar-los. Cada quadrat de costat `n` necessita escuts segons el perímetre més la cobertura: per a un quadrat de `n × n`, els escuts són `n² + 4n` (una base per soldat més el perímetre exterior). Donat el nombre de legionaris, calcula el mínim d'escuts necessaris.
-
-**Entrada:** diversos casos de prova, cadascun amb el nombre de legionaris. Termina amb `0`.
-
-**Entrada d'exemple:**
-```
-35
-20
-10
-0
-```
-
-**Eixida d'exemple:**
-```
-71
-44
-26
-```
-
-- [Enunciat a AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=119)
-- Dificultat: Fàcil/Mitjana
-
-**Pista:** mentre queden legionaris, troba el major quadrat `n` tal que `n² <= restants` (prova `n` creixent o usa `Math.sqrt`). Suma els escuts d'eixe quadrat i resta `n²` dels restants. Encapsula la lògica en una classe `Formacio` amb mètodes com `majorQuadrat()` i `calcularEscuts()`.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class Formacio {
-    public static int escutsDeQuadrat(int costat) {
-        return costat * costat + 4 * costat;
-    }
-
-    public static int majorQuadrat(int restants) {
-        int n = (int) Math.sqrt(restants);
-        return n * n;  // el major quadrat perfecte <= restants
-    }
-
-    public static int resoldre(int legionaris) {
-        int escuts = 0;
-        int restants = legionaris;
-
-        while (restants > 0) {
-            int quadrat = majorQuadrat(restants);
-            int costat = (int) Math.sqrt(quadrat);
-            escuts += escutsDeQuadrat(costat);
-            restants -= quadrat;
-        }
-        return escuts;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        while (n != 0) {
-            System.out.println(resoldre(n));
-            n = sc.nextInt();
-        }
-        sc.close();
-    }
-}
-```
-
-Verifica-ho amb 35: el major quadrat és 25 (costat 5) → `25 + 20 = 45` escuts; queden 10, major quadrat 9 (costat 3) → `9 + 12 = 21`; queda 1 (costat 1) → `1 + 4 = 5`. Total `45 + 21 + 5 = 71` ✓. `Math.sqrt` et dona l'arrel; en truncar obtens el costat del major quadrat que cap. La classe agrupa els tres càlculs com a mètodes estàtics: pura lògica ben empaquetada.
-
-</details>
-
----
-
-> 🧭 **I si et quedes amb ganes?** Quan domines l'herència, torna als problemes d'unitats anteriors i reescriu-los amb jerarquies: un `Lector` abstracte, un `Solucionador` polimòrfic, figures que es calculen soles. El material no es perd: es reutilitza.
+> 🧭 **I si et quedes amb ganes?** Quan domines l'encapsulació, torna als problemes d'unitats anteriors i reescriu-los amb classes ben blindades: un `Rectangle` amb la seua àrea com a mètode, un `Numero` amb la seua anàlisi com a mètode... El `private`, els getters i el `static` transformen un script solt en un disseny. El material no es perd: es reutilitza.

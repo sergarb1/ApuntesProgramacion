@@ -1,181 +1,146 @@
----
+﻿---
 title: Butlletí U08 — Extres
 description: CodeWars i AceptaElReto per a anar més enllà de la unitat
 ---
 
 # 📝 Butlletí U08 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està oculta: resisteix-te fins a esgotar la teua pista. Els `private`, els getters i el `static` són ací els protagonistes: encapsula, protegeix i compartix sense por.
+> Exercicis de CodeWars i AceptaElReto amb pistes. La solució està amagada: resisteix-te fins a esgotar la teua pista.
 
 ---
 
 ## CodeWars
 
-### 1. Playing with cubes II
+### 1. FIXME: Get Full Name
 
-Et donen un motle de classe `Cube` amb un atribut privat `side`. El teu treball: construir-la amb getter i setter, i dos constructors (un buit que inicialitza `side` a 0, i un altre que rep el costat).
+Et donen una classe `Dinglemouse` amb un mètode `getFullName()` que hauria de tornar `"Nom Cognom"`, però el resultat està al revés o incomplet. Arregla-la.
 
-**Exemple d'ús:**
-```java
-Cube c = new Cube(3);
-c.getSide();  // 3
-c.setSide(7);
-c.getSide();  // 7
-```
+- [Enunciat en CodeWars](https://www.codewars.com/kata/597c684822bc9388f600010f)
+- Dificultat: 7 kyu
 
-- [Enunciat a CodeWars](https://www.codewars.com/kata/55c0ac142326fdf18d0000af)
-- Dificultat: 8 kyu
-
-**Pista:** `side` ha de ser `private` (ningú el toca des de fora) i els únics portals són `getSide()` i `setSide()`. El constructor sense paràmetres posa `this.side = 0;`. Exactament el que has vist en la unitat: encapsulació pura.
+**Pista:** fixa't en quins atributs existeixen (`firstName` i `lastName`) i en com el mètode els concatena. La classe està feta per a rompre's: busca l'error de `this` o d'ordre.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Cube {
-    private int side;
+public class Dinglemouse {
+    private final String firstName;
+    private final String lastName;
 
-    public Cube() {
-        this.side = 0;
+    public Dinglemouse(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public Cube(int side) {
-        this.side = side;
-    }
-
-    public int getSide() {
-        return side;
-    }
-
-    public void setSide(int side) {
-        this.side = side;
+    public String getFullName() {
+        if (firstName.isEmpty() && lastName.isEmpty()) {
+            return "";
+        }
+        if (firstName.isEmpty()) {
+            return lastName;
+        }
+        if (lastName.isEmpty()) {
+            return firstName;
+        }
+        return firstName + " " + lastName;
     }
 }
 ```
 
-L'atribut `side` és `private`: ningú pot fer `c.side = 9` des de fora. Els dos constructors donen dues maneres de nàixer (amb o sense valor), i el getter/setter són les úniques portes. El `this` del setter desambigua el paràmetre de l'atribut, com has vist en la unitat.
+La classe original fallava en construir el nom complet: els casos en què falta un nom o tots dos havien de tornar el que hi ha. El mètode correcte encadena els casos límit abans de juntar tots dos noms amb un espai.
 
 </details>
 
 ---
 
-### 2. Classy Extentions
+### 2. Geometry Basics: Distance between points in 2D
 
-Crea la classe `Pet` amb un atribut privat `name` (String) i un mètode `speak()` que torne el nom de l'animal. Després crea la classe `Cat` que **hereta** de `Pet` i sobreescriu `speak()` perquè torne `"[name] meows."`.
+Et donen una classe `Point` amb dos propietats (`x` i `y`) i has d'implementar el mètode `distanceBetweenPoints(Point a, Point b)` que torne la distància entre ells.
 
-**Exemples:**
-```java
-new Cat("Milo").speak();  // "Milo meows."
-new Cat("Garfield").speak();  // "Garfield meows."
-```
+**Exemple:** `Point(3, 3)` i `Point(3, 3)` → `0`. `Point(1, 6)` i `Point(4, 2)` → `5`.
 
-- [Enunciat a CodeWars](https://www.codewars.com/kata/55a14aa4817efe41c20000bc)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/58dced7b702b805b200000be)
 - Dificultat: 8 kyu
 
-**Pista:** `name` és privat, així que `Cat` no pot llegir-lo directament: necessita un getter `getName()` en `Pet` (recorda: els privats no s'hereten, però existeixen dins de l'objecte). `Cat extends Pet` i usa `super(nombre)` per a construir la part del pare.
+**Pista:** distància euclidiana `Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2))`. Els objectes es passen com a paràmetre, com vam fer amb `Fraccio.sumar`.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Pet {
-    private String name;
-
-    public Pet(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String speak() {
-        return name;
+public class Kata {
+    public static double distanceBetweenPoints(Point a, Point b) {
+        return Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2));
     }
 }
 
-public class Cat extends Pet {
-    public Cat(String name) {
-        super(name);
-    }
+class Point {
+    public double x;
+    public double y;
 
-    @Override
-    public String speak() {
-        return getName() + " meows.";
+    public Point(double x, double y) {
+        this.x = x;
+        this.y = y;
     }
 }
 ```
 
-Fixa't: `Cat` no toca `name` directament (és privat en `Pet`), usa `getName()`. Això és el triangle perfecte: **encapsulació** (privat + getter) + **herència** (`extends`) + **sobreescriptura** (`@Override`). L'herència la aprofundeixes en la U09, però ací ja la veus en acció.
+El mètode rep dos objectes `Point` i llig els seus atributs (`a.x`, `b.x`...). És exactament el mateix patró de `sumar(Fraccio altra)`: un objecte treballa amb un altre. La fórmula de Pitàgores resolta per objectes.
 
 </details>
 
 ---
 
-### 3. Sleigh Authentication
+### 3. Grasshopper — Personalized Message
 
-Pare Noel té un mètode `authenticate(name, password)` i només admet dues credencials: el nom ha de ser `"Santa Claus"` i la contrasenya `"Ho Ho Ho!"`. Torna `true` només si totes dues coincideixen.
+Crea el mètode `greet(name, owner)` que torne `"Hello boss"` si `name` i `owner` són iguals, o `"Hello guest"` si són distints.
 
-**Exemples:** `authenticate("Santa Claus", "Ho Ho Ho!")` → `true`, `authenticate("Santa", "Ho Ho Ho!")` → `false`.
+**Exemples:** `greet("Daniel", "Daniel")` → `"Hello boss"`, `greet("Greg", "Daniel")` → `"Hello guest"`.
 
-- [Enunciat a CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/5772da22b89313a4d50012f7)
 - Dificultat: 8 kyu
 
-**Pista:** els dos valors són constants: `private static final String NOM_VALID = "Santa Claus";`. Compara amb `.equals()`, mai amb `==`. I nota el `static`: el mètode no necessita objecte, és pura lògica de classe.
+**Pista:** compara `String` amb `.equals()`, mai amb `==`. Un `if`/`else` o un ternari.
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Kata {
+    public static String greet(String name, String owner) {
+        return name.equals(owner) ? "Hello boss" : "Hello guest";
+    }
+}
+```
+
+Una línia amb el ternari i `.equals()`. Si uses `==` amb cadenes, els resultats seran imprevisibles: en Java els `String` es comparen amb `.equals()` perquè són objectes (encara que Java els done un tracte especial). La U09 t'explicarà per què.
+
+</details>
+
+---
+
+### 4. Sleigh Authentication
+
+Has de completar la classe `Sleigh` amb un mètode `authenticate(name, password)` que torne `true` només si `name` és `"Santa Claus"` i `password` és `"Ho Ho Ho!"`.
+
+- [Enunciat en CodeWars](https://www.codewars.com/kata/52adc142b2651f25a8000643)
+- Dificultat: 8 kyu
+
+**Pista:** torna `name.equals("Santa Claus") && password.equals("Ho Ho Ho!")`. Una altra vegada `.equals()`, i el `&&` de la U04.
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Sleigh {
-    private static final String NOM_VALID = "Santa Claus";
-    private static final String PASSWORD_VALID = "Ho Ho Ho!";
-
     public boolean authenticate(String name, String password) {
-        return NOM_VALID.equals(name) && PASSWORD_VALID.equals(password);
+        return name.equals("Santa Claus") && password.equals("Ho Ho Ho!");
     }
 }
 ```
 
-Les constants `static final` són el secret de la casa: `static` (una sola còpia per a tota la classe, la vas vore en el punt 7) i `final` (ningú pot reassignar-les). El `authenticate` combina les dos comprovacions amb `&&`. El `.equals()` es crida sobre la constant, no sobre el paràmetre: així `null` mai trenca el mètode.
-
-</details>
-
----
-
-### 4. Object Oriented Piracy
-
-Crea la classe `Ship` que rep un `draft` (calat) i un `crew` (tripulants). Implementa `isWorthIt()`: torna `true` si el calat total menys `1.5` per cada tripulant supera 20.
-
-**Exemple:** `new Ship(15, 10).isWorthIt()` → `false` (`15 - 1.5*10 = 0`).
-
-- [Enunciat a CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add)
-- Dificultat: 8 kyu
-
-**Pista:** guarda `draft` i `crew` en atributs `private final` (es fixen en el constructor i ja no canvien). El mètode combina tots dos: `return draft - 1.5 * crew > 20;`. El `1.5` mereix ser una constant amb nom.
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Ship {
-    private static final double PES_TRIPULANT = 1.5;
-
-    private final double draft;
-    private final int crew;
-
-    public Ship(double draft, int crew) {
-        this.draft = draft;
-        this.crew = crew;
-    }
-
-    public boolean isWorthIt() {
-        return draft - PES_TRIPULANT * crew > 20;
-    }
-}
-```
-
-La classe és immutable: els atributs `final` es fixen en nàixer i ningú pot canviar-los (ni tan sols amb un setter, que ací no existeix). La constant `static final` documenta el `1.5`. El vaixell "sap" si mereix la pena saquejar-lo sense que ningú llig les seues tripes: encapsulació i responsabilitat única.
+Un mètode d'una sola línia: dos comparacions amb `.equals()` unides per `&&`. És una d'eixes katas trampa: sembla trivial, però molts cauen usant `==` i fallen els tests. Objectes per tot arreu.
 
 </details>
 
@@ -183,29 +148,31 @@ La classe és immutable: els atributs `final` es fixen en nàixer i ningú pot c
 
 ## AceptaElReto
 
-### 5. 117 — La festa avorrida
+### 5. 148 — Nochevieja
 
-Tinín odia les festes, i cada persona que se li acosta es presenta amb el format `"Soc Lotari"`. Ajuda'l a respondre `"Hola, [nom]."` a cadascun. L'entrada comença amb un nombre que indica quantes persones hi ha, seguit d'una línia per persona. Escriu la solució amb una classe `Persona` que guarde el nom i un mètode `saludar()`.
+Ramón es passa el dia de cap d'any contant els minuts que falten per a mitjanit. Per a cada hora de l'entrada (format `HH:MM`), digues quants minuts falten per a les `00:00`. L'entrada acaba amb `00:00`, que no es processa.
 
-**Entrada d'exemple:**
-```
-3
-Soc Lotari
-Soc Aldonça
-Soc Ender
-```
+**Entrada:**
 
-**Eixida d'exemple:**
 ```
-Hola, Lotari.
-Hola, Aldonça.
-Hola, Ender.
+23:45
+21:30
+00:01
+00:00
 ```
 
-- [Enunciat a AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
+**Eixida:**
+
+```
+15
+150
+1439
+```
+
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=148)
 - Dificultat: Fàcil
 
-**Pista:** llig la línia, trau el `"Soc "` inicial (`linea.substring(4)` o `split(" ")[1]`), crea la `Persona` amb eixe nom i crida el seu `saludar()`. És una excusa perfecta per a una classe amb un atribut i un mètode, en comptes d'un main que ho fa tot.
+**Pista:** separa l'hora i el minut amb `split(":")`. Els minuts que falten són `(23 - hora) * 60 + (60 - minut)`. Escriu una classe `Hora` amb un mètode `minutsFinsMitjanit()` i veuràs com de natural queda.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -213,57 +180,54 @@ Hola, Ender.
 ```java
 import java.util.Scanner;
 
-public class Persona {
-    private String nom;
-
-    public Persona(String nom) {
-        this.nom = nom;
-    }
-
-    public void saludar() {
-        System.out.println("Hola, " + nom + ".");
-    }
-
+public class Nochevieja {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        sc.nextLine();  // consumeix el salt de línia
+        String linea = sc.next();
 
-        for (int i = 0; i < n; i++) {
-            String linea = sc.nextLine();
-            String nom = linea.substring(4);  // trau "Soc "
-            Persona p = new Persona(nom);
-            p.saludar();
+        while (!linea.equals("00:00")) {
+            String[] parts = linea.split(":");
+            int hora = Integer.parseInt(parts[0]);
+            int minut = Integer.parseInt(parts[1]);
+            System.out.println((23 - hora) * 60 + (60 - minut));
+            linea = sc.next();
         }
         sc.close();
     }
 }
 ```
 
-`Persona` encapsula el seu nom: `private` + constructor + un mètode que sap saludar. El `main` només s'encarrega de llegir i crear objectes. `linea.substring(4)` es salta els 4 primers caràcters (`"Soc "`). El `sc.nextLine()` extra després del `nextInt()` consumeix l'Enter, el clàssic del Scanner que vas vore en la U02.
+Per a `23:45`: `(23-23)*60 + (60-45)` = 15. Per a `21:30`: `2*60 + 30` = 150. El `while` es deté amb la línia `00:00` perquè es compara amb `.equals()` (és un `String`, recorda). La versió amb classe `Hora` és un bon exercici voluntari.
 
 </details>
 
 ---
 
-### 6. 117 bis — La festa avorrida amb comptador estàtic
+### 6. 117 — La fiesta aburrida
 
-Repte extra amb `static`: usa la classe `Persona` de l'exercici 5, però afig un atribut `private static int totalSaluts` que compte quantes persones ha saludat Tinín en total. Després de cada salut, mostra el total acumulat.
+Tinín odia saludar desconeguts. L'entrada comença amb un nombre N (quanta gent hi ha) i després N línies amb el format `"Soy Lotario"`. Per a cada una, imprimeix `"Hola, Lotario."`.
 
-**Entrada d'exemple:**
-```
-2
-Soc Lotari
-Soc Ender
-```
+**Entrada:**
 
-**Eixida d'exemple:**
 ```
-Hola, Lotari. (saluts: 1)
-Hola, Ender. (saluts: 2)
+3
+Soy Lotario
+Soy Aldonza
+Soy Ender
 ```
 
-**Pista:** `static` significa "de la classe, no de l'objecte": tots els `Persona` compartixen `totalSaluts`. Instrumenta-ho dins de `saludar()` amb `totalSaluts++`. Així practiques que el comptador puja per a tots els objectes, com el `Contador` del butlletí inicial.
+**Eixida:**
+
+```
+Hola, Lotario.
+Hola, Aldonza.
+Hola, Ender.
+```
+
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
+- Dificultat: Fàcil
+
+**Pista:** `split(" ")` sobre cada línia i agafa la segona part (índex 1). Pots modelar cada persona com un objecte d'una classe `Persona` amb el nom i un mètode `saludar()`.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -271,24 +235,7 @@ Hola, Ender. (saluts: 2)
 ```java
 import java.util.Scanner;
 
-public class Persona {
-    private static int totalSaluts = 0;
-
-    private String nom;
-
-    public Persona(String nom) {
-        this.nom = nom;
-    }
-
-    public void saludar() {
-        totalSaluts++;
-        System.out.println("Hola, " + nom + ". (saluts: " + totalSaluts + ")");
-    }
-
-    public static int getTotalSaluts() {
-        return totalSaluts;
-    }
-
+public class FiestaAburrida {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
@@ -296,18 +243,18 @@ public class Persona {
 
         for (int i = 0; i < n; i++) {
             String linea = sc.nextLine();
-            Persona p = new Persona(linea.substring(4));
-            p.saludar();
+            String nom = linea.split(" ")[1];
+            System.out.println("Hola, " + nom + ".");
         }
         sc.close();
     }
 }
 ```
 
-`totalSaluts` és `static`: hi ha una única còpia compartida per tota la classe, no una per objecte. Cada `saludar()` l'incrementa i, com que tots compartixen la mateixa variable, el comptador acumula de veritat. `getTotalSaluts()` és `static` perquè la pregunta "quants saluts en total?" se li fa a la classe, no a una persona concreta.
+`split(" ")` partix `"Soy Lotario"` en `["Soy", "Lotario"]` i l'índex 1 és el nom. El `sc.nextLine()` després del `nextInt()` consumeix el salt de línia sobrant. Una versió amb classe `Persona` i el seu mètode `saludar()` és el repte extra ideal per a esta unitat.
 
 </details>
 
 ---
 
-> 🧭 **I si et quedes amb ganes?** Quan domines l'encapsulació, torna als problemes d'unitats anteriors i reescriu-los amb classes ben blindades: un `Rectangle` amb la seua àrea com a mètode, un `Numero` amb la seua anàlisi com a mètode... El `private`, els getters i el `static` transformen un script solt en un disseny. El material no es perd: es reutilitza.
+> 🧭 **I si et quedes amb ganes?** Quan domines les classes, el pas natural és protegir les seues dades: això és l'**encapsulació** de la U09. I si vols vore objectes que es creen i destrueixen sols, espera't als arrays de la U05 i les col·leccions de la U11, on crearàs desenes d'objectes en un bucle.

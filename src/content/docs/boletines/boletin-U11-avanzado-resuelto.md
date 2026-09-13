@@ -1,4 +1,4 @@
----
+﻿---
 title: "Boletín U11 — Avanzado Resuelto"
 description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 ---
@@ -9,300 +9,47 @@ description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 
 ---
 
-## ⭐ Ejercicio 1: Pila genérica `<T>`
+## ⭐ Ejercicio 1: La cola del supermercado con LinkedList
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.ArrayList;
-import java.util.EmptyStackException;
-
-public class Pila<T> {
-    private ArrayList<T> elementos = new ArrayList<>();
-
-    public void push(T elemento) {
-        elementos.add(elemento);
-    }
-
-    public T pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return elementos.remove(elementos.size() - 1);
-    }
-
-    public T peek() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return elementos.get(elementos.size() - 1);
-    }
-
-    public boolean isEmpty() {
-        return elementos.isEmpty();
-    }
-
-    public int size() {
-        return elementos.size();
-    }
-}
-```
-
-La pila se construye sobre un `ArrayList<T>`: el final de la lista es la cima. `push` añade, `pop` quita y devuelve el último, y `peek` lo mira sin quitarlo. Al ser genérica, funciona igual con `Integer`, `String` o `Double`: `new Pila<String>()` y listo.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 2: Método genérico `maximo` sobre un array
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Utilidades {
-
-    public static <T extends Comparable<T>> T maximo(T[] array) {
-        T max = array[0];
-        for (int i = 1; i < array.length; i++) {
-            if (array[i].compareTo(max) > 0) {
-                max = array[i];
-            }
-        }
-        return max;
-    }
-
-    public static void main(String[] args) {
-        Integer[] numeros = {3, 8, 2, 10, 5};
-        String[] palabras = {"manzana", "pera", "melón"};
-
-        System.out.println(maximo(numeros));  // 10
-        System.out.println(maximo(palabras)); // pera
-    }
-}
-```
-
-El límite `T extends Comparable<T>` garantiza que `T` sabe compararse. Se usa `Integer[]`, no `int[]`, porque los arrays de genéricos no aceptan primitivos. El patrón del máximo acumulado: candidato inicial en el índice 0 y recorrido desde el 1.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 3: HashMap inverso
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.HashMap;
-
-public class Utilidades {
-
-    public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original) {
-        HashMap<V, K> invertido = new HashMap<>();
-        for (HashMap.Entry<K, V> e : original.entrySet()) {
-            invertido.put(e.getValue(), e.getKey());
-        }
-        return invertido;
-    }
-
-    public static void main(String[] args) {
-        HashMap<String, Integer> edades = new HashMap<>();
-        edades.put("Ana", 25);
-        edades.put("Bob", 30);
-
-        HashMap<Integer, String> porEdad = invertirMapa(edades);
-        System.out.println(porEdad.get(25)); // Ana
-        System.out.println(porEdad.get(30)); // Bob
-    }
-}
-```
-
-Recorrer `entrySet()` te da clave y valor juntos, y el `put` invertido los cambia de sitio. Si dos claves comparten valor (dos personas de 25 años), el último en el recorrido sobrescribe al anterior: los valores del mapa original no son únicos, así que el inverso puede perder información. Esa es la limitación natural de invertir un mapa.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 4: TreeMap — frecuencia de letras
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Map;
-import java.util.TreeMap;
-
-public class FrecuenciaLetras {
-    public static void main(String[] args) {
-        String texto = "Hola mundo";
-
-        TreeMap<Character, Integer> frec = new TreeMap<>();
-        for (char c : texto.toLowerCase().toCharArray()) {
-            if (Character.isLetter(c)) {
-                frec.put(c, frec.getOrDefault(c, 0) + 1);
-            }
-        }
-
-        for (Map.Entry<Character, Integer> e : frec.entrySet()) {
-            System.out.print(e.getKey() + ": " + e.getValue() + ", ");
-        }
-        // a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
-    }
-}
-```
-
-`toLowerCase()` unifica mayúsculas y minúsculas, `Character.isLetter(c)` descarta espacios y signos, y `getOrDefault` suma el contador. La magia del `TreeMap` es que, al recorrerlo, las claves salen ordenadas alfabéticamente sin que hagas nada.
-
-</details>
-
----
-
-## ⭐⭐⭐ Ejercicio 5: Wildcards — suma y mezcla de números
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.ArrayList;
-import java.util.List;
-
-public class Numeros {
-
-    public static double sumar(List<? extends Number> lista) {
-        double total = 0.0;
-        for (Number n : lista) {
-            total += n.doubleValue();
-        }
-        return total;
-    }
-
-    public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b) {
-        List<Double> resultado = new ArrayList<>();
-        for (Number n : a) {
-            resultado.add(n.doubleValue());
-        }
-        for (Number n : b) {
-            resultado.add(n.doubleValue());
-        }
-        return resultado;
-    }
-
-    public static void main(String[] args) {
-        List<Integer> enteros = List.of(1, 2, 3);
-        List<Double> dobles = List.of(1.5, 2.5);
-
-        System.out.println(sumar(enteros)); // 6.0
-        System.out.println(sumar(dobles));  // 4.0
-        System.out.println(mezclar(enteros, dobles)); // [1.0, 2.0, 3.0, 1.5, 2.5]
-    }
-}
-```
-
-`List<? extends Number>` acepta cualquier lista de Number o de una subclase. Al leer, cada elemento es un `Number` y `doubleValue()` lo convierte. Pasar una `List<String>` sería un error de compilación: `String` no es un `Number`. Y ojo: `? extends` es de solo lectura, así que en `sumar` no puedes hacer `add` (PECS: Producer Extends).
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 6: Caché LRU con LinkedHashMap
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-public class CacheLRU<K, V> extends LinkedHashMap<K, V> {
-    private static final int MAX = 5;
-
-    public CacheLRU() {
-        super(MAX, 0.75f, true);  // accessOrder = true: por acceso, no inserción
-    }
-
-    @Override
-    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
-        return size() > MAX;
-    }
-
-    public static void main(String[] args) {
-        CacheLRU<String, Integer> cache = new CacheLRU<>();
-        for (int i = 1; i <= 6; i++) {
-            cache.put("clave" + i, i);
-        }
-        System.out.println(cache);  // las 5 más recientes; "clave1" fue expulsada
-    }
-}
-```
-
-El constructor `super(MAX, 0.75f, true)` activa el modo `accessOrder`: cada `get` o `put` mueve la entrada al final. `removeEldestEntry()` se llama tras cada inserción y, al devolver `size() > MAX`, expulsa al elemento menos recientemente usado. Es la caché LRU clásica en unas pocas líneas.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 7: Agenda completa con menú
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Agenda {
+public class ColaSupermercado {
     public static void main(String[] args) {
-        HashMap<String, String> agenda = new HashMap<>();
+        LinkedList<String> cola = new LinkedList<>();
         Scanner sc = new Scanner(System.in);
         int opcion;
 
         do {
-            System.out.println("\n1. Añadir contacto");
-            System.out.println("2. Buscar por nombre");
-            System.out.println("3. Listar todos");
-            System.out.println("4. Borrar contacto");
-            System.out.println("0. Salir");
-            System.out.print("Opción: ");
+            System.out.println("\n1. Llega cliente  2. Atender cliente  3. ¿Quién sigue?  4. Estado  0. Salir");
             opcion = sc.nextInt();
             sc.nextLine();
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Nombre: ");
-                    String nombre = sc.nextLine();
-                    System.out.print("Teléfono: ");
-                    String telefono = sc.nextLine();
-                    agenda.put(nombre, telefono);
-                    System.out.println("Contacto añadido.");
+                    System.out.print("Nombre del cliente: ");
+                    cola.addLast(sc.nextLine());
                     break;
-
                 case 2:
-                    System.out.print("Nombre: ");
-                    String buscado = sc.nextLine();
-                    if (agenda.containsKey(buscado)) {
-                        System.out.println(buscado + " → " + agenda.get(buscado));
+                    if (!cola.isEmpty()) {
+                        System.out.println("Atendiendo a: " + cola.removeFirst());
                     } else {
-                        System.out.println(buscado + " no está en la agenda.");
+                        System.out.println("No hay nadie en la cola.");
                     }
                     break;
-
                 case 3:
-                    for (Map.Entry<String, String> e : agenda.entrySet()) {
-                        System.out.println(e.getKey() + " → " + e.getValue());
+                    if (!cola.isEmpty()) {
+                        System.out.println("El siguiente es: " + cola.getFirst());
+                    } else {
+                        System.out.println("No hay nadie en la cola.");
                     }
                     break;
-
                 case 4:
-                    System.out.print("Nombre a borrar: ");
-                    String aBorrar = sc.nextLine();
-                    if (agenda.remove(aBorrar) != null) {
-                        System.out.println("Contacto borrado.");
-                    } else {
-                        System.out.println("No existe ese contacto.");
-                    }
+                    System.out.println("Cola: " + cola);
                     break;
             }
         } while (opcion != 0);
@@ -312,118 +59,276 @@ public class Agenda {
 }
 ```
 
-`containsKey` evita mostrar un `null` al buscar, `entrySet` lista todo sin un `get` extra y `remove` devuelve el valor borrado (o `null` si no existía), sirviendo de comprobación. La agenda completa con `HashMap`: buscar por clave es O(1).
+`addLast` mete al final (los clientes se ponen detrás), `removeFirst` atiende al primero (FIFO) y `getFirst` lo mira sin sacarlo. El `isEmpty()` evita el error de pedirle el primero a una cola vacía.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: Sistema de votaciones con método genérico
+## ⭐⭐ Ejercicio 2: Intersección y unión de conjuntos
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Votaciones {
+public class Conjuntos {
+    public static void main(String[] args) {
+        Set<Integer> a = new HashSet<>();
+        Set<Integer> b = new HashSet<>();
 
-    public static <T> T obtenerGanador(Map<T, Integer> votos) {
-        T ganador = null;
-        int maxVotos = -1;
-        for (Map.Entry<T, Integer> e : votos.entrySet()) {
-            if (e.getValue() > maxVotos) {
-                maxVotos = e.getValue();
-                ganador = e.getKey();
+        while (a.size() < 8) a.add((int) (Math.random() * 20) + 1);
+        while (b.size() < 8) b.add((int) (Math.random() * 20) + 1);
+
+        Set<Integer> interseccion = new HashSet<>(a);
+        interseccion.retainAll(b);
+
+        Set<Integer> union = new HashSet<>(a);
+        union.addAll(b);
+
+        Set<Integer> difSimetrica = new HashSet<>(union);
+        difSimetrica.removeAll(interseccion);
+
+        System.out.println("A: " + a);
+        System.out.println("B: " + b);
+        System.out.println("Intersección: " + interseccion);
+        System.out.println("Unión: " + union);
+        System.out.println("Diferencia simétrica: " + difSimetrica);
+    }
+}
+```
+
+La magia son los tres métodos de `Set`: `retainAll` deja solo lo común, `addAll` une sin duplicados y `removeAll` quita la intersección de la unión para dejar lo que está solo en uno de los dos. Como `HashSet` no admite duplicados, la unión sale limpia sola. El `while` garantiza 8 elementos únicos en cada conjunto.
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 3: Eliminar duplicados manteniendo el orden
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+
+public class SinDuplicados {
+    public static ArrayList<Integer> sinDuplicados(ArrayList<Integer> lista) {
+        LinkedHashSet<Integer> set = new LinkedHashSet<>(lista);
+        return new ArrayList<>(set);
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> lista = new ArrayList<>(java.util.Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5));
+        System.out.println(sinDuplicados(lista)); // [3, 1, 4, 5, 9, 2, 6]
+    }
+}
+```
+
+`LinkedHashSet` es la combinación perfecta: elimina duplicados (como `HashSet`) pero conserva el orden de inserción (como una lista). Se construye pasándole la lista y se vuelve a convertir en `ArrayList`. Resultado: `[3, 1, 4, 5, 9, 2, 6]`, sin repetidos y en orden de primera aparición.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 4: ¿Qué imprime? — el remove que rompe el baile
+
+<details>
+<summary>🔄 Solución</summary>
+
+Lanza una **`ConcurrentModificationException`**.
+
+El `for-each` usa un `Iterator` por debajo. Cuando dentro del bucle llamas a `palabras.remove(p)`, la lista cambia mientras el iterador la está recorriendo. El iterador detecta la modificación externa y explota. La solución es recorrer con un `Iterator` explícito y usar `it.remove()`. O construir una nueva lista con los elementos que quieres conservar.
+
+```java
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Puzle {
+    public static void main(String[] args) {
+        ArrayList<String> palabras = new ArrayList<>();
+        palabras.add("hola");
+        palabras.add("mundo");
+        palabras.add("adiós");
+
+        Iterator<String> it = palabras.iterator();
+        while (it.hasNext()) {
+            if (it.next().equals("mundo")) {
+                it.remove();
             }
         }
-        return ganador;
-    }
-
-    public static void main(String[] args) {
-        HashMap<String, Integer> votos = new HashMap<>();
-        votos.put("Ana", 3);
-        votos.put("Bob", 5);
-        votos.put("Carla", 2);
-
-        System.out.println(obtenerGanador(votos)); // Bob
-
-        HashMap<Integer, Integer> porCategoria = new HashMap<>();
-        porCategoria.put(1, 10);
-        porCategoria.put(2, 7);
-        System.out.println(obtenerGanador(porCategoria)); // 1
+        System.out.println(palabras); // [hola, adiós]
     }
 }
 ```
-
-El método es genérico (`<T>`) porque el tipo de la clave no importa: solo necesita recorrer y comparar valores. El patrón del máximo acumulado sobre `entrySet()` devuelve la clave con más votos. Funciona igual con claves `String`, `Integer` o cualquier otro tipo.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 9: Pareja genérica con intercambio
+## ⭐⭐ Ejercicio 5: Filtrar con Iterator
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Pareja<T, U> {
-    private T primero;
-    private U segundo;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-    public Pareja(T primero, U segundo) {
-        this.primero = primero;
-        this.segundo = segundo;
-    }
-
-    public T getPrimero() { return primero; }
-    public U getSegundo() { return segundo; }
-
-    public void setPrimero(T primero) { this.primero = primero; }
-    public void setSegundo(U segundo) { this.segundo = segundo; }
-
-    public Pareja<U, T> intercambiar() {
-        return new Pareja<>(this.segundo, this.primero);
-    }
-
+public class FiltrarPares {
     public static void main(String[] args) {
-        Pareja<String, Integer> original = new Pareja<>("Ana", 25);
-        Pareja<Integer, String> intercambiada = original.intercambiar();
+        ArrayList<Integer> numeros = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            numeros.add(i);
+        }
 
-        System.out.println(original.getPrimero());       // Ana
-        System.out.println(intercambiada.getPrimero());  // 25
+        Iterator<Integer> it = numeros.iterator();
+        while (it.hasNext()) {
+            if (it.next() % 2 == 0) {
+                it.remove();
+            }
+        }
+
+        System.out.println(numeros); // [1, 3, 5, 7, 9]
     }
 }
 ```
 
-La clase tiene dos parámetros de tipo `<T, U>`. `intercambiar()` crea una `Pareja<U, T>` (fíjate en el orden invertido de los parámetros) pasando el segundo como primero y el primero como segundo. El compilador comprueba que `original.intercambiar()` devuelva exactamente `Pareja<Integer, String>`: no hay forma de equivocarse de tipo sin que te pille
+`it.next()` devuelve el número y avanza; si es par, `it.remove()` lo borra de la lista original sin lanzar excepción. Recuerda: solo puedes borrar el elemento que acaba de devolver `next()`, y el orden importa.
+
+</details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 10: el type erasure al descubierto
+## ⭐⭐ Ejercicio 6: El TreeSet ordenado
 
 <details>
 <summary>🔄 Solución</summary>
 
-1. **Es la misma clase.** `Caja<String>` y `Caja<Integer>` no generan dos clases en el bytecode: el compilador borra el parámetro de tipo y deja una única `Caja` con `Object`. Por eso no hay ninguna ganancia de rendimiento por "especializar": erasure significa que no se duplica código.
-2. **`Object`.** `getValor()` en el bytecode devuelve `Object`. El compilador inserta el cast a `String` en el punto de uso (cuando asignas a `String s = caja.getValor();`).
-3. La comprobación con `getClass()`:
-
 ```java
-public class Demo {
-    public static void main(String[] args) {
-        Caja<String> cajaTexto = new Caja<>("hola");
-        Caja<Integer> cajaNumero = new Caja<>(42);
+import java.util.Scanner;
+import java.util.TreeSet;
 
-        System.out.println(cajaTexto.getClass());
-        System.out.println(cajaNumero.getClass());
-        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+public class PalabrasOrdenadas {
+    public static void main(String[] args) {
+        TreeSet<String> palabras = new TreeSet<>();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Escribe palabras (fin para terminar):");
+        String palabra = sc.nextLine();
+        while (!palabra.equals("fin")) {
+            palabras.add(palabra);
+            palabra = sc.nextLine();
+        }
+
+        System.out.println("Ordenadas: " + palabras);
+        System.out.println("Primera: " + palabras.first());
+        System.out.println("Última: " + palabras.last());
+        System.out.println("Antes de 'm': " + palabras.headSet("m"));
+        sc.close();
     }
 }
 ```
 
-Ambas imprimen `class Caja` y la comparación con `==` da `true`: es la MISMA clase en runtime. El `<String>` y el `<Integer>` solo existen en tiempo de compilación. Ese es el type erasure: el mago que borra los tipos cuando compilas.
+El `TreeSet` ordena automáticamente (orden alfabético) y **elimina duplicados**: si el usuario repite una palabra, solo se guarda una vez. `first()` y `last()` dan los extremos; `headSet("m")` devuelve todas las palabras que van antes que "m" en el orden natural.
 
-</details>.
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 7: Encuentra el error — el bucle que explota
+
+<details>
+<summary>🔄 Solución</summary>
+
+Lanza una **`ConcurrentModificationException`**: el `for-each` recorre con un `Iterator` interno, y al borrar con `nombres.remove(n)` mientras el iterador avanza, la colección cambia por la espalda y el iterador explota.
+
+Versión corregida con `Iterator` explícito:
+
+```java
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class Error {
+    public static void main(String[] args) {
+        ArrayList<String> nombres = new ArrayList<>();
+        nombres.add("Ana");
+        nombres.add("Bob");
+        nombres.add("Carla");
+
+        Iterator<String> it = nombres.iterator();
+        while (it.hasNext()) {
+            if (it.next().equals("Bob")) {
+                it.remove();
+            }
+        }
+        System.out.println(nombres); // [Ana, Carla]
+    }
+}
+```
+
+`it.remove()` borra el último elemento devuelto por `next()` de la colección original, sin que el iterador se entere de nada raro. Es la única forma segura de "borrar mientras recorres".
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 8: ¿Qué imprime? — Collections en acción
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`5`**.
+
+- `Collections.sort(nums)` ordena la lista original → `[1, 3, 5, 8]`.
+- `Collections.reverse(nums)` le da la vuelta → `[8, 5, 3, 1]`.
+- `nums.get(1)` devuelve la posición 1 → `5`.
+
+Ambos métodos **modifican la lista en el sitio**: no devuelven una nueva. Por eso, tras `sort` + `reverse`, la lista original ya está invertida.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: Estadísticas de clase con ArrayList
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class Estadisticas {
+    public static void main(String[] args) {
+        ArrayList<Double> notas = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+
+        for (int i = 0; i < 20; i++) {
+            System.out.print("Nota del alumno " + (i + 1) + ": ");
+            notas.add(sc.nextDouble());
+        }
+
+        double suma = 0;
+        int aprobados = 0;
+        for (double n : notas) {
+            suma += n;
+            if (n >= 5) aprobados++;
+        }
+
+        System.out.println("Media: " + (suma / notas.size()));
+        System.out.println("Máxima: " + Collections.max(notas));
+        System.out.println("Mínima: " + Collections.min(notas));
+        System.out.println("Aprobados: " + aprobados);
+        sc.close();
+    }
+}
+```
+
+Un bucle rellena la lista, y el for-each hace el resto en una sola pasada: acumula la suma y cuenta aprobados. `Collections.max` y `Collections.min` devuelven el mayor y el menor según el orden natural, sin escribir ningún bucle a mano.
+
+</details>

@@ -1,6 +1,6 @@
----
+﻿---
 title: "Boletín U11 — Avanzado"
-description: "Ejercicios de dificultad progresiva para exprimir los genéricos y los mapas"
+description: "Ejercicios de dificultad progresiva para exprimir las colecciones"
 ---
 
 # 📝 Boletín U11 — Avanzado
@@ -9,183 +9,155 @@ description: "Ejercicios de dificultad progresiva para exprimir los genéricos y
 
 ---
 
-## ⭐ Ejercicio 1: Pila genérica `<T>`
+## ⭐ Ejercicio 1: La cola del supermercado con LinkedList
 
-Implementa una clase genérica `Pila<T>` que funcione como una pila (LIFO). Debe tener los métodos:
+Simula una cola de supermercado usando `LinkedList<String>`. El programa debe mostrar un menú:
 
-- `void push(T elemento)` — apila un elemento.
-- `T pop()` — desapila y devuelve el elemento superior (lanza `EmptyStackException` si está vacía).
-- `T peek()` — devuelve el elemento superior sin desapilarlo.
-- `boolean isEmpty()` — indica si está vacía.
-- `int size()` — número de elementos.
-
-Internamente, usa un `ArrayList<T>` como almacenamiento. Pruébala con `Pila<Integer>`, `Pila<String>` y `Pila<Double>`.
-
-**Pista:** `EmptyStackException` está en `java.util.EmptyStackException`. Recuerda comprobar `isEmpty()` antes de `pop()`/`peek()`.
-
----
-
-## ⭐⭐ Ejercicio 2: Método genérico `maximo` sobre un array
-
-Implementa un método genérico:
-
-```java
-public static <T extends Comparable<T>> T maximo(T[] array)
-```
-
-Que devuelva el elemento más grande del array usando `compareTo()`. Pruébalo con un `Integer[]` y un `String[]`.
-
-**Pista:** asume que el primero es el máximo y recorre desde el índice 1. No puedes usar arrays de primitivos: usa `Integer[]`, no `int[]`.
-
----
-
-## ⭐⭐ Ejercicio 3: HashMap inverso
-
-Escribe un método genérico estático:
-
-```java
-public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original)
-```
-
-Que devuelva un nuevo `HashMap` intercambiando claves y valores. Si hay valores duplicados en el mapa original, el último encontrado sobrescribe al anterior.
-
-Prueba con un mapa de `String → Integer` y otro de `String → String`.
-
-**Pista:** recorre `original.entrySet()` y haz `invertido.put(e.getValue(), e.getKey())`.
-
----
-
-## ⭐⭐ Ejercicio 4: TreeMap — frecuencia de letras
-
-Escribe un programa que lea un texto por teclado (o use uno hardcodeado) y cuente cuántas veces aparece cada **letra** (ignorando espacios, números y signos). Usa un `TreeMap<Character, Integer>` para que las letras se muestren automáticamente ordenadas alfabéticamente.
-
-Ejemplo de salida para «Hola mundo»:
-```
-a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
-```
-
-**Pista:** recorre el `String` con `toCharArray()` y usa `Character.isLetter(c)` para filtrar. El `getOrDefault` suma el contador; el TreeMap ordena solo.
-
----
-
-## ⭐⭐⭐ Ejercicio 5: Wildcards — suma y mezcla de números
-
-Implementa un método que sume todos los números de una lista, aceptando cualquier subtipo de `Number`:
-
-```java
-public static double sumar(List<? extends Number> lista)
-```
-
-Pruébalo con `List<Integer>`, `List<Double>` y `List<Float>`. ¿Qué ocurre si intentas pasar una `List<String>`?
-
-Crea también un segundo método que **mezcle** dos listas de números de tipos distintos en una sola `List<Double>`:
-
-```java
-public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b)
-```
-
-**Pista:** para `sumar`, recorre con `for (Number n : lista)` y usa `n.doubleValue()`. Para `mezclar`, usa `addAll()` y convierte cada elemento con `doubleValue()`. Y no intentes `add` en `sumar`: `? extends` es de solo lectura (PECS).
-
----
-
-## ⭐⭐ Ejercicio 6: Caché LRU con LinkedHashMap
-
-Crea una clase `CacheLRU<K, V>` que use internamente un `LinkedHashMap<K, V>` con capacidad máxima de 5 elementos. Cuando se añade un elemento y ya hay 5, se elimina el **menos recientemente usado** (acceso, no inserción).
-
-**Pista:** `LinkedHashMap` tiene el constructor con `accessOrder=true` y el método protegido `removeEldestEntry()` que devuelve si hay que expulsar al más viejo. Sobrescríbelo para devolver `size() > 5`.
-
----
-
-## ⭐⭐ Ejercicio 7: Agenda completa con menú
-
-Implementa una agenda usando `HashMap<String, String>` con menú interactivo:
-
-1. **Añadir contacto** (nombre y teléfono).
-2. **Buscar por nombre** (muestra el teléfono).
-3. **Listar todos** (recorre con `entrySet`).
-4. **Borrar contacto**.
+1. **Llega cliente** → Añade un nombre al final de la cola.
+2. **Atender cliente** → Elimina y muestra el primero de la cola.
+3. **¿Quién sigue?** → Muestra el primero sin eliminarlo.
+4. **Estado de la cola** → Muestra todos los clientes en orden.
 0. **Salir**
 
-Usa un `while`, un `switch` y un `Scanner`. Cuida los casos en los que el contacto no existe (usa `containsKey` o `getOrDefault`).
+Usa los métodos `addLast()`, `removeFirst()` y `getFirst()` de `LinkedList`, con un `switch` y un `Scanner`.
 
-**Pista:** el menú se repite hasta que el usuario elija `0`. Para buscar, comprueba `containsKey(nombre)` antes de `get`.
-
----
-
-## ⭐⭐⭐ Ejercicio 8: Sistema de votaciones con método genérico
-
-Crea un sistema de votaciones donde:
-
-- Cada votante puede votar por un candidato (String).
-- Usa un `HashMap<String, Integer>` para los votos.
-- Usa un `TreeMap<String, Integer>` para mostrar el ranking ordenado.
-
-Crea un método genérico:
-
-```java
-public static <T> T obtenerGanador(Map<T, Integer> votos)
-```
-
-Que devuelva la clave con más votos. Pruébalo con un `HashMap<String, Integer>` y otro `HashMap<Integer, Integer>`.
-
-**Pista:** recorre `votos.entrySet()` y guarda el ganador provisional comparando `getValue()` con un máximo acumulado. El método es genérico porque el tipo de la clave (`String`, `Integer`...) no importa.
+**Pista:** el menú se repite con un `while` hasta que el usuario elija `0`. Cuida los casos en los que la cola está vacía antes de llamar a `removeFirst()` o `getFirst()`.
 
 ---
 
-## ⭐⭐ Ejercicio 9: Pareja genérica con intercambio
+## ⭐⭐ Ejercicio 2: Intersección y unión de conjuntos
 
-Crea una clase genérica `Pareja<T, U>` que almacene dos objetos de tipos posiblemente distintos. Incluye métodos `getPrimero()`, `getSegundo()`, `setPrimero(T)`, `setSegundo(U)` y un método `intercambiar()` que devuelva una nueva `Pareja<U, T>` con los valores intercambiados.
+Crea dos `HashSet<Integer>` con números aleatorios (entre 1 y 20, 8 elementos cada uno). Calcula y muestra:
 
-**Pista:** `intercambiar()` crea y devuelve `new Pareja<>(this.segundo, this.primero)`. El orden de los parámetros de tipo cambia: `Pareja<U, T>`
+- **Intersección:** elementos que están en ambos conjuntos.
+- **Unión:** todos los elementos sin repetir.
+- **Diferencia simétrica:** elementos que están en uno u otro, pero no en ambos.
+
+**Pista:** usa `retainAll()`, `addAll()` y `removeAll()` de la interfaz `Set`. Para la diferencia simétrica: `union.removeAll(interseccion)`.
 
 ---
 
-## ⭐⭐⭐ Ejercicio 10: el type erasure al descubierto
+## ⭐⭐ Ejercicio 3: Eliminar duplicados manteniendo el orden
 
-La clase `Caja<T>` guarda un valor y lo devuelve con `getValor()`. Escribe un programa que demuestre el **type erasure** en acción:
+Crea un `ArrayList<Integer>` con elementos repetidos (`[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]`). Escribe un método que devuelva un nuevo `ArrayList<Integer>` **sin duplicados pero manteniendo el orden de primera aparición**.
 
-```java
-public class Caja<T> {
-    private T valor;
+**Pista:** un `HashSet` no vale directamente porque pierde el orden. Usa un `LinkedHashSet` (conserva el orden de inserción) o recorre manualmente comprobando con `contains` antes de añadir.
 
-    public Caja(T valor) {
-        this.valor = valor;
-    }
+---
 
-    public T getValor() {
-        return valor;
-    }
-}
-```
+## ⭐⭐⭐ Ejercicio 4: ¿Qué imprime? — el remove que rompe el baile
 
-Sin ejecutar, responde:
-
-1. ¿Qué se compila más rápido: `Caja<String>` o `Caja<Integer>`? ¿Son clases distintas en tiempo de ejecución?
-2. ¿Qué tipo tiene realmente `caja.getValor()` dentro del bytecode si lo compilas como `Caja<String>`?
-3. Escribe un `main` que cree `Caja<String>` y `Caja<Integer>` y compruebe con `getClass()` que ambas son instancias de la misma clase `Caja` (el erasure: `<T>` desaparece en el bytecode).
-
-**Pista:** el type erasure convierte `Caja<T>` en `Caja` a pelo (con `Object` donde estaba `T`). Por eso `caja.getClass()` devuelve lo mismo para `Caja<String>` y `Caja<Integer>`: en runtime no hay dos clases, solo una `Caja`. El cast de `getValor()` lo añade el compilador, no tu código.
-
-<details>
-<summary>🔄 Solución</summary>
-
-1. **Es la misma clase.** `Caja<String>` y `Caja<Integer>` no generan dos clases en el bytecode: el compilador borra el parámetro de tipo y deja una única `Caja` con `Object`. Por eso no hay ninguna ganancia de rendimiento por "especializar": erasure significa que no se duplica código.
-2. **`Object`.** `getValor()` en el bytecode devuelve `Object`. El compilador inserta el cast a `String` en el punto de uso (cuando asignas a `String s = caja.getValor();`).
-3. La comprobación con `getClass()`:
+Sin ejecutar, responde qué ocurre con este programa:
 
 ```java
-public class Demo {
+import java.util.ArrayList;
+
+public class Puzle {
     public static void main(String[] args) {
-        Caja<String> cajaTexto = new Caja<>("hola");
-        Caja<Integer> cajaNumero = new Caja<>(42);
+        ArrayList<String> palabras = new ArrayList<>();
+        palabras.add("hola");
+        palabras.add("mundo");
+        palabras.add("adiós");
 
-        System.out.println(cajaTexto.getClass());
-        System.out.println(cajaNumero.getClass());
-        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+        for (String p : palabras) {
+            if (p.equals("mundo")) {
+                palabras.remove(p);
+            }
+        }
+        System.out.println(palabras);
     }
 }
 ```
 
-Ambas imprimen `class Caja` y la comparación con `==` da `true`: es la MISMA clase en runtime. El `<String>` y el `<Integer>` solo existen en tiempo de compilación. Ese es el type erasure: el mago que borra los tipos cuando compilas.
+¿Imprime algo? ¿O lanza una excepción? ¿Cuál y por qué?
 
-</details>.
+**Pista:** piensa en lo que hace el `for-each` por debajo (usa un `Iterator`) y en lo que pasa si la colección cambia mientras se recorre.
+
+---
+
+## ⭐⭐ Ejercicio 5: Filtrar con Iterator
+
+Crea un `ArrayList<Integer>` con los números del 1 al 10. Recórrelo con un `Iterator<Integer>` explícito y **borra todos los números pares** usando `it.remove()`. Al final, imprime la lista.
+
+**Pista:** recorre con `while (it.hasNext())`, obtén cada número con `it.next()` y comprueba si es par con `% 2 == 0`. Nunca uses `lista.remove(...)` dentro del bucle.
+
+---
+
+## ⭐⭐ Ejercicio 6: El TreeSet ordenado
+
+Crea un programa que pida al usuario palabras con `Scanner` hasta que escriba `"fin"`. Guárdalas en un `TreeSet<String>`. Al terminar, muestra:
+
+1. Las palabras ordenadas (imprimir el TreeSet directamente).
+2. La primera palabra (`first()`) y la última (`last()`).
+3. Las palabras que van antes que `"m"` en orden alfabético (`headSet("m")`).
+
+**Pista:** el TreeSet ordena y elimina duplicados automáticamente. Comprueba qué pasa si el usuario repite una palabra.
+
+---
+
+## ⭐⭐⭐ Ejercicio 7: Encuentra el error — el bucle que explota
+
+```java
+import java.util.ArrayList;
+
+public class Error {
+    public static void main(String[] args) {
+        ArrayList<String> nombres = new ArrayList<>();
+        nombres.add("Ana");
+        nombres.add("Bob");
+        nombres.add("Carla");
+
+        for (String n : nombres) {
+            if (n.equals("Bob")) {
+                nombres.remove(n);
+            }
+        }
+        System.out.println(nombres);
+    }
+}
+```
+
+Este programa compila pero **se cae en ejecución**. ¿Qué excepción lanza y por qué? Reescríbelo usando un `Iterator` explícito para que funcione.
+
+**Pista:** el `for-each` esconde un `Iterator`. Borrar con el `remove()` de la lista mientras el iterador recorre es una declaración de guerra.
+
+---
+
+## ⭐⭐ Ejercicio 8: ¿Qué imprime? — Collections en acción
+
+Sin ejecutar, responde qué imprime:
+
+```java
+import java.util.*;
+
+public class Puzzle {
+    public static void main(String[] args) {
+        ArrayList<Integer> nums = new ArrayList<>();
+        nums.add(5);
+        nums.add(1);
+        nums.add(8);
+        nums.add(3);
+
+        Collections.sort(nums);
+        Collections.reverse(nums);
+
+        System.out.println(nums.get(1));
+    }
+}
+```
+
+**Pista:** recuerda que `sort` y `reverse` **modifican la lista original**. Primero ordena, después da la vuelta, y mira qué queda en la posición 1.
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: Estadísticas de clase con ArrayList
+
+Pide al usuario las notas de 20 alumnos con `Scanner`, guárdalas en un `ArrayList<Double>` y calcula:
+
+- La nota media.
+- La nota más alta y la más baja (puedes usar `Collections.max()` y `Collections.min()`).
+- Cuántos alumnos aprobaron (nota >= 5).
+
+Usa un bucle para rellenar la lista y un for-each para sumar.
+
+**Pista:** para la media acumula la suma con un for-each y divide entre `notas.size()`. Para aprobados, cuenta en el mismo bucle. `Collections.max` y `Collections.min` te ahorran los bucles del máximo/mínimo.

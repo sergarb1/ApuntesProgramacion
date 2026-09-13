@@ -1,223 +1,48 @@
----
-title: "Boletín U04 — Avanzado Resuelto"
-description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
+﻿---
+title: Boletín U04 — Avanzado Resuelto
+description: Los mismos ejercicios que el boletín avanzado, con soluciones
 ---
 
 # 📝 Boletín U04 — Avanzado (Resuelto)
 
-> Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
+> Las soluciones están ocultas. Inténtalo de verdad antes de destaparlas.
 
 ---
 
-## ⭐ Ejercicio 1: La fusión de arrays ordenados
+## ⭐ Ejercicio 1: La calculadora de notas
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Fusion {
-    public static int[] fusionarArrays(int[] a, int[] b) {
-        int[] resultado = new int[a.length + b.length];
-        int i = 0, j = 0, k = 0;
-
-        while (i < a.length && j < b.length) {
-            if (a[i] < b[j]) {
-                resultado[k++] = a[i++];
-            } else {
-                resultado[k++] = b[j++];
-            }
-        }
-
-        while (i < a.length) {
-            resultado[k++] = a[i++];
-        }
-        while (j < b.length) {
-            resultado[k++] = b[j++];
-        }
-
-        return resultado;
-    }
-
+public class CalculadoraNotas {
     public static void main(String[] args) {
-        int[] a = {1, 3, 5};
-        int[] b = {2, 4, 6};
-        int[] r = fusionarArrays(a, b);
-        System.out.println(java.util.Arrays.toString(r)); // [1, 2, 3, 4, 5, 6]
+        double nota = 8.7;
+
+        if (nota < 0 || nota > 10) {
+            System.out.println("Nota inválida");
+        } else if (nota >= 9) {
+            System.out.println("Sobresaliente");
+        } else if (nota >= 7) {
+            System.out.println("Notable");
+        } else if (nota >= 5) {
+            System.out.println("Aprobado");
+        } else {
+            System.out.println("Suspenso");
+        }
     }
 }
 ```
 
-Dos punteros (`i` y `j`) avanzan por cada array comparando en cada paso. El menor de los dos se coloca en el resultado. Cuando un array se agota, se copia el resto del otro. Es el mismo algoritmo que usa `merge` en el mergesort de la U06.
+Salida: `Notable`
+
+El primer `if` caza las notas imposibles (negativas o mayores de 10) y la cascada siguiente evalúa de la más exigente a la más permisiva. Con 8.7, el `>= 7` gana y da "Notable".
 
 </details>
 
 ---
 
-## ⭐ Ejercicio 2: Rotación circular a la derecha
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Rotar {
-    public static void rotarDerecha(int[] arr, int k) {
-        int n = arr.length;
-        if (n == 0) return;
-        k = k % n; // si k >= n, sobran vueltas completas
-
-        int[] guardados = new int[k];
-        for (int i = 0; i < k; i++) {
-            guardados[i] = arr[n - k + i]; // los últimos k
-        }
-        for (int i = n - 1; i >= k; i--) {
-            arr[i] = arr[i - k];           // desplaza el resto a la derecha
-        }
-        for (int i = 0; i < k; i++) {
-            arr[i] = guardados[i];         // los guardados al principio
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
-        rotarDerecha(arr, 2);
-        System.out.println(Arrays.toString(arr)); // [4, 5, 1, 2, 3]
-    }
-}
-```
-
-Con `{1,2,3,4,5}` y `k = 2`: guardas `{4,5}`, desplazas `{1,2,3}` a las posiciones 2, 3, 4 y colocas `{4,5}` al principio. El `k % n` evita dar vueltas completas inútiles si `k` es mayor que el tamaño.
-
-</details>
-
----
-
-## ⭐ Ejercicio 3: Suma de diagonales (matriz cuadrada)
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class Diagonales {
-    public static void main(String[] args) {
-        int n = 5;
-        int[][] matriz = new int[n][n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matriz[i][j] = (int) (Math.random() * 100) + 1;
-            }
-        }
-
-        int diagPrincipal = 0;
-        int diagSecundaria = 0;
-        for (int i = 0; i < n; i++) {
-            diagPrincipal += matriz[i][i];
-            diagSecundaria += matriz[i][n - 1 - i];
-        }
-
-        int diferencia = Math.abs(diagPrincipal - diagSecundaria);
-        System.out.println("Principal: " + diagPrincipal);
-        System.out.println("Secundaria: " + diagSecundaria);
-        System.out.println("Diferencia: " + diferencia);
-    }
-}
-```
-
-En la diagonal principal, `fila == columna` (`matriz[i][i]`). En la secundaria, la columna es la "espejo": `n - 1 - i`. Un solo bucle recorre ambas a la vez. `Math.abs` da la diferencia absoluta, sin signo.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 4: ¿Está ordenado?
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class EstaOrdenado {
-    public static boolean estaOrdenado(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < arr[i - 1]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(estaOrdenado(new int[]{1, 2, 3, 4})); // true
-        System.out.println(estaOrdenado(new int[]{1, 3, 2, 4})); // false
-        System.out.println(estaOrdenado(new int[]{}));           // true
-        System.out.println(estaOrdenado(new int[]{7}));          // true
-    }
-}
-```
-
-Empiezas en `i = 1` y comparas cada elemento con su anterior: si alguno es menor que el precedente, el orden está roto. Con array vacío o de un elemento, el bucle no llega a ejecutarse y devuelve `true` (no hay nada desordenado).
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 5: El inverso en el sitio
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Invertir {
-    public static void invertir(int[] arr) {
-        int izquierda = 0;
-        int derecha = arr.length - 1;
-
-        while (izquierda < derecha) {
-            int temp = arr[izquierda];
-            arr[izquierda] = arr[derecha];
-            arr[derecha] = temp;
-            izquierda++;
-            derecha--;
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] datos = {1, 2, 3, 4, 5};
-        invertir(datos);
-        System.out.println(Arrays.toString(datos)); // [5, 4, 3, 2, 1]
-    }
-}
-```
-
-Los dos punteros se mueven hacia el centro intercambiando elementos. Con `{1,2,3,4,5}`: primero cambia 1↔5, luego 2↔4, y cuando se cruzan (`izquierda >= derecha`) ya está. Solo se usa memoria para la variable temporal `temp`.
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 6: ¿Qué imprime? — el doble bucle que cuenta parejas
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`3`**.
-
-El bucle exterior va con `i` por 0, 1 y 2. El interior empieza en `j = i + 1`:
-
-- `i = 0`: parejas `(0,1)` y `(0,2)` → `2 < 4` y `2 < 6` → **2**.
-- `i = 1`: pareja `(1,2)` → `4 < 6` → **1**.
-- `i = 2`: el interior no entra (`j = 3` no es `< 3`).
-
-Total: `2 + 1 = 3`. Con `{2, 4, 6}` todas las parejas cumplen `datos[i] < datos[j]`, y hay exactamente `3 · 2 / 2 = 3` parejas.
-
-</details>
-
----
-
-## ⭐⭐⭐ Ejercicio 7: Estadísticas de clase
+## ⭐ Ejercicio 2: El menú que no se rinde
 
 <details>
 <summary>🔄 Solución</summary>
@@ -225,130 +50,247 @@ Total: `2 + 1 = 3`. Con `{2, 4, 6}` todas las parejas cumplen `datos[i] < datos[
 ```java
 import java.util.Scanner;
 
-public class Estadisticas {
+public class MenuTenaz {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double[] notas = new double[20];
+        int opcion = 0;
 
-        for (int i = 0; i < notas.length; i++) {
-            System.out.print("Nota del alumno " + (i + 1) + ": ");
-            notas[i] = sc.nextDouble();
-        }
+        do {
+            System.out.println("1. Jugar  2. Salir");
+            System.out.print("Elige: ");
+            opcion = sc.nextInt();
+        } while (opcion != 1 && opcion != 2);
 
-        double suma = 0;
-        double max = notas[0];
-        double min = notas[0];
-        int aprobados = 0;
-
-        for (double n : notas) {
-            suma += n;
-            if (n > max) max = n;
-            if (n < min) min = n;
-            if (n >= 5) aprobados++;
-        }
-
-        System.out.println("Media: " + (suma / notas.length));
-        System.out.println("Máxima: " + max);
-        System.out.println("Mínima: " + min);
-        System.out.println("Aprobados: " + aprobados);
+        System.out.println("Has elegido la opción " + opcion + ".");
         sc.close();
     }
 }
 ```
 
-Un bucle rellena el array, y el for-each hace el resto en una sola pasada: acumula la suma, actualiza máximo y mínimo y cuenta aprobados. Como `max` y `min` empiezan en la primera nota, el algoritmo funciona incluso con todas las notas iguales.
+El `do-while` garantiza que el menú se muestre al menos una vez. Mientras la opción no sea 1 ni 2, el bucle insiste. El usuario puede ser tonto todo lo que quiera; el menú no se rinde.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: El gran reto — buscaminas simplificado
+## ⭐⭐ Ejercicio 3: ¿Qué imprime? — la pirámide
+
+<details>
+<summary>🔄 Solución</summary>
+
+```
+*
+**
+***
+****
+```
+
+En total **10 asteriscos** (1 + 2 + 3 + 4). El bucle interior (`col <= fila`) imprime tantos asteriscos como el número de fila. El corazón de los bucles anidados: el interior depende del exterior.
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 4: La escalera de números
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Scanner;
-
-public class Buscaminas {
+public class Escalera {
     public static void main(String[] args) {
-        boolean[][] minas = new boolean[5][5];
-        int puestas = 0;
-        while (puestas < 5) {
-            int f = (int) (Math.random() * 5);
-            int c = (int) (Math.random() * 5);
-            if (!minas[f][c]) {
-                minas[f][c] = true;
-                puestas++;
+        for (int fila = 1; fila <= 4; fila++) {
+            for (int num = 1; num <= fila; num++) {
+                System.out.print(num + " ");
             }
+            System.out.println();
         }
+    }
+}
+```
 
-        Scanner sc = new Scanner(System.in);
-        boolean juegoActivo = true;
+El interior imprime del 1 al número de fila con `print` (sin salto de línea); el `println()` vacío salta al terminar cada fila. La escalera completa:
 
-        while (juegoActivo) {
-            System.out.print("Introduce fila y columna (0-4): ");
-            int fila = sc.nextInt();
-            int col = sc.nextInt();
+```
+1
+1 2
+1 2 3
+1 2 3 4
+```
 
-            if (minas[fila][col]) {
-                System.out.println("¡BOOM! Has pisado una mina.");
-                juegoActivo = false;
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 5: ¿Qué imprime? — break, continue y la etiqueta
+
+<details>
+<summary>🔄 Solución</summary>
+
+```
+11 12 13 21 22 23 31 41
+```
+
+Tabla de pares, en orden de ejecución:
+
+| i | j | ¿Qué pasa? | ¿Imprime? |
+|---|---|---|---|
+| 1 | 1 | `1*1=1 < 8`, no hay `continue` | `11` |
+| 1 | 2 | `j==2 && i>=3` → no; `1*2=2 < 8` | `12` |
+| 1 | 3 | `1*3=3 < 8` | `13` |
+| 2 | 1 | `2*1=2 < 8` | `21` |
+| 2 | 2 | `j==2 && i>=3` → no (i=2); `2*2=4 < 8` | `22` |
+| 2 | 3 | `2*3=6 < 8` | `23` |
+| 3 | 1 | `3*1=3 < 8` | `31` |
+| 3 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | nada |
+| 4 | 1 | `4*1=4 < 8` | `41` |
+| 4 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | nada |
+
+Observa que el `break exterior` **nunca se dispara**: con `i=1` y `i=2` el producto `i*j` no llega a 8, y con `i>=3` siempre salta antes por el `continue exterior` (en `j=2`), así que nunca se evalúa el `j=3` donde `3*3=9` habría superado 8. La lección: con las etiquetas, no asumas qué pasa — ejecútalo mentalmente par a par.
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 6: cazador de primos
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class CazadorPrimos {
+    public static void main(String[] args) {
+        for (int numero = 1; numero <= 50; numero++) {
+            boolean esPrimo = true;
+
+            if (numero < 2) {
+                esPrimo = false;
             } else {
-                int alrededor = 0;
-                for (int i = fila - 1; i <= fila + 1; i++) {
-                    for (int j = col - 1; j <= col + 1; j++) {
-                        if (i >= 0 && i < 5 && j >= 0 && j < 5 && minas[i][j]) {
-                            alrededor++;
-                        }
+                for (int divisor = 2; divisor < numero; divisor++) {
+                    if (numero % divisor == 0) {
+                        esPrimo = false;
+                        break;
                     }
                 }
-                System.out.println("Seguro. Minas alrededor: " + alrededor);
             }
+
+            if (esPrimo) {
+                System.out.println(numero);
+            }
+        }
+    }
+}
+```
+
+Salida (primeros): `2 3 5 7 11 13...`. El bucle exterior recorre los candidatos y el interior busca divisores con `break` en cuanto encuentra uno. El `if (numero < 2)` aparta el 1, que no es primo (es el patito feo de las matemáticas).
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 7: La suma centinela
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class SumaCentinela {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int suma = 0;
+        int numero = sc.nextInt();
+
+        while (numero != 0) {
+            suma += numero;
+            numero = sc.nextInt();
+        }
+
+        System.out.println("Suma total: " + suma);
+        sc.close();
+    }
+}
+```
+
+El `while` se repite mientras el número no sea 0. El 0 es el **centinela**: no se suma, solo señala el final. Es el patrón clásico de lectura de datos con `while`.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: CodeWars — Categorize New Member
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static String[] openOrSenior(int[][] data) {
+        String[] result = new String[data.length];
+
+        for (int i = 0; i < data.length; i++) {
+            result[i] = (data[i][0] >= 55 && data[i][1] > 7) ? "Senior" : "Open";
+        }
+
+        return result;
+    }
+}
+```
+
+Un bucle que recorre los pares `{edad, handicap}` y un ternario con la condición combinada `&&`: para ser "Senior" hay que tener al menos 55 años Y un handicap mayor que 7. Todo lo demás es "Open". Bucles, condicionales y ternarios de la unidad en una sola función.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 156 Ascensor
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class Ascensor {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            int n = sc.nextInt();
+            if (n == 0) {
+                break;
+            }
+
+            int distancia = 0;
+            int pisoActual = 0;
+
+            for (int i = 0; i < n; i++) {
+                int piso = sc.nextInt();
+                distancia += Math.abs(piso - pisoActual);
+                pisoActual = piso;
+            }
+
+            System.out.println(distancia);
         }
         sc.close();
     }
 }
 ```
 
-El `while` que coloca minas garantiza exactamente 5 en posiciones distintas (la condición `!minas[f][c]` evita repetir). Para contar vecinas, el doble bucle revisa las 8 casillas alrededor y el `if` con los límites (0-4) impide salirte del array: sin esa comprobación, `minas[-1][...]` sería `ArrayIndexOutOfBoundsException`.
+El `while (true)` con `break` en el 0 gestiona los múltiples casos. Dentro, un `for` acumula `Math.abs(piso - pisoActual)` y actualiza la planta actual. `Math.abs` da la distancia sin importar si sube o baja. Con la entrada del ejemplo: `|0-5| + |5-1| + |1-10| + |10-4| + |4-2| = 26`.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: Compactar — los ceros al final
+## 📚 Referencias
 
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Compactar {
-    public static void compactar(int[] arr) {
-        int pos = 0;
-
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
-                arr[pos] = arr[i];
-                pos++;
-            }
-        }
-
-        for (int i = pos; i < arr.length; i++) {
-            arr[i] = 0;
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] datos = {0, 3, 0, 1, 0, 2};
-        compactar(datos);
-        System.out.println(Arrays.toString(datos)); // [3, 1, 2, 0, 0, 0]
-    }
-}
-```
-
-El índice `pos` marca dónde va el siguiente valor no cero. Cuando encuentras un valor distinto de 0, lo copias a `arr[pos]` y avanzas. Al terminar, desde `pos` hasta el final se rellena con ceros. Es el mismo patrón de "índice lento / índice rápido" que usa la fusión y que verás de nuevo con colecciones.
-
-</details>
+| Plataforma | Problema | Dificultad |
+|---|---|---|
+| AceptaElReto | 156 — Ascensor | Fácil |
+| AceptaElReto | 149 — San Fermines | Fácil |
+| AceptaElReto | 340 — Siguiente con mismo número de cifras | Medio |
+| CodeWars | Even or Odd (8 kyu) | Principiante |
+| CodeWars | Categorize New Member (7 kyu) | Aficionado |
+| CodeWars | Return Negative (8 kyu) | Principiante |

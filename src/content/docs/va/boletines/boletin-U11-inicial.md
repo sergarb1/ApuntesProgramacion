@@ -1,58 +1,146 @@
----
+﻿---
 title: "Butlletí U11 — Inicial"
-description: "Exercicis bàsics de Genèrics i Mapes: classes genèriques, HashMap, getOrDefault i mètodes genèrics"
+description: "Exercicis bàsics de Col·leccions: ArrayList, remove per índex vs valor i for-each sobre llistes"
 ---
 
 # 📝 Butlletí U11 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, crea la teua primera `Caja<T>` i fes que el `HashMap` deixe de semblar màgia. El `<T>` ho va canviar tot, però el que programa ets tu. Comença suaument, que els genèrics mosseguen a poc a poc.
+> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer `ArrayList` i fes que el `for-each` deixe de semblar màgia. L'aparcament creix sol, però el que aparca és un altre... i tu. Comença suaument, que les col·leccions mosseguen a poc a poc.
 
 ---
 
-## Exercici 1: Completa el codi — classe amb dos tipus genèrics
+## Exercici 1: Què imprimeix? — ArrayList remove per índex vs valor
 
 ```java
-public class Par<______, ______> {   // ¿qué dos tipos faltan?
-    private T primero;
-    private U segundo;
-
-    public Par(T primero, U segundo) {
-        this.primero = primero;
-        this.segundo = segundo;
-    }
-
-    public T getPrimero() { return primero; }
-    public U getSegundo() { return segundo; }
-}
-```
-
-Completa la declaració perquè `Par` accepte dos tipus genèrics distints. Què passa si crees `Par<String, Integer>` i després intentes `par.getPrimero()`?
-
----
-
-## Exercici 2: Què imprimeix? — HashMap amb put repetit
-
-```java
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        HashMap<String, Integer> mapa = new HashMap<>();
-        mapa.put("Ana", 10);
-        mapa.put("Bob", 20);
-        mapa.put("Ana", 30);
+        ArrayList<String> lista = new ArrayList<>();
+        lista.add("A");
+        lista.add("B");
+        lista.add("C");
+        lista.add("B");
+        lista.add("D");
 
-        System.out.println(mapa.get("Ana"));
-        System.out.println(mapa.size());
+        lista.remove(1);          // remove per índex
+        lista.remove("B");        // remove per objecte
+
+        System.out.println(lista);
     }
 }
 ```
 
-Què imprimeix? Per què `size()` no és 3?
+Què imprimeix? Per què el segon `remove("B")` no esborra el mateix element que el primer?
 
 ---
 
-## Exercici 3: Troba l'error — ArrayList\<int\> no compila
+## Exercici 2: Troba l'error — size() vs length vs length()
+
+```java
+ArrayList<String> nombres = new ArrayList<>();
+nombres.add("Ana");
+
+int[] edades = {20, 30};
+String saludo = "Hola";
+
+System.out.println(nombres.length);   // línia 1
+System.out.println(edades.size());    // línia 2
+System.out.println(saludo.length);    // línia 3
+```
+
+Quines línies tenen error? Explica què usa cada tipus per a preguntar com de gran és: `size()`, `length` o `length()`.
+
+---
+
+## Exercici 3: Completa el codi — for-each que suma una llista
+
+Completa el següent programa perquè sume tots els números d'una `ArrayList<Integer>`:
+
+```java
+import java.util.ArrayList;
+
+public class SumaLista {
+    public static void main(String[] args) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+        numeros.add(4);
+        numeros.add(9);
+        numeros.add(2);
+        numeros.add(7);
+
+        int suma = ______;
+        for (______ n : numeros) {      // quin tipus i quina variable?
+            suma ______ n;              // quin operador?
+        }
+
+        System.out.println("Suma: " + suma);
+    }
+}
+```
+
+Què falta en cada buit? Quant val la suma al final?
+
+---
+
+## Exercici 4: Escriu este programa — la llista de la compra
+
+Crea un programa amb un `ArrayList<String>` anomenat `compra` i fes el següent:
+
+1. Afig `"Llet"`, `"Pa"` i `"Ous"`.
+2. Afig `"Cafè"` a la posició 1 (entre Llet i Pa).
+3. Mostra la grandària de la llista.
+4. Esborra l'element de la posició 2.
+5. Recorre la llista amb un for-each i imprimeix cada element.
+
+Pista: usa `add(e)`, `add(i, e)`, `remove(i)`, `size()` i un for-each.
+
+---
+
+## Exercici 5: Què imprimeix? — l'ArrayList misteriós
+
+```java
+import java.util.ArrayList;
+
+public class Misterio {
+    public static void main(String[] args) {
+        ArrayList<Integer> lista = new ArrayList<>();
+        lista.add(10);
+        lista.add(20);
+        lista.add(30);
+        lista.add(1, 15);
+        lista.remove(Integer.valueOf(20));
+
+        for (Integer n : lista) {
+            System.out.print(n + " ");
+        }
+    }
+}
+```
+
+Què imprimeix? Explica què fa `add(1, 15)` i per què `remove(Integer.valueOf(20))` NO és el mateix que `remove(2)`.
+
+---
+
+## Exercici 6: Escriu este programa — és a la llista?
+
+Crea un `ArrayList<String>` amb almenys 5 noms de companys de classe. Demana a l'usuari un nom pel teclat amb `Scanner` i digues:
+
+- Si el nom està a la llista, imprimeix `"Sí, está en la posición X"` usant `indexOf`.
+- Si no hi és, imprimeix `"No está"`.
+
+Pista: `indexOf` torna `-1` quan no troba l'element.
+
+---
+
+## Exercici 7: Escriu este programa — el major de la llista
+
+Escriu un mètode `public static int mayor(ArrayList<Integer> notas)` que recórrega la llista amb un for clàssic (`get(i)`) i torne la nota més alta. En `main()`, crea una llista amb notes, crida el mètode i mostra el resultat.
+
+Pista: comença amb `max = notas.get(0)` i recorre des de l'índex 1.
+
+---
+
+## Exercici 8: Troba l'error — ArrayList<int> no compila
 
 ```java
 import java.util.ArrayList;
@@ -67,87 +155,18 @@ public class Error {
 }
 ```
 
-Este codi **no compila**. Per què? Com el corregeixes? Quin paper juga l'autoboxing?
+Este codi **no compila**. Per què? Com el corregeixes perquè sí que compile? Quin paper fa l'autoboxing?
 
 ---
 
-## Exercici 4: Escriu este programa — comptador de paraules amb HashMap
+## Exercici 9: Escriu este programa — posició i valor
 
-Crea un programa que tinga un array de paraules (hardcodejat) com este:
+Crea un `ArrayList<Integer>` amb els números de l'1 al 5 (usa un bucle). Després recórrel amb un **for clàssic** (amb índex) i imprimeix en cada línia la posició i el valor, així:
 
-```java
-String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
+```
+Posición 0 → 1
+Posición 1 → 2
+...
 ```
 
-Usa un `HashMap<String, Integer>` per a comptar quantes vegades apareix cada paraula. Al final, recorre el mapa amb un bucle for-each sobre `entrySet()` i mostra cada paraula amb la seua comptada.
-
----
-
-## Exercici 5: Què imprimeix? — mètode genèric amb límit
-
-```java
-public class Util {
-    public static <T extends Comparable<T>> T maximo(T a, T b) {
-        return a.compareTo(b) > 0 ? a : b;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(maximo(5, 8));
-        System.out.println(maximo("gato", "perro"));
-    }
-}
-```
-
-Què imprimeix? Què passaria si `T` no tinguera el límit `Comparable<T>`?
-
----
-
-## Exercici 6: Troba l'error — la clau duplicada i el primer valor perdut
-
-```java
-HashMap<Integer, String> mapa = new HashMap<>();
-mapa.put(1, "uno");
-mapa.put(2, "dos");
-mapa.put(1, "Uno otra vez");
-
-System.out.println(mapa.get(1));
-```
-
-Què imprimeix? Es perd el primer valor associat a la clau 1?
-
----
-
-## Exercici 7: Escriu este programa — mini agenda amb getOrDefault
-
-Crea un `TreeMap<String, Integer>` per a emmagatzemar les edats de 5 persones. Ompli'l amb noms i edats. Després, demana a l'usuari un nom per teclat i mostra la seua edat. Si el nom no existeix, mostra un missatge d'error usant `getOrDefault()` per a evitar el `null`.
-
----
-
-## Exercici 8: Completa el codi — getOrDefault
-
-```java
-HashMap<String, Integer> edades = new HashMap<>();
-edades.put("Ana", 25);
-edades.put("Bob", 30);
-
-int edadAna = ______;                 // 25
-int edadCarlos = ______;              // 0 si no existe (usa getOrDefault)
-```
-
-Completa les dos línies. Què tornaria `edades.get("Carlos")` i per què és perillós assignar-lo a un `int`?
-
----
-
-## Exercici 9: Troba l'error — la clau mutable
-
-```java
-HashMap<ArrayList<Integer>, String> mapa = new HashMap<>();
-ArrayList<Integer> lista = new ArrayList<>();
-lista.add(1);
-lista.add(2);
-mapa.put(lista, "valor");
-lista.add(3);  // modificamos la clave después de usarla
-System.out.println(mapa.get(lista));  // ¿qué imprime?
-```
-
-Què imprimeix? Quin és el problema d'usar una `ArrayList` com a clau d'un `HashMap`?
+Pista: usa `lista.add(i)` dins d'un bucle per a omplir i després `lista.get(i)` per a llegir.

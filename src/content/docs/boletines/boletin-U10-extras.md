@@ -1,207 +1,216 @@
----
-title: "Boletín U10 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá de las colecciones"
+﻿---
+title: Boletín U10 — Extras
+description: CodeWars y AceptaElReto para ir más allá de la unidad
 ---
 
 # 📝 Boletín U10 — Extras
 
-> Ejercicios de CodeWars y AceptaElReto con pistas. Las soluciones están ocultas: agota tu pista antes de mirarlas.
+> Ejercicios de CodeWars y AceptaElReto con pistas. La solución está oculta: resístete hasta agotar tu pista. CodeWars y AceptaElReto son los gimnasios donde los programadores se retan a diario: aquí es donde la herencia deja de ser teoría y se convierte en reflejos.
 
 ---
 
 ## CodeWars
 
-### 1. Convert a string to an array
+### 1. Thinkful — Object Drills: Quarks
 
-Te dan una cadena de texto separada por espacios. Escribe una función que la divida y devuelva un array de palabras.
+Crea la clase `Quark` con tres propiedades: `color` (String), `flavor` (String) y `baryon_number` (siempre `1.0`). Además:
+- Constructor que recibe `color` y `flavor`.
+- `interact(otro)` → intercambia los colores de los dos quarks.
 
-**Ejemplo:** `"Robin Singh"` → `["Robin", "Singh"]`, y `"I love arrays they are my favorite"` → `["I", "love", "arrays", "they", "are", "my", "favorite"]`.
+**Ejemplo:**
+```java
+Quark q1 = new Quark("red", "up");
+Quark q2 = new Quark("blue", "strange");
+q1.interact(q2);
+q1.color;  // "blue"
+q2.color;  // "red"
+q1.baryon_number;  // 1.0
+```
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/57e76bc428d6fbc2d500036d)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5882b052bdeafec15e0000e6)
+- Dificultad: 7 kyu
+
+**Pista:** `baryon_number` es una constante que todos los quarks comparten: `public final double baryon_number = 1.0;`. `interact()` usa una variable temporal para intercambiar: `String temp = this.color; this.color = otro.color; otro.color = temp;`. El `this` desambigua quién es quién en el intercambio.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Quark {
+    public String color;
+    public String flavor;
+    public final double baryon_number = 1.0;
+
+    public Quark(String color, String flavor) {
+        this.color = color;
+        this.flavor = flavor;
+    }
+
+    public void interact(Quark otro) {
+        String temporal = this.color;
+        this.color = otro.color;
+        otro.color = temporal;
+    }
+}
+```
+
+La física de quarks aplicada: `baryon_number` es `final` porque ningún quark cambia su número bariónico (es una constante universal). `interact()` intercambia los colores con una variable temporal; sin ella, uno de los dos colores se perdería. Este es el clásico "swap" que ya viste con variables, ahora entre dos objetos.
+
+</details>
+
+---
+
+### 2. Building blocks
+
+Crea la clase `Block` que recibe las tres dimensiones (como `int[]` de 3 o como 3 enteros) y los métodos:
+- `int getWidth()`, `int getLength()`, `int getHeight()`
+- `int getVolume()` → `width * length * height`
+- `int getSurfaceArea()` → `2 * (w*l + w*h + l*h)`
+
+**Ejemplo:** `new Block(new int[]{2, 4, 6})` → volumen 48, superficie `2*(2*4 + 2*6 + 4*6) = 88`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/55b75fcf67e558d3750000a3)
+- Dificultad: 7 kyu
+
+**Pista:** guarda las tres dimensiones en atributos privados en el constructor, y deja que los getters las devuelvan. Para la superficie, la fórmula es la suma de las tres caras por dos. El polimorfismo no aparece aquí, pero el objeto con estado y comportamiento sí: la excusa perfecta para repasar la U08 mientras piensas en la herencia.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Block {
+    private final int width;
+    private final int length;
+    private final int height;
+
+    public Block(int[] dimensiones) {
+        this.width = dimensiones[0];
+        this.length = dimensiones[1];
+        this.height = dimensiones[2];
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getVolume() {
+        return width * length * height;
+    }
+
+    public int getSurfaceArea() {
+        return 2 * (width * length + width * height + length * height);
+    }
+}
+```
+
+El objeto `Block` guarda su estado y lo expone con getters. Los atributos `final` se fijan en el constructor (un bloque no cambia de forma). El volumen y la superficie son métodos que calculan a partir del estado. Es un objeto con responsabilidad única: sabe sus dimensiones y cómo medirse. La herencia del curso llegará cuando quieras especializarlo en `Cubo` o `Caja` sin duplicar código.
+
+</details>
+
+---
+
+### 3. Basic subclasses — Adam and Eve
+
+Según el mito, Adam y Eva fueron los primeros humanos. Tu trabajo es "hacer el trabajo de Dios": crear un método estático `create()` que devuelva un array de `Human` con dos objetos: el primero un `Man` y el segundo una `Woman`. Ambas clases heredan de `Human`, y cada humano tiene `name`, `sex` y la propiedad `species` con valor `"Human"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/547274e24481cfc469000416)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-El método `String.split(" ")` ya te devuelve un `String[]`. Pero como estamos en la unidad de colecciones: conviértelo en una `List<String>` con `Arrays.asList(...)` o guarda las palabras con un bucle en un `ArrayList<String>`.
-
-</details>
+**Pista:** herencia pura: `class Man extends Human` y `class Woman extends Human`. Cada subclase llama a `super(...)` para rellenar el nombre y el sexo. El array de retorno es de tipo `Human`, así que acepta ambas subclases.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.List;
+public class Human {
+    private String name;
+    private String sex;
+    protected String species = "Human";
 
-public class Kata {
-    public static String[] stringToArray(String s) {
-        return s.split(" ");
+    public Human(String name, String sex) {
+        this.name = name;
+        this.sex = sex;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public String getSpecies() {
+        return species;
+    }
+}
+
+class Man extends Human {
+    public Man(String name) {
+        super(name, "man");
+    }
+}
+
+class Woman extends Human {
+    public Woman(String name) {
+        super(name, "woman");
+    }
+}
+
+public class God {
+    public static Human[] create() {
+        return new Human[] { new Man("Adam"), new Woman("Eve") };
     }
 }
 ```
 
-O, pensando en colecciones:
-
-```java
-import java.util.ArrayList;
-import java.util.List;
-
-public class Kata {
-    public static List<String> stringToArray(String s) {
-        List<String> palabras = new ArrayList<>();
-        for (String palabra : s.split(" ")) {
-            palabras.add(palabra);
-        }
-        return palabras;
-    }
-}
-```
-
-`split(" ")` parte la cadena por los espacios y devuelve un array. La versión con `ArrayList` recorre ese array y construye la lista: el mismo dato, visto desde la unidad de colecciones.
+`Man` y `Woman` heredan todo de `Human` y solo aportan su constructor con el sexo fijo. `create()` devuelve un array de `Human` (el tipo general) relleno con las dos subclases: polimorfismo de arriba abajo, como Adam y Eva en el Paraíso.
 
 </details>
 
 ---
 
-### 2. Roman Numerals Encoder
+### 4. Object Oriented Piracy
 
-Crea una función que convierta un número positivo (1 a 3999) en su representación en **números romanos**.
+Crea la clase `Ship` que recibe un `draft` (calado) y un `crew` (tripulantes). Implementa `isWorthIt()`: devuelve `true` si el calado total menos `1.5` por cada tripulante supera 20.
 
-**Ejemplo:** `182` → `"CLXXXII"`, `1990` → `"MCMXC"`, `1666` → `"MDCLXVI"`.
+**Ejemplo:** `new Ship(15, 10).isWorthIt()` → `false` (`15 - 1.5*10 = 0`).
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/51b62bf6a9c58071c600002b)
-- Dificultad: 6 kyu
+- [Enunciado en CodeWars](https://www.codewars.com/kata/54fe05c4762e2e3047000add)
+- Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Prepara dos arrays paralelos: los valores `{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1}` y sus símbolos `{"M","CM","D","CD","C","XC","L","XL","X","IX","V","IV","I"}`. Recórrelos en orden descendente y, mientras el número alcance el valor, resta y añade el símbolo.
-
-</details>
+**Pista:** guarda `draft` y `crew` en atributos `private final`. El método combina ambos: `return draft - 1.5 * crew > 20;`. Es la clase de objeto simple que ya manejas: una excusa para repasar que el estado vive en el objeto, no en el main.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Kata {
-    public static String solution(int n) {
-        int[] valores = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
-        String[] simbolos = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+public class Ship {
+    private static final double PESO_TRIPULANTE = 1.5;
 
-        StringBuilder resultado = new StringBuilder();
-        for (int i = 0; i < valores.length; i++) {
-            while (n >= valores[i]) {
-                resultado.append(simbolos[i]);
-                n -= valores[i];
-            }
-        }
-        return resultado.toString();
+    private final double draft;
+    private final int crew;
+
+    public Ship(double draft, int crew) {
+        this.draft = draft;
+        this.crew = crew;
+    }
+
+    public boolean isWorthIt() {
+        return draft - PESO_TRIPULANTE * crew > 20;
     }
 }
 ```
 
-El truco está en los símbolos compuestos (`CM` = 900, `IV` = 4): sin ellos, no podrías representar los restos del 4 y el 9. El `while` va restando el valor máximo posible con cada símbolo. Es un clásico de arrays paralelos y del patrón "greedy".
-
-</details>
-
----
-
-### 3. Delete occurrences of an element if it occurs more than n times
-
-Te dan una lista de enteros y un límite `n`. Devuelve una nueva lista con los mismos elementos, pero cada valor solo puede aparecer como máximo `n` veces (se conservan las primeras `n` apariciones).
-
-**Ejemplo:** `[1, 2, 3, 1, 2, 1, 2, 3]` con `n = 2` → `[1, 2, 3, 1, 2, 3]`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/554ca54ffa7d91b236000023)
-- Dificultad: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Usa un `HashMap<Integer, Integer>` (lo verás en la U11, pero ya puedes usarlo) para llevar la cuenta de cuántas veces ha aparecido cada valor. Solo añade el elemento a la respuesta si su contador aún no ha llegado a `n`.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.*;
-
-public class Kata {
-    public static int[] deleteNth(int[] elements, int maxOcurrences) {
-        Map<Integer, Integer> contador = new HashMap<>();
-        List<Integer> resultado = new ArrayList<>();
-
-        for (int e : elements) {
-            int veces = contador.getOrDefault(e, 0);
-            if (veces < maxOcurrences) {
-                resultado.add(e);
-                contador.put(e, veces + 1);
-            }
-        }
-
-        int[] arr = new int[resultado.size()];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = resultado.get(i);
-        }
-        return arr;
-    }
-}
-```
-
-El `HashMap` asocia cada valor con las veces que ha aparecido. `getOrDefault(e, 0)` devuelve la cuenta actual (o 0 si es la primera vez). Si aún no has llegado al límite, añades el elemento y subes el contador. Es la combinación perfecta de listas (el resultado) y mapas (la cuenta).
-
-</details>
-
----
-
-### 4. Array.diff
-
-Te dan dos arrays. Devuelve el primer array con todos los valores que estaban en el segundo **eliminados**.
-
-**Ejemplo:** `[1, 2, 2, 2, 3]` y `[2]` → `[1, 3]`, y `[1, 2, 3]` y `[1, 2]` → `[3]`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/523f5d21c841566fde000009)
-- Dificultad: 6 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Convierte el segundo array en un `HashSet<Integer>` y recorre el primero con un `for-each`: solo añade al resultado los elementos que `set.contains(...)` diga que NO están.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.*;
-
-public class Kata {
-    public static int[] arrayDiff(int[] a, int[] b) {
-        Set<Integer> aBorrar = new HashSet<>();
-        for (int x : b) {
-            aBorrar.add(x);
-        }
-
-        List<Integer> resultado = new ArrayList<>();
-        for (int x : a) {
-            if (!aBorrar.contains(x)) {
-                resultado.add(x);
-            }
-        }
-
-        int[] arr = new int[resultado.size()];
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = resultado.get(i);
-        }
-        return arr;
-    }
-}
-```
-
-El `HashSet` convierte la búsqueda en O(1): preguntar "¿está este número para borrar?" es instantáneo aunque `b` sea enorme. Con un array en su lugar, cada `contains` sería un recorrido lineal completo. Por eso esta kata se resuelve con colecciones, no con más arrays.
+Cada `Ship` guarda su propio estado (`draft` y `crew`) y decide por sí mismo si merece la pena. Los atributos `final` hacen el objeto inmutable: se fijan al nacer. La constante `static final` documenta el `1.5`. Es el mismo patrón de objeto con comportamiento que has practicado toda la unidad.
 
 </details>
 
@@ -209,116 +218,139 @@ El `HashSet` convierte la búsqueda en O(1): preguntar "¿está este número par
 
 ## AceptaElReto
 
-### 5. 158 — Los saltos de Mario
+### 5. 117 — La fiesta aburrida
 
-Mario se encuentra sobre un muro y tiene que saltar a una serie de muros sucesivos. Cuenta **cuántos saltos son hacia arriba** (el siguiente muro está más alto) y **cuántos hacia abajo** (el siguiente muro está más bajo). Si dos muros tienen la misma altura, el salto no es ni arriba ni abajo.
+Tinín odia las fiestas, y cada persona que se le acerca se presenta con el formato `"Soy Lotario"`. Ayúdale a responder `"Hola, [nombre]."` a cada uno. La entrada empieza con un número que indica cuántas personas hay, seguido de una línea por persona. Resuélvelo con una clase `Persona` que encapsule el nombre y un método `saludar()`.
 
-**Entrada:** varios casos de prueba. Cada caso empieza con el número de muros `n`, seguido de `n` alturas. Mario se encuentra sobre el primero.
+**Entrada de ejemplo:**
+```
+3
+Soy Lotario
+Soy Aldonza
+Soy Ender
+```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=158)
-- Dificultad: ⭐⭐
+**Salida de ejemplo:**
+```
+Hola, Lotario.
+Hola, Aldonza.
+Hola, Ender.
+```
 
-<details>
-<summary>💡 Pista</summary>
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=117)
+- Dificultad: Fácil
 
-Guarda las alturas en un `ArrayList<Integer>` y recorre con un for clásico desde el índice 1: compara `alturas.get(i)` con `alturas.get(i - 1)`. Más alto → sube++; más bajo → baja++.
-
-</details>
+**Pista:** lee la línea y quita el `"Soy "` inicial con `linea.substring(4)` o `split(" ")[1]`. Crea la `Persona` con ese nombre y llama a `saludar()`. Es la excusa perfecta para ver que un objeto con un método puede sustituir a un main que hace de todo.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SaltosDeMario {
+public class Persona {
+    private String nombre;
+
+    public Persona(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void saludar() {
+        System.out.println("Hola, " + nombre + ".");
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        sc.nextLine();  // consume el salto de línea
 
-        int casos = sc.nextInt();
-        for (int c = 0; c < casos; c++) {
-            int n = sc.nextInt();
-            ArrayList<Integer> muros = new ArrayList<>();
-            for (int i = 0; i < n; i++) {
-                muros.add(sc.nextInt());
-            }
-
-            int sube = 0, baja = 0;
-            for (int i = 1; i < muros.size(); i++) {
-                if (muros.get(i) > muros.get(i - 1)) {
-                    sube++;
-                } else if (muros.get(i) < muros.get(i - 1)) {
-                    baja++;
-                }
-            }
-            System.out.println(sube + " " + baja);
+        for (int i = 0; i < n; i++) {
+            String linea = sc.nextLine();
+            Persona p = new Persona(linea.substring(4));
+            p.saludar();
         }
         sc.close();
     }
 }
 ```
 
-La lista guarda todas las alturas del caso y el bucle compara cada muro con el anterior. Un salto hacia arriba es `sube++`; hacia abajo, `baja++`; si son iguales, no se cuenta. `ArrayList` con acceso por índice al servicio del clásico de ProgramaMe.
+`Persona` encapsula su nombre y sabe saludar: el `main` solo lee y crea objetos. `linea.substring(4)` se salta `"Soy "`. Es la forma "orientada a objetos" de resolver un problema que también podrías hacer con un `String` suelto: aquí el estado (el nombre) y el comportamiento (`saludar()`) viven juntos en la clase.
 
 </details>
 
 ---
 
-### 6. 168 — La pieza perdida
+### 6. 119 — Escudos del ejército romano
 
-Un puzzle tiene piezas numeradas del 1 al `n`, pero en la bolsa falta una. Te dan el número total de piezas `n` y los números de todas las que había (no necesariamente en orden). Dime **qué pieza falta**.
+Un general divide sus legionarios en formaciones **cuadradas** (lo más grande posible), repitiendo con los que queden libres hasta agotarlos. Cada cuadrado de lado `n` necesita escudos según el perímetro más la cobertura: los legionarios del borde llevan más escudos que los del interior. Para un cuadrado de `n × n`, los escudos son `n² + 4n` (una base por soldado más el perímetro exterior). Dado el número de legionarios, calcula el mínimo de escudos necesarios.
 
-**Entrada:** varios casos. Cada caso: una línea con `n`, y otra con `n - 1` números (los que hay en la bolsa). La entrada termina con `0`.
+**Entrada:** varios casos de prueba, cada uno con el número de legionarios. Termina con `0`.
 
-**Pista:** la numeración de las piezas empieza en 1.
+**Entrada de ejemplo:**
+```
+35
+20
+10
+0
+```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=168)
-- Dificultad: ⭐⭐
+**Salida de ejemplo:**
+```
+71
+44
+26
+```
 
-<details>
-<summary>💡 Pista</summary>
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=119)
+- Dificultad: Fácil/Media
 
-Mete todos los números de la bolsa en un `HashSet<Integer>` y recorre del 1 a `n`: la primera pieza que no esté en el conjunto es la que falta.
-
-</details>
+**Pista:** mientras queden legionarios, encuentra el mayor cuadrado `n` tal que `n² <= restantes` (prueba `n` creciente o usa `Math.sqrt`). Suma los escudos de ese cuadrado y resta `n²` de los restantes. Encapsula la lógica en una clase `Formacion` con métodos como `mayorCuadrado()` y `calcularEscudos()`.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.HashSet;
 import java.util.Scanner;
 
-public class PiezaPerdida {
+public class Formacion {
+    public static int escudosDeCuadrado(int lado) {
+        return lado * lado + 4 * lado;
+    }
+
+    public static int mayorCuadrado(int restantes) {
+        int n = (int) Math.sqrt(restantes);
+        return n * n;  // el mayor cuadrado perfecto <= restantes
+    }
+
+    public static int resolver(int legionarios) {
+        int escudos = 0;
+        int restantes = legionarios;
+
+        while (restantes > 0) {
+            int cuadrado = mayorCuadrado(restantes);
+            int lado = (int) Math.sqrt(cuadrado);
+            escudos += escudosDeCuadrado(lado);
+            restantes -= cuadrado;
+        }
+        return escudos;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            int n = sc.nextInt();
-            if (n == 0) break;
-
-            HashSet<Integer> bolsa = new HashSet<>();
-            for (int i = 0; i < n - 1; i++) {
-                bolsa.add(sc.nextInt());
-            }
-
-            for (int pieza = 1; pieza <= n; pieza++) {
-                if (!bolsa.contains(pieza)) {
-                    System.out.println(pieza);
-                    break;
-                }
-            }
+        int n = sc.nextInt();
+        while (n != 0) {
+            System.out.println(resolver(n));
+            n = sc.nextInt();
         }
         sc.close();
     }
 }
 ```
 
-El `HashSet` guarda las `n - 1` piezas que hay. Luego se comprueba cada número del 1 a `n` con `contains`, que es O(1): la primera pieza que no esté en el conjunto es la que falta. Sin ordenar nada y sin un solo bucle de búsqueda lineal.
+Verifícalo con 35: el mayor cuadrado es 25 (lado 5) → `25 + 20 = 45` escudos; quedan 10, mayor cuadrado 9 (lado 3) → `9 + 12 = 21`; queda 1 (lado 1) → `1 + 4 = 5`. Total `45 + 21 + 5 = 71` ✓. `Math.sqrt` te da la raíz; al truncar obtienes el lado del mayor cuadrado que cabe. La clase agrupa los tres cálculos como métodos estáticos: pura lógica bien empaquetada.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines listas, conjuntos e iteradores, vuelve a los problemas de unidades anteriores y resuélvelos guardando los datos en colecciones: ya no hará falta pedir todo por teclado de golpe. El material no se pierde: se reutiliza.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines la herencia, vuelve a los problemas de las unidades anteriores y reescríbelos con jerarquías: un `Lector` abstracto, un `Solucionador` polimórfico, figuras que se calculan solas. El material no se pierde: se reutiliza.

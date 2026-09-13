@@ -1,151 +1,153 @@
----
+﻿---
 title: "Butlletí U12 — Inicial"
-description: "Exercicis bàsics de Programació Funcional: lambdes, Predicate, map i filter sobre streams"
+description: "Exercicis bàsics de Genèrics i Mapes: classes genèriques, HashMap, getOrDefault i mètodes genèrics"
 ---
 
 # 📝 Butlletí U12 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, escriu la teua primera `->` i fes que la cinta transportadora del stream deixe de semblar màgia. Les funcions viatgen soles, però el que programa ets tu. Comença suaument, que la fletxa no mossega.
+> Sense solucions. Sense presses. Obri l'IDE, crea la teua primera `Caja<T>` i fes que el `HashMap` deixe de semblar màgia. El `<T>` ho va canviar tot, però el que programa ets tu. Comença suaument, que els genèrics mosseguen a poc a poc.
 
 ---
 
-## Exercici 1: Completa el codi — la teua primera lambda
-
-Completa les lambdes perquè facen el que diu el comentari:
+## Exercici 1: Completa el codi — classe amb dos tipus genèrics
 
 ```java
-Predicate<Integer> esMayorDeEdad = ______;      // edad >= 18
-Function<Integer, Integer> doble = ______;      // x * 2
-Consumer<String> imprimir = ______;             // System.out.println(s)
-Supplier<String> saludar = ______;              // "¡Hola!"
+public class Par<______, ______> {   // ¿qué dos tipos faltan?
+    private T primero;
+    private U segundo;
+
+    public Par(T primero, U segundo) {
+        this.primero = primero;
+        this.segundo = segundo;
+    }
+
+    public T getPrimero() { return primero; }
+    public U getSegundo() { return segundo; }
+}
 ```
 
-Quin tipus necessita la variable perquè la lambda compile en cada cas?
+Completa la declaració perquè `Par` accepte dos tipus genèrics distints. Què passa si crees `Par<String, Integer>` i després intentes `par.getPrimero()`?
 
 ---
 
-## Exercici 2: Què imprimeix? — l'ordre de la fletxa
+## Exercici 2: Què imprimeix? — HashMap amb put repetit
 
 ```java
-import java.util.function.Function;
+import java.util.HashMap;
 
 public class Test {
     public static void main(String[] args) {
-        Function<Integer, Integer> operacion = x -> x * x + 1;
-        System.out.println(operacion.apply(5));
-        System.out.println(operacion.apply(0));
+        HashMap<String, Integer> mapa = new HashMap<>();
+        mapa.put("Ana", 10);
+        mapa.put("Bob", 20);
+        mapa.put("Ana", 30);
+
+        System.out.println(mapa.get("Ana"));
+        System.out.println(mapa.size());
     }
 }
 ```
 
-Què imprimeix? Per què el cos `x * x + 1` no necessita `return` ni claus?
+Què imprimeix? Per què `size()` no és 3?
 
 ---
 
-## Exercici 3: Troba l'error — la lambda mal vestida
+## Exercici 3: Troba l'error — ArrayList\<int\> no compila
 
 ```java
-import java.util.function.Predicate;
+import java.util.ArrayList;
 
 public class Error {
     public static void main(String[] args) {
-        Predicate<Integer> esPositivo = x -> x > 0;
-        System.out.println(esPositivo.test(-3));
-        System.out.println(esPositivo.accept(5));   // ¿Qué ocurre aquí?
+        ArrayList<int> numeros = new ArrayList<>();
+        numeros.add(5);
+        numeros.add(10);
+        System.out.println(numeros.get(0) + numeros.get(1));
     }
 }
 ```
 
-Este codi **no compila**. Per què? Quin mètode hauries de cridar en comptes d'`accept`?
+Este codi **no compila**. Per què? Com el corregeixes? Quin paper juga l'autoboxing?
 
 ---
 
-## Exercici 4: Escriu este programa — filtrar parells amb streams
+## Exercici 4: Escriu este programa — comptador de paraules amb HashMap
 
-Crea un programa que tinga esta llista:
+Crea un programa que tinga un array de paraules (hardcodejat) com este:
 
 ```java
-List<Integer> numeros = List.of(10, 15, 22, 33, 40, 55);
+String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
 ```
 
-Usa un stream per a **filtrar els parells**, arreplegar-los en una llista amb `toList()` i mostrar-la. Quants parells hi ha?
+Usa un `HashMap<String, Integer>` per a comptar quantes vegades apareix cada paraula. Al final, recorre el mapa amb un bucle for-each sobre `entrySet()` i mostra cada paraula amb la seua comptada.
 
 ---
 
-## Exercici 5: Què imprimeix? — el pipeline bàsic
+## Exercici 5: Què imprimeix? — mètode genèric amb límit
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+public class Util {
+    public static <T extends Comparable<T>> T maximo(T a, T b) {
+        return a.compareTo(b) > 0 ? a : b;
+    }
 
-public class Test {
     public static void main(String[] args) {
-        List<String> palabras = List.of("sol", "luna", "mar", "cielo", "sol");
-        long largas = palabras.stream()
-            .filter(p -> p.length() >= 4)
-            .distinct()
-            .count();
-        System.out.println(largas);
+        System.out.println(maximo(5, 8));
+        System.out.println(maximo("gato", "perro"));
     }
 }
 ```
 
-Què imprimeix? Per què `distinct()` canvia el resultat davant de no usar-lo?
+Què imprimeix? Què passaria si `T` no tinguera el límit `Comparable<T>`?
 
 ---
 
-## Exercici 6: Completa el codi — majúscules amb map
-
-Completa el pipeline perquè transforme cada paraula a majúscules i les arreplegue en una llista:
+## Exercici 6: Troba l'error — la clau duplicada i el primer valor perdut
 
 ```java
-List<String> palabras = List.of("hola", "java", "mundo");
+HashMap<Integer, String> mapa = new HashMap<>();
+mapa.put(1, "uno");
+mapa.put(2, "dos");
+mapa.put(1, "Uno otra vez");
 
-List<String> mayusculas = palabras.stream()
-    .______(String::toUpperCase)
-    .______();
+System.out.println(mapa.get(1));
 ```
 
-Quina operació intermèdia i quina terminal necessites? I si usares `Collectors.toList()` en comptes de `toList()`?
+Què imprimeix? Es perd el primer valor associat a la clau 1?
 
 ---
 
-## Exercici 7: Escriu este programa — longitud de cada paraula
+## Exercici 7: Escriu este programa — mini agenda amb getOrDefault
 
-Crea un programa que tinga un array de noms i use un stream amb `map` per a calcular la **longitud de cada nom**, arreplegant-lo en una `List<Integer>`. Després mostra el resultat amb `forEach(System.out::println)`.
+Crea un `TreeMap<String, Integer>` per a emmagatzemar les edats de 5 persones. Ompli'l amb noms i edats. Després, demana a l'usuari un nom per teclat i mostra la seua edat. Si el nom no existeix, mostra un missatge d'error usant `getOrDefault()` per a evitar el `null`.
 
 ---
 
-## Exercici 8: Troba l'error — la cinta que mai no arranca
+## Exercici 8: Completa el codi — getOrDefault
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+HashMap<String, Integer> edades = new HashMap<>();
+edades.put("Ana", 25);
+edades.put("Bob", 30);
 
-public class Error {
-    public static void main(String[] args) {
-        List<Integer> numeros = List.of(1, 2, 3, 4, 5);
-        Stream<Integer> flujo = numeros.stream()
-            .filter(n -> n % 2 == 1)
-            .map(n -> n * 10);
-        System.out.println("Preparado");
-    }
-}
+int edadAna = ______;                 // 25
+int edadCarlos = ______;              // 0 si no existe (usa getOrDefault)
 ```
 
-Este programa **compila i executa**, però no imprimeix cap número transformat. Per què? Què li falta al pipeline?
+Completa les dos línies. Què tornaria `edades.get("Carlos")` i per què és perillós assignar-lo a un `int`?
 
 ---
 
-## Exercici 9: Completa el codi — un Consumer per a imprimir
-
-Tens una llista de Strings i vols imprimir cada un entre parèntesis, per exemple `(hola)`. Completa el `forEach`:
+## Exercici 9: Troba l'error — la clau mutable
 
 ```java
-List<String> palabras = List.of("hola", "java");
-
-palabras.stream()
-    .forEach(p -> System.out.______("(" + p + ")"));
+HashMap<ArrayList<Integer>, String> mapa = new HashMap<>();
+ArrayList<Integer> lista = new ArrayList<>();
+lista.add(1);
+lista.add(2);
+mapa.put(lista, "valor");
+lista.add(3);  // modificamos la clave después de usarla
+System.out.println(mapa.get(lista));  // ¿qué imprime?
 ```
 
-Quin mètode de `System.out` imprimeix sense salt de línia? I quin afig el salt?
+Què imprimeix? Quin és el problema d'usar una `ArrayList` com a clau d'un `HashMap`?

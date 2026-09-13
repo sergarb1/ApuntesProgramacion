@@ -1,4 +1,4 @@
----
+﻿---
 title: Boletín U03 — Extras
 description: CodeWars y AceptaElReto para ir más allá de la unidad
 ---
@@ -11,137 +11,162 @@ description: CodeWars y AceptaElReto para ir más allá de la unidad
 
 ## CodeWars
 
-### 1. Return Negative
+### 1. Keep Hydrated!
 
-Te dan un número y tienes que devolverlo negativo. Pero ojo: si el número ya es negativo, déjalo como está.
+Nathan bebe agua, pero no siempre suficiente. Le han dado `time` en horas y quiere saber cuántos litros de agua debe beber. La regla: bebe 0.5 litros por hora. Devuelve el número de litros **redondeado hacia abajo**.
 
-**Ejemplos:** `1` → `-1`, `-14` → `-14`, `34` → `-34`.
+**Ejemplo:** con `time = 6.7`, bebe `3` litros (3.35 → 3).
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55685cd7ad70877c23000102)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/582cb0224e56e068d2000030)
 - Dificultad: 8 kyu
 
-**Pista:** un ternario decide: si es mayor que 0, cambia el signo (`-num`); si no, devuélvelo tal cual.
+**Pista:** multiplica `time * 0.5` y trunca el resultado con `(int)`. El truncamiento y el "redondeo hacia abajo" son lo mismo aquí... por una vez.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int makeNegative(int num) {
-        return num > 0 ? -num : num;
+    public static int Liters(double time) {
+        return (int) (time * 0.5);
     }
 }
 ```
 
-Un ternario con la condición `num > 0`. Si es positivo, el operador unario `-` lo hace negativo; si ya era negativo (o cero), se queda igual. Decidir con una línea: pura U03.
+`6.7 * 0.5 = 3.35`, y `(int)` trunca a 3. El truncamiento del casting es exactamente el "redondeo hacia abajo" que pide el enunciado.
 
 </details>
 
 ---
 
-### 2. Sum of positive
+### 2. Opposite number
 
-Te dan un array de enteros. Devuelve la suma de todos los **positivos**.
+Escribe una función que reciba un número y devuelva su opuesto (el mismo número con el signo cambiado).
 
-**Ejemplo:** `[1, -4, 7, 12]` → `1 + 7 + 12 = 20`.
+**Ejemplos:** `1` → `-1`, `14` → `-14`, `-34` → `34`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5715eaedb436cf5606000381)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/56dec885c54a926dcd001095)
 - Dificultad: 8 kyu
 
-**Pista:** recorre el array con un `for` y, con un `if`, suma solo los números mayores que 0.
+**Pista:** el operador unario `-` invierte el signo de cualquier número: `-numero`. O multiplícalo por `-1`.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int sum(int[] arr) {
-        int suma = 0;
-        for (int numero : arr) {
-            if (numero > 0) {
-                suma += numero;
-            }
-        }
-        return suma;
+    public static int opposite(int number) {
+        return -number;
     }
 }
 ```
 
-El bucle recorre cada número y el `if` filtra los positivos antes de sumarlos. El `for...each` es un atajo que ya conoces; el `if` dentro del bucle es la esencia de las estructuras de control.
+El operador unario `-` del punto 3 invierte el signo. Un solo carácter y el problema está resuelto.
 
 </details>
 
 ---
 
-### 3. Grasshopper — Summation
+### 3. MakeUpperCase
 
-Escribe un programa que calcule la suma de todos los números desde 1 hasta `n`.
+Escribe una función que convierta un String a mayúsculas.
 
-**Ejemplos:** `summation(2)` → `3` (1 + 2), `summation(8)` → `36` (1 + 2 + ... + 8).
+**Ejemplo:** `"hello"` → `"HELLO"`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55d24f55d7dd296eb9000030)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/57a0556c7cb1f31ab3000ad7)
 - Dificultad: 8 kyu
 
-**Pista:** un `for` que acumule del 1 al `n` en una variable `suma`. (O la fórmula matemática `n * (n + 1) / 2`, si te va el atajo.)
+**Pista:** ¿recuerdas el método de `String` del punto 8 que pone todo en mayúsculas? Es la primera herramienta de la caja.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int summation(int n) {
-        int suma = 0;
-        for (int i = 1; i <= n; i++) {
-            suma += i;
-        }
-        return suma;
+    public static String makeUpperCase(String str) {
+        return str.toUpperCase();
     }
 }
 ```
 
-Con bucles: `suma += i` acumula cada vuelta. Con la fórmula directa: `return n * (n + 1) / 2;`, que da el mismo resultado sin ni un bucle. Ambas son válidas; el bucle es lo que practicamos aquí.
+`toUpperCase()` del punto 8. Directo de la caja de herramientas.
 
 </details>
 
 ---
 
-### 4. Sum without highest and lowest number
+### 4. Count of positives / sum of negatives
 
-Suma todos los números de un array **excepto** el más alto y el más bajo. Si el array está vacío, es `null` o tiene un solo elemento, devuelve `0`.
+Dado un array de enteros, devuelve un array de dos elementos: el **número de números positivos** en el primer hueco y la **suma de los negativos** en el segundo. Si el array está vacío, devuelve un array vacío.
 
-**Ejemplo:** `[6, 2, 1, 8, 10]` → `2 + 6 + 8 = 16`.
+**Ejemplo:** `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15]` → `[10, -65]`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/576b93db112df076d900060c)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/571effabb625ed9b0600107a)
 - Dificultad: 7 kyu
 
-**Pista:** recorre el array una vez para acumular la suma y, en el mismo bucle, rastrea el mínimo y el máximo con dos `if`. Al final: `suma - minimo - maximo`.
+**Pista:** no hace falta ni bucles: declara `int[] resultado = new int[2];` y usa un bucle `for...each` (ya lo has visto en clase) para contar positivos y sumar negativos con `if`. Aquí lo importante es recordar cómo acceder a los huecos de un array.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int sum(int[] numeros) {
-        if (numeros == null || numeros.length <= 1) {
-            return 0;
+    public static int[] countPositivesSumNegatives(int[] input) {
+        if (input == null || input.length == 0) {
+            return new int[0];
         }
 
-        int suma = 0;
-        int minimo = Integer.MAX_VALUE;
-        int maximo = Integer.MIN_VALUE;
+        int positivos = 0;
+        int sumaNegativos = 0;
 
-        for (int numero : numeros) {
-            suma += numero;
-            if (numero < minimo) minimo = numero;
-            if (numero > maximo) maximo = numero;
+        for (int numero : input) {
+            if (numero > 0) {
+                positivos++;
+            } else if (numero < 0) {
+                sumaNegativos += numero;
+            }
         }
 
-        return suma - minimo - maximo;
+        return new int[]{positivos, sumaNegativos};
     }
 }
 ```
 
-El truco: `Integer.MAX_VALUE` y `Integer.MIN_VALUE` como "infinitos" iniciales, para que el primer número del array siempre los supere. Un solo bucle hace tres cosas (sumar, buscar mínimo, buscar máximo) y la resta final quita los extremos. Tres decisiones en un solo recorrido: puro músculo de esta unidad.
+El contador usa `++`, la suma acumulada usa `+=`, y el `if` decide con operadores relacionales. Un repaso perfecto de la unidad (el `for...each` completo lo verás en la U05).
+
+</details>
+
+---
+
+### 5. Get the Middle Character
+
+Dada una palabra, devuelve el carácter (o los dos caracteres) del centro.
+
+**Ejemplos:** `"test"` → `"es"`, `"testing"` → `"t"`, `"middle"` → `"dd"`, `"A"` → `"A"`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/56747fd5cb988479af000028)
+- Dificultad: 7 kyu
+
+**Pista:** usa `length()` y `substring()` del punto 9. Si la longitud es par, devuelve los dos caracteres centrales; si es impar, solo uno.
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static String getMiddle(String word) {
+        int longitud = word.length();
+        int medio = longitud / 2;
+
+        if (longitud % 2 == 0) {
+            return word.substring(medio - 1, medio + 1);
+        }
+        return word.substring(medio, medio + 1);
+    }
+}
+```
+
+`longitud / 2` te da el centro. Si la longitud es par, el centro está repartido entre dos letras (`"test"` → medio 2 → `substring(1, 3)` = `"es"`); si es impar, el centro es una sola letra. `%` para saber si es par o impar, `length` para medir y `substring` para cortar: el trío de herramientas de esta unidad.
 
 </details>
 
@@ -149,32 +174,33 @@ El truco: `Integer.MAX_VALUE` y `Integer.MIN_VALUE` como "infinitos" iniciales, 
 
 ## AceptaElReto
 
-### 5. 149 — San Fermines
+### 6. 148 — Nochevieja
 
-En los sanfermines, los mozos quieren saber la velocidad máxima de los toros para saber si salir corriendo o volar. Dado un número de toros y la velocidad de cada uno, di cuál es la máxima.
+El 31 de diciembre, los más impacientes miran el reloj y cuentan cuántos segundos faltan para las 12 de la noche. Dado un instante con formato `HH:MM:SS`, calcula los segundos que faltan para medianoche.
 
-**Entrada:** varios casos de prueba hasta el final de la entrada (EOF). Cada caso: un número N y a continuación las N velocidades.
+**Entrada:** un número con el total de casos, y en cada línea una hora en formato `HH:MM:SS` (con dos dígitos por campo, pero los ceros a la izquierda pueden omitirse).
 
 **Ejemplo:**
 
 ```
 3
-10 20 15
-5
-50 12 90 7 25
+00:00:00
+23:59:59
+05:30:00
 ```
 
 **Salida:**
 
 ```
-20
-90
+86400
+1
+66600
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=149)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=148)
 - Dificultad: Fácil
 
-**Pista:** un `while (sc.hasNextInt())` lee hasta el final de la entrada. Dentro, un `for` recorre las velocidades y un `if` va guardando el máximo.
+**Pista:** el día tiene 86400 segundos. Convierte la hora a segundos totales (`hora * 3600 + minuto * 60 + segundo`) y réstalo de 86400. Para separar los campos, lee con `nextInt()` y descarta los dos puntos con `next()`, o usa `Scanner.useDelimiter(":")`. El truco está en `%02d`... o en leer directamente.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -182,53 +208,55 @@ En los sanfermines, los mozos quieren saber la velocidad máxima de los toros pa
 ```java
 import java.util.Scanner;
 
-public class SanFermines {
+public class Nochevieja {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int casos = sc.nextInt();
 
-        while (sc.hasNextInt()) {
-            int n = sc.nextInt();
-            int max = 0;
+        for (int i = 0; i < casos; i++) {
+            String hora = sc.next();
+            String[] partes = hora.split(":");
+            int h = Integer.parseInt(partes[0]);
+            int m = Integer.parseInt(partes[1]);
+            int s = Integer.parseInt(partes[2]);
 
-            for (int i = 0; i < n; i++) {
-                int velocidad = sc.nextInt();
-                if (velocidad > max) {
-                    max = velocidad;
-                }
-            }
-
-            System.out.println(max);
+            int segundosTranscurridos = h * 3600 + m * 60 + s;
+            int segundosFaltan = 86400 - segundosTranscurridos;
+            System.out.println(segundosFaltan);
         }
         sc.close();
     }
 }
 ```
 
-El `while (sc.hasNextInt())` es el patrón "leer hasta el final". El `if` dentro del `for` compara cada velocidad con el máximo acumulado. Al acabar el bucle, `max` es la respuesta. Bucles y decisiones trabajando en equipo.
+Lectura alternativa sin `split`: declarar el `Scanner` con `useDelimiter("\\s*:\\s*")` y leer tres `nextInt()` seguidos. La lógica es la misma: hora a segundos, réstalo de 86400 (los segundos que tiene el día). Para `00:00:00` faltan 86400; para `23:59:59`, 1. Pura aritmética de la unidad.
 
 </details>
 
 ---
 
-### 6. 340 — Siguiente con mismo número de cifras
+### 7. 217 — ¿Qué lado de la calle?
 
-Dado un número natural N, encuentra el siguiente número que tenga el **mismo número de cifras** que N. Si no existe (porque N es el último con ese número de cifras), muestra `MENSAJE`.
+En la calle principal de Doña Lita las casas se distribuyen en dos lados: los números impares van en un lado y los pares en el otro. Dado un número de casa, di en qué lado está.
 
-**Entrada:** varios casos separados por espacios, que termina con un `0`.
-
-**Ejemplos:**
+**Entrada:** el número 0 indica el fin de la entrada (no hay que procesarlo). Para cada número de casa (positivo), muestra:
 
 ```
-1 → 2
-9 → MENSAJE
-99 → MENSAJE
-100 → 101
+IZQUIERDA
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=340)
-- Dificultad: Medio
+o
 
-**Pista:** cuenta las cifras de N con un `while (copia > 0) { cifras++; copia /= 10; }`. Si N es `9`, `99`, `999`... (todos nueves), no hay siguiente. En el resto de casos, la respuesta es `N + 1`.
+```
+DERECHA
+```
+
+según corresponda. El criterio es simple: un número de casa es `IZQUIERDA` si es par y `DERECHA` si es impar (o al revés, según la calle; lee bien el enunciado original).
+
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=217)
+- Dificultad: Fácil
+
+**Pista:** ¿qué operador te dice si un número es par o impar? El `%` del punto 3. El bucle termina cuando lees un 0, con un `while`.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -236,39 +264,25 @@ Dado un número natural N, encuentra el siguiente número que tenga el **mismo n
 ```java
 import java.util.Scanner;
 
-public class SiguienteCifras {
+public class LadoCalle {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int numero = sc.nextInt();
 
-        while (n != 0) {
-            int copia = n;
-            int cifras = 0;
-
-            while (copia > 0) {
-                cifras++;
-                copia /= 10;
-            }
-
-            int ultimoConEseTamano = (int) Math.pow(10, cifras) - 1;
-
-            if (n == ultimoConEseTamano) {
-                System.out.println("MENSAJE");
-            } else {
-                System.out.println(n + 1);
-            }
-
-            n = sc.nextInt();
+        while (numero != 0) {
+            String lado = numero % 2 == 0 ? "IZQUIERDA" : "DERECHA";
+            System.out.println(lado);
+            numero = sc.nextInt();
         }
         sc.close();
     }
 }
 ```
 
-Dos bucles: el interior cuenta las cifras dividiendo entre 10 (`while (copia > 0)`), y el exterior lee casos hasta el 0 centinela. Si N es 9, 99 o 999 (el `10^cifras - 1`), no existe siguiente y toca "MENSAJE". En cualquier otro caso, sumar 1 no cambia el número de cifras... salvo en los de todos nueves, que ya cazamos antes.
+El operador módulo `%` decide: resto 0 es par, resto 1 es impar. El `while` repite hasta leer el 0 centinela. La lógica entera del problema es un solo ternario.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines los bucles y las condiciones podrás volver a los problemas de la U02 (como Nochevieja o ¿Qué lado de la calle?) y resolverlos con `for` y `switch` para hacer soluciones más elegantes. El material no se pierde: se reutiliza.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines las estructuras de control (U04) podrás volver a estos problemas con `for` y `switch` para hacer soluciones más elegantes. El material no se pierde: se reutiliza.

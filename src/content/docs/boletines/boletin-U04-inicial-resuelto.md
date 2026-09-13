@@ -1,6 +1,6 @@
----
-title: "Boletín U04 — Inicial Resuelto"
-description: "Los mismos ejercicios que el boletín inicial, con soluciones"
+﻿---
+title: Boletín U04 — Inicial Resuelto
+description: Los mismos ejercicios que el boletín inicial, con soluciones
 ---
 
 # 📝 Boletín U04 — Inicial (Resuelto)
@@ -9,206 +9,107 @@ description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — Array de booleanos
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`false true false`**.
-
-`flags` es un `boolean[]` de 3 plazas recién creadas. El valor por defecto de `boolean` es `false`, así que `flags[0]` y `flags[2]` valen `false`. Solo `flags[1]` se puso a `true`. Cada plaza nace con el valor por defecto de su tipo: `false` para `boolean`.
-
-</details>
-
----
-
-## Ejercicio 2: Encuentra el error — NullPointerException
-
-<details>
-<summary>🔄 Solución</summary>
-
-Se lanza una **`NullPointerException`** en la última línea.
-
-`nombres[2]` nunca se asignó, así que vale `null` (el valor por defecto de los objetos). Llamar a `nombres[2].toUpperCase()` sobre `null` es pedirle un método a la nada: Java no sabe qué hacer y lanza la excepción. Las plazas de un `String[]` recién creado están llenas de `null`, no de `""`.
-
-</details>
-
----
-
-## Ejercicio 3: Completa el código — for básico para buscar el mayor
+## Ejercicio 1: El portero del club
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < numeros.length; i++) {   // hasta length, sin pasar
-    if (numeros[i] > mayor) {                // ¿es más grande que el actual?
-        mayor = numeros[i];                  // actualiza el mayor
-    }
-}
-
-System.out.println("El mayor es: " + mayor);
-```
-
-El patrón del "máximo acumulado": empiezas asumiendo que el primero es el mayor y, si aparece uno más grande, lo sustituyes. El bucle empieza en `i = 1` porque el candidato inicial ya es `numeros[0]`. Imprime `El mayor es: 89`.
-
-</details>
-
----
-
-## Ejercicio 4: Escribe este programa — contar números pares
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class ContarPares {
+public class Portero {
     public static void main(String[] args) {
-        int[] numeros = {3, 8, 12, 5, 7, 10, 2, 9, 6, 1};
-        int pares = 0;
+        int edad = 17;
+        boolean tieneEntrada = true;
 
-        for (int i = 0; i < numeros.length; i++) {
-            if (numeros[i] % 2 == 0) {
-                pares++;
-            }
-        }
-
-        System.out.println("Array: " + Arrays.toString(numeros));
-        System.out.println("Pares: " + pares);
-    }
-}
-```
-
-Salida: `Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]` y `Pares: 5`. Un número es par si su resto al dividir entre 2 es 0 (`% 2 == 0`). Y `Arrays.toString` es lo que hace la salida legible.
-
-</details>
-
----
-
-## Ejercicio 5: Encuentra el error — length vs length()
-
-<details>
-<summary>🔄 Solución</summary>
-
-Las **dos líneas tienen error**, pero por motivos opuestos:
-
-- `numeros.length()` → los arrays usan `length` como **atributo**, sin paréntesis. `numeros.length()` no compila.
-- `texto.length` → los `String` usan `length()` como **método**, con paréntesis. `texto.length` no compila.
-
-Regla de oro: **array → `length`; `String` → `length()`; colecciones → `size()`.** Confundirlos es la trampa favorita de los exámenes.
-
-</details>
-
----
-
-## Ejercicio 6: ¿Qué imprime? — la suma de los impares
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`17`**.
-
-El `for-each` recorre los 5 valores: 3, 8, 2, 9, 5. El `if` solo suma los que son impares (`n % 2 == 1`): 3, 9 y 5. `3 + 9 + 5 = 17`. El 8 y el 2 son pares y se ignoran.
-
-</details>
-
----
-
-## Ejercicio 7: Escribe este programa — búsqueda lineal
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Scanner;
-
-public class BusquedaLineal {
-    public static void main(String[] args) {
-        int[] edades = {12, 45, 25, 67, 33, 18, 40, 21};
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Introduce edad a buscar: ");
-        int buscado = sc.nextInt();
-
-        int posicion = -1;
-        for (int i = 0; i < edades.length; i++) {
-            if (edades[i] == buscado) {
-                posicion = i;
-                break;
-            }
-        }
-
-        if (posicion >= 0) {
-            System.out.println("Encontrado en posición " + posicion);
+        if (edad >= 18 && tieneEntrada) {
+            System.out.println("Adelante, que pase el mayor de edad.");
+        } else if (edad >= 18) {
+            System.out.println("Faltas tú solito, sin entrada no hay paraíso.");
         } else {
-            System.out.println("No encontrado");
-        }
-        sc.close();
-    }
-}
-```
-
-La búsqueda lineal recorre el array de principio a fin. `posicion = -1` es el "no encontrado"; si aparece el valor, guardas el índice y cortas con `break` (ya no hace falta seguir).
-
-</details>
-
----
-
-## Ejercicio 8: Escribe este programa — el inverso
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Inverso {
-    public static void main(String[] args) {
-        int[] numeros = new int[10];
-        for (int i = 0; i < numeros.length; i++) {
-            numeros[i] = i + 1;
-        }
-
-        System.out.println("Original: " + Arrays.toString(numeros));
-
-        System.out.print("Inverso: ");
-        for (int i = numeros.length - 1; i >= 0; i--) {
-            System.out.print(numeros[i] + " ");
+            System.out.println("Fuera de aquí, pequeñín.");
         }
     }
 }
 ```
 
-El primer bucle rellena del 1 al 10. El segundo recorre **hacia atrás**: empieza en `length - 1` (el 10) y baja hasta 0 (el 1). Imprime `10 9 8 7 6 5 4 3 2 1`.
+Salida: `Fuera de aquí, pequeñín.`
+
+Fíjate en el orden: primero compruebas la combinación completa (`mayor Y entrada`), luego el caso del mayor sin entrada. El `else` final se queda con los menores. Orden estricto a laxo, como en el punto 1.
 
 </details>
 
 ---
 
-## Ejercicio 9: Escribe este programa — la clase Arrays en acción
+## Ejercicio 2: ¿Qué imprime? — el semáforo invertido
+
+<details>
+<summary>🔄 Solución</summary>
+
+Imprime **`Aprobado`**.
+
+Con `nota = 8`, el primer `if` (`nota >= 5`) se cumple y gana, aunque 8 también cumpliría las condiciones de Notable y Sobresaliente. Java evalúa en orden y se queda con la primera `true`. La lección: el orden de los `else if` decide el resultado.
+
+</details>
+
+---
+
+## Ejercicio 3: El menú del día
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Arrays;
-
-public class ArraysEnAccion {
+public class MenuDia {
     public static void main(String[] args) {
-        int[] notas = {7, 3, 9, 5, 2, 8};
+        int dia = 4;
 
-        System.out.println("Original: " + Arrays.toString(notas));
+        switch (dia) {
+            case 1:
+                System.out.println("Lunes: Lentejas");
+                break;
+            case 2:
+                System.out.println("Martes: Paella");
+                break;
+            case 3:
+                System.out.println("Miércoles: Macarrones");
+                break;
+            case 4:
+                System.out.println("Jueves: Fabada");
+                break;
+            case 5:
+                System.out.println("Viernes: Pescado");
+                break;
+            default:
+                System.out.println("Fin de semana, no hay menú");
+                break;
+        }
+    }
+}
+```
 
-        Arrays.sort(notas);
-        System.out.println("Ordenado: " + Arrays.toString(notas));
+Salida: `Jueves: Fabada`
 
-        int pos = Arrays.binarySearch(notas, 8);
-        System.out.println("El 8 está en la posición " + pos);
+Cada `case` con su `break` (salvo el `default`, que no lo necesita, pero no hace daño). Sin los `break`, el switch se convertiría en un tobogán y lo imprimiría todo desde el `case 4` en adelante.
+
+</details>
+
+---
+
+## Ejercicio 4: La cuenta atrás del cohete
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Cohete {
+    public static void main(String[] args) {
+        int contador = 5;
+
+        while (contador >= 0) {
+            System.out.println(contador);
+            contador--;
+        }
+
+        System.out.println("¡Despegue! 🚀");
     }
 }
 ```
@@ -216,11 +117,165 @@ public class ArraysEnAccion {
 Salida:
 
 ```
-Original: [7, 3, 9, 5, 2, 8]
-Ordenado: [2, 3, 5, 7, 8, 9]
-El 8 está en la posición 4
+5
+4
+3
+2
+1
+0
+¡Despegue! 🚀
 ```
 
-`Arrays.sort` ordena "en el sitio" (modifica el array). Después `binarySearch` encuentra el 8 en el índice 4. Si lo buscaras antes de ordenar, el resultado sería impredecible.
+El `contador--` al final de cada vuelta es el que evita el bucle infinito: la condición `contador >= 0` avanza hacia `false`.
+
+</details>
+
+---
+
+## Ejercicio 5: La tabla del 7
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class TablaDelSiete {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("7 x " + i + " = " + (7 * i));
+        }
+    }
+}
+```
+
+Salida (primeras líneas):
+
+```
+7 x 1 = 7
+7 x 2 = 14
+```
+
+Fíjate en los paréntesis de `(7 * i)`: sin ellos, el `+` concatenaría "7 x 1 = " con el resultado de `7 * 1` igualmente (porque `*` manda sobre `+`), pero es más claro con ellos. El `for` junta contador, condición y avance en una línea.
+
+</details>
+
+---
+
+## Ejercicio 6: Solo los pares
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class SoloPares {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 != 0) {
+                continue;
+            }
+            System.out.println(i);
+        }
+    }
+}
+```
+
+Salida:
+
+```
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+```
+
+El `continue` se salta los impares y el bucle sigue con el siguiente número. Alternativa sin `continue`: `for (int i = 2; i <= 20; i += 2)`, pero aquí practicamos el salto.
+
+</details>
+
+---
+
+## Ejercicio 7: El detective de divisores
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class DetectiveDivisores {
+    public static void main(String[] args) {
+        int numero = 29;
+        boolean esPrimo = true;
+
+        for (int divisor = 2; divisor < numero; divisor++) {
+            if (numero % divisor == 0) {
+                esPrimo = false;
+                break;
+            }
+        }
+
+        System.out.println(esPrimo ? "Es primo" : "No es primo");
+    }
+}
+```
+
+Salida: `Es primo`
+
+El `break` corta el bucle en cuanto aparece un divisor: no hace falta seguir comprobando. Para el 29 no hay divisores (es primo), así que el bucle se recorre entero y `esPrimo` sigue siendo `true`.
+
+</details>
+
+---
+
+## Ejercicio 8: La edad blindada
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class EdadBlindada {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("¿Cuántos años tienes? ");
+            int edad = sc.nextInt();
+            System.out.println("Tienes " + edad + " años.");
+        } catch (InputMismatchException e) {
+            System.out.println("Eso no es una edad válida.");
+        }
+
+        System.out.println("El programa sigue vivo. 🎉");
+        sc.close();
+    }
+}
+```
+
+Si escribes `hola`, el `catch` atrapa el error, imprime el mensaje y el programa continúa. Si escribes `17`, todo normal. Ese es el poder del `try`/`catch`: tu programa ya no muere por la basura del usuario.
+
+</details>
+
+---
+
+## Ejercicio 9: CodeWars — Even or Odd
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static String even_or_odd(int number) {
+        return number % 2 == 0 ? "Even" : "Odd";
+    }
+}
+```
+
+Una línea con el operador `%` y un ternario. Si el resto de dividir entre 2 es 0, es par (`"Even"`); si no, impar (`"Odd"`). Los dos conceptos de la U03 y la U04 trabajando juntos.
 
 </details>

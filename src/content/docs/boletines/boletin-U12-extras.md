@@ -1,6 +1,6 @@
----
+﻿---
 title: "Boletín U12 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá de la programación funcional"
+description: "CodeWars y AceptaElReto para ir más allá de los genéricos y los mapas"
 ---
 
 # 📝 Boletín U12 — Extras
@@ -11,19 +11,19 @@ description: "CodeWars y AceptaElReto para ir más allá de la programación fun
 
 ## CodeWars
 
-### 1. Enumerable Magic #1 - True for All?
+### 1. Counting sheep...
 
-Implementa la función `all`: recibe una lista y un `Predicate`, y devuelve `true` si el predicado es verdadero para **todos** los elementos. Si la lista está vacía, devuelve `true` (nada ha fallado la prueba).
+Te dan un array de ovejas donde algunas pueden faltar de su puesto. `true` significa que hay oveja presente; `null` o `false`, que está vacío. Cuenta cuántas ovejas hay presentes.
 
-**Ejemplo:** `all([1, 2, 3, 4, 5], x -> x < 9)` → `true`, y `all([1, 2, 3, 4, 5], x -> x > 9)` → `false`.
+**Ejemplo:** `{true, true, true, false, true, true, true, true, true, false, true, false}` → `11`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54598d1fcbae2ae05200112c)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/54edbc7200b811e956000556)
 - Dificultad: 8 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Un `Stream` tiene la operación terminal `allMatch(Predicate)` que hace exactamente esto: devuelve `true` si todos los elementos cumplen el predicado. Y con la lista vacía ya devuelve `true` por sí misma. Una sola línea de stream.
+Recorre el array y cuenta los `true` con un `if` o con un for-each. Si lo quieres exprimir con la unidad: guarda los presentes en un `ArrayList<Boolean>` filtrando los `null`, y al final devuelve su tamaño.
 
 </details>
 
@@ -31,143 +31,186 @@ Un `Stream` tiene la operación terminal `allMatch(Predicate)` que hace exactame
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.List;
-import java.util.function.Predicate;
+public class Counter {
+    public int countSheeps(Boolean[] arrayOfSheeps) {
+        int ovejas = 0;
+        for (Boolean b : arrayOfSheeps) {
+            if (b != null && b) {
+                ovejas++;
+            }
+        }
+        return ovejas;
+    }
+}
+```
+
+El `b != null && b` es importante: la kata mete `null` en el array y un `boolean` con valor `null` explotaría si solo hicieras `b == true`. Con el cortocircuito `&&`, si `b` es `null`, la segunda parte ni se evalúa.
+
+</details>
+
+---
+
+### 2. Counting Duplicates
+
+Escribe una función que devuelva cuántos caracteres **distintos** (letras y dígitos, sin distinguir mayúsculas) aparecen más de una vez en una cadena.
+
+**Ejemplo:** `"abcde"` → `0`, `"aabbcde"` → `2` (a y b), `"indivisibility"` → `1` (la i), `"aA11"` → `2` (a y 1).
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1)
+- Dificultad: 6 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Usa un `HashMap<Character, Integer>` para contar cuántas veces aparece cada carácter (con `toLowerCase()` primero y `getOrDefault` al contar). Después cuenta cuántas claves tienen un valor mayor que 1.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class CountingDuplicates {
+    public static int duplicateCount(String text) {
+        HashMap<Character, Integer> contador = new HashMap<>();
+        for (char c : text.toLowerCase().toCharArray()) {
+            contador.put(c, contador.getOrDefault(c, 0) + 1);
+        }
+
+        int repetidos = 0;
+        for (int veces : contador.values()) {
+            if (veces > 1) {
+                repetidos++;
+            }
+        }
+        return repetidos;
+    }
+}
+```
+
+Dos pasadas sobre el mismo mapa: primero se cuentan frecuencias con `getOrDefault` (el patrón estrella de la unidad), y después se recorren los **valores** con `values()` contando cuántos superan 1. `toLowerCase()` unifica 'A' y 'a'. Este es el uso de mapa más típico que existe en las katas.
+
+</details>
+
+---
+
+### 3. Find the unique number
+
+Tienes un array de números donde todos son iguales excepto uno. Encuentra el número único.
+
+**Ejemplo:** `[ 1, 1, 1, 2, 1, 1 ]` → `2`, y `[ 0, 0, 0.55, 0, 0 ]` → `0.55`.
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/585d7d5adb20cf33cb000235)
+- Dificultad: 6 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Cuenta las apariciones de cada número con un `HashMap<Double, Integer>`. Después recorre `entrySet()` y devuelve la clave cuyo valor sea 1. Alternativa tramposa: mira los tres primeros números para saber cuál es el repetido.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Kata {
+    public static double findUniq(double[] arr) {
+        HashMap<Double, Integer> contador = new HashMap<>();
+        for (double d : arr) {
+            contador.put(d, contador.getOrDefault(d, 0) + 1);
+        }
+
+        for (Map.Entry<Double, Integer> e : contador.entrySet()) {
+            if (e.getValue() == 1) {
+                return e.getKey();
+            }
+        }
+        return -1;
+    }
+}
+```
+
+El `HashMap` agrupa por valor: todos los repetidos caen en una clave con contador alto y el único solitario tiene contador 1. Recorrer `entrySet()` y devolver la clave con `getValue() == 1` es directo. La pista alternativa (comparar los tres primeros) evita el mapa, pero esta versión te entrena en frecuencias, que es justo lo que toca esta unidad.
+
+</details>
+
+---
+
+### 4. Who likes it?
+
+Implementa la función `likes` que recibe un array de nombres de gente a la que le gusta un ítem y devuelve el texto de la forma:
+
+- `[]` → `"no one likes this"`
+- `["Peter"]` → `"Peter likes this"`
+- `["Jacob", "Alex"]` → `"Jacob and Alex like this"`
+- `["Max", "John", "Mark"]` → `"Max, John and Mark like this"`
+- `["Alex", "Jacob", "Mark", "Max"]` → `"Alex, Jacob and 2 others like this"`
+
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5266876b8f4bf2da9b000362)
+- Dificultad: 6 kyu
+
+<details>
+<summary>💡 Pista</summary>
+
+Cada tamaño de array tiene su plantilla. Guarda las plantillas en un `Map<Integer, String>` donde la clave es el número de nombres y el valor la plantilla con `%s`. Después usa `String.format()` para rellenarla.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.HashMap;
+import java.util.Map;
 
 public class Solution {
-    public static boolean all(List<Integer> list, Predicate<Integer> predicate) {
-        return list.stream().allMatch(predicate);
+    public static String whoLikesIt(String... names) {
+        int n = names.length;
+        String texto;
+
+        switch (n) {
+            case 0:  texto = "no one likes this"; break;
+            case 1:  texto = names[0] + " likes this"; break;
+            case 2:  texto = names[0] + " and " + names[1] + " like this"; break;
+            case 3:  texto = names[0] + ", " + names[1] + " and " + names[2] + " like this"; break;
+            default: texto = names[0] + ", " + names[1] + " and " + (n - 2) + " others like this"; break;
+        }
+        return texto;
     }
 }
 ```
 
-`allMatch` es la terminal de los cuantificadores: comprueba si todos los elementos cumplen el predicado (el `all` que pide la kata). El `Stream` hace el recorrido por ti, y el caso de la lista vacía está resuelto por diseño: si no hay elementos, técnicamente ninguno falla, así que devuelve `true`. Es la versión funcional del "recorre y comprueba".
-
-</details>
-
----
-
-### 2. Sorted? yes? no? how?
-
-Recibes un array de números. Devuelve `"yes, ascending"` si está ordenado de menor a mayor, `"yes, descending"` si está de mayor a menor, y `"no"` si no está ordenado.
-
-**Ejemplo:** `[1, 2]` → `"yes, ascending"`, `[15, 7, 3]` → `"yes, descending"`, `[4, 2, 30]` → `"no"`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/580a4734d6df748060000045)
-- Dificultad: 7 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Un array ordenado de menor a mayor cumple que cada elemento es menor o igual que el siguiente. Eso es un `allMatch` sobre las parejas consecutivas: `IntStream.range(0, array.length - 1).allMatch(i -> array[i] <= array[i + 1])`. Haz lo mismo para el orden descendente.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
+Y la versión con mapas (la que pide la pista):
 
 ```java
-import java.util.stream.IntStream;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Kata {
-    public static String isSortedAndHow(int[] array) {
-        boolean ascendente = IntStream.range(0, array.length - 1)
-            .allMatch(i -> array[i] <= array[i + 1]);
-        boolean descendente = IntStream.range(0, array.length - 1)
-            .allMatch(i -> array[i] >= array[i + 1]);
+public class Solution {
+    public static String whoLikesIt(String... names) {
+        int n = names.length;
+        Map<Integer, String> plantillas = new HashMap<>();
+        plantillas.put(0, "no one likes this");
+        plantillas.put(1, "%s likes this");
+        plantillas.put(2, "%s and %s like this");
+        plantillas.put(3, "%s, %s and %s like this");
 
-        if (ascendente) return "yes, ascending";
-        if (descendente) return "yes, descending";
-        return "no";
+        if (n <= 3) {
+            return String.format(plantillas.get(n), (Object[]) names);
+        }
+        return names[0] + ", " + names[1] + " and " + (n - 2) + " others like this";
     }
 }
 ```
 
-`IntStream.range(0, array.length - 1)` genera los índices de 0 a n-2: cada uno apunta al inicio de una pareja `(array[i], array[i + 1])`. `allMatch` comprueba que todas las parejas respetan el orden. Es "ordenado" si todas las parejas van en la misma dirección. Un array de un solo elemento cumple ambas condiciones a la vez (no hay parejas), y el `if` ascendente gana: es correcto, un elemento está "ascendente".
-
-</details>
-
----
-
-### 3. Sum of odd numbers
-
-Dado el triángulo de números impares consecutivos:
-
-```
-             1
-          3     5
-       7     9    11
-   13    15    17    19
-21    23    25    27    29
-```
-
-Devuelve la suma de la fila `n` (empezando por 1). **Ejemplo:** `n=1` → `1`, `n=2` → `8`, `n=3` → `27`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55fd2d567d94ac3bc9000064)
-- Dificultad: 7 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-El primer número de la fila `n` es `n * n - n + 1` (fila 3: 9 - 3 + 1 = 7). Luego hay `n` impares consecutivos, separados de 2 en 2. Genera la fila con `IntStream.range(0, n).map(i -> primer + 2 * i)` y súmalos con `.sum()`.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.stream.IntStream;
-
-public class Kata {
-    public static int rowSumOddNumbers(int n) {
-        int primerImpar = n * n - n + 1;
-        return IntStream.range(0, n)
-            .map(i -> primerImpar + 2 * i)
-            .sum();
-    }
-}
-```
-
-`IntStream.range(0, n)` genera los `n` números de la fila y `map` los convierte en impares consecutivos desde `primerImpar` (fila 3: 7, 9, 11). `.sum()` es la terminal que suma un `IntStream`. El resultado coincide con `n * n * n` (¡la suma de la fila n es siempre el cubo de n!), pero esta versión te entrena en construir y sumar streams, que es lo que toca la unidad.
-
-</details>
-
----
-
-### 4. Two Oldest Ages
-
-Implementa `twoOldestAges`: recibe un array de edades (siempre con al menos 2 elementos) y devuelve un array con las **dos edades más altas**, en el formato `[segunda más alta, la más alta]`.
-
-**Ejemplo:** `[1, 2, 10, 8]` → `[8, 10]`.
-
-- [Enunciado en CodeWars](https://www.codewars.com/kata/511f11d355fe575d2c000001)
-- Dificultad: 7 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Ordena el array de menor a mayor con `Arrays.stream(ages).sorted()` y sáltate todos menos los dos últimos: `skip(ages.length - 2)`. El stream resultante tiene exactamente las dos edades más altas en el orden pedido. Recoge con `.toArray()`.
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Kata {
-    public static int[] twoOldestAges(int[] ages) {
-        return Arrays.stream(ages)
-            .sorted()
-            .skip(ages.length - 2)
-            .toArray();
-    }
-}
-```
-
-`Arrays.stream(ages)` convierte el array en un `IntStream`, `sorted()` lo ordena de menor a mayor, y `skip(ages.length - 2)` se salta todos los elementos menos los dos últimos. Al estar ordenados, esos dos últimos son la segunda más alta y la más alta, en ese orden. `.toArray()` recoge el flujo de vuelta en un array. Cuatro operaciones para un problema que a mano pediría dos variables y un bucle.
+El `Map<Integer, String>` asocia cada tamaño con su plantilla, y `String.format` rellena los `%s`. La clave es el tamaño del array: un caso perfecto de "asociar un dato con otro", que es la definición misma de un mapa.
 
 </details>
 
@@ -175,79 +218,23 @@ public class Kata {
 
 ## AceptaElReto
 
-### 5. 219 — La lotería de la peña Atlética
+### 5. 152 — Va de modas...
 
-La peña atlética solo compra décimos con **números pares**. Te dan una lista de décimos de cada administración y debes decir cuántos puede comprar.
+Dado un conjunto de números, la **moda** es el valor (o valores) que más se repite. Te piden calcular la moda de cada distribución.
 
-**Entrada:** el primer número indica cuántos casos de prueba hay. Cada caso son dos líneas: el número de décimos `n` y la lista de `n` números (entre 0 y 99.999).
+**Entrada:** varios casos de prueba. Cada caso comienza con un número que indica cuántos valores tiene el conjunto (nunca mayor de 25.000). En la siguiente línea se dan los valores separados por espacios. La entrada termina cuando el primer número es 0.
 
-**Salida:** para cada caso, cuántos décimos son pares.
+**Salida:** para cada caso, la moda (se garantiza que solo hay una).
 
-**Ejemplo:** `10` y `1 2 3 4 5 6 7 8 9 10` → `5`.
+**Ejemplo:** `1 2 2 3 3 3 4 4 4 4 5` → `4`, y `1 8 9 6 3 2 1 5 4 7 9 6 3 2 1 4 7` → `1`.
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=219)
-- Dificultad: ⭐
-
-<details>
-<summary>💡 Pista</summary>
-
-Lee los `n` números en un array y cuenta los pares con un stream: `Arrays.stream(decimos).filter(d -> d % 2 == 0).count()`. El `filter` con un `Predicate` y la terminal `count` es la plantilla de "cuántos cumplen".
-
-</details>
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class Loteria {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int casos = sc.nextInt();
-
-        while (casos-- > 0) {
-            int n = sc.nextInt();
-            int[] decimos = new int[n];
-            for (int i = 0; i < n; i++) {
-                decimos[i] = sc.nextInt();
-            }
-
-            long comprables = Arrays.stream(decimos)
-                .filter(d -> d % 2 == 0)
-                .count();
-
-            System.out.println(comprables);
-        }
-        sc.close();
-    }
-}
-```
-
-La entrada se lee en un array (leer dentro de una lambda sería un efecto secundario feo) y el stream hace el trabajo: `filter(d -> d % 2 == 0)` deja pasar los pares y `count()` los cuenta. Fíjate en que `count()` devuelve `long`: el problema acepta la salida aunque la variable sea `long`. Es el mismo patrón que `filter(...).count()` de la unidad, aplicado a un problema de concurso real.
-
-</details>
-
----
-
-### 6. 105 — Ventas
-
-El bar de Javier abre todos los días menos los lunes. Apunta la caja de cada día de la semana (martes, miércoles, jueves, viernes, sábado y domingo). Debe decir: el **día de más ventas**, el **día de menos ventas** (o `EMPATE` si hay empate en el máximo o el mínimo), y si las **ventas del domingo superan la media semanal** (`SI` o `NO`).
-
-**Entrada:** varios casos de prueba. Cada caso son 6 números (las ventas de martes a domingo). El programa termina cuando el primer número del caso es `-1`.
-
-**Salida:** para cada caso, `DIA_MAX DIA_MIN SI/NO`.
-
-**Ejemplo:** `185.50 250.36 163.45 535.20 950.22 450.38` → `SABADO JUEVES SI`.
-
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=105)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=152)
 - Dificultad: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Guarda los 6 valores en un `double[]`. Con streams: `Arrays.stream(ventas).max()`, `.min()` y `.average()` te dan los tres datos (todos devuelven `OptionalDouble`, aterriza con `orElse(0)`). Para saber el día, busca el índice del máximo/mínimo; y cuenta cuántos valores coinciden con el máximo/mínimo: si hay más de uno, es `EMPATE`.
+Cuenta cada número con un `HashMap<Integer, Integer>` (el patrón `getOrDefault`). Después recorre `entrySet()` guardando el número con mayor contador. No hace falta ordenar nada: el mapa hace el trabajo.
 
 </details>
 
@@ -255,52 +242,100 @@ Guarda los 6 valores en un `double[]`. Con streams: `Arrays.stream(ventas).max()
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-public class Ventas {
-    static final String[] DIAS = {"MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
-
-    static int indiceDe(double[] ventas, double valor) {
-        return IntStream.range(0, ventas.length)
-            .filter(i -> ventas[i] == valor)
-            .findFirst()
-            .orElse(-1);
-    }
-
+public class VaDeModas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            double[] ventas = new double[6];
-            ventas[0] = sc.nextDouble();
-            if (ventas[0] == -1) break;
-            for (int i = 1; i < 6; i++) {
-                ventas[i] = sc.nextDouble();
+            int n = sc.nextInt();
+            if (n == 0) break;
+
+            HashMap<Integer, Integer> frec = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                int valor = sc.nextInt();
+                frec.put(valor, frec.getOrDefault(valor, 0) + 1);
             }
 
-            double max = Arrays.stream(ventas).max().orElse(0);
-            double min = Arrays.stream(ventas).min().orElse(0);
-            double media = Arrays.stream(ventas).average().orElse(0);
-
-            long vecesMax = Arrays.stream(ventas).filter(v -> v == max).count();
-            long vecesMin = Arrays.stream(ventas).filter(v -> v == min).count();
-
-            String diaMax = vecesMax > 1 ? "EMPATE" : DIAS[indiceDe(ventas, max)];
-            String diaMin = vecesMin > 1 ? "EMPATE" : DIAS[indiceDe(ventas, min)];
-            String domingo = ventas[5] > media ? "SI" : "NO";
-
-            System.out.println(diaMax + " " + diaMin + " " + domingo);
+            int moda = 0, maxVeces = 0;
+            for (Map.Entry<Integer, Integer> e : frec.entrySet()) {
+                if (e.getValue() > maxVeces) {
+                    maxVeces = e.getValue();
+                    moda = e.getKey();
+                }
+            }
+            System.out.println(moda);
         }
         sc.close();
     }
 }
 ```
 
-El problema entero es un desfile de streams: `max()` y `min()` para los extremos, `average()` para la media (los tres devuelven `OptionalDouble` porque el array podría estar vacío; `orElse(0)` aterriza). El `filter(...).count()` cuenta cuántos días empatan con el máximo/mínimo, y `indiceDe` usa `IntStream.range` + `findFirst` para localizar el día exacto. La media se compara con las ventas del domingo (`ventas[5]`, el último índice). El `EMPATE` del enunciado sale de `vecesMax > 1` / `vecesMin > 1`. Este es el problema de la unidad: casi todo, con streams.
+El problema clásico de las frecuencias con mapa: una pasada para contar (`getOrDefault`), otra sobre `entrySet()` para encontrar el máximo. Como se garantiza una única moda, no hay que gestionar empates. Esta es la plantilla que usarás en decenas de problemas de concursos.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines lambdas y streams, vuelve a los problemas de unidades anteriores y reescríbelos con pipelines: el contador de frecuencias de la U11 con `groupingBy`, los bucles de la U05 con `filter` + `reduce`, la agenda de la U11 con `Collectors.toMap`... Todo lo que antes era un bucle ahora es una declaración. El material no se pierde: se reutiliza.
+### 6. 416 — Michael J. Fox y el Pato Donald
+
+En un grupo de personas, hay que comprobar si **dos personas cumplen años el mismo día**. Te dan las fechas de nacimiento de cada una en formato `día/mes/año`.
+
+**Entrada:** varios casos de prueba en dos líneas cada uno. La primera línea tiene el número de personas del grupo; la segunda, sus fechas de nacimiento separadas por espacios. La entrada termina con un `0`.
+
+**Salida:** `SI` si hay algún cumpleaños repetido (mismo día y mes) y `NO` en caso contrario.
+
+**Ejemplo:** `9/6/1961 22/10/1938 31/5/1961 20/4/1964` → `NO`, y `9/6/1961 22/10/1938 31/5/1961 20/4/1964 9/6/1934` → `SI`.
+
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- Dificultad: ⭐⭐
+
+<details>
+<summary>💡 Pista</summary>
+
+Mete cada fecha en un `HashSet<String>`. Si `add` devuelve `false`, esa fecha ya estaba: hay repetido. Recuerda que el año no cuenta: corta la fecha en `día/mes` con `split("/")`.
+
+</details>
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Cumpleanos {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            int n = sc.nextInt();
+            if (n == 0) break;
+
+            HashSet<String> fechas = new HashSet<>();
+            boolean repetido = false;
+
+            for (int i = 0; i < n; i++) {
+                String fecha = sc.next();
+                String diaMes = fecha.split("/")[0] + "/" + fecha.split("/")[1];
+                if (!fechas.add(diaMes)) {
+                    repetido = true;
+                }
+            }
+            System.out.println(repetido ? "SI" : "NO");
+        }
+        sc.close();
+    }
+}
+```
+
+El truco del `HashSet`: `add()` devuelve `false` si el elemento ya estaba, así que no necesitas `contains` por separado. Se guarda solo `día/mes` (sin el año) porque dos personas cumplen el mismo día aunque hayan nacido en años distintos. Detectar duplicados en O(1) es el superpoder del Set, hermano pequeño del mapa de esta unidad.
+
+</details>
+
+---
+
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines genéricos y mapas, vuelve a los problemas de unidades anteriores y reescríbelos con `HashMap` y clases genéricas: el contador de notas, el buscador de nombres... Todo lo que antes era un array paralelo ahora es un mapa. El material no se pierde: se reutiliza.

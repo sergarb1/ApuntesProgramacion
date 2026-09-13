@@ -1,6 +1,6 @@
----
-title: "Butlletí U10 — Inicial Resolt"
-description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
+﻿---
+title: Butlletí U10 — Inicial Resolt
+description: Els mateixos exercicis que el butlletí inicial, amb solucions
 ---
 
 # 📝 Butlletí U10 — Inicial (Resolt)
@@ -9,74 +9,143 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 
 ---
 
-## Exercici 1: Què imprimeix? — ArrayList remove per índex vs valor
+## Exercici 1: Què imprimeix? — La família musical
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`[A, C, D]`**.
+Imprimeix **"El baixista toca el baix"**.
 
-Pas a pas:
-
-- `lista.remove(1)` esborra per **índex**: se'n va el `"B"` de la posició 1 → `[A, C, B, D]`.
-- `lista.remove("B")` esborra per **objecte**: busca la primera aparició de `"B"` i l'esborra → `[A, C, D]`.
-
-El primer `remove` esborra el `"B"` de la posició 1 (el primer). Quan després crides `remove("B")`, eixe `"B"` ja no hi és, però queda el `"B"` que estava a la posició 3 (el quart element), que ara és el primer que troba: l'esborra. Resultat final `[A, C, D]`.
+`Baixista` té la seua pròpia versió de `tocar()`. Java busca el mètode començant per la classe més específica (`Baixista`) i el troba ahí mateix: mai no puja a `Guitarrista` ni a `Instrumentista`. Eixe és el *dynamic dispatch*: el mètode es resol segons el tipus real de l'objecte, no segons el tipus de la referència.
 
 </details>
 
 ---
 
-## Exercici 2: Troba l'error — size() vs length vs length()
+## Exercici 2: Troba l'error — extends mal usat
 
 <details>
 <summary>🔄 Solució</summary>
 
-Les **línies 1 i 2 tenen error**, la 3 és correcta:
-
-- `nombres.length` → les col·leccions usen `size()` com a mètode. `ArrayList` no té `length`. → **Error**.
-- `edades.size()` → els arrays usen `length` com a atribut, sense parèntesis. → **Error**.
-- `saludo.length` → els `String` usen `length()` com a mètode, amb parèntesis. → **Correcta**.
-
-Regla d'or: **array → `length`; `String` → `length()`; col·leccions → `size()`.** Confondre'ls és la trampa favorita dels exàmens.
-
-</details>
-
----
-
-## Exercici 3: Completa el codi — for-each que suma una llista
-
-<details>
-<summary>🔄 Solució</summary>
+L'error és que `Gos` no crida al constructor d'`Animal`. Quan una classe filla no posa `super(...)`, Java intenta cridar a `super()` sense paràmetres. Però `Animal` només té `Animal(String)`, així que el compilador no troba el constructor buit: **error de compilació**.
 
 ```java
-import java.util.ArrayList;
+public class Gos extends Animal {
+    private String raça;
 
-public class SumaLista {
-    public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
-        numeros.add(4);
-        numeros.add(9);
-        numeros.add(2);
-        numeros.add(7);
-
-        int suma = 0;
-        for (Integer n : numeros) {
-            suma += n;
-        }
-
-        System.out.println("Suma: " + suma);
+    public Gos(String especie, String raça) {
+        super(especie);   // la clau!
+        this.raça = raça;
     }
 }
 ```
 
-Els buits: `0`, `Integer n` i `+=`. El for-each recorre cada element de la llista i l'acumula a `suma`. Resultat: `Suma: 22`.
+Pensa en `super()` com cridar a papà perquè configure la seua part abans que tu configures la teua. Si papà necessita una espècie per a construir-se, tu l'hi has de passar. És com construir una casa sense fonaments: el constructor del pare és la base.
 
 </details>
 
 ---
 
-## Exercici 4: Escriu este programa — la llista de la compra
+## Exercici 3: Completa el codi — el gat que crida el seu pare
+
+<details>
+<summary>🔄 Solució</summary>
+
+La paraula és **`super`**:
+
+```java
+public class Gat extends Animal {
+    @Override
+    public void ferSo() {
+        super.ferSo();   // primer el del pare
+        System.out.println("¡MIAU!");
+    }
+
+    public static void main(String[] args) {
+        Gat g = new Gat();
+        g.ferSo();
+    }
+}
+```
+
+Eixida:
+
+```
+Algun so genèric...
+¡MIAU!
+```
+
+`super.ferSo()` executa la versió d'`Animal` i després el `Gat` afig el seu. Sense el `super`, el mètode estaria sobreescrit per complet i la línia del pare no eixiria mai.
+
+</details>
+
+---
+
+## Exercici 4: Escriu este programa — l'herència de vehicles
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Vehicle {
+    protected String marca;
+
+    public Vehicle(String marca) {
+        this.marca = marca;
+    }
+}
+
+public class Cotxe extends Vehicle {
+    protected int numPortes;
+
+    public Cotxe(String marca, int numPortes) {
+        super(marca);
+        this.numPortes = numPortes;
+    }
+}
+
+public class Esportiu extends Cotxe {
+    private int velocitatMaxima;
+
+    public Esportiu(String marca, int numPortes, int velocitatMaxima) {
+        super(marca, numPortes);
+        this.velocitatMaxima = velocitatMaxima;
+    }
+
+    public static void main(String[] args) {
+        Esportiu e = new Esportiu("Ferrari", 2, 340);
+        System.out.println(e.marca + " amb " + e.numPortes
+                + " portes i " + e.velocitatMaxima + " km/h");
+    }
+}
+```
+
+L'herència en cadena: `Esportiu` → `Cotxe` → `Vehicle`. Cada constructor crida al del seu pare amb `super(...)`. Per això `marca` (de `Vehicle`) i `numPortes` (de `Cotxe`) són accessibles en `Esportiu` gràcies a `protected`.
+
+</details>
+
+---
+
+## Exercici 5: Què imprimeix? — Polimorfisme amb referències
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+Y
+Z
+Z
+```
+
+El tipus de la **referència** (X, X, Y) no importa. El que importa és el tipus **real** de l'objecte (Y, Z, Z). Java sempre executa el mètode més específic de l'objecte real. És com portar la jaqueta del teu pare: per fora pareixes el teu pare (la referència), però per dins ets tu (l'objecte). Quan parles, se sent la teua veu, no la del teu pare. Dynamic binding en tot el seu esplendor.
+
+</details>
+
+---
+
+## Exercici 6: Escriu este programa — la granja polimòrfica
 
 <details>
 <summary>🔄 Solució</summary>
@@ -84,21 +153,31 @@ Els buits: `0`, `Integer n` i `+=`. El for-each recorre cada element de la llist
 ```java
 import java.util.ArrayList;
 
-public class Compra {
+public class Animal {
+    public void ferSo() { System.out.println("..."); }
+}
+
+class Vaca extends Animal {
+    @Override public void ferSo() { System.out.println("Muuuu"); }
+}
+
+class Ovella extends Animal {
+    @Override public void ferSo() { System.out.println("Beeee"); }
+}
+
+class Gallina extends Animal {
+    @Override public void ferSo() { System.out.println("Cloc cloc"); }
+}
+
+public class Granja {
     public static void main(String[] args) {
-        ArrayList<String> compra = new ArrayList<>();
-        compra.add("Llet");
-        compra.add("Pa");
-        compra.add("Ous");
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(new Vaca());
+        animals.add(new Ovella());
+        animals.add(new Gallina());
 
-        compra.add(1, "Cafè");       // [Llet, Cafè, Pa, Ous]
-
-        System.out.println("Grandària: " + compra.size()); // 4
-
-        compra.remove(2);            // se'n va "Pa" → [Llet, Cafè, Ous]
-
-        for (String item : compra) {
-            System.out.println(item);
+        for (Animal a : animals) {
+            a.ferSo();
         }
     }
 }
@@ -107,169 +186,78 @@ public class Compra {
 Eixida:
 
 ```
-Grandària: 4
-Llet
-Cafè
-Ous
+Muuuu
+Beeee
+Cloc cloc
 ```
 
-`add(1, "Cafè")` inserix a la posició 1 i desplaça la resta; `remove(2)` esborra per índex (el tercer element, "Pa").
+Un sol `ArrayList<Animal>` i un sol bucle: cada animal executa la seua pròpia versió gràcies al polimorfisme. Sense ell, tindries tres llistes separades. Això és el que fa que el polimorfisme valga el seu pes en or.
 
 </details>
 
 ---
 
-## Exercici 5: Què imprimeix? — l'ArrayList misteriós
+## Exercici 7: Troba l'error — @Override que no ho és
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`10 15 30`**.
+La línia que **no compila** és:
 
-- `add(10)`, `add(20)`, `add(30)` → `[10, 20, 30]`.
-- `add(1, 15)` inserix el 15 a la posició 1 i desplaça → `[10, 15, 20, 30]`.
-- `remove(Integer.valueOf(20))` esborra l'**objecte** 20 (no l'índex 2) → `[10, 15, 30]`.
+```java
+@Override
+public void nedar() { }   // ✗ ERROR: Animal no té nedar()
+```
 
-`remove(Integer.valueOf(20))` no és el mateix que `remove(2)`: el primer esborra l'objecte el valor del qual és 20; el segon esborra la posició 2 (que ara ocupa el 20, casualitat). Ací els dos coincideixen en el resultat, però per motius diferents. Si la llista haguera sigut `[10, 20, 15, 20]`, `remove(Integer.valueOf(20))` esborraria el primer 20 i `remove(2)` esborraria el 15.
+`@Override` li diu al compilador: "verifica que realment estic sobreescrivint un mètode del pare". Com que `Animal` no té `nedar()`, el compilador t'avisa en l'acte. L'altra línia (`ferSo()`) sí que és un override vàlid. Eixe avís a temps és el regal de `@Override`: si escrius malament un nom de mètode, te n'assabenta el compilador, no un bug raríssim a mitjanit.
 
 </details>
 
 ---
 
-## Exercici 6: Escriu este programa — és a la llista?
+## Exercici 8: Escriu este programa — el gos ben heretat
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.ArrayList;
-import java.util.Scanner;
+public class Gos extends Animal {
+    public Gos(String nom, int edat) {
+        super(nom, edat);
+    }
 
-public class BuscarNombre {
+    public void lladrar() {
+        System.out.println(nom + " diu: ¡Guau!");
+    }
+
     public static void main(String[] args) {
-        ArrayList<String> nombres = new ArrayList<>();
-        nombres.add("Ana");
-        nombres.add("Bob");
-        nombres.add("Carla");
-        nombres.add("David");
-        nombres.add("Eva");
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Introduce un nombre: ");
-        String buscado = sc.nextLine();
-
-        int pos = nombres.indexOf(buscado);
-        if (pos >= 0) {
-            System.out.println("Sí, está en la posición " + pos);
-        } else {
-            System.out.println("No está");
-        }
-        sc.close();
+        Gos g = new Gos("Firulais", 3);
+        g.lladrar();
     }
 }
 ```
 
-`indexOf` torna la posició de la primera aparició, o `-1` si no existeix. Comparar amb `>= 0` és el patró clàssic per a "hi és?".
+Eixida: `Firulais diu: ¡Guau!`
+
+`Gos` pot usar `nom` i `edat` perquè estan declarats com a `protected` en `Animal`: l'herència els posa a disposició de tota la família. Si foren `private`, ni `Gos` els veuria. És com l'herència familiar: el que és privat a casa dels avis, no ho veuen ni els néts.
 
 </details>
 
 ---
 
-## Exercici 7: Escriu este programa — el major de la llista
+## Exercici 9: Què imprimeix? — la cadena de constructors
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-import java.util.ArrayList;
-
-public class MayorLista {
-    public static int mayor(ArrayList<Integer> notas) {
-        int max = notas.get(0);
-        for (int i = 1; i < notas.size(); i++) {
-            if (notas.get(i) > max) {
-                max = notas.get(i);
-            }
-        }
-        return max;
-    }
-
-    public static void main(String[] args) {
-        ArrayList<Integer> notas = new ArrayList<>();
-        notas.add(6);
-        notas.add(8);
-        notas.add(5);
-        notas.add(9);
-
-        System.out.println("La mayor es: " + mayor(notas)); // 9
-    }
-}
-```
-
-El patró del "màxim acumulat": assumixes que el primer és el major i, si n'apareix un de més gran, el substitueixes. El bucle comença a `i = 1` perquè el candidat inicial ja és `notas.get(0)`.
-
-</details>
-
----
-
-## Exercici 8: Troba l'error — ArrayList<int> no compila
-
-<details>
-<summary>🔄 Solució</summary>
-
-No compila perquè **els genèrics només accepten objectes, i `int` és un primitiu**. `ArrayList<int>` no existeix. La solució és usar la classe wrapper `Integer`:
-
-```java
-import java.util.ArrayList;
-
-public class Error {
-    public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
-        numeros.add(5);
-        numeros.add(10);
-        System.out.println(numeros.get(0) + numeros.get(1)); // 15
-    }
-}
-```
-
-L'**autoboxing** converteix automàticament l'`int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el converteix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
-
-</details>
-
----
-
-## Exercici 9: Escriu este programa — posició i valor
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.ArrayList;
-
-public class PosicionValor {
-    public static void main(String[] args) {
-        ArrayList<Integer> lista = new ArrayList<>();
-        for (int i = 1; i <= 5; i++) {
-            lista.add(i);
-        }
-
-        for (int i = 0; i < lista.size(); i++) {
-            System.out.println("Posición " + i + " → " + lista.get(i));
-        }
-    }
-}
-```
-
-Eixida:
+Imprimeix:
 
 ```
-Posición 0 → 1
-Posición 1 → 2
-Posición 2 → 3
-Posición 3 → 4
-Posición 4 → 5
+Avi
+Pare
+Fill
 ```
 
-El primer bucle ompli la llista amb `add(i)`; el segon la recorre amb el for clàssic i llig cada posició amb `get(i)`. Compte: `add(i)` amb `i` des de 1 afig al final els valors 1 a 5; `get(i)` recupera per índex.
+En crear un `Fill` s'executen **tots** els constructors de la cadena, del més general al més específic. Com que cada constructor crida a `super()` (o Java el posa automàticament), primer es construïx `Avi`, després `Pare` i per últim `Fill`. Els fonaments abans que el teulada, sempre.
 
 </details>

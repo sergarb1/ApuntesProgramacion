@@ -1,139 +1,113 @@
----
-title: "Butlletí U04 — Inicial"
-description: "Exercicis bàsics d'Arrays"
+﻿---
+title: Butlletí U04 — Inicial
+description: Exercicis bàsics d'Estructures de Control i Excepcions
 ---
 
 # 📝 Butlletí U04 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer aparcament de dades i fes que el `for-each` deixe de semblar màgia. Cap plaça no naix sabent tindre amo.
+> Sense solucions. Sense presses. Obri l'IDE, encén el semàfor i fes que el teu codi decidisca, repetisca i sobrevisca. Ningú no naix sabent quan posar un `break`.
 
 ---
 
-## Exercici 1: Què imprimeix? — Array de booleans
+## Exercici 1: El porter del club
 
-```java
-boolean[] flags = new boolean[3];
-flags[1] = true;
-System.out.println(flags[0] + " " + flags[1] + " " + flags[2]);
-```
+Escriu un programa anomenat `Porter` que, amb les variables `int edat = 17` i `boolean teEntrada = true`, decidisca amb `if`/`else`:
 
-Què imprimeix? Quin és el valor per defecte d'un `boolean` en un array?
+- Si `edat >= 18` **I** té entrada → "Endavant, que passe el major d'edat."
+- Si és major d'edat però **no** té entrada → "Faltes tu sol, sense entrada no hi ha paradís."
+- Si és menor → "Fora d'ací, xicotet."
 
 ---
 
-## Exercici 2: Troba l'error — NullPointerException
-
-```java
-String[] nombres = new String[3];
-nombres[0] = "Ana";
-nombres[1] = "Bob";
-System.out.println(nombres[2].toUpperCase());
-```
-
-Què ocorre en executar este codi? Per què?
-
----
-
-## Exercici 3: Completa el codi — for bàsic per a buscar el major
-
-Completa el següent programa perquè trobe i imprimisca el número més gran de l'array:
-
-```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < ______; i++) {   // fins on arriba el bucle?
-    if (numeros[i] ______ mayor) {    // quin operador?
-        ______ = numeros[i];          // què assignem?
-    }
-}
-
-System.out.println("El mayor es: " + mayor);
-```
-
----
-
-## Exercici 4: Escriu este programa — comptar números parells
-
-Crea un array de 10 enters amb valors que tria tu. Recórrel amb un bucle `for` i compta quants d'ells són parells. Al final, imprimeix el total de parells i l'array original amb `Arrays.toString`.
-
-Exemple d'eixida:
-
-```
-Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]
-Pares: 5
-```
-
-Pista: un número és parell si `numeros[i] % 2 == 0`.
-
----
-
-## Exercici 5: Troba l'error — length vs length()
-
-```java
-int[] numeros = {10, 20, 30};
-String texto = "Hola";
-
-System.out.println(numeros.length());
-System.out.println(texto.length);
-```
-
-Quines línies tenen error? Explica la diferència entre `length` (sense parèntesis) i `length()` (amb parèntesis).
-
----
-
-## Exercici 6: Què imprimeix? — la suma dels senars
+## Exercici 2: Què imprimeix? — el semàfor invertit
 
 Sense executar, escriu l'eixida exacta d'este programa:
 
 ```java
-public class SumaImpares {
+public class SemaforInvertit {
     public static void main(String[] args) {
-        int[] datos = {3, 8, 2, 9, 5};
-        int total = 0;
+        int nota = 8;
 
-        for (int n : datos) {
-            if (n % 2 == 1) {
-                total += n;
-            }
+        if (nota >= 5) {
+            System.out.println("Aprovat");
+        } else if (nota >= 7) {
+            System.out.println("Notable");
+        } else if (nota >= 9) {
+            System.out.println("Excel·lent");
+        } else {
+            System.out.println("Suspés");
         }
-
-        System.out.println(total);
     }
 }
 ```
 
-Pista: el `for-each` recorre tots els valors; només se sumen els que deixen resta 1 en dividir entre 2.
+Pista: recorda que guanya el **primer** `if` que es compleix, encara que n'hi haja altres més "precisos" després.
 
 ---
 
-## Exercici 7: Escriu este programa — cerca lineal
+## Exercici 3: El menú del dia
 
-Crea un array d'enters anomenat `edades` amb 8 valors. Demana a l'usuari un número pel teclat (amb `Scanner`) i busca si eixe número està a l'array. Imprimeix «Encontrado en posición X» o «No encontrado».
+Escriu un programa anomenat `MenuDia` que, amb `int dia = 4`, mostre amb `switch` el menú corresponent:
+
+- `1` → Dilluns: Llenties
+- `2` → Dimarts: Paella
+- `3` → Dimecres: Macarrons
+- `4` → Dijous: Fabada
+- `5` → Divendres: Peix
+- Qualsevol altre número → `default`: Cap de setmana, no hi ha menú
+
+No t'oblides del `break` en cada `case` ni del `default`.
+
+---
+
+## Exercici 4: El compte arrere del coet
+
+Escriu un programa anomenat `Coet` que compte des de 5 fins a 0 amb un `while` i després mostre "Enlairament! 🚀". Mostra un nombre per línia.
+
+Pista: `int comptador = 5;` i `while (comptador >= 0) { ... comptador--; }`.
+
+---
+
+## Exercici 5: La taula del 7
+
+Escriu un programa anomenat `TaulaDelSet` que mostre la taula de multiplicar del 7 (de l'1 al 10) usant un `for`:
 
 ```
-Introduce edad a buscar: 25
-Encontrado en posición 3
+7 x 1 = 7
+7 x 2 = 14
+...
 ```
 
-Pista: usa una variable `posicion = -1` com a "no trobat", i `break` tan bon punt el trobes.
+---
+
+## Exercici 6: Només els parells
+
+Escriu un programa anomenat `SolsParells` que imprimisca els nombres parells del 2 al 20 usant un `for` i `continue`. Cada nombre en la seua línia.
+
+Pista: recorre de l'1 al 20 i usa `continue` per a saltar-te els senars (`if (i % 2 != 0) continue;`).
 
 ---
 
-## Exercici 8: Escriu este programa — l'invers
+## Exercici 7: El detectiu de divisors
 
-Crea un array de 10 enters, ompli'l amb els números de l'1 al 10 i després imprimeix-lo en **ordre invers** (del 10 a l'1). Fes-ho amb un `for` que recórrega l'array cap arrere.
+Escriu un programa anomenat `DetectiuDivisors` que comprove amb `for` i `break` si el nombre `int numero = 29` té algun divisor entre 2 i `numero - 1`. Si el troba, mostra "No és primer" i ix; si no, mostra "És primer".
 
-Pista: el bucle va de `length - 1` fins a `0`, baixant amb `i--`.
+Pista: recorre els divisors i, tan bon punt en trobes un (`numero % divisor == 0`), fes `break`.
 
 ---
 
-## Exercici 9: Escriu este programa — la classe Arrays en acció
+## Exercici 8: L'edat blindada
 
-Crea l'array `int[] notas = {7, 3, 9, 5, 2, 8}` i fes el següent:
+Escriu un programa anomenat `EdatBlindada` que demane l'edat amb `Scanner.nextInt()` dins d'un `try`/`catch`. Si l'usuari escriu alguna cosa que no és un nombre, atrapar l'`InputMismatchException` i mostra "Això no és una edat vàlida.". Si ho és, mostra "Tens X anys."
 
-1. Mostra'l amb `Arrays.toString`.
-2. Ordena amb `Arrays.sort` i mostra'l una altra vegada.
-3. Busca el `8` amb `Arrays.binarySearch` i imprimeix la seua posició.
+Pista: necessites `import java.util.Scanner;` i `import java.util.InputMismatchException;`. Després del `catch`, el programa ha de seguir viu.
 
-Pista: `import java.util.Arrays;` al principi, i recorda: `binarySearch` només és fiable si l'array ja està ordenat.
+---
+
+## Exercici 9: CodeWars — Even or Odd
+
+Resol la kata **"Even or Odd"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/53da3dbb4a5168369a0000fe).
+
+Crea el mètode `public static String even_or_odd(int number)` que retorne `"Even"` si el nombre és parell i `"Odd"` si és senar.
+
+Pista: l'operador `%` del punt 3 de la U03 és el teu millor amic: `number % 2 == 0`.

@@ -1,4 +1,4 @@
----
+﻿---
 title: "Boletín U12 — Avanzado Resuelto"
 description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 ---
@@ -9,293 +9,421 @@ description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 
 ---
 
-## ⭐⭐ Ejercicio 1: Ordenar con referencias a método
+## ⭐ Ejercicio 1: Pila genérica `<T>`
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.EmptyStackException;
 
-public class Orden {
-    public static void main(String[] args) {
-        List<String> nombres = List.of("Carlos", "Ana", "David", "Bob");
+public class Pila<T> {
+    private ArrayList<T> elementos = new ArrayList<>();
 
-        List<String> porLongitud = nombres.stream()
-            .sorted(Comparator.comparing(String::length))
-            .toList();
+    public void push(T elemento) {
+        elementos.add(elemento);
+    }
 
-        System.out.println(porLongitud);   // [Ana, Bob, Carlos, David]
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return elementos.remove(elementos.size() - 1);
+    }
 
-        List<String> inverso = nombres.stream()
-            .sorted(Comparator.comparing(String::length).reversed())
-            .toList();
-        System.out.println(inverso);   // [Carlos, David, Ana, Bob]
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return elementos.get(elementos.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return elementos.isEmpty();
+    }
+
+    public int size() {
+        return elementos.size();
     }
 }
 ```
 
-`Comparator.comparing(String::length)` construye un comparador que usa la referencia a método `String::length` como "clave de ordenación". `sorted` no modifica la lista original: devuelve un stream ordenado. Con `.reversed()` inviertes el criterio (los más largos primero; los empates mantienen el orden de llegada).
+La pila se construye sobre un `ArrayList<T>`: el final de la lista es la cima. `push` añade, `pop` quita y devuelve el último, y `peek` lo mira sin quitarlo. Al ser genérica, funciona igual con `Integer`, `String` o `Double`: `new Pila<String>()` y listo.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 2: Agrupar palabras por su primera letra
+## ⭐⭐ Ejercicio 2: Método genérico `maximo` sobre un array
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+public class Utilidades {
 
-public class Grupos {
+    public static <T extends Comparable<T>> T maximo(T[] array) {
+        T max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i].compareTo(max) > 0) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+
     public static void main(String[] args) {
-        List<String> palabras = List.of("hola", "adios", "mar", "mundo", "luna");
+        Integer[] numeros = {3, 8, 2, 10, 5};
+        String[] palabras = {"manzana", "pera", "melón"};
 
-        Map<Character, List<String>> porLetra = palabras.stream()
-            .collect(Collectors.groupingBy(p -> p.charAt(0)));
-
-        System.out.println(porLetra);
-        // {a=[adios], h=[hola], l=[luna], m=[mar, mundo]}
-
-        Map<Character, Long> conteo = palabras.stream()
-            .collect(Collectors.groupingBy(p -> p.charAt(0), Collectors.counting()));
-
-        System.out.println(conteo);
-        // {a=1, h=1, l=1, m=2}
+        System.out.println(maximo(numeros));  // 10
+        System.out.println(maximo(palabras)); // pera
     }
 }
 ```
 
-`groupingBy(p -> p.charAt(0))` agrupa las palabras por su primera letra: cada letra es una clave y su lista de palabras el valor. Con `Collectors.counting()` como segundo argumento (el "colector aguas abajo"), el valor pasa de `List<String>` a `Long`: cuántas palabras caen en cada grupo. Es el contador de frecuencias por categoría en una línea.
+El límite `T extends Comparable<T>` garantiza que `T` sabe compararse. Se usa `Integer[]`, no `int[]`, porque los arrays de genéricos no aceptan primitivos. El patrón del máximo acumulado: candidato inicial en el índice 0 y recorrido desde el 1.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 3: Optional — el que no se deja engañar
+## ⭐⭐ Ejercicio 3: HashMap inverso
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
 
-public class Maximo {
-    public static int maximoSeguro(List<Integer> numeros) {
-        return numeros.stream()
-            .max(Integer::compareTo)
-            .orElse(-1);
+public class Utilidades {
+
+    public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original) {
+        HashMap<V, K> invertido = new HashMap<>();
+        for (HashMap.Entry<K, V> e : original.entrySet()) {
+            invertido.put(e.getValue(), e.getKey());
+        }
+        return invertido;
     }
 
     public static void main(String[] args) {
-        System.out.println(maximoSeguro(List.of(4, 9, 2, 7)));   // 9
-        System.out.println(maximoSeguro(List.of()));             // -1
+        HashMap<String, Integer> edades = new HashMap<>();
+        edades.put("Ana", 25);
+        edades.put("Bob", 30);
+
+        HashMap<Integer, String> porEdad = invertirMapa(edades);
+        System.out.println(porEdad.get(25)); // Ana
+        System.out.println(porEdad.get(30)); // Bob
     }
 }
 ```
 
-`max(Integer::compareTo)` devuelve un `Optional<Integer>`: si la lista está vacía, la caja está vacía. `orElse(-1)` aterriza con seguridad: devuelve el máximo si hay valor y `-1` si no. Usar `get()` aquí habría lanzado `NoSuchElementException` con la lista vacía: el `orElse` es la red que convierte una excepción en un dato controlado.
+Recorrer `entrySet()` te da clave y valor juntos, y el `put` invertido los cambia de sitio. Si dos claves comparten valor (dos personas de 25 años), el último en el recorrido sobrescribe al anterior: los valores del mapa original no son únicos, así que el inverso puede perder información. Esa es la limitación natural de invertir un mapa.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 4: El pipeline completo
+## ⭐⭐ Ejercicio 4: TreeMap — frecuencia de letras
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class Pipeline {
+public class FrecuenciaLetras {
     public static void main(String[] args) {
-        List<Integer> numeros = List.of(12, 5, 8, 3, 9, 5, 12, 7);
+        String texto = "Hola mundo";
 
-        List<Integer> resultado = numeros.stream()
-            .filter(n -> n >= 5)                     // 12, 5, 8, 9, 5, 12, 7
-            .map(n -> n * n)                         // 144, 25, 64, 81, 25, 144, 49
-            .distinct()                              // 144, 25, 64, 81, 49
-            .sorted(Comparator.reverseOrder())       // 144, 81, 64, 49, 25
-            .limit(3)                                // 144, 81, 64
-            .toList();
+        TreeMap<Character, Integer> frec = new TreeMap<>();
+        for (char c : texto.toLowerCase().toCharArray()) {
+            if (Character.isLetter(c)) {
+                frec.put(c, frec.getOrDefault(c, 0) + 1);
+            }
+        }
 
-        System.out.println(resultado);   // [144, 81, 64]
+        for (Map.Entry<Character, Integer> e : frec.entrySet()) {
+            System.out.print(e.getKey() + ": " + e.getValue() + ", ");
+        }
+        // a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
     }
 }
 ```
 
-El pipeline completo de la unidad: filtrar (el 3 se queda fuera), transformar al cuadrado, quitar duplicados (el 12 y el 5 repetidos desaparecen), ordenar de mayor a menor con `Comparator.reverseOrder()` y cortar en 3 con `limit`. El orden importa: `distinct` antes de `sorted` significa que la lista a ordenar ya no tiene repetidos.
+`toLowerCase()` unifica mayúsculas y minúsculas, `Character.isLetter(c)` descarta espacios y signos, y `getOrDefault` suma el contador. La magia del `TreeMap` es que, al recorrerlo, las claves salen ordenadas alfabéticamente sin que hagas nada.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 5: De lista a mapa con `toMap`
+## ⭐⭐⭐ Ejercicio 5: Wildcards — suma y mezcla de números
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.List;
 
-class Alumno {
-    private String nombre;
-    private int nota;
+public class Numeros {
 
-    public Alumno(String nombre, int nota) {
-        this.nombre = nombre;
-        this.nota = nota;
+    public static double sumar(List<? extends Number> lista) {
+        double total = 0.0;
+        for (Number n : lista) {
+            total += n.doubleValue();
+        }
+        return total;
     }
 
-    public String getNombre() { return nombre; }
-    public int getNota() { return nota; }
-}
+    public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b) {
+        List<Double> resultado = new ArrayList<>();
+        for (Number n : a) {
+            resultado.add(n.doubleValue());
+        }
+        for (Number n : b) {
+            resultado.add(n.doubleValue());
+        }
+        return resultado;
+    }
 
-public class Mapa {
     public static void main(String[] args) {
-        List<Alumno> alumnos = List.of(
-            new Alumno("Ana", 8),
-            new Alumno("Bob", 6),
-            new Alumno("Carla", 9),
-            new Alumno("David", 7),
-            new Alumno("Eva", 5)
-        );
+        List<Integer> enteros = List.of(1, 2, 3);
+        List<Double> dobles = List.of(1.5, 2.5);
 
-        Map<String, Integer> porNombre = alumnos.stream()
-            .collect(Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a));
-
-        System.out.println(porNombre);   // {Eva=5, Ana=8, Bob=6, Carla=9, David=7}
+        System.out.println(sumar(enteros)); // 6.0
+        System.out.println(sumar(dobles));  // 4.0
+        System.out.println(mezclar(enteros, dobles)); // [1.0, 2.0, 3.0, 1.5, 2.5]
     }
 }
 ```
 
-`Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)` usa referencias a método para sacar clave (nombre) y valor (nota). La función de fusión `(a, b) -> a` es el seguro: si un nombre se repitiera, dos elementos querrían la misma clave y sin fusión Java lanzaría `IllegalStateException`. Con `(a, b) -> a` se queda con el primero.
+`List<? extends Number>` acepta cualquier lista de Number o de una subclase. Al leer, cada elemento es un `Number` y `doubleValue()` lo convierte. Pasar una `List<String>` sería un error de compilación: `String` no es un `Number`. Y ojo: `? extends` es de solo lectura, así que en `sumar` no puedes hacer `add` (PECS: Producer Extends).
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 6: El máximo con `reduce` y comparador
+## ⭐⭐ Ejercicio 6: Caché LRU con LinkedHashMap
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-public class Maximo {
+public class CacheLRU<K, V> extends LinkedHashMap<K, V> {
+    private static final int MAX = 5;
+
+    public CacheLRU() {
+        super(MAX, 0.75f, true);  // accessOrder = true: por acceso, no inserción
+    }
+
+    @Override
+    protected boolean removeEldestEntry(Map.Entry<K, V> eldest) {
+        return size() > MAX;
+    }
+
     public static void main(String[] args) {
-        List<Integer> numeros = List.of(4, 9, 2, 9, 7);
-
-        int conReduce = numeros.stream()
-            .reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b);
-        System.out.println(conReduce);   // 9
-
-        Optional<Integer> conMax = numeros.stream().max(Integer::compareTo);
-        System.out.println(conMax.orElse(-1));   // 9
+        CacheLRU<String, Integer> cache = new CacheLRU<>();
+        for (int i = 1; i <= 6; i++) {
+            cache.put("clave" + i, i);
+        }
+        System.out.println(cache);  // las 5 más recientes; "clave1" fue expulsada
     }
 }
 ```
 
-- Con `reduce`, la identidad `Integer.MIN_VALUE` garantiza que el primer elemento siempre gane la comparación (cualquier `int` es mayor que el mínimo posible). El acumulador va guardando el mayor visto.
-- Con `max(Integer::compareTo)` no hay identidad: devuelve un `Optional<Integer>` porque una lista vacía no tiene máximo. Se aterriza con `orElse(-1)`.
-
-La diferencia clave: `reduce` con identidad devuelve el valor directo; `max` devuelve `Optional` y te obliga a gestionar la ausencia.
+El constructor `super(MAX, 0.75f, true)` activa el modo `accessOrder`: cada `get` o `put` mueve la entrada al final. `removeEldestEntry()` se llama tras cada inserción y, al devolver `size() > MAX`, expulsa al elemento menos recientemente usado. Es la caché LRU clásica en unas pocas líneas.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 7: Frecuencias con `groupingBy`
+## ⭐⭐ Ejercicio 7: Agenda completa con menú
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-public class Frecuencias {
+public class Agenda {
     public static void main(String[] args) {
-        String[] palabras = {"hola", "adios", "hola", "java", "hola", "adios"};
+        HashMap<String, String> agenda = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        int opcion;
 
-        Map<String, Long> frec = Arrays.stream(palabras)
-            .collect(Collectors.groupingBy(p -> p, Collectors.counting()));
+        do {
+            System.out.println("\n1. Añadir contacto");
+            System.out.println("2. Buscar por nombre");
+            System.out.println("3. Listar todos");
+            System.out.println("4. Borrar contacto");
+            System.out.println("0. Salir");
+            System.out.print("Opción: ");
+            opcion = sc.nextInt();
+            sc.nextLine();
 
-        System.out.println(frec);   // {adios=2, hola=3, java=1}
+            switch (opcion) {
+                case 1:
+                    System.out.print("Nombre: ");
+                    String nombre = sc.nextLine();
+                    System.out.print("Teléfono: ");
+                    String telefono = sc.nextLine();
+                    agenda.put(nombre, telefono);
+                    System.out.println("Contacto añadido.");
+                    break;
 
-        Map.Entry<String, Long> campeona = frec.entrySet().stream()
-            .max(Map.Entry.comparingByValue())
-            .orElse(null);
+                case 2:
+                    System.out.print("Nombre: ");
+                    String buscado = sc.nextLine();
+                    if (agenda.containsKey(buscado)) {
+                        System.out.println(buscado + " → " + agenda.get(buscado));
+                    } else {
+                        System.out.println(buscado + " no está en la agenda.");
+                    }
+                    break;
 
-        System.out.println("Más repetida: " + campeona.getKey() + " (" + campeona.getValue() + ")");
+                case 3:
+                    for (Map.Entry<String, String> e : agenda.entrySet()) {
+                        System.out.println(e.getKey() + " → " + e.getValue());
+                    }
+                    break;
+
+                case 4:
+                    System.out.print("Nombre a borrar: ");
+                    String aBorrar = sc.nextLine();
+                    if (agenda.remove(aBorrar) != null) {
+                        System.out.println("Contacto borrado.");
+                    } else {
+                        System.out.println("No existe ese contacto.");
+                    }
+                    break;
+            }
+        } while (opcion != 0);
+
+        sc.close();
     }
 }
 ```
 
-Dos niveles de streams: el primero convierte el array en flujo y agrupa por la palabra misma (`p -> p`), contando con `counting()`: `hola`=3, `adios`=2, `java`=1. El segundo recorre las entradas del mapa (`entrySet()`) y busca el máximo valor con `max(Map.Entry.comparingByValue())`, que devuelve `Optional<Map.Entry>` (aterrizado con `orElse(null)`). Es el `entrySet` de la U11 + el `max` de los streams.
+`containsKey` evita mostrar un `null` al buscar, `entrySet` lista todo sin un `get` extra y `remove` devuelve el valor borrado (o `null` si no existía), sirviendo de comprobación. La agenda completa con `HashMap`: buscar por clave es O(1).
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: Optional y streams, la pareja
+## ⭐⭐⭐ Ejercicio 8: Sistema de votaciones con método genérico
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Busqueda {
-    public static void buscarJ(List<String> nombres) {
-        nombres.stream()
-            .filter(n -> n.startsWith("J"))
-            .findFirst()
-            .ifPresentOrElse(
-                System.out::println,
-                () -> System.out.println("no hay nadie")
-            );
+public class Votaciones {
+
+    public static <T> T obtenerGanador(Map<T, Integer> votos) {
+        T ganador = null;
+        int maxVotos = -1;
+        for (Map.Entry<T, Integer> e : votos.entrySet()) {
+            if (e.getValue() > maxVotos) {
+                maxVotos = e.getValue();
+                ganador = e.getKey();
+            }
+        }
+        return ganador;
     }
 
     public static void main(String[] args) {
-        buscarJ(List.of("Ana", "Juan", "Carla"));    // Juan
-        buscarJ(List.of("Ana", "Carla"));            // no hay nadie
+        HashMap<String, Integer> votos = new HashMap<>();
+        votos.put("Ana", 3);
+        votos.put("Bob", 5);
+        votos.put("Carla", 2);
+
+        System.out.println(obtenerGanador(votos)); // Bob
+
+        HashMap<Integer, Integer> porCategoria = new HashMap<>();
+        porCategoria.put(1, 10);
+        porCategoria.put(2, 7);
+        System.out.println(obtenerGanador(porCategoria)); // 1
     }
 }
 ```
 
-`filter(n -> n.startsWith("J")).findFirst()` devuelve `Optional<String>`: la caja está llena si alguien cumple y vacía si no. `ifPresentOrElse` es el método que junta los dos caminos: el primer argumento es el `Consumer` para cuando hay valor (`System.out::println`), el segundo un `Runnable` para cuando no lo hay. También podrías hacerlo con `ifPresent` + `orElse`, pero `ifPresentOrElse` hace la pareja en una sola llamada.
+El método es genérico (`<T>`) porque el tipo de la clave no importa: solo necesita recorrer y comparar valores. El patrón del máximo acumulado sobre `entrySet()` devuelve la clave con más votos. Funciona igual con claves `String`, `Integer` o cualquier otro tipo.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: el stream que se niega a morir
+## ⭐⭐ Ejercicio 9: Pareja genérica con intercambio
 
 <details>
 <summary>🔄 Solución</summary>
 
-1. **Sí, compila** (el error es de ejecución, no de sintaxis).
-2. Al ejecutar, la segunda llamada `flujo.count()` lanza **`IllegalStateException: stream has already been operated upon or closed`**. El primer `count()` ya consumió el stream: no se puede reutilizar.
-3. Creando un stream nuevo para cada cuenta:
-
 ```java
-long a = List.of(1, 2, 3).stream().count();
-long b = List.of(1, 2, 3).stream().count();
-System.out.println(a + " " + b);   // 3 3
+public class Pareja<T, U> {
+    private T primero;
+    private U segundo;
+
+    public Pareja(T primero, U segundo) {
+        this.primero = primero;
+        this.segundo = segundo;
+    }
+
+    public T getPrimero() { return primero; }
+    public U getSegundo() { return segundo; }
+
+    public void setPrimero(T primero) { this.primero = primero; }
+    public void setSegundo(U segundo) { this.segundo = segundo; }
+
+    public Pareja<U, T> intercambiar() {
+        return new Pareja<>(this.segundo, this.primero);
+    }
+
+    public static void main(String[] args) {
+        Pareja<String, Integer> original = new Pareja<>("Ana", 25);
+        Pareja<Integer, String> intercambiada = original.intercambiar();
+
+        System.out.println(original.getPrimero());       // Ana
+        System.out.println(intercambiada.getPrimero());  // 25
+    }
+}
 ```
 
-La regla de oro: un stream es como un billete de autobús de un solo viaje. Tras bajarte, el billete no sirve.
+La clase tiene dos parámetros de tipo `<T, U>`. `intercambiar()` crea una `Pareja<U, T>` (fíjate en el orden invertido de los parámetros) pasando el segundo como primero y el primero como segundo. El compilador comprueba que `original.intercambiar()` devuelva exactamente `Pareja<Integer, String>`: no hay forma de equivocarse de tipo sin que te pille
 
-</details>
+---
+
+## ⭐⭐⭐ Ejercicio 10: el type erasure al descubierto
+
+<details>
+<summary>🔄 Solución</summary>
+
+1. **Es la misma clase.** `Caja<String>` y `Caja<Integer>` no generan dos clases en el bytecode: el compilador borra el parámetro de tipo y deja una única `Caja` con `Object`. Por eso no hay ninguna ganancia de rendimiento por "especializar": erasure significa que no se duplica código.
+2. **`Object`.** `getValor()` en el bytecode devuelve `Object`. El compilador inserta el cast a `String` en el punto de uso (cuando asignas a `String s = caja.getValor();`).
+3. La comprobación con `getClass()`:
+
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Caja<String> cajaTexto = new Caja<>("hola");
+        Caja<Integer> cajaNumero = new Caja<>(42);
+
+        System.out.println(cajaTexto.getClass());
+        System.out.println(cajaNumero.getClass());
+        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+    }
+}
+```
+
+Ambas imprimen `class Caja` y la comparación con `==` da `true`: es la MISMA clase en runtime. El `<String>` y el `<Integer>` solo existen en tiempo de compilación. Ese es el type erasure: el mago que borra los tipos cuando compilas.
+
+</details>.

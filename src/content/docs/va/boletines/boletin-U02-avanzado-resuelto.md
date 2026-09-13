@@ -1,42 +1,41 @@
----
-title: Butlletí U02 — Avançat Resolt
-description: Els mateixos exercicis que el butlletí avançat, amb solucions
+﻿---
+title: "Butlletí U02 — Avançat Resolt"
+description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 ---
 
 # 📝 Butlletí U02 — Avançat (Resolt)
 
-> Les solucions estan ocultes. Intenta-ho de veritat abans de destapar-les.
+> Les solucions estan ocultes. Intenta-ho de veritat abans de destapar-les. Compara el teu codi amb estes propostes de resolució i comparteix els teus dubtes o alternatives en el fòrum.
 
 ---
 
-## ⭐ Exercici 1: Calculadora de propines
+## Exercici 1: Calculadora de propines (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Propines {
+public class CalculadoraPropines {
     public static void main(String[] args) {
         double totalCompte = 45.50;
         int percentatgePropina = 15;
 
-        double propina = totalCompte * percentatgePropina / 100;
+        // Multipliquem primer per a evitar la divisió entera entre enters (15 / 100 = 0)
+        double propina = totalCompte * percentatgePropina / 100.0;
         double totalFinal = totalCompte + propina;
 
-        System.out.println("Total compte: " + totalCompte + "€");
+        System.out.println("Total del compte: " + totalCompte + "€");
         System.out.println("Propina (" + percentatgePropina + "%): " + propina + "€");
         System.out.println("Total a pagar: " + totalFinal + "€");
     }
 }
 ```
 
-La clau: `totalCompte * percentatgePropina / 100` multiplica primer (45.50 * 15 = 682.5) i divideix després per 100 → 6.825. Si hagueres escrit `percentatgePropina / 100`, hauries fet divisió entera (15/100 = 0) i la propina hauria eixit 0. Ordre i divisió entera: les dos trampes del punt 3.
-
 </details>
 
 ---
 
-## ⭐ Exercici 2: Conversor dòlar-euro
+## Exercici 2: Conversor dòlar-euro (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
@@ -47,34 +46,27 @@ public class ConversorMoneda {
         final double TAXA_CANVI = 0.92;
 
         double dolars = 100.0;
-        double euros = dolars * TAXA_CANVI;
+        double eurosDesDeDolars = dolars * TAXA_CANVI;
 
-        double eurosInvers = 50.0;
-        double dolarsInvers = eurosInvers / TAXA_CANVI;
+        double euros = 50.0;
+        double dolarsDesDeEuros = euros / TAXA_CANVI;
 
-        System.out.println(dolars + "$ són " + euros + "€");
-        System.out.println(eurosInvers + "€ són " + dolarsInvers + "$");
+        System.out.println(dolars + "$ són " + eurosDesDeDolars + "€");
+        System.out.println(euros + "€ són " + dolarsDesDeEuros + "$");
     }
 }
 ```
-
-Eixida:
-
-```
-100.0$ són 92.0€
-50.0€ són 54.347826086956516$
-```
-
-Per a passar de dòlars a euros multipliques per la taxa; al revés, divideixes. El `final` garanteix que ningú (ni tu) toque la taxa de canvi sense voler.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 3: Què imprimeix? — el casting traïdor
+## Exercici 3: Què imprimeix? — el casting traïdor (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
+
+**Eixida exacta per pantalla:**
 
 ```
 3.0
@@ -84,19 +76,19 @@ Per a passar de dòlars a euros multipliques per la taxa; al revés, divideixes.
 6
 ```
 
-Línia a línia:
+**Explicació pas a pas:**
 
-- `resultat1 = a / b` → primer divideix enters (7/2 = 3) i després guarda en `double`: **3.0**.
-- `resultat2 = (double) a / b` → castin a `a` a 7.0 abans de dividir: **3.5**.
-- `resultat3 = a / (double) b` → castin a `b` a 2.0: **3.5**.
-- `3 + 4 * 2.0` → la multiplicació mana i el `2.0` arrossega a decimal: `3 + 8.0` = **11.0**.
-- `(int) (3.7 + 2.3)` → primer suma (6.0), després trunca: **6**.
+- **resultat1 (3.0)**: `a / b` és una divisió entre dos enters (7 / 2). El resultat és la divisió entera 3. En assignar-ho a un `double`, es converteix en 3.0.
+- **resultat2 (3.5)**: `(double) a` converteix en 7.0. La divisió 7.0 / 2 és entre `double` i `int`, per la qual cosa `b` es promou a `double` i s'obté la divisió decimal exacta 3.5.
+- **resultat3 (3.5)**: Ocorre el mateix: `(double) b` converteix `b` en 2.0, donant la divisió decimal 7 / 2.0 = 3.5.
+- **3 + 4 \* 2.0 (11.0)**: La multiplicació té prioritat (4 \* 2.0 = 8.0). Després es suma 3 + 8.0 = 11.0 (promogut a `double`).
+- **(int) (3.7 + 2.3) (6)**: Primer es resol el parèntesi 3.7 + 2.3 = 6.0. El casting `(int)` trunca la part decimal i queda l'enter 6.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 4: Interès compost (sense bucle)
+## Exercici 4: Interés compost (sense bucle) (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
@@ -107,11 +99,12 @@ public class InteresCompost {
         final double CAPITAL_INICIAL = 1000.0;
         final double TAXA = 0.05;
 
+        double capital0 = CAPITAL_INICIAL;
         double capital1 = CAPITAL_INICIAL * Math.pow(1 + TAXA, 1);
         double capital2 = CAPITAL_INICIAL * Math.pow(1 + TAXA, 2);
         double capital3 = CAPITAL_INICIAL * Math.pow(1 + TAXA, 3);
 
-        System.out.println("Any 0: " + CAPITAL_INICIAL + "€");
+        System.out.println("Any 0: " + capital0 + "€");
         System.out.println("Any 1: " + capital1 + "€");
         System.out.println("Any 2: " + capital2 + "€");
         System.out.println("Any 3: " + capital3 + "€");
@@ -119,20 +112,29 @@ public class InteresCompost {
 }
 ```
 
-`Math.pow(1 + TAXA, i)` calcula `(1.05)^i`. Amb tres variables distintes evites el bucle... que arribarà en la U03. Fixa’t que `Math.pow` retorna un `double`.
-
-> 💡 **Detall de precisió:** en l'any 3 el teu programa pot imprimir `1157.6250000000002` en lloc de `1157.625`. És la coma flotant binària del punt "Atreveix-te a pensar" (els decimals no sempre es representen exactes). No és un error: és així com funcionen els `double`.
-
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 5: L'enigma del post-increment
+## Exercici 5: L'enigma del post-increment (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
-El programa imprimeix:
+**Pas a pas de l'execució:**
+
+1. **`int x = 3;`** → x=3.
+2. **`int y = x++ + ++x;`:**
+   - `x++`: Usa el valor actual de `x` (3) i després l'incrementa a 4.
+   - `++x`: Incrementa `x` primer (4→5) i usa el nou valor (5).
+   - y=3+5=8. Valors actuals: x=5, y=8.
+3. **`int z = --y + y-- + x++;`:**
+   - `--y`: Decrementa `y` primer (8→7) i usa el nou valor (7).
+   - `y--`: Usa el valor actual de `y` (7) i després el decrementa a 6.
+   - `x++`: Usa el valor actual de `x` (5) i després l'incrementa a 6.
+   - z=7+7+5=19. Valors finals: x=6, y=6, z=19.
+
+**Eixida per pantalla:**
 
 ```
 x = 6
@@ -140,19 +142,100 @@ y = 6
 z = 19
 ```
 
-Pas a pas:
-
-- `int x = 3;` → x = 3.
-- `int y = x++ + ++x;` → `x++` usa 3 i deixa x = 4; `++x` puja x a 5 i usa 5. `y = 3 + 5 = 8`. Ara x = 5, y = 8.
-- `int z = --y + y-- + x++;` → `--y` baixa y a 7 i usa 7; `y--` usa 7 i baixa y a 6; `x++` usa 5 i puja x a 6. `z = 7 + 7 + 5 = 19`. Final: x = 6, y = 6, z = 19.
-
-> 💡 **Confessió honesta:** si en fer-ho et va eixir un altre número, benvingut al club: este exercici existeix precisament perquè patisca una volta en classe i no vint en l'examen. La lliçó del punt 3: els `++` i `--` es fan servir sols, en la seua pròpia línia.
-
 </details>
 
 ---
 
-## ⭐⭐ Exercici 6: El duel de daus
+## 💡 Ferramentes d'ampliació (Operador ternari, .equals(), Scanner i Math.random())
+
+⚠️ **Fora de temari (de moment):** Aquestes ferramentes les veurem en detall i de manera oficial en pròximes unitats, però és útil saber com funcionen si vols començar a explorar opcions més avançades en els teus programes.
+
+### 1. L'operador ternari (? :)
+
+És una forma ultracompacta d'escriure una estructura condicional (if-else) senzilla en una sola línia. Serveix per a triar entre dos valors segons si es compleix o no una condició.
+
+**Sintaxi**: `condicio ? valor_si_cert : valor_si_fals`
+
+Exemple:
+
+```java
+int edat = 20;
+String estat = (edat >= 18) ? "Major d'edat" : "Menor d'edat";
+```
+
+Si la condició (`edat >= 18`) és certa, retorna "Major d'edat"; si no, retorna "Menor d'edat".
+
+### 2. Comparar text amb .equals()
+
+En Java, les cadenes de text (`String`) són objectes, no tipus primitius com `int` o `double`. Per això, mai s'ha d'utilitzar `==` per a comparar el contingut de dos textos, ja que `==` compara si estan guardats en la mateixa posició de memòria, no si tenen les mateixes lletres.
+
+**Sintaxi**: `cadena1.equals(cadena2)`
+
+Exemple:
+
+```java
+String operador = "+";
+
+// Incorrecte ❌ (pot fallar segons com s'haja creat el text):
+// if (operador == "+")
+
+// Correcte ✅ (compara el contingut del text lletra per lletra):
+if (operador.equals("+")) {
+    System.out.println("És una suma");
+}
+```
+
+### 3. Llegir dades del teclat amb Scanner i la importació (import)
+
+Per a llegir el que l'usuari escriu en la terminal, utilitzem la classe `Scanner`. Com que no ve carregada per defecte en el motor bàsic de Java, hem de dir-li al programa on trobar-la mitjançant una instrucció `import` en la primera línia de l'arxiu.
+
+**Importació obligatòria**: `import java.util.Scanner;` (es posa abans de declarar la classe).
+
+Mètodes principals de lectura:
+
+- `tecleat.nextLine()`: Llegeix una línia de text completa (`String`).
+- `tecleat.nextInt()`: Llegeix un nombre enter (`int`).
+- `tecleat.nextDouble()`: Llegeix un nombre decimal (`double`).
+
+**Exemple:**
+
+```java
+import java.util.Scanner; // 1. Importem la classe de la llibreria de Java
+
+public class ExempleScanner {
+    public static void main(String[] args) {
+        Scanner tecleat = new Scanner(System.in); // 2. Creem l'objecte Scanner
+
+        System.out.print("Introdueix el teu nom: ");
+        String nom = tecleat.nextLine(); // 3. Llegim el text introduït
+
+        System.out.println("Hola, " + nom + "!");
+        tecleat.close(); // Bons hàbits: tanquem el Scanner en acabar
+    }
+}
+```
+
+### 4. Generar nombres aleatoris amb Math.random()
+
+La classe `Math` ve inclosa automàticament en Java (no necessita `import`). El seu mètode `Math.random()` genera un nombre decimal aleatori entre 0.0 (inclòs) i 1.0 (exclòs).
+
+**Com adaptar-lo per a obtindre un nombre enter en un rang (ex: un dau d'1 a 6):**
+
+- Multipliquem el resultat pel màxim del rang (`Math.random() * 6` dona de 0.0 a 5.999...).
+- Fem un casting a enter (`int`) per a eliminar la part decimal (0 a 5).
+- Sumem 1 per a ajustar el rang final (1 a 6).
+
+**Exemple per a simulació de daus:**
+
+```java
+// Genera un nombre enter aleatori entre 1 i 6:
+int dau = (int) (Math.random() * 6) + 1;
+System.out.println("Has tret un: " + dau);
+```
+
+---
+
+## Exercici 6: El duel de daus (Extra) (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
@@ -162,32 +245,32 @@ import java.util.Scanner;
 
 public class DuelDaus {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner tecleat = new Scanner(System.in);
 
-        System.out.print("Com et dius? ");
-        String nom = sc.nextLine();
+        System.out.print("Introdueix el teu nom: ");
+        String nomUsuari = tecleat.nextLine();
 
         int dauUsuari = (int) (Math.random() * 6) + 1;
         int dauMaquina = (int) (Math.random() * 6) + 1;
 
-        System.out.println(nom + " trau " + dauUsuari + ", la màquina trau " + dauMaquina + ".");
+        System.out.println(nomUsuari + " en trau " + dauUsuari + ", la màquina en trau " + dauMaquina + ".");
 
-        String guanyador = dauUsuari > dauMaquina ? "Guanya " + nom + "." :
-                           dauUsuari < dauMaquina ? "Guanya la màquina." : "Empat.";
-        System.out.println(guanyador);
+        String veredicte = (dauUsuari > dauMaquina) ? "Guanya " + nomUsuari + "!" :
+                           (dauMaquina > dauUsuari) ? "Guanya la màquina." :
+                           "Empat!";
 
-        sc.close();
+        System.out.println(veredicte);
+
+        tecleat.close();
     }
 }
 ```
-
-Ací no hi ha problema d'Enter residual: el `nextLine()` va abans del `nextInt()` (que ni tan sols usem). Els daus usen la fórmula `(int)(Math.random() * 6) + 1`, i el ternari encadenat decideix el guanyador en tres casos.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 7: Supercalculadora amb lògica
+## Exercici 7: Supercalculadora amb lògica (Extra) (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
@@ -195,186 +278,70 @@ Ací no hi ha problema d'Enter residual: el `nextLine()` va abans del `nextInt()
 ```java
 import java.util.Scanner;
 
-public class SuperCalculadora {
+public class Supercalculadora {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner tecleat = new Scanner(System.in);
 
-        System.out.print("Primer nombre: ");
-        double a = sc.nextDouble();
+        System.out.print("Introdueix el primer nombre: ");
+        double a = tecleat.nextDouble();
 
-        System.out.print("Segon nombre: ");
-        double b = sc.nextDouble();
+        System.out.print("Introdueix el segon nombre: ");
+        double b = tecleat.nextDouble();
 
-        System.out.print("Operació (+, -, *, /): ");
-        String op = sc.next();
+        System.out.print("Introdueix l'operador (+, -, *, /): ");
+        String op = tecleat.next();
 
-        double suma = a + b;
-        double resta = a - b;
-        double multi = a * b;
-
-        String resultat = op.equals("+") ? "Resultat: " + suma :
-                          op.equals("-") ? "Resultat: " + resta :
-                          op.equals("*") ? "Resultat: " + multi :
-                          op.equals("/") && b != 0 ? "Resultat: " + (a / b) :
-                          op.equals("/") ? "Error: no es pot dividir entre 0" :
+        String resultat = op.equals("+") ? "Resultat: " + (a + b) :
+                          op.equals("-") ? "Resultat: " + (a - b) :
+                          op.equals("*") ? "Resultat: " + (a * b) :
+                          op.equals("/") ? (b == 0 ? "Error: no es pot dividir entre 0" : "Resultat: " + (a / b)) :
                           "Operador desconegut";
 
         System.out.println(resultat);
 
-        sc.close();
+        tecleat.close();
     }
 }
 ```
-
-La lògica del ternari encadenat: primer comprova si l'operador és `/` i a més `b` no és 0; si l'operador és `/` però `b` és 0, cau en el missatge d'error. Fixa’t en `op.equals("/")`: els `String` sempre es comparen amb `.equals()`. Els operadors lògics i relacionals unixen totes les condicions.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 8: CodeWars — Convert boolean values to strings 'Yes' or 'No'
+## Exercici 8: Javadoc de campionat (Solució)
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Kata {
-    public static String boolToWord(boolean b) {
-        return b ? "Yes" : "No";
-    }
-}
-```
+/**
+ * Classe que representa l'autor de la unitat i la seua motivació.
+ *
+ * @author Sergi Garcia
+ * @version 1.0
+ */
+public class SobreMi {
 
-Una línia. El ternari retorna `"Yes"` si el booleà és `true` i `"No"` si és `false`. Elegant, com un esmòquing per al teu codi.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 9: AceptaElReto — 114 Últim dígit del factorial
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class UltimDigitFactorial {
+    /**
+     * Punt d'entrada: imprimeix la motivació i el nombre d'arguments rebuts.
+     *
+     * @param args arguments rebuts des de la línia d'ordres
+     */
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int casos = sc.nextInt();
+        // Imprimisc primer el nom perquè el missatge tinga context
+        System.out.println("Me llamo Sergi");
 
-        for (int i = 0; i < casos; i++) {
-            int n = sc.nextInt();
-            int ultim;
-            if (n >= 5) {
-                ultim = 0;
-            } else if (n == 0 || n == 1) {
-                ultim = 1;
-            } else if (n == 2) {
-                ultim = 2;
-            } else if (n == 3) {
-                ultim = 6;
-            } else {
-                ultim = 4; // 4! = 24
-            }
-            System.out.println(ultim);
-        }
-        sc.close();
+        /*
+        Este bloc explica el programa a grans trets:
+        mostrem la motivació per a estudiar programació
+        i quants arguments hem rebut des de la terminal.
+        */
+        System.out.println("Mi motivación: convertirme en programador");
+        System.out.println("He recibido " + args.length + " argumentos.");
     }
 }
 ```
 
-La clau matemàtica: 5! = 120, i a partir d'ací qualsevol factorial multiplica per 5 (i abans per un nombre parell), així que **sempre acaba en 0**. Només cal memoritzar els casos menuts: 0! i 1! són 1, 2! = 2, 3! = 6, 4! = 24. Si intentares calcular `1000000!`, el teu programa reventaria: per això la trampa de l'enunciat és que "pareix que cal calcular el factorial". No cal.
+**Explicació**: En executar la comanda `javadoc SobreMi.java` en la terminal, es generaran automàticament els arxius `.html` amb la documentació tècnica del teu projecte. Si obris l'arxiu generat en el navegador, veuràs la teua classe i el teu mètode amb les etiquetes `@author`, `@version` i `@param` perfectament estructurades i formatades com la documentació oficial de Java.
 
 </details>
-
----
-
-## ⭐⭐ Exercici 10: el tiquet de compra amb NumberFormat
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.text.NumberFormat;
-import java.util.Locale;
-
-public class TiquetCompra {
-    public static void main(String[] args) {
-        NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
-
-        double preuPa = 1.20;
-        double preuLlet = 0.95;
-        double preuOus = 3.50;
-
-        double subtotalPa = preuPa * 2;
-        double subtotalLlet = preuLlet * 3;
-        double subtotalOus = preuOus * 1;
-        double total = subtotalPa + subtotalLlet + subtotalOus;
-
-        System.out.println("==========================");
-        System.out.println("    TICKET DE COMPRA");
-        System.out.println("==========================");
-        System.out.println("Pa    2 x " + moneda.format(preuPa) + " = " + moneda.format(subtotalPa));
-        System.out.println("Llet  3 x " + moneda.format(preuLlet) + " = " + moneda.format(subtotalLlet));
-        System.out.println("Ous   1 x " + moneda.format(preuOus) + " = " + moneda.format(subtotalOus));
-        System.out.println("--------------------------");
-        System.out.println("TOTAL               = " + moneda.format(total));
-        System.out.println("==========================");
-    }
-}
-```
-
-`NumberFormat.getCurrencyInstance(new Locale("es", "ES"))` formata qualsevol `double` com a moneda espanyola: `1.234,56 €`. Com que els tres subtotals es calculen amb `preu * quantitat` abans de sumar-los, el total és exacte i sense errors d'arredoniment acumulats. Este exercici et deixa llest per al punt 7 en l'examen: separadors de milers i moneda en un sol objecte.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 11: l'edat a prova de bombes
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class EdatSegura {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int edat = -1;
-
-        while (edat == -1) {
-            System.out.print("Quants anys tens? ");
-            if (sc.hasNextInt()) {
-                edat = sc.nextInt();
-            } else {
-                System.out.println("Això no és un nombre enter.");
-                sc.next();
-            }
-        }
-
-        System.out.printf("Genial, %d anys i llest per a programar.%n", edat);
-        sc.close();
-    }
-}
-```
-
-El bucle `while` repeteix la pregunta fins que l'usuari dona un enter. `hasNextInt()` mira si la següent dada és un enter sense consumir-la; si no ho és, `sc.next()` es menja la brossa i el bucle torna a preguntar. Així el programa és **a prova de bombes**: no importa quantes vegades l'usuari escriga "hola" o "3.14", mai no saltarà la `InputMismatchException`.
-
-</details>
-
----
-
-## 📚 Referències
-
-| Plataforma | Problema | Dificultat |
-|---|---|---|
-| AceptaElReto | 114 — Últim dígit del factorial | Fàcil |
-| AceptaElReto | 148 — Cap d'any | Fàcil |
-| AceptaElReto | 217 — Quin costat del carrer? | Fàcil |
-| CodeWars | Will you make it? (8 kyu) | Principiant |
-| CodeWars | Convert boolean to Yes/No (8 kyu) | Principiant |
-| CodeWars | Keep Hydrated (8 kyu) | Principiant |
-| CodeWars | Get the Middle Character (7 kyu) | Intermedi |

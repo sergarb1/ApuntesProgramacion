@@ -1,4 +1,4 @@
----
+﻿---
 title: Boletín U03 — Avanzado Resuelto
 description: Los mismos ejercicios que el boletín avanzado, con soluciones
 ---
@@ -9,186 +9,150 @@ description: Los mismos ejercicios que el boletín avanzado, con soluciones
 
 ---
 
-## ⭐ Ejercicio 1: La calculadora de notas
+## ⭐ Ejercicio 1: calculadora de propinas
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class CalculadoraNotas {
+public class Propinas {
     public static void main(String[] args) {
-        double nota = 8.7;
+        double totalCuenta = 45.50;
+        int porcentajePropina = 15;
 
-        if (nota < 0 || nota > 10) {
-            System.out.println("Nota inválida");
-        } else if (nota >= 9) {
-            System.out.println("Sobresaliente");
-        } else if (nota >= 7) {
-            System.out.println("Notable");
-        } else if (nota >= 5) {
-            System.out.println("Aprobado");
-        } else {
-            System.out.println("Suspenso");
-        }
+        double propina = totalCuenta * porcentajePropina / 100;
+        double totalFinal = totalCuenta + propina;
+
+        System.out.println("Total cuenta: " + totalCuenta + "€");
+        System.out.println("Propina (" + porcentajePropina + "%): " + propina + "€");
+        System.out.println("Total a pagar: " + totalFinal + "€");
     }
 }
 ```
 
-Salida: `Notable`
-
-El primer `if` caza las notas imposibles (negativas o mayores de 10) y la cascada siguiente evalúa de la más exigente a la más permisiva. Con 8.7, el `>= 7` gana y da "Notable".
+La clave: `totalCuenta * porcentajePropina / 100` multiplica primero (45.50 * 15 = 682.5) y divide después por 100 → 6.825. Si hubieras escrito `porcentajePropina / 100`, habrías hecho división entera (15/100 = 0) y la propina habría salido 0. Orden y división entera: las dos trampas del punto 3.
 
 </details>
 
 ---
 
-## ⭐ Ejercicio 2: El menú que no se rinde
+## ⭐ Ejercicio 2: conversor dólar-euro
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-import java.util.Scanner;
-
-public class MenuTenaz {
+public class ConversorMoneda {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int opcion = 0;
+        final double TASA_CAMBIO = 0.92;
 
-        do {
-            System.out.println("1. Jugar  2. Salir");
-            System.out.print("Elige: ");
-            opcion = sc.nextInt();
-        } while (opcion != 1 && opcion != 2);
+        double dolares = 100.0;
+        double euros = dolares * TASA_CAMBIO;
 
-        System.out.println("Has elegido la opción " + opcion + ".");
-        sc.close();
+        double eurosInverso = 50.0;
+        double dolaresInverso = eurosInverso / TASA_CAMBIO;
+
+        System.out.println(dolares + "$ son " + euros + "€");
+        System.out.println(eurosInverso + "€ son " + dolaresInverso + "$");
     }
 }
 ```
 
-El `do-while` garantiza que el menú se muestre al menos una vez. Mientras la opción no sea 1 ni 2, el bucle insiste. El usuario puede ser tonto todo lo que quiera; el menú no se rinde.
+Salida:
+
+```
+100.0$ son 92.0€
+50.0€ son 54.347826086956516$
+```
+
+Para pasar de dólares a euros multiplicas por la tasa; al revés, divides. El `final` garantiza que nadie (ni tú) toque la tasa de cambio sin querer.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 3: ¿Qué imprime? — la pirámide
+## ⭐⭐ Ejercicio 3: ¿Qué imprime? — el casting traidor
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```
-*
-**
-***
-****
+3.0
+3.5
+3.5
+11.0
+6
 ```
 
-En total **10 asteriscos** (1 + 2 + 3 + 4). El bucle interior (`col <= fila`) imprime tantos asteriscos como el número de fila. El corazón de los bucles anidados: el interior depende del exterior.
+Línea a línea:
+
+- `resultado1 = a / b` → primero divide enteros (7/2 = 3) y luego guarda en `double`: **3.0**.
+- `resultado2 = (double) a / b` → castin a `a` a 7.0 antes de dividir: **3.5**.
+- `resultado3 = a / (double) b` → castin a `b` a 2.0: **3.5**.
+- `3 + 4 * 2.0` → la multiplicación manda y el `2.0` arrastra a decimal: `3 + 8.0` = **11.0**.
+- `(int) (3.7 + 2.3)` → primero suma (6.0), luego trunca: **6**.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 4: La escalera de números
+## ⭐⭐ Ejercicio 4: interés compuesto (sin bucle)
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Escalera {
+public class InteresCompuesto {
     public static void main(String[] args) {
-        for (int fila = 1; fila <= 4; fila++) {
-            for (int num = 1; num <= fila; num++) {
-                System.out.print(num + " ");
-            }
-            System.out.println();
-        }
+        final double CAPITAL_INICIAL = 1000.0;
+        final double TASA = 0.05;
+
+        double capital1 = CAPITAL_INICIAL * Math.pow(1 + TASA, 1);
+        double capital2 = CAPITAL_INICIAL * Math.pow(1 + TASA, 2);
+        double capital3 = CAPITAL_INICIAL * Math.pow(1 + TASA, 3);
+
+        System.out.println("Año 0: " + CAPITAL_INICIAL + "€");
+        System.out.println("Año 1: " + capital1 + "€");
+        System.out.println("Año 2: " + capital2 + "€");
+        System.out.println("Año 3: " + capital3 + "€");
     }
 }
 ```
 
-El interior imprime del 1 al número de fila con `print` (sin salto de línea); el `println()` vacío salta al terminar cada fila. La escalera completa:
+`Math.pow(1 + TASA, i)` calcula `(1.05)^i`. Con tres variables distintas evitas el bucle... que llegará en la U04. Fíjate en que `Math.pow` devuelve un `double`.
 
-```
-1
-1 2
-1 2 3
-1 2 3 4
-```
+> 💡 **Detalle de precisión:** en el año 3 tu programa puede imprimir `1157.6250000000002` en vez de `1157.625`. Es la coma flotante binaria del punto "Atrévete a pensar" (los decimales no siempre se representan exactos). No es un error: es así como funcionan los `double`.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 5: ¿Qué imprime? — break, continue y la etiqueta
+## ⭐⭐⭐ Ejercicio 5: El enigma del post-incremento
 
 <details>
 <summary>🔄 Solución</summary>
 
+El programa imprime:
+
 ```
-11 12 13 21 22 23 31 41
+x = 6
+y = 6
+z = 19
 ```
 
-Tabla de pares, en orden de ejecución:
+Paso a paso:
 
-| i | j | ¿Qué pasa? | ¿Imprime? |
-|---|---|---|---|
-| 1 | 1 | `1*1=1 < 8`, no hay `continue` | `11` |
-| 1 | 2 | `j==2 && i>=3` → no; `1*2=2 < 8` | `12` |
-| 1 | 3 | `1*3=3 < 8` | `13` |
-| 2 | 1 | `2*1=2 < 8` | `21` |
-| 2 | 2 | `j==2 && i>=3` → no (i=2); `2*2=4 < 8` | `22` |
-| 2 | 3 | `2*3=6 < 8` | `23` |
-| 3 | 1 | `3*1=3 < 8` | `31` |
-| 3 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | nada |
-| 4 | 1 | `4*1=4 < 8` | `41` |
-| 4 | 2 | `j==2 && i>=3` → **sí** → `continue exterior` | nada |
+- `int x = 3;` → x = 3.
+- `int y = x++ + ++x;` → `x++` usa 3 y deja x = 4; `++x` sube x a 5 y usa 5. `y = 3 + 5 = 8`. Ahora x = 5, y = 8.
+- `int z = --y + y-- + x++;` → `--y` baja y a 7 y usa 7; `y--` usa 7 y baja y a 6; `x++` usa 5 y sube x a 6. `z = 7 + 7 + 5 = 19`. Final: x = 6, y = 6, z = 19.
 
-Observa que el `break exterior` **nunca se dispara**: con `i=1` y `i=2` el producto `i*j` no llega a 8, y con `i>=3` siempre salta antes por el `continue exterior` (en `j=2`), así que nunca se evalúa el `j=3` donde `3*3=9` habría superado 8. La lección: con las etiquetas, no asumas qué pasa — ejecútalo mentalmente par a par.
+> 💡 **Confesión honesta:** si al hacerlo te salió otro número, bienvenido al club: este ejercicio existe precisamente para que sufras una vez en clase y no veinte en el examen. La lección del punto 3: los `++` y `--` se usan solos, en su propia línea.
 
 </details>
 
 ---
 
-## ⭐⭐ Ejercicio 6: cazador de primos
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-public class CazadorPrimos {
-    public static void main(String[] args) {
-        for (int numero = 1; numero <= 50; numero++) {
-            boolean esPrimo = true;
-
-            if (numero < 2) {
-                esPrimo = false;
-            } else {
-                for (int divisor = 2; divisor < numero; divisor++) {
-                    if (numero % divisor == 0) {
-                        esPrimo = false;
-                        break;
-                    }
-                }
-            }
-
-            if (esPrimo) {
-                System.out.println(numero);
-            }
-        }
-    }
-}
-```
-
-Salida (primeros): `2 3 5 7 11 13...`. El bucle exterior recorre los candidatos y el interior busca divisores con `break` en cuanto encuentra uno. El `if (numero < 2)` aparta el 1, que no es primo (es el patito feo de las matemáticas).
-
-</details>
-
----
-
-## ⭐⭐ Ejercicio 7: La suma centinela
+## ⭐⭐ Ejercicio 6: El duelo de dados
 
 <details>
 <summary>🔄 Solución</summary>
@@ -196,55 +160,98 @@ Salida (primeros): `2 3 5 7 11 13...`. El bucle exterior recorre los candidatos 
 ```java
 import java.util.Scanner;
 
-public class SumaCentinela {
+public class DueloDados {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int suma = 0;
-        int numero = sc.nextInt();
 
-        while (numero != 0) {
-            suma += numero;
-            numero = sc.nextInt();
-        }
+        System.out.print("¿Cómo te llamas? ");
+        String nombre = sc.nextLine();
 
-        System.out.println("Suma total: " + suma);
+        int dadoUsuario = (int) (Math.random() * 6) + 1;
+        int dadoMaquina = (int) (Math.random() * 6) + 1;
+
+        System.out.println(nombre + " saca " + dadoUsuario + ", la máquina saca " + dadoMaquina + ".");
+
+        String ganador = dadoUsuario > dadoMaquina ? "Gana " + nombre + "." :
+                         dadoUsuario < dadoMaquina ? "Gana la máquina." : "Empate.";
+        System.out.println(ganador);
+
         sc.close();
     }
 }
 ```
 
-El `while` se repite mientras el número no sea 0. El 0 es el **centinela**: no se suma, solo señala el final. Es el patrón clásico de lectura de datos con `while`.
+Aquí no hay problema de Enter residual: el `nextLine()` va antes del `nextInt()` (que ni siquiera usamos). Los dados usan la fórmula `(int)(Math.random() * 6) + 1`, y el ternario encadenado decide el ganador en tres casos.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 8: CodeWars — Categorize New Member
+## ⭐⭐ Ejercicio 7: supercalculadora con lógica
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class SuperCalculadora {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Primer número: ");
+        double a = sc.nextDouble();
+
+        System.out.print("Segundo número: ");
+        double b = sc.nextDouble();
+
+        System.out.print("Operación (+, -, *, /): ");
+        String op = sc.next();
+
+        double suma = a + b;
+        double resta = a - b;
+        double multi = a * b;
+
+        String resultado = op.equals("+") ? "Resultado: " + suma :
+                           op.equals("-") ? "Resultado: " + resta :
+                           op.equals("*") ? "Resultado: " + multi :
+                           op.equals("/") && b != 0 ? "Resultado: " + (a / b) :
+                           op.equals("/") ? "Error: no se puede dividir entre 0" :
+                           "Operador desconocido";
+
+        System.out.println(resultado);
+
+        sc.close();
+    }
+}
+```
+
+La lógica del ternario encadenado: primero comprueba si el operador es `/` y además `b` no es 0; si el operador es `/` pero `b` es 0, cae en el mensaje de error. Fíjate en `op.equals("/")`: los `String` siempre se comparan con `.equals()`. Los operadores lógicos y relacionales unen todas las condiciones.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 8: CodeWars — Convert boolean values to strings 'Yes' or 'No'
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static String[] openOrSenior(int[][] data) {
-        String[] result = new String[data.length];
-
-        for (int i = 0; i < data.length; i++) {
-            result[i] = (data[i][0] >= 55 && data[i][1] > 7) ? "Senior" : "Open";
-        }
-
-        return result;
+    public static String boolToWord(boolean b) {
+        return b ? "Yes" : "No";
     }
 }
 ```
 
-Un bucle que recorre los pares `{edad, handicap}` y un ternario con la condición combinada `&&`: para ser "Senior" hay que tener al menos 55 años Y un handicap mayor que 7. Todo lo demás es "Open". Bucles, condicionales y ternarios de la unidad en una sola función.
+Una línea. El ternario devuelve `"Yes"` si el booleano es `true` y `"No"` si es `false`. Elegante, como un esmoquin para tu código.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 156 Ascensor
+## ⭐⭐⭐ Ejercicio 9: AceptaElReto — 114 Último dígito del factorial
 
 <details>
 <summary>🔄 Solución</summary>
@@ -252,33 +259,109 @@ Un bucle que recorre los pares `{edad, handicap}` y un ternario con la condició
 ```java
 import java.util.Scanner;
 
-public class Ascensor {
+public class UltimoDigitoFactorial {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        int casos = sc.nextInt();
 
-        while (true) {
+        for (int i = 0; i < casos; i++) {
             int n = sc.nextInt();
-            if (n == 0) {
-                break;
+            int ultimo;
+            if (n >= 5) {
+                ultimo = 0;
+            } else if (n == 0 || n == 1) {
+                ultimo = 1;
+            } else if (n == 2) {
+                ultimo = 2;
+            } else if (n == 3) {
+                ultimo = 6;
+            } else {
+                ultimo = 4; // 4! = 24
             }
-
-            int distancia = 0;
-            int pisoActual = 0;
-
-            for (int i = 0; i < n; i++) {
-                int piso = sc.nextInt();
-                distancia += Math.abs(piso - pisoActual);
-                pisoActual = piso;
-            }
-
-            System.out.println(distancia);
+            System.out.println(ultimo);
         }
         sc.close();
     }
 }
 ```
 
-El `while (true)` con `break` en el 0 gestiona los múltiples casos. Dentro, un `for` acumula `Math.abs(piso - pisoActual)` y actualiza la planta actual. `Math.abs` da la distancia sin importar si sube o baja. Con la entrada del ejemplo: `|0-5| + |5-1| + |1-10| + |10-4| + |4-2| = 26`.
+La clave matemática: 5! = 120, y a partir de ahí cualquier factorial multiplica por 5 (y antes por un número par), así que **siempre termina en 0**. Solo hay que memorizar los casos pequeños: 0! y 1! son 1, 2! = 2, 3! = 6, 4! = 24. Si intentaras calcular `1000000!`, tu programa reventaría: por eso la trampa del enunciado es que "parece que hay que calcular el factorial". No hace falta.
+
+</details>
+
+---
+
+## ⭐⭐ Ejercicio 10: el ticket de compra con NumberFormat
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class TicketCompra {
+    public static void main(String[] args) {
+        NumberFormat moneda = NumberFormat.getCurrencyInstance(new Locale("es", "ES"));
+
+        double precioPan = 1.20;
+        double precioLeche = 0.95;
+        double precioHuevos = 3.50;
+
+        double subtotalPan = precioPan * 2;
+        double subtotalLeche = precioLeche * 3;
+        double subtotalHuevos = precioHuevos * 1;
+        double total = subtotalPan + subtotalLeche + subtotalHuevos;
+
+        System.out.println("==========================");
+        System.out.println("    TICKET DE COMPRA");
+        System.out.println("==========================");
+        System.out.println("Pan    2 x " + moneda.format(precioPan) + " = " + moneda.format(subtotalPan));
+        System.out.println("Leche  3 x " + moneda.format(precioLeche) + " = " + moneda.format(subtotalLeche));
+        System.out.println("Huevos 1 x " + moneda.format(precioHuevos) + " = " + moneda.format(subtotalHuevos));
+        System.out.println("--------------------------");
+        System.out.println("TOTAL               = " + moneda.format(total));
+        System.out.println("==========================");
+    }
+}
+```
+
+`NumberFormat.getCurrencyInstance(new Locale("es", "ES"))` formatea cualquier `double` como moneda española: `1.234,56 €`. Como los tres subtotales se calculan con `precio * cantidad` antes de sumarlos, el total es exacto y sin errores de redondeo acumulados. Este ejercicio te deja listo para el punto 7 en el examen: separadores de miles y moneda en un solo objeto.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Ejercicio 11: la edad a prueba de bombas
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+import java.util.Scanner;
+
+public class EdadSegura {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int edad = -1;
+
+        while (edad == -1) {
+            System.out.print("¿Cuántos años tienes? ");
+            if (sc.hasNextInt()) {
+                edad = sc.nextInt();
+            } else {
+                System.out.println("Eso no es un número entero.");
+                sc.next();
+            }
+        }
+
+        System.out.printf("Genial, %d años y listo para programar.%n", edad);
+        sc.close();
+    }
+}
+```
+
+El bucle `while` repite la pregunta hasta que el usuario da un entero. `hasNextInt()` mira si el siguiente dato es un entero sin consumirlo; si no lo es, `sc.next()` se traga la basura y el bucle vuelve a preguntar. Así el programa es **a prueba de bombas**: no importa cuántas veces el usuario escriba "hola" o "3.14", nunca saltará la `InputMismatchException`.
 
 </details>
 
@@ -288,9 +371,10 @@ El `while (true)` con `break` en el 0 gestiona los múltiples casos. Dentro, un 
 
 | Plataforma | Problema | Dificultad |
 |---|---|---|
-| AceptaElReto | 156 — Ascensor | Fácil |
-| AceptaElReto | 149 — San Fermines | Fácil |
-| AceptaElReto | 340 — Siguiente con mismo número de cifras | Medio |
-| CodeWars | Even or Odd (8 kyu) | Principiante |
-| CodeWars | Categorize New Member (7 kyu) | Aficionado |
-| CodeWars | Return Negative (8 kyu) | Principiante |
+| AceptaElReto | 114 — Último dígito del factorial | Fácil |
+| AceptaElReto | 148 — Nochevieja | Fácil |
+| AceptaElReto | 217 — ¿Qué lado de la calle? | Fácil |
+| CodeWars | Will you make it? (8 kyu) | Principiante |
+| CodeWars | Convert boolean to Yes/No (8 kyu) | Principiante |
+| CodeWars | Keep Hydrated (8 kyu) | Principiante |
+| CodeWars | Get the Middle Character (7 kyu) | Intermedio |

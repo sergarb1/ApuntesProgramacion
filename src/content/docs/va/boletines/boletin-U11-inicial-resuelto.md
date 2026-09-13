@@ -1,4 +1,4 @@
----
+﻿---
 title: "Butlletí U11 — Inicial Resolt"
 description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 ---
@@ -9,47 +9,210 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 
 ---
 
-## Exercici 1: Completa el codi — classe amb dos tipus genèrics
+## Exercici 1: Què imprimeix? — ArrayList remove per índex vs valor
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix **`[A, C, D]`**.
+
+Pas a pas:
+
+- `lista.remove(1)` esborra per **índex**: se'n va el `"B"` de la posició 1 → `[A, C, B, D]`.
+- `lista.remove("B")` esborra per **objecte**: busca la primera aparició de `"B"` i l'esborra → `[A, C, D]`.
+
+El primer `remove` esborra el `"B"` de la posició 1 (el primer). Quan després crides `remove("B")`, eixe `"B"` ja no hi és, però queda el `"B"` que estava a la posició 3 (el quart element), que ara és el primer que troba: l'esborra. Resultat final `[A, C, D]`.
+
+</details>
+
+---
+
+## Exercici 2: Troba l'error — size() vs length vs length()
+
+<details>
+<summary>🔄 Solució</summary>
+
+Les **línies 1 i 2 tenen error**, la 3 és correcta:
+
+- `nombres.length` → les col·leccions usen `size()` com a mètode. `ArrayList` no té `length`. → **Error**.
+- `edades.size()` → els arrays usen `length` com a atribut, sense parèntesis. → **Error**.
+- `saludo.length` → els `String` usen `length()` com a mètode, amb parèntesis. → **Correcta**.
+
+Regla d'or: **array → `length`; `String` → `length()`; col·leccions → `size()`.** Confondre'ls és la trampa favorita dels exàmens.
+
+</details>
+
+---
+
+## Exercici 3: Completa el codi — for-each que suma una llista
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Par<T, U> {
-    private T primero;
-    private U segundo;
+import java.util.ArrayList;
 
-    public Par(T primero, U segundo) {
-        this.primero = primero;
-        this.segundo = segundo;
+public class SumaLista {
+    public static void main(String[] args) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+        numeros.add(4);
+        numeros.add(9);
+        numeros.add(2);
+        numeros.add(7);
+
+        int suma = 0;
+        for (Integer n : numeros) {
+            suma += n;
+        }
+
+        System.out.println("Suma: " + suma);
     }
-
-    public T getPrimero() { return primero; }
-    public U getSegundo() { return segundo; }
 }
 ```
 
-La declaració correcta és `public class Par<T, U>`. Si crees `Par<String, Integer> par = new Par<>("Ana", 25);`, aleshores `par.getPrimero()` torna un `String` (sense casting) i `par.getSegundo()` un `Integer`. Els dos paràmetres de tipus van separats per comes i es reomplin en instanciar.
+Els buits: `0`, `Integer n` i `+=`. El for-each recorre cada element de la llista i l'acumula a `suma`. Resultat: `Suma: 22`.
 
 </details>
 
 ---
 
-## Exercici 2: Què imprimeix? — HashMap amb put repetit
+## Exercici 4: Escriu este programa — la llista de la compra
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`30`** i **`2`**.
+```java
+import java.util.ArrayList;
 
-- `put("Ana", 10)` i després `put("Ana", 30)`: la clau "Ana" se sobreescriu amb l'últim valor.
-- Per això `size()` és 2, no 3: les claus són úniques i "Ana" només compta una vegada.
+public class Compra {
+    public static void main(String[] args) {
+        ArrayList<String> compra = new ArrayList<>();
+        compra.add("Llet");
+        compra.add("Pa");
+        compra.add("Ous");
+
+        compra.add(1, "Cafè");       // [Llet, Cafè, Pa, Ous]
+
+        System.out.println("Grandària: " + compra.size()); // 4
+
+        compra.remove(2);            // se'n va "Pa" → [Llet, Cafè, Ous]
+
+        for (String item : compra) {
+            System.out.println(item);
+        }
+    }
+}
+```
+
+Eixida:
+
+```
+Grandària: 4
+Llet
+Cafè
+Ous
+```
+
+`add(1, "Cafè")` inserix a la posició 1 i desplaça la resta; `remove(2)` esborra per índex (el tercer element, "Pa").
 
 </details>
 
 ---
 
-## Exercici 3: Troba l'error — ArrayList\<int\> no compila
+## Exercici 5: Què imprimeix? — l'ArrayList misteriós
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix **`10 15 30`**.
+
+- `add(10)`, `add(20)`, `add(30)` → `[10, 20, 30]`.
+- `add(1, 15)` inserix el 15 a la posició 1 i desplaça → `[10, 15, 20, 30]`.
+- `remove(Integer.valueOf(20))` esborra l'**objecte** 20 (no l'índex 2) → `[10, 15, 30]`.
+
+`remove(Integer.valueOf(20))` no és el mateix que `remove(2)`: el primer esborra l'objecte el valor del qual és 20; el segon esborra la posició 2 (que ara ocupa el 20, casualitat). Ací els dos coincideixen en el resultat, però per motius diferents. Si la llista haguera sigut `[10, 20, 15, 20]`, `remove(Integer.valueOf(20))` esborraria el primer 20 i `remove(2)` esborraria el 15.
+
+</details>
+
+---
+
+## Exercici 6: Escriu este programa — és a la llista?
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class BuscarNombre {
+    public static void main(String[] args) {
+        ArrayList<String> nombres = new ArrayList<>();
+        nombres.add("Ana");
+        nombres.add("Bob");
+        nombres.add("Carla");
+        nombres.add("David");
+        nombres.add("Eva");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Introduce un nombre: ");
+        String buscado = sc.nextLine();
+
+        int pos = nombres.indexOf(buscado);
+        if (pos >= 0) {
+            System.out.println("Sí, está en la posición " + pos);
+        } else {
+            System.out.println("No está");
+        }
+        sc.close();
+    }
+}
+```
+
+`indexOf` torna la posició de la primera aparició, o `-1` si no existeix. Comparar amb `>= 0` és el patró clàssic per a "hi és?".
+
+</details>
+
+---
+
+## Exercici 7: Escriu este programa — el major de la llista
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.ArrayList;
+
+public class MayorLista {
+    public static int mayor(ArrayList<Integer> notas) {
+        int max = notas.get(0);
+        for (int i = 1; i < notas.size(); i++) {
+            if (notas.get(i) > max) {
+                max = notas.get(i);
+            }
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> notas = new ArrayList<>();
+        notas.add(6);
+        notas.add(8);
+        notas.add(5);
+        notas.add(9);
+
+        System.out.println("La mayor es: " + mayor(notas)); // 9
+    }
+}
+```
+
+El patró del "màxim acumulat": assumixes que el primer és el major i, si n'apareix un de més gran, el substitueixes. El bucle comença a `i = 1` perquè el candidat inicial ja és `notas.get(0)`.
+
+</details>
+
+---
+
+## Exercici 8: Troba l'error — ArrayList<int> no compila
 
 <details>
 <summary>🔄 Solució</summary>
@@ -69,141 +232,44 @@ public class Error {
 }
 ```
 
-L'**autoboxing** converteix automàticament el `int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el converteix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
+L'**autoboxing** converteix automàticament l'`int` 5 en un `Integer` en afegir-lo, i l'**unboxing** el converteix de tornada a `int` en sumar. Tu no escrius res d'això: Java ho fa sol.
 
 </details>
 
 ---
 
-## Exercici 4: Escriu este programa — comptador de paraules amb HashMap
+## Exercici 9: Escriu este programa — posició i valor
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
-public class ContadorPalabras {
+public class PosicionValor {
     public static void main(String[] args) {
-        String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
-
-        HashMap<String, Integer> contador = new HashMap<>();
-        for (String p : palabras) {
-            contador.put(p, contador.getOrDefault(p, 0) + 1);
+        ArrayList<Integer> lista = new ArrayList<>();
+        for (int i = 1; i <= 5; i++) {
+            lista.add(i);
         }
 
-        for (Map.Entry<String, Integer> entrada : contador.entrySet()) {
-            System.out.println(entrada.getKey() + " → " + entrada.getValue());
+        for (int i = 0; i < lista.size(); i++) {
+            System.out.println("Posición " + i + " → " + lista.get(i));
         }
     }
 }
 ```
 
-El patró de les freqüències: `getOrDefault(p, 0) + 1` torna la comptada actual (o 0 la primera vegada) i suma 1. `entrySet()` et dona cada paraula amb el seu comptador en un sol bucle, sense un `get` extra.
-
-</details>
-
----
-
-## Exercici 5: Què imprimeix? — mètode genèric amb límit
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix:
+Eixida:
 
 ```
-8
-perro
+Posición 0 → 1
+Posición 1 → 2
+Posición 2 → 3
+Posición 3 → 4
+Posición 4 → 5
 ```
 
-- `maximo(5, 8)`: `T` és `Integer` i `8.compareTo(5) > 0`, així que torna 8.
-- `maximo("gato", "perro")`: `T` és `String` i `"perro".compareTo("gato") > 0` (p > g), així que torna "perro".
-
-Si `T` no tinguera el límit `Comparable<T>`, el codi no compilaria: el mètode no podria cridar `compareTo()` perquè no sabria que `T` sap comparar-se.
-
-</details>
-
----
-
-## Exercici 6: Troba l'error — la clau duplicada i el primer valor perdut
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`Uno otra vez`**.
-
-Sí, el primer valor ("uno") es perd: en fer `put(1, "Uno otra vez")` amb una clau que ja existia, el HashMap sobreescriu el valor anterior. Les claus són úniques i només poden tindre UN valor, l'últim que es pose.
-
-</details>
-
----
-
-## Exercici 7: Escriu este programa — mini agenda amb getOrDefault
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-import java.util.TreeMap;
-
-public class Edades {
-    public static void main(String[] args) {
-        TreeMap<String, Integer> edades = new TreeMap<>();
-        edades.put("Ana", 25);
-        edades.put("Bob", 30);
-        edades.put("Carla", 22);
-        edades.put("David", 28);
-        edades.put("Eva", 35);
-
-        Scanner sc = new Scanner(System.in);
-        System.out.print("¿De quién quieres saber la edad? ");
-        String nombre = sc.nextLine();
-
-        int edad = edades.getOrDefault(nombre, -1);
-        if (edad == -1) {
-            System.out.println(nombre + " no está en el mapa.");
-        } else {
-            System.out.println(nombre + " tiene " + edad + " años.");
-        }
-        sc.close();
-    }
-}
-```
-
-`getOrDefault(nombre, -1)` torna `-1` (un sentinella) si el nom no existeix, així no toques un `null`. Amb un `TreeMap`, a més, les claus queden ordenades alfabèticament si algun dia decideixes llistar-les.
-
-</details>
-
----
-
-## Exercici 8: Completa el codi — getOrDefault
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-int edadAna = edades.get("Ana");                  // 25
-int edadCarlos = edades.getOrDefault("Carlos", 0); // 0
-```
-
-`edades.get("Carlos")` torna `null`, i assignar `null` a un primitiu `int` provoca un error (o un `NullPointerException` si la variable fóra `Integer`). `getOrDefault("Carlos", 0)` torna el valor per defecte 0 i evita l'ensurt. És el salvavides dels mapes.
-
-</details>
-
----
-
-## Exercici 9: Troba l'error — la clau mutable
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`null`** (o un valor impredictible, segons el `hashCode` intern).
-
-El problema: les claus d'un HashMap han de ser **immutables**. En modificar `lista` amb `add(3)` després d'usar-la com a clau, el seu `hashCode()` canvia. El HashMap busca en el bucket antic, però la clau ara té un altre hash, així que `get()` no la troba encara que siga dins del mapa.
-
-És com canviar el pany de casa teua i esperar que la clau vella continue funcionant. Per això `String` i `Integer` són claus perfectes: mai canvien. Mai uses una `ArrayList`, un array o les teues pròpies classes mutables com a clau d'un HashMap.
+El primer bucle ompli la llista amb `add(i)`; el segon la recorre amb el for clàssic i llig cada posició amb `get(i)`. Compte: `add(i)` amb `i` des de 1 afig al final els valors 1 a 5; `get(i)` recupera per índex.
 
 </details>

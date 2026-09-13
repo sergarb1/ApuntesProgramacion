@@ -1,185 +1,147 @@
----
-title: "Boletín U04 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá de los arrays"
+﻿---
+title: Boletín U04 — Extras
+description: CodeWars y AceptaElReto para ir más allá de la unidad
 ---
 
 # 📝 Boletín U04 — Extras
 
-> Ejercicios de CodeWars y AceptaElReto con pistas. Las soluciones están ocultas: agota tu pista antes de mirarlas.
+> Ejercicios de CodeWars y AceptaElReto con pistas. La solución está oculta: resístete hasta agotar tu pista.
 
 ---
 
 ## CodeWars
 
-### 1. Convert number to reversed array of digits
+### 1. Return Negative
 
-Te dan un número entero no negativo. Devuelve sus dígitos en un array de enteros, **en orden inverso**.
+Te dan un número y tienes que devolverlo negativo. Pero ojo: si el número ya es negativo, déjalo como está.
 
-**Ejemplo:** `35231` → `[1, 3, 2, 5, 3]` · `0` → `[0]`.
+**Ejemplos:** `1` → `-1`, `-14` → `-14`, `34` → `-34`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5583090cbe83f4fd8c000051)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/55685cd7ad70877c23000102)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Para extraer dígitos, `% 10` te da el último y `/ 10` se lo quita. Con eso ya salen invertidos: el primero que sacas es el último del número.
-
-</details>
+**Pista:** un ternario decide: si es mayor que 0, cambia el signo (`-num`); si no, devuélvelo tal cual.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int[] digitize(long n) {
-        String texto = Long.toString(n);
-        int[] resultado = new int[texto.length()];
-
-        for (int i = 0; i < resultado.length; i++) {
-            resultado[i] = Character.getNumericValue(texto.charAt(resultado.length - 1 - i));
-        }
-        return resultado;
+    public static int makeNegative(int num) {
+        return num > 0 ? -num : num;
     }
 }
 ```
 
-Otra forma, sin convertir a texto, si prefieres `%` y `/`:
-
-```java
-public static int[] digitize(long n) {
-    String texto = String.valueOf(n);
-    int[] resultado = new int[texto.length()];
-    for (int i = 0; i < texto.length(); i++) {
-        resultado[i] = (int) (n % 10);
-        n /= 10;
-    }
-    return resultado;
-}
-```
-
-Con `% 10` y `/ 10`: el último dígito sale primero (ya viene invertido), y después de dividir entre 10 se repite. El caso `0` → `[0]` funciona solo: `0 % 10 = 0`.
+Un ternario con la condición `num > 0`. Si es positivo, el operador unario `-` lo hace negativo; si ya era negativo (o cero), se queda igual. Decidir con una línea: pura U04.
 
 </details>
 
 ---
 
-### 2. Find the smallest integer in the array
+### 2. Sum of positive
 
-Te dan un array de enteros. Devuelve el entero **más pequeño**.
+Te dan un array de enteros. Devuelve la suma de todos los **positivos**.
 
-**Ejemplos:** `[78, 56, 232, 12, 11, 43]` → `11` · `[34, -345, -1, 100]` → `-345`.
+**Ejemplo:** `[1, -4, 7, 12]` → `1 + 7 + 12 = 20`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/5715eaedb436cf5606000381)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-El patrón del mínimo: empieza asumiendo que el primero es el mínimo y compara con cada uno. Aquí el array nunca está vacío.
-
-</details>
+**Pista:** recorre el array con un `for` y, con un `if`, suma solo los números mayores que 0.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int findSmallestInt(int[] args) {
-        int minimo = args[0];
-        for (int i = 1; i < args.length; i++) {
-            if (args[i] < minimo) {
-                minimo = args[i];
+    public static int sum(int[] arr) {
+        int suma = 0;
+        for (int numero : arr) {
+            if (numero > 0) {
+                suma += numero;
             }
         }
-        return minimo;
+        return suma;
     }
 }
 ```
 
-El mismo esqueleto que el "máximo acumulado", pero al revés. Como el array nunca está vacío, puedes usar `args[0]` como punto de partida sin miedo.
+El bucle recorre cada número y el `if` filtra los positivos antes de sumarlos. El `for...each` es un atajo que ya conoces; el `if` dentro del bucle es la esencia de las estructuras de control.
 
 </details>
 
 ---
 
-### 3. Count by X
+### 3. Grasshopper — Summation
 
-Devuelve un array con los **primeros `n` múltiplos** de `x`.
+Escribe un programa que calcule la suma de todos los números desde 1 hasta `n`.
 
-**Ejemplos:** `countBy(2, 5)` → `[2, 4, 6, 8, 10]` · `countBy(1, 10)` → `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+**Ejemplos:** `summation(2)` → `3` (1 + 2), `summation(8)` → `36` (1 + 2 + ... + 8).
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5513795bd3fafb56c200049e)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/55d24f55d7dd296eb9000030)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Crea el array con `new int[n]` y rellena con un `for`: la plaza `i` guarda `x * (i + 1)`.
-
-</details>
+**Pista:** un `for` que acumule del 1 al `n` en una variable `suma`. (O la fórmula matemática `n * (n + 1) / 2`, si te va el atajo.)
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int[] countBy(int x, int n) {
-        int[] resultado = new int[n];
-        for (int i = 0; i < n; i++) {
-            resultado[i] = x * (i + 1);
+    public static int summation(int n) {
+        int suma = 0;
+        for (int i = 1; i <= n; i++) {
+            suma += i;
         }
-        return resultado;
+        return suma;
     }
 }
 ```
 
-Sabes el tamaño de antemano (`n`), así que no hace falta el patrón de dos pasadas: un solo `for` crea y rellena. El `(i + 1)` es porque los múltiplos empiezan en `x * 1`, no en `x * 0`.
+Con bucles: `suma += i` acumula cada vuelta. Con la fórmula directa: `return n * (n + 1) / 2;`, que da el mismo resultado sin ni un bucle. Ambas son válidas; el bucle es lo que practicamos aquí.
 
 </details>
 
 ---
 
-### 4. Take a Ten Minute Walk
+### 4. Sum without highest and lowest number
 
-Vives en una ciudad en cuadrícula. Te dan un array de direcciones (`'n'`, `'s'`, `'e'`, `'w'`). Devuelve `true` si el paseo dura **exactamente 10 minutos** (una manzana por minuto) **y te deja en el punto de partida**.
+Suma todos los números de un array **excepto** el más alto y el más bajo. Si el array está vacío, es `null` o tiene un solo elemento, devuelve `0`.
 
-**Ejemplos:** `['n','s','n','s','n','s','n','s','n','s']` → `true` · `['n','n','n','s','n','s','n','s','n','s']` → `false`.
+**Ejemplo:** `[6, 2, 1, 8, 10]` → `2 + 6 + 8 = 16`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54da539698eb8f52b900053b)
-- Dificultad: 6 kyu
+- [Enunciado en CodeWars](https://www.codewars.com/kata/576b93db112df076d900060c)
+- Dificultad: 7 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Lleva dos contadores: uno para norte/sur y otro para este/oeste. Si el paseo no dura 10 minutos, ya puedes devolver `false` sin contar nada.
-
-</details>
+**Pista:** recorre el array una vez para acumular la suma y, en el mismo bucle, rastrea el mínimo y el máximo con dos `if`. Al final: `suma - minimo - maximo`.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static boolean isValid(char[] walk) {
-        if (walk.length != 10) {
-            return false;
+    public static int sum(int[] numeros) {
+        if (numeros == null || numeros.length <= 1) {
+            return 0;
         }
 
-        int x = 0, y = 0;
-        for (char c : walk) {
-            if (c == 'n') y++;
-            if (c == 's') y--;
-            if (c == 'e') x++;
-            if (c == 'w') x--;
+        int suma = 0;
+        int minimo = Integer.MAX_VALUE;
+        int maximo = Integer.MIN_VALUE;
+
+        for (int numero : numeros) {
+            suma += numero;
+            if (numero < minimo) minimo = numero;
+            if (numero > maximo) maximo = numero;
         }
 
-        return x == 0 && y == 0;
+        return suma - minimo - maximo;
     }
 }
 ```
 
-Norte sube `y`, sur lo baja; este sube `x`, oeste lo baja. Si al final ambos contadores vuelven a 0, estás donde empezaste. Es un array recorrido una sola vez, con la suma como testigo. O(n), como debe ser.
+El truco: `Integer.MAX_VALUE` y `Integer.MIN_VALUE` como "infinitos" iniciales, para que el primer número del array siempre los supere. Un solo bucle hace tres cosas (sumar, buscar mínimo, buscar máximo) y la resta final quita los extremos. Tres decisiones en un solo recorrido: puro músculo de esta unidad.
 
 </details>
 
@@ -187,38 +149,32 @@ Norte sube `y`, sur lo baja; este sube `x`, oeste lo baja. Si al final ambos con
 
 ## AceptaElReto
 
-### 5. 171 — Abadías de piedra
+### 5. 149 — San Fermines
 
-Una cordillera tiene una serie de montañas, cada una con su altura. Se puede construir una **abadía** sobre una montaña si es **más alta que todas las que tiene a su derecha** (hacia el mar). Cuenta cuántas montañas cumplen la condición.
+En los sanfermines, los mozos quieren saber la velocidad máxima de los toros para saber si salir corriendo o volar. Dado un número de toros y la velocidad de cada uno, di cuál es la máxima.
 
-**Entrada:** varios casos de prueba. Cada caso empieza con `N` (número de montañas), seguido de `N` alturas en la misma línea. Un `0` termina la entrada.
+**Entrada:** varios casos de prueba hasta el final de la entrada (EOF). Cada caso: un número N y a continuación las N velocidades.
 
 **Ejemplo:**
 
 ```
 3
-5 3 4
-4
-2 3 4 1
-0
+10 20 15
+5
+50 12 90 7 25
 ```
 
 **Salida:**
 
 ```
-2
-2
+20
+90
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=171)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=149)
 - Dificultad: Fácil
 
-<details>
-<summary>💡 Pista</summary>
-
-Recorre el array **de derecha a izquierda** guardando la altura máxima vista. La última montaña siempre vale. Cuando una montaña supere la máxima vista hasta ahora, es una abadía nueva.
-
-</details>
+**Pista:** un `while (sc.hasNextInt())` lee hasta el final de la entrada. Dentro, un `for` recorre las velocidades y un `if` va guardando el máximo.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -226,72 +182,53 @@ Recorre el array **de derecha a izquierda** guardando la altura máxima vista. L
 ```java
 import java.util.Scanner;
 
-public class Abadias {
+public class SanFermines {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
 
-        while (n != 0) {
-            int[] montanas = new int[n];
+        while (sc.hasNextInt()) {
+            int n = sc.nextInt();
+            int max = 0;
+
             for (int i = 0; i < n; i++) {
-                montanas[i] = sc.nextInt();
-            }
-
-            int abadias = 0;
-            int maxVista = -1;
-            for (int i = n - 1; i >= 0; i--) {
-                if (montanas[i] > maxVista) {
-                    abadias++;
-                    maxVista = montanas[i];
+                int velocidad = sc.nextInt();
+                if (velocidad > max) {
+                    max = velocidad;
                 }
             }
 
-            System.out.println(abadias);
-            n = sc.nextInt();
+            System.out.println(max);
         }
         sc.close();
     }
 }
 ```
 
-La clave es recorrer hacia atrás: la montaña ve el mar si es más alta que **todo** lo que hay a su derecha, y la máxima vista lo resume todo. Con `5 3 4`: el 4 vale, el 3 no (hay un 4 más alto), el 5 vale → 2. Es un array + recorrido en el sentido correcto.
+El `while (sc.hasNextInt())` es el patrón "leer hasta el final". El `if` dentro del `for` compara cada velocidad con el máximo acumulado. Al acabar el bucle, `max` es la respuesta. Bucles y decisiones trabajando en equipo.
 
 </details>
 
 ---
 
-### 6. 369 — Contando en la arena
+### 6. 340 — Siguiente con mismo número de cifras
 
-Un niño escribe los números en la arena con marcas de conteo: el `1` lo escribe como `1`, el `2` como `11`, el `3` como `111`... Es decir, cada número se representa con tantos unos como valga. Dado un número, escríbelo como lo haría el niño.
+Dado un número natural N, encuentra el siguiente número que tenga el **mismo número de cifras** que N. Si no existe (porque N es el último con ese número de cifras), muestra `MENSAJE`.
 
-**Entrada:** varios números, uno por línea, hasta un `0` final.
+**Entrada:** varios casos separados por espacios, que termina con un `0`.
 
-**Ejemplo:**
-
-```
-1
-5
-3
-0
-```
-
-**Salida:**
+**Ejemplos:**
 
 ```
-1
-11111
-111
+1 → 2
+9 → MENSAJE
+99 → MENSAJE
+100 → 101
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=369)
-- Dificultad: Fácil
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=340)
+- Dificultad: Medio
 
-<details>
-<summary>💡 Pista</summary>
-
-Un bucle que añada `'1'` a un `StringBuilder` tantas veces como indique el número. No hace falta array: es la prueba de que a veces basta con saber cuántas veces repetir.
-
-</details>
+**Pista:** cuenta las cifras de N con un `while (copia > 0) { cifras++; copia /= 10; }`. Si N es `9`, `99`, `999`... (todos nueves), no hay siguiente. En el resto de casos, la respuesta es `N + 1`.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -299,17 +236,28 @@ Un bucle que añada `'1'` a un `StringBuilder` tantas veces como indique el núm
 ```java
 import java.util.Scanner;
 
-public class ContandoEnLaArena {
+public class SiguienteCifras {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
 
         while (n != 0) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < n; i++) {
-                sb.append('1');
+            int copia = n;
+            int cifras = 0;
+
+            while (copia > 0) {
+                cifras++;
+                copia /= 10;
             }
-            System.out.println(sb);
+
+            int ultimoConEseTamano = (int) Math.pow(10, cifras) - 1;
+
+            if (n == ultimoConEseTamano) {
+                System.out.println("MENSAJE");
+            } else {
+                System.out.println(n + 1);
+            }
+
             n = sc.nextInt();
         }
         sc.close();
@@ -317,10 +265,10 @@ public class ContandoEnLaArena {
 }
 ```
 
-Cada número `n` se convierte en `n` unos. El bucle es el mismo que usarías para rellenar un array, pero aquí el "array" es un `StringBuilder` que crece. El `0` marca el final de la entrada, como siempre en AceptaElReto.
+Dos bucles: el interior cuenta las cifras dividiendo entre 10 (`while (copia > 0)`), y el exterior lee casos hasta el 0 centinela. Si N es 9, 99 o 999 (el `10^cifras - 1`), no existe siguiente y toca "MENSAJE". En cualquier otro caso, sumar 1 no cambia el número de cifras... salvo en los de todos nueves, que ya cazamos antes.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines el aparcamiento entero —crear, recorrer, ordenar, buscar, invertir y compactar—, vuelve a estos problemas con el punto 9 como examen. Y en la U05 te esperan los algoritmos: búsqueda binaria, burbuja y Big O. Los arrays que has aprendido hoy son la materia prima de todo lo que viene.
+> 🧭 **¿Y si te quedas con ganas?** Cuando domines los bucles y las condiciones podrás volver a los problemas de la U03 (como Nochevieja o ¿Qué lado de la calle?) y resolverlos con `for` y `switch` para hacer soluciones más elegantes. El material no se pierde: se reutiliza.

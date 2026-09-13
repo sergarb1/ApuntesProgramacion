@@ -1,214 +1,115 @@
----
-title: "Butlletí U04 — Inicial Resolt"
-description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
+﻿---
+title: Butlletí U04 — Inicial Resolt
+description: Els mateixos exercicis que el butlletí inicial, amb solucions
 ---
 
 # 📝 Butlletí U04 — Inicial (Resolt)
 
-> Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan ocultes en cada exercici. No facis trampa: primer intenta-ho de veritat.
 
 ---
 
-## Exercici 1: Què imprimeix? — Array de booleans
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`false true false`**.
-
-`flags` és un `boolean[]` de 3 places acabades de crear. El valor per defecte de `boolean` és `false`, així que `flags[0]` i `flags[2]` valen `false`. Només `flags[1]` es va posar a `true`. Cada plaça naix amb el valor per defecte del seu tipus: `false` per a `boolean`.
-
-</details>
-
----
-
-## Exercici 2: Troba l'error — NullPointerException
-
-<details>
-<summary>🔄 Solució</summary>
-
-Es llança una **`NullPointerException`** a l'última línia.
-
-`nombres[2]` mai no es va assignar, així que val `null` (el valor per defecte dels objectes). Cridar `nombres[2].toUpperCase()` sobre `null` és demanar-li un mètode al no-res: Java no sap què fer i llança l'excepció. Les places d'un `String[]` acabat de crear estan plenes de `null`, no de `""`.
-
-</details>
-
----
-
-## Exercici 3: Completa el codi — for bàsic per a buscar el major
+## Exercici 1: El porter del club
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < numeros.length; i++) {   // fins a length, sense passar
-    if (numeros[i] > mayor) {                // és més gran que l'actual?
-        mayor = numeros[i];                  // actualitza el major
-    }
-}
-
-System.out.println("El mayor es: " + mayor);
-```
-
-El patró del "màxim acumulat": comences assumint que el primer és el major i, si n'apareix un de més gran, el substitueixes. El bucle comença en `i = 1` perquè el candidat inicial ja és `numeros[0]`. Imprimeix `El mayor es: 89`.
-
-</details>
-
----
-
-## Exercici 4: Escriu este programa — comptar números parells
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Arrays;
-
-public class ContarPares {
+public class Porter {
     public static void main(String[] args) {
-        int[] numeros = {3, 8, 12, 5, 7, 10, 2, 9, 6, 1};
-        int pares = 0;
+        int edat = 17;
+        boolean teEntrada = true;
 
-        for (int i = 0; i < numeros.length; i++) {
-            if (numeros[i] % 2 == 0) {
-                pares++;
-            }
-        }
-
-        System.out.println("Array: " + Arrays.toString(numeros));
-        System.out.println("Pares: " + pares);
-    }
-}
-```
-
-Eixida: `Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]` i `Pares: 5`. Un número és parell si el seu residu en dividir entre 2 és 0 (`% 2 == 0`). I `Arrays.toString` és el que fa l'eixida llegible.
-
-</details>
-
----
-
-## Exercici 5: Troba l'error — length vs length()
-
-<details>
-<summary>🔄 Solució</summary>
-
-Les **dues línies tenen error**, però per motius oposats:
-
-- `numeros.length()` → els arrays usen `length` com a **atribut**, sense parèntesis. `numeros.length()` no compila.
-- `texto.length` → els `String` usen `length()` com a **mètode**, amb parèntesis. `texto.length` no compila.
-
-Regla d'or: **array → `length`; `String` → `length()`; col·leccions → `size()`.** Confondre'ls és la trampa favorita dels exàmens.
-
-</details>
-
----
-
-## Exercici 6: Què imprimeix? — la suma dels senars
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`17`**.
-
-El `for-each` recorre els 5 valors: 3, 8, 2, 9, 5. El `if` només suma els que són senars (`n % 2 == 1`): 3, 9 i 5. `3 + 9 + 5 = 17`. El 8 i el 2 són parells i s'ignoren.
-
-</details>
-
----
-
-## Exercici 7: Escriu este programa — cerca lineal
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class BusquedaLineal {
-    public static void main(String[] args) {
-        int[] edades = {12, 45, 25, 67, 33, 18, 40, 21};
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Introduce edad a buscar: ");
-        int buscado = sc.nextInt();
-
-        int posicion = -1;
-        for (int i = 0; i < edades.length; i++) {
-            if (edades[i] == buscado) {
-                posicion = i;
-                break;
-            }
-        }
-
-        if (posicion >= 0) {
-            System.out.println("Encontrado en posición " + posicion);
+        if (edat >= 18 && teEntrada) {
+            System.out.println("Endavant, que passe el major d'edat.");
+        } else if (edat >= 18) {
+            System.out.println("Faltes tu sol, sense entrada no hi ha paradís.");
         } else {
-            System.out.println("No encontrado");
-        }
-        sc.close();
-    }
-}
-```
-
-La cerca lineal recorre l'array de principi a fi. `posicion = -1` és el "no trobat"; si apareix el valor, guardes l'índex i talles amb `break` (ja no cal seguir).
-
-</details>
-
----
-
-## Exercici 8: Escriu este programa — l'invers
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Arrays;
-
-public class Inverso {
-    public static void main(String[] args) {
-        int[] numeros = new int[10];
-        for (int i = 0; i < numeros.length; i++) {
-            numeros[i] = i + 1;
-        }
-
-        System.out.println("Original: " + Arrays.toString(numeros));
-
-        System.out.print("Inverso: ");
-        for (int i = numeros.length - 1; i >= 0; i--) {
-            System.out.print(numeros[i] + " ");
+            System.out.println("Fora d'ací, xicotet.");
         }
     }
 }
 ```
 
-El primer bucle ompli de l'1 al 10. El segon recorre **cap arrere**: comença en `length - 1` (el 10) i baixa fins a 0 (l'1). Imprimeix `10 9 8 7 6 5 4 3 2 1`.
+Eixida: `Fora d'ací, xicotet.`
+
+Fixa't en l'ordre: primer comproves la combinació completa (`major I entrada`), després el cas del major sense entrada. El `else` final es queda amb els menors. Ordre estricte a lax, com en el punt 1.
 
 </details>
 
 ---
 
-## Exercici 9: Escriu este programa — la classe Arrays en acció
+## Exercici 2: Què imprimeix? — el semàfor invertit
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix **`Aprovat`**.
+
+Amb `nota = 8`, el primer `if` (`nota >= 5`) es compleix i guanya, encara que 8 també compliria les condicions de Notable i Excel·lent. Java avalua en ordre i es queda amb la primera `true`. La lliçó: l'ordre dels `else if` decideix el resultat.
+
+</details>
+
+---
+
+## Exercici 3: El menú del dia
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.Arrays;
-
-public class ArraysEnAccion {
+public class MenuDia {
     public static void main(String[] args) {
-        int[] notas = {7, 3, 9, 5, 2, 8};
+        int dia = 4;
 
-        System.out.println("Original: " + Arrays.toString(notas));
+        switch (dia) {
+            case 1:
+                System.out.println("Dilluns: Llenties");
+                break;
+            case 2:
+                System.out.println("Dimarts: Paella");
+                break;
+            case 3:
+                System.out.println("Dimecres: Macarrons");
+                break;
+            case 4:
+                System.out.println("Dijous: Fabada");
+                break;
+            case 5:
+                System.out.println("Divendres: Peix");
+                break;
+            default:
+                System.out.println("Cap de setmana, no hi ha menú");
+                break;
+        }
+    }
+}
+```
 
-        Arrays.sort(notas);
-        System.out.println("Ordenado: " + Arrays.toString(notas));
+Eixida: `Dijous: Fabada`
 
-        int pos = Arrays.binarySearch(notas, 8);
-        System.out.println("El 8 está en la posición " + pos);
+Cada `case` amb el seu `break` (llevat del `default`, que no el necessita, però no fa mal). Sense els `break`, el switch es convertiria en un tobogan i ho imprimiria tot des del `case 4` en avant.
+
+</details>
+
+---
+
+## Exercici 4: El compte arrere del coet
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Coet {
+    public static void main(String[] args) {
+        int comptador = 5;
+
+        while (comptador >= 0) {
+            System.out.println(comptador);
+            comptador--;
+        }
+
+        System.out.println("Enlairament! 🚀");
     }
 }
 ```
@@ -216,11 +117,165 @@ public class ArraysEnAccion {
 Eixida:
 
 ```
-Original: [7, 3, 9, 5, 2, 8]
-Ordenado: [2, 3, 5, 7, 8, 9]
-El 8 está en la posición 4
+5
+4
+3
+2
+1
+0
+Enlairament! 🚀
 ```
 
-`Arrays.sort` ordena "al lloc" (modifica l'array). Després `binarySearch` troba el 8 a l'índex 4. Si el buscares abans d'ordenar, el resultat seria impredictible.
+El `comptador--` al final de cada volta és el que evita el bucle infinit: la condició `comptador >= 0` avança cap a `false`.
+
+</details>
+
+---
+
+## Exercici 5: La taula del 7
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class TaulaDelSet {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println("7 x " + i + " = " + (7 * i));
+        }
+    }
+}
+```
+
+Eixida (primeres línies):
+
+```
+7 x 1 = 7
+7 x 2 = 14
+```
+
+Fixa't en els parèntesis de `(7 * i)`: sense ells, el `+` concatenaria igualment (perquè `*` mana sobre `+`), però és més clar amb ells. El `for` junta comptador, condició i avanç en una línia.
+
+</details>
+
+---
+
+## Exercici 6: Només els parells
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class SolsParells {
+    public static void main(String[] args) {
+        for (int i = 1; i <= 20; i++) {
+            if (i % 2 != 0) {
+                continue;
+            }
+            System.out.println(i);
+        }
+    }
+}
+```
+
+Eixida:
+
+```
+2
+4
+6
+8
+10
+12
+14
+16
+18
+20
+```
+
+El `continue` es salta els senars i el bucle seguix amb el següent nombre. Alternativa sense `continue`: `for (int i = 2; i <= 20; i += 2)`, però ací practiquem el salt.
+
+</details>
+
+---
+
+## Exercici 7: El detectiu de divisors
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class DetectiuDivisors {
+    public static void main(String[] args) {
+        int numero = 29;
+        boolean esPrimer = true;
+
+        for (int divisor = 2; divisor < numero; divisor++) {
+            if (numero % divisor == 0) {
+                esPrimer = false;
+                break;
+            }
+        }
+
+        System.out.println(esPrimer ? "És primer" : "No és primer");
+    }
+}
+```
+
+Eixida: `És primer`
+
+El `break` talla el bucle tan bon punt apareix un divisor: no cal seguir comprovant. Per al 29 no hi ha divisors (és primer), així que el bucle es recorre sencer i `esPrimer` continua sent `true`.
+
+</details>
+
+---
+
+## Exercici 8: L'edat blindada
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class EdatBlindada {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            System.out.print("Quants anys tens? ");
+            int edat = sc.nextInt();
+            System.out.println("Tens " + edat + " anys.");
+        } catch (InputMismatchException e) {
+            System.out.println("Això no és una edat vàlida.");
+        }
+
+        System.out.println("El programa seguix viu. 🎉");
+        sc.close();
+    }
+}
+```
+
+Si escrius `hola`, el `catch` atrapar l'error, imprimeix el missatge i el programa continua. Si escrius `17`, tot normal. Eixe és el poder del `try`/`catch`: el teu programa ja no mor per la porqueria de l'usuari.
+
+</details>
+
+---
+
+## Exercici 9: CodeWars — Even or Odd
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Kata {
+    public static String even_or_odd(int number) {
+        return number % 2 == 0 ? "Even" : "Odd";
+    }
+}
+```
+
+Una línia amb l'operador `%` i un ternari. Si el residu de dividir entre 2 és 0, és parell (`"Even"`); si no, senar (`"Odd"`). Els dos conceptes de la U03 i la U04 treballant junts.
 
 </details>

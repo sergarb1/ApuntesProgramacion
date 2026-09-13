@@ -1,179 +1,147 @@
----
+﻿---
 title: Butlletí U03 — Inicial Resolt
 description: Els mateixos exercicis que el butlletí inicial, amb solucions
 ---
 
 # 📝 Butlletí U03 — Inicial (Resolt)
 
-> Les solucions estan ocultes en cada exercici. No facis trampa: primer intenta-ho de veritat.
+> Les solucions estan ocultes en cada exercici. No faces trampa: primer intenta-ho de veritat.
 
 ---
 
-## Exercici 1: El porter del club
+## Exercici 1: Conversor de temperatures
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Porter {
+public class ConversorTemperatura {
     public static void main(String[] args) {
-        int edat = 17;
-        boolean teEntrada = true;
+        int celsius = 30;
+        double fahrenheit = celsius * 9 / 5.0 + 32;
 
-        if (edat >= 18 && teEntrada) {
-            System.out.println("Endavant, que passe el major d'edat.");
-        } else if (edat >= 18) {
-            System.out.println("Faltes tu sol, sense entrada no hi ha paradís.");
-        } else {
-            System.out.println("Fora d'ací, xicotet.");
-        }
+        System.out.println(celsius + "°C són " + fahrenheit + "°F");
     }
 }
 ```
 
-Eixida: `Fora d'ací, xicotet.`
+Eixida: `30°C són 86.0°F`.
 
-Fixa't en l'ordre: primer comproves la combinació completa (`major I entrada`), després el cas del major sense entrada. El `else` final es queda amb els menors. Ordre estricte a lax, com en el punt 1.
+Fixat en el `5.0`: si escrigueres `celsius * 9 / 5 + 32`, la divisió `9 / 5` es faria amb enters (dona 1) i el resultat seria 62, un desastre. En usar `5.0`, la divisió es fa en decimal. Això és la divisió entera del punt 3 en acció.
 
 </details>
 
 ---
 
-## Exercici 2: Què imprimeix? — el semàfor invertit
+## Exercici 2: Què imprimeix? — increments
 
 <details>
 <summary>🔄 Solució</summary>
-
-Imprimeix **`Aprovat`**.
-
-Amb `nota = 8`, el primer `if` (`nota >= 5`) es compleix i guanya, encara que 8 també compliria les condicions de Notable i Excel·lent. Java avalua en ordre i es queda amb la primera `true`. La lliçó: l'ordre dels `else if` decideix el resultat.
-
-</details>
-
----
-
-## Exercici 3: El menú del dia
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class MenuDia {
-    public static void main(String[] args) {
-        int dia = 4;
-
-        switch (dia) {
-            case 1:
-                System.out.println("Dilluns: Llenties");
-                break;
-            case 2:
-                System.out.println("Dimarts: Paella");
-                break;
-            case 3:
-                System.out.println("Dimecres: Macarrons");
-                break;
-            case 4:
-                System.out.println("Dijous: Fabada");
-                break;
-            case 5:
-                System.out.println("Divendres: Peix");
-                break;
-            default:
-                System.out.println("Cap de setmana, no hi ha menú");
-                break;
-        }
-    }
-}
-```
-
-Eixida: `Dijous: Fabada`
-
-Cada `case` amb el seu `break` (llevat del `default`, que no el necessita, però no fa mal). Sense els `break`, el switch es convertiria en un tobogan i ho imprimiria tot des del `case 4` en avant.
-
-</details>
-
----
-
-## Exercici 4: El compte arrere del coet
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Coet {
-    public static void main(String[] args) {
-        int comptador = 5;
-
-        while (comptador >= 0) {
-            System.out.println(comptador);
-            comptador--;
-        }
-
-        System.out.println("Enlairament! 🚀");
-    }
-}
-```
-
-Eixida:
 
 ```
 5
-4
-3
-2
-1
-0
-Enlairament! 🚀
+7
+7
+5
+5
 ```
 
-El `comptador--` al final de cada volta és el que evita el bucle infinit: la condició `comptador >= 0` avança cap a `false`.
+Pas a pas, amb `x` començant en 5:
+
+1. `x++` (POST) → imprimeix 5, després `x` passa a 6.
+2. `++x` (PRE) → `x` passa a 7, després imprimeix 7.
+3. `x--` (POST) → imprimeix 7, després `x` passa a 6.
+4. `--x` (PRE) → `x` passa a 5, després imprimeix 5.
+5. `x` → imprimeix 5.
 
 </details>
 
 ---
 
-## Exercici 5: La taula del 7
+## Exercici 3: Calculadora de descomptes
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class TaulaDelSet {
+public class CalculadoraDescomptes {
     public static void main(String[] args) {
-        for (int i = 1; i <= 10; i++) {
-            System.out.println("7 x " + i + " = " + (7 * i));
-        }
+        final double DESCOMPTE = 0.15;
+        double preuOriginal = 120.0;
+
+        double descompte = preuOriginal * DESCOMPTE;
+        double preuFinal = preuOriginal - descompte;
+
+        System.out.println("Preu original: " + preuOriginal + "€");
+        System.out.println("Descompte (15%): " + descompte + "€");
+        System.out.println("Preu final: " + preuFinal + "€");
     }
 }
 ```
 
-Eixida (primeres línies):
-
-```
-7 x 1 = 7
-7 x 2 = 14
-```
-
-Fixa't en els parèntesis de `(7 * i)`: sense ells, el `+` concatenaria igualment (perquè `*` mana sobre `+`), però és més clar amb ells. El `for` junta comptador, condició i avanç en una línia.
+Si intentes fer `DESCOMPTE = 0.20;` després, el compilador t'ho impedirà: `final` és el superglue del punt 2, una constant no es pot reassignar. Eixa és la raó que "el compilador s'enfade".
 
 </details>
 
 ---
 
-## Exercici 6: Només els parells
+## Exercici 4: El tipus perfecte
+
+<details>
+<summary>🔄 Solució</summary>
+
+1. **`int`** — ~500.000 cap de sobres en un `int` (topall: 2.147 milions).
+2. **`long`** — 384.400 km sí que cap en un `int`, però és una distància "astronòmica" i queda més coherent amb `long`. (Si ho posares `int`, també compila: la decisió de fons és que supera el quotidià.)
+3. **`char`** — una sola lletra, amb cometes simples: `'M'`.
+4. **`double`** — 3.7 té decimals.
+5. **`boolean`** — només dos valors: `true` o `false`.
+6. **`int`** — els cèntims són un nombre enter (sense decimals).
+
+</details>
+
+---
+
+## Exercici 5: El casting assassí
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class SolsParells {
+public class CastingAssassi {
     public static void main(String[] args) {
-        for (int i = 1; i <= 20; i++) {
-            if (i % 2 != 0) {
-                continue;
-            }
-            System.out.println(i);
-        }
+        double preu = 9.99;
+        int preuEnter = (int) preu;
+
+        System.out.println("Preu original: " + preu);
+        System.out.println("Preu enter: " + preuEnter);
+
+        int gran = 300;
+        byte petit = (byte) gran;
+        System.out.println("300 en un byte: " + petit);
+    }
+}
+```
+
+- `(int) 9.99` trunca i dona **9**: es perden els 0.99€. El casting talla amb destral, no redoneix.
+- `300` en un `byte` (màxim 127) es **desborda** silenciosament i dona **44**. Java no avisa: és la teua responsabilitat comprovar que el valor cap abans d'estretir la caixa.
+
+</details>
+
+---
+
+## Exercici 6: Parell o senar?
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class ParellOSenar {
+    public static void main(String[] args) {
+        int numero = 7;
+        String resultat = numero % 2 == 0 ? "Parell" : "Senar";
+
+        System.out.println(numero + " és " + resultat);
+        System.out.println("És parell? " + (numero % 2 == 0));
     }
 }
 ```
@@ -181,101 +149,173 @@ public class SolsParells {
 Eixida:
 
 ```
-2
-4
-6
-8
-10
-12
-14
-16
-18
-20
+7 és Senar
+És parell? false
 ```
 
-El `continue` es salta els senars i el bucle seguix amb el següent nombre. Alternativa sense `continue`: `for (int i = 2; i <= 20; i += 2)`, però ací practiquem el salt.
+El `%` retorna el reste de la divisió: si és 0, el nombre és parell. El ternari tria el missatge en una línia.
 
 </details>
 
 ---
 
-## Exercici 7: El detectiu de divisors
+## Exercici 7: String en acció
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class DetectiuDivisors {
+public class NomEnAccio {
     public static void main(String[] args) {
-        int numero = 29;
-        boolean esPrimer = true;
+        String nom = "  ana  ";
+        String net = nom.trim();
 
-        for (int divisor = 2; divisor < numero; divisor++) {
-            if (numero % divisor == 0) {
-                esPrimer = false;
-                break;
-            }
-        }
-
-        System.out.println(esPrimer ? "És primer" : "No és primer");
+        System.out.println("Net: " + net);
+        System.out.println("Longitud: " + net.length());
+        System.out.println("Majúscules: " + net.toUpperCase());
+        System.out.println("Primera lletra: " + net.toUpperCase().substring(0, 1));
     }
 }
 ```
 
-Eixida: `És primer`
+Eixida:
 
-El `break` talla el bucle tan bon punt apareix un divisor: no cal seguir comprovant. Per al 29 no hi ha divisors (és primer), així que el bucle es recorre sencer i `esPrimer` continua sent `true`.
+```
+Net: ana
+Longitud: 3
+Majúscules: ANA
+Primera lletra: A
+```
+
+Fixat en l'encadenat: `net.toUpperCase().substring(0, 1)` neteja, posa en majúscules i talla la primera lletra en una sola línia.
 
 </details>
 
 ---
 
-## Exercici 8: L'edat blindada
+## Exercici 8: Salutació amb Scanner
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class EdatBlindada {
+public class SalutacioScanner {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        try {
-            System.out.print("Quants anys tens? ");
-            int edat = sc.nextInt();
-            System.out.println("Tens " + edat + " anys.");
-        } catch (InputMismatchException e) {
-            System.out.println("Això no és una edat vàlida.");
-        }
+        System.out.print("Com et dius? ");
+        String nom = sc.nextLine();
 
-        System.out.println("El programa seguix viu. 🎉");
+        System.out.print("Quants anys tens? ");
+        int edat = sc.nextInt();
+
+        System.out.println("Hola, " + nom + ". " + edat + " anys, benvingut.");
+
         sc.close();
     }
 }
 ```
 
-Si escrius `hola`, el `catch` atrapar l'error, imprimeix el missatge i el programa continua. Si escrius `17`, tot normal. Eixe és el poder del `try`/`catch`: el teu programa ja no mor per la porqueria de l'usuari.
+En este programa l'ordre està bé: com que el `nextLine()` va abans que el `nextInt()`, no hi ha Enter residual que reclamar. El lio apareix al revés (número primer i text després), com en el punt 6.
 
 </details>
 
 ---
 
-## Exercici 9: CodeWars — Even or Odd
+## Exercici 9: CodeWars — Will you make it?
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 public class Kata {
-    public static String even_or_odd(int number) {
-        return number % 2 == 0 ? "Even" : "Odd";
+    public static boolean zeroFuel(double distanceToPump, double mpg, double fuelLeft) {
+        return mpg * fuelLeft >= distanceToPump;
     }
 }
 ```
 
-Una línia amb l'operador `%` i un ternari. Si el residu de dividir entre 2 és 0, és parell (`"Even"`); si no, senar (`"Odd"`). Els dos conceptes de la U02 i la U03 treballant junts.
+Multipliques els litres que tens pels quilòmetres per litre: això et dona la distància màxima que pots recórrer. Si és més gran o igual que la distància a la gasolinera, hi arribes (`true`); si no, et quedes tirat (`false`). Una línia amb un operador relacional i un `>=`.
+
+</details>
+
+---
+
+## Exercici 10: Què imprimeix? — printf amb conversions
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+42 3.141600 Java
+```
+
+`%d` rellena amb l'enter (42), `%f` amb el decimal (per defecte mostra **6 decimals**: 3.141600) i `%s` amb el text (Java). El `%n` és un salt de línia independent del sistema operatiu: funciona igual en Windows, Linux i Mac. En un `printf`, el `%n` és l'opció "oficial" per a saltar de línia.
+
+</details>
+
+---
+
+## Exercici 11: la nota amb dos decimals
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class NotaFormatejada {
+    public static void main(String[] args) {
+        String nom = "Marta";
+        double nota = 9.5678;
+
+        String missatge = String.format("%s ha tret un %.2f.", nom, nota);
+        System.out.println(missatge);
+
+        System.out.printf("%s ha tret un %.2f.%n", nom, nota);
+    }
+}
+```
+
+`String.format` construïx el text i el guarda en la variable `missatge` (no imprimeix res); `printf` escriu directament en pantalla. Els dos redoneixen a dos decimals amb `%.2f`. Fixa't: usa `String.format` quan vulgues el text com a valor, i `printf` quan només vulgues escriure'l.
+
+</details>
+
+---
+
+## Exercici 12: la propina amb dos decimals
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.Scanner;
+
+public class PropinaFormatejada {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Total del compte: ");
+        double total = sc.nextDouble();
+
+        System.out.print("Percentatge de propina: ");
+        int percentatge = sc.nextInt();
+
+        double propina = total * percentatge / 100.0;
+        double totalFinal = total + propina;
+
+        System.out.printf("Total: %.2f €%n", total);
+        System.out.printf("Propina (%d%%): %.2f €%n", percentatge, propina);
+        System.out.printf("Total a pagar: %.2f €%n", totalFinal);
+
+        sc.close();
+    }
+}
+```
+
+- Per a mostrar el símbol `%` en un `printf` cal escriure'l **doble**: `%%`.
+- Fixa't en `100.0`: si usares `100` (enter), `percentatge / 100` faria divisió entera i la propina eixiria 0. Ordre de les operacions i divisió entera, les dos trampes del punt 3.
 
 </details>

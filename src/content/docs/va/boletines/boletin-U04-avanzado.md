@@ -1,130 +1,154 @@
----
-title: "Butlletí U04 — Avançat"
-description: "Exercicis de dificultat progressiva per a exprimir els arrays"
+﻿---
+title: Butlletí U04 — Avançat
+description: Exercicis de dificultat progressiva per a exprimir la unitat
 ---
 
 # 📝 Butlletí U04 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: La fusió d'arrays ordenats
+## ⭐ Exercici 1: La calculadora de notes
 
-Escriu un mètode `fusionarArrays(int[] a, int[] b)` que reba dos arrays ordenats de menor a major i torne un **nou array** també ordenat amb tots els elements d'ambdós. No uses `Arrays.sort()`. Fes-ho amb l'algoritme de fusió (merge) tipus «dos punters».
+Escriu un programa que convertisca una nota numèrica (`double nota`) en la seua qualificació textual usant `if`/`else if`:
 
-**Pista:** avança amb dos índexs, un per array, comparant en cada pas quin element és menor. Quan un array s'acabe, copia la resta de l'altre.
+- `>= 9` → "Excel·lent"
+- `>= 7` → "Notable"
+- `>= 5` → "Aprovat"
+- `>= 0` → "Suspés"
+- Qualsevol altre valor (negatiu o major que 10) → "Nota invàlida"
 
----
+Usa `double nota = 8.7;` i mostra el resultat. Fixa't en l'ordre: el cas invàlid s'ha de comprovar abans que els rangs.
 
-## ⭐ Exercici 2: Rotació circular a la dreta
-
-Implementa un mètode `rotarDerecha(int[] arr, int k)` que desplace cada element de l'array `k` posicions cap a la dreta. Els elements que «ixen» pel final tornen a entrar pel principi.
-
-Exemple: `{1, 2, 3, 4, 5}` amb `k = 2` → `{4, 5, 1, 2, 3}`.
-
-**Pista:** usa un array temporal de la grandària de `k` amb els últims `k` elements, desplaça la resta cap a la dreta i després col·loca els guardats al principi. (O divideix els índexs amb `(i + k) % arr.length`.)
+**Pista:** un `if` inicial per al cas invàlid (`nota < 0 || nota > 10`) i després la cascada de rangs de dalt a baix.
 
 ---
 
-## ⭐ Exercici 3: Suma de diagonals (matriu quadrada)
+## ⭐ Exercici 2: El menú que no es rendix
 
-Crea un programa que genere una matriu quadrada `int[N][N]` amb valors aleatoris entre 1 i 100, i calcule:
+Escriu un programa que mostre un menú de dues opcions (1. Jugar, 2. Eixir) amb `do-while` i repetisca la pregunta fins que l'usuari escriga 1 o 2. Usa `Scanner`. Al final mostra "Has triat l'opció X.".
 
-1. Suma de la **diagonal principal** (de dalt-esquerra a baix-dreta).
-2. Suma de la **diagonal secundària** (de dalt-dreta a baix-esquerra).
-3. Diferència absoluta entre totes dues sumes.
-
-Usa `N = 5` per a les proves i `Math.random()` per a omplir-la.
-
-**Pista:** a la diagonal principal, `fila == columna`, així que un sol bucle amb `matriz[i][i]` basta. A la secundària, `columna = N - 1 - i`.
+**Pista:** `do { ... } while (opcio != 1 && opcio != 2);`. El `do-while` garanteix que el menú es mostre almenys una vegada.
 
 ---
 
-## ⭐⭐ Exercici 4: Està ordenat?
+## ⭐⭐ Exercici 3: Què imprimeix? — la piràmide
 
-Escriu un mètode `public static boolean estaOrdenado(int[] arr)` que torne `true` si l'array està ordenat **de menor a major** (cada element és menor o igual que el següent), i `false` en cas contrari.
-
-Proves:
-
-- `estaOrdenado({1, 2, 3, 4})` → `true`
-- `estaOrdenado({1, 3, 2, 4})` → `false`
-- `estaOrdenado({})` → `true`
-- `estaOrdenado({7})` → `true`
-
-**Pista:** recorre amb un `for` de `i = 1` fins al final i pregunta si `arr[i] < arr[i - 1]`. En el moment que un veí trenque l'ordre, torna `false`.
-
----
-
-## ⭐⭐ Exercici 5: L'invers al lloc
-
-Escriu un mètode `public static void invertir(int[] arr)` que done la volta a l'array **sense crear un altre array** (usa dos punters i una variable temporal).
-
-Prova amb `{1, 2, 3, 4, 5}` i mostra el resultat amb `Arrays.toString` → ha d'eixir `[5, 4, 3, 2, 1]`.
-
-**Pista:** `izquierda = 0` i `derecha = arr.length - 1`; mentre `izquierda < derecha`, intercanvia i mou tots dos cap al centre.
-
----
-
-## ⭐⭐ Exercici 6: Què imprimeix? — el doble bucle que compta parelles
-
-Sense executar, escriu l'eixida exacta d'este programa:
+Sense executar, escriu l'eixida exacta:
 
 ```java
-public class CuentaParejas {
+public class Piramide {
     public static void main(String[] args) {
-        int[] datos = {2, 4, 6};
-        int contador = 0;
-
-        for (int i = 0; i < datos.length; i++) {
-            for (int j = i + 1; j < datos.length; j++) {
-                if (datos[i] < datos[j]) {
-                    contador++;
-                }
+        for (int fila = 1; fila <= 4; fila++) {
+            for (int col = 1; col <= fila; col++) {
+                System.out.print("*");
             }
+            System.out.println();
         }
-
-        System.out.println(contador);
     }
 }
 ```
 
-**Pista:** compta les parelles `(i, j)` amb `i < j` on el primer és menor que el segon. Amb `{2, 4, 6}` totes les parelles ho compleixen. Quantes n'hi ha?
+**Pista:** el bucle interior depén de `fila`: la fila 1 imprimeix 1 asterisc, la fila 2 en imprimeix 2... Quants asteriscs en total?
 
 ---
 
-## ⭐⭐⭐ Exercici 7: Estadístiques de classe
+## ⭐⭐ Exercici 4: L'escala de nombres
 
-Demana a l'usuari les notes de 20 alumnes amb `Scanner`, guarda-les en un `double[]` i calcula:
+Escriu un programa que imprimisca esta escala de nombres (bucles anidats):
 
-- La nota mitjana.
-- La nota més alta i la més baixa.
-- Quants alumnes van aprovar (nota >= 5).
+```
+1
+1 2
+1 2 3
+1 2 3 4
+```
 
-Usa un bucle per a omplir, un altre per a sumar i el patró del màxim/mínim acumulat.
-
-**Pista:** per al mínim comença amb la primera nota; per al màxim, també. Guarda les notes en un array i recórre'l diverses voltes: cada càlcul és un bucle.
-
----
-
-## ⭐⭐⭐ Exercici 8: El gran repte — busca-mines simplificat
-
-Crea un array bidimensional `boolean[5][5]` que represente un camp de mines. Col·loca 5 mines en posicions **aleatòries** (amb `Math.random()`). L'usuari introduïx coordenades `(fila, columna)` i el programa diu si hi ha mina o no. Si encerta una mina, el joc acaba mostrant «¡BOOM!».
-
-Extres opcionals: digues quantes mines hi ha al voltant de la casella (mira les 8 veïnes) i acaba quan hagis comprovat totes les caselles sense mines.
-
-**Pista:** comprova abans de mirar una veïna que la seua fila i la seua columna estiguen entre 0 i 4, o eixiràs de l'array amb `ArrayIndexOutOfBoundsException`. El joc usa un `while` que acaba en trepitjar una mina o en esgotar les caselles.
+**Pista:** bucle exterior de l'1 al 4 (les files) i bucle interior que imprimeix de l'1 al número de fila, amb `print` per a no saltar de línia i un `println()` buit al final de cada fila.
 
 ---
 
-## ⭐⭐⭐ Exercici 9: Compactar — els zeros al final
+## ⭐⭐⭐ Exercici 5: Què imprimeix? — break, continue i l'etiqueta
 
-Escriu un mètode `public static void compactar(int[] arr)` que moga tots els zeros al final de l'array, **mantenint l'ordre** dels elements que no són zero.
+Sense executar, escriu l'eixida exacta:
 
-Exemples:
+```java
+public class Escapista {
+    public static void main(String[] args) {
+        exterior:
+        for (int i = 1; i <= 4; i++) {
+            for (int j = 1; j <= 3; j++) {
+                if (j == 2 && i >= 3) {
+                    continue exterior;
+                }
+                if (i * j >= 8) {
+                    break exterior;
+                }
+                System.out.print(i + "" + j + " ");
+            }
+        }
+    }
+}
+```
 
-- `{0, 3, 0, 1, 0, 2}` → `{3, 1, 2, 0, 0, 0}`
-- `{1, 2, 3}` → `{1, 2, 3}`
-- `{0, 0, 0}` → `{0, 0, 0}`
+**Pista:** fes una taula de parells `(i, j)`. El `continue exterior` salta a la següent `i`; el `break exterior` apaga tots els bucles. Comprova parell a parell fins on arriba.
 
-**Pista:** usa un segon índex `pos` que marque on va el següent valor no zero. Recorre amb `i`, i quan `arr[i]` no siga 0, copia'l a `arr[pos]` i puja `pos`. Al final, ompli de zeros des de `pos` fins al final.
+---
+
+## ⭐⭐ Exercici 6: Caçador de primers
+
+Escriu un programa que imprimisca tots els nombres primers de l'1 al 50, cada un en la seua línia. Reutilitza la lògica del detectiu de divisors (`for` + `break`) dins d'un altre `for`.
+
+**Pista:** anida dos bucles: un que recórrega de l'1 al 50 i un altre interior que busque divisors. Usa un booleà `esPrimer` que es pose a `false` amb `break` si apareix un divisor.
+
+---
+
+## ⭐⭐ Exercici 7: La suma sentinella
+
+Escriu un programa que sume nombres enters introduïts per l'usuari fins que escriga `0`. Mostra la suma final. Usa `while` i un sentinella.
+
+**Pista:** `while (numero != 0) { suma += numero; numero = sc.nextInt(); }`. El 0 no es suma: és el senyal de parada.
+
+---
+
+## ⭐⭐⭐ Exercici 8: CodeWars — Categorize New Member
+
+Resol la kata **"Categorize New Member"** (7 kyu) en [CodeWars](https://www.codewars.com/kata/5502c9e7b3216ec63c0001aa).
+
+Completa el mètode `public static String[] openOrSenior(int[][] data)` que rep parells `{edat, handicap}` i retorna `"Senior"` si el membre té almenys 55 anys I un handicap major que 7; si no, `"Open"`.
+
+**Pista:** recorre l'array amb un `for` i decideix cada cas amb una condició combinada (`&&`): `data[i][0] >= 55 && data[i][1] > 7`.
+
+---
+
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 156 Ascensor
+
+Resol el problema **156 — Ascensor** en [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=156).
+
+Un ascensor partix de la planta 0. Donat un nombre de visites i les plantes de cada visita, calcula la distància total recorreguda. El valor `0` indica el final de l'entrada (no es processa). Usa `Math.abs()` per a les distàncies.
+
+**Exemple:**
+
+```
+5
+5 1 10 4 2
+0
+```
+
+Distància: |0-5| + |5-1| + |1-10| + |10-4| + |4-2| = 5 + 4 + 9 + 6 + 2 = **26**.
+
+**Pista:** un `while` que llegeixca el nombre de visites i trenque amb `break` si és 0; dins, un `for` que acumule `Math.abs(pis - pisActual)` i actualitze `pisActual`.
+
+---
+
+## 📚 Referències
+
+| Plataforma | Problema | Dificultat |
+|---|---|---|
+| AceptaElReto | 156 — Ascensor | Fàcil |
+| AceptaElReto | 149 — San Fermines | Fàcil |
+| AceptaElReto | 340 — Següent amb mateix nombre de xifres | Mitjà |
+| CodeWars | Even or Odd (8 kyu) | Principiant |
+| CodeWars | Categorize New Member (7 kyu) | Aficionat |
+| CodeWars | Return Negative (8 kyu) | Principiant |
