@@ -88,7 +88,7 @@ export default defineConfig({
             },
             {
               label: '🔀 4. Estructuras de Control',
-              translations: { va: '🔀 3. Estructures de Control i Excepcions' },
+              translations: { va: '🔀 4. Estructures de Control i Excepcions' },
               items: [
                 { slug: '04-estructuras-control-excepciones', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '04-estructuras-control-excepciones/01-if-else', label: '01 · if, else if y else', translations: { va: '01 · if, else if i else' } },
@@ -168,7 +168,7 @@ export default defineConfig({
             },
             {
               label: '🔒 9. Visibilidad y Static',
-              translations: { va: '🔒 8. Visibilitat, Encapsulació i Static' },
+              translations: { va: '🔒 9. Visibilitat, Encapsulació i Static' },
               items: [
                 { slug: '09-visibilidad-encapsulacion-static', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '09-visibilidad-encapsulacion-static/01-visibilidad', label: '01 · Visibilidad: el arte de no enseñarlo todo', translations: { va: '01 · Visibilitat: l\'art de no ensenyar-ho tot' } },
@@ -184,7 +184,7 @@ export default defineConfig({
             },
             {
               label: '🧬 10. Herencia, Polimorfismo e Interfaces',
-              translations: { va: '🧬 9. Herència, Polimorfisme i Interfícies' },
+              translations: { va: '🧬 10. Herència, Polimorfisme i Interfícies' },
               items: [
                 { slug: '10-herencia-polimorfismo-interfaces', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '10-herencia-polimorfismo-interfaces/01-herencia', label: '01 · Herencia: cuando tus hijos siguen tus pasos', translations: { va: '01 · Herència: quan els teus fills seguixen els teus passos' } },
@@ -200,7 +200,7 @@ export default defineConfig({
             },
             {
               label: '📚 11. Colecciones',
-              translations: { va: '📚 10. Col·leccions' },
+              translations: { va: '📚 11. Col·leccions' },
               items: [
                 { slug: '11-colecciones', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '11-colecciones/01-arraylist-jcf', label: '01 · ArrayList y el JCF', translations: { va: '01 · ArrayList i el JCF' } },
@@ -216,7 +216,7 @@ export default defineConfig({
             },
             {
               label: '🗺️ 12. Genéricos y Mapas',
-              translations: { va: '🗺️ 11. Genèrics i Mapes' },
+              translations: { va: '🗺️ 12. Genèrics i Mapes' },
               items: [
                 { slug: '12-genericos-mapas', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '12-genericos-mapas/01-que-son-genericos', label: '01 · Genéricos: el <T> que lo cambió todo', translations: { va: "01 · Genèrics: el <T> que ho va canviar tot" } },
@@ -248,7 +248,7 @@ export default defineConfig({
             },
             {
               label: '📁 14. Ficheros y Regex',
-              translations: { va: '📁 13. Fitxers i Expressions Regulars' },
+              translations: { va: '📁 14. Fitxers i Expressions Regulars' },
               items: [
                 { slug: '14-ficheros-regex', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '14-ficheros-regex/01-clase-file', label: '01 · La clase File', translations: { va: '01 · La classe File' } },
@@ -264,7 +264,7 @@ export default defineConfig({
             },
             {
               label: '🗄️ 15. Conexión a BD con JDBC',
-              translations: { va: '🗄️ 14. Connexió a BD amb JDBC' },
+              translations: { va: '🗄️ 15. Connexió a BD amb JDBC' },
               items: [
                 { slug: '15-conexion-bases-datos', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '15-conexion-bases-datos/01-que-es-jdbc', label: '01 · Qué es JDBC', translations: { va: '01 · Què és JDBC' } },
