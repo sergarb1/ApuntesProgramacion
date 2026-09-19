@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U125 — Avanzado Resuelto"
+title: "Boletín U14 — Avanzado Resuelto"
 description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 ---
 
-# 📝 Boletín U125 — Avanzado (Resuelto)
+# 📝 Boletín U14 — Avanzado (Resuelto)
 
 > Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
 

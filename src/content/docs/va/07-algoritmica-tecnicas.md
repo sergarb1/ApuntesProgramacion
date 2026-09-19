@@ -55,11 +55,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -88,7 +88,7 @@ En acabar, seràs capaç de:
 - Vens de la U06 i estàs fresc de Big O? → Arranca en el [punt 1](/ApuntesProgramacion/va/07-algoritmica-tecnicas/01-recursividad). Només necessites el que vas vore en Fonaments.
 - El que t'agrada és vore el resultat i no les tripes? → Salta al [punt 4](/ApuntesProgramacion/va/07-algoritmica-tecnicas/04-quicksort) i al [punt 5](/ApuntesProgramacion/va/07-algoritmica-tecnicas/05-mergesort) i torna després a la teoria de la recursivitat.
 - Et flipen els reptes? → Fes el [punt 7](/ApuntesProgramacion/va/07-algoritmica-tecnicas/07-be-the-code-quicksort) sense mirar el codi dels punts 4 i 5. Patix amb honor.
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u08-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u07-inicial).
 
 **📍 Primer punt:** [01 · Recursivitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas/01-recursividad)  
 **⏭️ En acabar la unitat, continua en [U08 · POO: Classes i Objectes](/ApuntesProgramacion/va/08-poo-clases-objetos).**

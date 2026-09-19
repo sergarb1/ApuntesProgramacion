@@ -63,11 +63,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u04-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u04-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u04-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u04-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u04-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -95,7 +95,7 @@ En acabar, seràs capaç de:
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/04-estructuras-control-excepciones/01-if-else). Només necessites les variables i el `Scanner` de la U03.
 - Ja saps decidir i només vols repetir? → Ves directe al [punt 3](/ApuntesProgramacion/va/04-estructuras-control-excepciones/03-bucles-while-do-while) i al [punt 4](/ApuntesProgramacion/va/04-estructuras-control-excepciones/04-bucle-for).
 - El teu programa es trenca i no saps per què? → Els [punts 6](/ApuntesProgramacion/va/04-estructuras-control-excepciones/06-excepciones-basicas), [7](/ApuntesProgramacion/va/04-estructuras-control-excepciones/07-try-catch-finally) i [8](/ApuntesProgramacion/va/04-estructuras-control-excepciones/08-throw-excepciones-propias) t'ensenyen a llegir els crits de Java.
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/04-estructuras-control-excepciones/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u05-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/04-estructuras-control-excepciones/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u04-inicial).
 
 **📍 Primer punt:** [01 · if, else if i else](/ApuntesProgramacion/va/04-estructuras-control-excepciones/01-if-else)  
 **⏭️ En acabar la unitat, continua en [U05 · Arrays](/ApuntesProgramacion/va/05-arrays).**

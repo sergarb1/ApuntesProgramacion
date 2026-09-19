@@ -1,5 +1,5 @@
 ﻿---
-title: "U125 — Servir y Consumir APIs con Web"
+title: "U16 — Servir y Consumir APIs con Web"
 description: "Del terminal a Internet: HttpServer, HTML, formularios, JSON y HttpClient para servir y consumir APIs como una de verdad 🌐"
 emoji: 🌐
 ---
@@ -21,6 +21,8 @@ Esta unidad tiene tres grandes actos:
 Por el camino entenderás el modelo petición-respuesta de HTTP, por qué `"POST".equals(...)` es mejor que `...equals("POST")`, qué significa de verdad un 404 y por qué el `fetch` de JavaScript y el `HttpClient` de Java son dos caras de la misma moneda.
 
 Esta unidad se lee como un **libro de 9 capítulos**: los 8 primeros puntos son teoría en progresión y el 9º es un aterrizaje práctico para machacar todo lo aprendido.
+
+> 🧪 **Material de ampliación (extra, no evaluable).** Esta unidad va más allá del temario oficial: úsala para ampliar, no para sudar la gota gorda. Los boletines son recomendados, no obligatorios.
 
 ---
 
@@ -62,11 +64,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U16-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U16-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U16-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U16-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U16-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u16-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u16-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u16-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u16-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u16-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -82,16 +84,16 @@ Al terminar, serás capaz de:
 | RA5 g) | Se han programado controladores de eventos. | ✅ Punto 6 |
 | RA5 h) | Se han escrito programas que utilicen interfaces gráficos para la entrada y salida de información. | ✅ Puntos 5 y 6 |
 
-> 📌 La **RA5** se completa con la **U03** (consola y formatos, CEs a y b) y la **U123** (ficheros y acceso a archivos, CEs c, d y e). Esta unidad cubre la cara web de la entrada/salida: HTTP como protocolo, HTML y JSON como formatos, y las librerías `HttpServer` y `HttpClient` como procedimientos del lenguaje.
+> 📌 La **RA5** se completa con la **U03** (consola y formatos, CEs a y b) y la **U13** (ficheros y acceso a archivos, CEs c, d y e). Esta unidad cubre la cara web de la entrada/salida: HTTP como protocolo, HTML y JSON como formatos, y las librerías `HttpServer` y `HttpClient` como procedimientos del lenguaje.
 
 ---
 
 ## 🚪 ¿Por dónde empiezo?
 
-- ¿Vienes de la U124 (JDBC) y quieres lo esencial? → Arranca en el [punto 1](/ApuntesProgramacion/16-apis-web/01-protocolo-http) y el [punto 2](/ApuntesProgramacion/16-apis-web/02-servidor-minimo): HTTP y tu primer servidor.
+- ¿Vienes de la U14 (JDBC) y quieres lo esencial? → Arranca en el [punto 1](/ApuntesProgramacion/16-apis-web/01-protocolo-http) y el [punto 2](/ApuntesProgramacion/16-apis-web/02-servidor-minimo): HTTP y tu primer servidor.
 - ¿Ya sabes servir y quieres hacer APIs? → Ve directo al [punto 5](/ApuntesProgramacion/16-apis-web/05-devolviendo-json) y al [punto 6](/ApuntesProgramacion/16-apis-web/06-proyecto-rest): JSON y el CRUD de tareas.
 - ¿Solo vienes a por el lado cliente? → Salta al [punto 7](/ApuntesProgramacion/16-apis-web/07-httpclient) y al [punto 8](/ApuntesProgramacion/16-apis-web/08-httpclient-avanzado): consumir APIs externas.
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/16-apis-web/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U16-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/16-apis-web/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u16-inicial).
 
 **📍 Primer punto:** [01 · El protocolo HTTP en 30 segundos](/ApuntesProgramacion/16-apis-web/01-protocolo-http)
 

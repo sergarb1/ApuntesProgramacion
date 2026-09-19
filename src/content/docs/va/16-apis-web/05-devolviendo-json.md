@@ -5,7 +5,7 @@ description: "application/json, fetch des del frontend i per què les aplicacion
 
 <p><small>application/json, fetch des del frontend i per què les aplicacions modernes separen dades de disseny 🧩🔀</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 05 · Tornant JSON: com una API de veritat
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 05 · Tornant JSON: com una API de veritat
 
 ---
 
@@ -34,7 +34,7 @@ JSON és text amb una estructura de dues peces:
 - **Arrays** entre corxets `[...]`: llistes de valors.
 - Valors possibles: textos entre cometes, números, `true`/`false`, `null`, objectes i arrays.
 
-Un `record` de Java (els vas vore a la U12) i un objecte JSON són cosins germans: mateixa idea de "dades amb nom". La diferència és que JSON és text, així que qualsevol llenguatge l'entén.
+Un `record` de Java (els vas vore a la U11) i un objecte JSON són cosins germans: mateixa idea de "dades amb nom". La diferència és que JSON és text, així que qualsevol llenguatge l'entén.
 
 ---
 

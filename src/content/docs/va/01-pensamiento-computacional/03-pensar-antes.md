@@ -90,4 +90,4 @@ Quan fem este exercici, apareixen immediatament els 5 problemes que després et 
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [02 · Programar no és memoritzar codi](/ApuntesProgramacion/va/00-pensamiento-computacional/02-no-memoritzar) · **Següent:** [04 · La descomposició](/ApuntesProgramacion/va/00-pensamiento-computacional/04-descomposicio)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [02 · Programar no és memoritzar codi](/ApuntesProgramacion/va/01-pensamiento-computacional/02-no-memorizar) · **Següent:** [04 · La descomposició](/ApuntesProgramacion/va/01-pensamiento-computacional/04-descomposicion)

@@ -130,7 +130,7 @@ int n = numeros.get(0);        // unboxing: Integer → int
 
 Desde Java 5, el **autoboxing/unboxing** es automático: metes un `int` y Java lo envuelve en un `Integer` sin que tú lo notes. Pero por dentro sigue habiendo objetos.
 
-> 📝 **Nota:** lo mismo con el resto de primitivos: `boolean` → `Boolean`, `double` → `Double`, `char` → `Character`... Si necesitas saber más sobre genéricos y wrappers, la U12 los estira a fondo.
+> 📝 **Nota:** lo mismo con el resto de primitivos: `boolean` → `Boolean`, `double` → `Double`, `char` → `Character`... Si necesitas saber más sobre genéricos y wrappers, los puntos 4 y 5 de esta misma unidad los estiran a fondo.
 
 ### El truco de remove con números
 

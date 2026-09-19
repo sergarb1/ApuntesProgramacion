@@ -61,11 +61,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u09-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -93,7 +93,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/01-visibilidad). Solo necesitas lo que viste en la U08.
 - ¿Ya blindas atributos y quieres chicha? → Ve directo al [punto 5](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/05-atributos-static) y al [punto 6](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/06-metodos-static): ahí empieza el mundo estático.
 - ¿Solo vienes a por los candados? → Salta al [punto 3](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/03-encapsulacion) y al [punto 4](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/04-getters-setters).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U10-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u09-inicial).
 
 **📍 Primer punto:** [01 · Visibilidad: el arte de no enseñarlo todo](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/01-visibilidad)  
 **⏭️ Al acabar la unidad, continúa en [U10 · Herencia, Polimorfismo e Interfaces](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces).

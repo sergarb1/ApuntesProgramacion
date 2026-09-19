@@ -58,11 +58,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u08-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -96,7 +96,7 @@ En acabar, seràs capaç de:
 - Cero coneixements de POO? → Arranca en el [punt 1](/ApuntesProgramacion/va/08-poo-clases-objetos/01-que-es-poo). Només necessites el que vas vore fins a la U07.
 - Ja saps què és una classe i vols cim? → Ves directe al [punt 4](/ApuntesProgramacion/va/08-poo-clases-objetos/04-constructores) i al [punt 5](/ApuntesProgramacion/va/08-poo-clases-objetos/05-this): ací comença el ball seriós.
 - Et flipen els reptes? → Fes el [punt 8](/ApuntesProgramacion/va/08-poo-clases-objetos/08-be-the-code) sense mirar el codi dels punts anteriors. Dissenya la teua classe amb honor.
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/08-poo-clases-objetos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u10-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/08-poo-clases-objetos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u08-inicial).
 
 **📍 Primer punt:** [01 · Què és la POO](/ApuntesProgramacion/va/08-poo-clases-objetos/01-que-es-poo)  
 **⏭️ En acabar la unitat, continua en [U09 · Visibilitat, Encapsulació i Static](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static).**

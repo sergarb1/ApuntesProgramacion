@@ -5,7 +5,7 @@ description: "El teu servidor passa de parlar en text pla a servir pàgines comp
 
 <p><small>El teu servidor passa de parlar en text pla a servir pàgines completes: Content-Type, cadenes ben formades i fitxers 📄🎨</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 03 · Servint HTML
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 03 · Servint HTML
 
 ---
 
@@ -54,7 +54,7 @@ Dos detalls importants:
 
 ## 📂 HTML des d'un fitxer
 
-Escriure HTML dins de Java és lleig quan la pàgina creix: barreges dos llenguatges i qualsevol cometa és una agonia. L'alternativa professional: guarda la pàgina en un fitxer i llig-la amb `Files.readString()` (el mateix API de la U123):
+Escriure HTML dins de Java és lleig quan la pàgina creix: barreges dos llenguatges i qualsevol cometa és una agonia. L'alternativa professional: guarda la pàgina en un fitxer i llig-la amb `Files.readString()` (el mateix API de la U13):
 
 ```java
 server.createContext("/", intercambio -> {
@@ -110,7 +110,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 
 1. Quina capçalera necessites perquè el navegador renderitze la teua resposta com a HTML?
 2. Què li passes a `sendResponseHeaders` com a segon argument: caràcters o bytes?
-3. Amb quin mètode de la U123 lliges el contingut d'un fitxer en un `String`?
+3. Amb quin mètode de la U13 lliges el contingut d'un fitxer en un `String`?
 4. Per què és millor servir l'HTML des d'un fitxer que escriure 50 línies dins del codi Java?
 
 <details>
@@ -137,7 +137,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > |---|---|
 > | `text/html` | El `Content-Type` de les pàgines web |
 > | `charset=UTF-8` | Declaració que el text usa UTF-8 (titles incloses) |
-> | `Files.readString` | Llig un fitxer complet en un `String` (vist a U123) |
+> | `Files.readString` | Llig un fitxer complet en un `String` (vist a U13) |
 > | Text block | `"""..."""`: cadena multilínia per a escriure HTML còmodament |
 
 📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/16-apis-web) · **Anterior:** [02 · Servidor web mínim amb HttpServer](/ApuntesProgramacion/va/16-apis-web/02-servidor-minimo) · **Següent:** [04 · Paràmetres GET i formularis POST](/ApuntesProgramacion/va/16-apis-web/04-get-post)

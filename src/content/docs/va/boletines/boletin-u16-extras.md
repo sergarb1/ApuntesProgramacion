@@ -1,9 +1,9 @@
 ﻿---
-title: "Butlletí U125 — Extres"
+title: "Butlletí U14 — Extres"
 description: "CodeWars i AceptaElReto per a anar més enllà de les APIs web"
 ---
 
-# 📝 Butlletí U125 — Extres
+# 📝 Butlletí U14 — Extres
 
 > Exercicis de CodeWars i AceptaElReto amb pistes i solucions. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
 

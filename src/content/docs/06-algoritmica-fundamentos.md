@@ -57,11 +57,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u06-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -87,7 +87,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/06-algoritmica-fundamentos/01-que-es-algoritmo). Solo necesitas variables, bucles y arrays básicos de la U04.
 - ¿Ya sabes qué es un algoritmo y quieres chicha? → Salta a la [búsqueda binaria](/ApuntesProgramacion/06-algoritmica-fundamentos/03-busqueda-binaria) o a la [ordenación por inserción](/ApuntesProgramacion/06-algoritmica-fundamentos/05-ordenacion-insercion).
 - ¿Solo quieres saber qué algoritmo elegir? → Lee [Big O](/ApuntesProgramacion/06-algoritmica-fundamentos/06-complejidad-big-o) y [Elegir el algoritmo adecuado](/ApuntesProgramacion/06-algoritmica-fundamentos/07-elegir-algoritmo).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/06-algoritmica-fundamentos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U07-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/06-algoritmica-fundamentos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u06-inicial).
 
 **📍 Primer punto:** [01 · Qué es un algoritmo](/ApuntesProgramacion/06-algoritmica-fundamentos/01-que-es-algoritmo)  
 **⏭️ Al acabar la unidad, continúa en [U07 · Algorítmica II: Técnicas](/ApuntesProgramacion/07-algoritmica-tecnicas).**

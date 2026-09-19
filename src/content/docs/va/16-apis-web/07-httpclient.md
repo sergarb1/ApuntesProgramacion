@@ -5,7 +5,7 @@ description: "El teu programa es converteix en client: HttpClient, GET, BodyHand
 
 <p><small>El teu programa es converteix en client: HttpClient, GET, BodyHandlers i parsejar JSON amb Gson 📡🔍</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 07 · Consumir APIs externes amb HttpClient
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 07 · Consumir APIs externes amb HttpClient
 
 ---
 
@@ -89,7 +89,7 @@ String nombre = json.get("name").getAsString();
 System.out.println("Usuario: " + login + " — " + nombre);
 ```
 
-**Forma 2 — mapejant a un `record` (els de la U12):**
+**Forma 2 — mapejant a un `record` (els de la U11):**
 
 ```java
 record UsuarioGitHub(String login, String name, int public_repos) {}

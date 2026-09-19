@@ -57,11 +57,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U07-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u05-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u05-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u05-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u05-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u05-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -84,7 +84,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/05-arrays/01-arrays-basicos). Solo necesitas variables, bucles y `if` de la U04.
 - ¿Ya sabes crear arrays y quieres chicha? → Salta al [recorrido](/ApuntesProgramacion/05-arrays/02-recorrer-arrays) o a la [clase Arrays](/ApuntesProgramacion/05-arrays/04-clase-arrays).
 - ¿Solo quieres ver arrays en acción real? → Lee [Aplicaciones de los arrays](/ApuntesProgramacion/05-arrays/06-aplicaciones-arrays).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/05-arrays/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U07-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/05-arrays/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u05-inicial).
 
 **📍 Primer punto:** [01 · Arrays: el aparcamiento de datos](/ApuntesProgramacion/05-arrays/01-arrays-basicos)  
 **⏭️ Al acabar la unidad, continúa en [U06 · Algorítmica I: Fundamentos](/ApuntesProgramacion/06-algoritmica-fundamentos).**

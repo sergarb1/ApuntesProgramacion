@@ -5,7 +5,7 @@ description: "Tu primer servidor Java: HttpServer, createContext y HttpExchange 
 
 <p><small>Tu primer servidor Java: HttpServer, createContext y HttpExchange en menos de 20 líneas 🖥️🚀</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U125 · Servir y Consumir APIs con Web** → 02 · Servidor web mínimo con HttpServer
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 02 · Servidor web mínimo con HttpServer
 
 ---
 
@@ -55,7 +55,7 @@ Abre `http://localhost:8080` en tu navegador. **Acabas de crear tu primer servid
 - **`server.setExecutor(null)`** — usa el ejecutor por defecto; cada petición se atiende en un hilo propio.
 - **`server.start()`** — arranca. A partir de aquí el `main` no se "acaba": el servidor se queda escuchando.
 
-> 💡 **Consejo:** el `try-with-resources` de la U123 no vale aquí: el servidor debe estar vivo mientras el `main` sigue corriendo. Por eso `start()` no está dentro de un `try`.
+> 💡 **Consejo:** el `try-with-resources` de la U13 no vale aquí: el servidor debe estar vivo mientras el `main` sigue corriendo. Por eso `start()` no está dentro de un `try`.
 
 ---
 

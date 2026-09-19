@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U125 — Inicial Resuelto"
+title: "Boletín U14 — Inicial Resuelto"
 description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 ---
 
-# 📝 Boletín U125 — Inicial (Resuelto)
+# 📝 Boletín U14 — Inicial (Resuelto)
 
 > Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
 

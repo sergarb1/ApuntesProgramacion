@@ -130,4 +130,4 @@ Per a tancar la unitat i que no et sonen a "xinés" les paraules que el professo
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [08 · Com utilitzarem la IA](/ApuntesProgramacion/va/00-pensamiento-computacional/08-ia-tutor) · **Següent:** **[U02 · Introducció a Java](/ApuntesProgramacion/va/02-introduccion)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [08 · Com utilitzarem la IA](/ApuntesProgramacion/va/01-pensamiento-computacional/08-ia-tutor) · **Següent:** **[U02 · Introducció a Java](/ApuntesProgramacion/va/02-introduccion)**

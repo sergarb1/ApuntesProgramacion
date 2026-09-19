@@ -59,11 +59,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u03-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -88,7 +88,7 @@ En acabar, seràs capaç de:
 | RA2 g) | S'han incorporat i utilitzat llibreries d'objectes. | ✅ Punt 6 |
 | RA2 h) | S'han utilitzat constructors. | ✅ Punts 2 i 6 |
 
-> 📌 El `Scanner` del punt 6, l'eixida amb format del punt 7 i els mètodes de `String` del punt 9 planten la llavor del RA5 (entrada i eixida d'informació), que floreix en la U123.
+> 📌 El `Scanner` del punt 6, l'eixida amb format del punt 7 i els mètodes de `String` del punt 9 planten la llavor del RA5 (entrada i eixida d'informació), que floreix en la U13.
 
 ---
 
@@ -97,7 +97,7 @@ En acabar, seràs capaç de:
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/03-variables-tipos-operadores/01-variables-tipos-primitivos). Només necessites el que vas vore en la U02.
 - Ja saps declarar variables i vols cim? → Ves directe al [punt 6](/ApuntesProgramacion/va/03-variables-tipos-operadores/06-scanner-entrada-teclado) i al [punt 8](/ApuntesProgramacion/va/03-variables-tipos-operadores/08-math-random-aleatorios): allà comencen els programes interessants.
 - Només vens a per operadors? → Salta al [punt 3](/ApuntesProgramacion/va/03-variables-tipos-operadores/03-operadores-aritmeticos) i al [punt 4](/ApuntesProgramacion/va/03-variables-tipos-operadores/04-operadores-relacionales-logicos).
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/03-variables-tipos-operadores/10-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u05-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/03-variables-tipos-operadores/10-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u03-inicial).
 
 **📍 Primer punt:** [01 · Variables i tipus primitius](/ApuntesProgramacion/va/03-variables-tipos-operadores/01-variables-tipos-primitivos)  
 **⏭️ En acabar la unitat, continua en [U04 · Estructures de Control](/ApuntesProgramacion/va/04-estructuras-control-excepciones).

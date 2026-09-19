@@ -5,7 +5,7 @@ description: "POST amb BodyPublishers, capçaleres i timeouts, sendAsync sense b
 
 <p><small>POST amb BodyPublishers, capçaleres i timeouts, sendAsync sense bloquejar i PUT/DELETE com un client professional 🚀🧠</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 08 · HttpClient avançat
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 08 · HttpClient avançat
 
 ---
 

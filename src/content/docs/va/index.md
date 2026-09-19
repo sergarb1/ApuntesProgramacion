@@ -9,7 +9,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
 
 <div align="center" style="margin-bottom:2rem;">
   <a href="/ApuntesProgramacion/va/02-introduccion" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,#2d8a4e,#1e6b38);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🚀 Començar per la Unitat 2</a>
-  <a href="/ApuntesProgramacion/va/01-pensamiento-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primer: Pensament Computacional</a>
+  <a href="/ApuntesProgramacion/va/01-pensamiento-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primer: Introducció al Pensament Computacional</a>
   <a href="https://github.com/sergarb1/ApuntesProgramacion" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🐙 Veure al GitHub</a>
 </div>
 
@@ -41,7 +41,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 1</span>
     <span class="ra">—</span>
   </div>
-  <a href="/ApuntesProgramacion/va/01-pensamiento-computacional" class="title-link">Pensament Computacional</a>
+  <a href="/ApuntesProgramacion/va/01-pensamiento-computacional" class="title-link">Introducció al Pensament Computacional</a>
   <p class="desc">Abans de codi, pensem. Descomposició, debugging, protocol de pau i el teu primer problema de programació sense tocar Java.</p>
   <a href="/ApuntesProgramacion/va/01-pensamiento-computacional" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -151,7 +151,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 11</span>
     <span class="ra">RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/va/11-colecciones" class="title-link">Col·leccions</a>
+  <a href="/ApuntesProgramacion/va/11-colecciones" class="title-link">Col·leccions, genèrics i mapes</a>
   <p class="desc"><code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>, <code>TreeSet</code>, <code>Iterator</code> i la classe <code>Collections</code>: el Java Collections Framework per a guardar i recórrer dades de manera elegant.</p>
   <a href="/ApuntesProgramacion/va/11-colecciones" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -160,50 +160,39 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unitat 12</span>
-    <span class="ra">RA6</span>
+    <span class="ra">RA6, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/va/12-genericos-mapas" class="title-link">Genèrics i Mapes</a>
-  <p class="desc">Genèrics per a classes i mètodes segurs de tipus, la interfície <code>Map</code> i les seues implementacions <code>HashMap</code>, <code>TreeMap</code>, i com iterar sobre elles.</p>
-  <a href="/ApuntesProgramacion/va/12-genericos-mapas" class="unit-link">👉 Veure unitat 👈</a>
+  <a href="/ApuntesProgramacion/va/12-programacion-funcional" class="title-link">Programació Funcional</a>
+  <p class="desc">Lambdes, interfícies funcionals, referències a mètodes, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) i <code>Optional</code> per a escriure Java modern i expressiu.</p>
+  <a href="/ApuntesProgramacion/va/12-programacion-funcional" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unitat 13</span>
-    <span class="ra">RA6, RA7</span>
+    <span class="ra">RA5</span>
   </div>
-  <a href="/ApuntesProgramacion/va/13-programacion-funcional" class="title-link">Programació Funcional</a>
-  <p class="desc">Lambdes, interfícies funcionals, referències a mètodes, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) i <code>Optional</code> per a escriure Java modern i expressiu.</p>
-  <a href="/ApuntesProgramacion/va/13-programacion-funcional" class="unit-link">👉 Veure unitat 👈</a>
+  <a href="/ApuntesProgramacion/va/13-ficheros-regex" class="title-link">Fitxers i Expressions Regulars</a>
+  <p class="desc">Lectura i escriptura de fitxers de text i binaris, serialització d'objectes i expressions regulars per a buscar, validar i reemplaçar patrons en text.</p>
+  <a href="/ApuntesProgramacion/va/13-ficheros-regex" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unitat 14</span>
-    <span class="ra">RA5</span>
-  </div>
-  <a href="/ApuntesProgramacion/va/14-ficheros-regex" class="title-link">Fitxers i Expressions Regulars</a>
-  <p class="desc">Lectura i escriptura de fitxers de text i binaris, serialització d'objectes i expressions regulars per a buscar, validar i reemplaçar patrons en text.</p>
-  <a href="/ApuntesProgramacion/va/14-ficheros-regex" class="unit-link">👉 Veure unitat 👈</a>
-
-</div>
-
-<div class="unit-card">
-  <div class="unit-card-header">
-    <span class="num">Unitat 15</span>
     <span class="ra">RA9</span>
   </div>
-  <a href="/ApuntesProgramacion/va/15-conexion-bases-datos" class="title-link">Connexió a Bases de Dades amb JDBC</a>
+  <a href="/ApuntesProgramacion/va/14-conexion-bases-datos" class="title-link">Connexió a Bases de Dades amb JDBC</a>
   <p class="desc">Connecta Java amb bases de dades relacionals usant JDBC: <code>Connection</code>, <code>Statement</code>, consultes, insercions, actualitzacions i transaccions segures.</p>
-  <a href="/ApuntesProgramacion/va/15-conexion-bases-datos" class="unit-link">👉 Veure unitat 👈</a>
+  <a href="/ApuntesProgramacion/va/14-conexion-bases-datos" class="unit-link">👉 Veure unitat 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
-    <span class="num">Unitat 16</span>
+    <span class="num">Unitat 16 (extra)</span>
     <span class="ra">RA5</span>
   </div>
   <a href="/ApuntesProgramacion/va/16-apis-web" class="title-link">Servir i Consumir APIs amb Web</a>
@@ -412,21 +401,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
 
 <div class="unit-card">
   <div class="unit-card-header">
-    <span class="num">Unitat 15</span>
-  </div>
-  <p class="boletin-section-label">📝 Butlletins de la unitat</p>
-  <div class="boletin-links">
-    <a href="/ApuntesProgramacion/va/boletines/boletin-u15-inicial" class="blink">🟢 Inicial per resoldre</a>
-    <a href="/ApuntesProgramacion/va/boletines/boletin-u15-inicial-resuelto" class="blink">✅ Inicial resolt</a>
-    <a href="/ApuntesProgramacion/va/boletines/boletin-u15-avanzado" class="blink">⭐ Avançat per resoldre</a>
-    <a href="/ApuntesProgramacion/va/boletines/boletin-u15-avanzado-resuelto" class="blink">💪 Avançat resolt</a>
-    <a href="/ApuntesProgramacion/va/boletines/boletin-u15-extras" class="blink">🔥 Extres</a>
-  </div>
-</div>
-
-<div class="unit-card">
-  <div class="unit-card-header">
-    <span class="num">Unitat 16</span>
+    <span class="num">Unitat 16 (extra)</span>
   </div>
   <p class="boletin-section-label">📝 Butlletins de la unitat</p>
   <div class="boletin-links">

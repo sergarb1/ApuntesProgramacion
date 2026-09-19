@@ -61,4 +61,4 @@ Provar els casos que ningú s'espera és la diferència entre un programa d'afic
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [04 · La descomposició](/ApuntesProgramacion/va/00-pensamiento-computacional/04-descomposicio) · **Següent:** [06 · El protocol de pau](/ApuntesProgramacion/va/00-pensamiento-computacional/06-protocol-pau)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [04 · La descomposició](/ApuntesProgramacion/va/01-pensamiento-computacional/04-descomposicion) · **Següent:** [06 · El protocol de pau](/ApuntesProgramacion/va/01-pensamiento-computacional/06-protocolo-paz)

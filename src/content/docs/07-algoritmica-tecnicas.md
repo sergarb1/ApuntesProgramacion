@@ -55,11 +55,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U08-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U08-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U08-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U08-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U08-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u07-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u07-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u07-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u07-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u07-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -88,7 +88,7 @@ Al terminar, serás capaz de:
 - ¿Vienes de la U06 y estás fresco de Big O? → Arranca en el [punto 1](/ApuntesProgramacion/07-algoritmica-tecnicas/01-recursividad). Solo necesitas lo que viste en Fundamentos.
 - ¿Lo tuyo es ver el resultado y no las tripas? → Salta al [punto 4](/ApuntesProgramacion/07-algoritmica-tecnicas/04-quicksort) y al [punto 5](/ApuntesProgramacion/07-algoritmica-tecnicas/05-mergesort) y vuelve después a la teoría de la recursividad.
 - ¿Te flipan los retos? → Haz el [punto 7](/ApuntesProgramacion/07-algoritmica-tecnicas/07-be-the-code-quicksort) sin mirar el código de los puntos 4 y 5. Sufre con honor.
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U08-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u07-inicial).
 
 **📍 Primer punto:** [01 · Recursividad](/ApuntesProgramacion/07-algoritmica-tecnicas/01-recursividad)  
 **⏭️ Al acabar la unidad, continúa en [U08 · POO: Clases y Objetos](/ApuntesProgramacion/08-poo-clases-objetos).**

@@ -61,11 +61,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u09-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u09-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u09-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u09-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u09-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -84,7 +84,7 @@ En acabar, seràs capaç de:
 | RA4 f) | S'han utilitzat mecanismes per a controlar la visibilitat de les classes i dels seus membres. | ✅ Punts 1 i 2 |
 | RA4 h) | S'han creat i utilitzat mètodes estàtics. | ✅ Punts 5, 6 i 7 |
 
-> 📌 L'herència (RA4 g) i les interfícies (RA4 i) tenen el seu capítol propi en la **U10**. Els conjunts i llibreries de classes (RA4 j) floreixen en la **U11** i la **U12**. Ací ens quedem amb visibilitat, encapsulació i static, que són els fonaments de tot el demés.
+> 📌 L'herència (RA4 g) i les interfícies (RA4 i) tenen el seu capítol propi en la **U10**. Els conjunts i llibreries de classes (RA4 j) floreixen en la **U11**. Ací ens quedem amb visibilitat, encapsulació i static, que són els fonaments de tot el demés.
 
 ---
 
@@ -93,7 +93,7 @@ En acabar, seràs capaç de:
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/01-visibilidad). Només necessites el que vas vore en la U08.
 - Ja blindes atributs i vols cim? → Ves directe al [punt 5](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/05-atributos-static) i al [punt 6](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/06-metodos-static): ací comença el món estàtic.
 - Només vens a per els cadenats? → Salta al [punt 3](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/03-encapsulacion) i al [punt 4](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/04-getters-setters).
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u10-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u09-inicial).
 
 **📍 Primer punt:** [01 · Visibilitat: l'art de no ensenyar-ho tot](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/01-visibilidad)  
 **⏭️ En acabar la unitat, continua en [U10 · Herència, Polimorfisme i Interfícies](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces).

@@ -66,4 +66,4 @@ Per a entrenar esta musculatura sense frustrar-te, aplica estos 3 hàbits diaris
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [06 · El protocol de pau](/ApuntesProgramacion/va/00-pensamiento-computacional/06-protocol-pau) · **Següent:** [08 · Com utilitzarem la IA](/ApuntesProgramacion/va/00-pensamiento-computacional/08-ia-tutor)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [06 · El protocol de pau](/ApuntesProgramacion/va/01-pensamiento-computacional/06-protocolo-paz) · **Següent:** [08 · Com utilitzarem la IA](/ApuntesProgramacion/va/01-pensamiento-computacional/08-ia-tutor)

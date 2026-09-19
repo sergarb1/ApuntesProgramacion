@@ -59,11 +59,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u03-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -88,7 +88,7 @@ Al terminar, serás capaz de:
 | RA2 g) | Se han incorporado y utilizado librerías de objetos. | ✅ Punto 6 |
 | RA2 h) | Se han utilizado constructores. | ✅ Puntos 2 y 6 |
 
-> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U123.
+> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U13.
 
 ---
 
@@ -97,7 +97,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/03-variables-tipos-operadores/01-variables-tipos-primitivos). Solo necesitas lo que viste en la U02.
 - ¿Ya sabes declarar variables y quieres chicha? → Ve directo al [punto 6](/ApuntesProgramacion/03-variables-tipos-operadores/06-scanner-entrada-teclado) y al [punto 8](/ApuntesProgramacion/03-variables-tipos-operadores/08-math-random-aleatorios): ahí empiezan los programas interesantes.
 - ¿Solo vienes a por operadores? → Salta al [punto 3](/ApuntesProgramacion/03-variables-tipos-operadores/03-operadores-aritmeticos) y al [punto 4](/ApuntesProgramacion/03-variables-tipos-operadores/04-operadores-relacionales-logicos).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/03-variables-tipos-operadores/10-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U05-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/03-variables-tipos-operadores/10-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u03-inicial).
 
 **📍 Primer punto:** [01 · Variables y tipos primitivos](/ApuntesProgramacion/03-variables-tipos-operadores/01-variables-tipos-primitivos)  
 **⏭️ Al acabar la unidad, continúa en [U04 · Estructuras de Control](/ApuntesProgramacion/04-estructuras-control-excepciones).**

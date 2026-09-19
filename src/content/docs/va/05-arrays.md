@@ -57,11 +57,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -84,7 +84,7 @@ En acabar, seràs capaç de:
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/05-arrays/01-arrays-basicos). Només necessites variables, bucles i `if` de la U04.
 - Ja saps crear arrays i vols molta cosa? → Salta al [recorregut](/ApuntesProgramacion/va/05-arrays/02-recorrer-arrays) o a la [classe Arrays](/ApuntesProgramacion/va/05-arrays/04-clase-arrays).
 - Només vols vore arrays en acció real? → Llig [Aplicacions dels arrays](/ApuntesProgramacion/va/05-arrays/06-aplicaciones-arrays).
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/05-arrays/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u07-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/05-arrays/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u05-inicial).
 
 **📍 Primer punt:** [01 · Arrays: l'aparcament de dades](/ApuntesProgramacion/va/05-arrays/01-arrays-basicos)  
 **⏭️ En acabar la unitat, continua en [U06 · Algorítmica I: Fonaments](/ApuntesProgramacion/va/06-algoritmica-fundamentos).**

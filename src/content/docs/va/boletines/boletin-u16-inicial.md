@@ -1,9 +1,9 @@
 ﻿---
-title: "Butlletí U125 — Inicial"
+title: "Butlletí U14 — Inicial"
 description: "Exercicis bàsics d'APIs web: HttpServer, servir HTML, paràmetres GET i primers JSON"
 ---
 
-# 📝 Butlletí U125 — Inicial
+# 📝 Butlletí U14 — Inicial
 
 > Sense solucions. Sense presses. Obri l'IDE, crea el teu primer `HttpServer` i fes que el navegador et parle de tu a tu. Promet que cap bit eixirà ferit. Comença suaument, que la web mossega a poc a poc.
 

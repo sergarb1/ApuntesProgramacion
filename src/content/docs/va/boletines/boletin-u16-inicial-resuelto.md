@@ -1,9 +1,9 @@
 ﻿---
-title: "Butlletí U125 — Inicial Resolt"
+title: "Butlletí U14 — Inicial Resolt"
 description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 ---
 
-# 📝 Butlletí U125 — Inicial (Resolt)
+# 📝 Butlletí U14 — Inicial (Resolt)
 
 > Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
 

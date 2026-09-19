@@ -153,4 +153,4 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 > | `peek()` | Mirar el primero sin quitarlo |
 > | `poll()` | Quitar el primero sin lanzar excepción si está vacía |
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/11-colecciones) · **Anterior:** [01 · ArrayList y el Java Collections Framework](/ApuntesProgramacion/11-colecciones/01-arraylist-jcf) · **Siguiente:** [03 · HashSet: el portero sin duplicados](/ApuntesProgramacion/11-colecciones/03-hashset)
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/11-colecciones) · **Anterior:** [01 · ArrayList y el Java Collections Framework](/ApuntesProgramacion/11-colecciones/01-arraylist-jcf) · **Siguiente:** [03 · HashSet, TreeSet y LinkedHashSet](/ApuntesProgramacion/11-colecciones/03-conjuntos-sets)

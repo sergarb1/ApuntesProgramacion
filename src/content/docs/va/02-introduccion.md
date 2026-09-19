@@ -56,11 +56,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u05-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u02-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -84,7 +84,7 @@ En acabar, seràs capaç de:
 
 - ¿Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/02-introduccion/01-que-es-java), no hi ha cap requisit previ.
 - Ja saps què és un IDE? → Ves directe al [punt 3](/ApuntesProgramacion/va/02-introduccion/03-hola-mundo) i torna arrere només si et perds.
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/02-introduccion/09-repaso-interactivo) i els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u05-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/02-introduccion/09-repaso-interactivo) i els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u02-inicial).
 
 **📍 Primer punt:** [01 · Què és Java?](/ApuntesProgramacion/va/02-introduccion/01-que-es-java)  
 **⏭️ En acabar la unitat, continua en [U03 · Variables, Tipus i Operadors](/ApuntesProgramacion/va/03-variables-tipos-operadores).**

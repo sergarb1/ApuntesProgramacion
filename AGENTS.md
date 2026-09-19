@@ -3,40 +3,39 @@
 **CC BY-SA 4.0** — Sergi Garcia Barea
 
 ## Descripción
-Curso completo de Programación en Java para DAM/DAW (o cualquier persona que quiera iniciarse), organizado en 16 unidades didácticas en Markdown. Cada unidad indica al final qué RAs oficiales del BOE cubre. Publicado como web estática con **Astro + Starlight** + GitHub Pages.
+Curso completo de Programación en Java para DAM/DAW (o cualquier persona que quiera iniciarse), organizado en 14 unidades estándar (+1 introductoria y +1 extra de APIs) en Markdown. Cada unidad indica al final qué RAs oficiales del BOE cubre. Publicado como web estática con **Astro + Starlight** + GitHub Pages.
 
-## Unidades (16)
+## Unidades (14 estándar + extra)
 ```
-00-pensament-computacional.md         → (sin RA: introductoria)
-01-introduccion.md                    → RA1
-02-variables-tipos-operadores.md      → RA2        (10 puntos: incluye consola)
-03-estructuras-control-excepciones.md → RA3
-04-arrays.md                          → RA6        (🅿️ nueva: arrays antes de algorítmica)
-05-algoritmica-fundamentos.md         → RA2, RA6
-06-algoritmica-tecnicas.md            → RA2, RA6
-07-poo-clases-objetos.md              → RA2, RA4
-08-visibilidad-encapsulacion-static.md → RA4
-09-herencia-polimorfismo-interfaces.md → RA4, RA7
-10-colecciones.md                     → RA6        (📚 nueva: colecciones tras herencia)
-11-genericos-mapas.md                 → RA6
-12-programacion-funcional.md          → RA6, RA7   (🎯 nueva: lambdas, streams, Optional)
-13-ficheros-regex.md                  → RA5, RA6   (sin sección de consola; la consola está en U02)
+01-pensamiento-computacional.md       → (sin RA: introductoria)
+02-introduccion.md                    → RA1
+03-variables-tipos-operadores.md      → RA2        (10 puntos: incluye consola)
+04-estructuras-control-excepciones.md → RA3
+05-arrays.md                          → RA6        (🅿️ arrays antes de algorítmica)
+06-algoritmica-fundamentos.md         → RA2, RA6
+07-algoritmica-tecnicas.md            → RA2, RA6
+08-poo-clases-objetos.md              → RA2, RA4
+09-visibilidad-encapsulacion-static.md → RA4
+10-herencia-polimorfismo-interfaces.md → RA4, RA7
+11-colecciones.md                     → RA6        (📚 fusionada: colecciones + genéricos y mapas)
+12-programacion-funcional.md          → RA6, RA7   (🎯 lambdas, streams, Optional)
+13-ficheros-regex.md                  → RA5, RA6   (sin sección de consola; la consola está en U03)
 14-conexion-bases-datos.md            → RA9
-15-apis-web.md                        → RA5
+16-apis-web.md                        → RA5        (🧪 extra no evaluable, sin número 15)
 ```
 
-Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U02 tiene 10 puntos porque incluye el punto extra de consola (salida formateada). La U00 es introductoria (9 puntos, 1 boletín no evaluable).
+Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U03 tiene 10 puntos porque incluye el punto extra de consola (salida formateada). La U01 es introductoria (9 puntos, 1 boletín no evaluable).
 
 ## Boletines (5 por unidad)
 ```
-boletin-U0N-inicial.md             → Propuestos fáciles (ejercicios diferentes del resuelto)
-boletin-U0N-inicial-resuelto.md    → Mismos ejercicios que inicial.md con soluciones.
-boletin-U0N-avanzado.md            → Propuestos intermedios (ejercicios diferentes del resuelto)
-boletin-U0N-avanzado-resuelto.md   → Mismos ejercicios que avanzado.md con soluciones.
-boletin-U0N-extras.md              → CodeWars + AceptaElReto con pistas (incluye las soluciones en <details>).
+boletin-u0N-inicial.md             → Propuestos fáciles (ejercicios diferentes del resuelto)
+boletin-u0N-inicial-resuelto.md    → Mismos ejercicios que inicial.md con soluciones.
+boletin-u0N-avanzado.md            → Propuestos intermedios (ejercicios diferentes del resuelto)
+boletin-u0N-avanzado-resuelto.md   → Mismos ejercicios que avanzado.md con soluciones.
+boletin-u0N-extras.md              → CodeWars + AceptaElReto con pistas (incluye las soluciones en <details>).
 ```
 
-Los boletines viven en `src/content/docs/boletines/` (ES) y `src/content/docs/va/boletines/` (VA). Las **URLs SIEMPRE en minúsculas** (`/ApuntesProgramacion/boletines/boletin-u0N-*`) aunque el archivo en disco use `boletin-U0N-*.md`. En la web, en el sidebar, las landings y los índices de unidad, el **orden de los boletines** es siempre: `inicial → inicial-resuelto → avanzado → avanzado-resuelto → extras` (por-resolver primero, luego su resuelto).
+Los boletines viven en `src/content/docs/boletines/` (ES) y `src/content/docs/va/boletines/` (VA). Archivos y **URLs SIEMPRE en minúsculas** (`/ApuntesProgramacion/boletines/boletin-u0N-*`). En la web, en el sidebar, las landings y los índices de unidad, el **orden de los boletines** es siempre: `inicial → inicial-resuelto → avanzado → avanzado-resuelto → extras` (por-resolver primero, luego su resuelto).
 
 ## Estilo
 Humor, secciones "⭐ Be the Code", "¡No hay preguntas tontas!", [NOTE]/[WARNING]/[TIP] en blockquotes, lenguaje conversacional en castellano y valenciano. Formato Markdown compatible con Google Docs (importación directa).
@@ -173,4 +172,4 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - `Ver unidad` en las cards es un botón verde degradado (`.unit-link` en `custom.css`)
 - PDF generado con `--preceding-html scripts/pdf-cover.html` (portada castellano) o `scripts/pdf-cover-va.html` (portada valenciano), `--header scripts/pdf-header.html` (vacío, elimina hora), `--footer scripts/pdf-footer.html` (numeración estilizada)
 - **13 · Lingüística:** todo contenido en castellano cumple el «Requisito lingüístico (es-ES)» de la sección Estilo (vocabulario peninsular, mayúsculas oracionales, formato numérico español); revisión obligatoria antes de cerrar cualquier unidad o boletín.
-- **14 · Reordenamiento:** el curso pasó de 13 a 15 unidades. Arrays (U04) y Colecciones (U10) se separaron de la antigua "Arrays y Colecciones"; la consola vive en U02 (punto 7); Programación Funcional es la U12; Ficheros (sin consola) U13, JDBC U14, APIs U15. Los informes de revisión están en `openspec/reviews/unidad-0X.md` (U01-U15).
+- **14 · Reordenamiento 2026-27:** el curso quedó en 14 unidades estándar + APIs extra. Colecciones y genéricos/mapas se fusionaron en la U11 (📚); Programación Funcional es la U12; Ficheros (sin consola) la U13; JDBC la U14; la consola vive en U03 (punto 7); la U16 (APIs web) es extra no evaluable. Los informes de revisión están en `openspec/reviews/unidad-0X.md`.

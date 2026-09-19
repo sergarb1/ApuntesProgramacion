@@ -68,4 +68,4 @@ Per a no sonar com un estranger quan parlem del mòdul, guarda estos 5 termes al
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [Índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Següent:** [02 · Programar no és memoritzar codi](/ApuntesProgramacion/va/00-pensamiento-computacional/02-no-memoritzar)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [Índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Següent:** [02 · Programar no és memoritzar codi](/ApuntesProgramacion/va/01-pensamiento-computacional/02-no-memorizar)

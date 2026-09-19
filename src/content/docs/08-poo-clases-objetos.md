@@ -58,11 +58,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U10-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u08-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u08-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u08-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u08-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u08-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -96,7 +96,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos de POO? → Arranca en el [punto 1](/ApuntesProgramacion/08-poo-clases-objetos/01-que-es-poo). Solo necesitas lo que viste hasta la U07.
 - ¿Ya sabes qué es una clase y quieres chicha? → Ve directo al [punto 4](/ApuntesProgramacion/08-poo-clases-objetos/04-constructores) y al [punto 5](/ApuntesProgramacion/08-poo-clases-objetos/05-this): ahí empieza el baile serio.
 - ¿Te flipan los retos? → Haz el [punto 8](/ApuntesProgramacion/08-poo-clases-objetos/08-be-the-code) sin mirar el código de los puntos anteriores. Diseña tu clase con honor.
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/08-poo-clases-objetos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U10-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/08-poo-clases-objetos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u08-inicial).
 
 **📍 Primer punto:** [01 · Qué es la POO](/ApuntesProgramacion/08-poo-clases-objetos/01-que-es-poo)  
 **⏭️ Al acabar la unidad, continúa en [U09 · Visibilidad, Encapsulación y Static](/ApuntesProgramacion/09-visibilidad-encapsulacion-static).**

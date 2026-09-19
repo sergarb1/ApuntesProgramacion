@@ -63,11 +63,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u04-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u04-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u04-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u04-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u04-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -95,7 +95,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/04-estructuras-control-excepciones/01-if-else). Solo necesitas las variables y el `Scanner` de la U03.
 - ¿Ya sabes decidir y solo quieres repetir? → Ve directo al [punto 3](/ApuntesProgramacion/04-estructuras-control-excepciones/03-bucles-while-do-while) y al [punto 4](/ApuntesProgramacion/04-estructuras-control-excepciones/04-bucle-for).
 - ¿Tu programa se rompe y no sabes por qué? → Los [puntos 6](/ApuntesProgramacion/04-estructuras-control-excepciones/06-excepciones-basicas), [7](/ApuntesProgramacion/04-estructuras-control-excepciones/07-try-catch-finally) y [8](/ApuntesProgramacion/04-estructuras-control-excepciones/08-throw-excepciones-propias) te enseñan a leer los gritos de Java.
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/04-estructuras-control-excepciones/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U05-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/04-estructuras-control-excepciones/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u04-inicial).
 
 **📍 Primer punto:** [01 · if, else if y else](/ApuntesProgramacion/04-estructuras-control-excepciones/01-if-else)  
 **⏭️ Al acabar la unidad, continúa en [U05 · Arrays](/ApuntesProgramacion/05-arrays).**

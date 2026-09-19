@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U125 — Avanzado"
+title: "Boletín U14 — Avanzado"
 description: "Ejercicios de dificultad progresiva para dominar JSON, formularios POST y HttpClient"
 ---
 
-# 📝 Boletín U125 — Avanzado
+# 📝 Boletín U14 — Avanzado
 
 > Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. Cada ejercicio incluye una pista (resiste a mirarla).
 
@@ -108,7 +108,7 @@ Frontend: tabla con colores de fondo según prioridad (rojo ALTA, amarillo MEDIA
 
 Usa `HttpClient` para consultar la API de GitHub (`https://api.github.com/users/{usuario}/repos`) y mostrar solo el **nombre** y el **lenguaje** de cada repositorio de un usuario (que se pide por teclado). Luego guarda los resultados en un archivo `repos.txt`.
 
-**Pista:** parsea la respuesta con Gson (`JsonArray`), recórrela, y escribe con `Files.writeString` (los ficheros los viste en la U123). Recuerda la cabecera `User-Agent`, que GitHub exige.
+**Pista:** parsea la respuesta con Gson (`JsonArray`), recórrela, y escribe con `Files.writeString` (los ficheros los viste en la U13). Recuerda la cabecera `User-Agent`, que GitHub exige.
 
 ---
 

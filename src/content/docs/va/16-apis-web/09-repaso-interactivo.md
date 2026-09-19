@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat i del curs, amb un parser que h
 
 <p><small>El tancament pràctic de la unitat i del curs, amb un parser que ho liarà tot i un servidor que no arranca 😈🌐</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 09 · Repàs interactiu
 
 ---
 
@@ -334,7 +334,7 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 **Programadora:** — Val... però ara mateix tot està en un `ArrayList` que s'esborra en reiniciar. Quan aprenc a guardar-lo de veritat?
 
-**CONRAD:** — *assentix* Això ja ho vas vore a la U124 amb JDBC: canvia el magatzem, no les rutes. La teua API no se n'assabenta. Però si em preguntes a mi, ja has recorregut un camí enorme: vas començar amb un `Hola, mundo` en una consola i acabes servint i consumint web. Això és tot el curs.
+**CONRAD:** — *assentix* Això ja ho vas vore a la U14 amb JDBC: canvia el magatzem, no les rutes. La teua API no se n'assabenta. Però si em preguntes a mi, ja has recorregut un camí enorme: vas començar amb un `Hola, mundo` en una consola i acabes servint i consumint web. Això és tot el curs.
 
 **Programadora:** — I ara què?
 

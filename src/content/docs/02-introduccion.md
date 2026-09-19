@@ -56,11 +56,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U05-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u02-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -84,7 +84,7 @@ Al terminar, serás capaz de:
 
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/02-introduccion/01-que-es-java), no hay ningún requisito previo.
 - ¿Ya sabes qué es un IDE? → Ve directo al [punto 3](/ApuntesProgramacion/02-introduccion/03-hola-mundo) y vuelve atrás solo si te pierdes.
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/02-introduccion/09-repaso-interactivo) y los [boletines](/ApuntesProgramacion/boletines/boletin-U05-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/02-introduccion/09-repaso-interactivo) y los [boletines](/ApuntesProgramacion/boletines/boletin-u02-inicial).
 
 **📍 Primer punto:** [01 · ¿Qué es Java?](/ApuntesProgramacion/02-introduccion/01-que-es-java)  
 **⏭️ Al acabar la unidad, continúa en [U03 · Variables, Tipos y Operadores](/ApuntesProgramacion/03-variables-tipos-operadores).**

@@ -5,7 +5,7 @@ description: "Ajunta-ho tot en una API REST: GET, POST, PUT i DELETE amb dades e
 
 <p><small>Ajunta-ho tot en una API REST: GET, POST, PUT i DELETE amb dades en memòria 🗂️🔧</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 06 · Mini projecte: gestor de tasques (API REST)
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 06 · Mini projecte: gestor de tasques (API REST)
 
 ---
 
@@ -34,7 +34,7 @@ La regla d'or: **el mètode diu el verb i la ruta diu el substantiu**. `GET /api
 
 ## 🧱 El model i el magatzem
 
-Primer, la tasca. Un `record` (genèric i net, com a la U12):
+Primer, la tasca. Un `record` (genèric i net, com a la U11):
 
 ```java
 record Tarea(int id, String titulo, boolean completada) {}
@@ -60,7 +60,7 @@ public class ApiTareas {
 }
 ```
 
-> 💡 **Consell:** `AtomicInteger` et dona IDs que no es repeteixen ni amb peticions simultànies. Amb un `int` normal, dues peticions alhora podrien llegir el mateix valor. En producció, eixe `ArrayList` seria una base de dades (JDBC, com a la U124), però el patró és idèntic.
+> 💡 **Consell:** `AtomicInteger` et dona IDs que no es repeteixen ni amb peticions simultànies. Amb un `int` normal, dues peticions alhora podrien llegir el mateix valor. En producció, eixe `ArrayList` seria una base de dades (JDBC, com a la U114), però el patró és idèntic.
 
 ---
 
@@ -157,7 +157,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 1. `POST` per a crear, `GET` per a llistar.
 2. `404`, perquè el recurs demanat no existeix.
 3. `204` (sense contingut): esborrar amb èxit no necessita tornar cos.
-4. Perquè per a aprendre el patró REST basta; la persistència (amb JDBC, U124) canvia el magatzem, no les rutes ni els mètodes.
+4. Perquè per a aprendre el patró REST basta; la persistència (amb JDBC, U14) canvia el magatzem, no les rutes ni els mètodes.
 
 </details>
 
@@ -166,7 +166,7 @@ Posat a prova en 30 segons (les respostes estan amagades):
 ## ✅ Resum en 3 frases
 
 1. Una **API REST** ordena rutes i mètodes: `GET` llig, `POST` crea, `PUT` actualitza, `DELETE` esborra, i cada ruta diu quin recurs toca.
-2. El **magatzem en memòria** (`ArrayList` + `AtomicInteger`) és perfecte per a aprendre el patró; la base de dades de la U124 només substituïx el magatzem, no les rutes.
+2. El **magatzem en memòria** (`ArrayList` + `AtomicInteger`) és perfecte per a aprendre el patró; la base de dades de la U14 només substituïx el magatzem, no les rutes.
 3. Gestiona els **errors amb codis honestos**: `404` si no existeix, `201` si crees, `204` si esborres; així la teua API parla clar.
 
 > 🐛 **Vocabulari ràpid**

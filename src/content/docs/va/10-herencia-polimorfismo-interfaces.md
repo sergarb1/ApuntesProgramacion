@@ -63,11 +63,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u122-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u122-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u122-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u122-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u122-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u10-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -106,7 +106,7 @@ En acabar, seràs capaç de:
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/01-herencia). Només necessites el que vas vore en les unitats 06 i 07.
 - Ja heredes i vols el contracte? → Ves directe al [punt 7](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/07-clases-abstractas) i al [punt 8](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/08-interfaces): ací està la mitat abstracta de la unitat.
 - Només vens a per el polimorfisme? → Salta al [punt 4](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/04-polimorfismo) i al [punt 5](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/05-instanceof-downcasting).
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u122-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u10-inicial).
 
 **📍 Primer punt:** [01 · Herència: quan els teus fills seguixen els teus passos](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces/01-herencia)  
 **⏭️ En acabar la unitat, continua en [U11 · Col·leccions](/ApuntesProgramacion/va/11-colecciones).**

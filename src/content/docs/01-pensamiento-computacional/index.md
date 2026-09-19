@@ -56,7 +56,7 @@ Al terminar, serás capaz de explicar:
 > Entrena la mente de programador/a sin una sola línea de Java. Son ejercicios no evaluables, pero son la mejor manera de romper el hielo y compartir ideas en el foro.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-u02-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u01-inicial" class="elink">🟢 Inicial por resolver</a>
 </div>
 
 ---
@@ -65,7 +65,7 @@ Al terminar, serás capaz de explicar:
 
 - 🆕 ¿Cero conocimientos? → Empieza en el [punto 1](/ApuntesProgramacion/01-pensamiento-computacional/01-ordenadores-lenguajes), no hay ningún requisito previo.
 - 💻 ¿Ya sabes qué es un ordenador? → Ve directo al [punto 3](/ApuntesProgramacion/01-pensamiento-computacional/03-pensar-antes) y vuelve atrás solo si te pierdes.
-- 🎯 ¿Vienes a repasar? → Haz las [actividades](/ApuntesProgramacion/boletines/boletin-u02-inicial).
+- 🎯 ¿Vienes a repasar? → Haz las [actividades](/ApuntesProgramacion/boletines/boletin-u01-inicial).
 
 **📍 Primer punto:** [01 · Qué es un ordenador y un lenguaje de programación](/ApuntesProgramacion/01-pensamiento-computacional/01-ordenadores-lenguajes)
 **⏭️ Al acabar la unidad, continúa en [U02 · Introducción a Java](/ApuntesProgramacion/02-introduccion).**

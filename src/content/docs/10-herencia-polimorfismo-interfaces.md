@@ -63,11 +63,11 @@ Al terminar, serás capaz de:
 > Practica con los pares del curso: intenta primero el por-resolver y comprueba con el resuelto cuando hayas terminado.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/boletines/boletin-U122-inicial" class="elink">🟢 Inicial por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U122-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U122-avanzado" class="elink">⭐ Avanzado por resolver</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U122-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
-  <a href="/ApuntesProgramacion/boletines/boletin-U122-extras" class="elink">🔥 Extras</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-inicial" class="elink">🟢 Inicial por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-inicial-resuelto" class="elink">✅ Inicial resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-avanzado" class="elink">⭐ Avanzado por resolver</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-avanzado-resuelto" class="elink">💪 Avanzado resuelto</a>
+  <a href="/ApuntesProgramacion/boletines/boletin-u10-extras" class="elink">🔥 Extras</a>
 </div>
 
 ---
@@ -106,7 +106,7 @@ Al terminar, serás capaz de:
 - ¿Cero conocimientos? → Arranca en el [punto 1](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/01-herencia). Solo necesitas lo que viste en las unidades 06 y 07.
 - ¿Ya heredas y quieres el contrato? → Ve directo al [punto 7](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/07-clases-abstractas) y al [punto 8](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/08-interfaces): ahí está la mitad abstracta de la unidad.
 - ¿Solo vienes a por el polimorfismo? → Salta al [punto 4](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/04-polimorfismo) y al [punto 5](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/05-instanceof-downcasting).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-U122-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u10-inicial).
 
 **📍 Primer punto:** [01 · Herencia: cuando tus hijos siguen tus pasos](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces/01-herencia)  
 **⏭️ Al acabar la unidad, continúa en [U11 · Colecciones](/ApuntesProgramacion/11-colecciones).**

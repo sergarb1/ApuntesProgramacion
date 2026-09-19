@@ -65,4 +65,4 @@ Per a evitar esta trampa, aplicarem una norma molt simple durant tot el curs:
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [01 · Què és un ordinador i un llenguatge de programació](/ApuntesProgramacion/va/00-pensamiento-computacional/01-ordinadors-llenguatges) · **Següent:** [03 · Primer pensem, després escrivim](/ApuntesProgramacion/va/00-pensamiento-computacional/03-pensar-abans)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [01 · Què és un ordinador i un llenguatge de programació](/ApuntesProgramacion/va/01-pensamiento-computacional/01-ordenadores-lenguajes) · **Següent:** [03 · Primer pensem, després escrivim](/ApuntesProgramacion/va/01-pensamiento-computacional/03-pensar-antes)

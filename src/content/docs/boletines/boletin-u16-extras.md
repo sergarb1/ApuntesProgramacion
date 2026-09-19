@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U125 — Extras"
+title: "Boletín U14 — Extras"
 description: "CodeWars y AceptaElReto para ir más allá de las APIs web"
 ---
 
-# 📝 Boletín U125 — Extras
+# 📝 Boletín U14 — Extras
 
 > Ejercicios de CodeWars y AceptaElReto con pistas y soluciones. Las soluciones están ocultas: agota tu pista antes de mirarlas.
 

@@ -57,11 +57,11 @@ En acabar, seràs capaç de:
 > Practica amb els parells del curs: intenta primer el per-resoldre i comprova amb el resolt quan hagues acabat.
 
 <div class="ejercicio-links">
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial" class="elink">🟢 Inicial per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-inicial-resuelto" class="elink">✅ Inicial resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado" class="elink">⭐ Avançat per resoldre</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
-  <a href="/ApuntesProgramacion/va/boletines/boletin-u07-extras" class="elink">🔥 Extres</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u06-inicial" class="elink">🟢 Inicial per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u06-inicial-resuelto" class="elink">✅ Inicial resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u06-avanzado" class="elink">⭐ Avançat per resoldre</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u06-avanzado-resuelto" class="elink">💪 Avançat resolt</a>
+  <a href="/ApuntesProgramacion/va/boletines/boletin-u06-extras" class="elink">🔥 Extres</a>
 </div>
 
 ---
@@ -87,7 +87,7 @@ En acabar, seràs capaç de:
 - Cero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/06-algoritmica-fundamentos/01-que-es-algoritmo). Només necessites variables, bucles i arrays bàsics de la U04.
 - Ja saps què és un algoritme i vols molta cosa? → Salta a la [cerca binària](/ApuntesProgramacion/va/06-algoritmica-fundamentos/03-busqueda-binaria) o a l'[ordenació per inserció](/ApuntesProgramacion/va/06-algoritmica-fundamentos/05-ordenacion-insercion).
 - Només vols saber quin algoritme triar? → Llig [Big O](/ApuntesProgramacion/va/06-algoritmica-fundamentos/06-complejidad-big-o) i [Triar l'algoritme adequat](/ApuntesProgramacion/va/06-algoritmica-fundamentos/07-elegir-algoritmo).
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/06-algoritmica-fundamentos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u07-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/06-algoritmica-fundamentos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u06-inicial).
 
 **📍 Primer punt:** [01 · Què és un algoritme](/ApuntesProgramacion/va/06-algoritmica-fundamentos/01-que-es-algoritmo)  
 **⏭️ En acabar la unitat, continua en [U07 · Algorítmica II: Tècniques](/ApuntesProgramacion/va/07-algoritmica-tecnicas).**

@@ -5,7 +5,7 @@ description: "Petició-resposta, verbs HTTP, codis d'estat i per què tota la we
 
 <p><small>Petició-resposta, verbs HTTP, codis d'estat i per què tota la web se sosté sobre una conversa tan simple 🌐⚡</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U125 · Servir i Consumir APIs amb Web** → 01 · El protocol HTTP en 30 segons
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 01 · El protocol HTTP en 30 segons
 
 ---
 
@@ -13,7 +13,7 @@ description: "Petició-resposta, verbs HTTP, codis d'estat i per què tota la we
 
 > **HTTP és un protocol de petició-resposta: el client demana un recurs (una URL) i el servidor li respon amb un codi d'estat i el contingut. Això és tot. La resta són capes que es construïxen damunt.**
 
-En la U123 ja tancaves fitxers amb `try-with-resources` i en la U124 connectaves Java a bases de dades. Ara el protagonista és un altre: la web. I tant si algun dia uses Tomcat, Spring Boot o un microservei al núvol: tots parlen el mateix idioma, i eixe idioma es diu HTTP. Hui ho aprens en 30 segons... i en unes poques pàgines més.
+En la U13 ja tancaves fitxers amb `try-with-resources` i en la U14 connectaves Java a bases de dades. Ara el protagonista és un altre: la web. I tant si algun dia uses Tomcat, Spring Boot o un microservei al núvol: tots parlen el mateix idioma, i eixe idioma es diu HTTP. Hui ho aprens en 30 segons... i en unes poques pàgines més.
 
 ---
 

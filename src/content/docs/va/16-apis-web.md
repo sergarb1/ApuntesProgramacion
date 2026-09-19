@@ -1,5 +1,5 @@
 ---
-title: "U125 — Servir i Consumir APIs amb Web"
+title: "U16 — Servir i Consumir APIs amb Web"
 description: "Del terminal a Internet: HttpServer, HTML, formularis, JSON i HttpClient per a servir i consumir APIs com una de veritat 🌐"
 emoji: 🌐
 ---
@@ -21,6 +21,8 @@ Esta unitat té tres grans actes:
 Pel camí entendràs el model petició-resposta d'HTTP, per què `"POST".equals(...)` és millor que `...equals("POST")`, què significa de veritat un 404 i per què el `fetch` de JavaScript i l'`HttpClient` de Java són dos cares de la mateixa moneda.
 
 Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
+
+> 🧪 **Material d'ampliació (extra, no avaluables).** Esta unitat va més enllà del temari oficial: úsala per a ampliar, no per a suar la gota gorda. Els butlletins són recomanats, no obligatoris.
 
 ---
 
@@ -82,13 +84,13 @@ En acabar, seràs capaç de:
 | RA5 g) | S'han programat controladors d'esdeveniments. | ✅ Punt 6 |
 | RA5 h) | S'han escrit programes que utilitzen interfícies gràfiques per a l'entrada i eixida d'informació. | ✅ Punts 5 i 6 |
 
-> 📌 La **RA5** es completa amb la **U03** (consola i formats, CEs a i b) i la **U123** (fitxers i accés a arxius, CEs c, d i e). Esta unitat cobreix la cara web de l'entrada/eixida: HTTP com a protocol, HTML i JSON com a formats, i les llibreries `HttpServer` i `HttpClient` com a procediments del llenguatge.
+> 📌 La **RA5** es completa amb la **U03** (consola i formats, CEs a i b) i la **U13** (fitxers i accés a arxius, CEs c, d i e). Esta unitat cobreix la cara web de l'entrada/eixida: HTTP com a protocol, HTML i JSON com a formats, i les llibreries `HttpServer` i `HttpClient` com a procediments del llenguatge.
 
 ---
 
 ## 🚪 Per on comence?
 
-- Vens de la U124 (JDBC) i vols l'essencial? → Comença en el [punt 1](/ApuntesProgramacion/va/16-apis-web/01-protocolo-http) i el [punt 2](/ApuntesProgramacion/va/16-apis-web/02-servidor-minimo): HTTP i el teu primer servidor.
+- Vens de la U14 (JDBC) i vols l'essencial? → Comença en el [punt 1](/ApuntesProgramacion/va/16-apis-web/01-protocolo-http) i el [punt 2](/ApuntesProgramacion/va/16-apis-web/02-servidor-minimo): HTTP i el teu primer servidor.
 - Ja saps servir i vols fer APIs? → Ves directe al [punt 5](/ApuntesProgramacion/va/16-apis-web/05-devolviendo-json) i al [punt 6](/ApuntesProgramacion/va/16-apis-web/06-proyecto-rest): JSON i el CRUD de tasques.
 - Només vens a pel costat client? → Salta al [punt 7](/ApuntesProgramacion/va/16-apis-web/07-httpclient) i al [punt 8](/ApuntesProgramacion/va/16-apis-web/08-httpclient-avanzado): consumir APIs externes.
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/16-apis-web/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u16-inicial).

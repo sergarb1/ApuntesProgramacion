@@ -5,7 +5,7 @@ description: "application/json, fetch desde el frontend y por qué las aplicacio
 
 <p><small>application/json, fetch desde el frontend y por qué las aplicaciones modernas separan datos de diseño 🧩🔀</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U125 · Servir y Consumir APIs con Web** → 05 · Devolviendo JSON: como una API de verdad
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 05 · Devolviendo JSON: como una API de verdad
 
 ---
 
@@ -34,7 +34,7 @@ JSON es texto con una estructura de dos piezas:
 - **Arrays** entre corchetes `[...]`: listas de valores.
 - Valores posibles: textos entre comillas, números, `true`/`false`, `null`, objetos y arrays.
 
-Un `record` de Java (los viste en la U12) y un objeto JSON son primos hermanos: misma idea de "datos con nombre". La diferencia es que JSON es texto, así que cualquier lenguaje lo entiende.
+Un `record` de Java (los viste en la U11) y un objeto JSON son primos hermanos: misma idea de "datos con nombre". La diferencia es que JSON es texto, así que cualquier lenguaje lo entiende.
 
 ---
 

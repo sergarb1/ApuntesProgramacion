@@ -74,4 +74,4 @@ Això significa una cosa fonamental: **la IA es pot inventar coses amb una segur
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/00-pensamiento-computacional) · **Anterior:** [07 · Practicar (menys mirar, més intentar)](/ApuntesProgramacion/va/00-pensamiento-computacional/07-practicar) · **Següent:** [09 · El meu primer problema (pont cap a Java)](/ApuntesProgramacion/va/00-pensamiento-computacional/09-primer-problema)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/01-pensamiento-computacional) · **Anterior:** [07 · Practicar (menys mirar, més intentar)](/ApuntesProgramacion/va/01-pensamiento-computacional/07-practicar) · **Següent:** [09 · El meu primer problema (pont cap a Java)](/ApuntesProgramacion/va/01-pensamiento-computacional/09-primer-problema)

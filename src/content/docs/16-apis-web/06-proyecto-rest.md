@@ -5,7 +5,7 @@ description: "Júntalo todo en una API REST: GET, POST, PUT y DELETE con datos e
 
 <p><small>Júntalo todo en una API REST: GET, POST, PUT y DELETE con datos en memoria 🗂️🔧</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U125 · Servir y Consumir APIs con Web** → 06 · Mini proyecto: gestor de tareas (API REST)
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 06 · Mini proyecto: gestor de tareas (API REST)
 
 ---
 
@@ -34,7 +34,7 @@ La regla de oro: **el método dice el verbo y la ruta dice el sustantivo**. `GET
 
 ## 🧱 El modelo y el almacén
 
-Primero, la tarea. Un `record` (genérico y limpio, como en la U12):
+Primero, la tarea. Un `record` (genérico y limpio, como en la U11):
 
 ```java
 record Tarea(int id, String titulo, boolean completada) {}
@@ -60,7 +60,7 @@ public class ApiTareas {
 }
 ```
 
-> 💡 **Consejo:** `AtomicInteger` te da IDs que no se repiten ni con peticiones simultáneas. Con un `int` normal, dos peticiones a la vez podrían leer el mismo valor. En producción, ese `ArrayList` sería una base de datos (JDBC, como en la U124), pero el patrón es idéntico.
+> 💡 **Consejo:** `AtomicInteger` te da IDs que no se repiten ni con peticiones simultáneas. Con un `int` normal, dos peticiones a la vez podrían leer el mismo valor. En producción, ese `ArrayList` sería una base de datos (JDBC, como en la U114), pero el patrón es idéntico.
 
 ---
 
@@ -157,7 +157,7 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 1. `POST` para crear, `GET` para listar.
 2. `404`, porque el recurso pedido no existe.
 3. `204` (sin contenido): borrar con éxito no necesita devolver cuerpo.
-4. Porque para aprender el patrón REST basta; la persistencia (con JDBC, U124) cambia el almacén, no las rutas ni los métodos.
+4. Porque para aprender el patrón REST basta; la persistencia (con JDBC, U14) cambia el almacén, no las rutas ni los métodos.
 
 </details>
 
@@ -166,7 +166,7 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 ## ✅ Resumen en 3 frases
 
 1. Una **API REST** ordena rutas y métodos: `GET` lee, `POST` crea, `PUT` actualiza, `DELETE` borra, y cada ruta dice qué recurso toca.
-2. El **almacén en memoria** (`ArrayList` + `AtomicInteger`) es perfecto para aprender el patrón; la base de datos de la U124 solo sustituye el almacén, no las rutas.
+2. El **almacén en memoria** (`ArrayList` + `AtomicInteger`) es perfecto para aprender el patrón; la base de datos de la U14 solo sustituye el almacén, no las rutas.
 3. Maneja los **errores con códigos honestos**: `404` si no existe, `201` si creas, `204` si borras; así tu API habla claro.
 
 > 🐛 **Vocabulario rápido**

@@ -9,7 +9,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 
 <div align="center" style="margin-bottom:2rem;">
   <a href="/ApuntesProgramacion/02-introduccion" style="display:inline-block;padding:0.75rem 2rem;background:linear-gradient(135deg,#2d8a4e,#1e6b38);color:#fff;border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🚀 Empezar por la Unidad 2</a>
-  <a href="/ApuntesProgramacion/01-pensamiento-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primero: Pensamiento Computacional</a>
+  <a href="/ApuntesProgramacion/01-pensamiento-computacional" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🧠 Primero: Introducción al Pensamiento Computacional</a>
   <a href="https://github.com/sergarb1/ApuntesProgramacion" style="display:inline-block;padding:0.75rem 2rem;background:var(--sl-color-gray-5);color:var(--sl-color-white);border-radius:8px;text-decoration:none;font-weight:600;margin:0 0.5rem;">🐙 Ver en GitHub</a>
 </div>
 
@@ -41,7 +41,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 1</span>
     <span class="ra">—</span>
   </div>
-  <a href="/ApuntesProgramacion/01-pensamiento-computacional" class="title-link">Pensamiento Computacional</a>
+  <a href="/ApuntesProgramacion/01-pensamiento-computacional" class="title-link">Introducción al Pensamiento Computacional</a>
   <p class="desc">Antes de código, pensemos. Descomposición, debugging, protocolo de paz y tu primer problema de programación sin tocar Java.</p>
   <a href="/ApuntesProgramacion/01-pensamiento-computacional" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -151,8 +151,8 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 11</span>
     <span class="ra">RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/11-colecciones" class="title-link">Colecciones</a>
-  <p class="desc"><code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>, <code>TreeSet</code>, <code>Iterator</code> y la clase <code>Collections</code>: el Java Collections Framework para guardar y recorrer datos de forma elegante.</p>
+  <a href="/ApuntesProgramacion/11-colecciones" class="title-link">Colecciones, genéricos y mapas</a>
+  <p class="desc">El Java Collections Framework completo: <code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>, <code>TreeSet</code>, <code>Iterator</code>, <code>Collections</code>, genéricos (<code>Caja&lt;T&gt;</code>, wildcards) y mapas (<code>HashMap</code>, <code>TreeMap</code>).</p>
   <a href="/ApuntesProgramacion/11-colecciones" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
@@ -160,50 +160,39 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 12</span>
-    <span class="ra">RA6</span>
+    <span class="ra">RA6, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/12-genericos-mapas" class="title-link">Genéricos y Mapas</a>
-  <p class="desc">Genéricos para clases y métodos seguros de tipos, la interfaz <code>Map</code> y sus implementaciones <code>HashMap</code>, <code>TreeMap</code>, y cómo iterar sobre ellas.</p>
-  <a href="/ApuntesProgramacion/12-genericos-mapas" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/12-programacion-funcional" class="title-link">Programación Funcional</a>
+  <p class="desc">Lambdas, interfaces funcionales, referencias a métodos, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) y <code>Optional</code> para escribir Java moderno y expresivo.</p>
+  <a href="/ApuntesProgramacion/12-programacion-funcional" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 13</span>
-    <span class="ra">RA6, RA7</span>
+    <span class="ra">RA5</span>
   </div>
-  <a href="/ApuntesProgramacion/13-programacion-funcional" class="title-link">Programación Funcional</a>
-  <p class="desc">Lambdas, interfaces funcionales, referencias a métodos, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) y <code>Optional</code> para escribir Java moderno y expresivo.</p>
-  <a href="/ApuntesProgramacion/13-programacion-funcional" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/13-ficheros-regex" class="title-link">Ficheros y Regex</a>
+  <p class="desc">Lectura y escritura de ficheros de texto y binarios, serialización de objetos y expresiones regulares para buscar, validar y reemplazar patrones en texto.</p>
+  <a href="/ApuntesProgramacion/13-ficheros-regex" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 14</span>
-    <span class="ra">RA5</span>
-  </div>
-  <a href="/ApuntesProgramacion/14-ficheros-regex" class="title-link">Ficheros y Regex</a>
-  <p class="desc">Lectura y escritura de ficheros de texto y binarios, serialización de objetos y expresiones regulares para buscar, validar y reemplazar patrones en texto.</p>
-  <a href="/ApuntesProgramacion/14-ficheros-regex" class="unit-link">👉 Ver unidad 👈</a>
-
-</div>
-
-<div class="unit-card">
-  <div class="unit-card-header">
-    <span class="num">Unidad 15</span>
     <span class="ra">RA9</span>
   </div>
-  <a href="/ApuntesProgramacion/15-conexion-bases-datos" class="title-link">Conexión a BD con JDBC</a>
+  <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="title-link">Conexión a BD con JDBC</a>
   <p class="desc">Conecta Java con bases de datos relacionales usando JDBC: <code>Connection</code>, <code>Statement</code>, consultas, inserciones, actualizaciones y transacciones seguras.</p>
-  <a href="/ApuntesProgramacion/15-conexion-bases-datos" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
-    <span class="num">Unidad 16</span>
+    <span class="num">Unidad 16 (extra)</span>
     <span class="ra">RA5</span>
   </div>
   <a href="/ApuntesProgramacion/16-apis-web" class="title-link">Servir y Consumir APIs con Web</a>
@@ -412,21 +401,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 
 <div class="unit-card">
   <div class="unit-card-header">
-    <span class="num">Unidad 15</span>
-  </div>
-  <p class="boletin-section-label">📝 Boletines de la unidad</p>
-  <div class="boletin-links">
-    <a href="/ApuntesProgramacion/boletines/boletin-u15-inicial" class="blink">🟢 Inicial por resolver</a>
-    <a href="/ApuntesProgramacion/boletines/boletin-u15-inicial-resuelto" class="blink">✅ Inicial resuelto</a>
-    <a href="/ApuntesProgramacion/boletines/boletin-u15-avanzado" class="blink">⭐ Avanzado por resolver</a>
-    <a href="/ApuntesProgramacion/boletines/boletin-u15-avanzado-resuelto" class="blink">💪 Avanzado resuelto</a>
-    <a href="/ApuntesProgramacion/boletines/boletin-u15-extras" class="blink">🔥 Extras</a>
-  </div>
-</div>
-
-<div class="unit-card">
-  <div class="unit-card-header">
-    <span class="num">Unidad 16</span>
+    <span class="num">Unidad 16 (extra)</span>
   </div>
   <p class="boletin-section-label">📝 Boletines de la unidad</p>
   <div class="boletin-links">
