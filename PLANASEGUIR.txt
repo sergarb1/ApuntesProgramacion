@@ -1,0 +1,66 @@
+PLAN A SEGUIR — Diagramas Excalidraw U03 (curso Java)
+=====================================================
+Fecha: 25/09/2026 · Commit de partida: 7949863
+
+PIPELINE (obligatorio — .opencode/excalidraw-pipeline.md + AGENTS.md § Diagramas)
+--------------------------------------------------------------------------------
+1. Canvas propio: EXPRESS_SERVER_URL=http://127.0.0.1:3002 npx -y mcp-excalidraw-server status
+   → running=true y browserClients >= 1 (si no: pedir abrir http://127.0.0.1:3002).
+   PROHIBIDO el CLI sin EXPRESS_SERVER_URL (cae en 3001, canvas de otra sesión)
+   y PROHIBIDAS las herramientas MCP excalidraw_* (también apuntan al 3001).
+2. clear --yes entre diagramas.
+3. JSON en /tmp/opencode/ → npx ... add <archivo.json>  (NO batch_create_elements).
+4. Round-trip OBLIGATORIO: clear → export → clear → import (materializa bound-labels en cascadia).
+5. Validar: screenshot --format svg + /tmp/opencode/check.py (solapes, desbordes, fuentes) + grep font-family.
+6. VA: mapa JSON de traducción → /tmp/opencode/buildva.sh → NOMBRE-val.svg.
+7. Copiar a public/diagrams/: NOMBRE.excalidraw + NOMBRE.svg + NOMBRE-val.svg.
+8. clear --yes y borrar temporales antes del siguiente.
+
+REGLAS DE DISEÑO (las mismas que U02)
+-------------------------------------
+- cascadia para TODO; prohibido Virgil/Excalifont/Comic/manuscrita.
+- fillStyle "solid"; texto de caja dentro (bound-label); zonas SIN text interior;
+  títulos = texto libre arriba-izquierda con textAlign "left".
+- cuerpo >= 16, títulos 20–28; formas >= 120x60; rejilla 20; gap >= 120 px entre zonas.
+- flechas con startElementId/endElementId; etiqueta <= 12 caracteres; sin diagonales que crucen zonas.
+- paleta verdes #2d8a4e / #f0fdf4 / #dcfce7 / #e8f5ee / #86efac; ámbar prohibido; rojo SOLO errores.
+- texto monospace: ~0,55 x fontSize por carácter → líneas <= ~19-20 caracteres en cajas de 220-240 px.
+
+CATÁLOGO (10 diagramas, uno por capítulo — U03 tiene 10 y hoy 0 imágenes)
+-------------------------------------------------------------------------
+ #  Nombre                          Cap.  Concepto / punto de inserción
+ 1  u03-map-tipo-primitivos         01    8 tipos: bits, rangos y familias → tras declaraciones (ancla "usa int para casi todo")
+ 2  u03-pool-strings                02    pool vs new; == (flechas) vs .equals() (contenido) → tras ⚠️ "regla de oro"
+ 3  u03-division-entera-arbol       03    ¿int/int? trunca (17/5=3) vs double → 3,4 → tras ⚠️ "errores rentables"
+ 4  u03-cortocircuito-flujo         04    portero que no evalúa la 2ª condición && / || → tras tip del cortocircuito
+ 5  u03-escalera-casting            05    byte→double verdes (implícita) / rojas (narrowing) → tras el ASCII byte→…→double
+                                          (ASCII EXISTENTE: conservar, el SVG es complemento)
+ 6  u03-buffer-enter-residual       06    carril MALO (\n residual) vs carril BIEN (nextLine() vacío) → tras ⚠️ del truco
+ 7  u03-flujo-printf                07    plantilla %s/%d/%.2f ← argumentos → salida → tras la tabla de especificadores
+ 8  u03-escalera-random             08    random → ×N → (int) → +min con rectas numéricas → tras la nota de la fórmula
+ 9  u03-substring-indices           09    índices 0-based y por qué el fin NO se incluye → tras ⚠️ de substring
+10  u03-mapa-unidad                 10    mapa mental del repaso (7 zonas + error típico de cada una) → tras "La idea en una frase"
+
+PASO 1 — Crear los 10 diagramas en el orden del catálogo (1 → 10)
+    Por cada uno: leer el tramo exacto del capítulo → JSON → round-trip → check.py → VA → copiar a public/diagrams/.
+PASO 2 — Inserción en Markdown (ES + VA)
+    src/content/docs/03-variables-tipos-operadores/NN-*.md   → ![alt es-ES](/ApuntesProgramacion/diagrams/u03-x.svg)
+    src/content/docs/va/03-variables-tipos-operadores/NN-*.md → ![alt en valencià](/ApuntesProgramacion/diagrams/u03-x-val.svg)
+    - Tras el bloque/tabla relacionado y antes del ---; conservar TODOS los ASCII y bloques de salida existentes.
+    - alt en es-ES en ES; alt en valenciano natural en VA.
+PASO 3 — Validación final
+    - 30 SVG > 1 KB; grep font-family: solo "Cascadia" (sin Excalifont/Virgil/Comic/Helvetica).
+    - check.py sobre los 10 .excalidraw: sin solapes de texto ni etiquetas desbordadas.
+    - Rutas /ApuntesProgramacion/diagrams/ en minúsculas; NO tocar package.json ni astro.config.mjs.
+    - Checklist lingüístico es-ES en todo texto nuevo + lectura natural del valenciano.
+    - npm run build (node_modules ya instalado) → 447+ páginas OK.
+PASO 4 — Cierre
+    - Commit + push (pedido explícitamente).
+    - Borrar PLANASEGUIR.txt al terminar TODO (o dejarlo con lo que siga pendiente).
+
+NOTAS DEL ENTORNO
+-----------------
+- Scripts ya preparados en /tmp/opencode/: build.sh (ES), buildva.sh (VA), check.py (geometría).
+- Canvas 3002 vivo con navegador conectado; si browserClients = 0, pedir abrir esa URL (no la 3000/3001).
+- La lectura de PNG con la herramienta read está desincronizada en esta sesión:
+  la validación visual se hace con check.py (geometría) + grep de fuentes sobre el SVG.
