@@ -33,6 +33,8 @@ El teu codi (.java)  --javac-->  bytecode (.class)  --java-->  eixida
 - **Errors d'execució (runtime)**: el programa compila, però rebenta en córrer (per exemple, `ArrayIndexOutOfBoundsException` del punt 6).
 - **Errors de lògica**: tot "funciona", però el resultat és incorrecte. El més perillós: ni el compilador ni el runtime t'avisen. Ací entra el depurador del punt 4.
 
+![Diagrama de les tres famílies d'errors: compilació, execució i lògica](/ApuntesProgramacion/diagrams/u02-errores-pipeline-val.svg)
+
 ---
 
 ## 😤 L'error de l'aprenent: 4 errors en un programa

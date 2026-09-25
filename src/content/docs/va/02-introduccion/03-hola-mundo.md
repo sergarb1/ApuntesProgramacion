@@ -56,6 +56,8 @@ public class MiPrimerPrograma {
 
 💡 **Detall pràctic:** cada instrucció acaba amb `;`. És el punt final de cada frase. Sense ell, el compilador pensa que la frase continua i es lliga. Els `{}` delimiten els blocs: els de la classe contenen la classe, els del main contenen les ordres.
 
+![Diagrama amb l'anatomia d'un Hola Mundo: classe, main, println i comentari explicats](/ApuntesProgramacion/diagrams/u02-anatomia-hola-mundo-val.svg)
+
 ---
 
 ## 🗝️ Per què `public static void main(String[] args)`?

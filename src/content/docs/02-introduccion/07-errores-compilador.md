@@ -33,6 +33,8 @@ Tu código (.java)  --javac-->  bytecode (.class)  --java-->  salida
 - **Errores de ejecución (runtime)**: el programa compila, pero explota al ejecutar (por ejemplo, `ArrayIndexOutOfBoundsException` del punto 6).
 - **Errores de lógica**: todo "funciona", pero el resultado es incorrecto. El más peligroso: ni el compilador ni el runtime te avisan. Aquí entra el depurador del punto 4.
 
+![Diagrama de las tres familias de errores: compilación, ejecución y lógica](/ApuntesProgramacion/diagrams/u02-errores-pipeline.svg)
+
 ---
 
 ## 😤 El error del aprendiz: 4 errores en un programa

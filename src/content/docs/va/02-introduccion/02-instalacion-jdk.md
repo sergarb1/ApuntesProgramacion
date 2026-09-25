@@ -62,6 +62,8 @@ Si, en canvi, el sistema et diu `'java' no es reconeix com un comandament intern
 
 El "PATH" és la llista de carpetes on el teu sistema operatiu busca els programes i comandaments que escrius en la terminal. Si la carpeta `...\jdk-26\bin` (o similar) està en el PATH, en escriure `java` el sistema la troba a la primera. Sense eixa configuració, el sistema no sap on està instal·lat el teu JDK.
 
+![Diagrama per a verificar el JDK: comprovació de versions i cerca en el PATH](/ApuntesProgramacion/diagrams/u02-path-verificacion-val.svg)
+
 ### Pas 3: Per què hi ha dos comandaments?
 
 - **`javac`**: És el compilador. Converteix el teu codi font (`.java`) en bytecode (`.class`).

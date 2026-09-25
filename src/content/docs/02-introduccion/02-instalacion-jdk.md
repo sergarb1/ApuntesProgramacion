@@ -62,6 +62,8 @@ Si, en cambio, el sistema te dice `'java' no se reconoce como un comando interno
 
 El "PATH" es la lista de carpetas donde tu sistema operativo busca los programas y comandos que escribes en la terminal. Si la carpeta `...\jdk-26\bin` (o similar) está en el PATH, al escribir `java` el sistema la encuentra a la primera. Sin esa configuración, el sistema no sabe dónde está instalado tu JDK.
 
+![Diagrama para verificar el JDK: terminal con java -version y flujo de búsqueda en el PATH](/ApuntesProgramacion/diagrams/u02-path-verificacion.svg)
+
 ### Paso 3: ¿Por qué hay dos comandos?
 
 - **`javac`**: Es el compilador. Convierte tu código fuente (`.java`) en bytecode (`.class`).

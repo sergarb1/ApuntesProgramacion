@@ -47,6 +47,8 @@ Programar es un bucle de cuatro pasos que repetirás millones de veces:
 
 ⚠️ **Advertencia:** Ejecutar sin depurar (`Ctrl + F5`) y en modo depuración (`F5`) NO son lo mismo. Ejecutar normal ignora los breakpoints; Debug los respeta. Si pones un punto rojo y ejecutas sin depurar, el programa no se detendrá.
 
+![Diagrama del ciclo de trabajo: editar, compilar, ejecutar y depurar, con la diferencia entre Run y Debug](/ApuntesProgramacion/diagrams/u02-ciclo-vida-ide.svg)
+
 ---
 
 ## ⌨️ Los atajos de VS Code que te harán parecer un pro

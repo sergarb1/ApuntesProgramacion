@@ -46,6 +46,8 @@ Es como ver una serie de crímenes en cámara lenta: puedes pausar, observar qui
 
 ⚠️ **Advertencia:** Si te pierdes dentro de un método ajeno con Step Into, pulsa Step Out (`Shift + F11`): sales del método y vuelves al punto donde lo llamaste. Es el botón "he entrado sin querer, sáquenme de aquí".
 
+![Diagrama para depurar paso a paso en VS Code: breakpoint, F5, F10/F11 y panel de variables](/ApuntesProgramacion/diagrams/u02-step-debug.svg)
+
 ---
 
 ## 🏫 Ejemplo guiado: el caso del sospechoso en VS Code

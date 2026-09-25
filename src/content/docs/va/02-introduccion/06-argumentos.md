@@ -51,6 +51,8 @@ Palabra 2: mola
 Palabra 3: mucho
 ```
 
+![Diagrama del array args: de la terminal al programa amb els seus índexs i length](/ApuntesProgramacion/diagrams/u02-array-args-val.svg)
+
 ---
 
 ## 🔢 Com s'indexen les paraules
