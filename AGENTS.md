@@ -159,6 +159,35 @@ npm run epub      # Generar EPUB castellano en public/epub/
 npm run epub:all  # Generar EPUB ambos idiomas
 ```
 
+## 📐 Diagramas (Excalidraw → Astro/Starlight)
+
+**Pipeline estricto. Documento completo:** `.opencode/excalidraw-pipeline.md` (leer ANTES de crear cualquier diagrama).
+
+### Roles
+- **IA:** verificar servidor (`npx -y mcp-excalidraw-server status`), crear/iterar/exportar SVG, validar visualmente, limpiar temporales.
+- **IA solo PIDE al humano:** abrir `http://127.0.0.1:3000` en el navegador, tocar `package.json`/`astro.config.mjs`, hacer commit/push.
+
+### Rutas (PROHIBIDO incumplir)
+- SVG y fuente: **solo** `public/diagrams/NOMBRE.svg` y `public/diagrams/NOMBRE.excalidraw`.
+- **PROHIBIDO** `src/assets/`, componentes React Excalidraw, páginas `.astro`/`.mdx` solo para diagramas.
+- Referencia Markdown (base path `/ApuntesProgramacion`): `![alt en es-ES](/ApuntesProgramacion/diagrams/NOMBRE.svg)`.
+- Config OpenCode/Skill: `~/.config/opencode/` (agnóstico; en Windows = `%USERPROFILE%\.config\opencode\`).
+
+### Workflow (orden obligatorio)
+1. `status` → si `browserClients < 1`, pedir al humano abrir el navegador.
+2. `clear --yes` si hay canvas sucio.
+3. JSON temporal → `add` por CLI (no `batch_create_elements`: no admite `fillStyle`).
+4. `describe` + `screenshot` → corregir solapes/textos hasta legible.
+5. `export` (.excalidraw) + `export_to_image --format svg` → `public/diagrams/`.
+6. Validar SVG > 1 KB; si vacío/20×20, forzar viewport y reexportar.
+7. `clear --yes` + borrar temporal antes del siguiente diagrama.
+
+### Diseño (restricciones absolutas)
+- **Fuentes SIEMPRE bonitas:** `fontFamily` ∈ {`helvetica` (texto/títulos), `cascadia` (código/identificadores)}. **De momento usar `cascadia` para TODO** (texto y código); helvetica solo si se pide explícitamente. **PROHIBIDO** Virgil/Excalifont/Comic/manuscrita por defecto en cualquier elemento. Si un `update` pierde la fuente, reaplicarla antes de exportar.
+- `fillStyle: "solid"` **obligatorio**; texto **dentro** de cajas (bound-label); zonas de agrupación **sin** `text` interior (título = texto libre arriba-izquierda).
+- Flechas **siempre** con `startElementId`/`endElementId`; etiqueta solo si ≤ 12 caracteres; gap ≥ 120 px; sin diagonales que crucen zonas.
+- Texto ≥ 16 (títulos 20–28); formas ≥ 120×60; rejilla 20 px; rojo **solo** errores.
+
 ## Notas
 - Los .md en `va/` deben mantenerse siempre sincronizados con los de castellano
 - `starlight-llm-actions` eliminado por incompatibilidad; PDF por página con Ctrl+P del navegador
