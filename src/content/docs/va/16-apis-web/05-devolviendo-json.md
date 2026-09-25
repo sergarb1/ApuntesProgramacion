@@ -5,7 +5,7 @@ description: "application/json, fetch des del frontend i per què les aplicacion
 
 <p><small>application/json, fetch des del frontend i per què les aplicacions modernes separen dades de disseny 🧩🔀</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 05 · Tornant JSON: com una API de veritat
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 05 · Tornant JSON: com una API de veritat
 
 ---
 

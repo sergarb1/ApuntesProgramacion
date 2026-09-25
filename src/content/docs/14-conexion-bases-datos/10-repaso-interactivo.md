@@ -1,11 +1,11 @@
 ﻿---
-title: "09 · Repaso interactivo: domina el JDBC"
+title: "10 · Repaso interactivo: domina el JDBC"
 description: "El cierre práctico de la unidad, con una inyección SQL que va a doler, un UPDATE sin WHERE que va a arder y una conexión que nadie cerró 😈🗄️"
 ---
 
 <p><small>El cierre práctico de la unidad, con una inyección SQL que va a doler, un UPDATE sin WHERE que va a arder y una conexión que nadie cerró 😈🗄️</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 10 · Repaso interactivo
 
 ---
 
@@ -370,8 +370,8 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 **CONRAD:** — *asiente* Exacto. Tu programa Java se convierte en el intermediario: recibe peticiones, consulta la base de datos con el JDBC que acabas de dominar, y devuelve los datos. Primero serviste datos desde la base; ahora los servirás por la web.
 
-**PROXIMAMENTE EN U16:** Servir y Consumir APIs con Web. El momento en que tu programa Java se pone un uniforme de camarero: recibe peticiones HTTP y sirve datos en JSON. 🌐
+**PROXIMAMENTE EN U16:** Servir y consumir APIs con Web. El momento en que tu programa Java se pone un uniforme de camarero: recibe peticiones HTTP y sirve datos en JSON. 🌐
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/14-conexion-bases-datos) · **Anterior:** [08 · Buenas prácticas](/ApuntesProgramacion/14-conexion-bases-datos/08-buenas-practicas) · **Siguiente:** **[U16 · Servir y Consumir APIs con Web](/ApuntesProgramacion/16-apis-web)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/14-conexion-bases-datos) · **Anterior:** [09 · Introducción a ORM](/ApuntesProgramacion/14-conexion-bases-datos/09-introduccion-orm) · **Siguiente:** **[U16 · Servir y consumir APIs con Web](/ApuntesProgramacion/16-apis-web)**

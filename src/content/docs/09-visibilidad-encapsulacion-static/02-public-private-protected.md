@@ -5,7 +5,7 @@ description: "Los 4 niveles de visibilidad: de la valla publicitaria en Times Sq
 
 <p><small>Los 4 niveles de visibilidad: de la valla publicitaria en Times Square al diario con candado 🔐</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 02 · public, private y protected
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 02 · public, private y protected
 
 ---
 

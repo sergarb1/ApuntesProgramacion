@@ -5,7 +5,7 @@ description: Les caixes del magatzem de la memòria i els seus 8 tamanys distint
 
 <p><small>Les caixes del magatzem de la memòria i els seus 8 tamanys distints 📦</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 01 · Variables i tipus primitius
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 01 · Variables i tipus primitius
 
 ---
 

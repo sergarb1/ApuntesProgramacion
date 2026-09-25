@@ -5,7 +5,7 @@ description: "El patrón más antiguo de la informática: divide el problema, co
 
 <p><small>El patrón más antiguo de la informática: divide el problema, conquista cada parte y combina ⚔️</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 03 · Divide y vencerás
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 03 · Divide y vencerás
 
 ---
 

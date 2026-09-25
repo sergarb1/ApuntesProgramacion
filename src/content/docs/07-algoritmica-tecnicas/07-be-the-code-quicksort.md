@@ -5,7 +5,7 @@ description: Cierra la página, abre el editor y escribe Quicksort y Mergesort t
 
 <p><small>Cierra la página, abre el editor y escribe Quicksort y Mergesort tú solo (o sufre con honor) 🕶️</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 07 · Be the Code: quicksort desde cero
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 07 · Be the Code: quicksort desde cero
 
 ---
 

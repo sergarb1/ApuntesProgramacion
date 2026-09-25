@@ -1,6 +1,6 @@
 ﻿---
 title: Boletín U03 — Inicial
-description: Ejercicios básicos de Variables, Tipos y Operadores
+description: Ejercicios básicos de Variables, tipos y operadores
 ---
 
 # 📝 Boletín U03 — Inicial

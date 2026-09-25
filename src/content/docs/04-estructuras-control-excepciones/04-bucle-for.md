@@ -5,7 +5,7 @@ description: El contador obsesivo que repite un número exacto de vueltas 🔢
 
 <p><small>El contador obsesivo que repite un número exacto de vueltas 🔢</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 04 · Bucle for y bucles anidados
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 04 · Bucle for y bucles anidados
 
 ---
 

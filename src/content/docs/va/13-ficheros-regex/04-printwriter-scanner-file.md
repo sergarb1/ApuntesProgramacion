@@ -5,7 +5,7 @@ description: "El sergent que formata l'eixida i el pop que tokenitza l'entrada: 
 
 <p><small>El sergent que formata l'eixida i el pop que tokenitza l'entrada: PrintWriter per a escriure bonic i Scanner per a llegir fitxers a trossos 🖨️🦑</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 04 · PrintWriter i Scanner + File
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 04 · PrintWriter i Scanner + File
 
 ---
 

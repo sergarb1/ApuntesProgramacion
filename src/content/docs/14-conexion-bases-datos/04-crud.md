@@ -5,7 +5,7 @@ description: "El CRUD completo con JDBC: INSERT, SELECT, UPDATE y DELETE con Pre
 
 <p><small>El CRUD completo con JDBC: INSERT, SELECT, UPDATE y DELETE con PreparedStatement, el POJO que guarda cada fila y el WHERE que te salva la vida 🗄️🔄</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 04 · CRUD completo
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 04 · CRUD completo
 
 ---
 

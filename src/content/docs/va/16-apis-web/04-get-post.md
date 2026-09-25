@@ -5,7 +5,7 @@ description: "El navegador pregunta amb la URL i entrega amb el cos: llig la que
 
 <p><small>El navegador pregunta amb la URL i entrega amb el cos: llig la query string i el body com un professional 📥📤</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 04 · Paràmetres GET i formularis POST
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 04 · Paràmetres GET i formularis POST
 
 ---
 

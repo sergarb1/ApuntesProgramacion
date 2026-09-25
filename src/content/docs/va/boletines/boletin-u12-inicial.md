@@ -1,6 +1,6 @@
 ﻿---
 title: "Butlletí U12 — Inicial"
-description: "Exercicis bàsics de Programació Funcional: lambdes, Predicate, map i filter sobre streams"
+description: "Exercicis bàsics de Programació funcional (Streams i Lambdas): lambdes, Predicate, map i filter sobre streams"
 ---
 
 # 📝 Butlletí U12 — Inicial

@@ -5,7 +5,7 @@ description: "El motle, la galeta, `new` i la teua primera classe: ja no escrius
 
 <p><small>El motle, la galeta, `new` i la teua primera classe: ja no escrius receptes, fornegis 🍪</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 02 · Classes i objectes: el tallagalletas i les galetes
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 02 · Classes i objectes: el tallagalletas i les galetes
 
 ---
 

@@ -5,7 +5,7 @@ description: "Del molde al mundo real: valida correos y DNIs, limpia textos con 
 
 <p><small>Del molde al mundo real: valida correos y DNIs, limpia textos con replaceAll, trocea con split y extrae datos con grupos de captura 🧰🛠️</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 08 · Regex en acción: matches, replaceAll, split y validaciones
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 08 · Regex en acción: matches, replaceAll, split y validaciones
 
 ---
 

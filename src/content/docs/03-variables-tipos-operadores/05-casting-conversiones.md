@@ -5,7 +5,7 @@ description: Aprieta que cabe, con pérdidas y lágrimas si no eliges bien 🔄
 
 <p><small>Aprieta que cabe, con pérdidas y lágrimas si no eliges bien 🔄</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 05 · Casting y conversiones
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 05 · Casting y conversiones
 
 ---
 

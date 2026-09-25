@@ -5,7 +5,7 @@ description: La caja mágica del texto y las cajas con superglue 🔤
 
 <p><small>La caja mágica del texto y las cajas con superglue 🔤</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 02 · String, constantes y final
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 02 · String, constantes y final
 
 ---
 

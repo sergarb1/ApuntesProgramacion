@@ -1,5 +1,5 @@
 ---
-title: "U13 — Fitxers i Expressions Regulars"
+title: "U13 — Fitxers i expressions regulars (Regex)"
 description: "El GPS dels fitxers, el llapis que no oblida, la porta que es tanca sola i el detectiu de patrons: File, FileWriter, BufferedReader, NIO, serialització i regex 📁"
 emoji: 📁
 ---
@@ -107,4 +107,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/13-ficheros-regex/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u13-inicial).
 
 **📍 Primer punt:** [01 · La classe File: el teu explorador de fitxers](/ApuntesProgramacion/va/13-ficheros-regex/01-clase-file)  
-**⏭️ En acabar la unitat, continua en [U14 · Connexió a BD amb JDBC](/ApuntesProgramacion/va/14-conexion-bases-datos).**
+**⏭️ En acabar la unitat, continua en [U14 · Persistència de dades: JDBC i introducció a ORM](/ApuntesProgramacion/va/14-conexion-bases-datos).**

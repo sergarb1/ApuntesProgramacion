@@ -5,7 +5,7 @@ description: "El membre que només veu la família, arbres de classes i el peril
 
 <p><small>El membre que només veu la família, arbres de classes i el perill de la classe base fràgil 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 03 · protected i jerarquies de classes
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 03 · protected i jerarquies de classes
 
 ---
 

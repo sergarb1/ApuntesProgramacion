@@ -5,7 +5,7 @@ description: "Leer, escribir y consultar archivos en una línea: la API NIO lleg
 
 <p><small>Leer, escribir y consultar archivos en una línea: la API NIO llegó para que el viejo File parezca del siglo pasado ⚡🗃️</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 05 · NIO: Files y Paths (la forma moderna)
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 05 · NIO: Files y Paths (la forma moderna)
 
 ---
 

@@ -5,7 +5,7 @@ description: "Tu primer servidor Java: HttpServer, createContext y HttpExchange 
 
 <p><small>Tu primer servidor Java: HttpServer, createContext y HttpExchange en menos de 20 líneas 🖥️🚀</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 02 · Servidor web mínimo con HttpServer
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 02 · Servidor web mínimo con HttpServer
 
 ---
 

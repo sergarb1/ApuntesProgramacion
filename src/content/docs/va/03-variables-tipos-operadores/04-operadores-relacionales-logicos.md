@@ -5,7 +5,7 @@ description: El jutge, el porter i el bouncer del club de les decisions ⚖️
 
 <p><small>El jutge, el porter i el bouncer del club de les decisions ⚖️</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 04 · Relacionals, lògics i ternari
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 04 · Relacionals, lògics i ternari
 
 ---
 

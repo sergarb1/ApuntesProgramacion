@@ -1,6 +1,6 @@
 ﻿---
 title: "Butlletí U02 — Inicial"
-description: "Exercicis bàsics d'Introducció a Java"
+description: "Exercicis bàsics d'Introducció a Java i l'entorn de treball"
 ---
 
 # 📝 Butlletí U02 — Inicial

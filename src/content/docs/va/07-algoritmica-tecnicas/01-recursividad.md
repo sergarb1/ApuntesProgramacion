@@ -5,7 +5,7 @@ description: Quan el teu codi decideix cridar-se a si mateix i el teu cervell co
 
 <p><small>Quan el teu codi decideix cridar-se a si mateix i el teu cervell comença a fumejar 🔁</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 01 · Recursivitat
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 01 · Recursivitat
 
 ---
 

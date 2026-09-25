@@ -5,7 +5,7 @@ description: "Qué guarda de verdad una variable de objeto, qué pinta el heap y
 
 <p><small>Qué guarda de verdad una variable de objeto, qué pinta el heap y por qué el NullPointerException te va a despertar por la noche 🕳️</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 06 · Referencias, null y memoria
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 06 · Referencias, null y memoria
 
 ---
 

@@ -5,7 +5,7 @@ description: Cuando tu código decide llamarse a sí mismo y tu cerebro empieza 
 
 <p><small>Cuando tu código decide llamarse a sí mismo y tu cerebro empieza a humear 🔁</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 01 · Recursividad
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 01 · Recursividad
 
 ---
 

@@ -5,7 +5,7 @@ description: El juez, el portero y el bouncer del club de las decisiones ⚖️
 
 <p><small>El juez, el portero y el bouncer del club de las decisiones ⚖️</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 04 · Relacionales, lógicos y ternario
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 04 · Relacionales, lógicos y ternario
 
 ---
 

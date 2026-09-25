@@ -5,7 +5,7 @@ description: "La puerta que se cierra sola: deja que Java llame a close() por ti
 
 <p><small>La puerta que se cierra sola: deja que Java llame a close() por ti, aunque salte una excepción en mitad del camino 🔒🚪</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 03 · try-with-resources: cerrar sin llorar
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 03 · try-with-resources: cerrar sin llorar
 
 ---
 

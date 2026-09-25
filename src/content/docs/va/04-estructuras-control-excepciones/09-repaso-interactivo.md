@@ -5,7 +5,7 @@ description: El tancament pràctic de la unitat, amb decisions, bucles i una exc
 
 <p><small>El tancament pràctic de la unitat, amb decisions, bucles i una excepció que no funcionarà 😈</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 09 · Repàs interactiu
 
 ---
 

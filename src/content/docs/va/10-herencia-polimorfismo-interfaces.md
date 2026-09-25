@@ -1,5 +1,5 @@
 ---
-title: "U10 — Herència, Polimorfisme i Interfícies"
+title: "U10 — Herència, polimorfisme i interfícies"
 description: "Quan les teues classes hereden, es disfressen i firmen contractes: extends, super, override, abstract i interfícies 🧬"
 emoji: 🧬
 ---

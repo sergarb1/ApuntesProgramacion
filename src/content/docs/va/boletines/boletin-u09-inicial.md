@@ -1,6 +1,6 @@
 ﻿---
 title: Butlletí U09 — Inicial
-description: Exercicis bàsics de Visibilitat, Encapsulació i Static
+description: Exercicis bàsics de Visibilitat, encapsulació i static
 ---
 
 # 📝 Butlletí U09 — Inicial

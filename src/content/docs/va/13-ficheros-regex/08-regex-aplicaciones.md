@@ -5,7 +5,7 @@ description: "Del motle al món real: valida correus i DNIs, neteja textos amb r
 
 <p><small>Del motle al món real: valida correus i DNIs, neteja textos amb replaceAll, troceja amb split i extrau dades amb grups de captura 🧰🛠️</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 08 · Regex en acció: matches, replaceAll, split i validacions
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 08 · Regex en acció: matches, replaceAll, split i validacions
 
 ---
 

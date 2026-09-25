@@ -5,7 +5,7 @@ description: "La trilogía del café y el secreto de la taza humeante ☕"
 
 <p><small>La trilogía del café y el secreto de la taza humeante ☕</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 01 · ¿Qué es Java?
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 01 · ¿Qué es Java?
 
 ---
 

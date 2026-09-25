@@ -5,7 +5,7 @@ description: "Varios métodos con el mismo nombre y qué se copia de verdad cuan
 
 <p><small>Varios métodos con el mismo nombre y qué se copia de verdad cuando llamas (pista: las referencias te engañan) 🎭</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 07 · Sobrecarga y paso por valor
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 07 · Sobrecarga y paso por valor
 
 ---
 

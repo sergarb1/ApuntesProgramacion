@@ -5,7 +5,7 @@ description: El tancament pràctic de la unitat, amb un bug de truncament que no
 
 <p><small>El tancament pràctic de la unitat, amb un bug de truncament que no agradarà a ningú 😈</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 10 · Repàs interactiu
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 10 · Repàs interactiu
 
 ---
 
@@ -311,4 +311,4 @@ El novat guarda el seu projecte, tanca l'IDE i sent que el magatzem de dades ja 
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/03-variables-tipos-operadores) · **Anterior:** [09 · Mètodes útils de String](/ApuntesProgramacion/va/03-variables-tipos-operadores/09-metodos-string) · **Següent:** **[U04 · Estructures de Control](/ApuntesProgramacion/va/04-estructuras-control-excepciones)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/03-variables-tipos-operadores) · **Anterior:** [09 · Mètodes útils de String](/ApuntesProgramacion/va/03-variables-tipos-operadores/09-metodos-string) · **Següent:** **[U04 · Estructures de control i excepcions bàsiques](/ApuntesProgramacion/va/04-estructuras-control-excepciones)**

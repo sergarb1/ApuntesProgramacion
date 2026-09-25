@@ -5,7 +5,7 @@ description: "El lápiz que no olvida y el lector que no se atraganta: escribe a
 
 <p><small>El lápiz que no olvida y el lector que no se atraganta: escribe archivos con FileWriter y léelos línea a línea con BufferedReader ✍️📖</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 02 · Escribir y leer texto: FileWriter, FileReader y BufferedReader
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 02 · Escribir y leer texto: FileWriter, FileReader y BufferedReader
 
 ---
 

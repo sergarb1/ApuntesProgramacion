@@ -5,7 +5,7 @@ description: "Concatena strings en SQL y Bobby Tables borrará tu tabla de alumn
 
 <p><small>Concatena strings en SQL y Bobby Tables borrará tu tabla de alumnos. La vacuna se llama PreparedStatement y sus placeholders ? 🗄️💉</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 05 · PreparedStatement y SQL injection
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 05 · PreparedStatement y SQL injection
 
 ---
 

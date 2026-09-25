@@ -5,7 +5,7 @@ description: "Cridar la superclasse, sobreescriure mètodes i encadenar construc
 
 <p><small>Cridar la superclasse, sobreescriure mètodes i encadenar constructors sense plorar 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 02 · super i @Override
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 02 · super i @Override
 
 ---
 

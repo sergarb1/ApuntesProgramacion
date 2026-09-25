@@ -1,6 +1,6 @@
 ﻿---
 title: Boletín U10 — Inicial
-description: Ejercicios básicos de Herencia, Polimorfismo e Interfaces
+description: Ejercicios básicos de Herencia, polimorfismo e interfaces
 ---
 
 # 📝 Boletín U10 — Inicial

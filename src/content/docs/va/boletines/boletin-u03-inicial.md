@@ -1,6 +1,6 @@
 ﻿---
 title: Butlletí U03 — Inicial
-description: Exercicis bàsics de Variables, Tipus i Operadors
+description: Exercicis bàsics de Variables, tipus i operadors
 ---
 
 # 📝 Butlletí U03 — Inicial

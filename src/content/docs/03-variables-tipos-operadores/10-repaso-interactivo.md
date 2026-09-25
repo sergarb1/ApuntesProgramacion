@@ -5,7 +5,7 @@ description: El cierre práctico de la unidad, con un bug de truncamiento que no
 
 <p><small>El cierre práctico de la unidad, con un bug de truncamiento que no va a gustar a nadie 😈</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 10 · Repaso interactivo
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 10 · Repaso interactivo
 
 ---
 
@@ -311,4 +311,4 @@ El novato guarda su proyecto, cierra el IDE y siente que el almacén de datos ya
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/03-variables-tipos-operadores) · **Anterior:** [09 · Métodos útiles de String](/ApuntesProgramacion/03-variables-tipos-operadores/09-metodos-string) · **Siguiente:** **[U04 · Estructuras de Control](/ApuntesProgramacion/04-estructuras-control-excepciones)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/03-variables-tipos-operadores) · **Anterior:** [09 · Métodos útiles de String](/ApuntesProgramacion/03-variables-tipos-operadores/09-metodos-string) · **Siguiente:** **[U04 · Estructuras de control y excepciones básicas](/ApuntesProgramacion/04-estructuras-control-excepciones)**

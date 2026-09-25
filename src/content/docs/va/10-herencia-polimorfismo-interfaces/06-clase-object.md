@@ -5,7 +5,7 @@ description: "toString, equals i hashCode: els tres mètodes que tota classe her
 
 <p><small>toString, equals i hashCode: els tres mètodes que tota classe hereta i quasi ningú sobreescriu bé 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 06 · La classe Object: el besavi de tot
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 06 · La classe Object: el besavi de tot
 
 ---
 

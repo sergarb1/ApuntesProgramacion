@@ -5,7 +5,7 @@ description: "Concatena strings en SQL i Bobby Tables esborrarà la teua taula d
 
 <p><small>Concatena strings en SQL i Bobby Tables esborrarà la teua taula d'alumnes. La vacuna es diu PreparedStatement i els seus placeholders ? 🗄️💉</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 05 · PreparedStatement i SQL injection
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 05 · PreparedStatement i SQL injection
 
 ---
 

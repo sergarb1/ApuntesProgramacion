@@ -5,7 +5,7 @@ description: "La porta que es tanca sola: deixa que Java faça servir close() pe
 
 <p><small>La porta que es tanca sola: deixa que Java faça servir close() per tu, encara que salte una excepció enmig del camí 🔒🚪</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 03 · try-with-resources: tancar sense plorar
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 03 · try-with-resources: tancar sense plorar
 
 ---
 

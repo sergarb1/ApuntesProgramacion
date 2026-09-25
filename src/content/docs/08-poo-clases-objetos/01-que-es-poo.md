@@ -5,7 +5,7 @@ description: "Cuando tu código deja de ser una receta y se convierte en un mund
 
 <p><small>Cuando tu código deja de ser una receta y se convierte en un mundo de cosas que hablan entre sí 🏗️</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 01 · Qué es la POO
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 01 · Qué es la POO
 
 ---
 

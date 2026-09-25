@@ -5,7 +5,7 @@ description: Las máquinas de pesas del gimnasio de datos ➕
 
 <p><small>Las máquinas de pesas del gimnasio de datos ➕</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 03 · Operadores aritméticos
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 03 · Operadores aritméticos
 
 ---
 

@@ -5,7 +5,7 @@ description: Apreta que cap, amb pèrdues i llàgrimes si no tries bé 🔄
 
 <p><small>Apreta que cap, amb pèrdues i llàgrimes si no tries bé 🔄</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 05 · Casting i conversions
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 05 · Casting i conversions
 
 ---
 

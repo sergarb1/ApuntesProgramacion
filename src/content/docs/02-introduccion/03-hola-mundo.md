@@ -5,7 +5,7 @@ description: "Hola Mundo, estructura, el método main 💻"
 
 <p><small>Hola Mundo, estructura, el método main 💻</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 03 · Tu primer programa
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 03 · Tu primer programa
 
 ---
 

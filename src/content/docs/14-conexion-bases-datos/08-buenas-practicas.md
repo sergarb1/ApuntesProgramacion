@@ -5,7 +5,7 @@ description: "Diez mandamientos para no morir en el intento: PreparedStatement s
 
 <p><small>Diez mandamientos para no morir en el intento: PreparedStatement siempre, try-with-resources, WHERE siempre y no devolver ResultSet 🗄️📜</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 08 · Buenas prácticas
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 08 · Buenas prácticas
 
 ---
 
@@ -99,4 +99,4 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 > | Filas afectadas | El `int` de `executeUpdate()` que confirma el cambio |
 > | `config.properties` | Archivo donde van la URL y las credenciales |
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/14-conexion-bases-datos) · **Anterior:** [07 · Transacciones](/ApuntesProgramacion/14-conexion-bases-datos/07-transacciones) · **Siguiente:** [09 · Repaso interactivo](/ApuntesProgramacion/14-conexion-bases-datos/09-repaso-interactivo)
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/14-conexion-bases-datos) · **Anterior:** [07 · Transacciones](/ApuntesProgramacion/14-conexion-bases-datos/07-transacciones) · **Siguiente:** [09 · Introducción a ORM](/ApuntesProgramacion/14-conexion-bases-datos/09-introduccion-orm)

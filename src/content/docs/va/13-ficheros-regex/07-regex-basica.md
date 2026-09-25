@@ -5,7 +5,7 @@ description: "El motle, el text i l'infern de les contrabarres: aprèn a crear p
 
 <p><small>El motle, el text i l'infern de les contrabarres: aprèn a crear patrons amb Pattern i a buscar-los amb Matcher 🔍🧩</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 07 · Expressions regulars: Pattern i Matcher
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 07 · Expressions regulars: Pattern i Matcher
 
 ---
 

@@ -5,7 +5,7 @@ description: "Bocetos que no se instancian, métodos abstractos que obligan y el
 
 <p><small>Bocetos que no se instancian, métodos abstractos que obligan y el patrón template method 🧬</small></p>
 
-> 🗺️ **Estás en:** 🧬 **U10 · Herencia, Polimorfismo e Interfaces** → 07 · Clases abstractas
+> 🗺️ **Estás en:** 🧬 **U10 · Herencia, polimorfismo e interfaces** → 07 · Clases abstractas
 
 ---
 

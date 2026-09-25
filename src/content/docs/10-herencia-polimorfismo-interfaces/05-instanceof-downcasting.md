@@ -5,7 +5,7 @@ description: "Preguntar quién eres realmente y bajar la referencia con cuidado 
 
 <p><small>Preguntar quién eres realmente y bajar la referencia con cuidado para no estrellarte 🧬</small></p>
 
-> 🗺️ **Estás en:** 🧬 **U10 · Herencia, Polimorfismo e Interfaces** → 05 · instanceof y downcasting
+> 🗺️ **Estás en:** 🧬 **U10 · Herencia, polimorfismo e interfaces** → 05 · instanceof y downcasting
 
 ---
 

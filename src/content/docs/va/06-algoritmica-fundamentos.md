@@ -90,4 +90,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/06-algoritmica-fundamentos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u06-inicial).
 
 **📍 Primer punt:** [01 · Què és un algoritme](/ApuntesProgramacion/va/06-algoritmica-fundamentos/01-que-es-algoritmo)  
-**⏭️ En acabar la unitat, continua en [U07 · Algorítmica II: Tècniques](/ApuntesProgramacion/va/07-algoritmica-tecnicas).**
+**⏭️ En acabar la unitat, continua en [U07 · Algorítmica II: tècniques avançades i modularitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas).**

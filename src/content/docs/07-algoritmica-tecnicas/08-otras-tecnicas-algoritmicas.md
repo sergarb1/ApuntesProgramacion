@@ -5,7 +5,7 @@ description: "Dos fichas más para tu cinturón: los algoritmos voraces (greedy)
 
 <p><small>Dos fichas más para tu cinturón: los algoritmos voraces (greedy) y el backtracking 🧠</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 08 · Otras técnicas algorítmicas
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 08 · Otras técnicas algorítmicas
 
 ---
 
@@ -191,4 +191,4 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 > | Poda | Descartar de inmediato los caminos sin salida |
 > | Programación dinámica | Memoización + subproblemas que se repiten |
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/07-algoritmica-tecnicas) · **Anterior:** [07 · Be the Code: quicksort desde cero](/ApuntesProgramacion/07-algoritmica-tecnicas/07-be-the-code-quicksort) · **Siguiente:** [09 · Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/09-repaso-interactivo)
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/07-algoritmica-tecnicas) · **Anterior:** [07 · Be the Code: quicksort desde cero](/ApuntesProgramacion/07-algoritmica-tecnicas/07-be-the-code-quicksort) · **Siguiente:** [09 · Modularidad](/ApuntesProgramacion/07-algoritmica-tecnicas/09-modularidad)

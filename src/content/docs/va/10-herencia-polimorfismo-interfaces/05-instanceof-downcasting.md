@@ -5,7 +5,7 @@ description: "Preguntar qui eres realment i baixar la referència amb cura per a
 
 <p><small>Preguntar qui eres realment i baixar la referència amb cura per a no estavellar-te 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 05 · instanceof i downcasting
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 05 · instanceof i downcasting
 
 ---
 

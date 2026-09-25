@@ -5,7 +5,7 @@ description: "El airbag del código: que un error no destroce tu programa 🛡�
 
 <p><small>El airbag del código: que un error no destroce tu programa 🛡️</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 07 · try, catch y finally
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 07 · try, catch y finally
 
 ---
 

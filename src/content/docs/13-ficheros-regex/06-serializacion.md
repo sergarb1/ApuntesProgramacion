@@ -5,7 +5,7 @@ description: "Tu objeto entero en una maleta: implementa Serializable y guarda y
 
 <p><small>Tu objeto entero en una maleta: implementa Serializable y guarda y recupera objetos completos con ObjectOutputStream y ObjectInputStream 🧳📦</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 06 · Serialización: guardar objetos con ObjectOutputStream
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 06 · Serialización: guardar objetos con ObjectOutputStream
 
 ---
 

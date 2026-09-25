@@ -5,7 +5,7 @@ description: "Las propiedades y los comportamientos de tu clase, con sus tipos, 
 
 <p><small>Las propiedades y los comportamientos de tu clase, con sus tipos, parámetros y valores de retorno 🏗️</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 03 · Atributos y métodos
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 03 · Atributos y métodos
 
 ---
 

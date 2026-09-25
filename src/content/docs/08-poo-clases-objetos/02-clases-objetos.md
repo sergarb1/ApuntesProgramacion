@@ -5,7 +5,7 @@ description: "El molde, la galleta, `new` y tu primera clase: ya no escribes rec
 
 <p><small>El molde, la galleta, `new` y tu primera clase: ya no escribes recetas, horneas 🍪</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 02 · Clases y objetos: el cortapastas y las galletas
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 02 · Clases y objetos: el cortapastas y las galletas
 
 ---
 

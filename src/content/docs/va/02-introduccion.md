@@ -1,5 +1,5 @@
 ---
-title: "U02 — Introducció a Java"
+title: "U02 — Introducció a Java i l'entorn de treball"
 description: "El teu primer cafè amb Java ☕"
 ---
 
@@ -87,4 +87,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/02-introduccion/09-repaso-interactivo) i els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u02-inicial).
 
 **📍 Primer punt:** [01 · Què és Java?](/ApuntesProgramacion/va/02-introduccion/01-que-es-java)  
-**⏭️ En acabar la unitat, continua en [U03 · Variables, Tipus i Operadors](/ApuntesProgramacion/va/03-variables-tipos-operadores).**
+**⏭️ En acabar la unitat, continua en [U03 · Variables, tipus i operadors](/ApuntesProgramacion/va/03-variables-tipos-operadores).**

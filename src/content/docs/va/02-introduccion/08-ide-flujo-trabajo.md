@@ -5,7 +5,7 @@ description: "Projectes, dreceres, crear/executar/depurar 🛠️"
 
 <p><small>Projectes, dreceres, crear/executar/depurar 🛠️</small></p>
 
-> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java** → 08 · L'IDE i el teu flux de treball
+> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java i l'entorn de treball** → 08 · L'IDE i el teu flux de treball
 
 ---
 

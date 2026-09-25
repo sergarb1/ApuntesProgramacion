@@ -5,7 +5,7 @@ description: "Cridar mètodes sense crear objectes, la classe Math, i per què m
 
 <p><small>Cridar mètodes sense crear objectes, la classe Math, i per què main és el primer a arribar a la festa 🎉</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 06 · Mètodes static i el main
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 06 · Mètodes static i el main
 
 ---
 

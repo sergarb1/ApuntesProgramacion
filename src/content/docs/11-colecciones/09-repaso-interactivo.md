@@ -609,8 +609,8 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 **CONRAD:** — *asiente* Exacto. Ficheros, serialización, y cuando los datos crezcan, expresiones regulares para buscar patrones. Todo eso es otra historia... y casi te toca.
 
-**PRÓXIMAMENTE EN U13:** Ficheros y Regex. Guarda tus mapas y tus listas en disco y busca patrones con expresiones regulares. 📁
+**PRÓXIMAMENTE EN U13:** Ficheros y expresiones regulares (Regex). Guarda tus mapas y tus listas en disco y busca patrones con expresiones regulares. 📁
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/11-colecciones) · **Anterior:** [08 · TreeMap y cómo elegir estructura](/ApuntesProgramacion/11-colecciones/08-treemap-elegir-estructura) · **Siguiente:** **[U12 · Programación Funcional](/ApuntesProgramacion/12-programacion-funcional)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/11-colecciones) · **Anterior:** [08 · TreeMap y cómo elegir estructura](/ApuntesProgramacion/11-colecciones/08-treemap-elegir-estructura) · **Siguiente:** **[U12 · Programación funcional (Streams y Lambdas)](/ApuntesProgramacion/12-programacion-funcional)**

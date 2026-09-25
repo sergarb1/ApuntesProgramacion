@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad, con candados, estáticos y una c
 
 <p><small>El cierre práctico de la unidad, con candados, estáticos y una clase que no va a querer compilar 😈</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 09 · Repaso interactivo
 
 ---
 
@@ -407,8 +407,8 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 El novato guarda su proyecto, cierra el IDE y siente que sus objetos ya no son casas de cristal.
 
-**PRÓXIMAMENTE EN U10:** Herencia, Polimorfismo e Interfaces. El momento en el que tus clases **se miran a los ojos y se dicen "mira, esto lo compartimos"**. 🧬
+**PRÓXIMAMENTE EN U10:** Herencia, polimorfismo e interfaces. El momento en el que tus clases **se miran a los ojos y se dicen "mira, esto lo compartimos"**. 🧬
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/09-visibilidad-encapsulacion-static) · **Anterior:** [08 · Be the Code: encapsula tu clase](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/08-be-the-code) · **Siguiente:** **[U10 · Herencia, Polimorfismo e Interfaces](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/09-visibilidad-encapsulacion-static) · **Anterior:** [08 · Be the Code: encapsula tu clase](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/08-be-the-code) · **Siguiente:** **[U10 · Herencia, polimorfismo e interfaces](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces)**

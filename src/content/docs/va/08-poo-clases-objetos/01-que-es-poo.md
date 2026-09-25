@@ -5,7 +5,7 @@ description: "Quan el teu codi deixa de ser una recepta i es converteix en un m�
 
 <p><small>Quan el teu codi deixa de ser una recepta i es converteix en un món de coses que parlen entre elles 🏗️</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 01 · Què és la POO
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 01 · Què és la POO
 
 ---
 

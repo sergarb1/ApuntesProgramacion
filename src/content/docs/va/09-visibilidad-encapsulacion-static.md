@@ -1,5 +1,5 @@
 ---
-title: "U09 — Visibilitat, Encapsulació i Static"
+title: "U09 — Visibilitat, encapsulació i static"
 description: "Els cadenats del teu codi: qui veu els teus atributs, com blinda'ls i què pertany a la classe i no a l'objecte 🔒"
 emoji: 🔒
 ---
@@ -96,4 +96,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u09-inicial).
 
 **📍 Primer punt:** [01 · Visibilitat: l'art de no ensenyar-ho tot](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/01-visibilidad)  
-**⏭️ En acabar la unitat, continua en [U10 · Herència, Polimorfisme i Interfícies](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces).
+**⏭️ En acabar la unitat, continua en [U10 · Herència, polimorfisme i interfícies](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces).

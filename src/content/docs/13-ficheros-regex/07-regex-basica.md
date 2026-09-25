@@ -5,7 +5,7 @@ description: "El molde, el texto y el infierno de las contrabarras: aprende a cr
 
 <p><small>El molde, el texto y el infierno de las contrabarras: aprende a crear patrones con Pattern y a buscarlos con Matcher 🔍🧩</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 07 · Expresiones regulares: Pattern y Matcher
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 07 · Expresiones regulares: Pattern y Matcher
 
 ---
 

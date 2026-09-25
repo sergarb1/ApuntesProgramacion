@@ -5,7 +5,7 @@ description: "Tanca la pàgina, obri l'editor i dissenya una classe completa de 
 
 <p><small>Tanca la pàgina, obri l'editor i dissenya una classe completa de principi a fi (o pateix amb honor) 🕶️</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 08 · Be the Code: dissenya la teua classe
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 08 · Be the Code: dissenya la teua classe
 
 ---
 

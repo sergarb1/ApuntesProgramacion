@@ -5,7 +5,7 @@ description: "El teu primer servidor Java: HttpServer, createContext i HttpExcha
 
 <p><small>El teu primer servidor Java: HttpServer, createContext i HttpExchange en menys de 20 línies 🖥️🚀</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 02 · Servidor web mínim amb HttpServer
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 02 · Servidor web mínim amb HttpServer
 
 ---
 

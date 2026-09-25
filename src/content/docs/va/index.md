@@ -39,7 +39,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unitat 1</span>
-    <span class="ra">—</span>
+    <span class="ra">RA1</span>
   </div>
   <a href="/ApuntesProgramacion/va/01-pensamiento-computacional" class="title-link">Introducció al Pensament Computacional</a>
   <p class="desc">Abans de codi, pensem. Descomposició, debugging, protocol de pau i el teu primer problema de programació sense tocar Java.</p>
@@ -52,7 +52,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 2</span>
     <span class="ra">RA1</span>
   </div>
-  <a href="/ApuntesProgramacion/va/02-introduccion" class="title-link">Introducció a Java</a>
+  <a href="/ApuntesProgramacion/va/02-introduccion" class="title-link">Introducció a Java i l'entorn de treball</a>
   <p class="desc">Primer contacte amb Java: instal·la el JDK, escriu el teu primer programa, coneix el mètode <code>main</code>, els comentaris i els arguments de línia de comandos.</p>
   <a href="/ApuntesProgramacion/va/02-introduccion" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -63,7 +63,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 3</span>
     <span class="ra">RA2</span>
   </div>
-  <a href="/ApuntesProgramacion/va/03-variables-tipos-operadores" class="title-link">Variables, Tipus i Operadors</a>
+  <a href="/ApuntesProgramacion/va/03-variables-tipos-operadores" class="title-link">Variables, tipus i operadors</a>
   <p class="desc">Declara variables, usa tipus primitius, operadors aritmètics i lògics, conversions de tipus i llig dades per teclat amb <code>Scanner</code>.</p>
   <a href="/ApuntesProgramacion/va/03-variables-tipos-operadores" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -74,7 +74,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 4</span>
     <span class="ra">RA3</span>
   </div>
-  <a href="/ApuntesProgramacion/va/04-estructuras-control-excepciones" class="title-link">Estructures de Control i Excepcions</a>
+  <a href="/ApuntesProgramacion/va/04-estructuras-control-excepciones" class="title-link">Estructures de control i excepcions bàsiques</a>
   <p class="desc">Domina <code>if</code>/<code>else</code>, <code>switch</code>, bucles <code>while</code> i <code>for</code>, i gestiona excepcions amb <code>try</code>/<code>catch</code> perquè el teu programa no es trenque.</p>
   <a href="/ApuntesProgramacion/va/04-estructuras-control-excepciones" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -107,7 +107,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 7</span>
     <span class="ra">RA2, RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/va/07-algoritmica-tecnicas" class="title-link">Algorítmica II: Tècniques Avançades</a>
+  <a href="/ApuntesProgramacion/va/07-algoritmica-tecnicas" class="title-link">Algorítmica II: tècniques avançades i modularitat</a>
   <p class="desc">Algoritmes d'ordenació, cerca binària, recursivitat i tècniques divideix i venceràs per a resoldre problemes més complexos.</p>
   <a href="/ApuntesProgramacion/va/07-algoritmica-tecnicas" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -118,7 +118,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 8</span>
     <span class="ra">RA2, RA4</span>
   </div>
-  <a href="/ApuntesProgramacion/va/08-poo-clases-objetos" class="title-link">POO: Classes i Objectes</a>
+  <a href="/ApuntesProgramacion/va/08-poo-clases-objetos" class="title-link">POO: Classes i objectes</a>
   <p class="desc">Programació Orientada a Objectes: crea classes, instància objectes, defineix atributs i mètodes, i entén la màgia dels constructors.</p>
   <a href="/ApuntesProgramacion/va/08-poo-clases-objetos" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -129,7 +129,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 9</span>
     <span class="ra">RA4</span>
   </div>
-  <a href="/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static" class="title-link">Visibilitat, Encapsulació i Static</a>
+  <a href="/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static" class="title-link">Visibilitat, encapsulació i static</a>
   <p class="desc">Controla qui veu què: modificadors d'accés (<code>public</code>, <code>private</code>, <code>protected</code>), encapsulació amb getters/setters, membres <code>static</code> i constants.</p>
   <a href="/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -140,7 +140,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 10</span>
     <span class="ra">RA4, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces" class="title-link">Herència, Polimorfisme i Interfícies</a>
+  <a href="/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces" class="title-link">Herència, polimorfisme i interfícies</a>
   <p class="desc">Herència, polimorfisme, classes abstractes i interfícies: la base del disseny flexible i reutilitzable en Java. Aprén a sobreescriure mètodes i a usar <code>super</code>.</p>
   <a href="/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -162,7 +162,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 12</span>
     <span class="ra">RA6, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/va/12-programacion-funcional" class="title-link">Programació Funcional</a>
+  <a href="/ApuntesProgramacion/va/12-programacion-funcional" class="title-link">Programació funcional (Streams i Lambdas)</a>
   <p class="desc">Lambdes, interfícies funcionals, referències a mètodes, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) i <code>Optional</code> per a escriure Java modern i expressiu.</p>
   <a href="/ApuntesProgramacion/va/12-programacion-funcional" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -173,7 +173,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 13</span>
     <span class="ra">RA5</span>
   </div>
-  <a href="/ApuntesProgramacion/va/13-ficheros-regex" class="title-link">Fitxers i Expressions Regulars</a>
+  <a href="/ApuntesProgramacion/va/13-ficheros-regex" class="title-link">Fitxers i expressions regulars (Regex)</a>
   <p class="desc">Lectura i escriptura de fitxers de text i binaris, serialització d'objectes i expressions regulars per a buscar, validar i reemplaçar patrons en text.</p>
   <a href="/ApuntesProgramacion/va/13-ficheros-regex" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -184,7 +184,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 14</span>
     <span class="ra">RA9</span>
   </div>
-  <a href="/ApuntesProgramacion/va/14-conexion-bases-datos" class="title-link">Connexió a Bases de Dades amb JDBC</a>
+  <a href="/ApuntesProgramacion/va/14-conexion-bases-datos" class="title-link">Persistència de dades: JDBC i introducció a ORM</a>
   <p class="desc">Connecta Java amb bases de dades relacionals usant JDBC: <code>Connection</code>, <code>Statement</code>, consultes, insercions, actualitzacions i transaccions segures.</p>
   <a href="/ApuntesProgramacion/va/14-conexion-bases-datos" class="unit-link">👉 Veure unitat 👈</a>
 
@@ -195,7 +195,7 @@ description: Curs complet de Programació en Java per a DAM/DAW. CC BY-SA 4.0 �
     <span class="num">Unitat 16 (extra)</span>
     <span class="ra">RA5</span>
   </div>
-  <a href="/ApuntesProgramacion/va/16-apis-web" class="title-link">Servir i Consumir APIs amb Web</a>
+  <a href="/ApuntesProgramacion/va/16-apis-web" class="title-link">Servir i consumir APIs amb Web</a>
   <p class="desc">Crea un servidor HTTP amb Java <code>HttpServer</code>, serveix pàgines HTML/JS, gestiona peticions JSON, implementa una API REST completa des de zero.</p>
   <a href="/ApuntesProgramacion/va/16-apis-web" class="unit-link">👉 Veure unitat 👈</a>
 

@@ -5,7 +5,7 @@ description: "printf, String.format, NumberFormat i les fallades clàssiques del
 
 <p><small>printf, String.format, NumberFormat i les fallades clàssiques del Scanner (i com no morir en l'intent) 🖨️</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 07 · Consola: eixida amb format i errors d'entrada
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 07 · Consola: eixida amb format i errors d'entrada
 
 ---
 

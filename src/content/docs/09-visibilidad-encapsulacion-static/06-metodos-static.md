@@ -5,7 +5,7 @@ description: "Llamar a métodos sin crear objetos, la clase Math, y por qué mai
 
 <p><small>Llamar a métodos sin crear objetos, la clase Math, y por qué main es el primero en llegar a la fiesta 🎉</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 06 · Métodos static y el main
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 06 · Métodos static y el main
 
 ---
 

@@ -5,7 +5,7 @@ description: "Proyectos, atajos, crear/ejecutar/depurar 🛠️"
 
 <p><small>Proyectos, atajos, crear/ejecutar/depurar 🛠️</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 08 · El IDE y tu flujo de trabajo
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 08 · El IDE y tu flujo de trabajo
 
 ---
 

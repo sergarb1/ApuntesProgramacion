@@ -5,7 +5,7 @@ description: Elegir entre muchas opciones sin llenar el código de semáforos �
 
 <p><small>Elegir entre muchas opciones sin llenar el código de semáforos 🍽️</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 02 · switch
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 02 · switch
 
 ---
 

@@ -5,7 +5,7 @@ description: El cierre práctico de la unidad, con decisiones, bucles y una exce
 
 <p><small>El cierre práctico de la unidad, con decisiones, bucles y una excepción que no va a funcionar 😈</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 09 · Repaso interactivo
 
 ---
 

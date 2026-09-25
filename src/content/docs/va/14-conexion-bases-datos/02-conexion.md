@@ -5,7 +5,7 @@ description: "El ritual dels 5 passos per a connectar Java amb SQLite i la inter
 
 <p><small>El ritual dels 5 passos per a connectar Java amb SQLite i la interfície Connection, la canonada per on viatgen les teues consultes 🗄️🔗</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 02 · Connexió a SQLite
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 02 · Connexió a SQLite
 
 ---
 

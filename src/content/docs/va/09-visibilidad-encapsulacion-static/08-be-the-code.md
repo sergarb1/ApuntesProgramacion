@@ -5,7 +5,7 @@ description: "El repte guiat: converteix una classe sense blindar en una ben enc
 
 <p><small>El repte guiat: converteix una classe sense blindar en una ben encapsulada amb getters i setters 🔨</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 08 · Be the Code: encapsula la teua classe
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 08 · Be the Code: encapsula la teua classe
 
 ---
 

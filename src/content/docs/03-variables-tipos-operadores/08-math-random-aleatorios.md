@@ -5,7 +5,7 @@ description: El casino de Java, con dados y fórmulas para no hacer trampa 🎲
 
 <p><small>El casino de Java, con dados y fórmulas para no hacer trampa 🎲</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 08 · Math.random() y números aleatorios
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 08 · Math.random() y números aleatorios
 
 ---
 

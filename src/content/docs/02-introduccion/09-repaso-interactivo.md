@@ -5,7 +5,7 @@ description: "Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… �
 
 <p><small>Sé el Código, Fireside, Quién Soy, Laboratorio, Crucigrama… 🧩</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 09 · Repaso
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 09 · Repaso
 
 ---
 

@@ -5,7 +5,7 @@ description: "Valors immutables en MAJÚSCULES i les classes utilitàries que ni
 
 <p><small>Valors immutables en MAJÚSCULES i les classes utilitàries que ningú no pot instanciar 🏛️</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 07 · Constants de classe: static final
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 07 · Constants de classe: static final
 
 ---
 

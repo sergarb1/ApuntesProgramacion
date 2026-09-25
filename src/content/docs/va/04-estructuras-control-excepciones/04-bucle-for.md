@@ -5,7 +5,7 @@ description: El comptador obsessiu que repeteix un nombre exacte de voltes 🔢
 
 <p><small>El comptador obsessiu que repeteix un nombre exacte de voltes 🔢</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 04 · Bucle for i bucles anidats
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 04 · Bucle for i bucles anidats
 
 ---
 

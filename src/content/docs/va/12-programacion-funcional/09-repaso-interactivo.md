@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat, amb un pipeline que sembla mà
 
 <p><small>El tancament pràctic de la unitat, amb un pipeline que sembla màgia i un Optional que amaga un ensurt 🎯</small></p>
 
-> 🗺️ **Estàs en:** 🎯 **U12 · Programació Funcional** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🎯 **U12 · Programació funcional (Streams i Lambdas)** → 09 · Repàs interactiu
 
 ---
 
@@ -352,8 +352,8 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 **CONRAD:** — *assentix* Exacte. Fitxers, i quan les dades cresquen, expressions regulars per a buscar patrons. La teua cinta transportadora processa; el fitxer conserva. Tot això és una altra història... i quasi et toca.
 
-**PROXIMAMENT EN U13:** Fitxers i Regex. Guarda els resultats dels teus streams en disc i busca patrons amb expressions regulars. 📁
+**PROXIMAMENT EN U13:** Fitxers i expressions regulars (Regex). Guarda els resultats dels teus streams en disc i busca patrons amb expressions regulars. 📁
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/12-programacion-funcional) · **Anterior:** [08 · Optional: el que accepta l'absència](/ApuntesProgramacion/va/12-programacion-funcional/08-optional) · **Següent:** **[U13 · Fitxers i Regex](/ApuntesProgramacion/va/13-ficheros-regex)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/12-programacion-funcional) · **Anterior:** [08 · Optional: el que accepta l'absència](/ApuntesProgramacion/va/12-programacion-funcional/08-optional) · **Següent:** **[U13 · Fitxers i expressions regulars (Regex)](/ApuntesProgramacion/va/13-ficheros-regex)**

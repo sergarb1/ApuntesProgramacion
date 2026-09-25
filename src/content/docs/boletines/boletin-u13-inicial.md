@@ -1,6 +1,6 @@
 ﻿---
 title: "Boletín U13 — Inicial"
-description: "Ejercicios básicos de Ficheros y Regex: File, FileWriter, BufferedReader, try-with-resources y las primeras expresiones regulares"
+description: "Ejercicios básicos de Ficheros y expresiones regulares (Regex): File, FileWriter, BufferedReader, try-with-resources y las primeras expresiones regulares"
 ---
 
 # 📝 Boletín U13 — Inicial

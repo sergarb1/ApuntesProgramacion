@@ -5,7 +5,7 @@ description: "POST con BodyPublishers, cabeceras y timeouts, sendAsync sin bloqu
 
 <p><small>POST con BodyPublishers, cabeceras y timeouts, sendAsync sin bloquear y PUT/DELETE como un cliente profesional 🚀🧠</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 08 · HttpClient avanzado
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 08 · HttpClient avanzado
 
 ---
 

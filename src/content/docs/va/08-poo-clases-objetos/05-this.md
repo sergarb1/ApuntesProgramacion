@@ -5,7 +5,7 @@ description: "L'objecte cridant «¡parle de mi, no d'un altre!» per a desambig
 
 <p><small>L'objecte cridant «¡parle de mi, no d'un altre!» per a desambiguar i encadenar constructors 🗣️</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 05 · La paraula clau this
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 05 · La paraula clau this
 
 ---
 

@@ -1,5 +1,5 @@
 ﻿---
-title: "U16 — Servir y Consumir APIs con Web"
+title: "U16 — Servir y consumir APIs con Web"
 description: "Del terminal a Internet: HttpServer, HTML, formularios, JSON y HttpClient para servir y consumir APIs como una de verdad 🌐"
 emoji: 🌐
 ---

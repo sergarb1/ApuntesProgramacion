@@ -5,7 +5,7 @@ description: "Esbossos que no s'instancien, mètodes abstractes que obliguen i e
 
 <p><small>Esbossos que no s'instancien, mètodes abstractes que obliguen i el patró template method 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 07 · Classes abstractes
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 07 · Classes abstractes
 
 ---
 

@@ -5,7 +5,7 @@ description: "Llegir, escriure i consultar fitxers en una línia: l'API NIO va a
 
 <p><small>Llegir, escriure i consultar fitxers en una línia: l'API NIO va arribar perquè el vell File semble del segle passat ⚡🗃️</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 05 · NIO: Files i Paths (la forma moderna)
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 05 · NIO: Files i Paths (la forma moderna)
 
 ---
 

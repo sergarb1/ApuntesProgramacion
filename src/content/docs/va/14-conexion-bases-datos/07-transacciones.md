@@ -5,7 +5,7 @@ description: "Operacions de tot o res: setAutoCommit(false), commit per a confir
 
 <p><small>Operacions de tot o res: setAutoCommit(false), commit per a confirmar, rollback per a desfer i savepoints per a no desfer-ho tot 🗄️🎭</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 07 · Transaccions
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 07 · Transaccions
 
 ---
 

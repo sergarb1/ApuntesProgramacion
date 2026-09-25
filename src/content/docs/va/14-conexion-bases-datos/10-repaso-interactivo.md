@@ -1,11 +1,11 @@
 ﻿---
-title: "09 · Repàs interactiu: domina el JDBC"
+title: "10 · Repàs interactiu: domina el JDBC"
 description: "El tancament pràctic de la unitat, amb una injecció SQL que farà mal, un UPDATE sense WHERE que cremarà i una connexió que ningú no va tancar 😈🗄️"
 ---
 
 <p><small>El tancament pràctic de la unitat, amb una injecció SQL que farà mal, un UPDATE sense WHERE que cremarà i una connexió que ningú no va tancar 😈🗄️</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 10 · Repàs interactiu
 
 ---
 
@@ -370,8 +370,8 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 **CONRAD:** — *assentix* Exacte. El teu programa Java es converteix en l'intermediari: rep peticions, consulta la base de dades amb el JDBC que acables de dominar, i torna les dades. Primer vas servir dades des de la base; ara les serviràs per la web.
 
-**PROXIMAMENT EN U14:** Servir i Consumir APIs amb Web. El moment en què el teu programa Java es posa un uniforme de cambrer: rep peticions HTTP i serveix dades en JSON. 🌐
+**PROXIMAMENT EN U16:** Servir i consumir APIs amb Web. El moment en què el teu programa Java es posa un uniforme de cambrer: rep peticions HTTP i serveix dades en JSON. 🌐
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/14-conexion-bases-datos) · **Anterior:** [08 · Bones pràctiques](/ApuntesProgramacion/va/14-conexion-bases-datos/08-buenas-practicas) · **Següent:** **[U16 · Servir i Consumir APIs amb Web](/ApuntesProgramacion/va/16-apis-web)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/14-conexion-bases-datos) · **Anterior:** [09 · Introducció a ORM](/ApuntesProgramacion/va/14-conexion-bases-datos/09-introduccion-orm) · **Següent:** **[U16 · Servir i consumir APIs amb Web](/ApuntesProgramacion/va/16-apis-web)**

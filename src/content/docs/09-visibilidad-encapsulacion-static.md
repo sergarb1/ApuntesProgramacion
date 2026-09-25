@@ -1,5 +1,5 @@
 ﻿---
-title: "U09 — Visibilidad, Encapsulación y Static"
+title: "U09 — Visibilidad, encapsulación y static"
 description: "Los candados de tu código: quién ve tus atributos, cómo blindarlos y qué pertenece a la clase y no al objeto 🔒"
 emoji: 🔒
 ---
@@ -96,4 +96,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u09-inicial).
 
 **📍 Primer punto:** [01 · Visibilidad: el arte de no enseñarlo todo](/ApuntesProgramacion/09-visibilidad-encapsulacion-static/01-visibilidad)  
-**⏭️ Al acabar la unidad, continúa en [U10 · Herencia, Polimorfismo e Interfaces](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces).
+**⏭️ Al acabar la unidad, continúa en [U10 · Herencia, polimorfismo e interfaces](/ApuntesProgramacion/10-herencia-polimorfismo-interfaces).

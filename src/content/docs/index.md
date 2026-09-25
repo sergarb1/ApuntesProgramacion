@@ -39,7 +39,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 1</span>
-    <span class="ra">—</span>
+    <span class="ra">RA1</span>
   </div>
   <a href="/ApuntesProgramacion/01-pensamiento-computacional" class="title-link">Introducción al Pensamiento Computacional</a>
   <p class="desc">Antes de código, pensemos. Descomposición, debugging, protocolo de paz y tu primer problema de programación sin tocar Java.</p>
@@ -52,7 +52,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 2</span>
     <span class="ra">RA1</span>
   </div>
-  <a href="/ApuntesProgramacion/02-introduccion" class="title-link">Introducción a Java</a>
+  <a href="/ApuntesProgramacion/02-introduccion" class="title-link">Introducción a Java y el entorno de trabajo</a>
   <p class="desc">Primer contacto con Java: instala el JDK, escribe tu primer programa, conoce el método <code>main</code>, los comentarios y los argumentos de línea de comandos.</p>
   <a href="/ApuntesProgramacion/02-introduccion" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -63,7 +63,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 3</span>
     <span class="ra">RA2</span>
   </div>
-  <a href="/ApuntesProgramacion/03-variables-tipos-operadores" class="title-link">Variables, Tipos y Operadores</a>
+  <a href="/ApuntesProgramacion/03-variables-tipos-operadores" class="title-link">Variables, tipos y operadores</a>
   <p class="desc">Declara variables, usa tipos primitivos, operadores aritméticos y lógicos, conversiones de tipo y lee datos por teclado con <code>Scanner</code>.</p>
   <a href="/ApuntesProgramacion/03-variables-tipos-operadores" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -74,7 +74,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 4</span>
     <span class="ra">RA3</span>
   </div>
-  <a href="/ApuntesProgramacion/04-estructuras-control-excepciones" class="title-link">Estructuras de Control y Excepciones</a>
+  <a href="/ApuntesProgramacion/04-estructuras-control-excepciones" class="title-link">Estructuras de control y excepciones básicas</a>
   <p class="desc">Domina <code>if</code>/<code>else</code>, <code>switch</code>, bucles <code>while</code> y <code>for</code>, y maneja excepciones con <code>try</code>/<code>catch</code> para que tu programa nunca se rompa.</p>
   <a href="/ApuntesProgramacion/04-estructuras-control-excepciones" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -107,7 +107,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 7</span>
     <span class="ra">RA2, RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/07-algoritmica-tecnicas" class="title-link">Algorítmica II: Técnicas Avanzadas</a>
+  <a href="/ApuntesProgramacion/07-algoritmica-tecnicas" class="title-link">Algorítmica II: técnicas avanzadas y modularidad</a>
   <p class="desc">Algoritmos de ordenación, búsqueda binaria, recursividad y técnicas divide y vencerás para resolver problemas más complejos.</p>
   <a href="/ApuntesProgramacion/07-algoritmica-tecnicas" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -118,7 +118,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 8</span>
     <span class="ra">RA2, RA4</span>
   </div>
-  <a href="/ApuntesProgramacion/08-poo-clases-objetos" class="title-link">POO: Clases y Objetos</a>
+  <a href="/ApuntesProgramacion/08-poo-clases-objetos" class="title-link">POO: clases y objetos</a>
   <p class="desc">Programación Orientada a Objetos: crea clases, instancia objetos, define atributos y métodos, y entiende la magia de los constructores.</p>
   <a href="/ApuntesProgramacion/08-poo-clases-objetos" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -129,7 +129,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 9</span>
     <span class="ra">RA4</span>
   </div>
-  <a href="/ApuntesProgramacion/09-visibilidad-encapsulacion-static" class="title-link">Visibilidad, Encapsulación y Static</a>
+  <a href="/ApuntesProgramacion/09-visibilidad-encapsulacion-static" class="title-link">Visibilidad, encapsulación y static</a>
   <p class="desc">Controla quién ve qué: modificadores de acceso (<code>public</code>, <code>private</code>, <code>protected</code>), encapsulación con getters/setters, miembros <code>static</code> y constantes.</p>
   <a href="/ApuntesProgramacion/09-visibilidad-encapsulacion-static" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -140,7 +140,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 10</span>
     <span class="ra">RA4, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/10-herencia-polimorfismo-interfaces" class="title-link">Herencia, Polimorfismo e Interfaces</a>
+  <a href="/ApuntesProgramacion/10-herencia-polimorfismo-interfaces" class="title-link">Herencia, polimorfismo e interfaces</a>
   <p class="desc">Herencia, polimorfismo, clases abstractas e interfaces: la base del diseño flexible y reutilizable en Java. Aprende a sobrescribir métodos y a usar <code>super</code>.</p>
   <a href="/ApuntesProgramacion/10-herencia-polimorfismo-interfaces" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -162,7 +162,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 12</span>
     <span class="ra">RA6, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/12-programacion-funcional" class="title-link">Programación Funcional</a>
+  <a href="/ApuntesProgramacion/12-programacion-funcional" class="title-link">Programación funcional (Streams y Lambdas)</a>
   <p class="desc">Lambdas, interfaces funcionales, referencias a métodos, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) y <code>Optional</code> para escribir Java moderno y expresivo.</p>
   <a href="/ApuntesProgramacion/12-programacion-funcional" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -173,7 +173,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 13</span>
     <span class="ra">RA5</span>
   </div>
-  <a href="/ApuntesProgramacion/13-ficheros-regex" class="title-link">Ficheros y Regex</a>
+  <a href="/ApuntesProgramacion/13-ficheros-regex" class="title-link">Ficheros y expresiones regulares (Regex)</a>
   <p class="desc">Lectura y escritura de ficheros de texto y binarios, serialización de objetos y expresiones regulares para buscar, validar y reemplazar patrones en texto.</p>
   <a href="/ApuntesProgramacion/13-ficheros-regex" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -184,7 +184,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 14</span>
     <span class="ra">RA9</span>
   </div>
-  <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="title-link">Conexión a BD con JDBC</a>
+  <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="title-link">Persistencia de datos: JDBC e introducción a ORM</a>
   <p class="desc">Conecta Java con bases de datos relacionales usando JDBC: <code>Connection</code>, <code>Statement</code>, consultas, inserciones, actualizaciones y transacciones seguras.</p>
   <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="unit-link">👉 Ver unidad 👈</a>
 
@@ -195,7 +195,7 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 16 (extra)</span>
     <span class="ra">RA5</span>
   </div>
-  <a href="/ApuntesProgramacion/16-apis-web" class="title-link">Servir y Consumir APIs con Web</a>
+  <a href="/ApuntesProgramacion/16-apis-web" class="title-link">Servir y consumir APIs con Web</a>
   <p class="desc">Crea un servidor HTTP con Java <code>HttpServer</code>, sirve páginas HTML/JS, atiende peticiones JSON, implementa una API REST completa desde cero.</p>
   <a href="/ApuntesProgramacion/16-apis-web" class="unit-link">👉 Ver unidad 👈</a>
 

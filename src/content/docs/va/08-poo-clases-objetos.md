@@ -1,5 +1,5 @@
 ---
-title: "U08 — POO: Classes i Objectes"
+title: "U08 — POO: Classes i objectes"
 description: "El tallagalletas i les galetes: quan el teu codi passa de ser una recepta a un món d'objectes que parlen entre ells 🏗️"
 emoji: 🏗️
 ---
@@ -87,7 +87,7 @@ En acabar, seràs capaç de:
 | RA4 d) | S'han creat constructors. | ✅ Punts 4 i 7 |
 | RA4 e) | S'han desenvolupat programes que instancien i utilitzen objectes de les classes creades anteriorment. | ✅ Punts 6 i 8 |
 
-> 📌 El punt 6 (referències i memòria) i el 7 (pas per valor) són la base per a entendre el **RA2 c) i f)** en profunditat. Els modificadors de visibilitat (RA4 f), l'herència (RA4 g) i els mètodes estàtics (RA4 h) tenen el seu propi capítol en la **U09** (Visibilitat i Static) i en la **U10** (Herència), així que ací els deixem descansant.
+> 📌 El punt 6 (referències i memòria) i el 7 (pas per valor) són la base per a entendre el **RA2 c) i f)** en profunditat. Els modificadors de visibilitat (RA4 f), l'herència (RA4 g) i els mètodes estàtics (RA4 h) tenen el seu propi capítol en la **U09** (Visibilitat, encapsulació i static) i en la **U10** (Herència), així que ací els deixem descansant.
 
 ---
 
@@ -99,4 +99,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/08-poo-clases-objetos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u08-inicial).
 
 **📍 Primer punt:** [01 · Què és la POO](/ApuntesProgramacion/va/08-poo-clases-objetos/01-que-es-poo)  
-**⏭️ En acabar la unitat, continua en [U09 · Visibilitat, Encapsulació i Static](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static).**
+**⏭️ En acabar la unitat, continua en [U09 · Visibilitat, encapsulació i static](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static).**

@@ -339,8 +339,8 @@ El programador termina su catálogo: ordena las notas con inserción, y cuando u
 
 El novato guarda su proyecto, cierra el IDE y siente que ya no busca ni ordena: **piensa en términos de algoritmos**.
 
-**PRÓXIMAMENTE EN U07:** Algorítmica II: Técnicas. Divide y vencerás, QuickSort, MergeSort y recursividad. El momento en el que ordenar un millón de datos deja de ser una utopía. ⚡
+**PRÓXIMAMENTE EN U07:** Algorítmica II: técnicas avanzadas y modularidad. Divide y vencerás, QuickSort, MergeSort y recursividad. El momento en el que ordenar un millón de datos deja de ser una utopía. ⚡
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/06-algoritmica-fundamentos) · **Anterior:** [08 · Be the Code: búsqueda binaria desde cero](/ApuntesProgramacion/06-algoritmica-fundamentos/08-be-the-code) · **Siguiente:** **[U07 · Algorítmica II: Técnicas](/ApuntesProgramacion/07-algoritmica-tecnicas)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/06-algoritmica-fundamentos) · **Anterior:** [08 · Be the Code: búsqueda binaria desde cero](/ApuntesProgramacion/06-algoritmica-fundamentos/08-be-the-code) · **Siguiente:** **[U07 · Algorítmica II: técnicas avanzadas y modularidad](/ApuntesProgramacion/07-algoritmica-tecnicas)**

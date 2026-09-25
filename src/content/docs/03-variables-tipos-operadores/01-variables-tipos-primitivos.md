@@ -5,7 +5,7 @@ description: Las cajas del almacén de la memoria y sus 8 tamaños distintos �
 
 <p><small>Las cajas del almacén de la memoria y sus 8 tamaños distintos 📦</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 01 · Variables y tipos primitivos
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 01 · Variables y tipos primitivos
 
 ---
 

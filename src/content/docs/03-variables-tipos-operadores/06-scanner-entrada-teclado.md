@@ -5,7 +5,7 @@ description: El momento en que tu programa deja de gritar y empieza a escuchar �
 
 <p><small>El momento en que tu programa deja de gritar y empieza a escuchar ⌨️</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 06 · Scanner: leer por teclado
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 06 · Scanner: leer por teclado
 
 ---
 

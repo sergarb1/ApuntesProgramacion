@@ -5,7 +5,7 @@ description: "El teu servidor passa de parlar en text pla a servir pàgines comp
 
 <p><small>El teu servidor passa de parlar en text pla a servir pàgines completes: Content-Type, cadenes ben formades i fitxers 📄🎨</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 03 · Servint HTML
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 03 · Servint HTML
 
 ---
 

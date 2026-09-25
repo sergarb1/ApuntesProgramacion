@@ -5,7 +5,7 @@ description: "Compilar vs executar, errors típics del principiant ⚠️"
 
 <p><small>Compilar vs executar, errors típics del principiant ⚠️</small></p>
 
-> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java** → 07 · El compilador i els seus errors
+> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java i l'entorn de treball** → 07 · El compilador i els seus errors
 
 ---
 

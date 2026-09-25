@@ -1,10 +1,10 @@
 ---
-title: "U14 — Connexió a Bases de Dades amb JDBC"
-description: "Java aprén a parlar amb les bases de dades: JDBC, SQLite, Connection, Statement, PreparedStatement, el patró DAO i transaccions. Tot amb humor i sense perdre la connexió 🗄️"
+title: "U14 — Persistència de dades: JDBC i introducció a ORM"
+description: "Java aprén a parlar amb les bases de dades: JDBC, SQLite, Connection, Statement, PreparedStatement, el patró DAO, transaccions i un primer contacte amb els ORM. Tot amb humor i sense perdre la connexió 🗄️"
 emoji: 🗄️
 ---
 
-<p><small>Java aprén a parlar amb les bases de dades: JDBC, SQLite, Connection, Statement, PreparedStatement, el patró DAO i transaccions. Tot amb humor i sense perdre la connexió 🗄️</small></p>
+<p><small>Java aprén a parlar amb les bases de dades: JDBC, SQLite, Connection, Statement, PreparedStatement, el patró DAO, transaccions i un primer contacte amb els ORM. Tot amb humor i sense perdre la connexió 🗄️</small></p>
 
 
 
@@ -12,15 +12,16 @@ emoji: 🗄️
 
 En la U13 vas tancar el tracte amb els **fitxers**: guardar i llegir informació al disc. Hui pugem de nivell. Eixa informació deixa de viure en un fitxer solt i passa a una **base de dades relacional**, amb les seues taules, les seues claus i les seues regles. I Java, és clar, hi parlarà. La ferramenta es diu **JDBC** (Java Database Connectivity) i és el pont oficial entre el teu codi i qualsevol base de dades amb controlador.
 
-Esta unitat té tres grans actes:
+Esta unitat té quatre grans actes:
 
 - **Connectar i consultar:** què és JDBC, com es munta la dependència de **SQLite** a Maven i el ritual dels 5 passos per a obrir una connexió (`Connection`), llançar consultes (`Statement`) i llegir els resultats (`ResultSet`).
 - **El CRUD segur:** inserir, llegir, actualitzar i esborrar amb **`PreparedStatement`**, la vacuna contra l'**SQL injection** (pregunta-li a Bobby Tables), i el **patró DAO** perquè l'SQL no es cole en la teua lògica de negoci.
 - **La integritat:** **transaccions** amb `commit` i `rollback` per a operacions de tot-o-res, i un decàleg de bones pràctiques perquè la teua connexió no siga una fuga de recursos.
+- **El pont amb els ORM:** després de domar el JDBC a mà, veuràs què és un **ORM** (mapeig objecte-relacional) i per què els equips de veritat el fan servir per a no escriure tant SQL de catàleg.
 
 Pel camí coneixeràs `SQLException`, l'excepció checked que t'acompanyarà a cada pas, i entendràs per què `executeQuery()` i `executeUpdate()` són com la porta d'embarcament i la del maleter: cada operació té la seua.
 
-Esta unitat es llig com un **llibre de 9 capítols**: els 8 primers punts són teoria en progressió i el 9 és un aterratge pràctic per a deixar-ho tot ben lligat.
+Esta unitat es llig com un **llibre de 10 capítols**: els 9 primers punts són teoria en progressió i el 10 és un aterratge pràctic per a deixar-ho tot ben lligat.
 
 ---
 
@@ -36,6 +37,7 @@ En acabar, seràs capaç de:
 - Aplicar el **patró DAO** (interfície + implementació) per a separar l'SQL de la lògica de negoci.
 - Gestionar **transaccions** amb `commit()`, `rollback()` i savepoints per a operacions atòmiques.
 - Escriure codi JDBC seguint el **decàleg de bones pràctiques**: `try-with-resources`, files afectades i `WHERE` sempre.
+- Explicar **què és un ORM** i en què es diferencia d'escriure JDBC a mà.
 
 ---
 
@@ -51,9 +53,10 @@ En acabar, seràs capaç de:
 | [06 · El patró DAO](/ApuntesProgramacion/va/14-conexion-bases-datos/06-pattern-dao) | Interfície + implementació: l'SQL no trepitja la teua lògica de negoci | Tots |
 | [07 · Transaccions](/ApuntesProgramacion/va/14-conexion-bases-datos/07-transacciones) | `commit`, `rollback` i savepoints: tot o res | Tots |
 | [08 · Bones pràctiques](/ApuntesProgramacion/va/14-conexion-bases-datos/08-buenas-practicas) | El decàleg del JDBC: recursos, files afectades i `WHERE` sempre | Tots |
-| [09 · Repàs interactiu](/ApuntesProgramacion/va/14-conexion-bases-datos/09-repaso-interactivo) | Sé el Código, Fireside, Laboratori, Crucigrama i més | Tots |
+| [09 · Introducció a ORM](/ApuntesProgramacion/va/14-conexion-bases-datos/09-introduccion-orm) | Què és un ORM, mapeig objecte-relacional i JDBC vs ORM | Tots |
+| [10 · Repàs interactiu](/ApuntesProgramacion/va/14-conexion-bases-datos/10-repaso-interactivo) | Sé el Código, Fireside, Laboratori, Crucigrama i més | Tots |
 
-> 📖 **Flux de lectura:** els 8 primers punts són teoria en progressió. El 9 és l'aterratge pràctic: llig-lo just després del 8 i abans d'obrir els butlletins.
+> 📖 **Flux de lectura:** els 9 primers punts són teoria en progressió. El 10 és l'aterratge pràctic: llig-lo just després del 9 i abans d'obrir els butlletins.
 
 ---
 
@@ -82,8 +85,8 @@ En acabar, seràs capaç de:
 | RA9 c) | S'ha escrit codi per a emmagatzemar informació en bases de dades. | ✅ Punts 4 i 5 |
 | RA9 d) | S'han creat programes per a recuperar i mostrar informació emmagatzemada en bases de dades. | ✅ Punts 3 i 4 |
 | RA9 e) | S'han efectuat esborrats i modificacions sobre la informació emmagatzemada. | ✅ Punt 4 |
-| RA9 f) | S'han creat aplicacions que executin consultes sobre bases de dades. | ✅ Punts 3, 5 i 9 |
-| RA9 g) | S'han creat aplicacions per a possibilitar la gestió d'informació present en bases de dades relacionals. | ✅ Punts 6 i 9 |
+| RA9 f) | S'han creat aplicacions que executin consultes sobre bases de dades. | ✅ Punts 3, 5 i 10 |
+| RA9 g) | S'han creat aplicacions per a possibilitar la gestió d'informació present en bases de dades relacionals. | ✅ Punts 6 i 10 |
 
 > 📌 Esta unitat cobreix la **RA9** completa. El camí fins ací: la **U04** et va ensenyar les excepcions (i `SQLException` és checked, et perseguirà), la **U08/U09** et va donar les classes i interfícies amb què muntar els POJO i el DAO, i la **U13** et va deixar el `try-with-resources` llest per a tancar connexions. Tot el material anterior cobra sentit ara: és hora que els teus objectes dormisquen en una base de dades.
 
@@ -94,7 +97,7 @@ En acabar, seràs capaç de:
 - Vens de la U13 (fitxers) i vols l'essencial? → Comença en el [punt 1](/ApuntesProgramacion/va/14-conexion-bases-datos/01-que-es-jdbc) i el [punt 2](/ApuntesProgramacion/va/14-conexion-bases-datos/02-conexion): connectar és el 90% de la batalla.
 - Ja connectes i vols gestionar dades? → Ves directe al [punt 4](/ApuntesProgramacion/va/14-conexion-bases-datos/04-crud) (el CRUD) i al [punt 5](/ApuntesProgramacion/va/14-conexion-bases-datos/05-preparedstatement) (fer-ho sense que et pirategen).
 - Només vens a pels trucs? → Salta al [punt 5](/ApuntesProgramacion/va/14-conexion-bases-datos/05-preparedstatement) (l'SQL injection) i al [punt 8](/ApuntesProgramacion/va/14-conexion-bases-datos/08-buenas-practicas) (el decàleg).
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/14-conexion-bases-datos/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u14-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/14-conexion-bases-datos/10-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u14-inicial).
 
 **📍 Primer punt:** [01 · Què és JDBC](/ApuntesProgramacion/va/14-conexion-bases-datos/01-que-es-jdbc)  
-**⏭️ En acabar la unitat, continua en [U16 · Servir i Consumir APIs amb Web](/ApuntesProgramacion/va/16-apis-web).**
+**⏭️ En acabar la unitat, continua en [U16 · Servir i consumir APIs amb Web](/ApuntesProgramacion/va/16-apis-web).**

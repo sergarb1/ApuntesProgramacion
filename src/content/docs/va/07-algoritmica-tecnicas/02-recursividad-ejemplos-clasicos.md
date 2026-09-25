@@ -5,7 +5,7 @@ description: "Factorial, Fibonacci, palíndroms i torres de Hanoi: els quatre ge
 
 <p><small>Factorial, Fibonacci, palíndroms i torres de Hanoi: els quatre genets de l'apocalipsi recursiu 🧮</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 02 · Recursivitat: exemples clàssics
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 02 · Recursivitat: exemples clàssics
 
 ---
 

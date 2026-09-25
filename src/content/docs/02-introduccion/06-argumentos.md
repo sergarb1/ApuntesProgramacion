@@ -5,7 +5,7 @@ description: "El array args, cómo leerlo y usarlo 📬"
 
 <p><small>El array args, cómo leerlo y usarlo 📬</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 06 · Argumentos de línea de órdenes
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 06 · Argumentos de línea de órdenes
 
 ---
 

@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat, amb objectes, constructors i u
 
 <p><small>El tancament pràctic de la unitat, amb objectes, constructors i un `null` que no funcionarà 😈</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 09 · Repàs interactiu
 
 ---
 
@@ -358,4 +358,4 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa humejant.
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/08-poo-clases-objetos) · **Anterior:** [08 · Be the Code: dissenya la teua classe](/ApuntesProgramacion/va/08-poo-clases-objetos/08-be-the-code) · **Següent:** **[U09 · Visibilitat, Encapsulació i Static](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/08-poo-clases-objetos) · **Anterior:** [08 · Be the Code: dissenya la teua classe](/ApuntesProgramacion/va/08-poo-clases-objetos/08-be-the-code) · **Següent:** **[U09 · Visibilitat, encapsulació i static](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static)**

@@ -5,7 +5,7 @@ description: "//, /* */, /** */ i Javadoc 📝"
 
 <p><small>//, /* */, /** */ i Javadoc 📝</small></p>
 
-> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java** → 05 · Comentaris i documentació
+> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java i l'entorn de treball** → 05 · Comentaris i documentació
 
 ---
 

@@ -5,7 +5,7 @@ description: "implements, polimorfisme amb interfícies, mètodes default i la g
 
 <p><small>implements, polimorfisme amb interfícies, mètodes default i la gran decisió abstract vs interface 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 08 · Interfícies: el contracte que signes
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 08 · Interfícies: el contracte que signes
 
 ---
 

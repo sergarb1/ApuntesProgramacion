@@ -1,6 +1,6 @@
 ﻿---
 title: "Boletín U12 — Inicial"
-description: "Ejercicios básicos de Programación Funcional: lambdas, Predicate, map y filter sobre streams"
+description: "Ejercicios básicos de Programación funcional (Streams y Lambdas): lambdas, Predicate, map y filter sobre streams"
 ---
 
 # 📝 Boletín U12 — Inicial

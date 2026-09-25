@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad, con un pipeline que parece magia
 
 <p><small>El cierre práctico de la unidad, con un pipeline que parece magia y un Optional que esconde un susto 🎯</small></p>
 
-> 🗺️ **Estás en:** 🎯 **U12 · Programación Funcional** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🎯 **U12 · Programación funcional (Streams y Lambdas)** → 09 · Repaso interactivo
 
 ---
 
@@ -352,8 +352,8 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 **CONRAD:** — *asiente* Exacto. Ficheros, y cuando los datos crezcan, expresiones regulares para buscar patrones. Tu cinta transportadora procesa; el fichero conserva. Todo eso es otra historia... y casi te toca.
 
-**PROXIMAMENTE EN U13:** Ficheros y Regex. Guarda los resultados de tus streams en disco y busca patrones con expresiones regulares. 📁
+**PROXIMAMENTE EN U13:** Ficheros y expresiones regulares (Regex). Guarda los resultados de tus streams en disco y busca patrones con expresiones regulares. 📁
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/12-programacion-funcional) · **Anterior:** [08 · Optional: el que acepta la ausencia](/ApuntesProgramacion/12-programacion-funcional/08-optional) · **Siguiente:** **[U13 · Ficheros y Regex](/ApuntesProgramacion/13-ficheros-regex)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/12-programacion-funcional) · **Anterior:** [08 · Optional: el que acepta la ausencia](/ApuntesProgramacion/12-programacion-funcional/08-optional) · **Siguiente:** **[U13 · Ficheros y expresiones regulares (Regex)](/ApuntesProgramacion/13-ficheros-regex)**

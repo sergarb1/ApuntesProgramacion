@@ -5,7 +5,7 @@ description: "Tu servidor pasa de hablar en texto plano a servir páginas comple
 
 <p><small>Tu servidor pasa de hablar en texto plano a servir páginas completas: Content-Type, cadenas bien formadas y ficheros 📄🎨</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 03 · Sirviendo HTML
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 03 · Sirviendo HTML
 
 ---
 

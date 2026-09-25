@@ -5,7 +5,7 @@ description: Los botones de emergencia y los saltos de línea del bucle 🚪
 
 <p><small>Los botones de emergencia y los saltos de línea del bucle 🚪</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 05 · break, continue y etiquetas
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 05 · break, continue y etiquetas
 
 ---
 

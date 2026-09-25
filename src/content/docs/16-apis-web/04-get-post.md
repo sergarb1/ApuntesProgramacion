@@ -5,7 +5,7 @@ description: "El navegador pregunta con la URL y entrega con el cuerpo: lee la q
 
 <p><small>El navegador pregunta con la URL y entrega con el cuerpo: lee la query string y el body como un profesional 📥📤</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 04 · Parámetros GET y formularios POST
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 04 · Parámetros GET y formularios POST
 
 ---
 

@@ -5,7 +5,7 @@ description: Quan el teu programa aprén a decidir (i a prendre's els semàfors 
 
 <p><small>Quan el teu programa aprén a decidir (i a prendre's els semàfors seriosament) 🚦</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 01 · if, else if i else
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 01 · if, else if i else
 
 ---
 

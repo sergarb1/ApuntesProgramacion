@@ -5,7 +5,7 @@ description: "Els 4 nivells de visibilitat: de la tanca publicitària a Times Sq
 
 <p><small>Els 4 nivells de visibilitat: de la tanca publicitària a Times Square al diari amb cadenat 🔐</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 02 · public, private i protected
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 02 · public, private i protected
 
 ---
 

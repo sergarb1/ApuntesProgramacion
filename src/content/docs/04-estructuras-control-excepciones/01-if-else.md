@@ -5,7 +5,7 @@ description: Cuando tu programa aprende a decidir (y a tomarse los semáforos en
 
 <p><small>Cuando tu programa aprende a decidir (y a tomarse los semáforos en serio) 🚦</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 01 · if, else if y else
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 01 · if, else if y else
 
 ---
 

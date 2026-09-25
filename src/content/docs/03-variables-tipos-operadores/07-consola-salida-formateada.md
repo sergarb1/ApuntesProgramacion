@@ -5,7 +5,7 @@ description: "printf, String.format, NumberFormat y los fallos clásicos del Sca
 
 <p><small>printf, String.format, NumberFormat y los fallos clásicos del Scanner (y cómo no morir en el intento) 🖨️</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 07 · Consola: salida formateada y errores de entrada
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 07 · Consola: salida formateada y errores de entrada
 
 ---
 

@@ -339,8 +339,8 @@ El programador acaba el seu catàleg: ordena les notes amb inserció, i quan un 
 
 El novell guarda el seu projecte, tanca l'IDE i sent que ja no busca ni ordena: **pensa en termes d'algoritmes**.
 
-**PRÒXIMAMENT EN U07:** Algorítmica II: Tècniques. Divideix i venç, QuickSort, MergeSort i recursivitat. El moment en què ordenar un milió de dades deixa de ser una utopia. ⚡
+**PRÒXIMAMENT EN U07:** Algorítmica II: tècniques avançades i modularitat. Divideix i venç, QuickSort, MergeSort i recursivitat. El moment en què ordenar un milió de dades deixa de ser una utopia. ⚡
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/06-algoritmica-fundamentos) · **Anterior:** [08 · Be the Code: cerca binària des de zero](/ApuntesProgramacion/va/06-algoritmica-fundamentos/08-be-the-code) · **Següent:** **[U07 · Algorítmica II: Tècniques](/ApuntesProgramacion/va/07-algoritmica-tecnicas)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/06-algoritmica-fundamentos) · **Anterior:** [08 · Be the Code: cerca binària des de zero](/ApuntesProgramacion/va/06-algoritmica-fundamentos/08-be-the-code) · **Següent:** **[U07 · Algorítmica II: tècniques avançades i modularitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas)**

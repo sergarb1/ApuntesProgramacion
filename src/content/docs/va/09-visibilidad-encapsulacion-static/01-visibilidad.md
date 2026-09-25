@@ -5,7 +5,7 @@ description: "Viure en una casa de vidre està fatal: el teu codi també mereix 
 
 <p><small>Viure en una casa de vidre està fatal: el teu codi també mereix portes, claus i cadenats 🏠</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 01 · Visibilitat: l'art de no ensenyar-ho tot
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 01 · Visibilitat: l'art de no ensenyar-ho tot
 
 ---
 

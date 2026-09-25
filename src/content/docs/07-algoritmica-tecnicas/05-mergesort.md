@@ -5,7 +5,7 @@ description: "El algoritmo que siempre cumple lo que promete: O(n log n) pase lo
 
 <p><small>El algoritmo que siempre cumple lo que promete: O(n log n) pase lo que pase 🤝</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 05 · Mergesort
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 05 · Mergesort
 
 ---
 

@@ -5,7 +5,7 @@ description: Les màquines de pesos del gimnàs de dades ➕
 
 <p><small>Les màquines de pesos del gimnàs de dades ➕</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 03 · Operadors aritmètics
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 03 · Operadors aritmètics
 
 ---
 

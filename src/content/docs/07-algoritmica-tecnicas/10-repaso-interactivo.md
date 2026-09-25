@@ -1,11 +1,11 @@
 ﻿---
-title: "09 — Repaso interactivo"
+title: "10 · Repaso interactivo"
 description: "El cierre de la unidad con chicha: adivina salidas, arregla bugs y date el lujo de sufrir con honor 😈"
 ---
 
 <p><small>El cierre de la unidad con chicha: adivina salidas, arregla bugs y date el lujo de sufrir con honor 😈</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 10 · Repaso interactivo
 
 ---
 
@@ -375,8 +375,8 @@ El programador novato termina su Quicksort, lo ejecuta y... funciona a la primer
 
 El novato guarda su proyecto, y siente que algo ha cambiado en su forma de pensar. La recursividad ya no le da miedo: la entiende. Y la entiende porque, para entender la recursividad, primero entendió la recursividad.
 
-**PRÓXIMAMENTE EN U08:** POO: Clases y Objetos. El momento en el que tus programas dejan de ser funciones sueltas y se convierten en **ciudadanos con atributos y métodos**. 🏗️
+**PRÓXIMAMENTE EN U08:** POO: clases y objetos. El momento en el que tus programas dejan de ser funciones sueltas y se convierten en **ciudadanos con atributos y métodos**. 🏗️
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/07-algoritmica-tecnicas) · **Anterior:** [08 · Otras técnicas algorítmicas](/ApuntesProgramacion/07-algoritmica-tecnicas/08-otras-tecnicas-algoritmicas) · **Siguiente:** **[U08 · POO: Clases y Objetos](/ApuntesProgramacion/08-poo-clases-objetos)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/07-algoritmica-tecnicas) · **Anterior:** [09 · Modularidad](/ApuntesProgramacion/07-algoritmica-tecnicas/09-modularidad) · **Siguiente:** **[U08 · POO: clases y objetos](/ApuntesProgramacion/08-poo-clases-objetos)**

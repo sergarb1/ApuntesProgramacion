@@ -5,7 +5,7 @@ description: "Atributos privados, acceso controlado y el patrón JavaBeans: la r
 
 <p><small>Atributos privados, acceso controlado y el patrón JavaBeans: la receta para que tu clase nunca se rompa 📦</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 03 · Encapsulación: el pilar de la POO
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 03 · Encapsulación: el pilar de la POO
 
 ---
 

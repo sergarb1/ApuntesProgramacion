@@ -1,11 +1,11 @@
 ﻿---
-title: "09 — Repàs interactiu"
+title: "10 · Repàs interactiu"
 description: "El tancament de la unitat amb chicha: endevina eixides, arregla bugs i dona't el luxe de patir amb honor 😈"
 ---
 
 <p><small>El tancament de la unitat amb chicha: endevina eixides, arregla bugs i dona't el luxe de patir amb honor 😈</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 10 · Repàs interactiu
 
 ---
 
@@ -375,8 +375,8 @@ El programador novençà acaba el seu Quicksort, l'executa i... funciona a la pr
 
 El novençà guarda el seu projecte, i sent que alguna cosa ha canviat en la seua manera de pensar. La recursivitat ja no li fa por: l'entén. I l'entén perquè, per a entendre la recursivitat, primer va entendre la recursivitat.
 
-**PRÒXIMAMENT EN U08:** POO: Classes i Objectes. El moment en què els teus programes deixen de ser funcions soltes i es converteixen en **ciutadans amb atributs i mètodes**. 🏗️
+**PRÒXIMAMENT EN U08:** POO: Classes i objectes. El moment en què els teus programes deixen de ser funcions soltes i es converteixen en **ciutadans amb atributs i mètodes**. 🏗️
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas) · **Anterior:** [08 · Altres tècniques algorísmiques](/ApuntesProgramacion/va/07-algoritmica-tecnicas/08-otras-tecnicas-algoritmicas) · **Següent:** **[U08 · POO: Classes i Objectes](/ApuntesProgramacion/va/08-poo-clases-objetos)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas) · **Anterior:** [09 · Modularitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-modularidad) · **Següent:** **[U08 · POO: Classes i objectes](/ApuntesProgramacion/va/08-poo-clases-objetos)**

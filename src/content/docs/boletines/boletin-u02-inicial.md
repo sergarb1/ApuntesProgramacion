@@ -1,6 +1,6 @@
 ﻿---
 title: "Boletín U02 — Inicial"
-description: "Ejercicios básicos de Introducción a Java"
+description: "Ejercicios básicos de Introducción a Java y el entorno de trabajo"
 ---
 
 # 📝 Boletín U02 — Inicial

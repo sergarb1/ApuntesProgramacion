@@ -5,7 +5,7 @@ description: "JDBC, el USB de las bases de datos: Java habla con SQLite, MySQL o
 
 <p><small>JDBC, el USB de las bases de datos: Java habla con SQLite, MySQL o PostgreSQL gracias a un controlador. Y la dependencia Maven que lo enciende todo 🗄️🔌</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 01 · Qué es JDBC
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 01 · Qué es JDBC
 
 ---
 

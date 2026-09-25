@@ -5,7 +5,7 @@ description: La caja de herramientas para manipular texto 🪄
 
 <p><small>La caja de herramientas para manipular texto 🪄</small></p>
 
-> 🗺️ **Estás en:** 🔤 **U03 · Variables, Tipos y Operadores** → 09 · Métodos útiles de String
+> 🗺️ **Estás en:** 🔤 **U03 · Variables, tipos y operadores** → 09 · Métodos útiles de String
 
 ---
 

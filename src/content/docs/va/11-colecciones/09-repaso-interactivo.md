@@ -609,8 +609,8 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 **CONRAD:** — *assentix* Exacte. Fitxers, serialització, i quan les dades cresquen, expressions regulars per a buscar patrons. Tot això és una altra història... i quasi et toca.
 
-**PRÒXIMAMENT EN U13:** Fitxers i Regex. Guarda els teus mapes i les teues llistes en disc i busca patrons amb expressions regulars. 📁
+**PRÒXIMAMENT EN U13:** Fitxers i expressions regulars (Regex). Guarda els teus mapes i les teues llistes en disc i busca patrons amb expressions regulars. 📁
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/11-colecciones) · **Anterior:** [08 · TreeMap i com triar estructura](/ApuntesProgramacion/va/11-colecciones/08-treemap-elegir-estructura) · **Següent:** **[U12 · Programació Funcional](/ApuntesProgramacion/va/12-programacion-funcional)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/11-colecciones) · **Anterior:** [08 · TreeMap i com triar estructura](/ApuntesProgramacion/va/11-colecciones/08-treemap-elegir-estructura) · **Següent:** **[U12 · Programació funcional (Streams i Lambdas)](/ApuntesProgramacion/va/12-programacion-funcional)**

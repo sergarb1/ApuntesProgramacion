@@ -5,7 +5,7 @@ description: "Factorial, Fibonacci, palíndromos y torres de Hanói: los cuatro 
 
 <p><small>Factorial, Fibonacci, palíndromos y torres de Hanói: los cuatro jinetes del apocalipsis recursivo 🧮</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 02 · Recursividad: ejemplos clásicos
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 02 · Recursividad: ejemplos clásicos
 
 ---
 

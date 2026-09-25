@@ -5,7 +5,7 @@ description: "El GPS que localitza fitxers sense llegir-ne el contingut: existei
 
 <p><small>El GPS que localitza fitxers sense llegir-ne el contingut: existeix, és fitxer, és carpeta, quant pesa i què hi ha dins 🗂️📍</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 01 · La classe File: el teu explorador de fitxers
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 01 · La classe File: el teu explorador de fitxers
 
 ---
 

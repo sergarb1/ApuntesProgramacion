@@ -5,7 +5,7 @@ description: "Valores inmutables en MAYÚSCULAS y las clases utilitarias que nad
 
 <p><small>Valores inmutables en MAYÚSCULAS y las clases utilitarias que nadie puede instanciar 🏛️</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 07 · Constantes de clase: static final
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 07 · Constantes de clase: static final
 
 ---
 

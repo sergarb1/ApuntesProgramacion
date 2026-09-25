@@ -61,6 +61,19 @@ En acabar, seràs capaç d'explicar:
 
 ---
 
+## ✅ Criteris d'avaluació coberts (RA1)
+
+**RA1: Reconeix l'estructura d'un programa informàtic, identificant i relacionant els elements propis del llenguatge de programació utilitzat.**
+
+| CE | Criteri | On es cobreix |
+|---|---|---|
+| a) | Blocs que componen l'estructura d'un programa | ✅ Punts 3 i 4 |
+| b) | Projectes de desenrotllament d'aplicacions | ✅ Punt 9 |
+
+> 📌 El criteri a) es practica descomponen i escrivint el pla abans de programar; el b), tancant el primer problema complet del punt 9. La resta de criteris del RA1 (c: entorns integrats de desenrotllament, i: comentaris en el codi) es veuen en la **U02**.
+
+---
+
 ## 🚪 Per on commence?
 
 - 🆕 Zero coneixements? → Comença en el [punt 1](/ApuntesProgramacion/va/01-pensamiento-computacional/01-ordenadores-lenguajes), no hi ha cap requisit previ.
@@ -68,4 +81,4 @@ En acabar, seràs capaç d'explicar:
 - 🎯 Vens a repassar? → Fes les [activitats](/ApuntesProgramacion/va/boletines/boletin-u01-inicial).
 
 **📍 Primer punt:** [01 · Què és un ordinador i un llenguatge de programació](/ApuntesProgramacion/va/01-pensamiento-computacional/01-ordenadores-lenguajes)
-**⏭️ En acabar la unitat, continua en [U02 · Introducció a Java](/ApuntesProgramacion/va/02-introduccion).**
+**⏭️ En acabar la unitat, continua en [U02 · Introducció a Java i l'entorn de treball](/ApuntesProgramacion/va/02-introduccion).**

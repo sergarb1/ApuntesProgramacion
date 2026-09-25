@@ -5,7 +5,7 @@ description: "Operaciones de todo o nada: setAutoCommit(false), commit para conf
 
 <p><small>Operaciones de todo o nada: setAutoCommit(false), commit para confirmar, rollback para deshacer y savepoints para no deshacerlo todo 🗄️🎭</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 07 · Transacciones
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 07 · Transacciones
 
 ---
 

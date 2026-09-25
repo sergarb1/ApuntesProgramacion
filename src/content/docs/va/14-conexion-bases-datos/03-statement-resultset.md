@@ -5,7 +5,7 @@ description: "Llança consultes amb Statement, processa files amb ResultSet i de
 
 <p><small>Llança consultes amb Statement, processa files amb ResultSet i decideix entre executeQuery i executeUpdate sense ficar una forqueta al microones 🗄️📊</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 03 · Statement i ResultSet
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 03 · Statement i ResultSet
 
 ---
 

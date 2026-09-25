@@ -5,7 +5,7 @@ description: "El reto guiado: convierte una clase sin blindar en una bien encaps
 
 <p><small>El reto guiado: convierte una clase sin blindar en una bien encapsulada con getters y setters 🔨</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 08 · Be the Code: encapsula tu clase
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 08 · Be the Code: encapsula tu clase
 
 ---
 

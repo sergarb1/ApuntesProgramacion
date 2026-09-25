@@ -5,7 +5,7 @@ description: Repetir sin copiar y pegar, hasta que una condición diga basta �
 
 <p><small>Repetir sin copiar y pegar, hasta que una condición diga basta 🏃</small></p>
 
-> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de Control y Excepciones** → 03 · Bucles: while y do-while
+> 🗺️ **Estás en:** 🔀 **U04 · Estructuras de control y excepciones básicas** → 03 · Bucles: while y do-while
 
 ---
 

@@ -5,7 +5,7 @@ description: "Lanza consultas con Statement, procesa filas con ResultSet y decid
 
 <p><small>Lanza consultas con Statement, procesa filas con ResultSet y decide entre executeQuery y executeUpdate sin meter un tenedor en el microondas 🗄️📊</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 03 · Statement y ResultSet
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 03 · Statement y ResultSet
 
 ---
 

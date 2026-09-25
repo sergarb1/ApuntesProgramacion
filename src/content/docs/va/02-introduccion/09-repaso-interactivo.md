@@ -5,7 +5,7 @@ description: "Sé el Codi, Fireside, Qui Soc, Laboratori, Crucigrama… 🧩"
 
 <p><small>Sé el Codi, Fireside, Qui Soc, Laboratori, Crucigrama… 🧩</small></p>
 
-> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java** → 09 · Repàs
+> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java i l'entorn de treball** → 09 · Repàs
 
 ---
 

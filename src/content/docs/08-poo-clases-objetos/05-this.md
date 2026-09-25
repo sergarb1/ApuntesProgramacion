@@ -5,7 +5,7 @@ description: "El objeto gritando «¡hablo de mí, no de otro!» para desambigua
 
 <p><small>El objeto gritando «¡hablo de mí, no de otro!» para desambiguar y encadenar constructores 🗣️</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 05 · La palabra clave this
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 05 · La palabra clave this
 
 ---
 

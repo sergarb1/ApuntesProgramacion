@@ -1,10 +1,10 @@
 ---
-title: "U07 — Algorítmica II: Tècniques"
-description: "Recursivitat, divide i venceràs, Quicksort i Mergesort: les tècniques que fan que el teu codi pense ⚡"
+title: "U07 — Algorítmica II: tècniques avançades i modularitat"
+description: "Recursivitat, divide i venceràs, Quicksort, Mergesort i modularitat: les tècniques que fan que el teu codi pense ⚡"
 emoji: ⚡
 ---
 
-<p><small>Recursivitat, divide i venceràs, Quicksort i Mergesort: les tècniques que fan que el teu codi pense ⚡</small></p>
+<p><small>Recursivitat, divide i venceràs, Quicksort, Mergesort i modularitat: les tècniques que fan que el teu codi pense ⚡</small></p>
 
 
 
@@ -12,7 +12,7 @@ emoji: ⚡
 
 Benvingut, valent explorador de la pila de crides. En la U06 vas dominar l'art de buscar i ordenar amb bucles: cerca lineal, binària, bombolla i inserció. Vas aprendre a mesurar algorismes amb Big O i a no usar mai bombolla en producció (ho vas prometre). Però els bucles es queden curts quan el problema és *inherentment* jeràrquic. I ací és on la programació es torna elegant.
 
-Esta unitat és la que **et canvia la manera de pensar**. Faràs que una funció es crida a si mateixa (sense tornar-te boig), partiràs problemes per la meitat fins a fer-los trivials, i coneixeràs els dos reis de l'ordenació moderna: **Quicksort** i **Mergesort**. Quan acabes, veuràs recursivitat per tot arreu. És com aprendre una paraula nova: de sobte, la trobes en cada racó del codi.
+Esta unitat és la que **et canvia la manera de pensar**. Faràs que una funció es crida a si mateixa (sense tornar-te boig), partiràs problemes per la meitat fins a fer-los trivials, i coneixeràs els dos reis de l'ordenació moderna: **Quicksort** i **Mergesort**. Quan acabes, veuràs recursivitat per tot arreu. És com aprendre una paraula nova: de sobte, la trobes en cada racó del codi. I per a rematar, aplicaràs esta mateixa mirada al teu propi codi: **modularitat**, l'art de partir-lo en peces amb nom i amb sentit.
 
 Respira fons. I recorda: per a entendre la recursivitat, primer has d'entendre la recursivitat.
 
@@ -29,6 +29,7 @@ En acabar, seràs capaç de:
 - Implementar **Mergesort** entenent la fusió i l'estabilitat.
 - **Triar amb criteri** l'algorisme d'ordenació segons el context (mida, ordre previ, memòria, estabilitat).
 - Reconéixer altres tècniques com els algorismes **voracos** (greedy) i el **backtracking**.
+- Organitzar el teu codi amb criteri de **modularitat**: paquets, cohesió alta i acoblament baix.
 
 ---
 
@@ -44,9 +45,10 @@ En acabar, seràs capaç de:
 | [06 · Comparació: quan usar cada ordenació](/ApuntesProgramacion/va/07-algoritmica-tecnicas/06-comparacion-ordenacion) | Guia pràctica per a triar algorisme i què hi ha sota `Arrays.sort()` | Tots |
 | [07 · Be the Code: quicksort des de zero](/ApuntesProgramacion/va/07-algoritmica-tecnicas/07-be-the-code-quicksort) | Implementar Quicksort i Mergesort pas a pas, sense mirar | ⭐⭐⭐ |
 | [08 · Altres tècniques algorísmiques](/ApuntesProgramacion/va/07-algoritmica-tecnicas/08-otras-tecnicas-algoritmicas) | Algorismes voracos (greedy) i backtracking | ⭐⭐⭐ |
-| [09 · Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-repaso-interactivo) | Sé el Código, Fireside, Laboratori, Crucigrama i més | Tots |
+| [09 · Modularitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-modularidad) | Paquets, cohesió i acoblament per a partir el teu codi | Tots |
+| [10 · Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/10-repaso-interactivo) | Sé el Código, Fireside, Laboratori, Crucigrama i més | Tots |
 
-> 📖 **Flux de lectura:** els 8 primers punts són teoria i pràctica en progressió. El 9 és l'aterratge final: llig-lo just després del 8 i abans d'obrir els butlletins.
+> 📖 **Flux de lectura:** els 9 primers punts són teoria i pràctica en progressió. El 10 és l'aterratge final: llig-lo just després del 9 i abans d'obrir els butlletins.
 
 ---
 
@@ -88,7 +90,7 @@ En acabar, seràs capaç de:
 - Vens de la U06 i estàs fresc de Big O? → Arranca en el [punt 1](/ApuntesProgramacion/va/07-algoritmica-tecnicas/01-recursividad). Només necessites el que vas vore en Fonaments.
 - El que t'agrada és vore el resultat i no les tripes? → Salta al [punt 4](/ApuntesProgramacion/va/07-algoritmica-tecnicas/04-quicksort) i al [punt 5](/ApuntesProgramacion/va/07-algoritmica-tecnicas/05-mergesort) i torna després a la teoria de la recursivitat.
 - Et flipen els reptes? → Fes el [punt 7](/ApuntesProgramacion/va/07-algoritmica-tecnicas/07-be-the-code-quicksort) sense mirar el codi dels punts 4 i 5. Patix amb honor.
-- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u07-inicial).
+- Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/10-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u07-inicial).
 
 **📍 Primer punt:** [01 · Recursivitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas/01-recursividad)  
-**⏭️ En acabar la unitat, continua en [U08 · POO: Classes i Objectes](/ApuntesProgramacion/va/08-poo-clases-objetos).**
+**⏭️ En acabar la unitat, continua en [U08 · POO: Classes i objectes](/ApuntesProgramacion/va/08-poo-clases-objetos).**

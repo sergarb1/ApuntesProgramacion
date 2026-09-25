@@ -5,7 +5,7 @@ description: El moment en què el teu programa deixa de cridar i comença a esco
 
 <p><small>El moment en què el teu programa deixa de cridar i comença a escoltar ⌨️</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 06 · Scanner: llegir pel teclat
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 06 · Scanner: llegir pel teclat
 
 ---
 

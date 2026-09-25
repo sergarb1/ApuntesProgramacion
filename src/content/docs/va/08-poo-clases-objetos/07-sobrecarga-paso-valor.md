@@ -5,7 +5,7 @@ description: "Diversos mètodes amb el mateix nom i què es copia de veritat qua
 
 <p><small>Diversos mètodes amb el mateix nom i què es copia de veritat quan crides (pista: les referències t'enganyen) 🎭</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 07 · Sobrecàrrega i pas per valor
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 07 · Sobrecàrrega i pas per valor
 
 ---
 

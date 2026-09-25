@@ -1,10 +1,10 @@
 ﻿---
-title: "U07 — Algorítmica II: Técnicas"
-description: "Recursividad, divide y vencerás, Quicksort y Mergesort: las técnicas que hacen que tu código piense ⚡"
+title: "U07 — Algorítmica II: técnicas avanzadas y modularidad"
+description: "Recursividad, divide y vencerás, Quicksort, Mergesort y modularidad: las técnicas que hacen que tu código piense ⚡"
 emoji: ⚡
 ---
 
-<p><small>Recursividad, divide y vencerás, Quicksort y Mergesort: las técnicas que hacen que tu código piense ⚡</small></p>
+<p><small>Recursividad, divide y vencerás, Quicksort, Mergesort y modularidad: las técnicas que hacen que tu código piense ⚡</small></p>
 
 
 
@@ -12,7 +12,7 @@ emoji: ⚡
 
 Bienvenido, valiente explorador del stack de llamadas. En la U06 dominaste el arte de buscar y ordenar con bucles: búsqueda lineal, binaria, burbuja e inserción. Aprendiste a medir algoritmos con Big O y a no usar jamás burbuja en producción (lo prometiste). Pero los bucles se quedan cortos cuando el problema es *inherentemente* jerárquico. Y aquí es donde la programación se vuelve elegante.
 
-Esta unidad es la que **te cambia la forma de pensar**. Vas a hacer que una función se llame a sí misma (sin volverte loco), vas a partir problemas por la mitad hasta hacerlos triviales, y vas a conocer a los dos reyes de la ordenación moderna: **Quicksort** y **Mergesort**. Cuando termines, verás recursividad por todas partes. Es como aprender una palabra nueva: de repente, la encuentras en cada esquina del código.
+Esta unidad es la que **te cambia la forma de pensar**. Vas a hacer que una función se llame a sí misma (sin volverte loco), vas a partir problemas por la mitad hasta hacerlos triviales, y vas a conocer a los dos reyes de la ordenación moderna: **Quicksort** y **Mergesort**. Cuando termines, verás recursividad por todas partes. Es como aprender una palabra nueva: de repente, la encuentras en cada esquina del código. Y para rematar, aplicarás esa misma mirada a tu propio código: **modularidad**, el arte de partirlo en piezas con nombre y con sentido.
 
 Respira hondo. Y recuerda: para entender la recursividad, primero tienes que entender la recursividad.
 
@@ -29,6 +29,7 @@ Al terminar, serás capaz de:
 - Implementar **Mergesort** entendiendo la fusión y la estabilidad.
 - **Elegir con criterio** el algoritmo de ordenación según el contexto (tamaño, orden previo, memoria, estabilidad).
 - Reconocer otras técnicas como los algoritmos **voraces** (greedy) y el **backtracking**.
+- Organizar tu código con criterio de **modularidad**: paquetes, cohesión alta y acoplamiento bajo.
 
 ---
 
@@ -44,9 +45,10 @@ Al terminar, serás capaz de:
 | [06 · Comparación: cuándo usar cada ordenación](/ApuntesProgramacion/07-algoritmica-tecnicas/06-comparacion-ordenacion) | Guía práctica para elegir algoritmo y qué hay bajo `Arrays.sort()` | Todos |
 | [07 · Be the Code: quicksort desde cero](/ApuntesProgramacion/07-algoritmica-tecnicas/07-be-the-code-quicksort) | Implementar Quicksort y Mergesort paso a paso, sin mirar | ⭐⭐⭐ |
 | [08 · Otras técnicas algorítmicas](/ApuntesProgramacion/07-algoritmica-tecnicas/08-otras-tecnicas-algoritmicas) | Algoritmos voraces (greedy) y backtracking | ⭐⭐⭐ |
-| [09 · Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/09-repaso-interactivo) | Sé el Código, Fireside, Laboratorio, Crucigrama y más | Todos |
+| [09 · Modularidad](/ApuntesProgramacion/07-algoritmica-tecnicas/09-modularidad) | Paquetes, cohesión y acoplamiento para partir tu código | Todos |
+| [10 · Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/10-repaso-interactivo) | Sé el Código, Fireside, Laboratorio, Crucigrama y más | Todos |
 
-> 📖 **Flujo de lectura:** los 8 primeros puntos son teoría y práctica en progresión. El 9º es el aterrizaje final: léelo justo después del 8º y antes de abrir los boletines.
+> 📖 **Flujo de lectura:** los 9 primeros puntos son teoría y práctica en progresión. El 10º es el aterrizaje final: léelo justo después del 9º y antes de abrir los boletines.
 
 ---
 
@@ -88,7 +90,7 @@ Al terminar, serás capaz de:
 - ¿Vienes de la U06 y estás fresco de Big O? → Arranca en el [punto 1](/ApuntesProgramacion/07-algoritmica-tecnicas/01-recursividad). Solo necesitas lo que viste en Fundamentos.
 - ¿Lo tuyo es ver el resultado y no las tripas? → Salta al [punto 4](/ApuntesProgramacion/07-algoritmica-tecnicas/04-quicksort) y al [punto 5](/ApuntesProgramacion/07-algoritmica-tecnicas/05-mergesort) y vuelve después a la teoría de la recursividad.
 - ¿Te flipan los retos? → Haz el [punto 7](/ApuntesProgramacion/07-algoritmica-tecnicas/07-be-the-code-quicksort) sin mirar el código de los puntos 4 y 5. Sufre con honor.
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u07-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/07-algoritmica-tecnicas/10-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u07-inicial).
 
 **📍 Primer punto:** [01 · Recursividad](/ApuntesProgramacion/07-algoritmica-tecnicas/01-recursividad)  
-**⏭️ Al acabar la unidad, continúa en [U08 · POO: Clases y Objetos](/ApuntesProgramacion/08-poo-clases-objetos).**
+**⏭️ Al acabar la unidad, continúa en [U08 · POO: clases y objetos](/ApuntesProgramacion/08-poo-clases-objetos).**

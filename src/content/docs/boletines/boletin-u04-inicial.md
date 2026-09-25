@@ -1,6 +1,6 @@
 ﻿---
 title: Boletín U04 — Inicial
-description: Ejercicios básicos de Estructuras de Control y Excepciones
+description: Ejercicios básicos de Estructuras de control y excepciones básicas
 ---
 
 # 📝 Boletín U04 — Inicial

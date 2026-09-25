@@ -5,7 +5,7 @@ description: Quan et toca a tu llançar la pedra i crear el teu propi defecte �
 
 <p><small>Quan et toca a tu llançar la pedra i crear el teu propi defecte 🎳</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 08 · throw i excepcions pròpies
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 08 · throw i excepcions pròpies
 
 ---
 

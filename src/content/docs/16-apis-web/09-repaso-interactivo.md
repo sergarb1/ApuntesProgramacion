@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad y del curso, con un parser que lo
 
 <p><small>El cierre práctico de la unidad y del curso, con un parser que lo va a liar todo y un servidor que no arranca 😈🌐</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 09 · Repaso interactivo
 
 ---
 

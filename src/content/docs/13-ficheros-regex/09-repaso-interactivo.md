@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad, con un close() que va a doler, u
 
 <p><small>El cierre práctico de la unidad, con un close() que va a doler, una regex que va a fallar y un objeto que va a viajar en el tiempo 😈</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 09 · Repaso interactivo
 
 ---
 
@@ -352,4 +352,4 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 ---
 
-📁 [Volver al índice de la unidad](/ApuntesProgramacion/13-ficheros-regex) · **Anterior:** [08 · Regex en acción: matches, replaceAll, split y validaciones](/ApuntesProgramacion/13-ficheros-regex/08-regex-aplicaciones) · **Siguiente:** **[U14 · Conexión a BD con JDBC](/ApuntesProgramacion/14-conexion-bases-datos)**
+📁 [Volver al índice de la unidad](/ApuntesProgramacion/13-ficheros-regex) · **Anterior:** [08 · Regex en acción: matches, replaceAll, split y validaciones](/ApuntesProgramacion/13-ficheros-regex/08-regex-aplicaciones) · **Siguiente:** **[U14 · Persistencia de datos: JDBC e introducción a ORM](/ApuntesProgramacion/14-conexion-bases-datos)**

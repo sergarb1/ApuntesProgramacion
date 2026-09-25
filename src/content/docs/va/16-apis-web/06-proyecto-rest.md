@@ -5,7 +5,7 @@ description: "Ajunta-ho tot en una API REST: GET, POST, PUT i DELETE amb dades e
 
 <p><small>Ajunta-ho tot en una API REST: GET, POST, PUT i DELETE amb dades en memòria 🗂️🔧</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 06 · Mini projecte: gestor de tasques (API REST)
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 06 · Mini projecte: gestor de tasques (API REST)
 
 ---
 

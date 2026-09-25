@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat, amb un close() que doldrà, un
 
 <p><small>El tancament pràctic de la unitat, amb un close() que doldrà, una regex que fallarà i un objecte que viatjarà en el temps 😈</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 09 · Repàs interactiu
 
 ---
 
@@ -352,4 +352,4 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 ---
 
-📁 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/13-ficheros-regex) · **Anterior:** [08 · Regex en acció: matches, replaceAll, split i validacions](/ApuntesProgramacion/va/13-ficheros-regex/08-regex-aplicaciones) · **Següent:** **[U14 · Connexió a BD amb JDBC](/ApuntesProgramacion/va/14-conexion-bases-datos)**
+📁 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/13-ficheros-regex) · **Anterior:** [08 · Regex en acció: matches, replaceAll, split i validacions](/ApuntesProgramacion/va/13-ficheros-regex/08-regex-aplicaciones) · **Següent:** **[U14 · Persistència de dades: JDBC i introducció a ORM](/ApuntesProgramacion/va/14-conexion-bases-datos)**

@@ -5,7 +5,7 @@ description: La caixa de ferramentes per a manipular text 🪄
 
 <p><small>La caixa de ferramentes per a manipular text 🪄</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 09 · Mètodes útils de String
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 09 · Mètodes útils de String
 
 ---
 

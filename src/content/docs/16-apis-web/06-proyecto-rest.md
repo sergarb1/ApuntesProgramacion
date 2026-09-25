@@ -5,7 +5,7 @@ description: "Júntalo todo en una API REST: GET, POST, PUT y DELETE con datos e
 
 <p><small>Júntalo todo en una API REST: GET, POST, PUT y DELETE con datos en memoria 🗂️🔧</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 06 · Mini proyecto: gestor de tareas (API REST)
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 06 · Mini proyecto: gestor de tareas (API REST)
 
 ---
 

@@ -96,4 +96,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/11-colecciones/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u11-inicial).
 
 **📍 Primer punt:** [01 · ArrayList i el Java Collections Framework](/ApuntesProgramacion/va/11-colecciones/01-arraylist-jcf)  
-**⏭️ En acabar la unitat, continua en [U12 · Programació Funcional](/ApuntesProgramacion/va/12-programacion-funcional).**
+**⏭️ En acabar la unitat, continua en [U12 · Programació funcional (Streams i Lambdas)](/ApuntesProgramacion/va/12-programacion-funcional).**

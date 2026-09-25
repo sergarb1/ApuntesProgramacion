@@ -5,7 +5,7 @@ description: "Cierra la página, abre el editor y diseña una clase completa de 
 
 <p><small>Cierra la página, abre el editor y diseña una clase completa de principio a fin (o sufre con honor) 🕶️</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 08 · Be the Code: diseña tu clase
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 08 · Be the Code: diseña tu clase
 
 ---
 

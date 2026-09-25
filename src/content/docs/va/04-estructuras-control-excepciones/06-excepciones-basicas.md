@@ -5,7 +5,7 @@ description: "Quan Java es queixa per escrit: la família Throwable i les queixe
 
 <p><small>Quan Java es queixa per escrit: la família Throwable i les queixes més típiques 💥</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 06 · Excepcions bàsiques
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 06 · Excepcions bàsiques
 
 ---
 

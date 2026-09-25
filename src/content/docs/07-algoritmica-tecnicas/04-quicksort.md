@@ -5,7 +5,7 @@ description: El algoritmo de ordenación más famoso del mundo, con su partició
 
 <p><small>El algoritmo de ordenación más famoso del mundo, con su partición, su pivote y sus manías 🚀</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 04 · Quicksort
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 04 · Quicksort
 
 ---
 

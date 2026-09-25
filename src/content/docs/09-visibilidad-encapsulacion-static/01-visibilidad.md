@@ -5,7 +5,7 @@ description: "Vivir en una casa de cristal está fatal: tu código también mere
 
 <p><small>Vivir en una casa de cristal está fatal: tu código también merece puertas, llaves y candados 🏠</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 01 · Visibilidad: el arte de no enseñarlo todo
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 01 · Visibilidad: el arte de no enseñarlo todo
 
 ---
 

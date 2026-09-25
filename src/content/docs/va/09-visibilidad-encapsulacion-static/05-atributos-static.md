@@ -5,7 +5,7 @@ description: "El que pertany a la classe i no a l'objecte: el grup de WhatsApp e
 
 <p><small>El que pertany a la classe i no a l'objecte: el grup de WhatsApp en comptes dels missatges privats 📢</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 05 · Atributs static
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 05 · Atributs static
 
 ---
 

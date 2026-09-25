@@ -1,5 +1,5 @@
 ---
-title: "U04 — Estructures de Control i Excepcions"
+title: "U04 — Estructures de control i excepcions bàsiques"
 description: El semàfor, la cinta de córrer i l'assegurança de vida que fan decidir i repetir als teus programes 🔀
 emoji: 🔀
 ---

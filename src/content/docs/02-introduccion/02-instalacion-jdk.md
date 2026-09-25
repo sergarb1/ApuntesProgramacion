@@ -5,7 +5,7 @@ description: "OpenJDK, java -version, PATH, IDE ☕"
 
 <p><small>OpenJDK, java -version, PATH, IDE ☕</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 02 · Instalación del JDK
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 02 · Instalación del JDK
 
 ---
 

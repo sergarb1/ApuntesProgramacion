@@ -5,7 +5,7 @@ description: "El portero de la discoteca: leer y modificar atributos privados co
 
 <p><small>El portero de la discoteca: leer y modificar atributos privados con nombre, orden y validación 🚪</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 04 · Getters y setters
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 04 · Getters y setters
 
 ---
 

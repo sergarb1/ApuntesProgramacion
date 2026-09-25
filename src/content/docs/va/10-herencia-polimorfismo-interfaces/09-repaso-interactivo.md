@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat, amb polimorfisme, contractes i
 
 <p><small>El tancament pràctic de la unitat, amb polimorfisme, contractes i una herència que no va a funcionar 😈</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 09 · Repàs interactiu
 
 ---
 

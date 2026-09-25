@@ -5,7 +5,7 @@ description: "Dos fitxes més per al teu cinturó: els algorismes voracos (greed
 
 <p><small>Dos fitxes més per al teu cinturó: els algorismes voracos (greedy) i el backtracking 🧠</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 08 · Altres tècniques algorísmiques
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 08 · Altres tècniques algorísmiques
 
 ---
 
@@ -191,4 +191,4 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Poda | Descartar de seguida els camins sense eixida |
 > | Programació dinàmica | Memoització + subproblemes que es repeteixen |
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas) · **Anterior:** [07 · Be the Code: quicksort des de zero](/ApuntesProgramacion/va/07-algoritmica-tecnicas/07-be-the-code-quicksort) · **Següent:** [09 · Repàs interactiu](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-repaso-interactivo)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas) · **Anterior:** [07 · Be the Code: quicksort des de zero](/ApuntesProgramacion/va/07-algoritmica-tecnicas/07-be-the-code-quicksort) · **Següent:** [09 · Modularitat](/ApuntesProgramacion/va/07-algoritmica-tecnicas/09-modularidad)

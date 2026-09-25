@@ -5,7 +5,7 @@ description: La taula de decisió definitiva per a triar algorisme com un profes
 
 <p><small>La taula de decisió definitiva per a triar algorisme com un professional ⚖️</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 06 · Comparació: quan usar cada ordenació
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 06 · Comparació: quan usar cada ordenació
 
 ---
 

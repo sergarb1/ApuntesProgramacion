@@ -5,7 +5,7 @@ description: "Llamar a la superclase, sobrescribir métodos y encadenar construc
 
 <p><small>Llamar a la superclase, sobrescribir métodos y encadenar constructores sin llorar 🧬</small></p>
 
-> 🗺️ **Estás en:** 🧬 **U10 · Herencia, Polimorfismo e Interfaces** → 02 · super y @Override
+> 🗺️ **Estás en:** 🧬 **U10 · Herencia, polimorfismo e interfaces** → 02 · super y @Override
 
 ---
 

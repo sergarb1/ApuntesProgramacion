@@ -1,5 +1,5 @@
 ﻿---
-title: "U02 — Introducción a Java"
+title: "U02 — Introducción a Java y el entorno de trabajo"
 description: "Tu primer café con Java ☕"
 ---
 
@@ -87,4 +87,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/02-introduccion/09-repaso-interactivo) y los [boletines](/ApuntesProgramacion/boletines/boletin-u02-inicial).
 
 **📍 Primer punto:** [01 · ¿Qué es Java?](/ApuntesProgramacion/02-introduccion/01-que-es-java)  
-**⏭️ Al acabar la unidad, continúa en [U03 · Variables, Tipos y Operadores](/ApuntesProgramacion/03-variables-tipos-operadores).**
+**⏭️ Al acabar la unidad, continúa en [U03 · Variables, tipos y operadores](/ApuntesProgramacion/03-variables-tipos-operadores).**

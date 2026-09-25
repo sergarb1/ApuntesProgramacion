@@ -5,7 +5,7 @@ description: "Deu manaments per a no morir en l'intent: PreparedStatement sempre
 
 <p><small>Deu manaments per a no morir en l'intent: PreparedStatement sempre, try-with-resources, WHERE sempre i no tornar ResultSet 🗄️📜</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 08 · Bones pràctiques
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 08 · Bones pràctiques
 
 ---
 
@@ -99,4 +99,4 @@ Posat a prova en 30 segons (les respostes estan amagades):
 > | Files afectades | El `int` de `executeUpdate()` que confirma el canvi |
 > | `config.properties` | Fitxer on van la URL i les credencials |
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/14-conexion-bases-datos) · **Anterior:** [07 · Transaccions](/ApuntesProgramacion/va/14-conexion-bases-datos/07-transacciones) · **Següent:** [09 · Repàs interactiu](/ApuntesProgramacion/va/14-conexion-bases-datos/09-repaso-interactivo)
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/14-conexion-bases-datos) · **Anterior:** [07 · Transaccions](/ApuntesProgramacion/va/14-conexion-bases-datos/07-transacciones) · **Següent:** [09 · Introducció a ORM](/ApuntesProgramacion/va/14-conexion-bases-datos/09-introduccion-orm)

@@ -5,7 +5,7 @@ description: "Breakpoints, step over/into, watch 🐛"
 
 <p><small>Breakpoints, step over/into, watch 🐛</small></p>
 
-> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java** → 04 · El depurador
+> 🗺️ **Estás en:** 🚀 **U02 · Introducción a Java y el entorno de trabajo** → 04 · El depurador
 
 ---
 

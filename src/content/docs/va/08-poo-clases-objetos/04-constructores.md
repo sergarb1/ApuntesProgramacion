@@ -5,7 +5,7 @@ description: "El mètode que prepara l'objecte en la seua festa de benvinguda: p
 
 <p><small>El mètode que prepara l'objecte en la seua festa de benvinguda: per defecte i amb paràmetres 🎉</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 04 · Constructors
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 04 · Constructors
 
 ---
 

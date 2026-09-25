@@ -5,7 +5,7 @@ description: "El teu programa es converteix en client: HttpClient, GET, BodyHand
 
 <p><small>El teu programa es converteix en client: HttpClient, GET, BodyHandlers i parsejar JSON amb Gson 📡🔍</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 07 · Consumir APIs externes amb HttpClient
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 07 · Consumir APIs externes amb HttpClient
 
 ---
 

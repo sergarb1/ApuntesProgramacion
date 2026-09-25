@@ -5,7 +5,7 @@ description: "El patró DAO: una interfície que promet i una implementació que
 
 <p><small>El patró DAO: una interfície que promet i una implementació que compleix, perquè l'SQL no es cole mai en la teua lògica de negoci 🗄️🏗️</small></p>
 
-> 🗺️ **Estàs en:** 🗄️ **U14 · Connexió a BD amb JDBC** → 06 · El patró DAO
+> 🗺️ **Estàs en:** 🗄️ **U14 · Persistència de dades: JDBC i introducció a ORM** → 06 · El patró DAO
 
 ---
 

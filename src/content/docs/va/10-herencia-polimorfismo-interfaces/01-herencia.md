@@ -5,7 +5,7 @@ description: "extends, què s'hereda i què no, IS-A vs HAS-A i l'arbre genealò
 
 <p><small>extends, què s'hereda i què no, IS-A vs HAS-A i l'arbre genealògic de les teues classes 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 01 · Herència: quan els teus fills seguixen els teus passos
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 01 · Herència: quan els teus fills seguixen els teus passos
 
 ---
 

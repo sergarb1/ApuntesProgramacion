@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat, amb cadenats, estàtics i una 
 
 <p><small>El tancament pràctic de la unitat, amb cadenats, estàtics i una classe que no voldrà compilar 😈</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 09 · Repàs interactiu
 
 ---
 
@@ -407,8 +407,8 @@ S'acosta CONRAD, el compilador cascarrabutxes, amb la seua tassa fumant.
 
 El novell guarda el seu projecte, tanca l'IDE i sent que els seus objectes ja no són cases de vidre.
 
-**PROXIMAMENT EN U10:** Herència, Polimorfisme i Interfícies. El moment en què les teues classes **es miren als ulls i es diuen "mira, això ho compartim"**. 🧬
+**PROXIMAMENT EN U10:** Herència, polimorfisme i interfícies. El moment en què les teues classes **es miren als ulls i es diuen "mira, això ho compartim"**. 🧬
 
 ---
 
-📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static) · **Anterior:** [08 · Be the Code: encapsula la teua classe](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/08-be-the-code) · **Següent:** **[U10 · Herència, Polimorfisme i Interfícies](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces)**
+📚 [Tornar a l'índex de la unitat](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static) · **Anterior:** [08 · Be the Code: encapsula la teua classe](/ApuntesProgramacion/va/09-visibilidad-encapsulacion-static/08-be-the-code) · **Següent:** **[U10 · Herència, polimorfisme i interfícies](/ApuntesProgramacion/va/10-herencia-polimorfismo-interfaces)**

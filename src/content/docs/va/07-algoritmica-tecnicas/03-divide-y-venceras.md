@@ -5,7 +5,7 @@ description: "El patró més antic de la informàtica: divideix el problema, con
 
 <p><small>El patró més antic de la informàtica: divideix el problema, conquista cada part i combina ⚔️</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 03 · Divide i venceràs
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 03 · Divide i venceràs
 
 ---
 

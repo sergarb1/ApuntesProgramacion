@@ -96,4 +96,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/11-colecciones/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u11-inicial).
 
 **📍 Primer punto:** [01 · ArrayList y el Java Collections Framework](/ApuntesProgramacion/11-colecciones/01-arraylist-jcf)  
-**⏭️ Al acabar la unidad, continúa en [U12 · Programación Funcional](/ApuntesProgramacion/12-programacion-funcional).**
+**⏭️ Al acabar la unidad, continúa en [U12 · Programación funcional (Streams y Lambdas)](/ApuntesProgramacion/12-programacion-funcional).**

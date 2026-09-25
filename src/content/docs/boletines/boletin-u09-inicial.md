@@ -1,6 +1,6 @@
 ﻿---
 title: Boletín U09 — Inicial
-description: Ejercicios básicos de Visibilidad, Encapsulación y Static
+description: Ejercicios básicos de Visibilidad, encapsulación y static
 ---
 
 # 📝 Boletín U09 — Inicial

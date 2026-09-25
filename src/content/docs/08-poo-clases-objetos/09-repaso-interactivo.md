@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad, con objetos, constructores y un 
 
 <p><small>El cierre práctico de la unidad, con objetos, constructores y un `null` que no va a funcionar 😈</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 09 · Repaso interactivo
 
 ---
 
@@ -358,4 +358,4 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/08-poo-clases-objetos) · **Anterior:** [08 · Be the Code: diseña tu clase](/ApuntesProgramacion/08-poo-clases-objetos/08-be-the-code) · **Siguiente:** **[U09 · Visibilidad, Encapsulación y Static](/ApuntesProgramacion/09-visibilidad-encapsulacion-static)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/08-poo-clases-objetos) · **Anterior:** [08 · Be the Code: diseña tu clase](/ApuntesProgramacion/08-poo-clases-objetos/08-be-the-code) · **Siguiente:** **[U09 · Visibilidad, encapsulación y static](/ApuntesProgramacion/09-visibilidad-encapsulacion-static)**

@@ -5,7 +5,7 @@ description: "El cierre práctico de la unidad, con polimorfismo, contratos y un
 
 <p><small>El cierre práctico de la unidad, con polimorfismo, contratos y una herencia que no va a funcionar 😈</small></p>
 
-> 🗺️ **Estás en:** 🧬 **U10 · Herencia, Polimorfismo e Interfaces** → 09 · Repaso interactivo
+> 🗺️ **Estás en:** 🧬 **U10 · Herencia, polimorfismo e interfaces** → 09 · Repaso interactivo
 
 ---
 

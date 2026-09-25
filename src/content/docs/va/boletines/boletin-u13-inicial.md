@@ -1,6 +1,6 @@
 ﻿---
 title: "Butlletí U13 — Inicial"
-description: "Exercicis bàsics de Fitxers i Regex: File, FileWriter, BufferedReader, try-with-resources i les primeres expressions regulars"
+description: "Exercicis bàsics de Fitxers i expressions regulars (Regex): File, FileWriter, BufferedReader, try-with-resources i les primeres expressions regulars"
 ---
 
 # 📝 Butlletí U13 — Inicial

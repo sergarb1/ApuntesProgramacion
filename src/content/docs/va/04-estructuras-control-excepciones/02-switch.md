@@ -5,7 +5,7 @@ description: Triar entre moltes opcions sense omplir el codi de semàfors 🍽�
 
 <p><small>Triar entre moltes opcions sense omplir el codi de semàfors 🍽️</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 02 · switch
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 02 · switch
 
 ---
 

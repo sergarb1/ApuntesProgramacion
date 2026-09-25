@@ -5,7 +5,7 @@ description: Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu s
 
 <p><small>Tanca la pàgina, obri l'editor i escriu Quicksort i Mergesort tu sol (o pateix amb honor) 🕶️</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 07 · Be the Code: quicksort des de zero
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 07 · Be the Code: quicksort des de zero
 
 ---
 

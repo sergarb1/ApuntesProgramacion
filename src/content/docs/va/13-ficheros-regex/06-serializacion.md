@@ -5,7 +5,7 @@ description: "El teu objecte sencer en una maleta: implementa Serializable i gua
 
 <p><small>El teu objecte sencer en una maleta: implementa Serializable i guarda i recupera objectes complets amb ObjectOutputStream i ObjectInputStream 🧳📦</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 06 · Serialització: guardar objectes amb ObjectOutputStream
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 06 · Serialització: guardar objectes amb ObjectOutputStream
 
 ---
 

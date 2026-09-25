@@ -1,5 +1,5 @@
 ﻿---
-title: "U04 — Estructuras de Control y Excepciones"
+title: "U04 — Estructuras de control y excepciones básicas"
 description: El semáforo, la cinta de correr y el seguro de vida que hacen decidir y repetir a tus programas 🔀
 emoji: 🔀
 ---

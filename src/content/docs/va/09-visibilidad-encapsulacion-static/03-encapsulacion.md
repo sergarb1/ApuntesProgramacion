@@ -5,7 +5,7 @@ description: "Atributs privats, accés controlat i el patró JavaBeans: la recep
 
 <p><small>Atributs privats, accés controlat i el patró JavaBeans: la recepta perquè la teua classe mai no es trenque 📦</small></p>
 
-> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, Encapsulació i Static** → 03 · Encapsulació: el pilar de la POO
+> 🗺️ **Estàs en:** 🔒 **U09 · Visibilitat, encapsulació i static** → 03 · Encapsulació: el pilar de la POO
 
 ---
 

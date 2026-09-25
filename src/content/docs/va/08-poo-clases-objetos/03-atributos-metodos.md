@@ -5,7 +5,7 @@ description: "Les propietats i els comportaments de la teua classe, amb els seus
 
 <p><small>Les propietats i els comportaments de la teua classe, amb els seus tipus, paràmetres i valors de retorn 🏗️</small></p>
 
-> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i Objectes** → 03 · Atributs i mètodes
+> 🗺️ **Estàs en:** 🏗️ **U08 · POO: Classes i objectes** → 03 · Atributs i mètodes
 
 ---
 

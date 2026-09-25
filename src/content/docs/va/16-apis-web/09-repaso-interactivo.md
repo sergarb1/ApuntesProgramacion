@@ -5,7 +5,7 @@ description: "El tancament pràctic de la unitat i del curs, amb un parser que h
 
 <p><small>El tancament pràctic de la unitat i del curs, amb un parser que ho liarà tot i un servidor que no arranca 😈🌐</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 09 · Repàs interactiu
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 09 · Repàs interactiu
 
 ---
 

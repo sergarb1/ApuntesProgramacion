@@ -1,6 +1,6 @@
 ﻿---
 title: Butlletí U10 — Inicial
-description: Exercicis bàsics d'Herència, Polimorfisme i Interfícies
+description: Exercicis bàsics d'Herència, polimorfisme i interfícies
 ---
 
 # 📝 Butlletí U10 — Inicial

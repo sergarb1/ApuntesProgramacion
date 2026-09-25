@@ -5,7 +5,7 @@ description: "L'airbag del codi: que un error no destrosse el teu programa 🛡�
 
 <p><small>L'airbag del codi: que un error no destrosse el teu programa 🛡️</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 07 · try, catch i finally
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 07 · try, catch i finally
 
 ---
 

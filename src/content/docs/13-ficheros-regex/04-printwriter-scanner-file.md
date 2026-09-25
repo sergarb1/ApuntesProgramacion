@@ -5,7 +5,7 @@ description: "El sargento que formatea la salida y el pulpo que tokeniza la entr
 
 <p><small>El sargento que formatea la salida y el pulpo que tokeniza la entrada: PrintWriter para escribir bonito y Scanner para leer archivos a pedazos 🖨️🦑</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 04 · PrintWriter y Scanner + File
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 04 · PrintWriter y Scanner + File
 
 ---
 

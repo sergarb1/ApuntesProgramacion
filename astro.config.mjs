@@ -54,8 +54,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🚀 2. Introducción a Java',
-              translations: { va: '🚀 2. Introducció a Java' },
+              label: '🚀 2. Introducción a Java y el entorno de trabajo',
+              translations: { va: "🚀 2. Introducció a Java i l'entorn de treball" },
               items: [
                 { slug: '02-introduccion', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '02-introduccion/01-que-es-java', label: '01 · ¿Qué es Java?', translations: { va: '01 · Què és Java?' } },
@@ -70,8 +70,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🔤 3. Variables, Tipos y Operadores',
-              translations: { va: '🔤 3. Variables, Tipus i Operadors' },
+              label: '🔤 3. Variables, tipos y operadores',
+              translations: { va: '🔤 3. Variables, tipus i operadors' },
               items: [
                 { slug: '03-variables-tipos-operadores', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '03-variables-tipos-operadores/01-variables-tipos-primitivos', label: '01 · Variables y tipos primitivos', translations: { va: '01 · Variables i tipus primitius' } },
@@ -87,8 +87,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🔀 4. Estructuras de Control',
-              translations: { va: '🔀 4. Estructures de Control i Excepcions' },
+              label: '🔀 4. Estructuras de control y excepciones básicas',
+              translations: { va: '🔀 4. Estructures de control i excepcions bàsiques' },
               items: [
                 { slug: '04-estructuras-control-excepciones', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '04-estructuras-control-excepciones/01-if-else', label: '01 · if, else if y else', translations: { va: '01 · if, else if i else' } },
@@ -135,8 +135,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '⚡ 7. Algorítmica II: Técnicas',
-              translations: { va: '⚡ 7. Algorítmica II: Tècniques' },
+              label: '⚡ 7. Algorítmica II: técnicas avanzadas y modularidad',
+              translations: { va: '⚡ 7. Algorítmica II: tècniques avançades i modularitat' },
               items: [
                 { slug: '07-algoritmica-tecnicas', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '07-algoritmica-tecnicas/01-recursividad', label: '01 · Recursividad', translations: { va: '01 · Recursivitat' } },
@@ -147,12 +147,13 @@ export default defineConfig({
                 { slug: '07-algoritmica-tecnicas/06-comparacion-ordenacion', label: '06 · Comparación: cuándo usar cada ordenación', translations: { va: '06 · Comparació: quan usar cada ordenació' } },
                 { slug: '07-algoritmica-tecnicas/07-be-the-code-quicksort', label: '07 · Be the Code: quicksort desde cero', translations: { va: '07 · Be the Code: quicksort des de zero' } },
                 { slug: '07-algoritmica-tecnicas/08-otras-tecnicas-algoritmicas', label: '08 · Otras técnicas algorítmicas', translations: { va: '08 · Altres tècniques algorísmiques' } },
-                { slug: '07-algoritmica-tecnicas/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+                { slug: '07-algoritmica-tecnicas/09-modularidad', label: '09 · Modularidad', translations: { va: '09 · Modularitat' } },
+                { slug: '07-algoritmica-tecnicas/10-repaso-interactivo', label: '10 · Repaso interactivo', translations: { va: '10 · Repàs interactiu' } },
               ],
             },
             {
-              label: '🏗️ 8. POO: Clases y Objetos',
-              translations: { va: '🏗️ 8. POO: Classes i Objectes' },
+              label: '🏗️ 8. POO: clases y objetos',
+              translations: { va: '🏗️ 8. POO: Classes i objectes' },
               items: [
                 { slug: '08-poo-clases-objetos', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '08-poo-clases-objetos/01-que-es-poo', label: '01 · Qué es la POO', translations: { va: '01 · Què és la POO' } },
@@ -167,8 +168,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🔒 9. Visibilidad y Static',
-              translations: { va: '🔒 9. Visibilitat, Encapsulació i Static' },
+              label: '🔒 9. Visibilidad, encapsulación y static',
+              translations: { va: '🔒 9. Visibilitat, encapsulació i static' },
               items: [
                 { slug: '09-visibilidad-encapsulacion-static', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '09-visibilidad-encapsulacion-static/01-visibilidad', label: '01 · Visibilidad: el arte de no enseñarlo todo', translations: { va: '01 · Visibilitat: l\'art de no ensenyar-ho tot' } },
@@ -183,8 +184,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🧬 10. Herencia, Polimorfismo e Interfaces',
-              translations: { va: '🧬 10. Herència, Polimorfisme i Interfícies' },
+              label: '🧬 10. Herencia, polimorfismo e interfaces',
+              translations: { va: '🧬 10. Herència, polimorfisme i interfícies' },
               items: [
                 { slug: '10-herencia-polimorfismo-interfaces', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '10-herencia-polimorfismo-interfaces/01-herencia', label: '01 · Herencia: cuando tus hijos siguen tus pasos', translations: { va: '01 · Herència: quan els teus fills seguixen els teus passos' } },
@@ -215,8 +216,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🎯 12. Programación Funcional',
-              translations: { va: '🎯 12. Programació Funcional' },
+              label: '🎯 12. Programación funcional (Streams y Lambdas)',
+              translations: { va: '🎯 12. Programació funcional (Streams i Lambdas)' },
               items: [
                 { slug: '12-programacion-funcional', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '12-programacion-funcional/01-lambdas', label: '01 · Lambdas: funciones que viajan solas', translations: { va: '01 · Lambdes: funcions que viatgen soles' } },
@@ -231,8 +232,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '📁 13. Ficheros y Regex',
-              translations: { va: '📁 13. Fitxers i Expressions Regulars' },
+              label: '📁 13. Ficheros y expresiones regulares (Regex)',
+              translations: { va: '📁 13. Fitxers i expressions regulars (Regex)' },
               items: [
                 { slug: '13-ficheros-regex', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '13-ficheros-regex/01-clase-file', label: '01 · La clase File', translations: { va: '01 · La classe File' } },
@@ -247,8 +248,8 @@ export default defineConfig({
               ],
             },
             {
-              label: '🗄️ 14. Conexión a BD con JDBC',
-              translations: { va: '🗄️ 14. Connexió a BD amb JDBC' },
+              label: '🗄️ 14. Persistencia de datos: JDBC e introducción a ORM',
+              translations: { va: '🗄️ 14. Persistència de dades: JDBC i introducció a ORM' },
               items: [
                 { slug: '14-conexion-bases-datos', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '14-conexion-bases-datos/01-que-es-jdbc', label: '01 · Qué es JDBC', translations: { va: '01 · Què és JDBC' } },
@@ -259,12 +260,13 @@ export default defineConfig({
                 { slug: '14-conexion-bases-datos/06-pattern-dao', label: '06 · El patrón DAO', translations: { va: '06 · El patró DAO' } },
                 { slug: '14-conexion-bases-datos/07-transacciones', label: '07 · Transacciones', translations: { va: '07 · Transaccions' } },
                 { slug: '14-conexion-bases-datos/08-buenas-practicas', label: '08 · Buenas prácticas', translations: { va: '08 · Bones pràctiques' } },
-                { slug: '14-conexion-bases-datos/09-repaso-interactivo', label: '09 · Repaso interactivo', translations: { va: '09 · Repàs interactiu' } },
+                { slug: '14-conexion-bases-datos/09-introduccion-orm', label: '09 · Introducción a ORM', translations: { va: '09 · Introducció a ORM' } },
+                { slug: '14-conexion-bases-datos/10-repaso-interactivo', label: '10 · Repaso interactivo', translations: { va: '10 · Repàs interactiu' } },
               ],
             },
             {
-              label: '🌐 16. Servir y Consumir APIs con Web (extra)',
-              translations: { va: '🌐 16. Servir i Consumir APIs amb Web (extra)' },
+              label: '🌐 16. Servir y consumir APIs con Web (extra)',
+              translations: { va: '🌐 16. Servir i consumir APIs amb Web (extra)' },
               items: [
                 { slug: '16-apis-web', label: '📌 Índice de la unidad', translations: { va: '📌 Índex de la unitat' } },
                 { slug: '16-apis-web/01-protocolo-http', label: '01 · El protocolo HTTP', translations: { va: '01 · El protocol HTTP' } },
@@ -285,7 +287,7 @@ export default defineConfig({
           label: '📝 Boletines',
           translations: { va: '📝 Butlletins' },
           items: [
-            ...['🧠','🚀','🔤','🔀','🅿️','🧩','⚡','🏗️','🔒','🧬','📚','🗺️','🎯','📁'].flatMap((emoji, i) => {
+            ...['🧠','🚀','🔤','🔀','🅿️','🧩','⚡','🏗️','🔒','🧬','📚','🎯','📁','🗄️'].flatMap((emoji, i) => {
               const n = i + 1;
               const nn = String(n).padStart(2,'0');
               const isU01 = n === 1;

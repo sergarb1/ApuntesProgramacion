@@ -5,7 +5,7 @@ description: Repetir sense copiar i enganxar, fins que una condició diga prou �
 
 <p><small>Repetir sense copiar i enganxar, fins que una condició diga prou 🏃</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 03 · Bucles: while i do-while
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 03 · Bucles: while i do-while
 
 ---
 

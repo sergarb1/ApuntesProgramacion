@@ -5,7 +5,7 @@ description: "Dynamic binding, referències polimòrfiques, col·leccions i par�
 
 <p><small>Dynamic binding, referències polimòrfiques, col·leccions i paràmetres que canvien de forma 🧬</small></p>
 
-> 🗺️ **Estàs en:** 🧬 **U10 · Herència, Polimorfisme i Interfícies** → 04 · Polimorfisme: el camaleó de la POO
+> 🗺️ **Estàs en:** 🧬 **U10 · Herència, polimorfisme i interfícies** → 04 · Polimorfisme: el camaleó de la POO
 
 ---
 

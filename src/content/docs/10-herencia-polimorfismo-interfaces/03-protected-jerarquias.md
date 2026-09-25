@@ -5,7 +5,7 @@ description: "El miembro que solo ve la familia, árboles de clases y el peligro
 
 <p><small>El miembro que solo ve la familia, árboles de clases y el peligro de la clase base frágil 🧬</small></p>
 
-> 🗺️ **Estás en:** 🧬 **U10 · Herencia, Polimorfismo e Interfaces** → 03 · protected y jerarquías de clases
+> 🗺️ **Estás en:** 🧬 **U10 · Herencia, polimorfismo e interfaces** → 03 · protected y jerarquías de clases
 
 ---
 

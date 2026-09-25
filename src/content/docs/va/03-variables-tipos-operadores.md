@@ -1,5 +1,5 @@
 ---
-title: U03 — Variables, Tipus i Operadors
+title: U03 — Variables, tipus i operadors
 description: Les caixes del magatzem de la memòria i les màquines del gimnàs de dades 🔤
 ---
 
@@ -100,4 +100,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/03-variables-tipos-operadores/10-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u03-inicial).
 
 **📍 Primer punt:** [01 · Variables i tipus primitius](/ApuntesProgramacion/va/03-variables-tipos-operadores/01-variables-tipos-primitivos)  
-**⏭️ En acabar la unitat, continua en [U04 · Estructures de Control](/ApuntesProgramacion/va/04-estructuras-control-excepciones).
+**⏭️ En acabar la unitat, continua en [U04 · Estructures de control i excepcions bàsiques](/ApuntesProgramacion/va/04-estructuras-control-excepciones).

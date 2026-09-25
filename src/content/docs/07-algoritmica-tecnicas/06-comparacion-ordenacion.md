@@ -5,7 +5,7 @@ description: La tabla de decisión definitiva para elegir algoritmo como un prof
 
 <p><small>La tabla de decisión definitiva para elegir algoritmo como un profesional ⚖️</small></p>
 
-> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: Técnicas** → 06 · Comparación: cuándo usar cada ordenación
+> 🗺️ **Estás en:** ⚡ **U07 · Algorítmica II: técnicas avanzadas y modularidad** → 06 · Comparación: cuándo usar cada ordenación
 
 ---
 

@@ -1,10 +1,10 @@
 ﻿---
-title: "U14 — Conexión a Bases de Datos con JDBC"
-description: "Java aprende a hablar con las bases de datos: JDBC, SQLite, Connection, Statement, PreparedStatement, el patrón DAO y transacciones. Todo con humor y sin perder la conexión 🗄️"
+title: "U14 — Persistencia de datos: JDBC e introducción a ORM"
+description: "Java aprende a hablar con las bases de datos: JDBC, SQLite, Connection, Statement, PreparedStatement, el patrón DAO, transacciones y una primera toma de contacto con los ORM. Todo con humor y sin perder la conexión 🗄️"
 emoji: 🗄️
 ---
 
-<p><small>Java aprende a hablar con las bases de datos: JDBC, SQLite, Connection, Statement, PreparedStatement, el patrón DAO y transacciones. Todo con humor y sin perder la conexión 🗄️</small></p>
+<p><small>Java aprende a hablar con las bases de datos: JDBC, SQLite, Connection, Statement, PreparedStatement, el patrón DAO, transacciones y una primera toma de contacto con los ORM. Todo con humor y sin perder la conexión 🗄️</small></p>
 
 
 
@@ -12,15 +12,16 @@ emoji: 🗄️
 
 En la U13 cerraste el trato con los **ficheros**: guardar y leer información en el disco. Hoy subimos de nivel. Esa información deja de vivir en un archivo suelto y pasa a una **base de datos relacional**, con sus tablas, sus claves y sus reglas. Y Java, por supuesto, va a hablar con ella. La herramienta se llama **JDBC** (Java Database Connectivity) y es el puente oficial entre tu código y cualquier base de datos con controlador.
 
-Esta unidad tiene tres grandes actos:
+Esta unidad tiene cuatro grandes actos:
 
 - **Conectar y consultar:** qué es JDBC, cómo se monta la dependencia de **SQLite** en Maven y el ritual de los 5 pasos para abrir una conexión (`Connection`), lanzar consultas (`Statement`) y leer los resultados (`ResultSet`).
 - **El CRUD seguro:** insertar, leer, actualizar y borrar con **`PreparedStatement`**, la vacuna contra la **SQL injection** (pregúntale a Bobby Tables), y el **patrón DAO** para que el SQL no se cuele en tu lógica de negocio.
 - **La integridad:** **transacciones** con `commit` y `rollback` para operaciones de todo-o-nada, y un decálogo de buenas prácticas para que tu conexión no sea una fuga de recursos.
+- **El puente con los ORM:** después de domar el JDBC a mano, verás qué es un **ORM** (mapeo objeto-relacional) y por qué los equipos de verdad lo usan para no escribir tanto SQL de catálogo.
 
 Por el camino conocerás a `SQLException`, la excepción checked que te va a acompañar en cada paso, y entenderás por qué `executeQuery()` y `executeUpdate()` son como la puerta de embarque y la del maletero: cada operación tiene la suya.
 
-Esta unidad se lee como un **libro de 9 capítulos**: los 8 primeros puntos son teoría en progresión y el 9º es un aterrizaje práctico para machacar todo lo aprendido.
+Esta unidad se lee como un **libro de 10 capítulos**: los 9 primeros puntos son teoría en progresión y el 10º es un aterrizaje práctico para machacar todo lo aprendido.
 
 ---
 
@@ -36,6 +37,7 @@ Al terminar, serás capaz de:
 - Aplicar el **patrón DAO** (interfaz + implementación) para separar el SQL de la lógica de negocio.
 - Gestionar **transacciones** con `commit()`, `rollback()` y savepoints para operaciones atómicas.
 - Escribir código JDBC siguiendo el **decálogo de buenas prácticas**: `try-with-resources`, filas afectadas y `WHERE` siempre.
+- Explicar **qué es un ORM** y en qué se diferencia de escribir JDBC a mano.
 
 ---
 
@@ -51,9 +53,10 @@ Al terminar, serás capaz de:
 | [06 · El patrón DAO](/ApuntesProgramacion/14-conexion-bases-datos/06-pattern-dao) | Interfaz + implementación: el SQL no pisa tu lógica de negocio | Todos |
 | [07 · Transacciones](/ApuntesProgramacion/14-conexion-bases-datos/07-transacciones) | `commit`, `rollback` y savepoints: todo o nada | Todos |
 | [08 · Buenas prácticas](/ApuntesProgramacion/14-conexion-bases-datos/08-buenas-practicas) | El decálogo del JDBC: recursos, filas afectadas y `WHERE` siempre | Todos |
-| [09 · Repaso interactivo](/ApuntesProgramacion/14-conexion-bases-datos/09-repaso-interactivo) | Sé el Código, Fireside, Laboratorio, Crucigrama y más | Todos |
+| [09 · Introducción a ORM](/ApuntesProgramacion/14-conexion-bases-datos/09-introduccion-orm) | Qué es un ORM, mapeo objeto-relacional y JDBC vs ORM | Todos |
+| [10 · Repaso interactivo](/ApuntesProgramacion/14-conexion-bases-datos/10-repaso-interactivo) | Sé el Código, Fireside, Laboratorio, Crucigrama y más | Todos |
 
-> 📖 **Flujo de lectura:** los 8 primeros puntos son teoría en progresión. El 9º es el aterrizaje práctico: léelo justo después del 8º y antes de abrir los boletines.
+> 📖 **Flujo de lectura:** los 9 primeros puntos son teoría en progresión. El 10º es el aterrizaje práctico: léelo justo después del 9º y antes de abrir los boletines.
 
 ---
 
@@ -82,8 +85,8 @@ Al terminar, serás capaz de:
 | RA9 c) | Se ha escrito código para almacenar información en bases de datos. | ✅ Puntos 4 y 5 |
 | RA9 d) | Se han creado programas para recuperar y mostrar información almacenada en bases de datos. | ✅ Puntos 3 y 4 |
 | RA9 e) | Se han efectuado borrados y modificaciones sobre la información almacenada. | ✅ Punto 4 |
-| RA9 f) | Se han creado aplicaciones que ejecuten consultas sobre bases de datos. | ✅ Puntos 3, 5 y 9 |
-| RA9 g) | Se han creado aplicaciones para posibilitar la gestión de información presente en bases de datos relacionales. | ✅ Puntos 6 y 9 |
+| RA9 f) | Se han creado aplicaciones que ejecuten consultas sobre bases de datos. | ✅ Puntos 3, 5 y 10 |
+| RA9 g) | Se han creado aplicaciones para posibilitar la gestión de información presente en bases de datos relacionales. | ✅ Puntos 6 y 10 |
 
 > 📌 Esta unidad cubre la **RA9** completa. El camino hasta aquí: **U04** te enseñó las excepciones (y `SQLException` es checked, te va a perseguir), **U08/U09** te dieron las clases e interfaces con las que montar los POJOs y el DAO, y la **U13** te dejó el `try-with-resources` listo para cerrar conexiones. Todo el material anterior cobra sentido ahora: es hora de que tus objetos duerman en una base de datos.
 
@@ -94,7 +97,7 @@ Al terminar, serás capaz de:
 - ¿Vienes de la U13 (ficheros) y quieres lo esencial? → Arranca en el [punto 1](/ApuntesProgramacion/14-conexion-bases-datos/01-que-es-jdbc) y el [punto 2](/ApuntesProgramacion/14-conexion-bases-datos/02-conexion): conectar es el 90% de la batalla.
 - ¿Ya conectas y quieres manejar datos? → Ve directo al [punto 4](/ApuntesProgramacion/14-conexion-bases-datos/04-crud) (el CRUD) y al [punto 5](/ApuntesProgramacion/14-conexion-bases-datos/05-preparedstatement) (hacerlo sin que te hackeen).
 - ¿Solo vienes a por los trucos? → Salta al [punto 5](/ApuntesProgramacion/14-conexion-bases-datos/05-preparedstatement) (la SQL injection) y al [punto 8](/ApuntesProgramacion/14-conexion-bases-datos/08-buenas-practicas) (el decálogo).
-- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/14-conexion-bases-datos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u14-inicial).
+- ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/14-conexion-bases-datos/10-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u14-inicial).
 
 **📍 Primer punto:** [01 · Qué es JDBC](/ApuntesProgramacion/14-conexion-bases-datos/01-que-es-jdbc)  
-**⏭️ Al acabar la unidad, continúa en [U16 · Servir y Consumir APIs con Web](/ApuntesProgramacion/16-apis-web).**
+**⏭️ Al acabar la unidad, continúa en [U16 · Servir y consumir APIs con Web](/ApuntesProgramacion/16-apis-web).**

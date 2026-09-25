@@ -1,5 +1,5 @@
 ﻿---
-title: "U13 — Ficheros y Expresiones Regulares"
+title: "U13 — Ficheros y expresiones regulares (Regex)"
 description: "El GPS de los archivos, el lápiz que no olvida, la puerta que se cierra sola y el detective de patrones: File, FileWriter, BufferedReader, NIO, serialización y regex 📁"
 emoji: 📁
 ---
@@ -107,4 +107,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/13-ficheros-regex/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u13-inicial).
 
 **📍 Primer punto:** [01 · La clase File: tu explorador de archivos](/ApuntesProgramacion/13-ficheros-regex/01-clase-file)  
-**⏭️ Al acabar la unidad, continúa en [U14 · Conexión a BD con JDBC](/ApuntesProgramacion/14-conexion-bases-datos).**
+**⏭️ Al acabar la unidad, continúa en [U14 · Persistencia de datos: JDBC e introducción a ORM](/ApuntesProgramacion/14-conexion-bases-datos).**

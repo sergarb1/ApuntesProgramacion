@@ -5,7 +5,7 @@ description: "El llapis que no oblida i el lector que no s'ennuega: escriu fitxe
 
 <p><small>El llapis que no oblida i el lector que no s'ennuega: escriu fitxers amb FileWriter i llig-los línia a línia amb BufferedReader ✍️📖</small></p>
 
-> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i Expressions Regulars** → 02 · Escriure i llegir text: FileWriter, FileReader i BufferedReader
+> 🗺️ **Estàs en:** 📁 **U13 · Fitxers i expressions regulars (Regex)** → 02 · Escriure i llegir text: FileWriter, FileReader i BufferedReader
 
 ---
 

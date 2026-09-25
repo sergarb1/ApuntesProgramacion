@@ -5,7 +5,7 @@ description: "El ritual de los 5 pasos para conectar Java con SQLite y la interf
 
 <p><small>El ritual de los 5 pasos para conectar Java con SQLite y la interfaz Connection, la tubería por la que viajan tus consultas 🗄️🔗</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 02 · Conexión a SQLite
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 02 · Conexión a SQLite
 
 ---
 

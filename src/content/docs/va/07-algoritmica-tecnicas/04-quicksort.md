@@ -5,7 +5,7 @@ description: L'algorisme d'ordenació més famós del món, amb la seua partici�
 
 <p><small>L'algorisme d'ordenació més famós del món, amb la seua partició, el seu pivot i les seues manies 🚀</small></p>
 
-> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: Tècniques** → 04 · Quicksort
+> 🗺️ **Estàs en:** ⚡ **U07 · Algorítmica II: tècniques avançades i modularitat** → 04 · Quicksort
 
 ---
 

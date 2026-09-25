@@ -5,7 +5,7 @@ description: "implements, polimorfismo con interfaces, métodos default y la gra
 
 <p><small>implements, polimorfismo con interfaces, métodos default y la gran decisión abstract vs interface 🧬</small></p>
 
-> 🗺️ **Estás en:** 🧬 **U10 · Herencia, Polimorfismo e Interfaces** → 08 · Interfaces: el contrato que firmas
+> 🗺️ **Estás en:** 🧬 **U10 · Herencia, polimorfismo e interfaces** → 08 · Interfaces: el contrato que firmas
 
 ---
 

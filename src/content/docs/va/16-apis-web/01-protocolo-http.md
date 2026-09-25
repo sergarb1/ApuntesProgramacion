@@ -5,7 +5,7 @@ description: "Petició-resposta, verbs HTTP, codis d'estat i per què tota la we
 
 <p><small>Petició-resposta, verbs HTTP, codis d'estat i per què tota la web se sosté sobre una conversa tan simple 🌐⚡</small></p>
 
-> 🗺️ **Estàs en:** 🌐 **U16 · Servir i Consumir APIs amb Web** → 01 · El protocol HTTP en 30 segons
+> 🗺️ **Estàs en:** 🌐 **U16 · Servir i consumir APIs amb Web** → 01 · El protocol HTTP en 30 segons
 
 ---
 

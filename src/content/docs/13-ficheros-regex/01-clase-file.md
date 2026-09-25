@@ -5,7 +5,7 @@ description: "El GPS que localiza archivos sin leer su contenido: existe, es arc
 
 <p><small>El GPS que localiza archivos sin leer su contenido: existe, es archivo, es carpeta, cuánto pesa y qué hay dentro 🗂️📍</small></p>
 
-> 🗺️ **Estás en:** 📁 **U13 · Ficheros y Expresiones Regulares** → 01 · La clase File: tu explorador de archivos
+> 🗺️ **Estás en:** 📁 **U13 · Ficheros y expresiones regulares (Regex)** → 01 · La clase File: tu explorador de archivos
 
 ---
 

@@ -5,7 +5,7 @@ description: El casino de Java, amb daus i fórmules per a no fer trampa 🎲
 
 <p><small>El casino de Java, amb daus i fórmules per a no fer trampa 🎲</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 08 · Math.random() i nombres aleatoris
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 08 · Math.random() i nombres aleatoris
 
 ---
 

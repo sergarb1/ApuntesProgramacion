@@ -1,5 +1,5 @@
 ﻿---
-title: U03 — Variables, Tipos y Operadores
+title: U03 — Variables, tipos y operadores
 description: Las cajas del almacén de la memoria y las máquinas del gimnasio de datos 🔤
 ---
 
@@ -100,4 +100,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/03-variables-tipos-operadores/10-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u03-inicial).
 
 **📍 Primer punto:** [01 · Variables y tipos primitivos](/ApuntesProgramacion/03-variables-tipos-operadores/01-variables-tipos-primitivos)  
-**⏭️ Al acabar la unidad, continúa en [U04 · Estructuras de Control](/ApuntesProgramacion/04-estructuras-control-excepciones).**
+**⏭️ Al acabar la unidad, continúa en [U04 · Estructuras de control y excepciones básicas](/ApuntesProgramacion/04-estructuras-control-excepciones).**

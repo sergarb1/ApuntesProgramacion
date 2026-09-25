@@ -1,5 +1,5 @@
 ---
-title: "U12 — Programació Funcional"
+title: "U12 — Programació funcional (Streams i Lambdas)"
 description: "La cinta transportadora que processa les teues col·leccions i la fletxa que viatja sola: lambdes, interfícies funcionals, streams, Collectors i Optional 🎯"
 emoji: 🎯
 ---
@@ -105,4 +105,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/12-programacion-funcional/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u12-inicial).
 
 **📍 Primer punt:** [01 · Lambdes: funcions que viatgen soles](/ApuntesProgramacion/va/12-programacion-funcional/01-lambdas)  
-**⏭️ En acabar la unitat, continua en [U13 · Fitxers i Regex](/ApuntesProgramacion/va/13-ficheros-regex).**
+**⏭️ En acabar la unitat, continua en [U13 · Fitxers i expressions regulars (Regex)](/ApuntesProgramacion/va/13-ficheros-regex).**

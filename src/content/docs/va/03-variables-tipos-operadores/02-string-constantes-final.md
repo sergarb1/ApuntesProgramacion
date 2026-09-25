@@ -5,7 +5,7 @@ description: La caixa màgica del text i les caixes amb superglue 🔤
 
 <p><small>La caixa màgica del text i les caixes amb superglue 🔤</small></p>
 
-> 🗺️ **Estàs en:** 🔤 **U03 · Variables, Tipus i Operadors** → 02 · String, constants i final
+> 🗺️ **Estàs en:** 🔤 **U03 · Variables, tipus i operadors** → 02 · String, constants i final
 
 ---
 

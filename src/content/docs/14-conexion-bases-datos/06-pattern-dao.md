@@ -5,7 +5,7 @@ description: "El patrón DAO: una interfaz que promete y una implementación que
 
 <p><small>El patrón DAO: una interfaz que promete y una implementación que cumple, para que el SQL no se cuele jamás en tu lógica de negocio 🗄️🏗️</small></p>
 
-> 🗺️ **Estás en:** 🗄️ **U14 · Conexión a BD con JDBC** → 06 · El patrón DAO
+> 🗺️ **Estás en:** 🗄️ **U14 · Persistencia de datos: JDBC e introducción a ORM** → 06 · El patrón DAO
 
 ---
 

@@ -5,7 +5,7 @@ description: Els botons d'emergència i els salts de línia del bucle 🚪
 
 <p><small>Els botons d'emergència i els salts de línia del bucle 🚪</small></p>
 
-> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de Control i Excepcions** → 05 · break, continue i etiquetes
+> 🗺️ **Estàs en:** 🔀 **U04 · Estructures de control i excepcions bàsiques** → 05 · break, continue i etiquetes
 
 ---
 

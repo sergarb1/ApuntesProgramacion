@@ -61,6 +61,19 @@ Al terminar, serás capaz de explicar:
 
 ---
 
+## ✅ Criterios de evaluación cubiertos (RA1)
+
+**RA1: Reconoce la estructura de un programa informático, identificando y relacionando los elementos propios del lenguaje de programación utilizado.**
+
+| CE | Criterio | Dónde se cubre |
+|---|---|---|
+| a) | Bloques que componen la estructura de un programa | ✅ Puntos 3 y 4 |
+| b) | Proyectos de desarrollo de aplicaciones | ✅ Punto 9 |
+
+> 📌 El criterio a) se practica descomponiendo y escribiendo el plan antes de programar; el b), cerrando el primer problema completo del punto 9. Los criterios restantes del RA1 (c: entornos integrados de desarrollo, i: comentarios en el código) se ven en la **U02**.
+
+---
+
 ## 🚪 ¿Por dónde empiezo?
 
 - 🆕 ¿Cero conocimientos? → Empieza en el [punto 1](/ApuntesProgramacion/01-pensamiento-computacional/01-ordenadores-lenguajes), no hay ningún requisito previo.
@@ -68,4 +81,4 @@ Al terminar, serás capaz de explicar:
 - 🎯 ¿Vienes a repasar? → Haz las [actividades](/ApuntesProgramacion/boletines/boletin-u01-inicial).
 
 **📍 Primer punto:** [01 · Qué es un ordenador y un lenguaje de programación](/ApuntesProgramacion/01-pensamiento-computacional/01-ordenadores-lenguajes)
-**⏭️ Al acabar la unidad, continúa en [U02 · Introducción a Java](/ApuntesProgramacion/02-introduccion).**
+**⏭️ Al acabar la unidad, continúa en [U02 · Introducción a Java y el entorno de trabajo](/ApuntesProgramacion/02-introduccion).**

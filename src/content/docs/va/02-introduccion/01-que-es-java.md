@@ -5,7 +5,7 @@ description: "La trilogia del cafè i el secret de la tassa humejant ☕"
 
 <p><small>La trilogia del cafè i el secret de la tassa humejant ☕</small></p>
 
-> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java** → 01 · Què és Java?
+> 🗺️ **Estàs en:** 🚀 **U02 · Introducció a Java i l'entorn de treball** → 01 · Què és Java?
 
 ---
 

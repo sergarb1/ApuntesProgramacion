@@ -5,7 +5,7 @@ description: "El método que prepara al objeto en su fiesta de bienvenida: por d
 
 <p><small>El método que prepara al objeto en su fiesta de bienvenida: por defecto y con parámetros 🎉</small></p>
 
-> 🗺️ **Estás en:** 🏗️ **U08 · POO: Clases y Objetos** → 04 · Constructores
+> 🗺️ **Estás en:** 🏗️ **U08 · POO: clases y objetos** → 04 · Constructores
 
 ---
 

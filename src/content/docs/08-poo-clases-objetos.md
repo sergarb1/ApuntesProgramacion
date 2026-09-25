@@ -1,5 +1,5 @@
 ﻿---
-title: "U08 — POO: Clases y Objetos"
+title: "U08 — POO: clases y objetos"
 description: "El cortapastas y las galletas: cuando tu código pasa de ser una receta a un mundo de objetos que hablan entre sí 🏗️"
 emoji: 🏗️
 ---
@@ -87,7 +87,7 @@ Al terminar, serás capaz de:
 | RA4 d) | Se han creado constructores. | ✅ Puntos 4 y 7 |
 | RA4 e) | Se han desarrollado programas que instancien y utilicen objetos de las clases creadas anteriormente. | ✅ Puntos 6 y 8 |
 
-> 📌 El punto 6 (referencias y memoria) y el 7 (paso por valor) son la base para entender el **RA2 c) y f)** en profundidad. Los modificadores de visibilidad (RA4 f), la herencia (RA4 g) y los métodos estáticos (RA4 h) tienen su propio capítulo en la **U09** (Visibilidad y Static) y en la **U10** (Herencia), así que aquí los dejamos descansando.
+> 📌 El punto 6 (referencias y memoria) y el 7 (paso por valor) son la base para entender el **RA2 c) y f)** en profundidad. Los modificadores de visibilidad (RA4 f), la herencia (RA4 g) y los métodos estáticos (RA4 h) tienen su propio capítulo en la **U09** (Visibilidad, encapsulación y static) y en la **U10** (Herencia), así que aquí los dejamos descansando.
 
 ---
 
@@ -99,4 +99,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/08-poo-clases-objetos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u08-inicial).
 
 **📍 Primer punto:** [01 · Qué es la POO](/ApuntesProgramacion/08-poo-clases-objetos/01-que-es-poo)  
-**⏭️ Al acabar la unidad, continúa en [U09 · Visibilidad, Encapsulación y Static](/ApuntesProgramacion/09-visibilidad-encapsulacion-static).**
+**⏭️ Al acabar la unidad, continúa en [U09 · Visibilidad, encapsulación y static](/ApuntesProgramacion/09-visibilidad-encapsulacion-static).**

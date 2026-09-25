@@ -1,6 +1,6 @@
 ﻿---
 title: Butlletí U04 — Inicial
-description: Exercicis bàsics d'Estructures de Control i Excepcions
+description: Exercicis bàsics d'Estructures de control i excepcions bàsiques
 ---
 
 # 📝 Butlletí U04 — Inicial

@@ -1,5 +1,5 @@
 ﻿---
-title: "U12 — Programación Funcional"
+title: "U12 — Programación funcional (Streams y Lambdas)"
 description: "La cinta transportadora que procesa tus colecciones y la flecha que viaja sola: lambdas, interfaces funcionales, streams, Collectors y Optional 🎯"
 emoji: 🎯
 ---
@@ -105,4 +105,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/12-programacion-funcional/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u12-inicial).
 
 **📍 Primer punto:** [01 · Lambdas: funciones que viajan solas](/ApuntesProgramacion/12-programacion-funcional/01-lambdas)  
-**⏭️ Al acabar la unidad, continúa en [U13 · Ficheros y Regex](/ApuntesProgramacion/13-ficheros-regex).**
+**⏭️ Al acabar la unidad, continúa en [U13 · Ficheros y expresiones regulares (Regex)](/ApuntesProgramacion/13-ficheros-regex).**

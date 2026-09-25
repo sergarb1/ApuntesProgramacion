@@ -7,24 +7,24 @@ Curso completo de Programación en Java para DAM/DAW (o cualquier persona que qu
 
 ## Unidades (14 estándar + extra)
 ```
-01-pensamiento-computacional.md       → (sin RA: introductoria)
+01-pensamiento-computacional.md       → RA1         (introductoria)
 02-introduccion.md                    → RA1
 03-variables-tipos-operadores.md      → RA2        (10 puntos: incluye consola)
 04-estructuras-control-excepciones.md → RA3
 05-arrays.md                          → RA6        (🅿️ arrays antes de algorítmica)
 06-algoritmica-fundamentos.md         → RA2, RA6
-07-algoritmica-tecnicas.md            → RA2, RA6
+07-algoritmica-tecnicas.md            → RA2, RA6   (10 puntos: incluye modularidad)
 08-poo-clases-objetos.md              → RA2, RA4
 09-visibilidad-encapsulacion-static.md → RA4
 10-herencia-polimorfismo-interfaces.md → RA4, RA7
 11-colecciones.md                     → RA6        (📚 fusionada: colecciones + genéricos y mapas)
 12-programacion-funcional.md          → RA6, RA7   (🎯 lambdas, streams, Optional)
 13-ficheros-regex.md                  → RA5, RA6   (sin sección de consola; la consola está en U03)
-14-conexion-bases-datos.md            → RA9
+14-conexion-bases-datos.md            → RA9        (10 puntos: incluye introducción a ORM)
 16-apis-web.md                        → RA5        (🧪 extra no evaluable, sin número 15)
 ```
 
-Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U03 tiene 10 puntos porque incluye el punto extra de consola (salida formateada). La U01 es introductoria (9 puntos, 1 boletín no evaluable).
+Cada unidad estándar tiene **9 puntos de teoría** (índice + 9 capítulos) y **5 boletines**. La U03 tiene 10 puntos porque incluye el punto extra de consola (salida formateada). Las **U07 y U14 tienen 10 puntos** (índice + 10 capítulos) por los capítulos extra `09-modularidad` e `09-introduccion-orm`; su repaso interactivo es el punto 10. La U01 es introductoria (9 puntos, 1 boletín no evaluable) y también cubre RA1.
 
 ## Boletines (5 por unidad)
 ```
@@ -192,7 +192,7 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - Los .md en `va/` deben mantenerse siempre sincronizados con los de castellano
 - `starlight-llm-actions` eliminado por incompatibilidad; PDF por página con Ctrl+P del navegador
 - `ca/` renombrado a `va/` para usar el código ISO correcto del valenciano
-- Las unidades en el sidebar llevan emojis temáticos (🚀, 🔤, 🔀, 🅿️, 🧩, ⚡, 🏗️, 🔒, 🧬, 📚, 🗺️, 🎯, 📁, 🗄️, 🌐)
+- Las unidades en el sidebar llevan emojis temáticos (🧠, 🚀, 🔤, 🔀, 🅿️, 🧩, ⚡, 🏗️, 🔒, 🧬, 📚, 🎯, 📁, 🗄️, 🌐)
 - El layout de la web usa las 3 columnas por defecto de Starlight (sidebar, contenido, TOC derecho)
 - `portada.png` se usa como portada común para PDF y EPUB, y se muestra en la web como hero de la landing (castellano)
 - `portada_val.png` es la portada en valenciano para web, PDF y EPUB
@@ -203,3 +203,4 @@ npm run epub:all  # Generar EPUB ambos idiomas
 - **13 · Lingüística:** todo contenido en castellano cumple el «Requisito lingüístico (es-ES)» de la sección Estilo (vocabulario peninsular, mayúsculas oracionales, formato numérico español); revisión obligatoria antes de cerrar cualquier unidad o boletín.
 - **14 · Reordenamiento 2026-27:** el curso quedó en 14 unidades estándar + APIs extra. Colecciones y genéricos/mapas se fusionaron en la U11 (📚); Programación Funcional es la U12; Ficheros (sin consola) la U13; JDBC la U14; la consola vive en U03 (punto 7); la U16 (APIs web) es extra no evaluable. Los informes de revisión están en `openspec/reviews/unidad-0X.md`.
 - **15 · Diagramas U02:** los 8 diagramas Excalidraw de la U02 viven en `public/diagrams/` con tres ficheros cada uno: `u02-NOMBRE.excalidraw` (origen editable), `u02-NOMBRE.svg` (castellano) y `u02-NOMBRE-val.svg` (valenciano). Los ocho capítulos de `02-introduccion/` (ES y VA) referencian su SVG con ruta absoluta `/ApuntesProgramacion/diagrams/…`; los diagramas ASCII existentes se conservan. Toda la tipografía es cascadia (nada de Virgil/Excalifont/Comic).
+- **16 · Temario 2026-27 (UD1–UD14):** títulos oficiales aplicados en ES y VA; RA1 cubierto en UD1 (badge en la landing + sección de criterios en `01-pensamiento-computacional/index.md`); capítulos nuevos `09-modularidad` (U07) y `09-introduccion-orm` (U14) con sus repasos renumerados al punto 10 (sidebar, índices, footers y flujo de lectura actualizados en ambos idiomas).

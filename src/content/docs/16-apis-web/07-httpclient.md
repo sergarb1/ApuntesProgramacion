@@ -5,7 +5,7 @@ description: "Tu programa se convierte en cliente: HttpClient, GET, BodyHandlers
 
 <p><small>Tu programa se convierte en cliente: HttpClient, GET, BodyHandlers y parsear JSON con Gson 📡🔍</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 07 · Consumir APIs externas con HttpClient
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 07 · Consumir APIs externas con HttpClient
 
 ---
 

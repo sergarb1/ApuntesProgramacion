@@ -90,4 +90,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/06-algoritmica-fundamentos/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u06-inicial).
 
 **📍 Primer punto:** [01 · Qué es un algoritmo](/ApuntesProgramacion/06-algoritmica-fundamentos/01-que-es-algoritmo)  
-**⏭️ Al acabar la unidad, continúa en [U07 · Algorítmica II: Técnicas](/ApuntesProgramacion/07-algoritmica-tecnicas).**
+**⏭️ Al acabar la unidad, continúa en [U07 · Algorítmica II: técnicas avanzadas y modularidad](/ApuntesProgramacion/07-algoritmica-tecnicas).**

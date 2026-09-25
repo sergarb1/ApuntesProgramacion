@@ -5,7 +5,7 @@ description: "Lo que pertenece a la clase y no al objeto: el grupo de WhatsApp e
 
 <p><small>Lo que pertenece a la clase y no al objeto: el grupo de WhatsApp en vez de los mensajes privados 📢</small></p>
 
-> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, Encapsulación y Static** → 05 · Atributos static
+> 🗺️ **Estás en:** 🔒 **U09 · Visibilidad, encapsulación y static** → 05 · Atributos static
 
 ---
 

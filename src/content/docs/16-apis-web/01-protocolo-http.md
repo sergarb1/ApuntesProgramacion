@@ -5,7 +5,7 @@ description: "Petición-respuesta, verbos HTTP, códigos de estado y por qué to
 
 <p><small>Petición-respuesta, verbos HTTP, códigos de estado y por qué toda la web se sostiene sobre una conversación tan simple 🌐⚡</small></p>
 
-> 🗺️ **Estás en:** 🌐 **U16 · Servir y Consumir APIs con Web** → 01 · El protocolo HTTP en 30 segundos
+> 🗺️ **Estás en:** 🌐 **U16 · Servir y consumir APIs con Web** → 01 · El protocolo HTTP en 30 segundos
 
 ---
 
