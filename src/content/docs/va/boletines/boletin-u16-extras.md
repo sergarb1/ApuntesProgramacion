@@ -1,9 +1,9 @@
 ﻿---
-title: "Butlletí U14 — Extres"
+title: "Butlletí U15 — Extres"
 description: "CodeWars i AceptaElReto per a anar més enllà de les APIs web"
 ---
 
-# 📝 Butlletí U14 — Extres
+# 📝 Butlletí U15 — Extres
 
 > Exercicis de CodeWars i AceptaElReto amb pistes i solucions. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
 
@@ -104,7 +104,7 @@ public class Kata {
 }
 ```
 
-És la mateixa anatomia de URL del punt 1, portada a codi: el protocol acaba en `://`, el domini acaba en `/`. `indexOf` localitza els separadors i `substring` talla. Un `record` (U12) és la forma neta de tornar tres dades alhora.
+És la mateixa anatomia de URL del punt 1, portada a codi: el protocol acaba en `://`, el domini acaba en `/`. `indexOf` localitza els separadors i `substring` talla. Un `record` (U13) és la forma neta de tornar tres dades alhora.
 
 </details>
 
@@ -161,7 +161,7 @@ Et donen un missatge en codi Morse (lletres separades per un espai, paraules per
 <details>
 <summary>💡 Pista</summary>
 
-Crea un `Map` amb cada símbol Morse → lletra (els mapes, de la U12). Separa paraules per tres espais i lletres per un. No oblides `trim()` els extrems.
+Crea un `Map` amb cada símbol Morse → lletra (els mapes, de la U13). Separa paraules per tres espais i lletres per un. No oblides `trim()` els extrems.
 
 </details>
 
@@ -204,7 +204,7 @@ public class MorseDecoder {
 }
 ```
 
-El `Map` associa cada símbol amb la seua lletra (U12), `split(" {3}")` separa paraules per tres espais i `split(" ")` separa lletres per un. `getOrDefault` torna `""` si el símbol és rar, i `trim()` trau els espais dels extrems. És un problema de parseig: separar, consultar, recompondre.
+El `Map` associa cada símbol amb la seua lletra (U13), `split(" {3}")` separa paraules per tres espais i `split(" ")` separa lletres per un. `getOrDefault` torna `""` si el símbol és rar, i `trim()` trau els espais dels extrems. És un problema de parseig: separar, consultar, recompondre.
 
 </details>
 

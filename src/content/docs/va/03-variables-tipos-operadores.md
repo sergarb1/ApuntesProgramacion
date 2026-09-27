@@ -88,7 +88,7 @@ En acabar, seràs capaç de:
 | RA2 g) | S'han incorporat i utilitzat llibreries d'objectes. | ✅ Punt 6 |
 | RA2 h) | S'han utilitzat constructors. | ✅ Punts 2 i 6 |
 
-> 📌 El `Scanner` del punt 6, l'eixida amb format del punt 7 i els mètodes de `String` del punt 9 planten la llavor del RA5 (entrada i eixida d'informació), que floreix en la U13.
+> 📌 El `Scanner` del punt 6, l'eixida amb format del punt 7 i els mètodes de `String` del punt 9 planten la llavor del RA5 (entrada i eixida d'informació), que floreix en la U14.
 
 ---
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: Inicio
 description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 — Sergi Garcia Barea
 ---
@@ -83,22 +83,26 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 5</span>
-    <span class="ra">RA6</span>
+    <span class="ra">RA2</span>
   </div>
-  <a href="/ApuntesProgramacion/05-arrays" class="title-link">Arrays</a>
-  <p class="desc">Los arrays son el aparcamiento de datos: declara, recorre, ordena y manipula colecciones de datos con arrays unidimensionales, multidimensionales y la clase <code>Arrays</code>.</p>
-  <a href="/ApuntesProgramacion/05-arrays" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/05-funciones" class="title-link">Funciones y métodos</a>
+  <p class="desc">Pasa de escribir código suelto a diseñarlo: métodos con parámetros, <code>return</code> con sentido y variables con su ámbito.</p>
+  <a href="/ApuntesProgramacion/05-funciones" class="unit-link">
+👉
+ Ver unidad 
+👈
+</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 6</span>
-    <span class="ra">RA2, RA6</span>
+    <span class="ra">RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/06-algoritmica-fundamentos" class="title-link">Algorítmica I: Fundamentos</a>
-  <p class="desc">Aprende a pensar como un programador: divide problemas en partes, usa pseudocódigo, diagramas de flujo y crea funciones reutilizables.</p>
-  <a href="/ApuntesProgramacion/06-algoritmica-fundamentos" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/06-arrays" class="title-link">Arrays</a>
+  <p class="desc">Los arrays son el aparcamiento de datos: declara, recorre, ordena y manipula colecciones de datos con arrays unidimensionales, multidimensionales y la clase <code>Arrays</code>.</p>
+  <a href="/ApuntesProgramacion/06-arrays" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
@@ -107,86 +111,97 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <span class="num">Unidad 7</span>
     <span class="ra">RA2, RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/07-algoritmica-tecnicas" class="title-link">Algorítmica II: técnicas avanzadas y modularidad</a>
-  <p class="desc">Algoritmos de ordenación, búsqueda binaria, recursividad y técnicas divide y vencerás para resolver problemas más complejos.</p>
-  <a href="/ApuntesProgramacion/07-algoritmica-tecnicas" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/07-algoritmica-fundamentos" class="title-link">Algorítmica I: Fundamentos</a>
+  <p class="desc">Aprende a pensar como un programador: divide problemas en partes, usa pseudocódigo, diagramas de flujo y crea funciones reutilizables.</p>
+  <a href="/ApuntesProgramacion/07-algoritmica-fundamentos" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 8</span>
-    <span class="ra">RA2, RA4</span>
+    <span class="ra">RA2, RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/08-poo-clases-objetos" class="title-link">POO: clases y objetos</a>
-  <p class="desc">Programación Orientada a Objetos: crea clases, instancia objetos, define atributos y métodos, y entiende la magia de los constructores.</p>
-  <a href="/ApuntesProgramacion/08-poo-clases-objetos" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/08-algoritmica-tecnicas" class="title-link">Algorítmica II: técnicas avanzadas y modularidad</a>
+  <p class="desc">Algoritmos de ordenación, búsqueda binaria, recursividad y técnicas divide y vencerás para resolver problemas más complejos.</p>
+  <a href="/ApuntesProgramacion/08-algoritmica-tecnicas" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 9</span>
-    <span class="ra">RA4</span>
+    <span class="ra">RA2, RA4</span>
   </div>
-  <a href="/ApuntesProgramacion/09-visibilidad-encapsulacion-static" class="title-link">Visibilidad, encapsulación y static</a>
-  <p class="desc">Controla quién ve qué: modificadores de acceso (<code>public</code>, <code>private</code>, <code>protected</code>), encapsulación con getters/setters, miembros <code>static</code> y constantes.</p>
-  <a href="/ApuntesProgramacion/09-visibilidad-encapsulacion-static" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/09-poo-clases-objetos" class="title-link">POO: clases y objetos</a>
+  <p class="desc">Programación Orientada a Objetos: crea clases, instancia objetos, define atributos y métodos, y entiende la magia de los constructores.</p>
+  <a href="/ApuntesProgramacion/09-poo-clases-objetos" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 10</span>
-    <span class="ra">RA4, RA7</span>
+    <span class="ra">RA4</span>
   </div>
-  <a href="/ApuntesProgramacion/10-herencia-polimorfismo-interfaces" class="title-link">Herencia, polimorfismo e interfaces</a>
-  <p class="desc">Herencia, polimorfismo, clases abstractas e interfaces: la base del diseño flexible y reutilizable en Java. Aprende a sobrescribir métodos y a usar <code>super</code>.</p>
-  <a href="/ApuntesProgramacion/10-herencia-polimorfismo-interfaces" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/10-visibilidad-encapsulacion-static" class="title-link">Visibilidad, encapsulación y static</a>
+  <p class="desc">Controla quién ve qué: modificadores de acceso (<code>public</code>, <code>private</code>, <code>protected</code>), encapsulación con getters/setters, miembros <code>static</code> y constantes.</p>
+  <a href="/ApuntesProgramacion/10-visibilidad-encapsulacion-static" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 11</span>
-    <span class="ra">RA6</span>
+    <span class="ra">RA4, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/11-colecciones" class="title-link">Colecciones, genéricos y mapas</a>
-  <p class="desc">El Java Collections Framework completo: <code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>, <code>TreeSet</code>, <code>Iterator</code>, <code>Collections</code>, genéricos (<code>Caja&lt;T&gt;</code>, wildcards) y mapas (<code>HashMap</code>, <code>TreeMap</code>).</p>
-  <a href="/ApuntesProgramacion/11-colecciones" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/11-herencia-polimorfismo-interfaces" class="title-link">Herencia, polimorfismo e interfaces</a>
+  <p class="desc">Herencia, polimorfismo, clases abstractas e interfaces: la base del diseño flexible y reutilizable en Java. Aprende a sobrescribir métodos y a usar <code>super</code>.</p>
+  <a href="/ApuntesProgramacion/11-herencia-polimorfismo-interfaces" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 12</span>
-    <span class="ra">RA6, RA7</span>
+    <span class="ra">RA6</span>
   </div>
-  <a href="/ApuntesProgramacion/12-programacion-funcional" class="title-link">Programación funcional (Streams y Lambdas)</a>
-  <p class="desc">Lambdas, interfaces funcionales, referencias a métodos, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) y <code>Optional</code> para escribir Java moderno y expresivo.</p>
-  <a href="/ApuntesProgramacion/12-programacion-funcional" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/12-colecciones" class="title-link">Colecciones, genéricos y mapas</a>
+  <p class="desc">El Java Collections Framework completo: <code>ArrayList</code>, <code>LinkedList</code>, <code>HashSet</code>, <code>TreeSet</code>, <code>Iterator</code>, <code>Collections</code>, genéricos (<code>Caja&lt;T&gt;</code>, wildcards) y mapas (<code>HashMap</code>, <code>TreeMap</code>).</p>
+  <a href="/ApuntesProgramacion/12-colecciones" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 13</span>
-    <span class="ra">RA5</span>
+    <span class="ra">RA6, RA7</span>
   </div>
-  <a href="/ApuntesProgramacion/13-ficheros-regex" class="title-link">Ficheros y expresiones regulares (Regex)</a>
-  <p class="desc">Lectura y escritura de ficheros de texto y binarios, serialización de objetos y expresiones regulares para buscar, validar y reemplazar patrones en texto.</p>
-  <a href="/ApuntesProgramacion/13-ficheros-regex" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/13-programacion-funcional" class="title-link">Programación funcional (Streams y Lambdas)</a>
+  <p class="desc">Lambdas, interfaces funcionales, referencias a métodos, la Stream API (<code>filter</code>, <code>map</code>, <code>reduce</code>, <code>collect</code>) y <code>Optional</code> para escribir Java moderno y expresivo.</p>
+  <a href="/ApuntesProgramacion/13-programacion-funcional" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
 <div class="unit-card">
   <div class="unit-card-header">
     <span class="num">Unidad 14</span>
+    <span class="ra">RA5</span>
+  </div>
+  <a href="/ApuntesProgramacion/14-ficheros-regex" class="title-link">Ficheros y expresiones regulares (Regex)</a>
+  <p class="desc">Lectura y escritura de ficheros de texto y binarios, serialización de objetos y expresiones regulares para buscar, validar y reemplazar patrones en texto.</p>
+  <a href="/ApuntesProgramacion/14-ficheros-regex" class="unit-link">👉 Ver unidad 👈</a>
+
+</div>
+
+<div class="unit-card">
+  <div class="unit-card-header">
+    <span class="num">Unidad 15</span>
     <span class="ra">RA9</span>
   </div>
-  <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="title-link">Persistencia de datos: JDBC e introducción a ORM</a>
+  <a href="/ApuntesProgramacion/15-conexion-bases-datos" class="title-link">Persistencia de datos: JDBC e introducción a ORM</a>
   <p class="desc">Conecta Java con bases de datos relacionales usando JDBC: <code>Connection</code>, <code>Statement</code>, consultas, inserciones, actualizaciones y transacciones seguras.</p>
-  <a href="/ApuntesProgramacion/14-conexion-bases-datos" class="unit-link">👉 Ver unidad 👈</a>
+  <a href="/ApuntesProgramacion/15-conexion-bases-datos" class="unit-link">👉 Ver unidad 👈</a>
 
 </div>
 
@@ -396,6 +411,20 @@ description: Curso completo de Programación en Java para DAM/DAW. CC BY-SA 4.0 
     <a href="/ApuntesProgramacion/boletines/boletin-u14-avanzado" class="blink">⭐ Avanzado por resolver</a>
     <a href="/ApuntesProgramacion/boletines/boletin-u14-avanzado-resuelto" class="blink">💪 Avanzado resuelto</a>
     <a href="/ApuntesProgramacion/boletines/boletin-u14-extras" class="blink">🔥 Extras</a>
+  </div>
+</div>
+
+<div class="unit-card">
+  <div class="unit-card-header">
+    <span class="num">Unidad 15</span>
+  </div>
+  <p class="boletin-section-label">📝 Boletines de la unidad</p>
+  <div class="boletin-links">
+    <a href="/ApuntesProgramacion/boletines/boletin-u15-inicial" class="blink">🟢 Inicial por resolver</a>
+    <a href="/ApuntesProgramacion/boletines/boletin-u15-inicial-resuelto" class="blink">✅ Inicial resuelto</a>
+    <a href="/ApuntesProgramacion/boletines/boletin-u15-avanzado" class="blink">⭐ Avanzado por resolver</a>
+    <a href="/ApuntesProgramacion/boletines/boletin-u15-avanzado-resuelto" class="blink">💪 Avanzado resuelto</a>
+    <a href="/ApuntesProgramacion/boletines/boletin-u15-extras" class="blink">🔥 Extras</a>
   </div>
 </div>
 

@@ -1,354 +1,335 @@
-﻿---
-title: "Butlletí U05 — Avançat Resolt"
-description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
+---
+title: Butlletí U05 — Avançat Resolt
+description: Els mateixos exercicis que el butlletí avançat, amb solucions
 ---
 
 # 📝 Butlletí U05 — Avançat (Resolt)
 
-> Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
+> Les solucions estan ocultes. Intenta-ho de veritat abans de destapar-les.
 
 ---
 
-## ⭐ Exercici 1: La fusió d'arrays ordenats
+## ⭐ Exercici 1: El classificador de notes
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-public class Fusion {
-    public static int[] fusionarArrays(int[] a, int[] b) {
-        int[] resultado = new int[a.length + b.length];
-        int i = 0, j = 0, k = 0;
+public class Notas {
+    public static String calificar(double nota) {
+        if (nota < 0 || nota > 10) {
+            return "Nota no vàlida";
+        }
+        if (nota >= 9) {
+            return "Excel·lent";
+        }
+        if (nota >= 7) {
+            return "Notable";
+        }
+        if (nota >= 5) {
+            return "Aprovat";
+        }
+        return "Suspés";
+    }
 
-        while (i < a.length && j < b.length) {
-            if (a[i] < b[j]) {
-                resultado[k++] = a[i++];
-            } else {
-                resultado[k++] = b[j++];
+    public static void main(String[] args) {
+        System.out.println(calificar(8.7));
+        System.out.println(calificar(4.5));
+        System.out.println(calificar(11));
+        System.out.println(calificar(-2));
+    }
+}
+```
+
+Eixida:
+
+```
+Notable
+Suspés
+Nota no vàlida
+Nota no vàlida
+```
+
+La guarda de rang (`< 0 || > 10`) va **primera**: si no, un `11` seria "Excel·lent" i un `-2` entraria en la cascada. Cada `return` talla el mètode, així que els rangs posteriors només es miren si els anteriors no han fet *match*.
+
+</details>
+
+---
+
+## ⭐ Exercici 2: Taules a demanda
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Tablas {
+    public static void imprimirTabla(int n) {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(n + " x " + i + " = " + (n * i));
+        }
+    }
+
+    public static void main(String[] args) {
+        imprimirTabla(7);
+        System.out.println("---");
+        imprimirTabla(3);
+    }
+}
+```
+
+Eixida (primers):
+
+```
+7 x 1 = 7
+7 x 2 = 14
+...
+---
+3 x 1 = 3
+...
+```
+
+El mètode no en sap res del 7 ni del 3: tot el que fa depèn de `n`. La mateixa recepta, dos taules; afegir una tercera és una línia més en el `main`.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 3: Què imprimeix? — l'ombra del paràmetre
+
+<details>
+<summary>🔄 Solució</summary>
+
+```
+100
+```
+
+Dins de `cambiar`, el paràmetre `valor` **tapa** al camp `valor` durant tot el mètode (per això se'n diu *ombra*). L'expressió `valor = valor + 1` treballa sobre el paràmetre local: `5 + 1` es guarda en el paràmetre, que desapareix en tornar. El camp de la classe mai es toca, així que `main` continua imprimint `100`. Per a modificar el camp caldria `Sombra.valor = valor + 1` (sense `this` no hi ha `static`).
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 4: La suma de xifres
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Digitos {
+    public static int sumaDigitos(int n) {
+        n = Math.abs(n);
+        int suma = 0;
+        while (n > 0) {
+            suma += n % 10;
+            n /= 10;
+        }
+        return suma;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(sumaDigitos(1234));
+        System.out.println(sumaDigitos(905));
+    }
+}
+```
+
+Eixida:
+
+```
+10
+14
+```
+
+Amb `1234`: el `while` trau `4`, després `3`, després `2`, després `1` → `4 + 3 + 2 + 1 = 10`. `Math.abs` deixa a salvo el mètode d'un nombre negatiu. Tot el treball passa dins del mètode i `main` només imprimeix el `return`.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 5: Què imprimeix? — el return que talla
+
+<details>
+<summary>🔄 Solució</summary>
+
+```
+negatiu zero positiu
+4
+-1
+```
+
+`signo(-5)` cau en el primer `if` i torna `negatiu`; `signo(0)` supera el primer i cau en el segon → `zero`; `signo(4)` arriba fins a l'últim `return` → `positiu`. `primeroPar(7, 4)`: el 7 és senar, el 4 és pare → torna `4` abans d'arribar a l'últim `return`. `primeroPar(3, 5)`: cap és pare, així que arriba al final i torna `-1` (el valor sentinella). Recórrer amb calma cada crida és tot l'exercici: **un** `return` per execució, la resta és mort.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 6: Divideix l'informe
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Informe {
+    public static double media(double a, double b, double c, double d) {
+        return (a + b + c + d) / 4;
+    }
+
+    public static double maximo(double a, double b, double c, double d) {
+        double max = a;
+        if (b > max) max = b;
+        if (c > max) max = c;
+        if (d > max) max = d;
+        return max;
+    }
+
+    public static double minimo(double a, double b, double c, double d) {
+        double min = a;
+        if (b < min) min = b;
+        if (c < min) min = c;
+        if (d < min) min = d;
+        return min;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Mitjana: " + media(7.5, 9.0, 4.5, 8.25));
+        System.out.println("Màxim: " + maximo(7.5, 9.0, 4.5, 8.25));
+        System.out.println("Mínim: " + minimo(7.5, 9.0, 4.5, 8.25));
+    }
+}
+```
+
+Eixida:
+
+```
+Mitjana: 7.3125
+Màxim: 9.0
+Mínim: 4.5
+```
+
+Cada concepte té la seua caixa i el seu nom: si demà l'informe rep mitja ponderada, toques **un** mètode. El `main` ha quedat en el que ha de ser: presentar resultats, pas de càlcul zero.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 7: El comptador de vocals
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Vocales {
+    public static int contarVocales(String texto) {
+        int contador = 0;
+        for (int i = 0; i < texto.length(); i++) {
+            char c = texto.charAt(i);
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+                    || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U') {
+                contador++;
             }
         }
+        return contador;
+    }
 
-        while (i < a.length) {
-            resultado[k++] = a[i++];
-        }
-        while (j < b.length) {
-            resultado[k++] = b[j++];
-        }
+    public static void main(String[] args) {
+        System.out.println(contarVocales("Hola mundo"));
+        System.out.println(contarVocales("zzz"));
+    }
+}
+```
 
+Eixida:
+
+```
+4
+0
+```
+
+`"Hola mundo"` té `o`, `a`, `u`, `o` → `4`. Les 10 comparacions són el preu de no voler encara `toLowerCase()` ni les *regex* de la U13. Quan el criteri siga més lleuger que la llista, refactoritzaràs en una sola línia.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 8: CodeWars — 'Disemvowel' Trolls
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public class Kata {
+    public static String disemvowel(String str) {
+        String resultado = "";
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (c != 'a' && c != 'e' && c != 'i' && c != 'o' && c != 'u'
+                    && c != 'A' && c != 'E' && c != 'I' && c != 'O' && c != 'U') {
+                resultado += c;
+            }
+        }
         return resultado;
     }
-
-    public static void main(String[] args) {
-        int[] a = {1, 3, 5};
-        int[] b = {2, 4, 6};
-        int[] r = fusionarArrays(a, b);
-        System.out.println(java.util.Arrays.toString(r)); // [1, 2, 3, 4, 5, 6]
-    }
 }
 ```
 
-Dos punters (`i` i `j`) avancen per cada array comparant a cada pas. El menor dels dos es col·loca al resultat. Quan un array s'esgota, es copia la resta de l'altre. És el mateix algoritme que usa `merge` en el mergesort de la U07.
+Mateix motiu que l'exercici anterior, però a l'inversa: en lloc de comptar el que t'interessa, **concatenes el que no és vocal**. `"This website is for losers LOL!"` perd les vocals i torna `"Ths wbst s fr lsrs LL!"`. Cadenes immutables i `+=` en bucle no són el més ràpid del món, però per aquesta kata és més que suficient.
 
 </details>
 
 ---
 
-## ⭐ Exercici 2: Rotació circular a la dreta
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 165 Número hyperpar
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.Arrays;
+import java.util.Scanner;
 
-public class Rotar {
-    public static void rotarDerecha(int[] arr, int k) {
-        int n = arr.length;
-        if (n == 0) return;
-        k = k % n; // si k >= n, sobren voltes completes
-
-        int[] guardados = new int[k];
-        for (int i = 0; i < k; i++) {
-            guardados[i] = arr[n - k + i]; // els últims k
-        }
-        for (int i = n - 1; i >= k; i--) {
-            arr[i] = arr[i - k];           // desplaça la resta a la dreta
-        }
-        for (int i = 0; i < k; i++) {
-            arr[i] = guardados[i];         // els guardats al principi
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
-        rotarDerecha(arr, 2);
-        System.out.println(Arrays.toString(arr)); // [4, 5, 1, 2, 3]
-    }
-}
-```
-
-Amb `{1,2,3,4,5}` i `k = 2`: guardes `{4,5}`, desplaces `{1,2,3}` a les posicions 2, 3, 4 i col·loques `{4,5}` al principi. El `k % n` evita donar voltes completes inútils si `k` és major que la grandària.
-
-</details>
-
----
-
-## ⭐ Exercici 3: Suma de diagonals (matriu quadrada)
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class Diagonales {
-    public static void main(String[] args) {
-        int n = 5;
-        int[][] matriz = new int[n][n];
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n; j++) {
-                matriz[i][j] = (int) (Math.random() * 100) + 1;
-            }
-        }
-
-        int diagPrincipal = 0;
-        int diagSecundaria = 0;
-        for (int i = 0; i < n; i++) {
-            diagPrincipal += matriz[i][i];
-            diagSecundaria += matriz[i][n - 1 - i];
-        }
-
-        int diferencia = Math.abs(diagPrincipal - diagSecundaria);
-        System.out.println("Principal: " + diagPrincipal);
-        System.out.println("Secundaria: " + diagSecundaria);
-        System.out.println("Diferencia: " + diferencia);
-    }
-}
-```
-
-A la diagonal principal, `fila == columna` (`matriz[i][i]`). A la secundària, la columna és el "mirall": `n - 1 - i`. Un sol bucle recorre totes dues a la vegada. `Math.abs` dona la diferència absoluta, sense signe.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 4: Està ordenat?
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-public class EstaOrdenado {
-    public static boolean estaOrdenado(int[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            if (arr[i] < arr[i - 1]) {
+public class Hiperpar {
+    public static boolean esHyperpar(int n) {
+        while (n > 0) {
+            if (n % 10 % 2 != 0) {
                 return false;
             }
+            n /= 10;
         }
         return true;
     }
 
     public static void main(String[] args) {
-        System.out.println(estaOrdenado(new int[]{1, 2, 3, 4})); // true
-        System.out.println(estaOrdenado(new int[]{1, 3, 2, 4})); // false
-        System.out.println(estaOrdenado(new int[]{}));           // true
-        System.out.println(estaOrdenado(new int[]{7}));          // true
-    }
-}
-```
-
-Comences en `i = 1` i compares cada element amb l'anterior: si algun és menor que el precedent, l'ordre està trencat. Amb array buit o d'un element, el bucle ni tan sols s'executa i torna `true` (no hi ha res desordenat).
-
-</details>
-
----
-
-## ⭐⭐ Exercici 5: L'invers al lloc
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Arrays;
-
-public class Invertir {
-    public static void invertir(int[] arr) {
-        int izquierda = 0;
-        int derecha = arr.length - 1;
-
-        while (izquierda < derecha) {
-            int temp = arr[izquierda];
-            arr[izquierda] = arr[derecha];
-            arr[derecha] = temp;
-            izquierda++;
-            derecha--;
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] datos = {1, 2, 3, 4, 5};
-        invertir(datos);
-        System.out.println(Arrays.toString(datos)); // [5, 4, 3, 2, 1]
-    }
-}
-```
-
-Els dos punters es mouen cap al centre intercanviant elements. Amb `{1,2,3,4,5}`: primer canvia 1↔5, després 2↔4, i quan es creuen (`izquierda >= derecha`) ja està. Només s'usa memòria per a la variable temporal `temp`.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 6: Què imprimeix? — el doble bucle que compta parelles
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`3`**.
-
-El bucle exterior va amb `i` per 0, 1 i 2. L'interior comença en `j = i + 1`:
-
-- `i = 0`: parelles `(0,1)` i `(0,2)` → `2 < 4` i `2 < 6` → **2**.
-- `i = 1`: parella `(1,2)` → `4 < 6` → **1**.
-- `i = 2`: l'interior no entra (`j = 3` no és `< 3`).
-
-Total: `2 + 1 = 3`. Amb `{2, 4, 6}` totes les parelles compleixen `datos[i] < datos[j]`, i hi ha exactament `3 · 2 / 2 = 3` parelles.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 7: Estadístiques de classe
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class Estadisticas {
-    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        double[] notas = new double[20];
-
-        for (int i = 0; i < notas.length; i++) {
-            System.out.print("Nota del alumno " + (i + 1) + ": ");
-            notas[i] = sc.nextDouble();
-        }
-
-        double suma = 0;
-        double max = notas[0];
-        double min = notas[0];
-        int aprobados = 0;
-
-        for (double n : notas) {
-            suma += n;
-            if (n > max) max = n;
-            if (n < min) min = n;
-            if (n >= 5) aprobados++;
-        }
-
-        System.out.println("Media: " + (suma / notas.length));
-        System.out.println("Máxima: " + max);
-        System.out.println("Mínima: " + min);
-        System.out.println("Aprobados: " + aprobados);
-        sc.close();
-    }
-}
-```
-
-Un bucle ompli l'array, i el for-each fa la resta en una sola passada: acumula la suma, actualitza màxim i mínim i compta aprovats. Com `max` i `min` comencen en la primera nota, l'algoritme funciona fins i tot amb totes les notes iguals.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 8: El gran repte — busca-mines simplificat
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-
-public class Buscaminas {
-    public static void main(String[] args) {
-        boolean[][] minas = new boolean[5][5];
-        int puestas = 0;
-        while (puestas < 5) {
-            int f = (int) (Math.random() * 5);
-            int c = (int) (Math.random() * 5);
-            if (!minas[f][c]) {
-                minas[f][c] = true;
-                puestas++;
-            }
-        }
-
-        Scanner sc = new Scanner(System.in);
-        boolean juegoActivo = true;
-
-        while (juegoActivo) {
-            System.out.print("Introduce fila y columna (0-4): ");
-            int fila = sc.nextInt();
-            int col = sc.nextInt();
-
-            if (minas[fila][col]) {
-                System.out.println("¡BOOM! Has pisado una mina.");
-                juegoActivo = false;
-            } else {
-                int alrededor = 0;
-                for (int i = fila - 1; i <= fila + 1; i++) {
-                    for (int j = col - 1; j <= col + 1; j++) {
-                        if (i >= 0 && i < 5 && j >= 0 && j < 5 && minas[i][j]) {
-                            alrededor++;
-                        }
-                    }
-                }
-                System.out.println("Seguro. Minas alrededor: " + alrededor);
-            }
+        int n = sc.nextInt();
+        while (n >= 0) {
+            System.out.println(esHyperpar(n) ? "SI" : "NO");
+            n = sc.nextInt();
         }
         sc.close();
     }
 }
 ```
 
-El `while` que col·loca mines garanteix exactament 5 en posicions diferents (la condició `!minas[f][c]` evita repetir). Per a comptar veïnes, el doble bucle revisa les 8 caselles al voltant i el `if` amb els límits (0-4) impedeix eixir-te de l'array: sense eixa comprovació, `minas[-1][...]` seria `ArrayIndexOutOfBoundsException`.
+Eixida per a l'exemple:
+
+```
+SI
+NO
+SI
+```
+
+`2460` → totes les xifres parelles → `true`. `1234` → en trobar la `1`, `1 % 2 != 0` → `false` i sortim de pressa. `2` → un sol salt de bucle → `true`. El `return false` anticipat és la idea clave de la unitat: quan ja saps la resposta, no cal acabar la feina. El `while` exterior del `main` llegeix fins que arriba un nombre negatiu.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 9: Compactar — els zeros al final
+## 📚 Referències
 
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Arrays;
-
-public class Compactar {
-    public static void compactar(int[] arr) {
-        int pos = 0;
-
-        for (int i = 0; i < arr.length; i++) {
-            if (arr[i] != 0) {
-                arr[pos] = arr[i];
-                pos++;
-            }
-        }
-
-        for (int i = pos; i < arr.length; i++) {
-            arr[i] = 0;
-        }
-    }
-
-    public static void main(String[] args) {
-        int[] datos = {0, 3, 0, 1, 0, 2};
-        compactar(datos);
-        System.out.println(Arrays.toString(datos)); // [3, 1, 2, 0, 0, 0]
-    }
-}
-```
-
-L'índex `pos` marca on va el següent valor no zero. Quan trobes un valor diferent de 0, el copies a `arr[pos]` i avances. En acabar, des de `pos` fins al final s'ompli amb zeros. És el mateix patró de "índex lent / índex ràpid" que usa la fusió i que veuràs de nou amb les col·leccions.
-
-</details>
+| Plataforma | Problema | Dificultat |
+|---|---|---|
+| AceptaElReto | 165 — Número hyperpar | Fàcil |
+| AceptaElReto | 115 — Número de Kaprekar | Mitjà |
+| CodeWars | Century From Year (8 kyu) | Principiant |
+| CodeWars | 'Disemvowel' Trolls (7 kyu) | Aficionat |
+| CodeWars | Volume of a Cuboid (8 kyu) | Principiant |
+| CodeWars | Drink about (8 kyu) | Principiant |

@@ -84,13 +84,13 @@ Al terminar, serás capaz de:
 | RA5 g) | Se han programado controladores de eventos. | ✅ Punto 6 |
 | RA5 h) | Se han escrito programas que utilicen interfaces gráficos para la entrada y salida de información. | ✅ Puntos 5 y 6 |
 
-> 📌 La **RA5** se completa con la **U03** (consola y formatos, CEs a y b) y la **U13** (ficheros y acceso a archivos, CEs c, d y e). Esta unidad cubre la cara web de la entrada/salida: HTTP como protocolo, HTML y JSON como formatos, y las librerías `HttpServer` y `HttpClient` como procedimientos del lenguaje.
+> 📌 La **RA5** se completa con la **U03** (consola y formatos, CEs a y b) y la **U14** (ficheros y acceso a archivos, CEs c, d y e). Esta unidad cubre la cara web de la entrada/salida: HTTP como protocolo, HTML y JSON como formatos, y las librerías `HttpServer` y `HttpClient` como procedimientos del lenguaje.
 
 ---
 
 ## 🚪 ¿Por dónde empiezo?
 
-- ¿Vienes de la U14 (JDBC) y quieres lo esencial? → Arranca en el [punto 1](/ApuntesProgramacion/16-apis-web/01-protocolo-http) y el [punto 2](/ApuntesProgramacion/16-apis-web/02-servidor-minimo): HTTP y tu primer servidor.
+- ¿Vienes de la U15 (JDBC) y quieres lo esencial? → Arranca en el [punto 1](/ApuntesProgramacion/16-apis-web/01-protocolo-http) y el [punto 2](/ApuntesProgramacion/16-apis-web/02-servidor-minimo): HTTP y tu primer servidor.
 - ¿Ya sabes servir y quieres hacer APIs? → Ve directo al [punto 5](/ApuntesProgramacion/16-apis-web/05-devolviendo-json) y al [punto 6](/ApuntesProgramacion/16-apis-web/06-proyecto-rest): JSON y el CRUD de tareas.
 - ¿Solo vienes a por el lado cliente? → Salta al [punto 7](/ApuntesProgramacion/16-apis-web/07-httpclient) y al [punto 8](/ApuntesProgramacion/16-apis-web/08-httpclient-avanzado): consumir APIs externas.
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/16-apis-web/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u16-inicial).

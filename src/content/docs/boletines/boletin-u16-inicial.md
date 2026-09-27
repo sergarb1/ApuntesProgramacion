@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U14 — Inicial"
+title: "Boletín U15 — Inicial"
 description: "Ejercicios básicos de APIs web: HttpServer, servir HTML, parámetros GET y primeros JSON"
 ---
 
-# 📝 Boletín U14 — Inicial
+# 📝 Boletín U15 — Inicial
 
 > Sin soluciones. Sin prisas. Abre el IDE, crea tu primer `HttpServer` y haz que el navegador te hable de tú a tú. Prometo que ningún bit saldrá herido. Empieza suave, que la web muerde poco a poco.
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Butlletí U12 — Avançat Resolt"
 description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 ---
@@ -9,293 +9,466 @@ description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 
 ---
 
-## ⭐⭐ Exercici 1: Ordenar amb referències a mètode
+## ⭐ Exercici 1: La cua del supermercat amb LinkedList
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.LinkedList;
+import java.util.Scanner;
 
-public class Orden {
+public class ColaSupermercado {
     public static void main(String[] args) {
-        List<String> nombres = List.of("Carlos", "Ana", "David", "Bob");
+        LinkedList<String> cola = new LinkedList<>();
+        Scanner sc = new Scanner(System.in);
+        int opcion;
 
-        List<String> porLongitud = nombres.stream()
-            .sorted(Comparator.comparing(String::length))
-            .toList();
+        do {
+            System.out.println("\n1. Llega cliente  2. Atender cliente  3. ¿Quién sigue?  4. Estado  0. Salir");
+            opcion = sc.nextInt();
+            sc.nextLine();
 
-        System.out.println(porLongitud);   // [Ana, Bob, Carlos, David]
+            switch (opcion) {
+                case 1:
+                    System.out.print("Nombre del cliente: ");
+                    cola.addLast(sc.nextLine());
+                    break;
+                case 2:
+                    if (!cola.isEmpty()) {
+                        System.out.println("Atendiendo a: " + cola.removeFirst());
+                    } else {
+                        System.out.println("No hay nadie en la cola.");
+                    }
+                    break;
+                case 3:
+                    if (!cola.isEmpty()) {
+                        System.out.println("El siguiente es: " + cola.getFirst());
+                    } else {
+                        System.out.println("No hay nadie en la cola.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("Cola: " + cola);
+                    break;
+            }
+        } while (opcion != 0);
 
-        List<String> inverso = nombres.stream()
-            .sorted(Comparator.comparing(String::length).reversed())
-            .toList();
-        System.out.println(inverso);   // [Carlos, David, Ana, Bob]
+        sc.close();
     }
 }
 ```
 
-`Comparator.comparing(String::length)` construïx un comparador que usa la referència a mètode `String::length` com a "clau d'ordenació". `sorted` no modifica la llista original: torna un stream ordenat. Amb `.reversed()` inverteixes el criteri (els més llargs primer; els empats mantenen l'ordre d'arribada).
+`addLast` fica al final (els clients es posen darrere), `removeFirst` atén el primer (FIFO) i `getFirst` el mira sense traure-lo. El `isEmpty()` evita l'error de demanar-li el primer a una cua buida.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 2: Agrupar paraules per la seua primera lletra
+## ⭐⭐ Exercici 2: Intersecció i unió de conjunts
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Grupos {
+public class Conjuntos {
     public static void main(String[] args) {
-        List<String> palabras = List.of("hola", "adios", "mar", "mundo", "luna");
+        Set<Integer> a = new HashSet<>();
+        Set<Integer> b = new HashSet<>();
 
-        Map<Character, List<String>> porLetra = palabras.stream()
-            .collect(Collectors.groupingBy(p -> p.charAt(0)));
+        while (a.size() < 8) a.add((int) (Math.random() * 20) + 1);
+        while (b.size() < 8) b.add((int) (Math.random() * 20) + 1);
 
-        System.out.println(porLetra);
-        // {a=[adios], h=[hola], l=[luna], m=[mar, mundo]}
+        Set<Integer> interseccion = new HashSet<>(a);
+        interseccion.retainAll(b);
 
-        Map<Character, Long> conteo = palabras.stream()
-            .collect(Collectors.groupingBy(p -> p.charAt(0), Collectors.counting()));
+        Set<Integer> union = new HashSet<>(a);
+        union.addAll(b);
 
-        System.out.println(conteo);
-        // {a=1, h=1, l=1, m=2}
+        Set<Integer> difSimetrica = new HashSet<>(union);
+        difSimetrica.removeAll(interseccion);
+
+        System.out.println("A: " + a);
+        System.out.println("B: " + b);
+        System.out.println("Intersección: " + interseccion);
+        System.out.println("Unión: " + union);
+        System.out.println("Diferencia simétrica: " + difSimetrica);
     }
 }
 ```
 
-`groupingBy(p -> p.charAt(0))` agrupa les paraules per la seua primera lletra: cada lletra és una clau i la seua llista de paraules el valor. Amb `Collectors.counting()` com a segon argument (el "collector aigües avall"), el valor passa de `List<String>` a `Long`: quantes paraules cauen en cada grup. És el comptador de freqüències per categoria en una línia.
+La màgia són els tres mètodes de `Set`: `retainAll` deixa només el comú, `addAll` uni sense duplicats i `removeAll` lleva la intersecció de la unió per a deixar el que està només en un dels dos. Com que `HashSet` no admet duplicats, la unió ix neta sola. El `while` garanteix 8 elements únics en cada conjunt.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 3: Optional — el que no es deixa enganyar
+## ⭐⭐ Exercici 3: Eliminar duplicats mantenint l'ordre
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
-public class Maximo {
-    public static int maximoSeguro(List<Integer> numeros) {
-        return numeros.stream()
-            .max(Integer::compareTo)
-            .orElse(-1);
+public class SinDuplicados {
+    public static ArrayList<Integer> sinDuplicados(ArrayList<Integer> lista) {
+        LinkedHashSet<Integer> set = new LinkedHashSet<>(lista);
+        return new ArrayList<>(set);
     }
 
     public static void main(String[] args) {
-        System.out.println(maximoSeguro(List.of(4, 9, 2, 7)));   // 9
-        System.out.println(maximoSeguro(List.of()));             // -1
+        ArrayList<Integer> lista = new ArrayList<>(java.util.Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5));
+        System.out.println(sinDuplicados(lista)); // [3, 1, 4, 5, 9, 2, 6]
     }
 }
 ```
 
-`max(Integer::compareTo)` torna un `Optional<Integer>`: si la llista està buida, la capsa està buida. `orElse(-1)` aterra amb seguretat: torna el màxim si hi ha valor i `-1` si no. Usar `get()` ací hauria llançat `NoSuchElementException` amb la llista buida: l'`orElse` és la xarxa que converteix una excepció en una dada controlada.
+`LinkedHashSet` és la combinació perfecta: elimina duplicats (com `HashSet`) però conserva l'ordre d'inserció (com una llista). Es construïx passant-li la llista i es torna a convertir en `ArrayList`. Resultat: `[3, 1, 4, 5, 9, 2, 6]`, sense repetits i en ordre de primera aparició.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 4: El pipeline complet
+## ⭐⭐⭐ Exercici 4: Què imprimeix? — el remove que trenca el ball
 
 <details>
 <summary>🔄 Solució</summary>
 
+Llança una **`ConcurrentModificationException`**.
+
+El `for-each` usa un `Iterator` per davall. Quan dins del bucle crides a `palabras.remove(p)`, la llista canvia mentre l'iterador la està recorrent. L'iterador detecta la modificació externa i explota. La solució és recórrer amb un `Iterator` explícit i usar `it.remove()`. O construir una llista nova amb els elements que vols conservar.
+
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Pipeline {
+public class Puzle {
     public static void main(String[] args) {
-        List<Integer> numeros = List.of(12, 5, 8, 3, 9, 5, 12, 7);
+        ArrayList<String> palabras = new ArrayList<>();
+        palabras.add("hola");
+        palabras.add("mundo");
+        palabras.add("adiós");
 
-        List<Integer> resultado = numeros.stream()
-            .filter(n -> n >= 5)                     // 12, 5, 8, 9, 5, 12, 7
-            .map(n -> n * n)                         // 144, 25, 64, 81, 25, 144, 49
-            .distinct()                              // 144, 25, 64, 81, 49
-            .sorted(Comparator.reverseOrder())       // 144, 81, 64, 49, 25
-            .limit(3)                                // 144, 81, 64
-            .toList();
-
-        System.out.println(resultado);   // [144, 81, 64]
+        Iterator<String> it = palabras.iterator();
+        while (it.hasNext()) {
+            if (it.next().equals("mundo")) {
+                it.remove();
+            }
+        }
+        System.out.println(palabras); // [hola, adiós]
     }
 }
 ```
-
-El pipeline complet de la unitat: filtrar (el 3 es queda fora), transformar al quadrat, llevar duplicats (el 12 i el 5 repetits desapareixen), ordenar de major a menor amb `Comparator.reverseOrder()` i tallar en 3 amb `limit`. L'ordre importa: `distinct` abans de `sorted` significa que la llista a ordenar ja no té repetits.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 5: De llista a mapa amb `toMap`
+## ⭐⭐ Exercici 5: Filtrar amb Iterator
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-class Alumno {
-    private String nombre;
-    private int nota;
-
-    public Alumno(String nombre, int nota) {
-        this.nombre = nombre;
-        this.nota = nota;
-    }
-
-    public String getNombre() { return nombre; }
-    public int getNota() { return nota; }
-}
-
-public class Mapa {
+public class FiltrarPares {
     public static void main(String[] args) {
-        List<Alumno> alumnos = List.of(
-            new Alumno("Ana", 8),
-            new Alumno("Bob", 6),
-            new Alumno("Carla", 9),
-            new Alumno("David", 7),
-            new Alumno("Eva", 5)
-        );
+        ArrayList<Integer> numeros = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            numeros.add(i);
+        }
 
-        Map<String, Integer> porNombre = alumnos.stream()
-            .collect(Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a));
+        Iterator<Integer> it = numeros.iterator();
+        while (it.hasNext()) {
+            if (it.next() % 2 == 0) {
+                it.remove();
+            }
+        }
 
-        System.out.println(porNombre);   // {Eva=5, Ana=8, Bob=6, Carla=9, David=7}
+        System.out.println(numeros); // [1, 3, 5, 7, 9]
     }
 }
 ```
 
-`Collectors.toMap(Alumno::getNombre, Alumno::getNota, (a, b) -> a)` usa referències a mètode per a traure clau (nom) i valor (nota). La funció de fusió `(a, b) -> a` és l'assegurança: si un nom es repetira, dos elements voldrien la mateixa clau i sense fusió Java llançaria `IllegalStateException`. Amb `(a, b) -> a` es queda amb el primer.
+`it.next()` torna el número i avança; si és parell, `it.remove()` el borra de la llista original sense llançar excepció. Recorda: només pots borra l'element que acaba de tornar `next()`, i l'ordre importa.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 6: El màxim amb `reduce` i comparador
+## ⭐⭐ Exercici 6: El TreeSet ordenat
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.Scanner;
+import java.util.TreeSet;
 
-public class Maximo {
+public class PalabrasOrdenadas {
     public static void main(String[] args) {
-        List<Integer> numeros = List.of(4, 9, 2, 9, 7);
+        TreeSet<String> palabras = new TreeSet<>();
+        Scanner sc = new Scanner(System.in);
 
-        int conReduce = numeros.stream()
-            .reduce(Integer.MIN_VALUE, (a, b) -> a > b ? a : b);
-        System.out.println(conReduce);   // 9
+        System.out.println("Escribe palabras (fin para terminar):");
+        String palabra = sc.nextLine();
+        while (!palabra.equals("fin")) {
+            palabras.add(palabra);
+            palabra = sc.nextLine();
+        }
 
-        Optional<Integer> conMax = numeros.stream().max(Integer::compareTo);
-        System.out.println(conMax.orElse(-1));   // 9
+        System.out.println("Ordenadas: " + palabras);
+        System.out.println("Primera: " + palabras.first());
+        System.out.println("Última: " + palabras.last());
+        System.out.println("Antes de 'm': " + palabras.headSet("m"));
+        sc.close();
     }
 }
 ```
 
-- Amb `reduce`, la identitat `Integer.MIN_VALUE` garanteix que el primer element sempre guanye la comparació (qualsevol `int` és major que el mínim possible). L'acumulador va guardant el major vist.
-- Amb `max(Integer::compareTo)` no hi ha identitat: torna un `Optional<Integer>` perquè una llista buida no té màxim. S'aterra amb `orElse(-1)`.
-
-La diferència clau: `reduce` amb identitat torna el valor directe; `max` torna `Optional` i t'obliga a gestionar l'absència.
+El `TreeSet` ordena automàticament (ordre alfabètic) i **elimina duplicats**: si l'usuari repetix una paraula, només es guarda una vegada. `first()` i `last()` donen els extrems; `headSet("m")` torna totes les paraules que van abans que "m" en l'ordre natural.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 7: Freqüències amb `groupingBy`
+## ⭐ Pila genèrica `<T>`: Exercici 7
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.EmptyStackException;
 
-public class Frecuencias {
-    public static void main(String[] args) {
-        String[] palabras = {"hola", "adios", "hola", "java", "hola", "adios"};
+public class Pila<T> {
+    private ArrayList<T> elementos = new ArrayList<>();
 
-        Map<String, Long> frec = Arrays.stream(palabras)
-            .collect(Collectors.groupingBy(p -> p, Collectors.counting()));
+    public void push(T elemento) {
+        elementos.add(elemento);
+    }
 
-        System.out.println(frec);   // {adios=2, hola=3, java=1}
+    public T pop() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return elementos.remove(elementos.size() - 1);
+    }
 
-        Map.Entry<String, Long> campeona = frec.entrySet().stream()
-            .max(Map.Entry.comparingByValue())
-            .orElse(null);
+    public T peek() {
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+        return elementos.get(elementos.size() - 1);
+    }
 
-        System.out.println("Más repetida: " + campeona.getKey() + " (" + campeona.getValue() + ")");
+    public boolean isEmpty() {
+        return elementos.isEmpty();
+    }
+
+    public int size() {
+        return elementos.size();
     }
 }
 ```
 
-Dos nivells de streams: el primer converteix l'array en flux i agrupa per la paraula mateixa (`p -> p`), comptant amb `counting()`: `hola`=3, `adios`=2, `java`=1. El segon recorre les entrades del mapa (`entrySet()`) i busca el màxim valor amb `max(Map.Entry.comparingByValue())`, que torna `Optional<Map.Entry>` (aterrat amb `orElse(null)`). És l'`entrySet` de la U12 + el `max` dels streams.
+La pila es construïx sobre un `ArrayList<T>`: el final de la llista és la cima. `push` afegix, `pop` llevo i torna l'últim, i `peek` el mira sense llevar-lo. En ser genèrica, funciona igual amb `Integer`, `String` o `Double`: `new Pila<String>()` i llisto.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 8: Optional i streams, la parella
+## ⭐⭐ Exercici 8: HashMap invers
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
 
-public class Busqueda {
-    public static void buscarJ(List<String> nombres) {
-        nombres.stream()
-            .filter(n -> n.startsWith("J"))
-            .findFirst()
-            .ifPresentOrElse(
-                System.out::println,
-                () -> System.out.println("no hay nadie")
-            );
+public class Utilidades {
+
+    public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original) {
+        HashMap<V, K> invertido = new HashMap<>();
+        for (HashMap.Entry<K, V> e : original.entrySet()) {
+            invertido.put(e.getValue(), e.getKey());
+        }
+        return invertido;
     }
 
     public static void main(String[] args) {
-        buscarJ(List.of("Ana", "Juan", "Carla"));    // Juan
-        buscarJ(List.of("Ana", "Carla"));            // no hay nadie
+        HashMap<String, Integer> edades = new HashMap<>();
+        edades.put("Ana", 25);
+        edades.put("Bob", 30);
+
+        HashMap<Integer, String> porEdad = invertirMapa(edades);
+        System.out.println(porEdad.get(25)); // Ana
+        System.out.println(porEdad.get(30)); // Bob
     }
 }
 ```
 
-`filter(n -> n.startsWith("J")).findFirst()` torna `Optional<String>`: la capsa està plena si algú compleix i buida si no. `ifPresentOrElse` és el mètode que junta els dos camins: el primer argument és el `Consumer` per a quan hi ha valor (`System.out::println`), el segon un `Runnable` per a quan no n'hi ha. També ho podries fer amb `ifPresent` + `orElse`, però `ifPresentOrElse` fa la parella en una sola crida.
+Recórrer `entrySet()` et dona clau i valor junts, i el `put` invertit els canvia de lloc. Si dos claus comparteixen valor (dues persones de 25 anys), l'últim en el recorregut sobreescriu l'anterior: els valors del mapa original no són únics, així que l'invers pot perdre informació. Eixa és la limitació natural d'invertir un mapa.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 9: el stream que es nega a morir
+## ⭐⭐ Exercici 9: TreeMap — freqüència de lletres
 
 <details>
 <summary>🔄 Solució</summary>
 
-1. **Sí, compila** (l'error és d'execució, no de sintaxi).
-2. En executar, la segona crida `flujo.count()` llança **`IllegalStateException: stream has already been operated upon or closed`**. El primer `count()` ja va consumir el stream: no es pot reutilitzar.
-3. Creant un stream nou per a cada comptada:
-
 ```java
-long a = List.of(1, 2, 3).stream().count();
-long b = List.of(1, 2, 3).stream().count();
-System.out.println(a + " " + b);   // 3 3
+import java.util.Map;
+import java.util.TreeMap;
+
+public class FrecuenciaLetras {
+    public static void main(String[] args) {
+        String texto = "Hola mundo";
+
+        TreeMap<Character, Integer> frec = new TreeMap<>();
+        for (char c : texto.toLowerCase().toCharArray()) {
+            if (Character.isLetter(c)) {
+                frec.put(c, frec.getOrDefault(c, 0) + 1);
+            }
+        }
+
+        for (Map.Entry<Character, Integer> e : frec.entrySet()) {
+            System.out.print(e.getKey() + ": " + e.getValue() + ", ");
+        }
+        // a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
+    }
+}
 ```
 
-La regla d'or: un stream és com un bitllet d'autobús d'un sol viatge. Després de baixar-te, el bitllet no serveix.
+`toLowerCase()` unifica majúscules i minúscules, `Character.isLetter(c)` descarta espais i signes, i `getOrDefault` suma el comptador. La màgia del `TreeMap` és que, en recórrer-lo, les claus ixen ordenades alfabèticament sense que faces res.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 10: Wildcards — suma i barreja de números
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Numeros {
+
+    public static double sumar(List<? extends Number> lista) {
+        double total = 0.0;
+        for (Number n : lista) {
+            total += n.doubleValue();
+        }
+        return total;
+    }
+
+    public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b) {
+        List<Double> resultado = new ArrayList<>();
+        for (Number n : a) {
+            resultado.add(n.doubleValue());
+        }
+        for (Number n : b) {
+            resultado.add(n.doubleValue());
+        }
+        return resultado;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> enteros = List.of(1, 2, 3);
+        List<Double> dobles = List.of(1.5, 2.5);
+
+        System.out.println(sumar(enteros)); // 6.0
+        System.out.println(sumar(dobles));  // 4.0
+        System.out.println(mezclar(enteros, dobles)); // [1.0, 2.0, 3.0, 1.5, 2.5]
+    }
+}
+```
+
+`List<? extends Number>` accepta qualsevol llista de Number o d'una subclasse. En llegir, cada element és un `Number` i `doubleValue()` el converteix. Passar una `List<String>` seria un error de compilació: `String` no és un `Number`. I ull: `? extends` és de només lectura, així que en `sumar` no pots fer `add` (PECS: Producer Extends).
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 11: Sistema de votacions amb mètode genèric
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class Votaciones {
+
+    public static <T> T obtenerGanador(Map<T, Integer> votos) {
+        T ganador = null;
+        int maxVotos = -1;
+        for (Map.Entry<T, Integer> e : votos.entrySet()) {
+            if (e.getValue() > maxVotos) {
+                maxVotos = e.getValue();
+                ganador = e.getKey();
+            }
+        }
+        return ganador;
+    }
+
+    public static void main(String[] args) {
+        HashMap<String, Integer> votos = new HashMap<>();
+        votos.put("Ana", 3);
+        votos.put("Bob", 5);
+        votos.put("Carla", 2);
+
+        System.out.println(obtenerGanador(votos)); // Bob
+
+        HashMap<Integer, Integer> porCategoria = new HashMap<>();
+        porCategoria.put(1, 10);
+        porCategoria.put(2, 7);
+        System.out.println(obtenerGanador(porCategoria)); // 1
+    }
+}
+```
+
+El mètode és genèric (`<T>`) perquè el tipus de la clau no importa: només necessita recórrer i comparar valors. El patró del màxim acumulat sobre `entrySet()` torna la clau amb més vots. Funciona igual amb claus `String`, `Integer` o qualsevol altre tipus.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 12: el type erasure al descobert
+
+<details>
+<summary>🔄 Solució</summary>
+
+1. **No, és la mateixa classe.** `Caja<String>` i `Caja<Integer>` no generen dos classes en el bytecode: el compilador borra el paràmetre de tipus i deixa una única `Caja` amb `Object`. Per això no hi ha cap guany de rendiment per «especialitzar»: erasure significa que no es duplica codi.
+2. **`Object`.** `getValor()` en el bytecode torna `Object`. El compilador inserix el cast a `String` en el punt d'ús (quan assignes a `String s = caja.getValor();`).
+3. La comprovació amb `getClass()`:
+
+```java
+public class Demo {
+    public static void main(String[] args) {
+        Caja<String> cajaTexto = new Caja<>("hola");
+        Caja<Integer> cajaNumero = new Caja<>(42);
+
+        System.out.println(cajaTexto.getClass());
+        System.out.println(cajaNumero.getClass());
+        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
+    }
+}
+```
+
+Totes dos imprimeixen `class Caja` i la comparació amb `==` dóna `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existeixen en temps de compilació. Este és el type erasure: el mag que borra els tipus quan compiles.
 
 </details>

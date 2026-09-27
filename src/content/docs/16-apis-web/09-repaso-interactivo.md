@@ -334,7 +334,7 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 **Programadora:** — Vale... pero ahora mismo todo está en un `ArrayList` que se borra al reiniciar. ¿Cuándo aprendo a guardarlo de verdad?
 
-**CONRAD:** — *asiente* Eso ya lo viste en la U14 con JDBC: cambia el almacén, no las rutas. Tu API no se entera. Pero si me preguntas a mí, ya has recorrido un camino enorme: empezaste con un `Hola, mundo` en una consola y acabas sirviendo y consumiendo web. Eso es todo el curso.
+**CONRAD:** — *asiente* Eso ya lo viste en la U15 con JDBC: cambia el almacén, no las rutas. Tu API no se entera. Pero si me preguntas a mí, ya has recorrido un camino enorme: empezaste con un `Hola, mundo` en una consola y acabas sirviendo y consumiendo web. Eso es todo el curso.
 
 **Programadora:** — ¿Y ahora qué?
 

@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U14 — Extras"
+title: "Boletín U15 — Extras"
 description: "CodeWars y AceptaElReto para ir más allá de las APIs web"
 ---
 
-# 📝 Boletín U14 — Extras
+# 📝 Boletín U15 — Extras
 
 > Ejercicios de CodeWars y AceptaElReto con pistas y soluciones. Las soluciones están ocultas: agota tu pista antes de mirarlas.
 
@@ -104,7 +104,7 @@ public class Kata {
 }
 ```
 
-Es la misma anatomía de URL del punto 1, llevada a código: el protocolo termina en `://`, el dominio termina en `/`. `indexOf` localiza los separadores y `substring` corta. Un `record` (U12) es la forma limpia de devolver tres datos a la vez.
+Es la misma anatomía de URL del punto 1, llevada a código: el protocolo termina en `://`, el dominio termina en `/`. `indexOf` localiza los separadores y `substring` corta. Un `record` (U13) es la forma limpia de devolver tres datos a la vez.
 
 </details>
 
@@ -161,7 +161,7 @@ Te dan un mensaje en código Morse (letras separadas por un espacio, palabras po
 <details>
 <summary>💡 Pista</summary>
 
-Crea un `Map` con cada símbolo Morse → letra (los mapas, de la U12). Separa palabras por tres espacios y letras por uno. No olvides `trim()` los extremos.
+Crea un `Map` con cada símbolo Morse → letra (los mapas, de la U13). Separa palabras por tres espacios y letras por uno. No olvides `trim()` los extremos.
 
 </details>
 
@@ -204,7 +204,7 @@ public class MorseDecoder {
 }
 ```
 
-El `Map` asocia cada símbolo con su letra (U12), `split(" {3}")` separa palabras por tres espacios y `split(" ")` separa letras por uno. `getOrDefault` devuelve `""` si el símbolo es raro, y `trim()` quita los espacios de los extremos. Es un problema de parseo: separar, consultar, recomponer.
+El `Map` asocia cada símbolo con su letra (U13), `split(" {3}")` separa palabras por tres espacios y `split(" ")` separa letras por uno. `getOrDefault` devuelve `""` si el símbolo es raro, y `trim()` quita los espacios de los extremos. Es un problema de parseo: separar, consultar, recomponer.
 
 </details>
 

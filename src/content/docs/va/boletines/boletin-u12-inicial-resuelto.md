@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Butlletí U12 — Inicial Resolt"
 description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 ---
@@ -9,191 +9,202 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 
 ---
 
-## Exercici 1: Completa el codi — la teua primera lambda
+## Exercici 1: Què imprimeix? — ArrayList remove per índex vs valor
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-Predicate<Integer> esMayorDeEdad = edad -> edad >= 18;
-Function<Integer, Integer> doble = x -> x * 2;
-Consumer<String> imprimir = s -> System.out.println(s);
-Supplier<String> saludar = () -> "¡Hola!";
-```
+Imprimeix **`[A, C, D]`**.
 
-La variable ha de ser de tipus **interfície funcional**: la lambda només compila si la seua firma encaixa amb el mètode abstracte de la interfície. `Predicate` espera `boolean test(Integer)`, `Function` espera `R apply(T)`, `Consumer` espera `void accept(T)` i `Supplier` espera `T get()`. Fixa't en el `Supplier`: sense paràmetres, els parèntesis buits `()` són obligatoris.
+- `lista.remove(1)` borra per **índex**: lleva el `"B"` de la posició 1 → `[A, C, B, D]`.
+- `lista.remove("B")` borra per **objecte**: busca el primer `"B"` que quede → `[A, C, D]`.
+
+El primer mira posicions; el segon, continguts. Com que l'`Integer` té sobrecàrregues (`remove(int)` vs `remove(Object)`), esta distinció és la trampa favorita dels exàmens.
 
 </details>
 
 ---
 
-## Exercici 2: Què imprimeix? — l'ordre de la fletxa
+## Exercici 2: Troba l'error — size() vs length vs length()
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix:
+Les tres línies tenen error:
 
-```
-26
-1
-```
+- **Línia 1:** un `ArrayList` pregunta la seua grandària amb `size()`, no amb `.length` (això és per a arrays).
+- **Línia 2:** un array usa `.length` (sense parèntesis), no `.size()`.
+- **Línia 3:** un `String` usa `.length()` (amb parèntesis, és un mètode).
 
-- `operacion.apply(5)` → `5 * 5 + 1` = 26.
-- `operacion.apply(0)` → `0 * 0 + 1` = 1.
-
-El cos `x * x + 1` és una **sola expressió**: en les lambdes, un cos d'una expressió torna el seu resultat sense necessitat de `return` ni claus. Les claus i el `return` només calen quan el cos té diverses sentències.
+Regla mnemotècnica: col·lecció → `size()`, array → `length`, String → `length()`.
 
 </details>
 
 ---
 
-## Exercici 3: Troba l'error — la lambda mal vestida
+## Exercici 3: Completa el codi — for-each que suma una llista
 
 <details>
 <summary>🔄 Solució</summary>
 
-L'error està en la línia `esPositivo.accept(5)`: `Predicate` no té un mètode `accept`. El seu mètode abstracte és `test(T)`. `accept` pertany a `Consumer`. La línia correcta és:
-
 ```java
-System.out.println(esPositivo.test(5));   // true
+int suma = 0;
+for (Integer n : numeros) {   // o int n, amb unboxing automàtic
+    suma += n;
+}
 ```
 
-Cada interfície funcional té EL SEU mètode: `Predicate` usa `test`, `Function` usa `apply`, `Consumer` usa `accept` i `Supplier` usa `get`. Confondre'ls és com demanar una pizza a la peixateria: no és que la pizza no existisca, és que no està allà.
+La suma final és **22** (4 + 9 + 2 + 7). El buit inicial era `0` (començar acumulant des de zero), el tipus era `Integer` (o `int`, i l'unboxing fa la resta) i l'operador, `+=`.
 
 </details>
 
 ---
 
-## Exercici 4: Escriu este programa — filtrar parells amb streams
+## Exercici 4: Escriu este programa — la llista de la compra
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
 
-public class Pares {
+public class ListaCompra {
     public static void main(String[] args) {
-        List<Integer> numeros = List.of(10, 15, 22, 33, 40, 55);
+        ArrayList<String> compra = new ArrayList<>();
+        compra.add("Leche");       // [Leche]
+        compra.add("Pan");         // [Leche, Pan]
+        compra.add("Huevos");      // [Leche, Pan, Huevos]
+        compra.add(1, "Café");     // [Leche, Café, Pan, Huevos]
 
-        List<Integer> pares = numeros.stream()
-            .filter(n -> n % 2 == 0)
-            .toList();
+        System.out.println("Grandària: " + compra.size());   // 4
 
-        System.out.println(pares);   // [10, 22, 40]
+        compra.remove(2);          // lleva "Pan" → [Leche, Café, Huevos]
+
+        for (String articulo : compra) {
+            System.out.println(articulo);
+        }
     }
 }
 ```
 
-El `filter` amb `n -> n % 2 == 0` (un `Predicate<Integer>`) deixa passar només els parells: 10, 22 i 40. `toList()` arreplega el resultat. Hi ha 3 parells. Fixa't que la llista original no es toca: el stream crea una llista nova.
+`add(e)` afegix al final, `add(i, e)` se cola en la posició `i` desplaçant la resta, i `remove(i)` lleva per índex. Ull: després d'inserir `"Café"` en la posició 1, el `"Pan"` passa a la posició 2, així que `remove(2)` el lleva a ell.
 
 </details>
 
 ---
 
-## Exercici 5: Què imprimeix? — el pipeline bàsic
+## Exercici 5: Què imprimeix? — el HashSet que no deixa repetir
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`2`**.
+Imprimeix **`2`** i **`true`**.
 
-- `filter(p -> p.length() >= 4)` deixa passar: `luna` (4) i `cielo` (5). Les dos `sol` tenen 3 lletres i `mar` també (3): es queden fora.
-- `distinct()` no canvia res ací (ja no hi ha repetits entre els que passen).
-- `count()` → 2.
-
-Sense `distinct()`, el resultat seria el mateix en este cas (2), perquè `sol` ja va ser eliminada pel `filter`. `distinct()` hauria importat si el `filter` deixara passar dos iguals.
+El segon `add("Ana")` no falla ni avisa: simplement torna `false` i no afegix res, perquè el `HashSet` ja conté "Ana" (compara amb `hashCode()` i `equals()`). Per això `size()` és 2 (només Ana i Bob) i `contains("Bob")` és `true`.
 
 </details>
 
 ---
 
-## Exercici 6: Completa el codi — majúscules amb map
+## Exercici 6: Escriu este programa — sense duplicats
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-List<String> mayusculas = palabras.stream()
-    .map(String::toUpperCase)
-    .toList();
-```
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
-- La intermèdia és **`map`** amb la referència a mètode `String::toUpperCase` (equival a `p -> p.toUpperCase()`).
-- La terminal és **`toList()`** (Java 16+).
-
-Amb `Collectors.toList()` seria exactament igual però tornant un `ArrayList` modificable: `palabras.stream().map(String::toUpperCase).collect(Collectors.toList())`. `toList()` torna una llista immutable; per al resultat seria `["HOLA", "JAVA", "MUNDO"]`.
-
-</details>
-
----
-
-## Exercici 7: Escriu este programa — longitud de cada paraula
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.*;
-import java.util.stream.*;
-
-public class Longitudes {
+public class SinDuplicados {
     public static void main(String[] args) {
-        String[] nombres = {"Ana", "Bob", "Carla", "David"};
+        ArrayList<String> nombres = new ArrayList<>();
+        nombres.add("Ana");
+        nombres.add("Bob");
+        nombres.add("Ana");
+        nombres.add("Carla");
+        nombres.add("Bob");
+        nombres.add("Diego");
+        nombres.add("Ana");
+        nombres.add("Eva");
 
-        List<Integer> longitudes = Arrays.stream(nombres)
-            .map(String::length)
-            .collect(Collectors.toList());
+        LinkedHashSet<String> sinRepetir = new LinkedHashSet<>(nombres);
 
-        longitudes.forEach(System.out::println);   // 3, 3, 5, 5
+        System.out.println("Llista:    " + nombres);
+        System.out.println("Conjunt:   " + sinRepetir);
     }
 }
 ```
 
-Dos trucs nous: `Arrays.stream(nombres)` converteix l'array (de la U05) en stream, i `map(String::length)` transforma cada `String` en la seua longitud, canviant el tipus del flux a `Stream<Integer>`. El `forEach` amb `System.out::println` és la terminal que imprimeix cada element.
+La llista imprimeix els 8 elements amb els seus repetits; el conjunt, només 5: `Ana`, `Bob`, `Carla`, `Diego` i `Eva`. El `LinkedHashSet` elimina els duplicats **i** conserva l'ordre de primera aparició. Amb un `HashSet` a seques, l'ordre d'eixida seria imprevisible.
 
 </details>
 
 ---
 
-## Exercici 8: Troba l'error — la cinta que mai no arranca
+## Exercici 7: Completa el codi — la teua primera classe genèrica
 
 <details>
 <summary>🔄 Solució</summary>
 
-El pipeline no té **operació terminal**: `filter` i `map` són intermèdies (peresoses) i no executen res fins que arriba un `collect`, `count`, `forEach` o similar. El stream es prepara, però la cinta mai no arranca.
-
-Per a veure els números transformats cal tancar l'aixeta. Per exemple:
-
 ```java
-List<Integer> imparesDoblados = numeros.stream()
-    .filter(n -> n % 2 == 1)
-    .map(n -> n * 10)
-    .toList();
-System.out.println(imparesDoblados);   // [10, 30, 50]
+public class Caja<T> {
+    private T contenido;
+
+    public void guardar(T contenido) {
+        this.contenido = contenido;
+    }
+
+    public T sacar() {
+        return contenido;
+    }
+}
 ```
 
-És l'error més típic de la unitat: muntar la ruta i oblidar que l'autobús necessita arrancar.
+El paràmetre de tipus `<T>` es declara al costat del nom de la classe i s'usa com un tipus més dins d'ella. `Caja<int>` no compila perquè els genèrics només accepten tipus referència: `int` és un primitiu, així que toca usar `Caja<Integer>` i deixar que l'autoboxing convertisca sol.
 
 </details>
 
 ---
 
-## Exercici 9: Completa el codi — un Consumer per a imprimir
+## Exercici 8: Què imprimeix? — HashMap amb put repetit
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix **`30`** i **`2`**.
+
+- `put("Ana", 10)` i després `put("Ana", 30)`: la clau "Ana" es sobreescriu amb l'últim valor.
+- Per això `size()` és 2, no 3: les claus són úniques i "Ana" només compta una vegada.
+
+</details>
+
+---
+
+## Exercici 9: Escriu este programa — comptador de paraules amb HashMap
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-palabras.stream()
-    .forEach(p -> System.out.print("(" + p + ")"));
+import java.util.HashMap;
+import java.util.Map;
+
+public class ContadorPalabras {
+    public static void main(String[] args) {
+        String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
+
+        HashMap<String, Integer> contador = new HashMap<>();
+        for (String p : palabras) {
+            contador.put(p, contador.getOrDefault(p, 0) + 1);
+        }
+
+        for (Map.Entry<String, Integer> entrada : contador.entrySet()) {
+            System.out.println(entrada.getKey() + " → " + entrada.getValue());
+        }
+    }
+}
 ```
 
-- `System.out.print(...)` imprimeix **sense salt de línia**: l'eixida seria `(hola)(java)`.
-- `System.out.println(...)` afig el salt de línia al final: `(hola)` i `(java)` en línies separades.
-
-El `forEach` rep un `Consumer<String>`; la lambda `p -> System.out.print("(" + p + ")")` es pot reescriure amb una referència a mètode, encara que ací el cos ja no és una única crida, així que la lambda és l'opció natural.
+El patró de les freqüències: `getOrDefault(p, 0) + 1` torna el compte actual (o 0 la primera vegada) i suma 1. `entrySet()` et dona cada paraula amb el seu comptador en un sol bucle, sense un `get` extra.
 
 </details>

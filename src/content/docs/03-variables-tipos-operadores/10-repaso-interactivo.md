@@ -275,7 +275,7 @@ Porque depende del número. Si el número cabe en un `int` (máximo 2.147 millon
 
 > ❓ **¿`Math.random()` es un método del objeto `Math`?**
 
-No exactamente: `Math` es una **clase**, y `random()`, `pow()`, `round()`... son **métodos estáticos**. No creas ningún objeto de `Math`; llamas directamente `Math.random()`. Es la diferencia entre "llamar a la clase" y "llamar al objeto", que verás a fondo en la U09.
+No exactamente: `Math` es una **clase**, y `random()`, `pow()`, `round()`... son **métodos estáticos**. No creas ningún objeto de `Math`; llamas directamente `Math.random()`. Es la diferencia entre "llamar a la clase" y "llamar al objeto", que verás a fondo en la U10.
 
 ---
 

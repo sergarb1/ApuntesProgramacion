@@ -86,7 +86,7 @@ En acabar, seràs capaç de:
 | RA3 f) | S'han provat i depurat els programes. | ✅ Tots, amb molta cosa extra en els butlletins |
 | RA3 g) | S'ha comentat i documentat el codi. | ✅ Tots |
 
-> 📌 Els bucles que veus ací són el múscul de tot el que ve: els recorreguts d'arrays i col·leccions (U11) i els algoritmes d'ordenació i cerca (U07) no serien res sense `for` i `while`.
+> 📌 Els bucles que veus ací són el múscul de tot el que ve: els recorreguts d'arrays i col·leccions (U12) i els algoritmes d'ordenació i cerca (U08) no serien res sense `for` i `while`.
 
 ---
 
@@ -98,4 +98,4 @@ En acabar, seràs capaç de:
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/04-estructuras-control-excepciones/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u04-inicial).
 
 **📍 Primer punt:** [01 · if, else if i else](/ApuntesProgramacion/va/04-estructuras-control-excepciones/01-if-else)  
-**⏭️ En acabar la unitat, continua en [U05 · Arrays](/ApuntesProgramacion/va/05-arrays).**
+**⏭️ En acabar la unitat, continua en [U05 · Funcions i mètodes](/ApuntesProgramacion/va/05-funciones).**

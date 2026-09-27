@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U14 — Avanzado Resuelto"
+title: "Boletín U15 — Avanzado Resuelto"
 description: "Los mismos ejercicios que el boletín avanzado, con soluciones"
 ---
 
-# 📝 Boletín U14 — Avanzado (Resuelto)
+# 📝 Boletín U15 — Avanzado (Resuelto)
 
 > Las soluciones están ocultas en cada ejercicio. No hagas trampa: primero inténtalo de verdad.
 
@@ -231,7 +231,7 @@ server.createContext("/api/traducir", e -> {
 });
 ```
 
-Un mapa dentro de otro: la palabra en español es la clave del exterior, y el mapa interior asocia idioma con traducción. `getOrDefault` evita el `NullPointerException` cuando la palabra o el idioma no existen. Los mapas, como en la U12.
+Un mapa dentro de otro: la palabra en español es la clave del exterior, y el mapa interior asocia idioma con traducción. `getOrDefault` evita el `NullPointerException` cuando la palabra o el idioma no existen. Los mapas, como en la U13.
 
 </details>
 

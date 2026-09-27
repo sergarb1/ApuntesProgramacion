@@ -89,7 +89,7 @@ String nombre = json.get("name").getAsString();
 System.out.println("Usuario: " + login + " — " + nombre);
 ```
 
-**Forma 2 — mapeando a un `record` (los de la U11):**
+**Forma 2 — mapeando a un `record` (los de la U12):**
 
 ```java
 record UsuarioGitHub(String login, String name, int public_repos) {}

@@ -1,185 +1,210 @@
----
-title: "Butlletí U11 — Inicial"
-description: "Exercicis bàsics de Col·leccions, genèrics i mapes: ArrayList, HashSet, HashMap, Caja<T> i getOrDefault"
+﻿---
+title: Butlletí U11 — Inicial
+description: Exercicis bàsics d'Herència, polimorfisme i interfícies
 ---
 
 # 📝 Butlletí U11 — Inicial
 
-> Sense solucions. Sense presses. Obri l'IDE, crea el teu primer `ArrayList`, la teua primera `Caja<T>` i fes que el `HashMap` deixe de semblar màgia. Comença suaument, que les col·leccions mosseguen a poc a poc.
+> Sense solucions. Sense presses. Obri l'IDE, dona-li la mà a la primera superclasse i fes que `extends` deixe de semblar màgia. L'herència en Java és com la de veritat: de vegades et portes genial amb les subclasses, de vegades vols renegar de tot. Però ningú no naix sabent usar `super`.
 
 ---
 
-## Exercici 1: Què imprimeix? — ArrayList remove per índex vs valor
+## Exercici 1: Què imprimeix? — La família musical
 
 ```java
-import java.util.ArrayList;
+class Instrumentista {
+    void tocar() { System.out.println("L'instrumentista toca un instrument"); }
+}
+
+class Guitarrista extends Instrumentista {
+    void tocar() { System.out.println("El guitarrista toca la guitarra"); }
+}
+
+class Baixista extends Guitarrista {
+    void tocar() { System.out.println("El baixista toca el baix"); }
+}
+
+public class Banda {
+    public static void main(String[] args) {
+        Baixista b = new Baixista();
+        b.tocar();
+    }
+}
+```
+
+Què imprimeix? Per què?
+
+---
+
+## Exercici 2: Troba l'error — extends mal usat
+
+```java
+public class Animal {
+    private String especie;
+
+    public Animal(String especie) {
+        this.especie = especie;
+    }
+}
+
+public class Gos extends Animal {
+    private String raça;
+
+    public Gos(String raça) {
+        this.raça = raça;
+    }
+}
+```
+
+Este codi **no compila**. Per què? Explica l'error i corregeix-lo.
+
+---
+
+## Exercici 3: Completa el codi — el gat que crida el seu pare
+
+```java
+public class Animal {
+    public void ferSo() {
+        System.out.println("Algun so genèric...");
+    }
+}
+
+public class Gat extends Animal {
+    @Override
+    public void ferSo() {
+        ________.ferSo();   // primer el del pare
+        System.out.println("¡MIAU!");
+    }
+}
+```
+
+Quina paraula falta al buit perquè `Gat` primer execute el so d'`Animal` i després el seu "¡MIAU!"? Escriu a més un `main` que cree un `Gat` i crida a `ferSo()`.
+
+---
+
+## Exercici 4: Escriu este programa — l'herència de vehicles
+
+Crea una jerarquia de 3 nivells usant `extends`:
+
+- `Vehicle` (atribut: `String marca`)
+- `Cotxe` (atribut: `int numPortes`)
+- `Esportiu` (atribut: `int velocitatMaxima`)
+
+Cada classe ha de tindre un constructor que reba els seus atributs i use `super`. En `main()`, crea un `Esportiu` de marca "Ferrari", 2 portes i 340 km/h. Imprimeix els seus atributs.
+
+---
+
+## Exercici 5: Què imprimeix? — Polimorfisme amb referències
+
+```java
+class X {
+    void missatge() { System.out.println("X"); }
+}
+
+class Y extends X {
+    void missatge() { System.out.println("Y"); }
+}
+
+class Z extends Y { }
 
 public class Test {
     public static void main(String[] args) {
-        ArrayList<String> lista = new ArrayList<>();
-        lista.add("A");
-        lista.add("B");
-        lista.add("C");
-        lista.add("B");
-        lista.add("D");
+        X ref1 = new Y();
+        X ref2 = new Z();
+        Y ref3 = new Z();
 
-        lista.remove(1);          // remove per índex
-        lista.remove("B");        // remove per objecte
-
-        System.out.println(lista);
+        ref1.missatge();
+        ref2.missatge();
+        ref3.missatge();
     }
 }
 ```
 
-Què imprimeix? Per què el segon `remove("B")` no borra el mateix element que el primer?
+Què imprimeix cada crida? Per què el tipus de la referència no decideix res?
 
 ---
 
-## Exercici 2: Troba l'error — size() vs length vs length()
+## Exercici 6: Escriu este programa — la granja polimòrfica
+
+Crea una classe `Animal` amb mètode `ferSo()`. Crea `Vaca`, `Ovella` i `Gallina` que el sobreescriguen. En `main()`, crea un `ArrayList<Animal>`, fica una vaca, una ovella i una gallina, recorre'l amb un for-each cridant a `ferSo()`.
 
 ```java
-ArrayList<String> nombres = new ArrayList<>();
-nombres.add("Ana");
-
-int[] edades = {20, 30};
-String saludo = "Hola";
-
-System.out.println(nombres.length);   // línia 1
-System.out.println(edades.size());    // línia 2
-System.out.println(saludo.length);    // línia 3
+// Eixida esperada:
+// Muuuu
+// Beeee
+// Cloc cloc
 ```
 
-Quines línies tenen error? Explica què usa cada tipus per a preguntar quant mesura: `size()`, `length` o `length()`.
+---
+
+## Exercici 7: Troba l'error — @Override que no ho és
+
+```java
+public class Animal {
+    public void ferSo() {
+        System.out.println("...");
+    }
+}
+
+public class Peix extends Animal {
+    @Override
+    public void ferSo() { }   // ¿compila?
+
+    @Override
+    public void nedar() { }   // ¿compila?
+}
+```
+
+Una de les dos línies amb `@Override` impedeix compilar. Quina i per què? Què t'avisa el compilador en l'instant en què escrius eixa línia?
 
 ---
 
-## Exercici 3: Completa el codi — for-each que suma una llista
+## Exercici 8: Escriu este programa — el gos ben heretat
 
-Completa el següent programa perquè sume tots els números d'una `ArrayList<Integer>`:
+Parteix d'esta classe base:
 
 ```java
-import java.util.ArrayList;
+public class Animal {
+    protected String nom;
+    protected int edat;
 
-public class SumaLista {
-    public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
-        numeros.add(4);
-        numeros.add(9);
-        numeros.add(2);
-        numeros.add(7);
-
-        int suma = ______;
-        for (______ n : numeros) {      // quin tipus i quina variable?
-            suma ______ n;              // quin operador?
-        }
-
-        System.out.println("Suma: " + suma);
+    public Animal(String nom, int edat) {
+        this.nom = nom;
+        this.edat = edat;
     }
 }
 ```
 
-Què falta en cada buit? Quant val la suma al final?
+Escriu una classe `Gos extends Animal` amb:
+
+- Constructor que use `super(nom, edat)`.
+- Mètode `lladrar()` que imprimisca `nom + " diu: ¡Guau!"`.
+- Un `main` que cree un `Gos("Firulais", 3)` i crida a `lladrar()`.
+
+Respon: per què `Gos` pot usar `nom` i `edat` encara que no les declare?
 
 ---
 
-## Exercici 4: Escriu este programa — la llista de la compra
-
-Crea un programa amb un `ArrayList<String>` anomenat `compra` i fes això:
-
-1. Afig `"Leche"`, `"Pan"` i `"Huevos"`.
-2. Afig `"Café"` en la posició 1 (entre Leche i Pan).
-3. Mostra la grandària de la llista.
-4. Borra l'element de la posició 2.
-5. Recorre la llista amb un for-each i imprimeix cada element.
-
-Pista: usa `add(e)`, `add(i, e)`, `remove(i)`, `size()` i un for-each.
-
----
-
-## Exercici 5: Què imprimeix? — el HashSet que no deixa repetir
+## Exercici 9: Què imprimeix? — la cadena de constructors
 
 ```java
-import java.util.HashSet;
+class Avi {
+    public Avi() { System.out.println("Avi"); }
+}
+
+class Pare extends Avi {
+    public Pare() { System.out.println("Pare"); }
+}
+
+class Fill extends Pare {
+    public Fill() { System.out.println("Fill"); }
+}
 
 public class Test {
     public static void main(String[] args) {
-        HashSet<String> invitados = new HashSet<>();
-        invitados.add("Ana");
-        invitados.add("Bob");
-        invitados.add("Ana");
-
-        System.out.println(invitados.size());
-        System.out.println(invitados.contains("Bob"));
+        new Fill();
     }
 }
 ```
 
-Què imprimeix? Per què el segon `add("Ana")` no provoca cap error ni avís?
-
----
-
-## Exercici 6: Escriu este programa — sense duplicats
-
-Crea un `ArrayList<String>` amb noms de companys, **amb repetits a propòsit** (mínim 8 elements, 3 d'ells repetits). Després:
-
-1. Construïx un `LinkedHashSet<String>` a partir de la llista.
-2. Imprimeix la llista original i el conjunt.
-3. Explica en un comentari quina diferència veus i per què.
-
-Pista: el constructor de `LinkedHashSet` accepta qualsevol col·lecció: `new LinkedHashSet<>(lista)`.
-
----
-
-## Exercici 7: Completa el codi — la teua primera classe genèrica
-
-```java
-public class Caja<______> {        // quin paràmetre de tipus falta?
-    private ______ contenido;
-
-    public void guardar(______ contenido) {
-        this.contenido = contenido;
-    }
-
-    public ______ sacar() {
-        return contenido;
-    }
-}
-```
-
-Completa els buits perquè `Caja<String>` guarde Strings i `Caja<Integer>` guarde Integers. Per què `Caja<int>` no compila?
-
----
-
-## Exercici 8: Què imprimeix? — HashMap amb put repetit
-
-```java
-import java.util.HashMap;
-
-public class Test {
-    public static void main(String[] args) {
-        HashMap<String, Integer> mapa = new HashMap<>();
-        mapa.put("Ana", 10);
-        mapa.put("Bob", 20);
-        mapa.put("Ana", 30);
-
-        System.out.println(mapa.get("Ana"));
-        System.out.println(mapa.size());
-    }
-}
-```
-
-Què imprimeix? Per què `size()` no és 3?
-
----
-
-## Exercici 9: Escriu este programa — comptador de paraules amb HashMap
-
-Crea un programa que tinga un array de paraules (hardcodejat) com este:
-
-```java
-String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
-```
-
-Usa un `HashMap<String, Integer>` per a contar quantes vegades apareix cada paraula. Al final, recorre el mapa amb un bucle for-each sobre `entrySet()` i mostra cada paraula amb el seu compte.
-
-Pista: el patró estrella és `mapa.put(p, mapa.getOrDefault(p, 0) + 1)`.
+Què imprimeix i per què en eixe ordre?

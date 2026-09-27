@@ -132,7 +132,7 @@ public class Kata {
 }
 ```
 
-El contador usa `++`, la suma acumulada usa `+=`, y el `if` decide con operadores relacionales. Un repaso perfecto de la unidad (el `for...each` completo lo verás en la U05).
+El contador usa `++`, la suma acumulada usa `+=`, y el `if` decide con operadores relacionales. Un repaso perfecto de la unidad (el `for...each` completo lo verás en la U06).
 
 </details>
 

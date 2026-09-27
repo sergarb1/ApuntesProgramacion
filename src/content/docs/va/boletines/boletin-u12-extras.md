@@ -1,29 +1,29 @@
-﻿---
+---
 title: "Butlletí U12 — Extres"
-description: "CodeWars i AceptaElReto per a anar més enllà de la programació funcional"
+description: "CodeWars i AceptaElReto per a anar més enllà de les col·leccions, els genèrics i els mapes"
 ---
 
 # 📝 Butlletí U12 — Extres
 
-> Exercicis de CodeWars i AceptaElReto amb pistes. Les solucions estan amagades: esgota la teua pista abans de mirar-les.
+> Exercicis de CodeWars i AceptaElReto amb pistes. Les solucions estan amagades: agota la teua pista abans de mirar-les.
 
 ---
 
 ## CodeWars
 
-### 1. Enumerable Magic #1 - True for All?
+### 1. Convert a string to an array
 
-Implementa la funció `all`: rep una llista i un `Predicate`, i torna `true` si el predicat és verdader per a **tots** els elements. Si la llista està buida, torna `true` (res no ha fallat la prova).
+Et donen una cadena de text separada per espais. Escriu una funció que la dividisca i torne un array de paraules.
 
-**Exemple:** `all([1, 2, 3, 4, 5], x -> x < 9)` → `true`, i `all([1, 2, 3, 4, 5], x -> x > 9)` → `false`.
+**Exemple:** `"Robin Singh"` → `["Robin", "Singh"]`, i `"I love arrays they are my favorite"` → `["I", "love", "arrays", "they", "are", "my", "favorite"]`.
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/54598d1fcbae2ae05200112c)
+- [Enunciat en CodeWars](https://www.codewars.com/kata/57e76bc428d6fbc2d500036d)
 - Dificultat: 8 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Un `Stream` té l'operació terminal `allMatch(Predicate)` que fa exactament això: torna `true` si tots els elements compleixen el predicat. I amb la llista buida ja torna `true` per si sola. Una sola línia de stream.
+El mètode `String.split(" ")` ja et torna un `String[]`. Però com que estem en la unitat de col·leccions: converteix-lo en una `List<String>` amb `Arrays.asList(...)` o guarda les paraules amb un bucle en un `ArrayList<String>`.
 
 </details>
 
@@ -32,34 +32,50 @@ Un `Stream` té l'operació terminal `allMatch(Predicate)` que fa exactament aix
 
 ```java
 import java.util.List;
-import java.util.function.Predicate;
 
-public class Solution {
-    public static boolean all(List<Integer> list, Predicate<Integer> predicate) {
-        return list.stream().allMatch(predicate);
+public class Kata {
+    public static String[] stringToArray(String s) {
+        return s.split(" ");
     }
 }
 ```
 
-`allMatch` és la terminal dels quantificadors: comprova si tots els elements compleixen el predicat (l'`all` que demana la kata). El `Stream` fa el recorregut per tu, i el cas de la llista buida està resolt per disseny: si no hi ha elements, tècnicament cap no falla, així que torna `true`. És la versió funcional del "recorre i comprova".
+O, pensant en col·leccions:
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Kata {
+    public static List<String> stringToArray(String s) {
+        List<String> palabras = new ArrayList<>();
+        for (String palabra : s.split(" ")) {
+            palabras.add(palabra);
+        }
+        return palabras;
+    }
+}
+```
+
+`split(" ")` parteix la cadena pels espais i torna un array. La versió amb `ArrayList` recorre eixe array i construïx la llista: el mateix datum, vist des de la unitat de col·leccions.
 
 </details>
 
 ---
 
-### 2. Sorted? yes? no? how?
+### 2. Counting Duplicates
 
-Reps un array de números. Torna `"yes, ascending"` si està ordenat de menor a major, `"yes, descending"` si està de major a menor, i `"no"` si no està ordenat.
+Escriu una funció que torne quants caràcters **distints** (lletres i dígits, sense distingir majúscules) apareixen més d'una vegada en una cadena.
 
-**Exemple:** `[1, 2]` → `"yes, ascending"`, `[15, 7, 3]` → `"yes, descending"`, `[4, 2, 30]` → `"no"`.
+**Exemple:** `"abcde"` → `0`, `"aabbcde"` → `2` (a i b), `"indivisibility"` → `1` (la i), `"aA11"` → `2` (a i 1).
 
-- [Enunciat en CodeWars](https://www.codewars.com/kata/580a4734d6df748060000045)
-- Dificultat: 7 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1)
+- Dificultat: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-Un array ordenat de menor a major compleix que cada element és menor o igual que el següent. Això és un `allMatch` sobre les parelles consecutives: `IntStream.range(0, array.length - 1).allMatch(i -> array[i] <= array[i + 1])`. Fes el mateix per a l'ordre descendent.
+Usa un `HashMap<Character, Integer>` per a contar quantes vegades apareix cada caràcter (amb `toLowerCase()` primer i `getOrDefault` al comptar). Després conta quantes claus tenen un valor major que 1.
 
 </details>
 
@@ -67,49 +83,46 @@ Un array ordenat de menor a major compleix que cada element és menor o igual qu
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.stream.IntStream;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Kata {
-    public static String isSortedAndHow(int[] array) {
-        boolean ascendente = IntStream.range(0, array.length - 1)
-            .allMatch(i -> array[i] <= array[i + 1]);
-        boolean descendente = IntStream.range(0, array.length - 1)
-            .allMatch(i -> array[i] >= array[i + 1]);
+public class CountingDuplicates {
+    public static int duplicateCount(String text) {
+        HashMap<Character, Integer> contador = new HashMap<>();
+        for (char c : text.toLowerCase().toCharArray()) {
+            contador.put(c, contador.getOrDefault(c, 0) + 1);
+        }
 
-        if (ascendente) return "yes, ascending";
-        if (descendente) return "yes, descending";
-        return "no";
+        int repetidos = 0;
+        for (int veces : contador.values()) {
+            if (veces > 1) {
+                repetidos++;
+            }
+        }
+        return repetidos;
     }
 }
 ```
 
-`IntStream.range(0, array.length - 1)` genera els índexs de 0 a n-2: cada un apunta a l'inici d'una parella `(array[i], array[i + 1])`. `allMatch` comprova que totes les parelles respecten l'ordre. És "ordenat" si totes les parelles van en la mateixa direcció. Un array d'un sol element compleix les dos condicions alhora (no hi ha parelles), i l'`if` ascendent guanya: és correcte, un element està "ascendent".
+Dos passades sobre el mateix mapa: primer es compten freqüències amb `getOrDefault` (el patró estrella de la unitat), i després es recorren els **valors** amb `values()` comptant quants superen 1. `toLowerCase()` unifica 'A' i 'a'. Este és l'ús de mapa més típic que existeix en les kates.
 
 </details>
 
 ---
 
-### 3. Sum of odd numbers
+### 3. Find the unique number
 
-Donat el triangle de números imparells consecutius:
+Tens un array de números on tots són iguals excepte un. Troba el número únic.
 
-```
-             1
-          3     5
-       7     9    11
-   13    15    17    19
-21    23    25    27    29
-```
+**Exemple:** `[ 1, 1, 1, 2, 1, 1 ]` → `2`, i `[ 0, 0, 0.55, 0, 0 ]` → `0.55`.
 
-Torna la suma de la fila `n` (començant per 1). **Exemple:** `n=1` → `1`, `n=2` → `8`, `n=3` → `27`.
-
-- [Enunciat en CodeWars](https://www.codewars.com/kata/55fd2d567d94ac3bc9000064)
-- Dificultat: 7 kyu
+- [Enunciat en CodeWars](https://www.codewars.com/kata/585d7d5adb20cf33cb000235)
+- Dificultat: 6 kyu
 
 <details>
 <summary>💡 Pista</summary>
 
-El primer número de la fila `n` és `n * n - n + 1` (fila 3: 9 - 3 + 1 = 7). Després hi ha `n` imparells consecutius, separats de 2 en 2. Genera la fila amb `IntStream.range(0, n).map(i -> primer + 2 * i)` i suma-los amb `.sum()`.
+Conta les aparicions de cada número amb un `HashMap<Double, Integer>`. Després recorre `entrySet()` i torna la clau el valor de la qual siga 1. Alternativa tramposa: mira els tres primers números per a saber quin és el repetit.
 
 </details>
 
@@ -117,57 +130,27 @@ El primer número de la fila `n` és `n * n - n + 1` (fila 3: 9 - 3 + 1 = 7). De
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.stream.IntStream;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Kata {
-    public static int rowSumOddNumbers(int n) {
-        int primerImpar = n * n - n + 1;
-        return IntStream.range(0, n)
-            .map(i -> primerImpar + 2 * i)
-            .sum();
+    public static double findUniq(double[] arr) {
+        HashMap<Double, Integer> contador = new HashMap<>();
+        for (double d : arr) {
+            contador.put(d, contador.getOrDefault(d, 0) + 1);
+        }
+
+        for (Map.Entry<Double, Integer> e : contador.entrySet()) {
+            if (e.getValue() == 1) {
+                return e.getKey();
+            }
+        }
+        return -1;
     }
 }
 ```
 
-`IntStream.range(0, n)` genera els `n` números de la fila i `map` els converteix en imparells consecutius des de `primerImpar` (fila 3: 7, 9, 11). `.sum()` és la terminal que suma un `IntStream`. El resultat coincideix amb `n * n * n` (¡la suma de la fila n és sempre el cub de n!), però esta versió t'entrena a construir i sumar streams, que és el que toca la unitat.
-
-</details>
-
----
-
-### 4. Two Oldest Ages
-
-Implementa `twoOldestAges`: rep un array d'edats (sempre amb almenys 2 elements) i torna un array amb les **dos edats més altes**, en el format `[segona més alta, la més alta]`.
-
-**Exemple:** `[1, 2, 10, 8]` → `[8, 10]`.
-
-- [Enunciat en CodeWars](https://www.codewars.com/kata/511f11d355fe575d2c000001)
-- Dificultat: 7 kyu
-
-<details>
-<summary>💡 Pista</summary>
-
-Ordena l'array de menor a major amb `Arrays.stream(ages).sorted()` i salta't tots menys els dos últims: `skip(ages.length - 2)`. El stream resultant té exactament les dos edats més altes en l'ordre demanat. Recull amb `.toArray()`.
-
-</details>
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Arrays;
-
-public class Kata {
-    public static int[] twoOldestAges(int[] ages) {
-        return Arrays.stream(ages)
-            .sorted()
-            .skip(ages.length - 2)
-            .toArray();
-    }
-}
-```
-
-`Arrays.stream(ages)` converteix l'array en un `IntStream`, `sorted()` l'ordena de menor a major, i `skip(ages.length - 2)` se salta tots els elements menys els dos últims. En estar ordenats, eixos dos últims són la segona més alta i la més alta, en eixe ordre. `.toArray()` recull el flux de tornada en un array. Quatre operacions per a un problema que a mà demanaria dos variables i un bucle.
+El `HashMap` agrupa per valor: tots els repetits cauen en una clau amb comptador alt i l'únic solitari té comptador 1. Recórrer `entrySet()` i tornar la clau amb `getValue() == 1` és directe. La pista alternativa (comparar els tres primers) evita el mapa, però esta versió t'entrena en freqüències, que és just el que toca esta unitat.
 
 </details>
 
@@ -175,79 +158,23 @@ public class Kata {
 
 ## AceptaElReto
 
-### 5. 219 — La loteria de la penya Atlètica
+### 4. 152 — Va de modes...
 
-La penya atlètica només compra dècims amb **números parells**. Et donen una llista de dècims de cada administració i has de dir quants en pot comprar.
+Donat un conjunt de números, la **moda** és el valor (o valors) que més es repetix. Et demanen calcular la moda de cada distribució.
 
-**Entrada:** el primer número indica quants casos de prova hi ha. Cada cas són dos línies: el número de dècims `n` i la llista de `n` números (entre 0 i 99.999).
+**Entrada:** diversos casos de prova. Cada cas comença amb un número que indica quants valors té el conjunt (mai major de 25.000). En la següent línia es donen els valors separats per espais. L'entrada acaba quan el primer número és 0.
 
-**Eixida:** per a cada cas, quants dècims són parells.
+**Eixida:** per a cada cas, la moda (es garanteix que només n'hi ha una).
 
-**Exemple:** `10` i `1 2 3 4 5 6 7 8 9 10` → `5`.
+**Exemple:** `1 2 2 3 3 3 4 4 4 4 5` → `4`, i `1 8 9 6 3 2 1 5 4 7 9 6 3 2 1 4 7` → `1`.
 
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=219)
-- Dificultat: ⭐
-
-<details>
-<summary>💡 Pista</summary>
-
-Llig els `n` números en un array i compta els parells amb un stream: `Arrays.stream(decimos).filter(d -> d % 2 == 0).count()`. El `filter` amb un `Predicate` i la terminal `count` és la plantilla de "quants compleixen".
-
-</details>
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Arrays;
-import java.util.Scanner;
-
-public class Loteria {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int casos = sc.nextInt();
-
-        while (casos-- > 0) {
-            int n = sc.nextInt();
-            int[] decimos = new int[n];
-            for (int i = 0; i < n; i++) {
-                decimos[i] = sc.nextInt();
-            }
-
-            long comprables = Arrays.stream(decimos)
-                .filter(d -> d % 2 == 0)
-                .count();
-
-            System.out.println(comprables);
-        }
-        sc.close();
-    }
-}
-```
-
-L'entrada es llig en un array (llegir dins d'una lambda seria un efecte secundari lleig) i el stream fa el treball: `filter(d -> d % 2 == 0)` deixa passar els parells i `count()` els compta. Fixa't que `count()` torna `long`: el problema accepta l'eixida encara que la variable siga `long`. És el mateix patró que `filter(...).count()` de la unitat, aplicat a un problema de concurs real.
-
-</details>
-
----
-
-### 6. 105 — Vendes
-
-El bar de Javier obri tots els dies menys els dilluns. Apunta la caixa de cada dia de la setmana (dimarts, dimecres, dijous, divendres, dissabte i diumenge). Ha de dir: el **dia de més vendes**, el **dia de menys vendes** (o `EMPATE` si hi ha empat en el màxim o el mínim), i si les **vendes del diumenge superen la mitjana setmanal** (`SI` o `NO`).
-
-**Entrada:** diversos casos de prova. Cada cas són 6 números (les vendes de dimarts a diumenge). El programa acaba quan el primer número del cas és `-1`.
-
-**Eixida:** per a cada cas, `DIA_MAX DIA_MIN SI/NO`.
-
-**Exemple:** `185.50 250.36 163.45 535.20 950.22 450.38` → `SABADO JUEVES SI`.
-
-- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=105)
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=152)
 - Dificultat: ⭐⭐
 
 <details>
 <summary>💡 Pista</summary>
 
-Guarda els 6 valors en un `double[]`. Amb streams: `Arrays.stream(ventas).max()`, `.min()` i `.average()` et donen les tres dades (totes tornen `OptionalDouble`, aterra amb `orElse(0)`). Per a saber el dia, busca l'índex del màxim/mínim; i compta quants valors coincideixen amb el màxim/mínim: si n'hi ha més d'un, és `EMPATE`.
+Conta cada número amb un `HashMap<Integer, Integer>` (el patró `getOrDefault`). Després recorre `entrySet()` guardant el número amb major comptador. No cal ordenar res: el mapa fa la feina.
 
 </details>
 
@@ -255,52 +182,100 @@ Guarda els 6 valors en un `double[]`. Amb streams: `Arrays.stream(ventas).max()`
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.*;
-import java.util.stream.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-public class Ventas {
-    static final String[] DIAS = {"MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADO", "DOMINGO"};
-
-    static int indiceDe(double[] ventas, double valor) {
-        return IntStream.range(0, ventas.length)
-            .filter(i -> ventas[i] == valor)
-            .findFirst()
-            .orElse(-1);
-    }
-
+public class VaDeModas {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         while (true) {
-            double[] ventas = new double[6];
-            ventas[0] = sc.nextDouble();
-            if (ventas[0] == -1) break;
-            for (int i = 1; i < 6; i++) {
-                ventas[i] = sc.nextDouble();
+            int n = sc.nextInt();
+            if (n == 0) break;
+
+            HashMap<Integer, Integer> frec = new HashMap<>();
+            for (int i = 0; i < n; i++) {
+                int valor = sc.nextInt();
+                frec.put(valor, frec.getOrDefault(valor, 0) + 1);
             }
 
-            double max = Arrays.stream(ventas).max().orElse(0);
-            double min = Arrays.stream(ventas).min().orElse(0);
-            double media = Arrays.stream(ventas).average().orElse(0);
-
-            long vecesMax = Arrays.stream(ventas).filter(v -> v == max).count();
-            long vecesMin = Arrays.stream(ventas).filter(v -> v == min).count();
-
-            String diaMax = vecesMax > 1 ? "EMPATE" : DIAS[indiceDe(ventas, max)];
-            String diaMin = vecesMin > 1 ? "EMPATE" : DIAS[indiceDe(ventas, min)];
-            String domingo = ventas[5] > media ? "SI" : "NO";
-
-            System.out.println(diaMax + " " + diaMin + " " + domingo);
+            int moda = 0, maxVeces = 0;
+            for (Map.Entry<Integer, Integer> e : frec.entrySet()) {
+                if (e.getValue() > maxVeces) {
+                    maxVeces = e.getValue();
+                    moda = e.getKey();
+                }
+            }
+            System.out.println(moda);
         }
         sc.close();
     }
 }
 ```
 
-El problema sencer és un desfilament de streams: `max()` i `min()` per als extrems, `average()` per a la mitjana (els tres tornen `OptionalDouble` perquè l'array podria estar buit; `orElse(0)` aterra). El `filter(...).count()` compta quants dies empaten amb el màxim/mínim, i `indiceDe` usa `IntStream.range` + `findFirst` per a localitzar el dia exacte. La mitjana es compara amb les vendes del diumenge (`ventas[5]`, l'últim índex). El `EMPATE` de l'enunciat ix de `vecesMax > 1` / `vecesMin > 1`. Este és el problema de la unitat: quasi tot, amb streams.
+El problema clàssic de les freqüències amb mapa: una passada per a contar (`getOrDefault`), una altra sobre `entrySet()` per a trobar el màxim. Com que es garanteix una única moda, no cal gestionar empats. Esta és la plantilla que usaràs en desenes de problemes de concursos.
 
 </details>
 
 ---
 
-> 🧭 **¿I si et quedes amb ganes?** Quan domines lambdes i streams, torna als problemes d'unitats anteriors i reescriu-los amb pipelines: el comptador de freqüències de la U12 amb `groupingBy`, els bucles de la U06 amb `filter` + `reduce`, l'agenda de la U12 amb `Collectors.toMap`... Tot el que abans era un bucle ara és una declaració. El material no es perd: es reutilitza.
+### 5. 416 — Michael J. Fox i el Pato Donald
+
+En un grup de persones, cal comprovar si **dues persones fan els anys el mateix dia**. Et donen les dates de naixement de cada una en format `dia/mes/any`.
+
+**Entrada:** diversos casos de prova en dues línies cada un. La primera línia té el nombre de persones del grup; la segona, les seues dates de naixement separades per espais. L'entrada acaba amb un `0`.
+
+**Eixida:** `SI` si hi ha algun aniversari repetit (mateix dia i mes) i `NO` en cas contrari.
+
+**Exemple:** `9/6/1961 22/10/1938 31/5/1961 20/4/1964` → `NO`, i `9/6/1961 22/10/1938 31/5/1961 20/4/1964 9/6/1934` → `SI`.
+
+- [Enunciat en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=416)
+- Dificultat: ⭐⭐
+
+<details>
+<summary>💡 Pista</summary>
+
+Fica cada data en un `HashSet<String>`. Si `add` torna `false`, eixa data ja hi era: n'hi ha de repetida. Recorda que l'any no compta: talla la data en `dia/mes` amb `split("/")`.
+
+</details>
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Cumpleanos {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        while (true) {
+            int n = sc.nextInt();
+            if (n == 0) break;
+
+            HashSet<String> fechas = new HashSet<>();
+            boolean repetido = false;
+
+            for (int i = 0; i < n; i++) {
+                String fecha = sc.next();
+                String diaMes = fecha.split("/")[0] + "/" + fecha.split("/")[1];
+                if (!fechas.add(diaMes)) {
+                    repetido = true;
+                }
+            }
+            System.out.println(repetido ? "SI" : "NO");
+        }
+        sc.close();
+    }
+}
+```
+
+El truc del `HashSet`: `add()` torna `false` si l'element ja hi era, així que no necessites `contains` per separat. Es guarda només `dia/mes` (sense l'any) perquè dues persones fan els anys el mateix dia encara que hagin nascut en anys distints. Detectar duplicats en O(1) és el superpoder del Set, germà menut del mapa d'esta unitat.
+
+</details>
+
+---
+
+> 🧭 **I si et quedes amb ganes?** Quan domines llistes, conjunts, genèrics i mapes, torna als problemes de unitats anteriors i resol-los guardant les dades en col·leccions: el comptador de notes, el buscador de noms... Tot el que abans era un array paral·lel ara és un mapa. El material no es perd: es reutilitza.

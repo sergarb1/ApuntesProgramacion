@@ -312,8 +312,8 @@ Se acerca CONRAD, el compilador cascarrabias, con su taza humeante.
 
 El novato guarda su proyecto, cierra el IDE y siente que los programas ya no le tienen miedo a nada.
 
-**PRÓXIMAMENTE EN U06:** Algorítmica I: Fundamentos. El momento en el que tus programas no solo piensan, sino que **piensan con método**. 🧩
+**PRÓXIMAMENTE EN U07:** Algorítmica I: Fundamentos. El momento en el que tus programas no solo piensan, sino que **piensan con método**. 🧩
 
 ---
 
-📚 [Volver al índice de la unidad](/ApuntesProgramacion/04-estructuras-control-excepciones) · **Anterior:** [08 · throw y excepciones propias](/ApuntesProgramacion/04-estructuras-control-excepciones/08-throw-excepciones-propias) · **Siguiente:** **[U05 · Arrays](/ApuntesProgramacion/05-arrays)**
+📚 [Volver al índice de la unidad](/ApuntesProgramacion/04-estructuras-control-excepciones) · **Anterior:** [08 · throw y excepciones propias](/ApuntesProgramacion/04-estructuras-control-excepciones/08-throw-excepciones-propias) · **Siguiente:** **[U05 · Funciones y métodos](/ApuntesProgramacion/05-funciones)**

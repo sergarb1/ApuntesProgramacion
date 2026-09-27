@@ -1,9 +1,9 @@
 ﻿---
-title: "Butlletí U14 — Avançat"
+title: "Butlletí U15 — Avançat"
 description: "Exercicis de dificultat progressiva per a dominar JSON, formularis POST i HttpClient"
 ---
 
-# 📝 Butlletí U14 — Avançat
+# 📝 Butlletí U15 — Avançat
 
 > Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
 
@@ -83,7 +83,7 @@ I torne:
 
 Usa un `HashMap<String, HashMap<String, String>>` com a diccionari. Fica almenys 10 paraules en espanyol traduïdes a anglés i francés.
 
-**Pista:** inicialitza el diccionari amb blocs `static`. `diccionario.get("hola").get("en")` et dona `"hello"`. Els mapes els vas vore a la U12.
+**Pista:** inicialitza el diccionari amb blocs `static`. `diccionario.get("hola").get("en")` et dona `"hello"`. Els mapes els vas vore a la U13.
 
 ---
 
@@ -108,7 +108,7 @@ Frontend: taula amb colors de fons segons prioritat (roig ALTA, groc MITJA, verd
 
 Usa `HttpClient` per a consultar l'API de GitHub (`https://api.github.com/users/{usuario}/repos`) i mostrar només el **nom** i el **llenguatge** de cada repositori d'un usuari (que es demana pel teclat). Després guarda els resultats en un fitxer `repos.txt`.
 
-**Pista:** parseja la resposta amb Gson (`JsonArray`), recórre-la, i escriu amb `Files.writeString` (els fitxers els vas vore a la U13). Recorda la capçalera `User-Agent`, que GitHub exigeix.
+**Pista:** parseja la resposta amb Gson (`JsonArray`), recórre-la, i escriu amb `Files.writeString` (els fitxers els vas vore a la U14). Recorda la capçalera `User-Agent`, que GitHub exigeix.
 
 ---
 

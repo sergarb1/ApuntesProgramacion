@@ -1,6 +1,6 @@
----
-title: "Butlletí U11 — Avançat Resolt"
-description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
+﻿---
+title: Butlletí U11 — Avançat Resolt
+description: Els mateixos exercicis que el butlletí avançat, amb solucions
 ---
 
 # 📝 Butlletí U11 — Avançat (Resolt)
@@ -9,353 +9,472 @@ description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 
 ---
 
-## ⭐ Exercici 1: La cua del supermercat amb LinkedList
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.LinkedList;
-import java.util.Scanner;
-
-public class ColaSupermercado {
-    public static void main(String[] args) {
-        LinkedList<String> cola = new LinkedList<>();
-        Scanner sc = new Scanner(System.in);
-        int opcion;
-
-        do {
-            System.out.println("\n1. Llega cliente  2. Atender cliente  3. ¿Quién sigue?  4. Estado  0. Salir");
-            opcion = sc.nextInt();
-            sc.nextLine();
-
-            switch (opcion) {
-                case 1:
-                    System.out.print("Nombre del cliente: ");
-                    cola.addLast(sc.nextLine());
-                    break;
-                case 2:
-                    if (!cola.isEmpty()) {
-                        System.out.println("Atendiendo a: " + cola.removeFirst());
-                    } else {
-                        System.out.println("No hay nadie en la cola.");
-                    }
-                    break;
-                case 3:
-                    if (!cola.isEmpty()) {
-                        System.out.println("El siguiente es: " + cola.getFirst());
-                    } else {
-                        System.out.println("No hay nadie en la cola.");
-                    }
-                    break;
-                case 4:
-                    System.out.println("Cola: " + cola);
-                    break;
-            }
-        } while (opcion != 0);
-
-        sc.close();
-    }
-}
-```
-
-`addLast` fica al final (els clients es posen darrere), `removeFirst` atén el primer (FIFO) i `getFirst` el mira sense traure-lo. El `isEmpty()` evita l'error de demanar-li el primer a una cua buida.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 2: Intersecció i unió de conjunts
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.HashSet;
-import java.util.Set;
-
-public class Conjuntos {
-    public static void main(String[] args) {
-        Set<Integer> a = new HashSet<>();
-        Set<Integer> b = new HashSet<>();
-
-        while (a.size() < 8) a.add((int) (Math.random() * 20) + 1);
-        while (b.size() < 8) b.add((int) (Math.random() * 20) + 1);
-
-        Set<Integer> interseccion = new HashSet<>(a);
-        interseccion.retainAll(b);
-
-        Set<Integer> union = new HashSet<>(a);
-        union.addAll(b);
-
-        Set<Integer> difSimetrica = new HashSet<>(union);
-        difSimetrica.removeAll(interseccion);
-
-        System.out.println("A: " + a);
-        System.out.println("B: " + b);
-        System.out.println("Intersección: " + interseccion);
-        System.out.println("Unión: " + union);
-        System.out.println("Diferencia simétrica: " + difSimetrica);
-    }
-}
-```
-
-La màgia són els tres mètodes de `Set`: `retainAll` deixa només el comú, `addAll` uni sense duplicats i `removeAll` lleva la intersecció de la unió per a deixar el que està només en un dels dos. Com que `HashSet` no admet duplicats, la unió ix neta sola. El `while` garanteix 8 elements únics en cada conjunt.
-
-</details>
-
----
-
-## ⭐⭐ Exercici 3: Eliminar duplicats mantenint l'ordre
+## ⭐ Exercici 1: Interfície FiguraGeometrica
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 
-public class SinDuplicados {
-    public static ArrayList<Integer> sinDuplicados(ArrayList<Integer> lista) {
-        LinkedHashSet<Integer> set = new LinkedHashSet<>(lista);
-        return new ArrayList<>(set);
+public interface FiguraGeometrica {
+    double calcularArea();
+    double calcularPerimetre();
+}
+
+class Cercle implements FiguraGeometrica {
+    private double radi;
+
+    public Cercle(double radi) {
+        this.radi = radi;
     }
 
+    @Override
+    public double calcularArea() {
+        return Math.PI * radi * radi;
+    }
+
+    @Override
+    public double calcularPerimetre() {
+        return 2 * Math.PI * radi;
+    }
+}
+
+class Rectangle implements FiguraGeometrica {
+    private double ample, alt;
+
+    public Rectangle(double ample, double alt) {
+        this.ample = ample;
+        this.alt = alt;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ample * alt;
+    }
+
+    @Override
+    public double calcularPerimetre() {
+        return 2 * (ample + alt);
+    }
+}
+
+class TriangleRectangle implements FiguraGeometrica {
+    private double base, altura;
+
+    public TriangleRectangle(double base, double altura) {
+        this.base = base;
+        this.altura = altura;
+    }
+
+    @Override
+    public double calcularArea() {
+        return base * altura / 2;
+    }
+
+    @Override
+    public double calcularPerimetre() {
+        double hipotenusa = Math.sqrt(base * base + altura * altura);
+        return base + altura + hipotenusa;
+    }
+}
+
+public class TestFigures {
     public static void main(String[] args) {
-        ArrayList<Integer> lista = new ArrayList<>(java.util.Arrays.asList(3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5));
-        System.out.println(sinDuplicados(lista)); // [3, 1, 4, 5, 9, 2, 6]
+        ArrayList<FiguraGeometrica> figures = new ArrayList<>();
+        figures.add(new Cercle(5));
+        figures.add(new Rectangle(4, 3));
+        figures.add(new TriangleRectangle(3, 4));
+
+        for (FiguraGeometrica f : figures) {
+            System.out.println("Àrea: " + f.calcularArea()
+                    + ", perímetre: " + f.calcularPerimetre());
+        }
     }
 }
 ```
 
-`LinkedHashSet` és la combinació perfecta: elimina duplicats (com `HashSet`) però conserva l'ordre d'inserció (com una llista). Es construïx passant-li la llista i es torna a convertir en `ArrayList`. Resultat: `[3, 1, 4, 5, 9, 2, 6]`, sense repetits i en ordre de primera aparició.
+La interfície és el contracte: `ArrayList<FiguraGeometrica>` accepta qualsevol classe que signe el contracte, i cadascuna calcula la seua àrea i el seu perímetre a la seua manera. Polimorfisme amb interfícies en estat pur.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 4: Què imprimeix? — el remove que trenca el ball
+## ⭐ Exercici 2: Jerarquia d'Empleats
 
 <details>
 <summary>🔄 Solució</summary>
 
-Llança una **`ConcurrentModificationException`**.
+```java
+public class Empleat {
+    protected String nom;
+    protected double salariBase;
 
-El `for-each` usa un `Iterator` per davall. Quan dins del bucle crides a `palabras.remove(p)`, la llista canvia mentre l'iterador la està recorrent. L'iterador detecta la modificació externa i explota. La solució és recórrer amb un `Iterator` explícit i usar `it.remove()`. O construir una llista nova amb els elements que vols conservar.
+    public Empleat(String nom, double salariBase) {
+        this.nom = nom;
+        this.salariBase = salariBase;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public double calcularSalari() {
+        return salariBase;
+    }
+}
+
+class Gerent extends Empleat {
+    private double bo;
+
+    public Gerent(String nom, double salariBase, double bo) {
+        super(nom, salariBase);
+        this.bo = bo;
+    }
+
+    @Override
+    public double calcularSalari() {
+        return salariBase + bo;
+    }
+}
+
+class Venedor extends Empleat {
+    private double comissio;
+    private int vendesRealitzades;
+
+    public Venedor(String nom, double salariBase,
+                   double comissio, int vendesRealitzades) {
+        super(nom, salariBase);
+        this.comissio = comissio;
+        this.vendesRealitzades = vendesRealitzades;
+    }
+
+    @Override
+    public double calcularSalari() {
+        return salariBase + comissio * vendesRealitzades;
+    }
+}
+
+public class Nomina {
+    public static void main(String[] args) {
+        Empleat[] plantilla = {
+            new Gerent("Anna", 2000, 500),
+            new Venedor("Lluís", 1200, 20, 15)
+        };
+
+        for (Empleat e : plantilla) {
+            System.out.println(e.getNom() + " cobra "
+                    + e.calcularSalari() + " €");
+        }
+    }
+}
+```
+
+L'array és d'`Empleat`, però cada objecte executa el seu propi `calcularSalari()`: el gerent amb el bo, el venedor amb les comissions. `protected` permet que les subclasses lliguen `salariBase` sense necessitat d'un getter.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 3: Sistema de pagaments amb interfície
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+public interface Pagable {
+    boolean procesarPagament(double quantitat);
+}
+
+class TarjetaCredito implements Pagable {
+    private double limit;
+    private double saldoUsat;
+
+    public TarjetaCredito(double limit, double saldoUsat) {
+        this.limit = limit;
+        this.saldoUsat = saldoUsat;
+    }
+
+    @Override
+    public boolean procesarPagament(double quantitat) {
+        if (quantitat + saldoUsat <= limit) {
+            saldoUsat += quantitat;
+            return true;
+        }
+        return false;
+    }
+}
+
+class PayPal implements Pagable {
+    private double saldo;
+
+    public PayPal(double saldo) {
+        this.saldo = saldo;
+    }
+
+    @Override
+    public boolean procesarPagament(double quantitat) {
+        if (quantitat <= saldo) {
+            saldo -= quantitat;
+            return true;
+        }
+        return false;
+    }
+}
+
+class TransferenciaBancaria implements Pagable {
+    private double saldo;
+
+    public TransferenciaBancaria(double saldo) {
+        this.saldo = saldo;
+    }
+
+    @Override
+    public boolean procesarPagament(double quantitat) {
+        if (quantitat + 1 <= saldo) {
+            saldo -= (quantitat + 1);
+            return true;
+        }
+        return false;
+    }
+}
+
+public class TestPagaments {
+    public static void main(String[] args) {
+        Pagable tarjeta = new TarjetaCredito(1000, 0);
+        System.out.println(tarjeta.procesarPagament(500));  // true
+        System.out.println(tarjeta.procesarPagament(600));  // false
+
+        Pagable paypal = new PayPal(200);
+        System.out.println(paypal.procesarPagament(150));   // true
+        System.out.println(paypal.procesarPagament(100));   // false
+    }
+}
+```
+
+Tres formes de pagar, un sol contracte. Cada classe guarda la seua lògica d'aprovació i el seu saldo intern: la interfície només exigeix el mètode. La transferència descompta a més la seua comissió fixa d'1 €, que és la "taxa" del banc.
+
+</details>
+
+---
+
+## ⭐⭐ Exercici 4: Interfícies múltiples: Volador i Nedador
+
+<details>
+<summary>🔄 Solució</summary>
 
 ```java
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class Puzle {
+public interface Volador {
+    void volar();
+}
+
+public interface Nedador {
+    void nadar();
+}
+
+class Ànec implements Volador, Nedador {
+    @Override
+    public void volar() {
+        System.out.println("L'ànec vola en formació en V");
+    }
+
+    @Override
+    public void nadar() {
+        System.out.println("L'ànec nada tranquil·lament a l'estany");
+    }
+}
+
+class Avió implements Volador {
+    @Override
+    public void volar() {
+        System.out.println("L'avió vola a 900 km/h");
+    }
+}
+
+class Peix implements Nedador {
+    @Override
+    public void nadar() {
+        System.out.println("El peix nada contra corrent");
+    }
+}
+
+public class TestAnimals {
     public static void main(String[] args) {
-        ArrayList<String> palabras = new ArrayList<>();
-        palabras.add("hola");
-        palabras.add("mundo");
-        palabras.add("adiós");
+        ArrayList<Volador> voladors = new ArrayList<>();
+        voladors.add(new Ànec());
+        voladors.add(new Avió());
 
-        Iterator<String> it = palabras.iterator();
-        while (it.hasNext()) {
-            if (it.next().equals("mundo")) {
-                it.remove();
-            }
+        for (Volador v : voladors) {
+            v.volar();
         }
-        System.out.println(palabras); // [hola, adiós]
+
+        ArrayList<Nedador> nedadors = new ArrayList<>();
+        nedadors.add(new Ànec());
+        nedadors.add(new Peix());
+
+        for (Nedador n : nedadors) {
+            n.nadar();
+        }
     }
 }
 ```
+
+L'`Ànec` és el campió: firma dos contractes alhora. A la llista de `Volador` es comporta com a volador; a la de `Nedador`, com a nedador. Una classe, dos personalitats, zero conflictes: eixe és el poder de les interfícies davant de l'herència única.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 5: Filtrar amb Iterator
+## ⭐⭐ Exercici 5: Downcasting segur
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 import java.util.ArrayList;
-import java.util.Iterator;
 
-public class FiltrarPares {
+public class Empleat {
+    protected String nom;
+
+    public Empleat(String nom) {
+        this.nom = nom;
+    }
+
+    public void mostrarInfo() {
+        System.out.println("Empleat: " + nom);
+    }
+}
+
+class Programador extends Empleat {
+    public Programador(String nom) {
+        super(nom);
+    }
+
+    public void escriureCodi() {
+        System.out.println(nom + " escriu codi Java");
+    }
+}
+
+class Dissenyador extends Empleat {
+    public Dissenyador(String nom) {
+        super(nom);
+    }
+
+    public void dissenyar() {
+        System.out.println(nom + " dissenya la interfície");
+    }
+}
+
+public class Empresa {
     public static void main(String[] args) {
-        ArrayList<Integer> numeros = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
-            numeros.add(i);
-        }
+        ArrayList<Empleat> plantilla = new ArrayList<>();
+        plantilla.add(new Programador("Anna"));
+        plantilla.add(new Dissenyador("Lluís"));
+        plantilla.add(new Programador("Eva"));
 
-        Iterator<Integer> it = numeros.iterator();
-        while (it.hasNext()) {
-            if (it.next() % 2 == 0) {
-                it.remove();
+        for (Empleat e : plantilla) {
+            e.mostrarInfo();
+            if (e instanceof Programador) {
+                ((Programador) e).escriureCodi();
+            } else if (e instanceof Dissenyador) {
+                ((Dissenyador) e).dissenyar();
             }
         }
-
-        System.out.println(numeros); // [1, 3, 5, 7, 9]
     }
 }
 ```
 
-`it.next()` torna el número i avança; si és parell, `it.remove()` el borra de la llista original sense llançar excepció. Recorda: només pots borra l'element que acaba de tornar `next()`, i l'ordre importa.
+`instanceof` és la mirilla: abans de baixar la referència, preguntes si l'objecte real és d'eixe tipus. Sense el cast, no podries cridar a `escriureCodi()` ni a `dissenyar()`; sense l'`instanceof`, arriscaries un `ClassCastException`. Mai no baixes sense preguntar.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 6: El TreeSet ordenat
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Scanner;
-import java.util.TreeSet;
-
-public class PalabrasOrdenadas {
-    public static void main(String[] args) {
-        TreeSet<String> palabras = new TreeSet<>();
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("Escribe palabras (fin para terminar):");
-        String palabra = sc.nextLine();
-        while (!palabra.equals("fin")) {
-            palabras.add(palabra);
-            palabra = sc.nextLine();
-        }
-
-        System.out.println("Ordenadas: " + palabras);
-        System.out.println("Primera: " + palabras.first());
-        System.out.println("Última: " + palabras.last());
-        System.out.println("Antes de 'm': " + palabras.headSet("m"));
-        sc.close();
-    }
-}
-```
-
-El `TreeSet` ordena automàticament (ordre alfabètic) i **elimina duplicats**: si l'usuari repetix una paraula, només es guarda una vegada. `first()` i `last()` donen els extrems; `headSet("m")` torna totes les paraules que van abans que "m" en l'ordre natural.
-
-</details>
-
----
-
-## ⭐ Pila genèrica `<T>`: Exercici 7
+## ⭐⭐ Exercici 6: Calculadora de figures amb classe abstracta
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
 import java.util.ArrayList;
-import java.util.EmptyStackException;
 
-public class Pila<T> {
-    private ArrayList<T> elementos = new ArrayList<>();
+public abstract class Figura {
+    protected String color;
 
-    public void push(T elemento) {
-        elementos.add(elemento);
+    public Figura(String color) {
+        this.color = color;
     }
 
-    public T pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return elementos.remove(elementos.size() - 1);
-    }
+    public abstract double calcularArea();
+    public abstract double calcularPerimetre();
 
-    public T peek() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        return elementos.get(elementos.size() - 1);
-    }
-
-    public boolean isEmpty() {
-        return elementos.isEmpty();
-    }
-
-    public int size() {
-        return elementos.size();
+    public void mostrarColor() {
+        System.out.println("Color: " + color);
     }
 }
-```
 
-La pila es construïx sobre un `ArrayList<T>`: el final de la llista és la cima. `push` afegix, `pop` llevo i torna l'últim, i `peek` el mira sense llevar-lo. En ser genèrica, funciona igual amb `Integer`, `String` o `Double`: `new Pila<String>()` i llisto.
+class Cercle extends Figura {
+    private double radi;
 
-</details>
-
----
-
-## ⭐⭐ Exercici 8: HashMap invers
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.HashMap;
-
-public class Utilidades {
-
-    public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original) {
-        HashMap<V, K> invertido = new HashMap<>();
-        for (HashMap.Entry<K, V> e : original.entrySet()) {
-            invertido.put(e.getValue(), e.getKey());
-        }
-        return invertido;
+    public Cercle(String color, double radi) {
+        super(color);
+        this.radi = radi;
     }
 
+    @Override
+    public double calcularArea() {
+        return Math.PI * radi * radi;
+    }
+
+    @Override
+    public double calcularPerimetre() {
+        return 2 * Math.PI * radi;
+    }
+}
+
+class Rectangle extends Figura {
+    private double ample, alt;
+
+    public Rectangle(String color, double ample, double alt) {
+        super(color);
+        this.ample = ample;
+        this.alt = alt;
+    }
+
+    @Override
+    public double calcularArea() {
+        return ample * alt;
+    }
+
+    @Override
+    public double calcularPerimetre() {
+        return 2 * (ample + alt);
+    }
+}
+
+public class TestFigures {
     public static void main(String[] args) {
-        HashMap<String, Integer> edades = new HashMap<>();
-        edades.put("Ana", 25);
-        edades.put("Bob", 30);
+        ArrayList<Figura> figures = new ArrayList<>();
+        figures.add(new Cercle("roig", 3));
+        figures.add(new Rectangle("blau", 4, 2));
 
-        HashMap<Integer, String> porEdad = invertirMapa(edades);
-        System.out.println(porEdad.get(25)); // Ana
-        System.out.println(porEdad.get(30)); // Bob
+        for (Figura f : figures) {
+            f.mostrarColor();
+            System.out.println("Àrea: " + f.calcularArea());
+        }
     }
 }
 ```
 
-Recórrer `entrySet()` et dona clau i valor junts, i el `put` invertit els canvia de lloc. Si dos claus comparteixen valor (dues persones de 25 anys), l'últim en el recorregut sobreescriu l'anterior: els valors del mapa original no són únics, així que l'invers pot perdre informació. Eixa és la limitació natural d'invertir un mapa.
+`Figura` aporta el color (concret) i obliga a l'àrea i al perímetre (abstractes). Les subclasses només implementen l'obligatori. `mostrarColor()` s'hereta tal qual: codi compartit on toca, contracte on toca.
 
 </details>
 
 ---
 
-## ⭐⭐ Exercici 9: TreeMap — freqüència de lletres
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.Map;
-import java.util.TreeMap;
-
-public class FrecuenciaLetras {
-    public static void main(String[] args) {
-        String texto = "Hola mundo";
-
-        TreeMap<Character, Integer> frec = new TreeMap<>();
-        for (char c : texto.toLowerCase().toCharArray()) {
-            if (Character.isLetter(c)) {
-                frec.put(c, frec.getOrDefault(c, 0) + 1);
-            }
-        }
-
-        for (Map.Entry<Character, Integer> e : frec.entrySet()) {
-            System.out.print(e.getKey() + ": " + e.getValue() + ", ");
-        }
-        // a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
-    }
-}
-```
-
-`toLowerCase()` unifica majúscules i minúscules, `Character.isLetter(c)` descarta espais i signes, i `getOrDefault` suma el comptador. La màgia del `TreeMap` és que, en recórrer-lo, les claus ixen ordenades alfabèticament sense que faces res.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 10: Wildcards — suma i barreja de números
+## ⭐⭐⭐ Exercici 7: Sistema de notificacions polimòrfic
 
 <details>
 <summary>🔄 Solució</summary>
@@ -364,111 +483,257 @@ public class FrecuenciaLetras {
 import java.util.ArrayList;
 import java.util.List;
 
-public class Numeros {
+public interface Notificable {
+    void enviar(String missatge);
+    String getEstat();
+}
 
-    public static double sumar(List<? extends Number> lista) {
-        double total = 0.0;
-        for (Number n : lista) {
-            total += n.doubleValue();
-        }
-        return total;
+class EmailNotificacio implements Notificable {
+    private String direccio;
+    private boolean enviat;
+
+    public EmailNotificacio(String direccio) {
+        this.direccio = direccio;
     }
 
-    public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b) {
-        List<Double> resultado = new ArrayList<>();
-        for (Number n : a) {
-            resultado.add(n.doubleValue());
+    @Override
+    public void enviar(String missatge) {
+        System.out.println("Enviant email a " + direccio + ": " + missatge);
+        enviat = true;
+    }
+
+    @Override
+    public String getEstat() {
+        return enviat ? "Enviat" : "Pendent";
+    }
+}
+
+class SMSNotificacio implements Notificable {
+    private String telefon;
+    private boolean enviat;
+
+    public SMSNotificacio(String telefon) {
+        this.telefon = telefon;
+    }
+
+    @Override
+    public void enviar(String missatge) {
+        System.out.println("Enviant SMS a " + telefon + ": " + missatge);
+        enviat = true;
+    }
+
+    @Override
+    public String getEstat() {
+        return enviat ? "Enviat" : "Pendent";
+    }
+}
+
+class PushNotificacio implements Notificable {
+    private String dispositiuId;
+    private boolean enviat;
+
+    public PushNotificacio(String dispositiuId) {
+        this.dispositiuId = dispositiuId;
+    }
+
+    @Override
+    public void enviar(String missatge) {
+        System.out.println("Enviant push a " + dispositiuId + ": " + missatge);
+        enviat = true;
+    }
+
+    @Override
+    public String getEstat() {
+        return enviat ? "Enviat" : "Pendent";
+    }
+}
+
+public class GestorNotificacions {
+    public static void enviarTotes(List<Notificable> notificacions, String missatge) {
+        for (Notificable n : notificacions) {
+            n.enviar(missatge);
         }
-        for (Number n : b) {
-            resultado.add(n.doubleValue());
-        }
-        return resultado;
     }
 
     public static void main(String[] args) {
-        List<Integer> enteros = List.of(1, 2, 3);
-        List<Double> dobles = List.of(1.5, 2.5);
+        ArrayList<Notificable> notificacions = new ArrayList<>();
+        notificacions.add(new EmailNotificacio("ana@mail.com"));
+        notificacions.add(new SMSNotificacio("600123456"));
+        notificacions.add(new PushNotificacio("dev-001"));
 
-        System.out.println(sumar(enteros)); // 6.0
-        System.out.println(sumar(dobles));  // 4.0
-        System.out.println(mezclar(enteros, dobles)); // [1.0, 2.0, 3.0, 1.5, 2.5]
+        enviarTotes(notificacions, "Examen de Java el dilluns");
     }
 }
 ```
 
-`List<? extends Number>` accepta qualsevol llista de Number o d'una subclasse. En llegir, cada element és un `Number` i `doubleValue()` el converteix. Passar una `List<String>` seria un error de compilació: `String` no és un `Number`. I ull: `? extends` és de només lectura, així que en `sumar` no pots fer `add` (PECS: Producer Extends).
+`enviarTotes` no sap (ni li importa) quin tipus concret hi ha a la llista: només coneix el contracte `Notificable`. Afegir un quart canal de notificació no obliga a tocar ni una línia del gestor. Disseny obert al canvi, que és el premi del polimorfisme.
 
 </details>
 
 ---
 
-## ⭐⭐⭐ Exercici 11: Sistema de votacions amb mètode genèric
+## ⭐⭐⭐ Exercici 8: Template method — les begudes
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.HashMap;
-import java.util.Map;
+public abstract class Beguda {
+    public final void preparar() {
+        bullirAigua();
+        prepararIngredient();
+        servirEnTassa();
+        afegirExtres();
+    }
 
-public class Votaciones {
+    private void bullirAigua() { System.out.println("Bullint aigua..."); }
+    private void servirEnTassa() { System.out.println("Servint en tassa..."); }
 
-    public static <T> T obtenerGanador(Map<T, Integer> votos) {
-        T ganador = null;
-        int maxVotos = -1;
-        for (Map.Entry<T, Integer> e : votos.entrySet()) {
-            if (e.getValue() > maxVotos) {
-                maxVotos = e.getValue();
-                ganador = e.getKey();
+    protected abstract void prepararIngredient();
+    protected abstract void afegirExtres();
+}
+
+class Te extends Beguda {
+    @Override
+    protected void prepararIngredient() {
+        System.out.println("Posant la bosseta de te...");
+    }
+
+    @Override
+    protected void afegirExtres() {
+        System.out.println("Afegint llima...");
+    }
+}
+
+class Cafe extends Beguda {
+    @Override
+    protected void prepararIngredient() {
+        System.out.println("Abocant el cafè mòlt...");
+    }
+
+    @Override
+    protected void afegirExtres() {
+        System.out.println("Afegint sucre...");
+    }
+}
+
+public class Cafeteria {
+    public static void main(String[] args) {
+        Beguda b1 = new Te();
+        Beguda b2 = new Cafe();
+        b1.preparar();
+        b2.preparar();
+    }
+}
+```
+
+L'esquelet (`preparar()`) és `final`: ningú no pot reordenar els passos. Les subclasses només personalitzen els dos detalls variables. El template method garanteix que l'algoritme sempre s'execute en l'ordre correcte, passe el que passe.
+
+</details>
+
+---
+
+## ⭐⭐⭐ Exercici 9: El gran repte — vehicles amb combustible
+
+<details>
+<summary>🔄 Solució</summary>
+
+```java
+import java.util.ArrayList;
+
+abstract class Vehicle {
+    protected String matricula;
+    protected int combustible;
+
+    public Vehicle(String matricula, int combustible) {
+        this.matricula = matricula;
+        this.combustible = combustible;
+    }
+
+    public abstract boolean moure();
+}
+
+class Cotxe extends Vehicle {
+    private static final int DESPESA = 5;
+
+    public Cotxe(String matricula, int combustible) {
+        super(matricula, combustible);
+    }
+
+    @Override
+    public boolean moure() {
+        if (combustible >= DESPESA) {
+            combustible -= DESPESA;
+            System.out.println("Cotxe " + matricula + " avança (combustible: " + combustible + ")");
+            return true;
+        } else {
+            System.out.println("Sense combustible");
+            return false;
+        }
+    }
+}
+
+class Moto extends Vehicle {
+    private static final int DESPESA = 3;
+
+    public Moto(String matricula, int combustible) {
+        super(matricula, combustible);
+    }
+
+    @Override
+    public boolean moure() {
+        if (combustible >= DESPESA) {
+            combustible -= DESPESA;
+            System.out.println("Moto " + matricula + " avança (combustible: " + combustible + ")");
+            return true;
+        } else {
+            System.out.println("Sense combustible");
+            return false;
+        }
+    }
+}
+
+class Camio extends Vehicle {
+    private static final int DESPESA = 10;
+    private int càrrega;
+
+    public Camio(String matricula, int combustible, int càrrega) {
+        super(matricula, combustible);
+        this.càrrega = càrrega;
+    }
+
+    @Override
+    public boolean moure() {
+        if (combustible >= DESPESA) {
+            combustible -= DESPESA;
+            System.out.println("Camió " + matricula + " amb càrrega " + càrrega
+                    + " avança (combustible: " + combustible + ")");
+            return true;
+        } else {
+            System.out.println("Sense combustible");
+            return false;
+        }
+    }
+}
+
+public class Circuit {
+    public static void main(String[] args) {
+        ArrayList<Vehicle> vehicles = new ArrayList<>();
+        vehicles.add(new Cotxe("1234ABC", 12));
+        vehicles.add(new Moto("5678DEF", 8));
+        vehicles.add(new Camio("9999ZZZ", 25, 3000));
+
+        for (Vehicle v : vehicles) {
+            int moviments = 0;
+            while (v.moure()) {
+                moviments++;
             }
+            System.out.println("Moviments: " + moviments);
         }
-        return ganador;
-    }
-
-    public static void main(String[] args) {
-        HashMap<String, Integer> votos = new HashMap<>();
-        votos.put("Ana", 3);
-        votos.put("Bob", 5);
-        votos.put("Carla", 2);
-
-        System.out.println(obtenerGanador(votos)); // Bob
-
-        HashMap<Integer, Integer> porCategoria = new HashMap<>();
-        porCategoria.put(1, 10);
-        porCategoria.put(2, 7);
-        System.out.println(obtenerGanador(porCategoria)); // 1
     }
 }
 ```
 
-El mètode és genèric (`<T>`) perquè el tipus de la clau no importa: només necessita recórrer i comparar valors. El patró del màxim acumulat sobre `entrySet()` torna la clau amb més vots. Funciona igual amb claus `String`, `Integer` o qualsevol altre tipus.
-
-</details>
-
----
-
-## ⭐⭐⭐ Exercici 12: el type erasure al descobert
-
-<details>
-<summary>🔄 Solució</summary>
-
-1. **No, és la mateixa classe.** `Caja<String>` i `Caja<Integer>` no generen dos classes en el bytecode: el compilador borra el paràmetre de tipus i deixa una única `Caja` amb `Object`. Per això no hi ha cap guany de rendiment per «especialitzar»: erasure significa que no es duplica codi.
-2. **`Object`.** `getValor()` en el bytecode torna `Object`. El compilador inserix el cast a `String` en el punt d'ús (quan assignes a `String s = caja.getValor();`).
-3. La comprovació amb `getClass()`:
-
-```java
-public class Demo {
-    public static void main(String[] args) {
-        Caja<String> cajaTexto = new Caja<>("hola");
-        Caja<Integer> cajaNumero = new Caja<>(42);
-
-        System.out.println(cajaTexto.getClass());
-        System.out.println(cajaNumero.getClass());
-        System.out.println(cajaTexto.getClass() == cajaNumero.getClass());  // true
-    }
-}
-```
-
-Totes dos imprimeixen `class Caja` i la comparació amb `==` dóna `true`: és la MATEIXA classe en runtime. El `<String>` i el `<Integer>` només existeixen en temps de compilació. Este és el type erasure: el mag que borra els tipus quan compiles.
+Cada subclasse defineix la seua despesa amb una constant i el seu `moure()`, que torna `true` només si va poder moure's. El `main` usa només `Vehicle`: el `while (v.moure())` pregunta al mateix vehicle i el polimorfisme fa la resta. Aquesta manera d'escriure el bucle evita el problema de comprovar el combustible des de fora (que deixaria un bucle infinit quan el vehicle no pot moure's però encara li queda combustible). Si demà arriba una `Bicicleta` (despesa 0), entra sense tocar el circuit. L'abstracció paga la casa.
 
 </details>

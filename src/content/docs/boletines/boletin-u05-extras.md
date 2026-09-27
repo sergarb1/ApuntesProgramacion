@@ -1,185 +1,132 @@
-﻿---
-title: "Boletín U05 — Extras"
-description: "CodeWars y AceptaElReto para ir más allá de los arrays"
+---
+title: Boletín U05 — Extras
+description: CodeWars y AceptaElReto para ir más allá de la unidad
 ---
 
 # 📝 Boletín U05 — Extras
 
-> Ejercicios de CodeWars y AceptaElReto con pistas. Las soluciones están ocultas: agota tu pista antes de mirarlas.
+> Ejercicios de CodeWars y AceptaElReto con pistas. La solución está oculta: resístete hasta agotar tu pista.
 
 ---
 
 ## CodeWars
 
-### 1. Convert number to reversed array of digits
+### 1. L1: Set Alarm
 
-Te dan un número entero no negativo. Devuelve sus dígitos en un array de enteros, **en orden inverso**.
+Un booleano `employed` te dice si trabajas y otro, `vacation`, si estás de vacaciones. Devuelve `true` **solo** si trabajas y no estás de vacaciones.
 
-**Ejemplo:** `35231` → `[1, 3, 2, 5, 3]` · `0` → `[0]`.
+**Ejemplos:** `setAlarm(true, false)` → `true`, `setAlarm(false, false)` → `false`, `setAlarm(true, true)` → `false`, `setAlarm(false, true)` → `false`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5583090cbe83f4fd8c000051)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/568dcc3c7f12767a62000038)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Para extraer dígitos, `% 10` te da el último y `/ 10` se lo quita. Con eso ya salen invertidos: el primero que sacas es el último del número.
-
-</details>
+**Pista:** una sola condición con `&&` y un `!` delante de las vacaciones.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int[] digitize(long n) {
-        String texto = Long.toString(n);
-        int[] resultado = new int[texto.length()];
-
-        for (int i = 0; i < resultado.length; i++) {
-            resultado[i] = Character.getNumericValue(texto.charAt(resultado.length - 1 - i));
-        }
-        return resultado;
+    public static boolean setAlarm(boolean employed, boolean vacation) {
+        return employed && !vacation;
     }
 }
 ```
 
-Otra forma, sin convertir a texto, si prefieres `%` y `/`:
-
-```java
-public static int[] digitize(long n) {
-    String texto = String.valueOf(n);
-    int[] resultado = new int[texto.length()];
-    for (int i = 0; i < texto.length(); i++) {
-        resultado[i] = (int) (n % 10);
-        n /= 10;
-    }
-    return resultado;
-}
-```
-
-Con `% 10` y `/ 10`: el último dígito sale primero (ya viene invertido), y después de dividir entre 10 se repite. El caso `0` → `[0]` funciona solo: `0 % 10 = 0`.
+`employed && !vacation` es la traducción literal de «trabajas y no estás de vacaciones». Un `return` de una línea, sin `if`: cuando la condición ya es un `boolean`, el ternario o el `if` sobran.
 
 </details>
 
 ---
 
-### 2. Find the smallest integer in the array
+### 2. Beginner Series #2 Clock
 
-Te dan un array de enteros. Devuelve el entero **más pequeño**.
+El reloj marca `h` horas, `m` minutos y `s` segundos desde la medianoche. Escribe el método `Past`, que devuelve ese tiempo en **milisegundos**.
 
-**Ejemplos:** `[78, 56, 232, 12, 11, 43]` → `11` · `[34, -345, -1, 100]` → `-345`.
+**Ejemplos:** `Past(0, 1, 1)` → `61000`, `Past(1, 0, 1)` → `3601000`, `Past(0, 0, 0)` → `0`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/55a2d7ebe362935a210000b2)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/55f9bca8ecaa9eac7100004a)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-El patrón del mínimo: empieza asumiendo que el primero es el mínimo y compara con cada uno. Aquí el array nunca está vacío.
-
-</details>
+**Pista:** 1 hora = 3.600.000 ms, 1 minuto = 60.000 ms y 1 segundo = 1.000 ms. Suma las tres partes y multiplica al final.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-public class Kata {
-    public static int findSmallestInt(int[] args) {
-        int minimo = args[0];
-        for (int i = 1; i < args.length; i++) {
-            if (args[i] < minimo) {
-                minimo = args[i];
-            }
-        }
-        return minimo;
+public class Clock {
+    public static int Past(int h, int m, int s) {
+        return (h * 60 * 60 + m * 60 + s) * 1000;
     }
 }
 ```
 
-El mismo esqueleto que el "máximo acumulado", pero al revés. Como el array nunca está vacío, puedes usar `args[0]` como punto de partida sin miedo.
+`h * 60 * 60 + m * 60 + s` deja todo en segundos dentro de un paréntesis y un solo `* 1000` lo convierte a milisegundos. El mayor valor posible (23:59:59 = 86.399 segundos → 86.399.000 ms) cabe sobrado en un `int`, que llega hasta 2.147.483.647.
 
 </details>
 
 ---
 
-### 3. Count by X
+### 3. Volume of a Cuboid
 
-Devuelve un array con los **primeros `n` múltiplos** de `x`.
+El método `getVolumeOfCuboid` recibe largo, ancho y alto de una caja y devuelve su volumen.
 
-**Ejemplos:** `countBy(2, 5)` → `[2, 4, 6, 8, 10]` · `countBy(1, 10)` → `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`.
+**Ejemplos:** `(1, 2, 3)` → `6`, `(6, 2, 1)` → `12`, `(5, 3, 2)` → `30`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/5513795bd3fafb56c200049e)
+- [Enunciado en CodeWars](https://www.codewars.com/kata/58261acb22be6e2ed800003a)
 - Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Crea el array con `new int[n]` y rellena con un `for`: la plaza `i` guarda `x * (i + 1)`.
-
-</details>
+**Pista:** el volumen de un paralelepípedo es ancho × alto × largo. Un `return`, tres multiplicaciones, ni un `if`.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static int[] countBy(int x, int n) {
-        int[] resultado = new int[n];
-        for (int i = 0; i < n; i++) {
-            resultado[i] = x * (i + 1);
-        }
-        return resultado;
+    public static int getVolumeOfCuboid(int length, int width, int height) {
+        return length * width * height;
     }
 }
 ```
 
-Sabes el tamaño de antemano (`n`), así que no hace falta el patrón de dos pasadas: un solo `for` crea y rellena. El `(i + 1)` es porque los múltiplos empiezan en `x * 1`, no en `x * 0`.
+El método más corto de todo el boletín: recibe tres entradas, devuelve una salida. Fíjate en el patrón de la firma `public static` que ya es rutina: sin `static`, CodeWars (igual que tu `main`) no podría llamarlo.
 
 </details>
 
 ---
 
-### 4. Take a Ten Minute Walk
+### 4. Drink about
 
-Vives en una ciudad en cuadrícula. Te dan un array de direcciones (`'n'`, `'s'`, `'e'`, `'w'`). Devuelve `true` si el paseo dura **exactamente 10 minutos** (una manzana por minuto) **y te deja en el punto de partida**.
+Dada una edad, devuelve qué bebida corresponde: menos de 14 → `"drink toddy"`, menos de 18 → `"drink coke"`, menos de 21 → `"drink beer"` y a partir de 21 → `"drink whisky"`.
 
-**Ejemplos:** `['n','s','n','s','n','s','n','s','n','s']` → `true` · `['n','n','n','s','n','s','n','s','n','s']` → `false`.
+**Ejemplos:** `10` → `"drink toddy"`, `15` → `"drink coke"`, `20` → `"drink beer"`, `30` → `"drink whisky"`.
 
-- [Enunciado en CodeWars](https://www.codewars.com/kata/54da539698eb8f52b900053b)
-- Dificultad: 6 kyu
+- [Enunciado en CodeWars](https://www.codewars.com/kata/56170e844da7c6f647000063)
+- Dificultad: 8 kyu
 
-<details>
-<summary>💡 Pista</summary>
-
-Lleva dos contadores: uno para norte/sur y otro para este/oeste. Si el paseo no dura 10 minutos, ya puedes devolver `false` sin contar nada.
-
-</details>
+**Pista:** son cuatro `return` encadenados con `if`, de la edad más pequeña a la mayor, como la cascada de notas de la U04.
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
 public class Kata {
-    public static boolean isValid(char[] walk) {
-        if (walk.length != 10) {
-            return false;
+    public static String peopleWithAgeDrink(int old) {
+        if (old < 14) {
+            return "drink toddy";
         }
-
-        int x = 0, y = 0;
-        for (char c : walk) {
-            if (c == 'n') y++;
-            if (c == 's') y--;
-            if (c == 'e') x++;
-            if (c == 'w') x--;
+        if (old < 18) {
+            return "drink coke";
         }
-
-        return x == 0 && y == 0;
+        if (old < 21) {
+            return "drink beer";
+        }
+        return "drink whisky";
     }
 }
 ```
 
-Norte sube `y`, sur lo baja; este sube `x`, oeste lo baja. Si al final ambos contadores vuelven a 0, estás donde empezaste. Es un array recorrido una sola vez, con la suma como testigo. O(n), como debe ser.
+La misma cascada de rangos de siempre, pero devolviendo en lugar de imprimir. El orden importa: si comprobaras `old < 21` primero, un niño de 10 años bebería cerveza.
 
 </details>
 
@@ -187,38 +134,28 @@ Norte sube `y`, sur lo baja; este sube `x`, oeste lo baja. Si al final ambos con
 
 ## AceptaElReto
 
-### 5. 171 — Abadías de piedra
+### 5. 116 — ¡Hola mundo!
 
-Una cordillera tiene una serie de montañas, cada una con su altura. Se puede construir una **abadía** sobre una montaña si es **más alta que todas las que tiene a su derecha** (hacia el mar). Cuenta cuántas montañas cumplen la condición.
-
-**Entrada:** varios casos de prueba. Cada caso empieza con `N` (número de montañas), seguido de `N` alturas en la misma línea. Un `0` termina la entrada.
+En la primera clase de cualquier curso de programación se debería salir habiendo escrito un «hola mundo». Pues eso: dado un número `n` (`0 ≤ n ≤ 5`), escribe `n` líneas con la cadena `Hola mundo.`.
 
 **Ejemplo:**
 
 ```
 3
-5 3 4
-4
-2 3 4 1
-0
 ```
 
 **Salida:**
 
 ```
-2
-2
+Hola mundo.
+Hola mundo.
+Hola mundo.
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=171)
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=116)
 - Dificultad: Fácil
 
-<details>
-<summary>💡 Pista</summary>
-
-Recorre el array **de derecha a izquierda** guardando la altura máxima vista. La última montaña siempre vale. Cuando una montaña supere la máxima vista hasta ahora, es una abadía nueva.
-
-</details>
+**Pista:** un método `public static void imprimirHolaMundo(int n)` con un `for` de `0` a `n - 1`, y un `main` que solo lee y llama.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -226,72 +163,57 @@ Recorre el array **de derecha a izquierda** guardando la altura máxima vista. L
 ```java
 import java.util.Scanner;
 
-public class Abadias {
+public class HolaMundo {
+    public static void imprimirHolaMundo(int n) {
+        for (int i = 0; i < n; i++) {
+            System.out.println("Hola mundo.");
+        }
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-
-        while (n != 0) {
-            int[] montanas = new int[n];
-            for (int i = 0; i < n; i++) {
-                montanas[i] = sc.nextInt();
-            }
-
-            int abadias = 0;
-            int maxVista = -1;
-            for (int i = n - 1; i >= 0; i--) {
-                if (montanas[i] > maxVista) {
-                    abadias++;
-                    maxVista = montanas[i];
-                }
-            }
-
-            System.out.println(abadias);
-            n = sc.nextInt();
-        }
+        imprimirHolaMundo(n);
         sc.close();
     }
 }
 ```
 
-La clave es recorrer hacia atrás: la montaña ve el mar si es más alta que **todo** lo que hay a su derecha, y la máxima vista lo resume todo. Con `5 3 4`: el 4 vale, el 3 no (hay un 4 más alto), el 5 vale → 2. Es un array + recorrido en el sentido correcto.
+`imprimirHolaMundo(0)` no imprime nada (el `for` no arranca) y `imprimirHolaMundo(5)` repite la línea cinco veces. El método encapsula la repetición: el juez pide un número, tu método sabe repetir. Programar en equipo, con uno por área.
 
 </details>
 
 ---
 
-### 6. 369 — Contando en la arena
+### 6. 115 — Número de Kaprekar
 
-Un niño escribe los números en la arena con marcas de conteo: el `1` lo escribe como `1`, el `2` como `11`, el `3` como `111`... Es decir, cada número se representa con tantos unos como valga. Dado un número, escríbelo como lo haría el niño.
+Un número es de *Kaprekar* si su cuadrado puede partirse en dos números que sumados devuelvan el original, y el segundo de la partida no puede ser cero. Por ejemplo: `9² = 81` → `8 + 1 = 9` (¡es Kaprekar!) y `703² = 494209` → `494 + 209 = 703`. En cambio, `100` no lo es: `10000` podría partirse en `100 + 00`, pero `00` vale cero.
 
-**Entrada:** varios números, uno por línea, hasta un `0` final.
+**Entrada:** varios números (≥ 1 y < 65536) hasta un `0` que marca el final.
 
 **Ejemplo:**
 
 ```
-1
-5
-3
+22222
+75
+99
+100
 0
 ```
 
 **Salida:**
 
 ```
-1
-11111
-111
+SI
+NO
+SI
+NO
 ```
 
-- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=369)
-- Dificultad: Fácil
+- [Enunciado en AceptaElReto](https://www.aceptaelreto.com/problem/statement.php?id=115)
+- Dificultad: Medio
 
-<details>
-<summary>💡 Pista</summary>
-
-Un bucle que añada `'1'` a un `StringBuilder` tantas veces como indique el número. No hace falta array: es la prueba de que a veces basta con saber cuántas veces repetir.
-
-</details>
+**Pista:** envuelve todo en `public static boolean esKaprekar(int n)`. El cuadrado puede pasarse de `int` (usa `long`), y debes probar **todos** los cortes posibles: `p = 10, 100, 1000, ...` hasta superar el cuadrado, con `izq = cuadrado / p` y `der = cuadrado % p`. Si `der != 0` y `izq + der == n`, has ganado.
 
 <details>
 <summary>🔄 Solución</summary>
@@ -299,17 +221,24 @@ Un bucle que añada `'1'` a un `StringBuilder` tantas veces como indique el núm
 ```java
 import java.util.Scanner;
 
-public class ContandoEnLaArena {
+public class Kaprekar {
+    public static boolean esKaprekar(int n) {
+        long cuadrado = (long) n * n;
+        for (long p = 10; p <= cuadrado * 10; p *= 10) {
+            long izquierda = cuadrado / p;
+            long derecha = cuadrado % p;
+            if (derecha != 0 && izquierda + derecha == n) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-
         while (n != 0) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < n; i++) {
-                sb.append('1');
-            }
-            System.out.println(sb);
+            System.out.println(esKaprekar(n) ? "SI" : "NO");
             n = sc.nextInt();
         }
         sc.close();
@@ -317,10 +246,10 @@ public class ContandoEnLaArena {
 }
 ```
 
-Cada número `n` se convierte en `n` unos. El bucle es el mismo que usarías para rellenar un array, pero aquí el "array" es un `StringBuilder` que crece. El `0` marca el final de la entrada, como siempre en AceptaElReto.
+Comprobemos con `9`: `cuadrado = 81`, con `p = 10` → `izq = 8`, `der = 1`, y `8 + 1 = 9` → `SI`. Con `100`: ningún corte da `100` sin que `der` sea `0` → `NO`. El corte extra `p <= cuadrado * 10` es el que permite que la izquierda quede vacía, justo lo que necesita el `1` (`1² = 1` → `0 + 1 = 1` → `SI`). Un `for` de cortes y un `long` a salvo de desbordes: puro músculo de esta unidad.
 
 </details>
 
 ---
 
-> 🧭 **¿Y si te quedas con ganas?** Cuando domines el aparcamiento entero —crear, recorrer, ordenar, buscar, invertir y compactar—, vuelve a estos problemas con el punto 9 como examen. Y en la U06 te esperan los algoritmos: búsqueda binaria, burbuja y Big O. Los arrays que has aprendido hoy son la materia prima de todo lo que viene.
+> 🧭 **¿Y si te quedas con ganas?** Con los métodos en la mano puedes reescribir tus programas de la U04 troceando cada bloque en una función con nombre. Y si te apetece un reto de futuro, la U08 te enseñará a hacer que un método se llame a sí mismo (recursión): el juego de la caja rusa del código.

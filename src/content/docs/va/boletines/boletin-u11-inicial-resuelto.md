@@ -1,6 +1,6 @@
----
-title: "Butlletí U11 — Inicial Resolt"
-description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
+﻿---
+title: Butlletí U11 — Inicial Resolt
+description: Els mateixos exercicis que el butlletí inicial, amb solucions
 ---
 
 # 📝 Butlletí U11 — Inicial (Resolt)
@@ -9,58 +9,143 @@ description: "Els mateixos exercicis que el butlletí inicial, amb solucions"
 
 ---
 
-## Exercici 1: Què imprimeix? — ArrayList remove per índex vs valor
+## Exercici 1: Què imprimeix? — La família musical
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`[A, C, D]`**.
+Imprimeix **"El baixista toca el baix"**.
 
-- `lista.remove(1)` borra per **índex**: lleva el `"B"` de la posició 1 → `[A, C, B, D]`.
-- `lista.remove("B")` borra per **objecte**: busca el primer `"B"` que quede → `[A, C, D]`.
-
-El primer mira posicions; el segon, continguts. Com que l'`Integer` té sobrecàrregues (`remove(int)` vs `remove(Object)`), esta distinció és la trampa favorita dels exàmens.
+`Baixista` té la seua pròpia versió de `tocar()`. Java busca el mètode començant per la classe més específica (`Baixista`) i el troba ahí mateix: mai no puja a `Guitarrista` ni a `Instrumentista`. Eixe és el *dynamic dispatch*: el mètode es resol segons el tipus real de l'objecte, no segons el tipus de la referència.
 
 </details>
 
 ---
 
-## Exercici 2: Troba l'error — size() vs length vs length()
+## Exercici 2: Troba l'error — extends mal usat
 
 <details>
 <summary>🔄 Solució</summary>
 
-Les tres línies tenen error:
+L'error és que `Gos` no crida al constructor d'`Animal`. Quan una classe filla no posa `super(...)`, Java intenta cridar a `super()` sense paràmetres. Però `Animal` només té `Animal(String)`, així que el compilador no troba el constructor buit: **error de compilació**.
 
-- **Línia 1:** un `ArrayList` pregunta la seua grandària amb `size()`, no amb `.length` (això és per a arrays).
-- **Línia 2:** un array usa `.length` (sense parèntesis), no `.size()`.
-- **Línia 3:** un `String` usa `.length()` (amb parèntesis, és un mètode).
+```java
+public class Gos extends Animal {
+    private String raça;
 
-Regla mnemotècnica: col·lecció → `size()`, array → `length`, String → `length()`.
+    public Gos(String especie, String raça) {
+        super(especie);   // la clau!
+        this.raça = raça;
+    }
+}
+```
+
+Pensa en `super()` com cridar a papà perquè configure la seua part abans que tu configures la teua. Si papà necessita una espècie per a construir-se, tu l'hi has de passar. És com construir una casa sense fonaments: el constructor del pare és la base.
 
 </details>
 
 ---
 
-## Exercici 3: Completa el codi — for-each que suma una llista
+## Exercici 3: Completa el codi — el gat que crida el seu pare
+
+<details>
+<summary>🔄 Solució</summary>
+
+La paraula és **`super`**:
+
+```java
+public class Gat extends Animal {
+    @Override
+    public void ferSo() {
+        super.ferSo();   // primer el del pare
+        System.out.println("¡MIAU!");
+    }
+
+    public static void main(String[] args) {
+        Gat g = new Gat();
+        g.ferSo();
+    }
+}
+```
+
+Eixida:
+
+```
+Algun so genèric...
+¡MIAU!
+```
+
+`super.ferSo()` executa la versió d'`Animal` i després el `Gat` afig el seu. Sense el `super`, el mètode estaria sobreescrit per complet i la línia del pare no eixiria mai.
+
+</details>
+
+---
+
+## Exercici 4: Escriu este programa — l'herència de vehicles
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-int suma = 0;
-for (Integer n : numeros) {   // o int n, amb unboxing automàtic
-    suma += n;
+public class Vehicle {
+    protected String marca;
+
+    public Vehicle(String marca) {
+        this.marca = marca;
+    }
+}
+
+public class Cotxe extends Vehicle {
+    protected int numPortes;
+
+    public Cotxe(String marca, int numPortes) {
+        super(marca);
+        this.numPortes = numPortes;
+    }
+}
+
+public class Esportiu extends Cotxe {
+    private int velocitatMaxima;
+
+    public Esportiu(String marca, int numPortes, int velocitatMaxima) {
+        super(marca, numPortes);
+        this.velocitatMaxima = velocitatMaxima;
+    }
+
+    public static void main(String[] args) {
+        Esportiu e = new Esportiu("Ferrari", 2, 340);
+        System.out.println(e.marca + " amb " + e.numPortes
+                + " portes i " + e.velocitatMaxima + " km/h");
+    }
 }
 ```
 
-La suma final és **22** (4 + 9 + 2 + 7). El buit inicial era `0` (començar acumulant des de zero), el tipus era `Integer` (o `int`, i l'unboxing fa la resta) i l'operador, `+=`.
+L'herència en cadena: `Esportiu` → `Cotxe` → `Vehicle`. Cada constructor crida al del seu pare amb `super(...)`. Per això `marca` (de `Vehicle`) i `numPortes` (de `Cotxe`) són accessibles en `Esportiu` gràcies a `protected`.
 
 </details>
 
 ---
 
-## Exercici 4: Escriu este programa — la llista de la compra
+## Exercici 5: Què imprimeix? — Polimorfisme amb referències
+
+<details>
+<summary>🔄 Solució</summary>
+
+Imprimeix:
+
+```
+Y
+Z
+Z
+```
+
+El tipus de la **referència** (X, X, Y) no importa. El que importa és el tipus **real** de l'objecte (Y, Z, Z). Java sempre executa el mètode més específic de l'objecte real. És com portar la jaqueta del teu pare: per fora pareixes el teu pare (la referència), però per dins ets tu (l'objecte). Quan parles, se sent la teua veu, no la del teu pare. Dynamic binding en tot el seu esplendor.
+
+</details>
+
+---
+
+## Exercici 6: Escriu este programa — la granja polimòrfica
 
 <details>
 <summary>🔄 Solució</summary>
@@ -68,143 +153,111 @@ La suma final és **22** (4 + 9 + 2 + 7). El buit inicial era `0` (començar acu
 ```java
 import java.util.ArrayList;
 
-public class ListaCompra {
+public class Animal {
+    public void ferSo() { System.out.println("..."); }
+}
+
+class Vaca extends Animal {
+    @Override public void ferSo() { System.out.println("Muuuu"); }
+}
+
+class Ovella extends Animal {
+    @Override public void ferSo() { System.out.println("Beeee"); }
+}
+
+class Gallina extends Animal {
+    @Override public void ferSo() { System.out.println("Cloc cloc"); }
+}
+
+public class Granja {
     public static void main(String[] args) {
-        ArrayList<String> compra = new ArrayList<>();
-        compra.add("Leche");       // [Leche]
-        compra.add("Pan");         // [Leche, Pan]
-        compra.add("Huevos");      // [Leche, Pan, Huevos]
-        compra.add(1, "Café");     // [Leche, Café, Pan, Huevos]
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.add(new Vaca());
+        animals.add(new Ovella());
+        animals.add(new Gallina());
 
-        System.out.println("Grandària: " + compra.size());   // 4
-
-        compra.remove(2);          // lleva "Pan" → [Leche, Café, Huevos]
-
-        for (String articulo : compra) {
-            System.out.println(articulo);
+        for (Animal a : animals) {
+            a.ferSo();
         }
     }
 }
 ```
 
-`add(e)` afegix al final, `add(i, e)` se cola en la posició `i` desplaçant la resta, i `remove(i)` lleva per índex. Ull: després d'inserir `"Café"` en la posició 1, el `"Pan"` passa a la posició 2, així que `remove(2)` el lleva a ell.
+Eixida:
+
+```
+Muuuu
+Beeee
+Cloc cloc
+```
+
+Un sol `ArrayList<Animal>` i un sol bucle: cada animal executa la seua pròpia versió gràcies al polimorfisme. Sense ell, tindries tres llistes separades. Això és el que fa que el polimorfisme valga el seu pes en or.
 
 </details>
 
 ---
 
-## Exercici 5: Què imprimeix? — el HashSet que no deixa repetir
+## Exercici 7: Troba l'error — @Override que no ho és
 
 <details>
 <summary>🔄 Solució</summary>
 
-Imprimeix **`2`** i **`true`**.
+La línia que **no compila** és:
 
-El segon `add("Ana")` no falla ni avisa: simplement torna `false` i no afegix res, perquè el `HashSet` ja conté "Ana" (compara amb `hashCode()` i `equals()`). Per això `size()` és 2 (només Ana i Bob) i `contains("Bob")` és `true`.
+```java
+@Override
+public void nedar() { }   // ✗ ERROR: Animal no té nedar()
+```
+
+`@Override` li diu al compilador: "verifica que realment estic sobreescrivint un mètode del pare". Com que `Animal` no té `nedar()`, el compilador t'avisa en l'acte. L'altra línia (`ferSo()`) sí que és un override vàlid. Eixe avís a temps és el regal de `@Override`: si escrius malament un nom de mètode, te n'assabenta el compilador, no un bug raríssim a mitjanit.
 
 </details>
 
 ---
 
-## Exercici 6: Escriu este programa — sense duplicats
+## Exercici 8: Escriu este programa — el gos ben heretat
 
 <details>
 <summary>🔄 Solució</summary>
 
 ```java
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
+public class Gos extends Animal {
+    public Gos(String nom, int edat) {
+        super(nom, edat);
+    }
 
-public class SinDuplicados {
+    public void lladrar() {
+        System.out.println(nom + " diu: ¡Guau!");
+    }
+
     public static void main(String[] args) {
-        ArrayList<String> nombres = new ArrayList<>();
-        nombres.add("Ana");
-        nombres.add("Bob");
-        nombres.add("Ana");
-        nombres.add("Carla");
-        nombres.add("Bob");
-        nombres.add("Diego");
-        nombres.add("Ana");
-        nombres.add("Eva");
-
-        LinkedHashSet<String> sinRepetir = new LinkedHashSet<>(nombres);
-
-        System.out.println("Llista:    " + nombres);
-        System.out.println("Conjunt:   " + sinRepetir);
+        Gos g = new Gos("Firulais", 3);
+        g.lladrar();
     }
 }
 ```
 
-La llista imprimeix els 8 elements amb els seus repetits; el conjunt, només 5: `Ana`, `Bob`, `Carla`, `Diego` i `Eva`. El `LinkedHashSet` elimina els duplicats **i** conserva l'ordre de primera aparició. Amb un `HashSet` a seques, l'ordre d'eixida seria imprevisible.
+Eixida: `Firulais diu: ¡Guau!`
+
+`Gos` pot usar `nom` i `edat` perquè estan declarats com a `protected` en `Animal`: l'herència els posa a disposició de tota la família. Si foren `private`, ni `Gos` els veuria. És com l'herència familiar: el que és privat a casa dels avis, no ho veuen ni els néts.
 
 </details>
 
 ---
 
-## Exercici 7: Completa el codi — la teua primera classe genèrica
+## Exercici 9: Què imprimeix? — la cadena de constructors
 
 <details>
 <summary>🔄 Solució</summary>
 
-```java
-public class Caja<T> {
-    private T contenido;
+Imprimeix:
 
-    public void guardar(T contenido) {
-        this.contenido = contenido;
-    }
-
-    public T sacar() {
-        return contenido;
-    }
-}
+```
+Avi
+Pare
+Fill
 ```
 
-El paràmetre de tipus `<T>` es declara al costat del nom de la classe i s'usa com un tipus més dins d'ella. `Caja<int>` no compila perquè els genèrics només accepten tipus referència: `int` és un primitiu, així que toca usar `Caja<Integer>` i deixar que l'autoboxing convertisca sol.
-
-</details>
-
----
-
-## Exercici 8: Què imprimeix? — HashMap amb put repetit
-
-<details>
-<summary>🔄 Solució</summary>
-
-Imprimeix **`30`** i **`2`**.
-
-- `put("Ana", 10)` i després `put("Ana", 30)`: la clau "Ana" es sobreescriu amb l'últim valor.
-- Per això `size()` és 2, no 3: les claus són úniques i "Ana" només compta una vegada.
-
-</details>
-
----
-
-## Exercici 9: Escriu este programa — comptador de paraules amb HashMap
-
-<details>
-<summary>🔄 Solució</summary>
-
-```java
-import java.util.HashMap;
-import java.util.Map;
-
-public class ContadorPalabras {
-    public static void main(String[] args) {
-        String[] palabras = {"hola", "mundo", "hola", "java", "mundo", "hola", "adios"};
-
-        HashMap<String, Integer> contador = new HashMap<>();
-        for (String p : palabras) {
-            contador.put(p, contador.getOrDefault(p, 0) + 1);
-        }
-
-        for (Map.Entry<String, Integer> entrada : contador.entrySet()) {
-            System.out.println(entrada.getKey() + " → " + entrada.getValue());
-        }
-    }
-}
-```
-
-El patró de les freqüències: `getOrDefault(p, 0) + 1` torna el compte actual (o 0 la primera vegada) i suma 1. `entrySet()` et dona cada paraula amb el seu comptador en un sol bucle, sense un `get` extra.
+En crear un `Fill` s'executen **tots** els constructors de la cadena, del més general al més específic. Com que cada constructor crida a `super()` (o Java el posa automàticament), primer es construïx `Avi`, després `Pare` i per últim `Fill`. Els fonaments abans que el teulada, sempre.
 
 </details>

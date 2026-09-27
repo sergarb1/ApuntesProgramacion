@@ -1,208 +1,227 @@
----
-title: "Butlletí U11 — Avançat"
-description: "Exercicis de dificultat progressiva per a exprimir les col·leccions, els genèrics i els mapes"
+﻿---
+title: Butlletí U11 — Avançat
+description: Exercicis de dificultat progressiva per a exprimir la unitat
 ---
 
 # 📝 Butlletí U11 — Avançat
 
-> Dificultat progressiva. ⭐ per a calentar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resistix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. L'herència és com la família: de vegades heretes coses bones, de vegades et toca la col·lecció de segells del teu tio avi. Però amb interfícies, almenys tries què implementar.
 
 ---
 
-## ⭐ Exercici 1: La cua del supermercat amb LinkedList
+## ⭐ Exercici 1: Interfície FiguraGeometrica
 
-Simula una cua de supermercat usant `LinkedList<String>`. El programa ha de mostrar un menú:
+Crea una interfície `FiguraGeometrica` amb dos mètodes:
 
-1. **Arriba client** → Afegix un nom al final de la cua.
-2. **Atén client** → Elimina i mostra el primer de la cua.
-3. **Qui segueix?** → Mostra el primer sense eliminar-lo.
-4. **Estat de la cua** → Mostra tots els clients en ordre.
-0. **Eixir**
+- `double calcularArea()`
+- `double calcularPerimetre()`
 
-Usa els mètodes `addLast()`, `removeFirst()` i `getFirst()` de `LinkedList`, amb un `switch` i un `Scanner`.
+Implementa la interfície en:
 
-**Pista:** el menú es repetix amb un `while` fins que l'usuari trie `0`. Cuida els casos en què la cua està buida abans de cridar `removeFirst()` o `getFirst()`.
+- `Cercle` (constructor amb radi)
+- `Rectangle` (constructor amb ample i alt)
+- `TriangleRectangle` (constructor amb base i altura)
 
----
-
-## ⭐⭐ Exercici 2: Intersecció i unió de conjunts
-
-Crea dos `HashSet<Integer>` amb números aleatoris (entre 1 i 20, 8 elements cada un). Calcula i mostra:
-
-- **Intersecció:** elements que estan en tots dos conjunts.
-- **Unió:** tots els elements sense repetir.
-- **Diferència simètrica:** elements que estan en un o en l'altre, però no en tots dos.
-
-**Pista:** usa `retainAll()`, `addAll()` i `removeAll()` de la interfície `Set`. Per a la diferència simètrica: `union.removeAll(interseccion)`.
-
----
-
-## ⭐⭐ Exercici 3: Eliminar duplicats mantenint l'ordre
-
-Crea un `ArrayList<Integer>` amb elements repetits (`[3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]`). Escriu un mètode que torne un nou `ArrayList<Integer>` **sense duplicats però mantenint l'ordre de primera aparició**.
-
-**Pista:** un `HashSet` no val directament perquè perd l'ordre. Usa un `LinkedHashSet` (conserva l'ordre d'inserció) o recorre manualment comprovant amb `contains` abans d'afegir.
-
----
-
-## ⭐⭐⭐ Exercici 4: Què imprimeix? — el remove que trenca el ball
-
-Sense executar, respon què passa amb este programa:
+En el `main`, crea un `ArrayList<FiguraGeometrica>`, afig un cercle de radi 5, un rectangle 4x3 i un triangle rectangle 3x4. Recorre'ls imprimint àrea i perímetre de cadascun.
 
 ```java
-import java.util.ArrayList;
+public interface FiguraGeometrica {
+    double calcularArea();
+    double calcularPerimetre();
+}
+```
 
-public class Puzle {
-    public static void main(String[] args) {
-        ArrayList<String> palabras = new ArrayList<>();
-        palabras.add("hola");
-        palabras.add("mundo");
-        palabras.add("adiós");
+**Pista:** per al triangle rectangle, `area = base * altura / 2` i el perímetre és `base + altura + hipotenusa`, amb `hipotenusa = Math.sqrt(base*base + altura*altura)`.
 
-        for (String p : palabras) {
-            if (p.equals("mundo")) {
-                palabras.remove(p);
-            }
-        }
-        System.out.println(palabras);
+---
+
+## ⭐ Exercici 2: Jerarquia d'Empleats
+
+Crea una classe base `Empleat` amb:
+
+- `String nom`
+- `double salariBase`
+- Constructor, getters
+- Mètode `double calcularSalari()` que torne el `salariBase`
+
+Crea dos subclasses:
+
+- `Gerent`: té un `double bo` extra. `calcularSalari()` torna `salariBase + bo`.
+- `Venedor`: té un `double comissio` per venda i un `int vendesRealitzades`. `calcularSalari()` torna `salariBase + comissio * vendesRealitzades`.
+
+En el `main`, crea un array d'`Empleat` amb un gerent i un venedor, recorre'l polimòrficament i mostra el salari de cadascun.
+
+```java
+public class Empleat {
+    protected String nom;
+    protected double salariBase;
+
+    public Empleat(String nom, double salariBase) {
+        this.nom = nom;
+        this.salariBase = salariBase;
+    }
+
+    public double calcularSalari() {
+        return salariBase;
     }
 }
 ```
 
-Imprimeix alguna cosa? O llança una excepció? Quina i per què?
-
-**Pista:** pensa en què fa el `for-each` per davall (usa un `Iterator`) i en què passa si la col·lecció canvia mentre es recorre.
+**Pista:** declara `nom` i `salariBase` com a `protected` perquè les subclasses els usen sense getters. L'`@Override` de `calcularSalari()` en cada subclasse és el cor del polimorfisme.
 
 ---
 
-## ⭐⭐ Exercici 5: Filtrar amb Iterator
+## ⭐⭐ Exercici 3: Sistema de pagaments amb interfície
 
-Crea un `ArrayList<Integer>` amb els números de l'1 al 10. Recorre'l amb un `Iterator<Integer>` explícit i **borra tots els números parells** usant `it.remove()`. Al final, imprimeix la llista.
+Crea una interfície `Pagable` amb el mètode:
 
-**Pista:** recorre amb `while (it.hasNext())`, obtín cada número amb `it.next()` i comprova si és parell amb `% 2 == 0`. Mai uses `lista.remove(...)` dins del bucle.
+- `boolean procesarPagament(double quantitat)`
 
----
+Implementa la interfície en:
 
-## ⭐⭐ Exercici 6: El TreeSet ordenat
-
-Crea un programa que demane a l'usuari paraules amb `Scanner` fins que escriga `"fin"`. Guarda-les en un `TreeSet<String>`. En acabar, mostra:
-
-1. Les paraules ordenades (imprimir el TreeSet directament).
-2. La primera paraula (`first()`) i l'última (`last()`).
-3. Les paraules que van abans que `"m"` en ordre alfabètic (`headSet("m")`).
-
-**Pista:** el TreeSet ordena i elimina duplicats automàticament. Comprova què passa si l'usuari repetix una paraula.
-
----
-
-## ⭐ Pila genèrica `<T>`: Exercici 7
-
-Implementa una classe genèrica `Pila<T>` que funcione com una pila (LIFO). Ha de tindre els mètodes:
-
-- `void push(T elemento)` — apila un element.
-- `T pop()` — desapila i torna l'element superior (llança `EmptyStackException` si està buida).
-- `T peek()` — torna l'element superior sense desapilar-lo.
-- `boolean isEmpty()` — indica si està buida.
-- `int size()` — nombre d'elements.
-
-Internament, usa un `ArrayList<T>` com a emmagatzematge. Prova-la amb `Pila<Integer>`, `Pila<String>` i `Pila<Double>`.
-
-**Pista:** `EmptyStackException` està en `java.util.EmptyStackException`. Recorda comprovar `isEmpty()` abans de `pop()`/`peek()`.
-
----
-
-## ⭐⭐ Exercici 8: HashMap invers
-
-Escriu un mètode genèric estàtic:
+- `TarjetaCredito`: té `double limit` i `double saldoUsat`. Pot pagar si `quantitat + saldoUsat <= limit`.
+- `PayPal`: té `double saldo`. Pot pagar si `quantitat <= saldo`.
+- `TransferenciaBancaria`: té `double saldo`. Pot pagar sempre que `quantitat <= saldo`, però té un cost fix de 1 € per transferència.
 
 ```java
-public static <K, V> HashMap<V, K> invertirMapa(HashMap<K, V> original)
+public interface Pagable {
+    boolean procesarPagament(double quantitat);
+}
 ```
 
-Que torne un nou `HashMap` intercanviant claus i valors. Si hi ha valors duplicats en el mapa original, l'últim trobat sobreescriu l'anterior.
+Exemple:
 
-Prova-ho amb un mapa de `String → Integer` i un altre de `String → String`.
+```java
+Pagable tarjeta = new TarjetaCredito(1000, 0);
+tarjeta.procesarPagament(500);   // true
+tarjeta.procesarPagament(600);   // false (supera el límit)
+```
 
-**Pista:** recorre `original.entrySet()` i fes `invertido.put(e.getValue(), e.getKey())`.
+**Pista:** cada classe decideix la seua pròpia lògica d'aprovació; només el contracte `procesarPagament` és comú. Per a la transferència, comprova que `quantitat + 1 <= saldo`.
 
 ---
 
-## ⭐⭐ Exercici 9: TreeMap — freqüència de lletres
+## ⭐⭐ Exercici 4: Interfícies múltiples: Volador i Nedador
 
-Escriu un programa que llisca un text per teclat (o n'use un hardcodejat) i compte quantes vegades apareix cada **lletra** (ignorant espais, números i signes). Usa un `TreeMap<Character, Integer>` perquè les lletres es mostren automàticament ordenades alfabèticament.
+Crea dos interfícies:
 
-Exemple d'eixida per «Hola mundo»:
+- `Volador`: mètode `void volar()`
+- `Nedador`: mètode `void nadar()`
 
+Crea una classe `Ànec` que implemente les dos interfícies, una classe `Avió` que només implemente `Volador` i una classe `Peix` que només implemente `Nedador`.
+
+En el `main`, crea un `ArrayList<Volador>` amb un `Ànec` i un `Avió`, i recorre'l cridant a `volar()`. Després fes el mateix amb un `ArrayList<Nedador>`.
+
+```java
+public interface Volador { void volar(); }
+public interface Nedador { void nadar(); }
 ```
-a: 1, d: 1, h: 1, l: 1, m: 1, n: 1, o: 2, u: 1
-```
 
-**Pista:** recorre el `String` amb `toCharArray()` i usa `Character.isLetter(c)` per a filtrar. El `getOrDefault` suma el comptador; el TreeMap ordena sol.
+**Pista:** l'`Ànec` és l'estrella: una sola classe que firma dos contractes. Els `ArrayList` de tipus interfície accepten qualsevol classe que implemente eixe contracte.
 
 ---
 
-## ⭐⭐⭐ Exercici 10: Wildcards — suma i barreja de números
+## ⭐⭐ Exercici 5: Downcasting segur
 
-Implementa un mètode que sume tots els números d'una llista, acceptant qualsevol subtipus de `Number`:
+Crea una jerarquia `Empleat` → `Programador`, `Dissenyador`:
 
-```java
-public static double sumar(List<? extends Number> lista)
-```
+- `Programador` té `void escriureCodi()`.
+- `Dissenyador` té `void dissenyar()`.
+- `Empleat` té `String nom` i `void mostrarInfo()`.
 
-Prova-ho amb `List<Integer>`, `List<Double>` i `List<Float>`. Què passa si intentes passar una `List<String>`?
+En el `main`, crea un `ArrayList<Empleat>` amb diversos empleats de tots dos tipus i recorre'l usant `instanceof` per a cridar els mètodes específics.
 
-Crea també un segon mètode que **barrege** dues llistes de números de tipus distints en una sola `List<Double>`:
-
-```java
-public static List<Double> mezclar(List<? extends Number> a, List<? extends Number> b)
-```
-
-**Pista:** per a `sumar`, recorre amb `for (Number n : lista)` i usa `n.doubleValue()`. Per a `mezclar`, usa `addAll()` i converteix cada element amb `doubleValue()`. I no intentes `add` en `sumar`: `? extends` és de només lectura (PECS).
+**Pista:** dins del bucle, `if (e instanceof Programador)` → `((Programador) e).escriureCodi();`. Sempre amb `instanceof` abans del cast: mai no baixes sense preguntar.
 
 ---
 
-## ⭐⭐⭐ Exercici 11: Sistema de votacions amb mètode genèric
+## ⭐⭐ Exercici 6: Calculadora de figures amb classe abstracta
 
-Crea un sistema de votacions on:
+Crea una classe abstracta `Figura` amb:
 
-- Cada votant pot votar per un candidat (String).
-- Usa un `HashMap<String, Integer>` per als vots.
-- Usa un `TreeMap<String, Integer>` per a mostrar el rànquing ordenat.
+- Atribut `protected String color`.
+- Constructor que reba el color.
+- Mètodes abstractes `double calcularArea()` i `double calcularPerimetre()`.
+- Mètode concret `void mostrarColor()` que imprimisca el color.
 
-Crea un mètode genèric:
+Implementa `Cercle` (radi) i `Rectangle` (ample, alt). En el `main`, crea un `ArrayList<Figura>` amb un cercle roig de radi 3 i un rectangle blau de 4x2, i mostra l'àrea de cadascun i el seu color.
 
-```java
-public static <T> T obtenerGanador(Map<T, Integer> votos)
-```
-
-Que torne la clau amb més vots. Prova-ho amb un `HashMap<String, Integer>` i un altre `HashMap<Integer, Integer>`.
-
-**Pista:** recorre `votos.entrySet()` i guarda el guanyador provisional comparant `getValue()` amb un màxim acumulat. El mètode és genèric perquè el tipus de la clau (`String`, `Integer`...) no importa.
+**Pista:** l'àrea total de la llista es calcula recorrent-la amb `for (Figura f : figures)`. `mostrarColor()` ja està fet: les subclasses només implementen els dos mètodes abstractes.
 
 ---
 
-## ⭐⭐⭐ Exercici 12: el type erasure al descobert
+## ⭐⭐⭐ Exercici 7: Sistema de notificacions polimòrfic
 
-La classe `Caja<T>` guarda un valor i el torna amb `getValor()`:
+Crea una interfície `Notificable` amb:
+
+- `void enviar(String missatge)`
+- `String getEstat()`
+
+Implementa:
+
+- `EmailNotificacio`: atributs `String direccio`, `boolean enviat`. En enviar, imprimeix "Enviant email a [direcció]: [missatge]". Estat: "Enviat" o "Pendent".
+- `SMSNotificacio`: atributs `String telefon`, `boolean enviat`. En enviar, imprimeix "Enviant SMS a [telèfon]: [missatge]". Estat similar.
+- `PushNotificacio`: atributs `String dispositiuId`, `boolean enviat`. En enviar, imprimeix "Enviant push a [dispositiuId]: [missatge]".
 
 ```java
-public class Caja<T> {
-    private T valor;
+public interface Notificable {
+    void enviar(String missatge);
+    String getEstat();
+}
+```
 
-    public Caja(T valor) {
-        this.valor = valor;
-    }
+En el `main`, crea un `ArrayList<Notificable>` amb els tres tipus. Afig un mètode estàtic que recorre la llista i envie totes les notificacions:
 
-    public T getValor() {
-        return valor;
+```java
+public static void enviarTotes(List<Notificable> notificacions, String missatge) {
+    for (Notificable n : notificacions) {
+        n.enviar(missatge);
     }
 }
 ```
 
-Sense executar, respon:
+**Pista:** els tres tipus compartixen el patró: en enviar, posen `enviat = true` i tornen "Enviat"; si no, "Pendent". El polimorfisme fa que `enviarTotes` no sàpiga amb quin tipus tracta.
 
-1. Són `Caja<String>` i `Caja<Integer>` classes distintes en temps d'execució?
-2. Quin tipus té realment `caja.getValor()` dins del bytecode si el compiles com `Caja<String>`?
-3. Escriu un `main` que cree `Caja<String>` i `Caja<Integer>` i comprove amb `getClass()` que totes dos són instàncies de la mateixa classe `Caja`.
+---
 
-**Pista:** el type erasure converteix `Caja<T>` en `Caja` a palpes (amb `Object` on estava `T`). Per això `caja.getClass()` torna el mateix per a `Caja<String>` i `Caja<Integer>`: en runtime no hi ha dos classes, només una `Caja`. El cast de `getValor()` l'afegix el compilador, no el teu codi.
+## ⭐⭐⭐ Exercici 8: Template method — les begudes
+
+Crea una classe abstracta `Beguda` amb el patró template method:
+
+```java
+public abstract class Beguda {
+    public final void preparar() {
+        bullirAigua();
+        prepararIngredient();
+        servirEnTassa();
+        afegirExtres();
+    }
+
+    private void bullirAigua() { System.out.println("Bullint aigua..."); }
+    private void servirEnTassa() { System.out.println("Servint en tassa..."); }
+
+    protected abstract void prepararIngredient();
+    protected abstract void afegirExtres();
+}
+```
+
+Implementa `Te` (bosseta de te + llima) i `Cafe` (cafè mòlt + sucre). En el `main`, prepara un `Te` i un `Cafe` amb una variable de tipus `Beguda`.
+
+**Pista:** les subclasses només omplen els dos mètodes `protected abstract`. El `final` en `preparar()` garanteix que ningú no reordene els passos. Per a provar ambdues, usa una referència polimòrfica: `Beguda b = new Te(); b.preparar();`.
+
+---
+
+## ⭐⭐⭐ Exercici 9: El gran repte — vehicles amb combustible
+
+Crea una jerarquia de vehicles:
+
+- `Vehicle` (abstracta): `String matricula`, `int combustible`, `abstract boolean moure()`
+- `Cotxe`: gasta 5 de combustible per moviment
+- `Moto`: gasta 3 de combustible per moviment
+- `Camio`: gasta 10 de combustible per moviment, però pot portar `int càrrega`
+
+Cada vehicle té un `moure()` que reduïx el combustible i torna `true` si va poder moure's. Si no n'hi ha prou, imprimeix "Sense combustible" i torna `false`.
+
+En `main()`, crea un `ArrayList<Vehicle>` amb diversos vehicles. Cada vehicle es mou repetidament mentre puga i compta quants moviments va fer.
+
+**Pista:** dona a cada subclasse una constant `private static final int DESPESA` amb el que consumeix per moviment. En `moure()`: `if (combustible >= DESPESA) { combustible -= DESPESA; ...; return true; } else { System.out.println("Sense combustible"); return false; }`. El bucle del `main` usa el valor de retorn: `while (v.moure()) { moviments++; }`. Així no es queda mai en un bucle infinit quan el combustible no arriba per a moure's.

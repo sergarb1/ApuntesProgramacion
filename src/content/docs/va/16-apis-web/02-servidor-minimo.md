@@ -55,7 +55,7 @@ Obri `http://localhost:8080` en el teu navegador. **Acabes de crear el teu prime
 - **`server.setExecutor(null)`** — usa l'executor per defecte; cada petició s'atén en un fil propi.
 - **`server.start()`** — arranca. A partir d'ací el `main` no s'"acaba": el servidor es queda escoltant.
 
-> 💡 **Consell:** el `try-with-resources` de la U13 no val ací: el servidor ha d'estar viu mentre el `main` seguix corrent. Per això `start()` no està dins d'un `try`.
+> 💡 **Consell:** el `try-with-resources` de la U14 no val ací: el servidor ha d'estar viu mentre el `main` seguix corrent. Per això `start()` no està dins d'un `try`.
 
 ---
 

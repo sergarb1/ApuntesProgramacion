@@ -1,6 +1,6 @@
-﻿---
-title: "Boletín U05 — Inicial Resuelto"
-description: "Los mismos ejercicios que el boletín inicial, con soluciones"
+---
+title: Boletín U05 — Inicial Resuelto
+description: Los mismos ejercicios que el boletín inicial, con soluciones
 ---
 
 # 📝 Boletín U05 — Inicial (Resuelto)
@@ -9,206 +9,21 @@ description: "Los mismos ejercicios que el boletín inicial, con soluciones"
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — Array de booleanos
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`false true false`**.
-
-`flags` es un `boolean[]` de 3 plazas recién creadas. El valor por defecto de `boolean` es `false`, así que `flags[0]` y `flags[2]` valen `false`. Solo `flags[1]` se puso a `true`. Cada plaza nace con el valor por defecto de su tipo: `false` para `boolean`.
-
-</details>
-
----
-
-## Ejercicio 2: Encuentra el error — NullPointerException
-
-<details>
-<summary>🔄 Solución</summary>
-
-Se lanza una **`NullPointerException`** en la última línea.
-
-`nombres[2]` nunca se asignó, así que vale `null` (el valor por defecto de los objetos). Llamar a `nombres[2].toUpperCase()` sobre `null` es pedirle un método a la nada: Java no sabe qué hacer y lanza la excepción. Las plazas de un `String[]` recién creado están llenas de `null`, no de `""`.
-
-</details>
-
----
-
-## Ejercicio 3: Completa el código — for básico para buscar el mayor
+## Ejercicio 1: El saludo oficial
 
 <details>
 <summary>🔄 Solución</summary>
 
 ```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < numeros.length; i++) {   // hasta length, sin pasar
-    if (numeros[i] > mayor) {                // ¿es más grande que el actual?
-        mayor = numeros[i];                  // actualiza el mayor
+public class Saludo {
+    public static void saludar() {
+        System.out.println("¡Hola, Java!");
     }
-}
 
-System.out.println("El mayor es: " + mayor);
-```
-
-El patrón del "máximo acumulado": empiezas asumiendo que el primero es el mayor y, si aparece uno más grande, lo sustituyes. El bucle empieza en `i = 1` porque el candidato inicial ya es `numeros[0]`. Imprime `El mayor es: 89`.
-
-</details>
-
----
-
-## Ejercicio 4: Escribe este programa — contar números pares
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class ContarPares {
     public static void main(String[] args) {
-        int[] numeros = {3, 8, 12, 5, 7, 10, 2, 9, 6, 1};
-        int pares = 0;
-
-        for (int i = 0; i < numeros.length; i++) {
-            if (numeros[i] % 2 == 0) {
-                pares++;
-            }
-        }
-
-        System.out.println("Array: " + Arrays.toString(numeros));
-        System.out.println("Pares: " + pares);
-    }
-}
-```
-
-Salida: `Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]` y `Pares: 5`. Un número es par si su resto al dividir entre 2 es 0 (`% 2 == 0`). Y `Arrays.toString` es lo que hace la salida legible.
-
-</details>
-
----
-
-## Ejercicio 5: Encuentra el error — length vs length()
-
-<details>
-<summary>🔄 Solución</summary>
-
-Las **dos líneas tienen error**, pero por motivos opuestos:
-
-- `numeros.length()` → los arrays usan `length` como **atributo**, sin paréntesis. `numeros.length()` no compila.
-- `texto.length` → los `String` usan `length()` como **método**, con paréntesis. `texto.length` no compila.
-
-Regla de oro: **array → `length`; `String` → `length()`; colecciones → `size()`.** Confundirlos es la trampa favorita de los exámenes.
-
-</details>
-
----
-
-## Ejercicio 6: ¿Qué imprime? — la suma de los impares
-
-<details>
-<summary>🔄 Solución</summary>
-
-Imprime **`17`**.
-
-El `for-each` recorre los 5 valores: 3, 8, 2, 9, 5. El `if` solo suma los que son impares (`n % 2 == 1`): 3, 9 y 5. `3 + 9 + 5 = 17`. El 8 y el 2 son pares y se ignoran.
-
-</details>
-
----
-
-## Ejercicio 7: Escribe este programa — búsqueda lineal
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Scanner;
-
-public class BusquedaLineal {
-    public static void main(String[] args) {
-        int[] edades = {12, 45, 25, 67, 33, 18, 40, 21};
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Introduce edad a buscar: ");
-        int buscado = sc.nextInt();
-
-        int posicion = -1;
-        for (int i = 0; i < edades.length; i++) {
-            if (edades[i] == buscado) {
-                posicion = i;
-                break;
-            }
-        }
-
-        if (posicion >= 0) {
-            System.out.println("Encontrado en posición " + posicion);
-        } else {
-            System.out.println("No encontrado");
-        }
-        sc.close();
-    }
-}
-```
-
-La búsqueda lineal recorre el array de principio a fin. `posicion = -1` es el "no encontrado"; si aparece el valor, guardas el índice y cortas con `break` (ya no hace falta seguir).
-
-</details>
-
----
-
-## Ejercicio 8: Escribe este programa — el inverso
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class Inverso {
-    public static void main(String[] args) {
-        int[] numeros = new int[10];
-        for (int i = 0; i < numeros.length; i++) {
-            numeros[i] = i + 1;
-        }
-
-        System.out.println("Original: " + Arrays.toString(numeros));
-
-        System.out.print("Inverso: ");
-        for (int i = numeros.length - 1; i >= 0; i--) {
-            System.out.print(numeros[i] + " ");
-        }
-    }
-}
-```
-
-El primer bucle rellena del 1 al 10. El segundo recorre **hacia atrás**: empieza en `length - 1` (el 10) y baja hasta 0 (el 1). Imprime `10 9 8 7 6 5 4 3 2 1`.
-
-</details>
-
----
-
-## Ejercicio 9: Escribe este programa — la clase Arrays en acción
-
-<details>
-<summary>🔄 Solución</summary>
-
-```java
-import java.util.Arrays;
-
-public class ArraysEnAccion {
-    public static void main(String[] args) {
-        int[] notas = {7, 3, 9, 5, 2, 8};
-
-        System.out.println("Original: " + Arrays.toString(notas));
-
-        Arrays.sort(notas);
-        System.out.println("Ordenado: " + Arrays.toString(notas));
-
-        int pos = Arrays.binarySearch(notas, 8);
-        System.out.println("El 8 está en la posición " + pos);
+        saludar();
+        saludar();
+        saludar();
     }
 }
 ```
@@ -216,11 +31,241 @@ public class ArraysEnAccion {
 Salida:
 
 ```
-Original: [7, 3, 9, 5, 2, 8]
-Ordenado: [2, 3, 5, 7, 8, 9]
-El 8 está en la posición 4
+¡Hola, Java!
+¡Hola, Java!
+¡Hola, Java!
 ```
 
-`Arrays.sort` ordena "en el sitio" (modifica el array). Después `binarySearch` encuentra el 8 en el índice 4. Si lo buscaras antes de ordenar, el resultado sería impredecible.
+La receta se escribe una vez, fuera del `main`, y se usa tres veces. Ese es exactamente el negocio de los métodos: escribir una vez, llamar las veces que haga falta.
+
+</details>
+
+---
+
+## Ejercicio 2: ¿Qué pasa? — la variable fantasma
+
+<details>
+<summary>🔄 Solución</summary>
+
+El programa no compila porque `extra` es una **variable local** de `sumar()`: su ámbito termina en la llave que cierra el método. En la línea `System.out.println(extra);` el compilador escupe un `cannot find symbol` (no encuentra el símbolo), porque desde `main` esa variable nunca ha existido.
+
+Cómo arreglarlo (cualquiera de las dos):
+
+- Imprimir `extra` **dentro** de `sumar()`, donde sí vive.
+- Pasarla como parámetro o devolverla con `return` si `main` la necesita.
+
+La lección: cada método es una casa con puerta. Lo que se deja dentro no sale sin invitación.
+
+</details>
+
+---
+
+## Ejercicio 3: La ficha de presentación
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Ficha {
+    public static void presentar(String nombre, int edad) {
+        System.out.println("Me llamo " + nombre + " y tengo " + edad + " años.");
+    }
+
+    public static void main(String[] args) {
+        presentar("Ana", 20);
+        presentar("Luis", 15);
+    }
+}
+```
+
+Salida:
+
+```
+Me llamo Ana y tengo 20 años.
+Me llamo Luis y tengo 15 años.
+```
+
+Un mismo método, dos llamadas, dos personas distintas: los parámetros son las entradas que hacen genérico al método. Sin ellos tendrías que copiar el `println` dos veces.
+
+</details>
+
+---
+
+## Ejercicio 4: El primer `return`
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Suma {
+    public static int sumar(int a, int b) {
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        int total = sumar(3, 4);
+        System.out.println("3 + 4 = " + total);
+        System.out.println("10 + 20 = " + sumar(10, 20));
+    }
+}
+```
+
+Salida:
+
+```
+3 + 4 = 7
+10 + 20 = 30
+```
+
+`return` corta el método y entrega el valor a quien lo llamó. El primero lo guardas en `total`; el segundo lo usas directamente dentro del `println`. Imprimir es cosa de quien recibe, no de quien devuelve.
+
+</details>
+
+---
+
+## Ejercicio 5: Doble, por favor
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Doble {
+    public static int calcularDoble(int n) {
+        return n * 2;
+    }
+
+    public static void mostrarDoble(int n) {
+        System.out.println("El doble de " + n + " es " + n * 2);
+    }
+
+    public static void main(String[] args) {
+        int doble = calcularDoble(6);
+        System.out.println(doble);
+        mostrarDoble(6);
+    }
+}
+```
+
+Salida:
+
+```
+12
+El doble de 6 es 12
+```
+
+`calcularDoble` devuelve un `int` que puedes guardar, comparar o usar en otra cuenta. `mostrarDoble` es `void`: no devuelve nada, solo imprime. La regla de oro: el que calcula no imprime, y el que imprime no calcula.
+
+</details>
+
+---
+
+## Ejercicio 6: ¿Qué imprime? — el viaje de ida y vuelta
+
+<details>
+<summary>🔄 Solución</summary>
+
+```
+antes
+sumando...
+total: 7
+```
+
+El orden es fiel al viaje: el `main` imprime `antes`, se detiene en `sumar(3, 4)`, salta al método (que imprime `sumando...` y devuelve `7`), vuelve al `main` con el resultado y sigue con el último `println`. Si te saltaste `sumando...`, recuerda: nada se ejecuta «en paralelo»; Java va de arriba abajo y de ida y vuelta, sin atajos.
+
+</details>
+
+---
+
+## Ejercicio 7: ¿Par o impar?
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class ParOImpar {
+    public static boolean esPar(int n) {
+        return n % 2 == 0;
+    }
+
+    public static void main(String[] args) {
+        if (esPar(7)) {
+            System.out.println("7 es par");
+        } else {
+            System.out.println("7 es impar");
+        }
+        if (esPar(12)) {
+            System.out.println("12 es par");
+        } else {
+            System.out.println("12 es impar");
+        }
+    }
+}
+```
+
+Salida:
+
+```
+7 es impar
+12 es par
+```
+
+`esPar` devuelve un `boolean`, así que puede vivir directamente en la condición del `if`. Es la manera elegante de preguntar: sin guardar el resultado en una variable intermedia.
+
+</details>
+
+---
+
+## Ejercicio 8: La puerta de la edad
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Puerta {
+    public static boolean mayorDeEdad(int edad) {
+        return edad >= 18;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("15: " + (mayorDeEdad(15) ? "entra" : "no entra"));
+        System.out.println("18: " + (mayorDeEdad(18) ? "entra" : "no entra"));
+        System.out.println("30: " + (mayorDeEdad(30) ? "entra" : "no entra"));
+    }
+}
+```
+
+Salida:
+
+```
+15: no entra
+18: entra
+30: entra
+```
+
+La regla vive en un solo sitio (`mayorDeEdad`) y se aplica a las tres edades. Si mañana el límite cambia a 21, tocas **un** `return` y todo el programa se entera. Ese es el poder de no repetir la lógica.
+
+</details>
+
+---
+
+## Ejercicio 9: CodeWars — Century From Year
+
+<details>
+<summary>🔄 Solución</summary>
+
+```java
+public class Kata {
+    public static int century(int year) {
+        return (year - 1) / 100 + 1;
+    }
+}
+```
+
+Dos caminos:
+
+- `(year - 1) / 100 + 1`: el `-1` hace que el año 100 caiga en el siglo 1 y el 101 en el 2.
+- `Math.ceil(year / 100.0)`: redondea hacia arriba el resultado decimal (`1705 / 100.0` es `17.05`, y `Math.ceil` lo sube a `18`). Ojo: si divides en entero (`year / 100`) pierdes el resto y el año 1601 caería en el siglo 16.
+
+Un método, dos líneas, cero bucles: a veces la mejor solución es la que no se complica.
 
 </details>

@@ -34,7 +34,7 @@ JSON és text amb una estructura de dues peces:
 - **Arrays** entre corxets `[...]`: llistes de valors.
 - Valors possibles: textos entre cometes, números, `true`/`false`, `null`, objectes i arrays.
 
-Un `record` de Java (els vas vore a la U11) i un objecte JSON són cosins germans: mateixa idea de "dades amb nom". La diferència és que JSON és text, així que qualsevol llenguatge l'entén.
+Un `record` de Java (els vas vore a la U12) i un objecte JSON són cosins germans: mateixa idea de "dades amb nom". La diferència és que JSON és text, així que qualsevol llenguatge l'entén.
 
 ---
 

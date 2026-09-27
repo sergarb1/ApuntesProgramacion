@@ -1,9 +1,9 @@
 ﻿---
-title: "Butlletí U14 — Avançat Resolt"
+title: "Butlletí U15 — Avançat Resolt"
 description: "Els mateixos exercicis que el butlletí avançat, amb solucions"
 ---
 
-# 📝 Butlletí U14 — Avançat (Resolt)
+# 📝 Butlletí U15 — Avançat (Resolt)
 
 > Les solucions estan amagades en cada exercici. No faces trampa: primer intenta-ho de veritat.
 
@@ -230,7 +230,7 @@ server.createContext("/api/traducir", e -> {
 });
 ```
 
-Un mapa dins d'un altre: la paraula en espanyol és la clau de l'exterior, i el mapa interior associa idioma amb traducció. `getOrDefault` evita el `NullPointerException` quan la paraula o l'idioma no existeixen. Els mapes, com a la U12.
+Un mapa dins d'un altre: la paraula en espanyol és la clau de l'exterior, i el mapa interior associa idioma amb traducció. `getOrDefault` evita el `NullPointerException` quan la paraula o l'idioma no existeixen. Els mapes, com a la U13.
 
 </details>
 

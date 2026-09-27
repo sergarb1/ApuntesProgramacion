@@ -104,7 +104,7 @@ Donat un array d'enters, retorna un array de dos elements: el **nombre de númer
 - [Enunciat en CodeWars](https://www.codewars.com/kata/571effabb625ed9b0600107a)
 - Dificultat: 7 kyu
 
-**Pista:** no cal ni bucles fins que arribes a la U05, però pots declarar `int[] resultat = new int[2];` i usar un bucle `for...each` (ja l'has vist en classe) per a comptar positius i sumar negatius amb `if`. Ací l'important és recordar com accedir als forats d'un array.
+**Pista:** no cal ni bucles fins que arribes a la U06, però pots declarar `int[] resultat = new int[2];` i usar un bucle `for...each` (ja l'has vist en classe) per a comptar positius i sumar negatius amb `if`. Ací l'important és recordar com accedir als forats d'un array.
 
 <details>
 <summary>🔄 Solució</summary>
@@ -132,7 +132,7 @@ public class Kata {
 }
 ```
 
-El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decideix amb operadors relacionals. Un repàs perfecte de la unitat (el `for...each` complet el veuràs en la U05).
+El comptador usa `++`, la suma acumulada usa `+=`, i el `if` decideix amb operadors relacionals. Un repàs perfecte de la unitat (el `for...each` complet el veuràs en la U06).
 
 </details>
 

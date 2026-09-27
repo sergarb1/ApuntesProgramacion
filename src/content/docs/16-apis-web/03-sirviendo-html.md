@@ -54,7 +54,7 @@ Dos detalles importantes:
 
 ## 📂 HTML desde un fichero
 
-Escribir HTML dentro de Java es feo cuando la página crece: mezclas dos lenguajes y cualquier comilla es una agonía. La alternativa profesional: guarda la página en un fichero y léela con `Files.readString()` (el mismo API de la U13):
+Escribir HTML dentro de Java es feo cuando la página crece: mezclas dos lenguajes y cualquier comilla es una agonía. La alternativa profesional: guarda la página en un fichero y léela con `Files.readString()` (el mismo API de la U14):
 
 ```java
 server.createContext("/", intercambio -> {
@@ -110,7 +110,7 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 
 1. ¿Qué cabecera necesitas para que el navegador renderice tu respuesta como HTML?
 2. ¿Qué le pasas a `sendResponseHeaders` como segundo argumento: caracteres o bytes?
-3. ¿Con qué método de la U13 lees el contenido de un fichero en un `String`?
+3. ¿Con qué método de la U14 lees el contenido de un fichero en un `String`?
 4. ¿Por qué es mejor servir el HTML desde un fichero que escribir 50 líneas dentro del código Java?
 
 <details>
@@ -137,7 +137,7 @@ Ponte a prueba en 30 segundos (las respuestas están escondidas):
 > |---|---|
 > | `text/html` | El `Content-Type` de las páginas web |
 > | `charset=UTF-8` | Declaración de que el texto usa UTF-8 (tildes incluidas) |
-> | `Files.readString` | Lee un fichero completo en un `String` (visto en U13) |
+> | `Files.readString` | Lee un fichero completo en un `String` (visto en U14) |
 > | Text block | `"""..."""`: cadena multilínea para escribir HTML cómodo |
 
 📚 [Volver al índice de la unidad](/ApuntesProgramacion/16-apis-web) · **Anterior:** [02 · Servidor web mínimo con HttpServer](/ApuntesProgramacion/16-apis-web/02-servidor-minimo) · **Siguiente:** [04 · Parámetros GET y formularios POST](/ApuntesProgramacion/16-apis-web/04-get-post)

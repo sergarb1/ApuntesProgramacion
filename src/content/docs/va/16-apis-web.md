@@ -84,13 +84,13 @@ En acabar, seràs capaç de:
 | RA5 g) | S'han programat controladors d'esdeveniments. | ✅ Punt 6 |
 | RA5 h) | S'han escrit programes que utilitzen interfícies gràfiques per a l'entrada i eixida d'informació. | ✅ Punts 5 i 6 |
 
-> 📌 La **RA5** es completa amb la **U03** (consola i formats, CEs a i b) i la **U13** (fitxers i accés a arxius, CEs c, d i e). Esta unitat cobreix la cara web de l'entrada/eixida: HTTP com a protocol, HTML i JSON com a formats, i les llibreries `HttpServer` i `HttpClient` com a procediments del llenguatge.
+> 📌 La **RA5** es completa amb la **U03** (consola i formats, CEs a i b) i la **U14** (fitxers i accés a arxius, CEs c, d i e). Esta unitat cobreix la cara web de l'entrada/eixida: HTTP com a protocol, HTML i JSON com a formats, i les llibreries `HttpServer` i `HttpClient` com a procediments del llenguatge.
 
 ---
 
 ## 🚪 Per on comence?
 
-- Vens de la U14 (JDBC) i vols l'essencial? → Comença en el [punt 1](/ApuntesProgramacion/va/16-apis-web/01-protocolo-http) i el [punt 2](/ApuntesProgramacion/va/16-apis-web/02-servidor-minimo): HTTP i el teu primer servidor.
+- Vens de la U15 (JDBC) i vols l'essencial? → Comença en el [punt 1](/ApuntesProgramacion/va/16-apis-web/01-protocolo-http) i el [punt 2](/ApuntesProgramacion/va/16-apis-web/02-servidor-minimo): HTTP i el teu primer servidor.
 - Ja saps servir i vols fer APIs? → Ves directe al [punt 5](/ApuntesProgramacion/va/16-apis-web/05-devolviendo-json) i al [punt 6](/ApuntesProgramacion/va/16-apis-web/06-proyecto-rest): JSON i el CRUD de tasques.
 - Només vens a pel costat client? → Salta al [punt 7](/ApuntesProgramacion/va/16-apis-web/07-httpclient) i al [punt 8](/ApuntesProgramacion/va/16-apis-web/08-httpclient-avanzado): consumir APIs externes.
 - Vens a repassar? → Fes el [Repàs interactiu](/ApuntesProgramacion/va/16-apis-web/09-repaso-interactivo) i després els [butlletins](/ApuntesProgramacion/va/boletines/boletin-u16-inicial).

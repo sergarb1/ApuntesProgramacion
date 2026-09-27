@@ -1,130 +1,191 @@
-﻿---
-title: "Butlletí U05 — Avançat"
-description: "Exercicis de dificultat progressiva per a exprimir els arrays"
+---
+title: Butlletí U05 — Avançat
+description: Exercicis de dificultat progressiva per a exprimir la unitat
 ---
 
 # 📝 Butlletí U05 — Avançat
 
-> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix a mirar-la).
+> Dificultat progressiva. ⭐ per a escalfar, ⭐⭐ per a pensar, ⭐⭐⭐ per a concursar. Cada exercici inclou una pista (resisteix-te a mirar-la).
 
 ---
 
-## ⭐ Exercici 1: La fusió d'arrays ordenats
+## ⭐ Exercici 1: El classificador de notes
 
-Escriu un mètode `fusionarArrays(int[] a, int[] b)` que reba dos arrays ordenats de menor a major i torne un **nou array** també ordenat amb tots els elements d'ambdós. No uses `Arrays.sort()`. Fes-ho amb l'algoritme de fusió (merge) tipus «dos punters».
+Escriu un programa amb un mètode `public static String calificar(double nota)` que torne la qualificació textual amb les mateixes regles de la U04: `>= 9` → "Excel·lent", `>= 7` → "Notable", `>= 5` → "Aprovat", `>= 0` → "Suspés", i fora de rang → "Nota no vàlida".
 
-**Pista:** avança amb dos índexs, un per array, comparant en cada pas quin element és menor. Quan un array s'acabe, copia la resta de l'altre.
+El `main` ha d'imprimir el resultat de `calificar(8.7)`, `calificar(4.5)`, `calificar(11)` i `calificar(-2)`, un per línia.
 
----
-
-## ⭐ Exercici 2: Rotació circular a la dreta
-
-Implementa un mètode `rotarDerecha(int[] arr, int k)` que desplace cada element de l'array `k` posicions cap a la dreta. Els elements que «ixen» pel final tornen a entrar pel principi.
-
-Exemple: `{1, 2, 3, 4, 5}` amb `k = 2` → `{4, 5, 1, 2, 3}`.
-
-**Pista:** usa un array temporal de la grandària de `k` amb els últims `k` elements, desplaça la resta cap a la dreta i després col·loca els guardats al principi. (O divideix els índexs amb `(i + k) % arr.length`.)
+**Pista:** el mètode **torna** cadenes amb `return`, no imprimeix res. Comprova primer si la nota està fora de rang.
 
 ---
 
-## ⭐ Exercici 3: Suma de diagonals (matriu quadrada)
+## ⭐ Exercici 2: Taules a demanda
 
-Crea un programa que genere una matriu quadrada `int[N][N]` amb valors aleatoris entre 1 i 100, i calcule:
+Escriu un mètode `public static void imprimirTabla(int n)` que imprima la taula de multiplicar del `n` (de l'1 al 10), una línia per cada multiplicació.
 
-1. Suma de la **diagonal principal** (de dalt-esquerra a baix-dreta).
-2. Suma de la **diagonal secundària** (de dalt-dreta a baix-esquerra).
-3. Diferència absoluta entre totes dues sumes.
+El `main` ha de demanar-li la taula del 7, després un separador `---`, i després la taula del 3.
 
-Usa `N = 5` per a les proves i `Math.random()` per a omplir-la.
-
-**Pista:** a la diagonal principal, `fila == columna`, així que un sol bucle amb `matriz[i][i]` basta. A la secundària, `columna = N - 1 - i`.
+**Pista:** el mètode no sap res del 7 ni del 3: només coneix el seu paràmetre `n`. Un `for` i a volar.
 
 ---
 
-## ⭐⭐ Exercici 4: Està ordenat?
+## ⭐⭐ Exercici 3: Què imprimeix? — l'ombra del paràmetre
 
-Escriu un mètode `public static boolean estaOrdenado(int[] arr)` que torne `true` si l'array està ordenat **de menor a major** (cada element és menor o igual que el següent), i `false` en cas contrari.
-
-Proves:
-
-- `estaOrdenado({1, 2, 3, 4})` → `true`
-- `estaOrdenado({1, 3, 2, 4})` → `false`
-- `estaOrdenado({})` → `true`
-- `estaOrdenado({7})` → `true`
-
-**Pista:** recorre amb un `for` de `i = 1` fins al final i pregunta si `arr[i] < arr[i - 1]`. En el moment que un veí trenque l'ordre, torna `false`.
-
----
-
-## ⭐⭐ Exercici 5: L'invers al lloc
-
-Escriu un mètode `public static void invertir(int[] arr)` que done la volta a l'array **sense crear un altre array** (usa dos punters i una variable temporal).
-
-Prova amb `{1, 2, 3, 4, 5}` i mostra el resultat amb `Arrays.toString` → ha d'eixir `[5, 4, 3, 2, 1]`.
-
-**Pista:** `izquierda = 0` i `derecha = arr.length - 1`; mentre `izquierda < derecha`, intercanvia i mou tots dos cap al centre.
-
----
-
-## ⭐⭐ Exercici 6: Què imprimeix? — el doble bucle que compta parelles
-
-Sense executar, escriu l'eixida exacta d'este programa:
+Sense executar, escriu l'eixida exacta:
 
 ```java
-public class CuentaParejas {
+public class Sombra {
+    static int valor = 100;
+
+    public static void cambiar(int valor) {
+        valor = valor + 1;
+    }
+
     public static void main(String[] args) {
-        int[] datos = {2, 4, 6};
-        int contador = 0;
-
-        for (int i = 0; i < datos.length; i++) {
-            for (int j = i + 1; j < datos.length; j++) {
-                if (datos[i] < datos[j]) {
-                    contador++;
-                }
-            }
-        }
-
-        System.out.println(contador);
+        cambiar(5);
+        System.out.println(valor);
     }
 }
 ```
 
-**Pista:** compta les parelles `(i, j)` amb `i < j` on el primer és menor que el segon. Amb `{2, 4, 6}` totes les parelles ho compleixen. Quantes n'hi ha?
+**Pista:** dins de `cambiar`, el paràmetre `valor` tapa al camp `valor`. Quin dels dos canvia amb `valor + 1`?
 
 ---
 
-## ⭐⭐⭐ Exercici 7: Estadístiques de classe
+## ⭐⭐ Exercici 4: La suma de xifres
 
-Demana a l'usuari les notes de 20 alumnes amb `Scanner`, guarda-les en un `double[]` i calcula:
+Escriu un mètode `public static int sumaDigitos(int n)` que torne la suma de les xifres de `n` (per exemple, `1234` → `10`).
 
-- La nota mitjana.
-- La nota més alta i la més baixa.
-- Quants alumnes van aprovar (nota >= 5).
+El `main` ha de mostrar `sumaDigitos(1234)` i `sumaDigitos(905)`.
 
-Usa un bucle per a omplir, un altre per a sumar i el patró del màxim/mínim acumulat.
-
-**Pista:** per al mínim comença amb la primera nota; per al màxim, també. Guarda les notes en un array i recórre'l diverses voltes: cada càlcul és un bucle.
+**Pista:** `n % 10` trau l'última xifra i `n / 10` se la menja; repeteix amb un `while` fins que `n` siga 0. Si el nombre pot ser negatiu, usa `Math.abs(n)` al principi.
 
 ---
 
-## ⭐⭐⭐ Exercici 8: El gran repte — busca-mines simplificat
+## ⭐⭐⭐ Exercici 5: Què imprimeix? — el return que talla
 
-Crea un array bidimensional `boolean[5][5]` que represente un camp de mines. Col·loca 5 mines en posicions **aleatòries** (amb `Math.random()`). L'usuari introduïx coordenades `(fila, columna)` i el programa diu si hi ha mina o no. Si encerta una mina, el joc acaba mostrant «¡BOOM!».
+Sense executar, escriu l'eixida exacta:
 
-Extres opcionals: digues quantes mines hi ha al voltant de la casella (mira les 8 veïnes) i acaba quan hagis comprovat totes les caselles sense mines.
+```java
+public class Corte {
+    public static String signo(int n) {
+        if (n < 0) {
+            return "negatiu";
+        }
+        if (n == 0) {
+            return "zero";
+        }
+        return "positiu";
+    }
 
-**Pista:** comprova abans de mirar una veïna que la seua fila i la seua columna estiguen entre 0 i 4, o eixiràs de l'array amb `ArrayIndexOutOfBoundsException`. El joc usa un `while` que acaba en trepitjar una mina o en esgotar les caselles.
+    public static int primeroPar(int a, int b) {
+        if (a % 2 == 0) {
+            return a;
+        }
+        if (b % 2 == 0) {
+            return b;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(signo(-5) + " " + signo(0) + " " + signo(4));
+        System.out.println(primeroPar(7, 4));
+        System.out.println(primeroPar(3, 5));
+    }
+}
+```
+
+**Pista:** en cada mètode només s'executa **un** `return`: la resta del codi queda mort. Recorre els casos un a un.
 
 ---
 
-## ⭐⭐⭐ Exercici 9: Compactar — els zeros al final
+## ⭐⭐⭐ Exercici 6: Divideix l'informe
 
-Escriu un mètode `public static void compactar(int[] arr)` que moga tots els zeros al final de l'array, **mantenint l'ordre** dels elements que no són zero.
+Este programa funciona, però tot viu dins del `main`:
 
-Exemples:
+```java
+public class Informe {
+    public static void main(String[] args) {
+        double a = 7.5, b = 9.0, c = 4.5, d = 8.25;
 
-- `{0, 3, 0, 1, 0, 2}` → `{3, 1, 2, 0, 0, 0}`
-- `{1, 2, 3}` → `{1, 2, 3}`
-- `{0, 0, 0}` → `{0, 0, 0}`
+        double media = (a + b + c + d) / 4;
+        double maximo = a;
+        if (b > maximo) maximo = b;
+        if (c > maximo) maximo = c;
+        if (d > maximo) maximo = d;
+        double minimo = a;
+        if (b < minimo) minimo = b;
+        if (c < minimo) minimo = c;
+        if (d < minimo) minimo = d;
 
-**Pista:** usa un segon índex `pos` que marque on va el següent valor no zero. Recorre amb `i`, i quan `arr[i]` no siga 0, copia'l a `arr[pos]` i puja `pos`. Al final, ompli de zeros des de `pos` fins al final.
+        System.out.println("Mitjana: " + media);
+        System.out.println("Màxim: " + maximo);
+        System.out.println("Mínim: " + minimo);
+    }
+}
+```
+
+Trosseja-lo en **tres mètodes** que tornen `double`: `media(a, b, c, d)`, `maximo(a, b, c, d)` i `minimo(a, b, c, d)`. El `main` ha de quedar-se en tres línies de `println` que criden als mètodes.
+
+**Pista:** els tres mètodes són `public static double ...` amb `return` i cap crida a `System.out`. Comparar `a, b, c, d` és exactament el mateix dins de cadascun.
+
+---
+
+## ⭐⭐ Exercici 7: El comptador de vocals
+
+Escriu un mètode `public static int contarVocales(String texto)` que torne quantes vocals hi ha en `texto` (sense distingir majúscules de minúscules).
+
+El `main` ha d'imprimir `contarVocales("Hola mundo")` (dona `4`) i `contarVocales("zzz")` (dona `0`).
+
+**Pista:** recorre amb `for (int i = 0; i < texto.length(); i++)`, mira cada caràcter amb `charAt(i)` i compara'l amb les cinc vocals en les seues dues versions.
+
+---
+
+## ⭐⭐⭐ Exercici 8: CodeWars — 'Disemvowel' Trolls
+
+Resol la kata **"'Disemvowel' Trolls"** (7 kyu) a [CodeWars](https://www.codewars.com/kata/52fba66badcd10859f00097e).
+
+Crea el mètode `public static String disemvowel(String str)` que torne la cadena sense vocals.
+
+**Exemple:** `"This website is for losers LOL!"` → `"Ths wbst s fr lsrs LL!"`.
+
+**Pista:** recorre amb `charAt` i concatena només el que no siga vocal. La solució amb regex arriba en la U13; ací ens val un `if` amb moltes comparacions.
+
+---
+
+## ⭐⭐⭐ Exercici 9: AceptaElReto — 165 Número hyperpar
+
+Resol el problema **165 — Número hyperpar** a [AceptaElReto.com](https://www.aceptaelreto.com/problem/statement.php?id=165).
+
+Un nombre és *hyperpar* quan **totes** les seues xifres són parells. L'entrada conté un nombre per línia fins a un nombre negatiu (que no es processa). Per a cada cas, mostra `SI` o `NO`.
+
+**Exemple:**
+
+```
+2460
+1234
+2
+-1
+```
+
+```
+SI
+NO
+SI
+```
+
+**Pista:** embolica la comprovació en un mètode `public static boolean esHyperpar(int n)`: amb un `while` trau xifres amb `n % 10` i, si alguna és senar, `return false` en quant la trobes. Si el bucle acaba sense trobar-ne cap, `return true`.
+
+---
+
+## 📚 Referències
+
+| Plataforma | Problema | Dificultat |
+|---|---|---|
+| AceptaElReto | 165 — Número hyperpar | Fàcil |
+| AceptaElReto | 115 — Número de Kaprekar | Mitjà |
+| CodeWars | Century From Year (8 kyu) | Principiant |
+| CodeWars | 'Disemvowel' Trolls (7 kyu) | Aficionat |
+| CodeWars | Volume of a Cuboid (8 kyu) | Principiant |
+| CodeWars | Drink about (8 kyu) | Principiant |

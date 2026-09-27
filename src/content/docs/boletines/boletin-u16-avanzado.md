@@ -1,9 +1,9 @@
 ﻿---
-title: "Boletín U14 — Avanzado"
+title: "Boletín U15 — Avanzado"
 description: "Ejercicios de dificultad progresiva para dominar JSON, formularios POST y HttpClient"
 ---
 
-# 📝 Boletín U14 — Avanzado
+# 📝 Boletín U15 — Avanzado
 
 > Dificultad progresiva. ⭐ para calentar, ⭐⭐ para pensar, ⭐⭐⭐ para concursar. Cada ejercicio incluye una pista (resiste a mirarla).
 
@@ -83,7 +83,7 @@ Y devuelva:
 
 Usa un `HashMap<String, HashMap<String, String>>` como diccionario. Mete al menos 10 palabras en español traducidas a inglés y francés.
 
-**Pista:** inicializa el diccionario con bloques `static`. `diccionario.get("hola").get("en")` te da `"hello"`. Los mapas los viste en la U12.
+**Pista:** inicializa el diccionario con bloques `static`. `diccionario.get("hola").get("en")` te da `"hello"`. Los mapas los viste en la U13.
 
 ---
 
@@ -108,7 +108,7 @@ Frontend: tabla con colores de fondo según prioridad (rojo ALTA, amarillo MEDIA
 
 Usa `HttpClient` para consultar la API de GitHub (`https://api.github.com/users/{usuario}/repos`) y mostrar solo el **nombre** y el **lenguaje** de cada repositorio de un usuario (que se pide por teclado). Luego guarda los resultados en un archivo `repos.txt`.
 
-**Pista:** parsea la respuesta con Gson (`JsonArray`), recórrela, y escribe con `Files.writeString` (los ficheros los viste en la U13). Recuerda la cabecera `User-Agent`, que GitHub exige.
+**Pista:** parsea la respuesta con Gson (`JsonArray`), recórrela, y escribe con `Files.writeString` (los ficheros los viste en la U14). Recuerda la cabecera `User-Agent`, que GitHub exige.
 
 ---
 

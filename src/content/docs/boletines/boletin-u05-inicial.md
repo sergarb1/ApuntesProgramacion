@@ -1,139 +1,135 @@
-﻿---
-title: "Boletín U05 — Inicial"
-description: "Ejercicios básicos de Arrays"
+---
+title: Boletín U05 — Inicial
+description: Ejercicios básicos de Funciones y métodos
 ---
 
 # 📝 Boletín U05 — Inicial
 
-> Sin soluciones. Sin prisas. Abre el IDE, crea tu primer aparcamiento de datos y haz que el `for-each` deje de parecer magia. Ninguna plaza nace sabiendo tener dueño.
+> Sin soluciones. Sin prisas. Abre el IDE, dale a ejecutar y deja que tus métodos hagan el trabajo pesado. Un `main` con todo dentro está bien... hasta que deja de caber.
 
 ---
 
-## Ejercicio 1: ¿Qué imprime? — Array de booleanos
+## Ejercicio 1: El saludo oficial
 
-```java
-boolean[] flags = new boolean[3];
-flags[1] = true;
-System.out.println(flags[0] + " " + flags[1] + " " + flags[2]);
-```
+Escribe un programa llamado `Saludo` que tenga un método `public static void saludar()` que imprima `¡Hola, Java!`. El `main` debe llamar a `saludar()` tres veces, una por línea.
 
-¿Qué imprime? ¿Cuál es el valor por defecto de un `boolean` en un array?
+Pista: el método vive fuera del `main`; el `main` solo lo invoca por su nombre con paréntesis y punto y coma.
 
 ---
 
-## Ejercicio 2: Encuentra el error — NullPointerException
+## Ejercicio 2: ¿Qué pasa? — la variable fantasma
+
+Este programa no compila. Míralo con calma y responde: ¿por qué falla y qué cambiarías para arreglarlo?
 
 ```java
-String[] nombres = new String[3];
-nombres[0] = "Ana";
-nombres[1] = "Bob";
-System.out.println(nombres[2].toUpperCase());
-```
+public class Fantasma {
+    static int puntos = 10;
 
-¿Qué ocurre al ejecutar este código? ¿Por qué?
-
----
-
-## Ejercicio 3: Completa el código — for básico para buscar el mayor
-
-Completa el siguiente programa para que encuentre e imprima el número más grande del array:
-
-```java
-int[] numeros = {12, 45, 7, 34, 89, 23};
-int mayor = numeros[0];
-
-for (int i = 1; i < ______; i++) {   // ¿hasta dónde llega el bucle?
-    if (numeros[i] ______ mayor) {    // ¿qué operador?
-        ______ = numeros[i];          // ¿qué asignamos?
+    public static void sumar() {
+        int extra = 5;
+        puntos += extra;
     }
-}
 
-System.out.println("El mayor es: " + mayor);
-```
-
----
-
-## Ejercicio 4: Escribe este programa — contar números pares
-
-Crea un array de 10 enteros con valores que tú elijas. Recórrelo con un bucle `for` y cuenta cuántos de ellos son pares. Al final, imprime el total de pares y el array original con `Arrays.toString`.
-
-Ejemplo de salida:
-
-```
-Array: [3, 8, 12, 5, 7, 10, 2, 9, 6, 1]
-Pares: 5
-```
-
-Pista: un número es par si `numeros[i] % 2 == 0`.
-
----
-
-## Ejercicio 5: Encuentra el error — length vs length()
-
-```java
-int[] numeros = {10, 20, 30};
-String texto = "Hola";
-
-System.out.println(numeros.length());
-System.out.println(texto.length);
-```
-
-¿Qué líneas tienen error? Explica la diferencia entre `length` (sin paréntesis) y `length()` (con paréntesis).
-
----
-
-## Ejercicio 6: ¿Qué imprime? — la suma de los impares
-
-Sin ejecutar, escribe la salida exacta de este programa:
-
-```java
-public class SumaImpares {
     public static void main(String[] args) {
-        int[] datos = {3, 8, 2, 9, 5};
-        int total = 0;
-
-        for (int n : datos) {
-            if (n % 2 == 1) {
-                total += n;
-            }
-        }
-
-        System.out.println(total);
+        sumar();
+        System.out.println(puntos);
+        System.out.println(extra);
     }
 }
 ```
 
-Pista: el `for-each` recorre todos los valores; solo se suman los que dejan resto 1 al dividir entre 2.
+Pista: `extra` nace y muere dentro de `sumar()`. El compilador no la ve desde `main`.
 
 ---
 
-## Ejercicio 7: Escribe este programa — búsqueda lineal
+## Ejercicio 3: La ficha de presentación
 
-Crea un array de enteros llamado `edades` con 8 valores. Pide al usuario un número por teclado (con `Scanner`) y busca si ese número está en el array. Imprime «Encontrado en posición X» o «No encontrado».
+Escribe un programa llamado `Ficha` con un método `public static void presentar(String nombre, int edad)` que imprima:
 
 ```
-Introduce edad a buscar: 25
-Encontrado en posición 3
+Me llamo Ana y tengo 20 años.
 ```
 
-Pista: usa una variable `posicion = -1` como "no encontrado", y `break` en cuanto lo encuentres.
+El `main` debe llamar al método con `("Ana", 20)` y con `("Luis", 15)`, cada llamada en su línea.
 
 ---
 
-## Ejercicio 8: Escribe este programa — el inverso
+## Ejercicio 4: El primer `return`
 
-Crea un array de 10 enteros, rellénalo con los números del 1 al 10 y luego imprímelo en **orden inverso** (del 10 al 1). Hazlo con un `for` que recorra el array hacia atrás.
+Escribe un programa llamado `Suma` con un método `public static int sumar(int a, int b)` que **devuelva** la suma en lugar de imprimirla.
 
-Pista: el bucle va de `length - 1` hasta `0`, bajando con `i--`.
+En el `main`, guarda el resultado de `sumar(3, 4)` en una variable e imprime `3 + 4 = 7`. Después imprime el resultado de `sumar(10, 20)` directamente: `10 + 20 = 30`.
+
+Pista: `return a + b;` entrega el valor a quien llamó; no lo imprime nadie todavía.
 
 ---
 
-## Ejercicio 9: Escribe este programa — la clase Arrays en acción
+## Ejercicio 5: Doble, por favor
 
-Crea el array `int[] notas = {7, 3, 9, 5, 2, 8}` y haz lo siguiente:
+Escribe un programa llamado `Doble` con **dos** métodos:
 
-1. Muéstralo con `Arrays.toString`.
-2. Ordena con `Arrays.sort` y muéstralo otra vez.
-3. Busca el `8` con `Arrays.binarySearch` e imprime su posición.
+- `public static int calcularDoble(int n)` → devuelve el doble de `n`.
+- `public static void mostrarDoble(int n)` → imprime `El doble de 6 es 12`.
 
-Pista: `import java.util.Arrays;` al principio, y recuerda: `binarySearch` solo es fiable si el array ya está ordenado.
+El `main` debe usar los dos con el valor `6`. Fíjate en la diferencia: uno devuelve, el otro habla.
+
+---
+
+## Ejercicio 6: ¿Qué imprime? — el viaje de ida y vuelta
+
+Sin ejecutar, escribe la salida exacta, línea a línea:
+
+```java
+public class Viaje {
+    static int sumar(int a, int b) {
+        System.out.println("sumando...");
+        return a + b;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("antes");
+        int total = sumar(3, 4);
+        System.out.println("total: " + total);
+    }
+}
+```
+
+Pista: el programa no salta de forma mágica: se para en la llamada, ejecuta el método y vuelve con el valor en la mano.
+
+---
+
+## Ejercicio 7: ¿Par o impar?
+
+Escribe un programa llamado `ParOImpar` con un método `public static boolean esPar(int n)` que devuelva `true` si el número es par.
+
+El `main` debe comprobar el `7` y el `12` con un `if`/`else` e imprimir `7 es impar` y `12 es par`.
+
+Pista: un solo `return` con el operador `%` de la U03.
+
+---
+
+## Ejercicio 8: La puerta de la edad
+
+Escribe un programa llamado `Puerta` con un método `public static boolean mayorDeEdad(int edad)` que devuelva `true` si la persona tiene 18 años o más.
+
+El `main` debe comprobar `15`, `18` y `30` e imprimir, una por línea:
+
+```
+15: no entra
+18: entra
+30: entra
+```
+
+Pista: puedes usar un ternario en cada `println`, como en el ejercicio 6 de los extras de la U04.
+
+---
+
+## Ejercicio 9: CodeWars — Century From Year
+
+Resuelve la kata **"Century From Year"** (8 kyu) en [CodeWars](https://www.codewars.com/kata/5a3fe3dde1ce0e8ed6000097).
+
+Completa el método `public static int century(int year)` que devuelve el siglo al que pertenece un año: el primer siglo va del año 1 al 100, el segundo del 101 al 200, y así sucesivamente.
+
+**Ejemplos:** `century(1705)` → `18`, `century(1900)` → `19`, `century(1601)` → `17`, `century(89)` → `1`.
+
+Pista: la división entera se come el año 1601 (`1601 / 100` es `16`); ajusta restando 1 antes de dividir o redondeando hacia arriba con `Math.ceil`.

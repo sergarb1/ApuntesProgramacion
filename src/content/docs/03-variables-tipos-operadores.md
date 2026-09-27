@@ -88,7 +88,7 @@ Al terminar, serás capaz de:
 | RA2 g) | Se han incorporado y utilizado librerías de objetos. | ✅ Punto 6 |
 | RA2 h) | Se han utilizado constructores. | ✅ Puntos 2 y 6 |
 
-> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U13.
+> 📌 El `Scanner` del punto 6, la salida formateada del punto 7 y los métodos de `String` del punto 9 plantan la semilla del RA5 (entrada y salida de información), que florece en la U14.
 
 ---
 

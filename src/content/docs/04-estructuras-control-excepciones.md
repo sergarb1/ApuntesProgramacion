@@ -86,7 +86,7 @@ Al terminar, serás capaz de:
 | RA3 f) | Se han probado y depurado los programas. | ✅ Todos, con chicha extra en los boletines |
 | RA3 g) | Se ha comentado y documentado el código. | ✅ Todos |
 
-> 📌 Los bucles que ves aquí son el músculo de todo lo que viene: los recorridos de arrays y colecciones (U11) y los algoritmos de ordenación y búsqueda (U07) no serían nada sin `for` y `while`.
+> 📌 Los bucles que ves aquí son el músculo de todo lo que viene: los recorridos de arrays y colecciones (U12) y los algoritmos de ordenación y búsqueda (U08) no serían nada sin `for` y `while`.
 
 ---
 
@@ -98,4 +98,4 @@ Al terminar, serás capaz de:
 - ¿Vienes a repasar? → Haz el [Repaso interactivo](/ApuntesProgramacion/04-estructuras-control-excepciones/09-repaso-interactivo) y después los [boletines](/ApuntesProgramacion/boletines/boletin-u04-inicial).
 
 **📍 Primer punto:** [01 · if, else if y else](/ApuntesProgramacion/04-estructuras-control-excepciones/01-if-else)  
-**⏭️ Al acabar la unidad, continúa en [U05 · Arrays](/ApuntesProgramacion/05-arrays).**
+**⏭️ Al acabar la unidad, continúa en [U05 · Funciones y métodos](/ApuntesProgramacion/05-funciones).**

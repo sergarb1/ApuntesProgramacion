@@ -86,7 +86,7 @@ if (edat >= 18) {
 }
 ```
 
-> ⚠️ **Advertència:** no converteixques els teus programes en les Torres Kio. Més de 3 nivells d'anidament és senyal que estàs fent les coses estrany: en la U06 aprendràs a aplanar-ho.
+> ⚠️ **Advertència:** no converteixques els teus programes en les Torres Kio. Més de 3 nivells d'anidament és senyal que estàs fent les coses estrany: en la U07 aprendràs a aplanar-ho.
 
 ---
 

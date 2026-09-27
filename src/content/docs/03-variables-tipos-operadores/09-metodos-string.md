@@ -36,7 +36,7 @@ texto.substring(2, 14);       // "Programación" — recorta del carácter 2 al 
 texto.replace("DAM", "DAW");  // "  Programación DAW  " — sustituye texto
 ```
 
-> 💡 **Detalle práctico:** `length()` es un **método** (con paréntesis). Es el error clásico del novato escribir `texto.length` sin paréntesis y que no compile. En cambio, para un array (la U05) se usa `.length` sin paréntesis. Los `String` llevan paréntesis; los arrays, no.
+> 💡 **Detalle práctico:** `length()` es un **método** (con paréntesis). Es el error clásico del novato escribir `texto.length` sin paréntesis y que no compile. En cambio, para un array (la U06) se usa `.length` sin paréntesis. Los `String` llevan paréntesis; los arrays, no.
 
 ---
 
@@ -151,7 +151,7 @@ Imprime `M. erida`.
 <details>
 <summary>🔄 Respuestas</summary>
 
-1. **Lleva paréntesis**: `length()` es un método de la clase `String`. (Los arrays usan `.length` sin paréntesis, pero eso es la U05.)
+1. **Lleva paréntesis**: `length()` es un método de la clase `String`. (Los arrays usan `.length` sin paréntesis, pero eso es la U06.)
 2. `trim()` elimina los **espacios del principio y del final**. Es imprescindible al limpiar entradas de usuario que suelen traer espacios de más.
 3. **`-1`**, el centinela de "no encontrado".
 4. `"ol"` — el carácter 1 ('o') y el 2 ('l'); el `3` no se incluye.

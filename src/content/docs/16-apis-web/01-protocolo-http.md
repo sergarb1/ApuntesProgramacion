@@ -13,7 +13,7 @@ description: "Petición-respuesta, verbos HTTP, códigos de estado y por qué to
 
 > **HTTP es un protocolo de petición-respuesta: el cliente pide un recurso (una URL) y el servidor le responde con un código de estado y el contenido. Eso es todo. El resto son capas que se construyen encima.**
 
-En la U13 ya cerrabas ficheros con `try-with-resources` y en la U14 conectabas Java a bases de datos. Ahora el protagonista es otro: la web. Y da igual si algún día usas Tomcat, Spring Boot o un microservicio en la nube: todos hablan el mismo idioma, y ese idioma se llama HTTP. Hoy lo aprendes en 30 segundos... y en unas pocas páginas más.
+En la U14 ya cerrabas ficheros con `try-with-resources` y en la U15 conectabas Java a bases de datos. Ahora el protagonista es otro: la web. Y da igual si algún día usas Tomcat, Spring Boot o un microservicio en la nube: todos hablan el mismo idioma, y ese idioma se llama HTTP. Hoy lo aprendes en 30 segundos... y en unas pocas páginas más.
 
 ---
 

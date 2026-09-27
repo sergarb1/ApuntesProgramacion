@@ -36,7 +36,7 @@ texto.substring(2, 14);       // "Programación" — retalla del caràcter 2 al 
 texto.replace("DAM", "DAW");  // "  Programación DAW  " — substitueix text
 ```
 
-> 💡 **Detall pràctic:** `length()` és un **mètode** (amb parèntesis). És l'error clàssic del novat escriure `texto.length` sense parèntesis i que no compile. En canvi, per a un array (la U05) s'usa `.length` sense parèntesis. Els `String` porten parèntesis; els arrays, no.
+> 💡 **Detall pràctic:** `length()` és un **mètode** (amb parèntesis). És l'error clàssic del novat escriure `texto.length` sense parèntesis i que no compile. En canvi, per a un array (la U06) s'usa `.length` sense parèntesis. Els `String` porten parèntesis; els arrays, no.
 
 ---
 
@@ -151,7 +151,7 @@ Imprimeix `M. erida`.
 <details>
 <summary>🔄 Respostes</summary>
 
-1. **Porta parèntesis**: `length()` és un mètode de la classe `String`. (Els arrays usen `.length` sense parèntesis, però això és la U05.)
+1. **Porta parèntesis**: `length()` és un mètode de la classe `String`. (Els arrays usen `.length` sense parèntesis, però això és la U06.)
 2. `trim()` elimina els **espais del principi i del final**. És imprescindible en netejar entrades d'usuari que solen portar espais de més.
 3. **`-1`**, el sentinella de "no trobat".
 4. `"ol"` — el caràcter 1 ('o') i el 2 ('l'); el `3` no s'inclou.
