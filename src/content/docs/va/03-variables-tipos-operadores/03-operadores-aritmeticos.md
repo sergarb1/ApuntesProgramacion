@@ -56,6 +56,8 @@ Per a Java, 17 dividit entre 5 són **3**. Ni 3.4 ni 3.5: 3. Si vols decimals, a
 
 > ⚠️ **Advertència:** este és un dels errors més rendibles per a un examen. `5 / 2` és `2`. `5 / 2.0` és `2.5`. `(double) 5 / 2` és `2.5`. Memoritza-ho com un mantra.
 
+![Arbre de la divisió entera: si tots dos operands són int, 17/5 trunca a 3; si hi ha un double, 17.0/5 dona 3.4](/ApuntesProgramacion/diagrams/u03-division-entera-arbol-val.svg)
+
 ---
 
 ## 🎭 Precedència: la llei del menjador

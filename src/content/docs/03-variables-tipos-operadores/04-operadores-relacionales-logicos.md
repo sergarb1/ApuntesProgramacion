@@ -76,6 +76,8 @@ System.out.println(x);                       // 5 — el ++x nunca se ejecutó
 
 > 💡 **Detalle práctico:** el cortocircuito también te protege. Si escribes `(algo != null) && algo.metodo()`, Java no llamará al método si `algo` es `null`, evitando un crash en tu programa.
 
+![Flujo de cortocircuito: con && si la 1ª condición es false y con || si es true, la 2ª condición no se evalúa (¡STOP!)](/ApuntesProgramacion/diagrams/u03-cortocircuito-flujo.svg)
+
 ---
 
 ## 🎚️ El ternario: el bouncer del club

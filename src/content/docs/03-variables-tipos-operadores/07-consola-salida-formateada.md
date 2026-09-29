@@ -43,6 +43,8 @@ Cada `%algo` es un **hueco** que se rellena con el valor que le sigue, en orden.
 
 > 💡 **Consejo:** `%n` para saltos de línea en `printf` (no `\n`): funciona igual en Windows, Linux y Mac. El `\n` también vale, pero `%n` es la opción "oficial".
 
+![Flujo de printf: la plantilla con huecos %d y %s y los argumentos 25 y Ana pasan por la llamada hasta la salida formateada](/ApuntesProgramacion/diagrams/u03-flujo-printf.svg)
+
 ### Controlar los decimales y el ancho
 
 ```java

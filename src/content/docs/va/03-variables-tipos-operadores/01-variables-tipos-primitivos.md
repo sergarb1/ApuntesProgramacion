@@ -91,6 +91,8 @@ boolean esJavaDivertido = true;     // Esto es opinable
 
 > 📝 **Nota:** usa `int` per a quasi tot el numèric enter. Només passa a `long` si vas a contar estrelles. Usa `double` per a decimals, a menys que estalviar memòria siga el teu fetitxe.
 
+![Mapa dels 8 tipus primitius de Java: famílies d'enters, decimals, text i lògica amb els seus bits i rangs](/ApuntesProgramacion/diagrams/u03-map-tipo-primitivos-val.svg)
+
 ---
 
 ## 🎒 Quina caixa use per a cada dada?

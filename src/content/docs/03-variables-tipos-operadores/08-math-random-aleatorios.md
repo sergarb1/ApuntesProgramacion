@@ -60,6 +60,8 @@ int entreCincoYDiez = (int) (Math.random() * 6) + 5;   // 5, 6, 7, 8, 9 o 10
 
 > 📝 **Nota:** memoriza la fórmula como un mantra: `(max - min + 1)` da el tamaño del abanico, y `+ min` lo coloca donde empieza. No hay más secreto.
 
+![Escalera de la fórmula aleatoria: de Math.random() entre 0 y 0,999 al rango 1-6 tras multiplicar, truncar con int y sumar, con la fórmula universal debajo](/ApuntesProgramacion/diagrams/u03-escalera-random.svg)
+
 ---
 
 ## 🧰 Otras herramientas del casino: la clase Math

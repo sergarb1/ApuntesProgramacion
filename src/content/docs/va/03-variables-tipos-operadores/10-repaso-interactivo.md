@@ -13,6 +13,8 @@ description: El tancament pràctic de la unitat, amb un bug de truncament que no
 
 > **En este punt no aprenem res de nou: ho convertim tot en pràctica. I, com sempre, alguna cosa no funcionarà.** 😈
 
+![Mapa mental de la unitat 03: set zones del temari amb l'error típic de cadascuna, dels tipus de variables als mètodes de String](/ApuntesProgramacion/diagrams/u03-mapa-unidad-val.svg)
+
 ---
 
 ## ⭐ Sé el Código, my friend...

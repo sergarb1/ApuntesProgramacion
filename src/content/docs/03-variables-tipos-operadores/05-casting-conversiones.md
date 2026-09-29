@@ -35,6 +35,8 @@ byte → short → int → long → float → double
 
 Cualquier tipo puede pasar al que está a su derecha sin que se pierda ni un bit. Java sonríe y te deja.
 
+![Escalera de casting: de byte a double con flechas verdes de conversión implícita y flecha roja de vuelta con casting explícito (narrowing)](/ApuntesProgramacion/diagrams/u03-escalera-casting.svg)
+
 ---
 
 ## 📉 Conversión explícita (narrowing): la maleta XXL en un Smart

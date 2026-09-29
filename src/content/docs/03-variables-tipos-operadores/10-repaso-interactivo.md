@@ -13,6 +13,8 @@ description: El cierre práctico de la unidad, con un bug de truncamiento que no
 
 > **En este punto no aprendemos nada nuevo: lo convertimos todo en práctica. Y, como siempre, algo no va a funcionar.** 😈
 
+![Mapa mental de la unidad 03: siete zonas del temario con el error típico de cada una, de los tipos de variables a los métodos de String](/ApuntesProgramacion/diagrams/u03-mapa-unidad.svg)
+
 ---
 
 ## ⭐ Sé el Código, my friend...

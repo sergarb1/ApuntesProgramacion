@@ -70,6 +70,8 @@ String apellido = nombreCompleto.substring(4);        // "Martínez" — desde e
 
 > ⚠️ **Advertencia:** en `substring(inicio, fin)`, el `fin` **no se incluye**. `substring(0, 3)` te da los caracteres 0, 1 y 2. Es un error típico pedir un carácter de más (o de menos).
 
+![Índices de substring sobre "PROGRAMA": las celdas 2 a 5 en verde forman "OGRA" y la celda 6 (fin) queda fuera](/ApuntesProgramacion/diagrams/u03-substring-indices.svg)
+
 ---
 
 ## 🏫 Ejemplo guiado: el nombre del usuario

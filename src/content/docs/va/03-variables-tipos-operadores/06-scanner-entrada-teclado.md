@@ -115,6 +115,8 @@ String nombre = sc.nextLine();    // ara sí, llig el nom
 
 > ⚠️ **Advertència:** memoritza el truc: *després d'un `nextInt()` / `nextDouble()`, inserta un `nextLine()` buit abans del següent `nextLine()`.* És el guardià del buffer.
 
+![Comparació de carrils després d'nextInt(): el carril erroni es menja l'Enter i torna cadena buida, el carril correcte afig un nextLine() buit i llegeix el nom](/ApuntesProgramacion/diagrams/u03-buffer-enter-residual-val.svg)
+
 ---
 
 ## 🏫 Exemple guiat: la calculadora de la propina

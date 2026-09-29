@@ -43,6 +43,8 @@ Cada `%alguna_cosa` és un **forat** que s'ompli amb el valor que li segueix, en
 
 > 💡 **Consell:** `%n` per als salts de línia en `printf` (no `\n`): funciona igual a Windows, Linux i Mac. El `\n` també val, però `%n` és l'opció "oficial".
 
+![Flux de printf: la plantilla amb forats %d i %s i els arguments 25 i Ana passen per la cridada fins a l'eixida formatada](/ApuntesProgramacion/diagrams/u03-flujo-printf-val.svg)
+
 ### Controlar els decimals i l'amplària
 
 ```java

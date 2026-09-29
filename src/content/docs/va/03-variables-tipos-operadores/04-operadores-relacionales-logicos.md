@@ -76,6 +76,8 @@ System.out.println(x);                       // 5 — el ++x mai no es va execut
 
 > 💡 **Detall pràctic:** el curtcircuit també et protegix. Si escrius `(algo != null) && algo.metodo()`, Java no cridarà el mètode si `algo` és `null`, evitant un crash al teu programa.
 
+![Flux de curtcircuit: amb && si la 1a condició és false i amb || si és true, la 2a condició no s'avalua (STOP!)](/ApuntesProgramacion/diagrams/u03-cortocircuito-flujo-val.svg)
+
 ---
 
 ## 🎚️ El ternari: el bouncer del club

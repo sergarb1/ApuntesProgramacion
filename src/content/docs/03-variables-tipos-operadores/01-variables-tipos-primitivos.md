@@ -91,6 +91,8 @@ boolean esJavaDivertido = true;     // Esto es opinable
 
 > 📝 **Nota:** usa `int` para casi todo lo numérico entero. Solo pasa a `long` si vas a contar estrellas. Usa `double` para decimales, a menos que ahorrar memoria sea tu fetiche.
 
+![Mapa de los 8 tipos primitivos de Java: familias de enteros, decimales, texto y lógica con sus bits y rangos](/ApuntesProgramacion/diagrams/u03-map-tipo-primitivos.svg)
+
 ---
 
 ## 🎒 ¿Qué caja uso para cada dato?

@@ -67,6 +67,8 @@ System.out.println(a.equals(c));  // true
 
 > ⚠️ **Advertencia:** regla de oro: **los `String` siempre se comparan con `.equals()`**. Si usas `==`, tarde o temprano te morderá en un examen.
 
+![Diagrama del pool de Strings: a y b apuntan al mismo objeto del pool y c a uno nuevo con new, con == comparando referencias y .equals() el contenido](/ApuntesProgramacion/diagrams/u03-pool-strings.svg)
+
 ---
 
 ## 🔒 Constantes con `final`: cajas con superglue
